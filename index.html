@@ -3,67 +3,103 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Concerto Audio & Peredam Malang Raya </title>
+  <title>Concerto Audio dan Peredam Malang Raya</title>
   <style>
+    :root {
+      --primary-color: #007bff;
+      --secondary-color: #f0f0f0;
+      --accent-color: #25d366;
+      --font-family: 'Arial', sans-serif;
+      --border-radius: 8px;
+      --transition-speed: 0.3s;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0; background: #f5f5f5;
+      font-family: var(--font-family);
+      margin: 0;
+      padding: 0;
+      background-color: var(--secondary-color);
+      color: #333;
     }
+
     header {
-      background: #007bff;
+      background-color: var(--primary-color);
       color: white;
-      padding: 1rem;
       text-align: center;
+      padding: 2rem;
     }
+
     .container {
-      max-width: 900px;
+      max-width: 1200px;
       margin: 2rem auto;
       padding: 0 1rem;
     }
+
     .produk-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 1.5rem;
     }
+
     .produk {
-      background: white;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
     }
+
+    .produk:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
     .produk img {
       width: 100%;
-      border-radius: 6px;
-      margin-bottom: 0.8rem;
+      height: auto;
+      display: block;
     }
+
     .produk h3 {
-      margin: 0 0 0.5rem;
+      margin: 1rem;
+      font-size: 1.2rem;
+      color: #333;
     }
+
+    .produk p {
+      margin: 0 1rem 1rem;
+      color: #666;
+    }
+
     .kontak {
       margin-top: 3rem;
       text-align: center;
     }
+
     .btn-whatsapp {
       display: inline-block;
-      background: #25d366;
+      background-color: var(--accent-color);
       color: white;
       padding: 0.8rem 1.5rem;
       border-radius: 50px;
       text-decoration: none;
       font-weight: bold;
-      margin: 0 0.5rem;
-      transition: background 0.3s;
+      text-align: center;
+      transition: background-color var(--transition-speed);
     }
+
     .btn-whatsapp:hover {
-      background: #1ebe57;
+      background-color: #128c7e;
     }
+
     .sosmed a {
       margin: 0 0.5rem;
-      color: #007bff;
+      color: var(--primary-color);
       font-size: 1.5rem;
       text-decoration: none;
-      transition: color 0.3s;
+      transition: color var(--transition-speed);
     }
+
     .sosmed a:hover {
       color: #0056b3;
     }
@@ -71,42 +107,42 @@
 </head>
 <body>
 
-<header>
-  <h1>Portfolio & Katalog Produk Usaha Saya</h1>
-  <p>Produk berkualitas dengan harga terjangkau</p>
-</header>
+  <header>
+    <h1>Katalog Produk & Kontak</h1>
+    <p>Temukan produk terbaik dari usaha kami</p>
+  </header>
 
-<div class="container">
-  <section class="produk-list">
-    <div class="produk">
-      <img src="https://via.placeholder.com/300x200?text=Produk+1" alt="Produk 1" />
-      <h3>Produk 1</h3>
-      <p>Deskripsi singkat produk 1 yang menarik dan jelas.</p>
-    </div>
-    <div class="produk">
-      <img src="https://via.placeholder.com/300x200?text=Produk+2" alt="Produk 2" />
-      <h3>Produk 2</h3>
-      <p>Deskripsi singkat produk 2 yang menarik dan jelas.</p>
-    </div>
-    <div class="produk">
-      <img src="https://via.placeholder.com/300x200?text=Produk+3" alt="Produk 3" />
-      <h3>Produk 3</h3>
-      <p>Deskripsi singkat produk 3 yang menarik dan jelas.</p>
-    </div>
-  </section>
+  <div class="container">
+    <section class="produk-list">
+      <div class="produk">
+        <img src="https://via.placeholder.com/300x200?text=Produk+1" alt="Produk 1" />
+        <h3>Produk 1</h3>
+        <p>Deskripsi singkat produk 1. Kualitas terbaik untuk kebutuhan Anda.</p>
+      </div>
+      <div class="produk">
+        <img src="https://via.placeholder.com/300x200?text=Produk+2" alt="Produk 2" />
+        <h3>Produk 2</h3>
+        <p>Deskripsi singkat produk 2. Harga terjangkau dan berkualitas.</p>
+      </div>
+      <div class="produk">
+        <img src="https://via.placeholder.com/300x200?text=Produk+3" alt="Produk 3" />
+        <h3>Produk 3</h3>
+        <p>Deskripsi singkat produk 3. Cocok untuk kebutuhan harian Anda.</p>
+      </div>
+    </section>
 
-  <section class="kontak">
-    <h2>Hubungi Kami</h2>
-    <a class="btn-whatsapp" href="https://wa.me/6281234567890?text=Halo%20Saya%20ingin%20bertanya%20tentang%20produk%20Anda" target="_blank" rel="noopener noreferrer">
-      Chat WhatsApp
-    </a>
-    <div class="sosmed" style="margin-top:1rem;">
-      <a href="https://instagram.com/username" target="_blank" rel="noopener noreferrer" aria-label="Instagram">📸</a>
-      <a href="https://facebook.com/username" target="_blank" rel="noopener noreferrer" aria-label="Facebook">📘</a>
-      <a href="https://twitter.com/username" target="_blank" rel="noopener noreferrer" aria-label="Twitter">🐦</a>
-    </div>
-  </section>
-</div>
+    <section class="kontak">
+      <h2>Hubungi Kami</h2>
+      <a class="btn-whatsapp" href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20Anda" target="_blank">
+        Chat via WhatsApp
+      </a>
+      <div class="sosmed" style="margin-top:1rem;">
+        <a href="https://instagram.com/username" target="_blank" aria-label="Instagram">📸</a>
+        <a href="https://facebook.com/username" target="_blank" aria-label="Facebook">📘</a>
+        <a href="https://twitter.com/username" target="_blank" aria-label="Twitter">🐦</a>
+      </div>
+    </section>
+  </div>
 
 </body>
 </html>
