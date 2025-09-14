@@ -7,7 +7,7 @@ body, h1, h2, h3, p, ul {
 
 /* Layout umum */
 body {
-  background: #f8f8f8;
+  background: url("Images-bg.jpg") center/cover no-repeat;
   color: #333;
 }
 
@@ -56,22 +56,27 @@ nav a:hover, nav a.active {
 
 /* Hero section */
 .hero {
+  position: relative;
   text-align: center;
   padding: 60px 20px;
-  background: url("images-bg.jpg") center/cover no-repeat;
   color: white;
 }
 
-.hero h2 {
-  font-size: 2rem;
-  margin-bottom: 15px;
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); /* overlay gelap supaya teks terbaca */
+  z-index: 1;
 }
 
-.hero p {
-  font-size: 1.1rem;
+.hero h2, .hero p {
+  position: relative;
+  z-index: 2;
 }
 
-/* Kotak semi-transparent untuk produk, layanan, kontak, galeri */
+/* Kotak semi-transparent (produk, layanan, kontak, galeri) */
 .produk-item,
 .layanan ul,
 .kontak,
@@ -226,4 +231,3 @@ nav a:hover, nav a.active {
     margin: 5px;
   }
 }
-
