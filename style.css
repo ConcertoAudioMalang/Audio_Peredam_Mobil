@@ -1,0 +1,28 @@
+body {
+  background: url("assets/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+nav {
+  background: rgba(0,0,0,0.7);
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+nav a {
+  color: white;
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+nav a:hover { text-decoration: underline; }
+
+main { transition: opacity 0.3s ease-in-out; }
+.fade-out { opacity: 0; }
+.fade-in { opacity: 1; }
