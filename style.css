@@ -172,7 +172,7 @@ nav a:hover {
 /* HP */
 @media (max-width: 480px) {
   .logo img {
-    width: 90px; /* logo lebih kecil di HP */
+    width: 90px;
   }
 
   header h1 {
@@ -206,4 +206,3 @@ nav a:hover {
     margin: 5px;
   }
 }
-
