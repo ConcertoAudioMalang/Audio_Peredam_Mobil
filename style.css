@@ -58,7 +58,7 @@ nav a:hover, nav a.active {
 .hero {
   text-align: center;
   padding: 60px 20px;
-  background: url("background.png") center/cover no-repeat;
+  background: url("images-bg.jpg") center/cover no-repeat;
   color: white;
 }
 
@@ -226,3 +226,4 @@ nav a:hover, nav a.active {
     margin: 5px;
   }
 }
+
