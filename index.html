@@ -1,179 +1,53 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - Concerto Audio dan Peredam Malang </title>
+  <title>Bengkel Audio</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-  <link rel="icon" href="favicon.ico">
+<body>
+  <!-- Navbar -->
   <nav>
-    <a href="index.html" data-link>Home</a> |
-    <a href="about.html" data-link>About</a> |
-    <a href="contact.html" data-link>Contact</a>
+    <a href="#" onclick="loadPage('home')">Home</a> |
+    <a href="#" onclick="loadPage('produk')">Produk</a> |
+    <a href="#" onclick="loadPage('layanan')">Layanan</a> |
+    <a href="#" onclick="loadPage('contact')">Kontak</a>
   </nav>
 
+  <!-- Main Content -->
   <main id="content">
-    <h1>Selamat Datang </h1>
-    <p>Ini halaman utama (index.html)</p>
+    <h1>Selamat Datang di Bengkel Audio 🎶</h1>
+    <p>Kami siap melayani kebutuhan audio mobil Anda dengan kualitas terbaik.</p>
   </main>
 
+  <!-- Footer -->
+  <footer>
+    <p>📍 Jl. Otomotif No. 123, Jakarta</p>
+    <p>
+      <a href="mailto:bengkel.audio@email.com">✉️ Email</a> |
+      <a href="https://wa.me/6281234567890" target="_blank">💬 WhatsApp</a>
+    </p>
+    <p>
+      <a href="https://facebook.com/bengkel.audio" target="_blank">📘 Facebook</a> |
+      <a href="https://instagram.com/bengkel.audio" target="_blank">📸 Instagram</a> |
+      <a href="https://tiktok.com/@bengkel.audio" target="_blank">🎵 TikTok</a> |
+      <a href="https://youtube.com/@bengkel.audio" target="_blank">▶️ YouTube</a>
+    </p>
+    <p>© 2025 Bengkel Audio. All rights reserved.</p>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/6281234567890" target="_blank" class="whatsapp-float">
+    <img src="whatsapp.png" alt="WhatsApp">
+  </a>
+
+  <!-- Script -->
   <script src="script.js"></script>
-</body>
-</html>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Concerto Audio dan Peredam Malang Raya</title>
-  <style>
-    :root {
-      --primary-color: #007bff;
-      --secondary-color: #f0f0f0;
-      --accent-color: #25d366;
-      --font-family: 'Arial', sans-serif;
-      --border-radius: 8px;
-      --transition-speed: 0.3s;
-    }
-
-    body {
-      font-family: var(--font-family);
-      margin: 0;
-      padding: 0;
-      background-color: var(--secondary-color);
-      color: #333;
-    }
-
-    header {
-      background-color: var(--primary-color);
-      color: white;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    .produk-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .produk {
-      background-color: white;
-      border-radius: var(--border-radius);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-    }
-
-    .produk:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    .produk img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .produk h3 {
-      margin: 1rem;
-      font-size: 1.2rem;
-      color: #333;
-    }
-
-    .produk p {
-      margin: 0 1rem 1rem;
-      color: #666;
-    }
-
-    .kontak {
-      margin-top: 3rem;
-      text-align: center;
-    }
-
-    .btn-whatsapp {
-      display: inline-block;
-      background-color: var(--accent-color);
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      text-align: center;
-      transition: background-color var(--transition-speed);
-    }
-
-    .btn-whatsapp:hover {
-      background-color: #128c7e;
-    }
-
-    .sosmed a {
-      margin: 0 0.5rem;
-      color: var(--primary-color);
-      font-size: 1.5rem;
-      text-decoration: none;
-      transition: color var(--transition-speed);
-    }
-
-    .sosmed a:hover {
-      color: #0056b3;
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>Katalog Produk & Kontak</h1>
-    <p>Temukan produk terbaik dari workshop kami</p>
-  </header>
-
-  <div class="container">
-    <section class="produk-list">
-      <div class="produk">
-        <img src="https://via.placeholder.com/300x200?text=Produk+1" alt="Produk 1" />
-        <h3>Audio Circle </h3>
-        <p>Deskripsi singkat produk 1. Kualitas terbaik untuk kebutuhan Anda.</p>
-      </div>
-      <div class="produk">
-        <img src="https://via.placeholder.com/300x200?text=Produk+2" alt="Produk 2" />
-        <h3>STEG </h3>
-        <p>Deskripsi singkat produk 2. Harga terjangkau dan berkualitas.</p>
-      </div>
-      <div class="produk">
-        <img src="https://via.placeholder.com/300x200?text=Produk+3" alt="Produk 3" />
-        <h3>Dios Dela Musica </h3>
-        <p>Deskripsi singkat produk 3. Cocok untuk kebutuhan harian Anda.</p>
-      </div>
-      <div class="produk">
-        <img src="https://via.placeholder.com/300x200?text=Produk+3" alt="Produk 3" />
-        <h3>Zeloz </h3>
-        <p>Deskripsi singkat produk 3. Cocok untuk kebutuhan harian Anda.</p>
-      </div>
-  <h1>Tentang Saya</h1>
-  <p>Ini halaman About.</p>
-</div>
-  <h1>Hubungi Saya</h1>
-  <p>Email: example@email.com</p>
-    </section>
-
-    <section class="kontak">
-      <h2>Hubungi Kami</h2>
-      <a class="btn-whatsapp" href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20Anda" target="_blank">
-        Chat via WhatsApp
-      </a>
-      <div class="sosmed" style="margin-top:1rem;">
-        <a href="https://instagram.com/username" target="_blank" aria-label="Instagram">📸</a>
-        <a href="https://facebook.com/username" target="_blank" aria-label="Facebook">📘</a>
-        <a href="https://twitter.com/username" target="_blank" aria-label="Twitter">🐦</a>
-      </div>
-    </section>
-  </div>
-
 </body>
 </html>
