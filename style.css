@@ -1,177 +1,208 @@
-/* General */
-body {
+/* Reset dasar */
+body, h1, h2, h3, p, ul {
   margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
-  background: url("assets/images-bg.jpg") no-repeat center center fixed;
-  background-size: cover;
-  color: #fff;
-  scroll-behavior: smooth;
+}
+
+/* Layout umum */
+body {
+  background: #f8f8f8;
+  color: #333;
 }
 
 /* Header */
 header {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 1rem;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: #111;
+  color: white;
+  flex-wrap: wrap;
 }
 
-header .logo {
-  width: 60px;
-  vertical-align: middle;
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 120px;
+  height: auto;
+}
+
+header h1 {
+  font-size: 1.5rem;
+}
+
+/* Navigasi */
+nav {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 nav a {
-  margin: 0 10px;
-  color: #fff;
+  color: white;
+  margin-left: 15px;
   text-decoration: none;
+  font-weight: bold;
 }
 
-nav a.active {
-  border-bottom: 2px solid #ffcc00;
+nav a:hover {
+  color: #ff9900;
 }
 
-/* Hero */
+/* Hero section */
 .hero {
-  padding: 100px 20px;
   text-align: center;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-/* Produk */
-.produk-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
-}
-
-.produk-card {
-  background: rgba(0,0,0,0.6);
-  padding: 15px;
-  border-radius: 10px;
-  width: 200px;
-  text-align: center;
-
-  /* animasi awal */
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-.produk-card.show {
-  /* kondisi setelah muncul */
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Layanan */
-#layanan ul {
-  list-style: none;
-  padding: 0;
-  text-align: center;
-}
-
-/* Kontak */
-.sosmed img {
-  width: 40px;
-  margin: 0 10px;
-  transition: transform 0.3s;
-}
-
-.sosmed img:hover {
-  transform: scale(1.2);
-}
-
-/* Footer */
-footer {
-  background: rgba(0, 0, 0, 0.8);
-  text-align: center;
-  padding: 15px;
-}
-
-/* Animasi Header */
-header {
-  animation: slideDown 1s ease forwards;
-  transform: translateY(-100%);
-  opacity: 0;
-}
-
-@keyframes slideDown {
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Animasi Hero Section */
-.hero h2, 
-.hero p {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 1s ease forwards;
+  padding: 60px 20px;
+  background: url("background.png") center/cover no-repeat;
+  color: white;
 }
 
 .hero h2 {
-  animation-delay: 0.5s;
+  font-size: 2rem;
+  margin-bottom: 15px;
 }
 
 .hero p {
-  animation-delay: 1s;
+  font-size: 1.1rem;
 }
 
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+/* Produk */
+.produk {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.produk h2 {
+  margin-bottom: 20px;
+}
+
+.produk-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.produk-item {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 250px;
+  transition: transform 0.3s;
+}
+
+.produk-item:hover {
+  transform: translateY(-5px);
+}
+
+.produk-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Layanan */
+.layanan {
+  padding: 40px 20px;
+  background: #eee;
+  text-align: center;
+}
+
+.layanan h2 {
+  margin-bottom: 20px;
+}
+
+/* Kontak */
+.kontak {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.social-icons {
+  margin-top: 15px;
+}
+
+.social-icons img {
+  width: 40px;
+  height: 40px;
+  margin: 0 8px;
+  transition: transform 0.2s;
+}
+
+.social-icons img:hover {
+  transform: scale(1.1);
+}
+
+/* ========================= */
+/* 📱 Responsive Layout      */
+/* ========================= */
+
+/* Tablet */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav {
+    margin-top: 10px;
+  }
+
+  nav a {
+    margin: 5px;
+    font-size: 0.95rem;
+  }
+
+  .hero h2 {
+    font-size: 1.6rem;
+  }
+
+  .produk-item {
+    width: 200px;
   }
 }
 
-/* Efek Hover untuk Ikon Sosmed */
-.social-icons a {
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-
-.social-icons a:hover {
-  transform: scale(1.2) rotate(5deg);
-  animation: bounce 0.6s;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
+/* HP */
+@media (max-width: 480px) {
+  .logo img {
+    width: 90px; /* logo lebih kecil di HP */
   }
-  50% {
-    transform: translateY(-6px);
+
+  header h1 {
+    font-size: 1.2rem;
   }
-}
 
-/* Animasi Muncul untuk Ikon Sosmed */
-.social-icons a {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s ease forwards;
-}
+  .hero {
+    padding: 40px 15px;
+  }
 
-/* Biar muncul satu-satu */
-.social-icons a:nth-child(1) {
-  animation-delay: 0.5s;
-}
-.social-icons a:nth-child(2) {
-  animation-delay: 0.8s;
-}
-.social-icons a:nth-child(3) {
-  animation-delay: 1.1s;
-}
+  .hero h2 {
+    font-size: 1.3rem;
+  }
 
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .produk-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .produk-item {
+    width: 90%;
+  }
+
+  .social-icons img {
+    width: 32px;
+    height: 32px;
+    margin: 5px;
   }
 }
-
