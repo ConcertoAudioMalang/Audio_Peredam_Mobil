@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Concerto Audio & Peredam Malang Raya </title>
+  <title>Concerto Audio & Peredam Mobil Malang Raya</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
@@ -12,42 +12,85 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Navbar -->
-  <nav>
-    <a href="#" onclick="loadPage('home')">Home</a> |
-    <a href="#" onclick="loadPage('produk')">Produk</a> |
-    <a href="#" onclick="loadPage('layanan')">Layanan</a> |
-    <a href="#" onclick="loadPage('contact')">Kontak</a>
-  </nav>
+  <!-- Header -->
+  <header>
+    <img src="assets/logo/concerto-audio-logo.png" alt="Logo Bengkel Audio" class="logo">
+    <h1>Concerto Audio</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#produk">Produk</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </header>
 
-  <!-- Main Content -->
-  <main id="content">
-    <h1>Selamat Datang di Concerto Malang 🎶</h1>
-    <p>Kami siap melayani kebutuhan audio mobil Anda dengan kualitas terbaik.</p>
-  </main>
+  <!-- Home Section -->
+  <section id="home" class="hero">
+    <h2>Solusi Audio Mobil Terbaik</h2>
+    <p>Kami menyediakan layanan instalasi dan produk audio mobil berkualitas tinggi.</p>
+  </section>
+
+  <!-- Produk Section -->
+  <section id="produk">
+    <h2>Produk Kami</h2>
+    <div class="produk-container">
+      <div class="produk-card">
+        <img src="assets/produk/speaker.jpg" alt="Speaker">
+        <h3>Speaker</h3>
+        <p>Suara jernih dan berkualitas tinggi.</p>
+      </div>
+      <div class="produk-card">
+        <img src="assets/produk/amplifier.jpg" alt="Amplifier">
+        <h3>Amplifier</h3>
+        <p>Tenaga ekstra untuk pengalaman audio maksimal.</p>
+      </div>
+      <div class="produk-card">
+        <img src="assets/produk/subwoofer.jpg" alt="Subwoofer">
+        <h3>Subwoofer</h3>
+        <p>Bass mantap untuk setiap perjalanan.</p>
+      </div>
+      <div class="produk-card">
+        <img src="assets/produk/headunit.jpg" alt="Head Unit">
+        <h3>peredam</h3>
+        <p>Ruber butyl.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Layanan Section -->
+  <section id="layanan">
+    <h2>Layanan Kami</h2>
+    <ul>
+      <li>Instalasi Audio Mobil</li>
+      <li>Custom Audio System</li>
+      <li>Perawatan & Perbaikan</li>
+      <li>Konsultasi Audio</li>
+    </ul>
+  </section>
+
+  <!-- Kontak Section -->
+  <section id="kontak">
+    <h2>Kontak Kami</h2>
+    <p>Hubungi kami melalui media sosial berikut:</p>
+    <div class="sosmed">
+      <a href="https://wa.me/6281234567890" target="_blank">
+        <img src="assets/wa.png" alt="WhatsApp">
+      </a>
+      <a href="https://instagram.com/username" target="_blank">
+        <img src="assets/ig.png" alt="Instagram">
+      </a>
+      <a href="https://facebook.com/username" target="_blank">
+        <img src="assets/fb.png" alt="Facebook">
+      </a>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>
-    <p>📍 Jl. Ciliwung No. 57 A,Purwantoro, Kota Malang, Jawa Timur</p>
-    <p>
-      <a href="mailto:bengkel.audio@email.com">✉️ Email</a> |
-      <a href="https://wa.me/6281234567890" target="_blank">💬 WhatsApp</a>
-    </p>
-    <p>
-      <a href="https://facebook.com/bengkel.audio" target="_blank">📘 Facebook</a> |
-      <a href="https://instagram.com/bengkel.audio" target="_blank">📸 Instagram</a> |
-      <a href="https://tiktok.com/@bengkel.audio" target="_blank">🎵 TikTok</a> |
-      <a href="https://youtube.com/@bengkel.audio" target="_blank">▶️ YouTube</a>
-    </p>
-    <p>© 2025 Concerto Audio Malang. All rights reserved.</p>
+    <p>&copy; 2025 Concerto Audio Malang. Semua Hak Dilindungi.</p>
   </footer>
 
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/6281234567890" target="_blank" class="whatsapp-float">
-    <img src="whatsapp.png" alt="WhatsApp">
-  </a>
-
-  <!-- Script -->
+  <!-- JS -->
   <script src="script.js"></script>
 </body>
 </html>
