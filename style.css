@@ -7,7 +7,7 @@ body, h1, h2, h3, p, ul {
 
 /* Layout umum */
 body {
-  background: url("Images-bg.jpg") center/cover no-repeat;
+  background: url("images-bg.jpg") center/cover no-repeat;
   color: #333;
 }
 
@@ -231,3 +231,4 @@ nav a:hover, nav a.active {
     margin: 5px;
   }
 }
+
