@@ -50,7 +50,7 @@ nav a {
   font-weight: bold;
 }
 
-nav a:hover {
+nav a:hover, nav a.active {
   color: #ff9900;
 }
 
@@ -58,7 +58,7 @@ nav a:hover {
 .hero {
   text-align: center;
   padding: 60px 20px;
-  background: url("images-bg.jpg") center/cover no-repeat;
+  background: url("background.png") center/cover no-repeat;
   color: white;
 }
 
@@ -69,6 +69,23 @@ nav a:hover {
 
 .hero p {
   font-size: 1.1rem;
+}
+
+/* Kotak semi-transparent untuk produk, layanan, kontak, galeri */
+.produk-item,
+.layanan ul,
+.kontak,
+.galeri-item {
+  background: rgba(255, 255, 255, 0.85); /* semi-transparent */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 15px;
+  transition: transform 0.3s;
+}
+
+.produk-item:hover,
+.galeri-item img:hover {
+  transform: translateY(-5px);
 }
 
 /* Produk */
@@ -86,19 +103,6 @@ nav a:hover {
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
-}
-
-.produk-item {
-  background: white;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  width: 250px;
-  transition: transform 0.3s;
-}
-
-.produk-item:hover {
-  transform: translateY(-5px);
 }
 
 .produk-item img {
@@ -140,11 +144,23 @@ nav a:hover {
   transform: scale(1.1);
 }
 
-/* ========================= */
-/* 📱 Responsive Layout      */
-/* ========================= */
+/* Galeri */
+.galeri-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
 
-/* Tablet */
+.galeri-item img {
+  width: 250px;
+  height: auto;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+/* Responsive Tablet */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -167,9 +183,13 @@ nav a:hover {
   .produk-item {
     width: 200px;
   }
+
+  .galeri-item img {
+    width: 200px;
+  }
 }
 
-/* HP */
+/* Responsive HP */
 @media (max-width: 480px) {
   .logo img {
     width: 90px;
@@ -191,12 +211,12 @@ nav a:hover {
     font-size: 1rem;
   }
 
-  .produk-grid {
+  .produk-grid, .galeri-grid {
     flex-direction: column;
     align-items: center;
   }
 
-  .produk-item {
+  .produk-item, .galeri-item img {
     width: 90%;
   }
 
