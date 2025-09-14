@@ -8,6 +8,11 @@ body {
   text-shadow: 1px 1px 2px black;
 }
 
+body {
+  background: url("background.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
 nav {
   background: rgba(0,0,0,0.7);
   padding: 10px;
@@ -26,3 +31,4 @@ nav a:hover { text-decoration: underline; }
 main { transition: opacity 0.3s ease-in-out; }
 .fade-out { opacity: 0; }
 .fade-in { opacity: 1; }
+
