@@ -55,19 +55,17 @@ nav a.active {
   border-radius: 10px;
   width: 200px;
   text-align: center;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease;
-}
 
-.produk-card img {
-  width: 100%;
-  border-radius: 10px;
+  /* animasi awal */
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 1s ease, transform 1s ease;
 }
 
 .produk-card.show {
+  /* kondisi setelah muncul */
   opacity: 1;
-  transform: translateY(0);
+  transform: scale(1);
 }
 
 /* Layanan */
@@ -94,3 +92,61 @@ footer {
   text-align: center;
   padding: 15px;
 }
+
+/* Animasi Header */
+header {
+  animation: slideDown 1s ease forwards;
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+@keyframes slideDown {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animasi Hero Section */
+.hero h2, 
+.hero p {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards;
+}
+
+.hero h2 {
+  animation-delay: 0.5s;
+}
+
+.hero p {
+  animation-delay: 1s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efek Hover untuk Ikon Sosmed */
+.social-icons a {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2) rotate(5deg);
+  animation: bounce 0.6s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
