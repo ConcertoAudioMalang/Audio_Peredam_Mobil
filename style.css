@@ -7,28 +7,31 @@
 }
 
 body {
-  background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
-  color: #e0f7da;
-  line-height: 1.6;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1f1f1f 100%);
+  color: #d0e8cc;
+  line-height: 1.5;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* === LINKS === */
 a {
-  color: #4ade80; /* Hijau neon */
+  color: #52b788;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.4s ease-in-out;
 }
 
 a:hover {
-  color: #22c55e;
+  color: #74c69d;
+  text-shadow: 0 0 6px #74c69d;
 }
 
 /* === HEADER === */
 header {
   padding: 2rem 0;
   text-align: center;
-  border-bottom: 3px solid #4ade80;
+  border-bottom: 3px solid #52b788;
   background: rgba(10, 10, 10, 0.9);
   box-shadow: 0 4px 6px rgba(0,0,0,0.7);
 }
@@ -36,10 +39,10 @@ header {
 header h1 {
   font-weight: 700;
   font-size: 2.8rem;
-  letter-spacing: 3px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: #4ade80;
-  text-shadow: 0 0 10px #22c55e;
+  color: #52b788;
+  text-shadow: 0 0 8px #74c69d;
 }
 
 /* === NAVIGATION === */
@@ -61,19 +64,21 @@ nav a {
 }
 
 nav a:hover {
-  color: #86efac;
-  text-shadow: 0 0 8px #4ade80;
+  color: #74c69d;
+  text-shadow: 0 0 8px #52b788;
 }
 
 /* === HERO SECTION === */
 .hero {
-  background: url('images/hero.jpg') center center/cover no-repeat;
+  background: url('background-concerto.jpg') center center/cover no-repeat;
   height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(82, 183, 136, 0.3);
 }
 
 .hero::before {
@@ -82,16 +87,17 @@ nav a:hover {
   inset: 0;
   background: rgba(10, 25, 10, 0.75);
   z-index: 1;
+  border-radius: 12px;
 }
 
 .hero h2 {
   position: relative;
   z-index: 2;
-  color: #a7f3d0;
+  color: #cdeac0;
   font-size: 3rem;
   text-align: center;
   max-width: 90%;
-  text-shadow: 0 0 15px #22c55e;
+  text-shadow: 0 0 15px #74c69d;
 }
 
 /* === CONTAINER === */
@@ -107,7 +113,7 @@ section h2 {
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: #4ade80;
+  color: #52b788;
   letter-spacing: 1.5px;
 }
 
@@ -119,25 +125,25 @@ section h2 {
 }
 
 .product-card {
-  background: rgba(15, 15, 15, 0.9);
-  border-radius: 15px;
+  background: rgba(15, 15, 15, 0.7);
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 6px 15px rgba(34, 197, 94, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(82, 183, 136, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
   cursor: pointer;
 }
 
 .product-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 25px rgba(34, 197, 94, 0.6);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(82, 183, 136, 0.35);
 }
 
 .product-card img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  filter: brightness(0.9);
-  transition: filter 0.3s ease;
+  filter: brightness(0.95);
+  transition: filter 0.4s ease;
 }
 
 .product-card:hover img {
@@ -146,7 +152,7 @@ section h2 {
 
 .product-card .content {
   padding: 1.5rem;
-  color: #c7f9d1;
+  color: #cdeac0;
 }
 
 .product-card h3 {
@@ -156,14 +162,14 @@ section h2 {
 
 .product-card p {
   font-size: 1rem;
-  color: #a3f7b5;
+  color: #a3cba1;
 }
 
 /* === MAP SECTION === */
 .map-container {
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(34, 197, 94, 0.4);
+  box-shadow: 0 6px 18px rgba(82, 183, 136, 0.4);
   margin-top: 2rem;
 }
 
@@ -171,6 +177,7 @@ section h2 {
   width: 100%;
   height: 320px;
   border: none;
+  border-radius: 12px;
 }
 
 /* === FOOTER === */
@@ -178,8 +185,8 @@ footer {
   text-align: center;
   padding: 2rem 1rem;
   background: #111;
-  border-top: 3px solid #4ade80;
-  color: #6ee7b7;
+  border-top: 3px solid #52b788;
+  color: #a8d5a3;
   font-weight: 500;
   font-size: 1rem;
   letter-spacing: 1.2px;
