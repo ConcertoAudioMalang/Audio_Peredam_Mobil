@@ -203,4 +203,15 @@ footer {
   color: #1b4332;
 }
 
+.hero div {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 2rem;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+
 
