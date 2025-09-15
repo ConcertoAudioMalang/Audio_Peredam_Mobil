@@ -12,6 +12,16 @@ body {
   line-height: 1.6;
 }
 
+body {
+  display: flex;
+  justify-content: center;   /* center horizontal */
+  align-items: center;       /* center vertical */
+  height: 100vh;             /* agar body setinggi layar */
+  margin: 0;
+  text-align: center;        /* teks di dalam elemen tetap rata tengah */
+  flex-direction: column;    /* opsional, tergantung struktur elemennya */
+}
+
 /* HEADER */
 header {
   background-color: #ffffff;
@@ -211,6 +221,7 @@ footer {
   display: inline-block;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
+
 
 
 
