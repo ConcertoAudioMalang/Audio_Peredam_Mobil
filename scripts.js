@@ -41,23 +41,26 @@ document.addEventListener('DOMContentLoaded', () => {
 setInterval(() => {
   track.scrollBy({ left: scrollStep, behavior: 'smooth' });
 }, 5000); // tiap 5 detik
+
 <script>
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightbox-img");
+let slideIndex = 0;
+showSlides(slideIndex);
 
-  document.querySelectorAll("#galeri .products img").forEach(img => {
-    img.addEventListener("click", function () {
-      lightbox.style.display = "flex";
-      lightboxImg.src = this.src;
-      lightboxImg.alt = this.alt;
-    });
-  });
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
 
-  function closeLightbox() {
-    lightbox.style.display = "none";
-    lightboxImg.src = "";
-  }
+function showSlides(n) {
+  let slides = document.querySelectorAll(".slides img");
+  if (n >= slides.length) { slideIndex = 0; }
+  if (n < 0) { slideIndex = slides.length - 1; }
+
+  slides.forEach(slide => slide.classList.remove("active"));
+  slides[slideIndex].classList.add("active");
+}
 </script>
+
+
 
 
 
