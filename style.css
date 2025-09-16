@@ -293,14 +293,14 @@ h1 {
   justify-content: center;
   gap: 20px;
   margin-bottom: 40px;
-  flex-wrap: wrap; /* biar kalau banyak logo turun ke baris bawah */
+  flex-wrap: wrap; /* biar kalau banyak logo turun ke bawah */
 }
 
 .brand-nav a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 80px; /* kotak kecil */
+  width: 80px; /* ukuran bubble */
   height: 80px;
 }
 
@@ -314,7 +314,6 @@ h1 {
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   transition: transform 0.3s, box-shadow 0.3s;
 }
-
 
 /* Bagian merk */
 .brand-section {
@@ -609,6 +608,7 @@ h1 {
   font-weight: bold;
   z-index: 10000;
 }
+
 
 
 
