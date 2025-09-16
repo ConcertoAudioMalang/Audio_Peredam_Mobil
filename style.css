@@ -288,34 +288,43 @@ h1 {
 }
 
 /* Bubble navigasi merk */
+    
 .brand-nav {
   display: flex;
-  justify-content: center;   /* bikin sejajar tengah */
+  justify-content: center;    /* rata tengah */
   align-items: center;
-  flex-wrap: wrap;           /* biar kalau layar kecil bisa turun */
-  gap: 15px;                 /* jarak antar logo */
-  margin: 20px auto;         /* kasih margin atas bawah */
-  max-width: 1000px;         /* batas maksimal lebar area logo */
+  flex-wrap: wrap;            /* kalau layar kecil otomatis turun */
+  gap: 20px;                  /* jarak antar logo */
+  margin: 30px auto;
+  max-width: 100%;            /* biar nggak mepet pinggir */
+  padding: 0 15px;            /* kasih ruang kiri kanan */
+  box-sizing: border-box;
 }
 
 .brand-nav a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 70px;     /* lebih kecil */
+  width: 70px;
   height: 70px;
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  flex-shrink: 0;  /* jangan sampai gepeng kalau layar kecil */
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+
+.brand-nav a:hover {
+  transform: scale(1.1);      /* efek hover */
 }
 
 .brand-nav a img {
-  width: 50px;     /* logo lebih kecil */
+  width: 50px;
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
 }
+
 
 /* Bagian merk */
 .brand-section {
@@ -610,6 +619,7 @@ h1 {
   font-weight: bold;
   z-index: 10000;
 }
+
 
 
 
