@@ -139,6 +139,24 @@
 
     <section id="tentang" tabindex="0" aria-label="Tentang Kami">
       <h2>Tentang Kami</h2>
+      <section id="testimoni" tabindex="0" aria-label="Testimoni Pelanggan">
+  <h2>Apa Kata Pelanggan</h2>
+  <div class="testimonials">
+    <blockquote>
+      <p>"Pelayanan sangat memuaskan, suara audio mobil jadi makin mantap!"</p>
+      <footer>- Andi, Malang</footer>
+    </blockquote>
+    <blockquote>
+      <p>"Peredam mobilnya kualitas premium, suara luar langsung hilang!"</p>
+      <footer>- Rina, Batu</footer>
+    </blockquote>
+    <blockquote>
+      <p>"Rekomendasi banget buat pecinta audio mobil, teknisinya jago."</p>
+      <footer>- Budi, Surabaya</footer>
+    </blockquote>
+  </div>
+</section>
+
       <p>
         Concerto Malang hadir untuk meningkatkan kenyamanan dalam berkendara. Kami melayani dengan tulus dan menawarkan solusi yang tepat sesuai kebutuhan Anda.
       </p>
@@ -152,10 +170,20 @@
 
     <section id="kontak" tabindex="0" aria-label="Kontak dan Media Sosial">
       <div class="centered-section">
+        <h2>Hubungi Kami</h2>
+<form action="https://api.whatsapp.com/send" method="get" target="_blank" class="contact-form">
+  <label for="name">Nama:</label>
+  <input type="text" name="text" id="name" placeholder="Masukkan nama Anda" required />
+
+  <label for="message">Pesan:</label>
+  <textarea name="text" id="message" placeholder="Tuliskan pesan Anda" required></textarea>
+
+  <input type="hidden" name="phone" value="6281217398558" />
+  <button type="submit" class="button">Kirim via WhatsApp</button>
+</form>
 
   <a href="https://wa.me/+62 81217398558" target="_blank" class="button button-light">Chat via WhatsApp</a>
       <div class="centered-section">
-
 
       <h2>Kontak & Sosial Media</h2>
       <p>Alamat: Jl. Ciliwung No.57 A, Purwantoro, Kec. Blimbing, Kota Malang, Jawa Timur 65126</p>
@@ -183,6 +211,7 @@
   </footer>
 
   <script src="scripts.js"></script>
+
 
 
 
