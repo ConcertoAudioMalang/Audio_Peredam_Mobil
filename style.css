@@ -92,8 +92,10 @@
 }
 
 body {
+  body {
   font-family: 'Poppins', sans-serif;
-  background-color: #f7f9f9;
+  background: url('images/background-concerto.jpg') no-repeat center center fixed;
+  background-size: cover;
   color: #333;
   line-height: 1.6;
 }
@@ -404,6 +406,7 @@ section {
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(64, 145, 108, 0.5);
 }
+
 
 
 
