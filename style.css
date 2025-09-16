@@ -63,51 +63,6 @@ h2 {
   color: #2d6a4f;
 }
 
-/* PRODUCT GRID */
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-}
-
-.product-card {
-  background-color: #f0fdf4;
-  border: 1px solid #cce3d5;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.product-card img {
-  width: 100%;
-  height: auto;
-}
-
-.product-card .content {
-  padding: 1rem;
-}
-
-.product-card h3 {
-  margin-bottom: 0.5rem;
-  color: #2d6a4f;
-}
-
-/* GALERI */
-#galeri .products img {
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  transition: transform 0.3s ease;
-}
-
-#galeri .products img:hover {
-  transform: scale(1.05);
-}
-
 /* KONTAK */
 .map-container iframe {
   width: 100%;
@@ -259,12 +214,6 @@ section {
   transform: translateY(-5px);
 }
 
-.product-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
 .product-card .content {
   padding: 1rem;
 }
@@ -277,6 +226,22 @@ section {
   border-radius: 6px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
+.centered-section {
+  text-align: center;
+  margin-top: 2rem;
+}
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.gallery-section img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
 
 
 
