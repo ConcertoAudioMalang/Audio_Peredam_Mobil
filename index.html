@@ -255,37 +255,7 @@
         opacity: 1;
         transform: translateY(0);
       }
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-    }
-
-    .product-card {
-      background: #f8f9fa;
-      border-radius: 10px;
-      overflow: hidden;
-      transition: transform 0.3s;
-    }
-
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .product-card .content {
-      padding: 1rem;
-      text-align: center;
-    }
+  
 
     .cta {
       text-align: center;
@@ -346,6 +316,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  
   <h1>Katalog Produk</h1>
 
   <!-- Navigasi Bubble -->
@@ -358,36 +329,25 @@
   
   <!-- Merk 1 -->
   <section class="brand-section" id="merk1">
-    <div class="brand-header">
-      <h2>Audio Circle</h2>
-      <img src="images/audio-circle.png" alt="Logo Merk 1" class="brand-logo">
+    <div class="product-grid">
+  <div class="product-card">
+    <img src="img/produk1.jpg" alt="Produk 1">
+    <h3>Produk A1</h3>
+    <div class="cta-buttons">
+      <a href="detail-produk1.html" class="btn-detail">Detail</a>
+      <a href="https://wa.me/6281234567890" class="btn-wa">WhatsApp</a>
     </div>
-    <div class="product-container">
-      <div class="product-card">
-        <img src="produk1a.jpg" alt="Produk A1">
-        <h3>Produk A1</h3>
-        <div class="actions">
-          <a href="#" class="btn detail">Detail</a>
-          <a href="https://wa.me/628123456789" class="btn whatsapp">WhatsApp</a>
-        </div>
-      </div>
-      <div class="product-card">
-        <img src="produk1b.jpg" alt="Produk A2">
-        <h3>Produk A2</h3>
-        <div class="actions">
-          <a href="#" class="btn detail">Detail</a>
-          <a href="https://wa.me/628123456789" class="btn whatsapp">WhatsApp</a>
-        </div>
-      </div>
-      <div class="product-card">
-        <img src="produk1c.jpg" alt="Produk A3">
-        <h3>Produk A3</h3>
-        <div class="actions">
-          <a href="#" class="btn detail">Detail</a>
-          <a href="https://wa.me/628123456789" class="btn whatsapp">WhatsApp</a>
-        </div>
-      </div>
+  </div>
+
+  <div class="product-card">
+    <img src="img/produk2.jpg" alt="Produk 2">
+    <h3>Produk A2</h3>
+    <div class="cta-buttons">
+      <a href="detail-produk2.html" class="btn-detail">Detail</a>
+      <a href="https://wa.me/6281234567890" class="btn-wa">WhatsApp</a>
     </div>
+  </div>
+</div>
   </section>
 
   <!-- Merk 2 -->
@@ -489,6 +449,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
