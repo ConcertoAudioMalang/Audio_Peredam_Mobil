@@ -8,7 +8,7 @@
 .hero {
   position: relative;
   height: 100vh; /* fullscreen tinggi */
-  background: url('images/hero-bg.jpg') center center/cover no-repeat;
+  background: url('images/background-concerto.jpg') center center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -513,6 +513,7 @@ section {
   font-weight: bold;
   z-index: 10000;
 }
+
 
 
 
