@@ -93,11 +93,12 @@
 
 body {
   body {
+  body {
   font-family: 'Poppins', sans-serif;
-  background: url('images/background-concerto.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #333;
+  background-color: #0f0f0f; 
+  color: #e0e0e0;
   line-height: 1.6;
+
 }
 
 /* HEADER */
@@ -255,16 +256,6 @@ footer {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 /* Reset dan dasar */
-body {
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
-body {
-  background: linear-gradient(to bottom, #f7f9f9, #e0f2e9);
-}
-}
 
 header {
   text-align: center;
@@ -513,6 +504,7 @@ section {
   font-weight: bold;
   z-index: 10000;
 }
+
 
 
 
