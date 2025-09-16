@@ -45,6 +45,30 @@
   text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
 }
 
+
+/* Tentang Kami */
+#tentang {
+  text-align: center;        /* semua teks di tengah */
+  padding: 60px 20px;        /* ruang atas bawah */
+  background: #f9f9f9;       /* warna latar lembut */
+}
+
+#tentang h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#tentang p {
+  max-width: 700px;          /* biar paragraf nggak kepanjangan */
+  margin: 0 auto;            /* center block */
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+}
+
+
 .cta-button {
   background: linear-gradient(135deg, #40916c, #2d6a4f);
   padding: 1rem 2rem;
@@ -597,6 +621,7 @@ h1 {
   font-weight: bold;
   z-index: 10000;
 }
+
 
 
 
