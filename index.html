@@ -3,87 +3,141 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Concerto Audio Malang - Spesialis Audio Mobil dan Peredam Mobil</title>
-  <meta name="description" content="Concerto Malang, bengkel audio mobil profesional di Malang. Spesialis pemasangan audio mobil dari merk Audio circle, STEG, Zeloz, dan Dios Dela Musica." />
-  <meta name="keywords" content="bengkel audio mobil, audio mobil Malang, pemasangan audio mobil, Audio circle audio mobil, STEG audio mobil, Zeloz audio mobil, Dios Dela Musica audio mobil" />
-  <meta name="author" content="Concerto Malang" />
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="Concerto Malang - Bengkel Audio Mobil Profesional di Malang" />
-  <meta property="og:description" content="Spesialis pemasangan audio mobil dari merk Audio circle, STEG, Zeloz, dan Dios Dela Musica." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://concertoaudiomobilmalang.github.io" />
-  <meta property="og:image" content="https://concertoaudiomobilmalang.github.io/images/concerto-audio-logo.png" />
-  
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.png" type="favicon.png" />
+  <title>Concerto Audio Malang</title>
+  <meta name="description" content="Spesialis Audio Mobil & Peredam Mobil di Malang." />
 
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="images/audio-circle.png" as="image" />
+  <link rel="preload" href="images/steg.png" as="image" />
+  <link rel="preload" href="images/zelos.png" as="image" />
+  <link rel="preload" href="images/dios-dela.png" as="image" />
 
-  <!-- JSON-LD LocalBusiness Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Concerto Audio Malang",
-    "image": "https://concertoaudiomobilmalang.github.io/images/concerto-audio-logo.png",
-    "@id": "",
-    "url": "https://concertoaudiomobilmalang.github.io",
-    "telephone": "+62 81217398558",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Jl. Ciliwung No.57 A, Purwantoro, Kec. Blimbing",
-      "addressLocality": "Kota Malang",
-      "addressRegion": "Jawa Timur",
-      "postalCode": "65126",
-      "addressCountry": "ID"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": -7.95398,
-      "longitude": 112.64149
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ],
-      "opens": "08:00",
-      "closes": "17:00"
-    },
-    "sameAs": [
-      "https://www.facebook.com/Concerto Malang",
-      "https://www.instagram.com/concerto_malang/",
-      "https://www.youtube.com/@Concerto_Malang",
-      "https://www.tiktok.com/@concertomlg"
-    ]
-  }
-  </script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom, #f0fdf4, #ffffff);
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: url('images/header-bg.jpg') center/cover no-repeat;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #2d6a4f;
+      gap: 2rem;
+      padding: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #ffffffcc;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      animation: fadeInUp 0.7s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: #f8f9fa;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-card .content {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      font-weight: bold;
+      background: linear-gradient(to right, #2d6a4f, #40916c);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 12px rgba(64, 145, 108, 0.3);
+    }
+
+    .button:hover {
+      background: #1b4332;
+      transform: scale(1.05);
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    footer {
+      background: #2d6a4f;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+  </style>
 </head>
 <body>
-  <script>
-  const fadeEls = document.querySelectorAll('.fade-in');
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  });
-
-  fadeEls.forEach(el => observer.observe(el));
-</script>
 
   <header>
-    <h1>Concerto Malang</h1>
+    <h1>Concerto Audio Mobil Malang</h1>
+    <p>Spesialis Audio & Peredam Mobil Berkualitas</p>
   </header>
 
   <nav>
@@ -93,147 +147,78 @@
     <a href="#kontak">Kontak</a>
   </nav>
 
-  <section class="hero" aria-label="Selamat datang di Concerto Malang">
-    <section class="hero">
-  <div>
-    <h2>Bengkel Audio Mobil Malang | Peredam Mobil Malang</h2>
-    <p>Kualitas suara terbaik untuk mobil Anda</p>
-    <a href="#produk" class="button">Lihat Produk</a>
-  </div>
-  </section>
-  </section>
-  <h2 class="fade-in">Produk Unggulan</h2>
-<article class="product-card fade-in">...</article>
-<section id="tentang" class="fade-in">...</section>
+  <main>
+    <!-- Produk -->
+    <section id="produk">
+      <h2>Produk Unggulan</h2>
+      <div class="products">
+        <article class="product-card">
+          <img src="images/audio-circle.png" alt="Audio Circle" loading="lazy">
+          <div class="content">
+            <h3>Audio Circle</h3>
+            <p>Speaker premium 2-way & 3-way buatan Jerman.</p>
+          </div>
+        </article>
+        <article class="product-card">
+          <img src="images/steg.png" alt="STEG" loading="lazy">
+          <div class="content">
+            <h3>STEG</h3>
+            <p>Subwoofer dan power dengan teknologi Italia.</p>
+          </div>
+        </article>
+        <article class="product-card">
+          <img src="images/zelos.png" alt="Zeloz" loading="lazy">
+          <div class="content">
+            <h3>Zeloz</h3>
+            <p>Power amplifier berkualitas suara tinggi.</p>
+          </div>
+        </article>
+        <article class="product-card">
+          <img src="images/dios-dela.png" alt="Dios Dela Musica" loading="lazy">
+          <div class="content">
+            <h3>Dios Dela Musica</h3>
+            <p>Peredam mobil dengan bahan rubber butyl terbaik.</p>
+          </div>
+        </article>
+      </div>
 
-  <main class="container">
-    <section id="produk" tabindex="0" aria-label="Daftar Produk Unggulan">
-      <a href="#produk" class="button">Lihat Produk</a>
-     </div>
-      <div style="text-align: center; margin-top: 2rem;">
-      <h2>Produk</h2>
-      <article class="<!-- Product Cards Here -->">
-        <img src="images/audio-circle.png" alt="Audio Circle">
-        <div class="content">
-          <h3>Audio Circle</h3>
-          <p>Speaker 2-way & 3-way dari Jerman.</p>
-        </div>
-      </article>
-      <article class="product-card">
-        <img src="images/steg.png" alt="STEG">
-        <div class="content">
-          <h3>STEG</h3>
-          <p>Subwoofer & Power Italy berkualitas tinggi.</p>
-        </div>
-      </article>
-      <article class="product-card">
-        <img src="images/zelos.png" alt="Zeloz">
-        <div class="content">
-          <h3>Zeloz</h3>
-          <p>Power amplifier elegan & detail.</p>
-        </div>
-      </article>
-      <article class="product-card">
-        <img src="images/dios-dela.png" alt="Dios Dela Musica">
-        <div class="content">
-          <h3>Dios Dela Musica</h3>
-          <p>Peredam mobil dengan bahan rubber butyl.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="gallery-section">
-    <h2>Galeri Pengerjaan</h2>
-    <div class="products">
-      <img src="images/galeri1.jpeg" alt="Pengerjaan 1">
-      <img src="images/galeri2.jpeg" alt="Pengerjaan 2">
-      <img src="images/galeri3.jpeg" alt="Pengerjaan 3">
-      <img src="images/galeri4.jpeg" alt="Pengerjaan 4">
-    </div>
-  </section>
-    </section>
+      <div class="cta">
+        <a href="#kontak" class="button">Konsultasi Gratis Sekarang</a>
+      </div>
     </section>
 
-    <section id="tentang" tabindex="0" aria-label="Tentang Kami">
+    <!-- Galeri -->
+    <section id="galeri">
+      <h2>Galeri Pengerjaan</h2>
+      <div class="products gallery">
+        <img src="images/galeri1.jpeg" alt="Hasil pemasangan audio 1" loading="lazy">
+        <img src="images/galeri2.jpeg" alt="Hasil pemasangan audio 2" loading="lazy">
+        <img src="images/galeri3.jpeg" alt="Hasil pemasangan audio 3" loading="lazy">
+        <img src="images/galeri4.jpeg" alt="Hasil pemasangan audio 4" loading="lazy">
+      </div>
+    </section>
+
+    <!-- Tentang Kami -->
+    <section id="tentang">
       <h2>Tentang Kami</h2>
-      <section id="testimoni" tabindex="0" aria-label="Testimoni Pelanggan">
-  <h2>Apa Kata Pelanggan</h2>
-  <div class="testimonials">
-    <blockquote>
-      <p>"Pelayanan sangat memuaskan, suara audio mobil jadi makin mantap!"</p>
-      <footer>- Andi, Malang</footer>
-    </blockquote>
-    <blockquote>
-      <p>"Peredam mobilnya kualitas premium, suara luar langsung hilang!"</p>
-      <footer>- Rina, Batu</footer>
-    </blockquote>
-    <blockquote>
-      <p>"Rekomendasi banget buat pecinta audio mobil, teknisinya jago."</p>
-      <footer>- Budi, Surabaya</footer>
-    </blockquote>
-  </div>
-</section>
+      <p>Concerto Malang berkomitmen memberikan solusi audio mobil yang presisi dan nyaman. Dengan tim profesional dan produk terbaik, kami memastikan pengalaman berkendara Anda lebih menyenangkan.</p>
+    </section>
 
-      <p>
-        Concerto Malang hadir untuk meningkatkan kenyamanan dalam berkendara. Kami melayani dengan tulus dan menawarkan solusi yang tepat sesuai kebutuhan Anda.
-      </p>
-      </div>
-      <<div class="centered-section">
-        
-    <a href="#kontak" class="button button-light">Hubungi Kami</a>
-    <a href="#kontak" class="button">Konsultasi Gratis</a>
-    </div>
-      <div class="centered-section">
-
-    <section id="kontak" tabindex="0" aria-label="Kontak dan Media Sosial">
-      <div class="centered-section">
-        <h2>Hubungi Kami</h2>
-<form action="https://api.whatsapp.com/send" method="get" target="_blank" class="contact-form">
-  <label for="name">Nama:</label>
-  <input type="text" name="text" id="name" placeholder="Masukkan nama Anda" required />
-
-  <label for="message">Pesan:</label>
-  <textarea name="text" id="message" placeholder="Tuliskan pesan Anda" required></textarea>
-
-  <input type="hidden" name="phone" value="6281217398558" />
-  <button type="submit" class="button">Kirim via WhatsApp</button>
-</form>
-
-  <a href="https://wa.me/+62 81217398558" target="_blank" class="button button-light">Chat via WhatsApp</a>
-      <div class="centered-section">
-
+    <!-- Kontak -->
+    <section id="kontak">
       <h2>Kontak & Sosial Media</h2>
-      <p>Alamat: Jl. Ciliwung No.57 A, Purwantoro, Kec. Blimbing, Kota Malang, Jawa Timur 65126</p>
-      <p>Telepon: +62 81217398558</p>
-      <div class="map-container" aria-label="Lokasi Concerto Malang di Google Maps">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.3457569748643!2d112.64149797320037!3d-7.953980217240359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629b6215718c1%3A0x141cdb0f044d67d5!2sConcerto%20Audio%20dan%20Peredam%20Mobil%20Malang%20Raya!5e0!3m2!1sen!2sid!4v1757923984503!5m2!1sen!2sid"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Google Maps lokasi Concerto Malang"
-        ></iframe>
+      <p>📍 Alamat: Jl. Ciliwung No.57 A, Purwantoro, Blimbing, Malang</p>
+      <p>📞 Telp: +62 81217398558</p>
+      <p>📩 <a href="mailto:concertomlg@gmail.com">concertomlg@gmail.com</a></p>
+      <div class="cta">
+        <a href="https://wa.me/6281217398558" target="_blank" class="button">Hubungi via WhatsApp</a>
       </div>
-      <ul class="socials" aria-label="Link media sosial">
-        <li><a href="https://www.tiktok.com/@concertomlg" target="_blank" rel="noopener" aria-label="TikTok Concerto Audio Mobil">TikTok</a></li>
-        <li><a href="https://www.youtube.com/@Concerto_Malang" target="_blank" rel="noopener" aria-label="YouTube Concerto Audio Mobil">YouTube</a></li>
-        <li><a href="https://www.instagram.com/concerto_malang/" target="_blank" rel="noopener" aria-label="Instagram Concerto Audio Mobil">Instagram</a></li>
-        <li><a href="https://www.facebook.com/Concerto Malang" target="_blank" rel="noopener" aria-label="Facebook Concerto Audio Mobil">Facebook</a></li>
-      </ul>
     </section>
   </main>
 
   <footer>
-    &copy; 2025 Concerto Audio Malang. All Rights Reserved.
+    &copy; 2025 Concerto Audio Malang. All rights reserved.
   </footer>
 
-  <script src="scripts.js"></script>
-
-
-
-
-
-
-
-
+</body>
+</html>
