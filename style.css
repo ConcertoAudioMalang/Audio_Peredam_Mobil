@@ -337,6 +337,27 @@ section {
   border-radius: 10px;
 }
 
+.gallery-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+}
+
+.gallery-scroll img {
+  height: 180px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  object-fit: cover;
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+}
+
+.gallery-scroll img:hover {
+  transform: scale(1.05);
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -406,6 +427,7 @@ section {
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(64, 145, 108, 0.5);
 }
+
 
 
 
