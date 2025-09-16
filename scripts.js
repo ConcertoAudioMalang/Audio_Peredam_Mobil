@@ -38,4 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
     track.scrollBy({ left: -scrollStep, behavior: 'smooth' });
   });
 </script>
+setInterval(() => {
+  track.scrollBy({ left: scrollStep, behavior: 'smooth' });
+}, 5000); // tiap 5 detik
+
 
