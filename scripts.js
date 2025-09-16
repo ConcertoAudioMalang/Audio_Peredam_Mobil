@@ -41,5 +41,23 @@ document.addEventListener('DOMContentLoaded', () => {
 setInterval(() => {
   track.scrollBy({ left: scrollStep, behavior: 'smooth' });
 }, 5000); // tiap 5 detik
+<script>
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+
+  document.querySelectorAll("#galeri .products img").forEach(img => {
+    img.addEventListener("click", function () {
+      lightbox.style.display = "flex";
+      lightboxImg.src = this.src;
+      lightboxImg.alt = this.alt;
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.style.display = "none";
+    lightboxImg.src = "";
+  }
+</script>
+
 
 
