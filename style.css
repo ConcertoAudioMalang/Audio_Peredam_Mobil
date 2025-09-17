@@ -14,68 +14,69 @@ body {
 }
 
 /* ================== NAVBAR ================== */
+/* Navbar */
 .navbar {
-  background-color: #2d6a4f; /* hijau sporty */
-  padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  background-color: #1b4332; /* warna hijau tua yang sporty */
+  padding: 0.8rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.navbar .container {
-  max-width: 1200px;
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 auto;
 }
 
-.logo {
-  font-weight: 900;
-  font-size: 1.8rem;
-  color: white;
-  text-decoration: none;
-  letter-spacing: 2px;
+.logo img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
 }
 
 .nav-menu {
   list-style: none;
   display: flex;
-  gap: 2rem;
-  margin-left: auto;
+  gap: 2.5rem;
 }
 
 .nav-menu li a {
-  color: white;
-  text-decoration: none;
+  color: #d8f3dc; /* hijau muda terang */
   font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
   text-transform: uppercase;
-  padding: 0.4rem 0.6rem;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .nav-menu li a:hover,
 .nav-menu li a:focus {
-  background-color: #1b4332;
-  color: #f0fdf4;
+  color: #95d5b2;
   outline: none;
 }
 
 .btn-wa {
-  background-color: #25d366; /* hijau WA */
+  background: #25d366; /* warna hijau WhatsApp */
   color: white;
+  padding: 0.6rem 1.4rem;
+  border-radius: 30px;
   font-weight: 700;
-  padding: 0.5rem 1.2rem;
-  border-radius: 6px;
   text-decoration: none;
-  margin-left: 1.5rem;
-  box-shadow: 0 4px 8px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -84,6 +85,13 @@ body {
   background-color: #1ebe5d;
   transform: scale(1.05);
   outline: none;
+}
+
+/* Responsive Navbar: Sembunyikan menu dan ganti dengan hamburger pada mobile */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none; /* nanti bisa ditambah JS untuk toggle menu */
+  }
 }
 
 /* ================== HERO SECTION ================== */
@@ -398,3 +406,4 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
