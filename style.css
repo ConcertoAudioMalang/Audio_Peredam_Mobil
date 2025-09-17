@@ -535,6 +535,74 @@ section p {
   right: 10px;
 }
 
+/* ================== LOKASI ================== */
+#lokasi {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #ffffffcc;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+#lokasi h2 {
+  text-align: center;
+  color: #2d6a4f;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.lokasi-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.lokasi-info {
+  flex: 1 1 300px;
+}
+
+.lokasi-info h3 {
+  color: #2d6a4f;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.lokasi-info p {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+}
+
+.btn-map {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.5rem;
+  background: #2d6a4f;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btn-map:hover {
+  background: #40916c;
+}
+
+.lokasi-map {
+  flex: 2 1 500px;
+}
+
+@media screen and (max-width: 768px) {
+  .lokasi-container {
+    flex-direction: column;
+  }
+
+  .lokasi-map iframe {
+    height: 250px;
+  }
+}
 
 /* ================== KONTAK ================== */
 #kontak p {
@@ -610,6 +678,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
