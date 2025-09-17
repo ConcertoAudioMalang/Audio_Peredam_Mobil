@@ -23,26 +23,36 @@
 </script>
 
 // script testimoni
-<script>
-  let currentSlide = 0;
+document.addEventListener('DOMContentLoaded', () => {
   const track = document.querySelector('.testimoni-track');
-  const totalSlides = document.querySelectorAll('.testimoni-slide').length;
+  const slides = document.querySelectorAll('.testimoni-slide');
+  const prevBtn = document.querySelector('.slider-btn.prev');
+  const nextBtn = document.querySelector('.slider-btn.next');
+  let currentIndex = 0;
+  const totalSlides = slides.length;
 
-  function moveSlide(step) {
-    currentSlide = (currentSlide + step + totalSlides) % totalSlides;
-    updateSlider();
+  function updateSlidePosition() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
   }
 
-  function updateSlider() {
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
-  }
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlidePosition();
+  });
 
-  // Auto-slide setiap 5 detik
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlidePosition();
+  });
+
+  // Optional: auto slide every 7 seconds
+  /*
   setInterval(() => {
-    moveSlide(1);
-  }, 5000);
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlidePosition();
+  }, 7000);
+  */
+});
 
-  // Inisialisasi
-  updateSlider();
-</script>
+
 
