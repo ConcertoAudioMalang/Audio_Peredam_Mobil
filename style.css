@@ -364,6 +364,7 @@ section p {
 
 /* === SECTION GALERI === */
 
+/* === GALERI SLIDER === */
 #galeri {
   padding: 4rem 2rem;
   background-color: #f0fdf4;
@@ -378,6 +379,7 @@ section p {
 
 .slider {
   position: relative;
+  width: 100%;
   max-width: 900px;
   margin: 0 auto;
   overflow: hidden;
@@ -385,38 +387,35 @@ section p {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.slides {
+.slides-wrapper {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  /* Lebar slides menyesuaikan jumlah gambar */
-  width: calc(100% * 4); /* 4 adalah jumlah gambar */
+  width: 100%;
 }
 
-.slides img {
+.slides-wrapper img {
   width: 100%;
   flex-shrink: 0;
   object-fit: cover;
+  max-height: 500px;
   border-radius: 8px;
-  user-select: none;
-  pointer-events: none;
-  max-height: 400px; /* Membatasi tinggi supaya rapi */
 }
 
-/* Panah navigasi */
+/* Tombol navigasi */
 .slider .prev,
 .slider .next {
   cursor: pointer;
   position: absolute;
   top: 50%;
-  padding: 1rem;
-  color: white;
-  font-weight: bold;
-  font-size: 1.8rem;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.4);
   transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding: 0.8rem;
+  border-radius: 50%;
   user-select: none;
-  z-index: 10;
+  z-index: 1;
   transition: background 0.3s ease;
 }
 
@@ -431,6 +430,13 @@ section p {
 
 .slider .next {
   right: 10px;
+}
+
+/* Responsive fix */
+@media (max-width: 600px) {
+  .slides-wrapper img {
+    max-height: 250px;
+  }
 }
 
 /* ================== KONTAK ================== */
@@ -507,6 +513,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
