@@ -388,62 +388,64 @@
 <body>
   
   <!-- Produkc-->
-  <section id="produk" class="produk-section">
+  <section id="produk" class="produk-filter">
   <h2>Produk Kami</h2>
-  <div class="brand-container">
 
+  <div class="brand-tabs">
+    <button class="tab active" data-brand="brand1">
+      <img src="images/audio-circle.png" alt="Audio Circle" />
+    </button>
+    <button class="tab" data-brand="brand2">
+      <img src="images/steg.png" alt="STEG" />
+    </button>
+    <button class="tab" data-brand="brand3">
+      <img src="images/zelos.png" alt="Zelos" />
+    </button>
+    <button class="tab" data-brand="brand4">
+      <img src="images/dios-dela.png" alt="Dios Dela" />
+    </button>
+  </div>
+
+  <div class="produk-grid">
     <!-- Brand 1 -->
-    <div class="brand-card">
-      <div class="brand-icon">
-        <img src="images/brand1-icon.png" alt="Brand 1" />
+    <div class="produk-list brand1 active">
+      <div class="produk-card">
+        <img src="img/produk1.jpg" alt="Speaker AC1">
+        <h4>Speaker AC1</h4>
       </div>
-      <h3>Brand 1</h3>
-      <ul class="produk-list">
-        <li>Produk 1A</li>
-        <li>Produk 1B</li>
-        <li>Produk 1C</li>
-      </ul>
+      <div class="produk-card">
+        <img src="img/produk2.jpg" alt="Speaker AC2">
+        <h4>Speaker AC2</h4>
+      </div>
     </div>
 
     <!-- Brand 2 -->
-    <div class="brand-card">
-      <div class="brand-icon">
-        <img src="images/brand2-icon.png" alt="Brand 2" />
+    <div class="produk-list brand2">
+      <div class="produk-card">
+        <img src="img/produk3.jpg" alt="Amplifier STEG 1">
+        <h4>Amplifier STEG 1</h4>
       </div>
-      <h3>Brand 2</h3>
-      <ul class="produk-list">
-        <li>Produk 2A</li>
-        <li>Produk 2B</li>
-        <li>Produk 2C</li>
-      </ul>
+      <div class="produk-card">
+        <img src="img/produk4.jpg" alt="Processor STEG">
+        <h4>Processor STEG</h4>
+      </div>
     </div>
 
     <!-- Brand 3 -->
-    <div class="brand-card">
-      <div class="brand-icon">
-        <img src="images/brand3-icon.png" alt="Brand 3" />
+    <div class="produk-list brand3">
+      <div class="produk-card">
+        <img src="img/produk5.jpg" alt="Processor Zelos">
+        <h4>Processor Zelos</h4>
       </div>
-      <h3>Brand 3</h3>
-      <ul class="produk-list">
-        <li>Produk 3A</li>
-        <li>Produk 3B</li>
-        <li>Produk 3C</li>
-      </ul>
     </div>
 
     <!-- Brand 4 -->
-    <div class="brand-card">
-      <div class="brand-icon">
-        <img src="images/brand4-icon.png" alt="Brand 4" />
+    <div class="produk-list brand4">
+      <div class="produk-card">
+        <img src="img/produk6.jpg" alt="Peredam DDM">
+        <h4>Peredam DDM</h4>
       </div>
-      <h3>Brand 4</h3>
-      <ul class="produk-list">
-        <li>Produk 4A</li>
-        <li>Produk 4B</li>
-        <li>Produk 4C</li>
-      </ul>
     </div>
-
   </div>
 </section>
 
@@ -713,9 +715,28 @@
   });
 </script>
 
- 
+       <!-- script.js produk -->
+      <script>
+  const tabs = document.querySelectorAll(".tab");
+  const produkLists = document.querySelectorAll(".produk-list");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      // Remove active state from all
+      tabs.forEach(t => t.classList.remove("active"));
+      produkLists.forEach(list => list.classList.remove("active"));
+
+      // Activate current
+      tab.classList.add("active");
+      const brand = tab.getAttribute("data-brand");
+      document.querySelector(`.produk-list.${brand}`).classList.add("active");
+    });
+  });
+</script>
+
 </body>
 </html>
+
 
 
 
