@@ -394,7 +394,45 @@
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
   </div>
 </section>
-      
+
+<!-- Section Testimoni Slider -->
+<section id="testimoni">
+  <h2>Testimoni Pelanggan</h2>
+  <div class="testimoni-slider">
+    <div class="testimoni-track">
+
+      <!-- Slide 1 -->
+      <div class="testimoni-slide">
+        <div class="avatar"><img src="images/avatar1.jpg" alt="Rizky A."></div>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <p>"Pengerjaan sangat rapi dan hasil suaranya luar biasa! Cocok buat pecinta audio mobil."</p>
+        <h4>Rizky A.</h4>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="testimoni-slide">
+        <div class="avatar"><img src="images/avatar2.jpg" alt="Fajar W."></div>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <p>"Konsultasi ramah, pengerjaan cepat, dan harga sangat masuk akal."</p>
+        <h4>Fajar W.</h4>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="testimoni-slide">
+        <div class="avatar"><img src="images/avatar3.jpg" alt="Nanda S."></div>
+        <div class="rating">⭐⭐⭐⭐</div>
+        <p>"Sistem peredamnya bikin kabin mobil jadi senyap, beda banget hasilnya!"</p>
+        <h4>Nanda S.</h4>
+      </div>
+
+    </div>
+
+    <!-- Panah Navigasi -->
+    <button class="slider-btn prev" onclick="moveSlide(-1)">❮</button>
+    <button class="slider-btn next" onclick="moveSlide(1)">❯</button>
+  </div>
+</section>
+
     <!-- Kontak -->
     <section id="kontak">
   <h2>Kontak Kami</h2>
@@ -419,6 +457,7 @@
   </footer>
 <script src="script.js"></script>
       
+  <!-- script.js Galeri -->   
   <script>
   const slideWrapper = document.querySelector('.slides-wrapper');
   const totalSlides = slideWrapper.children.length;
@@ -441,6 +480,7 @@
 
 </body>
 </html>
+
 
 
 
