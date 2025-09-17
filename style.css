@@ -719,6 +719,49 @@ section p {
   line-height: 1.4;
 }
 
+/* ================== sosial-media-mengambang ================== */
+.floating-social {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  text-align: center;
+}
+
+#social-toggle {
+  background-color: #2d6a4f;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(45, 106, 79, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+#social-toggle:hover {
+  background-color: #40916c;
+}
+
+.social-links {
+  margin-top: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.social-links a img {
+  width: 32px;
+  height: 32px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.social-links a:hover img {
+  filter: none;
+}
 
 /* ================== KONTAK ================== */
 #kontak p {
@@ -794,6 +837,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
