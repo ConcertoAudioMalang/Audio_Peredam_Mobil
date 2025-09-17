@@ -1,25 +1,23 @@
-document.querySelectorAll(".slides img")
-  
 <script>
-let slideIndex = 0;
-showSlides(slideIndex);
+  let slideIndex = 0;
+  const slides = document.querySelectorAll(".slides img");
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove("active");
+      if (i === index) {
+        slide.classList.add("active");
+      }
+    });
+  }
 
-function showSlides(n) {
-  let slides = document.querySelectorAll(".slides img");
-  if (n >= slides.length) { slideIndex = 0; }
-  if (n < 0) { slideIndex = slides.length - 1; }
+  function plusSlides(n) {
+    slideIndex += n;
+    if (slideIndex >= slides.length) slideIndex = 0;
+    if (slideIndex < 0) slideIndex = slides.length - 1;
+    showSlide(slideIndex);
+  }
 
-  slides.forEach(slide => slide.classList.remove("active"));
-  slides[slideIndex].classList.add("active");
-}
-
-
-
-
-
-
-
+  // Auto show first slide
+  showSlide(slideIndex);
+</script>
