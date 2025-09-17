@@ -54,5 +54,20 @@ document.addEventListener('DOMContentLoaded', () => {
   */
 });
 
+// script faq&blog-mini
+document.querySelectorAll('.faq-item').forEach(item => {
+  const question = item.querySelector('.faq-question');
+  question.addEventListener('click', () => {
+    // Tutup semua FAQ kecuali yang diklik
+    document.querySelectorAll('.faq-item').forEach(i => {
+      if(i !== item) i.classList.remove('active');
+    });
+    // Toggle FAQ yang diklik
+    item.classList.toggle('active');
+  });
+});
+
+
+
 
 
