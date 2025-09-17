@@ -377,6 +377,57 @@ section p {
   to { opacity: 1; transform: translateY(0); }
 }
 
+.produk-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.produk-cta {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  transition: all 0.4s ease-in-out;
+}
+
+.produk-card:hover .produk-cta {
+  bottom: 0;
+}
+
+.btn-detail, .btn-wa {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-detail {
+  background: #2d6a4f;
+  color: #fff;
+}
+
+.btn-detail:hover {
+  background: #1b4332;
+}
+
+.btn-wa {
+  background: #25d366;
+  color: white;
+}
+
+.btn-wa:hover {
+  background: #128c7e;
+}
+
 /* ================== GALERI SLIDER ================== */
 
 #galeri {
@@ -902,6 +953,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
