@@ -720,49 +720,71 @@ section p {
 }
 
 /* ================== sosial-media-mengambang ================== */
-/* CSS */
 .social-floating {
   position: fixed;
-  top: 40%;
-  left: 0;
+  top: 50%;
+  right: 0; /* floating di kanan */
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: #2d6a4f;
-  border-radius: 0 8px 8px 0;
-  padding: 8px;
+  gap: 0;
+  background: transparent;
+  border-radius: 50%;
+  padding: 0;
   cursor: pointer;
   z-index: 9999;
+  transition: background-color 0.3s ease;
+  transform: translateY(-50%); /* agar benar-benar di tengah vertikal */
 }
 
+/* ikon utama bulat agak lebih besar */
 .main-icon {
+  width: 56px;
+  height: 56px;
+  background-color: #2d6a4f;
   color: white;
-  font-size: 24px;
+  font-size: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   user-select: none;
+  transition: background-color 0.3s ease;
 }
 
+/* container ikon sosial media muncul di samping kiri ikon utama */
 .social-icons {
   display: flex;
   gap: 10px;
+  margin-right: 10px;
+
   opacity: 0;
   pointer-events: none;
+  
+  background-color: #40916c;
+  padding: 10px 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+
   transition: opacity 0.3s ease;
 }
 
-.social-floating:hover .social-icons {
+/* saat hover/focus di container utama, muncul */
+.social-floating:hover .social-icons,
+.social-floating:focus-within .social-icons {
   opacity: 1;
   pointer-events: auto;
 }
 
-/* Styling tiap ikon sosial media */
+/* ikon sosial media kotak persegi dengan border-radius */
 .social-icons .icon {
   color: white;
-  background: #40916c;
-  padding: 8px;
-  border-radius: 50%;
+  background: transparent;
+  padding: 0;
+  margin: 0 5px;
+  border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
   width: 32px;
   height: 32px;
   display: flex;
@@ -771,7 +793,15 @@ section p {
   transition: background-color 0.3s ease;
 }
 
+/* hover ikon sosial media */
 .social-icons .icon:hover {
+  background-color: #1b4332;
+  border-radius: 6px;
+}
+
+/* hover efek ikon utama */
+.social-floating:hover .main-icon,
+.social-floating:focus-within .main-icon {
   background-color: #1b4332;
 }
 
@@ -806,6 +836,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
