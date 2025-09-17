@@ -439,6 +439,108 @@ section p {
   }
 }
 
+/* === TESTIMONI SLIDER ALA GOOGLE REVIEW === */
+#testimoni {
+  padding: 4rem 2rem;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+#testimoni h2 {
+  font-size: 2.2rem;
+  color: #1b4332;
+  margin-bottom: 2rem;
+}
+
+.testimoni-slider {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.testimoni-track {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+  width: 300%;
+}
+
+.testimoni-slide {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.testimoni-slide .avatar img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #2d6a4f;
+  margin-bottom: 1rem;
+}
+
+.testimoni-slide .rating {
+  color: #ffc107;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.testimoni-slide p {
+  font-style: italic;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.testimoni-slide h4 {
+  color: #2d6a4f;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #2d6a4f;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.slider-btn:hover {
+  background: #1b4332;
+}
+
+.slider-btn.prev {
+  left: 10px;
+}
+
+.slider-btn.next {
+  right: 10px;
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+  .testimoni-slide {
+    padding: 1.5rem;
+  }
+
+  .slider-btn {
+    font-size: 1.2rem;
+    padding: 0.4rem 0.6rem;
+  }
+}
+
+
 /* ================== KONTAK ================== */
 #kontak p {
   font-size: 1.1rem;
@@ -513,6 +615,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
