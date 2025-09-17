@@ -722,18 +722,13 @@ section p {
 /* ================== sosial-media-mengambang ================== */
 .social-floating {
   position: fixed;
-  top: 50%;
-  right: 0; /* floating di kanan */
+  bottom: 30px;
+  right: 30px;
   display: flex;
-  align-items: center;
-  gap: 0;
-  background: transparent;
-  border-radius: 50%;
-  padding: 0;
-  cursor: pointer;
+  flex-direction: column-reverse; /* supaya ikon utama di bawah */
+  align-items: flex-end;
+  gap: 12px;
   z-index: 9999;
-  transition: background-color 0.3s ease;
-  transform: translateY(-50%); /* agar benar-benar di tengah vertikal */
 }
 
 /* ikon utama bulat agak lebih besar */
@@ -754,18 +749,22 @@ section p {
 /* container ikon sosial media muncul di samping kiri ikon utama */
 .social-icons {
   display: flex;
+  flex-direction: column;
   gap: 10px;
-  margin-right: 10px;
-
   opacity: 0;
   pointer-events: none;
-  
   background-color: #40916c;
-  padding: 10px 15px;
+  padding: 10px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
-
   transition: opacity 0.3s ease;
+}
+
+/* Hover tetap sama */
+.social-floating:hover .social-icons,
+.social-floating:focus-within .social-icons {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* saat hover/focus di container utama, muncul */
@@ -836,6 +835,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
