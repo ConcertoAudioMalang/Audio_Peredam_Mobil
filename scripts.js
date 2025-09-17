@@ -68,16 +68,16 @@ document.querySelectorAll('.faq-item').forEach(item => {
 });
 
 // script sosial-media-mengambang
-const toggleBtn = document.getElementById('social-toggle');
-const socialLinks = document.querySelector('.social-links');
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.getElementById('social-toggle');
+  const socialLinks = document.querySelector('.social-links');
 
-toggleBtn.addEventListener('click', () => {
-  if (socialLinks.style.display === 'flex') {
-    socialLinks.style.display = 'none';
-  } else {
-    socialLinks.style.display = 'flex';
-  }
+  toggleBtn.addEventListener('click', () => {
+    socialLinks.classList.toggle('active');
+  });
 });
+
+
 
 
 
