@@ -332,6 +332,43 @@
   </style>
 </head>
 <body>
+
+   <!-- Responsive & Lightweight Social Media Feed -->
+  <section id="social-feed">
+  <h2>Konten Terbaru Kami</h2>
+  <div class="feed-grid">
+    
+    <!-- Instagram Post -->
+    <div class="feed-item">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/POST_ID_INSTAGRAM/" data-instgrm-version="14" style="width:100%;"></blockquote>
+    </div>
+
+    <!-- TikTok Video -->
+    <div class="feed-item">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@USERNAME/video/VIDEO_ID_TIKTOK" data-video-id="VIDEO_ID_TIKTOK" style="width:100%;">
+        <section></section>
+      </blockquote>
+    </div>
+
+    <!-- YouTube Embed -->
+    <div class="feed-item">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_YOUTUBE"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Embed Scripts -->
+<script async defer src="https://www.instagram.com/embed.js"></script>
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+  
 <!-- Lightbox Popup -->
 <div id="lightbox" class="lightbox" onclick="closeLightbox()">
   <span class="close-btn">&times;</span>
@@ -347,7 +384,6 @@
 <body>
   
   <h1>Katalog Produk</h1>
-
   <!-- Navigasi Bubble -->
  <div class="brand-nav">
   <a href="#merk1"><img src="images/audio-circle.png" alt="Merk 1"></a>
@@ -632,6 +668,7 @@
       
 </body>
 </html>
+
 
 
 
