@@ -1,3 +1,4 @@
+// script galeri
 <script>
   const slides = document.querySelector(".slides");
   const totalSlides = slides.children.length;
@@ -20,3 +21,28 @@
   // Initialize slider
   showSlide(currentIndex);
 </script>
+
+// script testimoni
+<script>
+  let currentSlide = 0;
+  const track = document.querySelector('.testimoni-track');
+  const totalSlides = document.querySelectorAll('.testimoni-slide').length;
+
+  function moveSlide(step) {
+    currentSlide = (currentSlide + step + totalSlides) % totalSlides;
+    updateSlider();
+  }
+
+  function updateSlider() {
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  }
+
+  // Auto-slide setiap 5 detik
+  setInterval(() => {
+    moveSlide(1);
+  }, 5000);
+
+  // Inisialisasi
+  updateSlider();
+</script>
+
