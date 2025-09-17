@@ -362,58 +362,75 @@ section p {
   background: #1ebe5d;
 }
 
-/* ================== GALERI SLIDER ================== */
+/* === SECTION GALERI === */
+
+#galeri {
+  padding: 4rem 2rem;
+  background-color: #f0fdf4;
+  text-align: center;
+}
+
+#galeri h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #1b4332;
+}
+
+/* Slider Container */
 .slider {
   position: relative;
-  max-width: 1100px;
-  margin: 2rem auto;
+  max-width: 1000px;
+  margin: 0 auto;
   overflow: hidden;
   border-radius: 12px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
 }
 
 .slides img {
   width: 100%;
-  display: none;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 8px;
+  display: none;
 }
 
 .slides img.active {
   display: block;
 }
 
-.prev,
-.next {
+/* Tombol panah */
+.slider .prev,
+.slider .next {
   cursor: pointer;
   position: absolute;
   top: 50%;
-  width: 36px;
-  height: 36px;
-  margin-top: -18px;
+  width: auto;
+  padding: 1rem;
   color: white;
   font-weight: bold;
-  font-size: 24px;
-  padding: 2px 0;
-  border-radius: 50%;
+  font-size: 1.5rem;
+  border-radius: 0 3px 3px 0;
   user-select: none;
-  background-color: rgba(45, 106, 79, 0.7);
-  transition: background-color 0.3s ease;
+  background: rgba(0, 0, 0, 0.4);
+  transform: translateY(-50%);
   z-index: 10;
 }
 
-.prev:hover,
-.next:hover {
-  background-color: rgba(29, 67, 39, 0.9);
+.slider .next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
 }
 
-.prev {
-  left: 16px;
+.slider .prev:hover,
+.slider .next:hover {
+  background: rgba(0, 0, 0, 0.7);
 }
 
-.next {
-  right: 16px;
-}
 
 /* ================== KONTAK ================== */
 #kontak p {
@@ -489,6 +506,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
