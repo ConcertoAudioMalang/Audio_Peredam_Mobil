@@ -1,23 +1,22 @@
 <script>
-  let slideIndex = 0;
-  const slides = document.querySelectorAll(".slides img");
+  const slides = document.querySelector(".slides");
+  const totalSlides = slides.children.length;
+  let currentIndex = 0;
 
   function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.remove("active");
-      if (i === index) {
-        slide.classList.add("active");
-      }
-    });
+    // Batasi index agar looping terus
+    if (index >= totalSlides) currentIndex = 0;
+    else if (index < 0) currentIndex = totalSlides - 1;
+    else currentIndex = index;
+
+    // Geser slides dengan transform translateX
+    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
   }
 
   function plusSlides(n) {
-    slideIndex += n;
-    if (slideIndex >= slides.length) slideIndex = 0;
-    if (slideIndex < 0) slideIndex = slides.length - 1;
-    showSlide(slideIndex);
+    showSlide(currentIndex + n);
   }
 
-  // Auto show first slide
-  showSlide(slideIndex);
+  // Initialize slider
+  showSlide(currentIndex);
 </script>
