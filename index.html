@@ -20,7 +20,7 @@
   </div>
 </nav>
 
-<!-- Navbar End -->
+  <!-- Navbar End -->
   
    <!-- Favicon -->
   <link rel="icon" href="favicon.png" type="favicon.png" />
@@ -618,8 +618,26 @@
   });
 </script>
       
+   <!-- script.js sosial-media-mengambang -->   
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('social-toggle');
+    const socialLinks = document.querySelector('.social-links');
+
+    toggleBtn.addEventListener('click', () => {
+      if (socialLinks.style.display === 'flex') {
+        socialLinks.style.display = 'none';
+      } else {
+        socialLinks.style.display = 'flex';
+      }
+    });
+  });
+</script>
+
+      
 </body>
 </html>
+
 
 
 
