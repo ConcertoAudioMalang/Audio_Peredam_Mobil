@@ -376,10 +376,9 @@ section p {
   color: #1b4332;
 }
 
-/* Slider Container */
 .slider {
   position: relative;
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
   overflow: hidden;
   border-radius: 12px;
@@ -389,41 +388,36 @@ section p {
 .slides {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  width: 100%;
+  /* Lebar slides menyesuaikan jumlah gambar */
+  width: calc(100% * 4); /* 4 adalah jumlah gambar */
 }
 
 .slides img {
   width: 100%;
+  flex-shrink: 0;
   object-fit: cover;
   border-radius: 8px;
-  display: none;
+  user-select: none;
+  pointer-events: none;
+  max-height: 400px; /* Membatasi tinggi supaya rapi */
 }
 
-.slides img.active {
-  display: block;
-}
-
-/* Tombol panah */
+/* Panah navigasi */
 .slider .prev,
 .slider .next {
   cursor: pointer;
   position: absolute;
   top: 50%;
-  width: auto;
   padding: 1rem;
   color: white;
   font-weight: bold;
-  font-size: 1.5rem;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
+  font-size: 1.8rem;
+  border-radius: 50%;
   background: rgba(0, 0, 0, 0.4);
   transform: translateY(-50%);
+  user-select: none;
   z-index: 10;
-}
-
-.slider .next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+  transition: background 0.3s ease;
 }
 
 .slider .prev:hover,
@@ -431,6 +425,13 @@ section p {
   background: rgba(0, 0, 0, 0.7);
 }
 
+.slider .prev {
+  left: 10px;
+}
+
+.slider .next {
+  right: 10px;
+}
 
 /* ================== KONTAK ================== */
 #kontak p {
@@ -506,6 +507,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
