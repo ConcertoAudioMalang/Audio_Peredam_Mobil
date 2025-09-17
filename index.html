@@ -502,8 +502,39 @@
   updateSlider();
 </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let currentSlide = 0;
+    const track = document.querySelector('.testimoni-track');
+    const slides = document.querySelectorAll('.testimoni-slide');
+    const totalSlides = slides.length;
+
+    function moveSlide(step) {
+      currentSlide = (currentSlide + step + totalSlides) % totalSlides;
+      updateSlider();
+    }
+
+    function updateSlider() {
+      const offset = currentSlide * 100;
+      track.style.transform = `translateX(-${offset}%)`;
+    }
+
+    // Tombol manual ❮ ❯
+    document.querySelector('.slider-btn.prev').addEventListener('click', () => moveSlide(-1));
+    document.querySelector('.slider-btn.next').addEventListener('click', () => moveSlide(1));
+
+    // Auto-slide setiap 5 detik
+    setInterval(() => {
+      moveSlide(1);
+    }, 5000);
+
+    updateSlider();
+  });
+</script>
+      
 </body>
 </html>
+
 
 
 
