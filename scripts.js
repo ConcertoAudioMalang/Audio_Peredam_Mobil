@@ -16,11 +16,11 @@ tabs.forEach(tab => {
     tabs.forEach(t => t.classList.remove("active"));
     tab.classList.add("active");
 
-    const target = tab.dataset.target;
+    const target = tab.dataset.brand;
 
     // Tampilkan produk sesuai target
     lists.forEach(list => {
-      if (list.id === target) {
+      if (list.dataset.brand === target) {
         list.classList.add("active");
       } else {
         list.classList.remove("active");
@@ -51,9 +51,3 @@ const darkModeBtn = document.getElementById("dark-mode-toggle");
 darkModeBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
-
-// ================== SOSIAL FLOATING ==================
-// (CSS hover sudah cukup, JS tidak perlu kecuali mau click toggle)
-
-// ================== Optional: auto slide gallery ==================
-// let autoSlide = setInterval(() => showSlide(index + 1), 5000);
