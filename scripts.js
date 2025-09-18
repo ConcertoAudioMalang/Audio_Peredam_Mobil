@@ -1,48 +1,41 @@
-// ================== SIDEBAR AUTO-CLOSE ==================
-document.addEventListener("DOMContentLoaded", () => {
-  const details = document.querySelector("details");
-  const closeBtn = document.querySelector(".close-btn");
-  const menuLinks = document.querySelectorAll(".sidebar ul li a");
+// ================= SIDEBAR =================
+const sidebar = document.querySelector(".sidebar");
+const closeBtn = document.querySelector(".close-btn");
+const summary = document.querySelector("summary");
 
-  if (closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      details.removeAttribute("open");
-    });
-  }
-
-  // Tutup sidebar setelah klik link
-  menuLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      details.removeAttribute("open");
-    });
-  });
+closeBtn.addEventListener("click", () => {
+  summary.removeAttribute("open");
 });
 
-// ================== PRODUK FILTER ==================
-const tabs = document.querySelectorAll(".brand-tabs .tab");
-const produkLists = document.querySelectorAll(".produk-list");
+// ================= DARK MODE =================
+const darkToggle = document.getElementById("dark-mode-toggle");
+darkToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+});
 
-tabs.forEach((tab, index) => {
+// ================= PRODUK TABS =================
+const tabs = document.querySelectorAll(".brand-tabs .tab");
+const lists = document.querySelectorAll(".produk-list");
+
+tabs.forEach(tab => {
   tab.addEventListener("click", () => {
     tabs.forEach(t => t.classList.remove("active"));
-    produkLists.forEach(list => list.classList.remove("active"));
-
     tab.classList.add("active");
-    produkLists[index].classList.add("active");
+
+    const brand = tab.dataset.brand;
+    lists.forEach(list => list.classList.remove("active"));
+    document.querySelector(`.produk-list.${brand}`).classList.add("active");
   });
 });
 
-// ================== GALERI SLIDER ==================
+// ================= GALERI SLIDER =================
 let slideIndex = 0;
+const slidesWrapper = document.querySelector(".slides-wrapper");
+const slides = slidesWrapper.querySelectorAll("img");
 
-function showSlides(index) {
-  const slidesWrapper = document.querySelector(".slides-wrapper");
-  const slides = document.querySelectorAll(".slides-wrapper img");
-  if (!slidesWrapper || slides.length === 0) return;
-
-  if (index >= slides.length) slideIndex = 0;
-  if (index < 0) slideIndex = slides.length - 1;
-
+function showSlides(n) {
+  if (n >= slides.length) slideIndex = 0;
+  if (n < 0) slideIndex = slides.length - 1;
   slidesWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
 }
 
@@ -51,75 +44,11 @@ function plusSlides(n) {
   showSlides(slideIndex);
 }
 
-// Init galeri pertama kali
-document.addEventListener("DOMContentLoaded", () => {
-  showSlides(slideIndex);
+// ================= FLOATING SOSMED =================
+const mainIcon = document.querySelector(".social-floating .main-icon");
+const socialIcons = document.querySelector(".social-floating .social-icons");
+
+mainIcon.addEventListener("click", () => {
+  socialIcons.style.opacity = socialIcons.style.opacity === "1" ? "0" : "1";
+  socialIcons.style.pointerEvents = socialIcons.style.pointerEvents === "auto" ? "none" : "auto";
 });
-
-// ================== TESTIMONI SLIDER ==================
-let testiIndex = 0;
-
-function showTestimoni(index) {
-  const track = document.querySelector(".testimoni-track");
-  const slides = document.querySelectorAll(".testimoni-slide");
-  if (!track || slides.length === 0) return;
-
-  if (index >= slides.length) testiIndex = 0;
-  if (index < 0) testiIndex = slides.length - 1;
-
-  track.style.transform = `translateX(-${testiIndex * 100}%)`;
-}
-
-function plusTestimoni(n) {
-  testiIndex += n;
-  showTestimoni(testiIndex);
-}
-
-// Auto-slide setiap 6 detik
-setInterval(() => {
-  testiIndex++;
-  showTestimoni(testiIndex);
-}, 6000);
-
-// Init testimoni pertama kali
-document.addEventListener("DOMContentLoaded", () => {
-  showTestimoni(testiIndex);
-});
-
-// ================== FAQ (toggle jawaban) ==================
-const faqItems = document.querySelectorAll(".faq-item");
-faqItems.forEach(item => {
-  const question = item.querySelector(".faq-question");
-  question.addEventListener("click", () => {
-    item.classList.toggle("active");
-  });
-});
-
-// ================== tombol (Dark Mode) ==================
-document.addEventListener("DOMContentLoaded", function() {
-  const toggle = document.getElementById("dark-mode-toggle");
-
-  // Set tema saat halaman load
-  if(localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark-mode");
-    toggle.textContent = "☀️";
-  }
-
-  // Toggle dark mode
-  toggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-
-    if(document.body.classList.contains("dark-mode")) {
-      localStorage.setItem("theme", "dark");
-      toggle.textContent = "☀️";
-    } else {
-      localStorage.setItem("theme", "light");
-      toggle.textContent = "🌙";
-    }
-  });
-});
-
-
-
-
-
