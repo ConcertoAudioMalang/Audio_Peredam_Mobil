@@ -1,7 +1,7 @@
-/* ================== IMPORT FONT ================== */
+/* Import Font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600&display=swap');
 
-/* ================== RESET ================== */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -9,44 +9,10 @@
   font-family: 'Roboto', 'Helvetica Neue', sans-serif;
 }
 
-/* ================== VARIABEL & DARK MODE ================== */
-:root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-  --accent-color: #00ADB5;
-  --card-bg: #f4f4f4;
-}
-
-body.dark-mode {
-  --bg-color: #121212;
-  --text-color: #EAEAEA;
-  --accent-color: #00ADB5;
-  --card-bg: #1E1E1E;
-}
-
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  background: #121212;
+  color: #EAEAEA;
   transition: background-color 0.3s, color 0.3s;
-}
-
-/* ================== DARK MODE TOGGLE BUTTON ================== */
-#dark-mode-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  border: 2px solid var(--text-color);
-  border-radius: 25px;
-  padding: 10px 15px;
-  cursor: pointer;
-  z-index: 1000;
-  transition: all 0.3s;
-}
-
-#dark-mode-toggle:hover {
-  transform: translateX(-5px);
 }
 
 /* ================== SIDEBAR ================== */
@@ -54,8 +20,8 @@ summary {
   list-style: none;
   cursor: pointer;
   font-size: 2rem;
-  background: var(--card-bg);
-  color: var(--text-color);
+  background: #1E1E1E;
+  color: #EAEAEA;
   padding: 10px;
   border-radius: 12px;
   margin: 15px;
@@ -66,7 +32,7 @@ summary {
   transition: 0.3s;
 }
 summary:hover {
-  background: var(--accent-color);
+  background: #00ADB5;
   color: #fff;
 }
 details[open] > summary { display: none; }
@@ -75,7 +41,7 @@ details[open] > summary { display: none; }
   position: fixed;
   top: 0; left: 0;
   height: 100%; width: 270px;
-  background: var(--card-bg);
+  background: #1E1E1E;
   padding: 20px;
   z-index: 1000;
   box-shadow: 4px 0 20px rgba(0,0,0,0.7);
@@ -88,12 +54,12 @@ details[open] > summary { display: none; }
 .sidebar-header .logo {
   font-size: 1.6rem;
   font-weight: 600;
-  color: var(--accent-color);
+  color: #00ADB5;
 }
 .close-btn {
   font-size: 2rem;
   cursor: pointer;
-  color: var(--text-color);
+  color: #EAEAEA;
 }
 .sidebar ul {
   list-style: none;
@@ -108,162 +74,5 @@ details[open] > summary { display: none; }
   align-items: center;
   gap: 14px;
   font-size: 1.05rem;
-  color: var(--text-color);
+  color: #EAEAEA;
   padding: 10px;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-.sidebar ul li a:hover {
-  background: var(--accent-color);
-  color: #fff;
-}
-
-/* ================== HERO SECTION ================== */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background: url('images/background-concerto.jpg') center center / cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: var(--text-color);
-  padding: 2rem;
-  overflow: hidden;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10,10,10,0.7);
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 850px;
-  margin: 0 auto;
-  animation: fadeInUp 1.2s ease;
-}
-
-.hero h1 {
-  font-size: clamp(2.5rem, 6vw, 3.8rem);
-  font-weight: 700;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-.hero p {
-  font-size: clamp(1.1rem, 3vw, 1.6rem);
-  margin-bottom: 2rem;
-  font-weight: 400;
-  color: var(--text-color);
-}
-
-.hero-button {
-  background: linear-gradient(135deg, var(--accent-color), #2d6a4f);
-  color: white;
-  padding: 0.9rem 2.2rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-}
-
-.hero-button:hover {
-  background: linear-gradient(135deg, #2d6a4f, var(--accent-color));
-  transform: translateY(-3px) scale(1.05);
-}
-
-/* ================== SECTION GENERIC ================== */
-section {
-  max-width: 1100px;
-  margin: 3rem auto;
-  padding: 2rem;
-  border-radius: 12px;
-  background: var(--card-bg);
-  color: var(--text-color);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-}
-section h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: var(--accent-color);
-}
-section p {
-  line-height: 1.7;
-}
-
-/* ================== TENTANG SECTION ================== */
-.tentang-section { padding: 5rem 2rem; }
-.tentang-container {
-  max-width: 1100px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3rem;
-  flex-wrap: wrap;
-}
-.tentang-text {
-  flex: 1 1 50%;
-}
-.tentang-text h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1.5rem; }
-.tentang-text p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem; }
-.tentang-img { flex: 1 1 40%; text-align: center; }
-.tentang-img img { width: 100%; max-width: 400px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
-
-/* Responsive Tentang */
-@media (max-width: 768px) {
-  .tentang-container { flex-direction: column; text-align: center; }
-  .tentang-text, .tentang-img { flex: 1 1 100%; }
-  .tentang-img img { max-width: 300px; }
-}
-
-/* ================== PRODUK ================== */
-.produk-card {
-  background: var(--card-bg);
-  color: var(--text-color);
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-  padding: 1rem;
-  transition: transform 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-.produk-card:hover { transform: translateY(-6px); }
-.produk-card img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; }
-.produk-card h4 { margin-top: 1rem; font-size: 1.1rem; }
-
-/* tombol produk */
-.btn-detail { background: var(--accent-color); color: white; }
-.btn-detail:hover { background: #007c85; }
-.btn-wa { background: #25d366; color: white; }
-.btn-wa:hover { background: #128c7e; }
-
-/* ================== KONTEN ================== */
-.konten-section { background: var(--card-bg); }
-.konten-item { background: var(--card-bg); }
-
-/* ================== GALERI ================== */
-.slider, .slides-wrapper img { background: var(--card-bg); }
-
-/* ================== LOKASI ================== */
-.lokasi-section { background: var(--card-bg); }
-
-/* ================== KONTAK ================== */
-.kontak-section { background: var(--card-bg); }
-
-/* ================== FOOTER ================== */
-footer { background: var(--card-bg); color: var(--text-color); text-align: center; padding: 1rem; }
-
-/* ================== SOSMED FLOATING ================== */
-.social-floating .main-icon { background-color: var(--accent-color); }
-.social-icons { background-color: var(--card-bg); }
-.social-icons .icon:hover { background-color: var(--accent-color); }
