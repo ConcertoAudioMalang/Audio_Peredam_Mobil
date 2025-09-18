@@ -1,121 +1,125 @@
 /* Font modern, tipis, netral */
+.
+.
+
+:root {
+    --blue: #1877f2;
+    --blue-dark: #166fe5;
+    --blue-light: #e7f3ff;
+    --text-color: #050505;
+    --text-secondary: #65676b;
+    --bg-color: #f0f2f5;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
 body {
-  margin: 0;
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background: #f5f5f5;
-  color: #222;
+    background-color: var(--bg-color);
 }
 
-/* Header */
-.header {
-  height: 56px;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1001;
+details {
+    margin-top: 100px;
+    margin-left: 400px;
+    position: relative;
+    width: fit-content;
 }
 
-/* Hamburger button */
-#hamburger {
-  font-size: 24px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #444;
-  padding: 8px;
-  transition: color 0.3s ease;
+summary {
+    list-style: none;
+    cursor: pointer;
+    background-color: var(--blue);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#hamburger:hover {
-  color: #004080; /* biru tua */
+summary:hover {
+    background-color: var(--blue-dark);
+    transform: scale(1.05);
 }
 
-.brand {
-  font-weight: 600;
-  font-size: 20px;
-  margin-left: 16px;
-  color: #333;
+summary::marker {
+    display: none;
 }
 
-/* Sidebar */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: -260px; /* hidden by default */
-  width: 260px;
-  height: 100vh;
-  background: rgba(255, 255, 255, 0.98);
-  box-shadow: 2px 0 12px rgba(0,0,0,0.1);
-  padding-top: 56px;
-  transition: left 0.3s ease;
-  z-index: 1100;
-  display: flex;
-  flex-direction: column;
+summary::-webkit-details-marker {
+    display: none;
 }
 
-/* Sidebar open state */
-.sidebar.open {
-  left: 0;
+summary ion-icon {
+    font-size: 1.5rem;
 }
 
-/* Close button */
-#close-btn {
-  font-size: 28px;
-  background: none;
-  border: none;
-  align-self: flex-end;
-  margin: 8px 16px 24px 0;
-  cursor: pointer;
-  color: #444;
-  transition: color 0.3s ease;
+details[open] summary {
+    border-radius: 50% 50% 0 0;
 }
 
-#close-btn:hover {
-  color: #c00; /* merah */
+ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    overflow: hidden;
+    transform-origin: top center;
+    animation: scaleIn 0.15s ease-out forwards;
+    z-index: 100;
 }
 
-/* Sidebar menu items */
-.sidebar ul {
-  list-style: none;
-  padding: 0 24px;
-  margin: 0;
-  flex-grow: 1;
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-.sidebar ul li {
-  margin-bottom: 20px;
+li {
+    list-style: none;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.sidebar ul li a {
-  text-decoration: none;
-  font-weight: 400;
-  font-size: 18px;
-  color: #333;
-  transition: color 0.3s ease;
-  display: block;
-  padding: 6px 0;
+li:hover {
+    background-color: var(--blue-light);
+    color: var(--blue);
 }
 
-.sidebar ul li a:hover,
-.sidebar ul li a:focus {
-  color: #004080; /* biru tua */
-  outline: none;
+li ion-icon {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
 }
 
-/* Main content */
-main {
-  padding: 24px;
-  margin-top: 56px;
+li:hover ion-icon {
+    color: var(--blue);
 }
 
-/* Responsive: just to confirm the sidebar works on all devices */
-@media (min-width: 768px) {
-  /* Nothing special: sidebar still toggled */
-}
+..
+.
 
 /* ================== HERO SECTION ================== */
 
@@ -972,6 +976,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
