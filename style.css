@@ -763,11 +763,10 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Tombol menyembul dari tepi kanan */
 #dark-mode-toggle {
   position: fixed;
   top: 20px;
-  right: -50px; /* mulai di luar layar */
+  right: 20px; /* tampil normal */
   background-color: var(--bg-color);
   color: var(--text-color);
   border: 2px solid var(--text-color);
@@ -775,13 +774,14 @@ body {
   padding: 10px 15px;
   cursor: pointer;
   z-index: 1000;
-  transition: right 0.3s, background-color 0.3s, color 0.3s;
+  transition: all 0.3s;
 }
 
-/* Saat hover, tombol muncul ke layar */
 #dark-mode-toggle:hover {
-  right: 20px;
+  transform: translateX(-5px); /* efek slide kecil saat hover */
 }
+
+
 
 
 
