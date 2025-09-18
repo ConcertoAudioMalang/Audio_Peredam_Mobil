@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Concerto Audio Malang</title>
+<title>CONCERTO AUDIO MALANG</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,18 +12,19 @@
 <nav>
   <div class="tl-nav-container">
     <div class="tl-hamburger" id="tl-hamburger">&#9776;</div>
+    <div class="tl-nav-logo">Concerto Audio</div>
   </div>
 </nav>
 
 <!-- Sidebar -->
 <div id="tl-sidebar" class="tl-sidebar">
   <div class="tl-close-btn" id="tl-closeBtn">&times;</div>
-  <div class="tl-sidebar-logo">Concerto</div>
+  <div class="tl-sidebar-logo">Concerto Audio</div>
   <ul class="tl-sidebar-menu">
     <li><a href="#hero">Home</a></li>
-    <li><a href="#tentang">Tentang</a></li>
+    <li><a href="#tentang">Tentang Kami</a></li>
     <li><a href="#produk">Produk</a></li>
-    <li><a href="#konten">Konten</a></li>
+    <li><a href="#konten">Konten Kami</a></li>
     <li><a href="#galeri">Galeri</a></li>
     <li><a href="#lokasi">Lokasi</a></li>
     <li><a href="#kontak">Kontak</a></li>
@@ -33,12 +34,12 @@
 <!-- Hero Section -->
 <section class="hero" id="hero">
   <video autoplay muted loop id="hero-video">
-    <source src="videos/hero-bg.mp4" type="video/mp4">
+    <source src="video/hero-bg.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
   </video>
-  <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1>Spesialis Audio Mobil & Peredam Malang Raya</h1>
-    <p>Kualitas suara jernih, desain elegan, kenyamanan kabin maksimal</p>
+    <p>Kualitas suara jernih, desain elegan, dan kenyamanan kabin mobil maksimal</p>
     <a href="#produk" class="hero-button">Lihat Produk</a>
   </div>
 </section>
@@ -48,10 +49,10 @@
   <div class="tentang-container">
     <div class="tentang-text">
       <h2>Tentang Kami</h2>
-      <p><strong>Concerto Audio Malang</strong> adalah spesialis pemasangan audio mobil premium & peredam suara di Malang.</p>
+      <p><strong>Concerto Audio Malang</strong> adalah spesialis pemasangan <strong>audio mobil premium</strong> dan <strong>peredam suara</strong> di Malang. Kami telah membantu ratusan pelanggan mendapatkan kualitas suara terbaik dan kenyamanan kabin maksimal.</p>
     </div>
     <div class="tentang-img">
-      <img src="img/produk1.jpg" alt="Workshop">
+      <img src="img/workshop.jpg" alt="Concerto Audio Workshop">
     </div>
   </div>
 </section>
@@ -62,41 +63,87 @@
   <div class="produk-grid">
     <div class="produk-card">
       <img src="img/produk1.jpg" alt="Speaker AC1">
-      <div class="overlay">
+      <div class="produk-overlay">
         <h4>Speaker AC1</h4>
-        <a href="#" class="btn-detail">Detail</a>
-        <a href="https://wa.me/6281234567890" class="btn-wa">Pesan</a>
+        <div class="produk-cta">
+          <a href="#" class="btn-detail">Detail</a>
+          <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Pesan</a>
+        </div>
       </div>
     </div>
     <div class="produk-card">
       <img src="img/produk2.jpg" alt="Amplifier STEG 1">
-      <div class="overlay">
+      <div class="produk-overlay">
         <h4>Amplifier STEG 1</h4>
-        <a href="#" class="btn-detail">Detail</a>
-        <a href="https://wa.me/6281234567890" class="btn-wa">Pesan</a>
+        <div class="produk-cta">
+          <a href="#" class="btn-detail">Detail</a>
+          <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Pesan</a>
+        </div>
       </div>
     </div>
     <div class="produk-card">
       <img src="img/produk3.jpg" alt="Processor Zelos">
-      <div class="overlay">
+      <div class="produk-overlay">
         <h4>Processor Zelos</h4>
-        <a href="#" class="btn-detail">Detail</a>
-        <a href="https://wa.me/6281234567890" class="btn-wa">Pesan</a>
-      </div>
-    </div>
-    <div class="produk-card">
-      <img src="img/produk4.jpg" alt="Peredam DDM">
-      <div class="overlay">
-        <h4>Peredam DDM</h4>
-        <a href="#" class="btn-detail">Detail</a>
-        <a href="https://wa.me/6281234567890" class="btn-wa">Pesan</a>
+        <div class="produk-cta">
+          <a href="#" class="btn-detail">Detail</a>
+          <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Pesan</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Galeri -->
+<section id="galeri" class="galeri-section">
+  <h2>Galeri Hasil</h2>
+  <div class="slider">
+    <div class="slides-wrapper">
+      <img src="img/galeri1.jpg" alt="Hasil 1">
+      <img src="img/galeri2.jpg" alt="Hasil 2">
+      <img src="img/galeri3.jpg" alt="Hasil 3">
+      <img src="img/galeri4.jpg" alt="Hasil 4">
+    </div>
+    <a class="prev">&#10094;</a>
+    <a class="next">&#10095;</a>
+  </div>
+</section>
+
+<!-- Konten Instagram -->
+<section id="konten" class="konten-section">
+  <h2>Konten Kami</h2>
+  <iframe src="https://www.instagram.com/concerto_audio_embed" frameborder="0" width="100%" height="500"></iframe>
+</section>
+
+<!-- Lokasi -->
+<section id="lokasi" class="lokasi-section">
+  <h2>Lokasi & Ulasan</h2>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</section>
+
+<!-- Kontak -->
+<section id="kontak" class="kontak-section">
+  <h2>Kontak</h2>
+  <form>
+    <input type="text" placeholder="Nama" required>
+    <input type="email" placeholder="Email" required>
+    <textarea placeholder="Pesan" required></textarea>
+    <button type="submit">Kirim</button>
+  </form>
+</section>
+
+<!-- Sosial Media Floating -->
+<div class="social-floating">
+  <div class="main-icon">🔗</div>
+  <div class="social-icons">
+    <a href="https://facebook.com" class="icon">F</a>
+    <a href="https://instagram.com" class="icon">I</a>
+    <a href="https://youtube.com" class="icon">Y</a>
+  </div>
+</div>
+
 <!-- Footer -->
-<footer>&copy; 2025 Concerto Audio Malang</footer>
+<footer>&copy; 2025 Concerto Audio Malang. All rights reserved.</footer>
 
 <script src="script.js"></script>
 </body>
