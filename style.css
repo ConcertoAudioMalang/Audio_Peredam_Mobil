@@ -1,9 +1,9 @@
-/* === Global reset & font === */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Roboto, Helvetica, sans-serif;
 }
 
 body {
@@ -11,72 +11,100 @@ body {
   color: #333;
 }
 
-/* === Navbar (details & summary) === */
-details {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  z-index: 1000;
-}
-
+/* Hamburger Button */
 summary {
   list-style: none;
   cursor: pointer;
   font-size: 2rem;
   color: #333;
   background: #fff;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  margin: 15px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   transition: 0.3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1001;
 }
 
 summary:hover {
   background: #eee;
 }
 
-/* === Sidebar Menu === */
-details[open] ul {
+/* Sidebar */
+.sidebar {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
-  width: 220px;
+  width: 260px;
   background: #222;
-  padding: 60px 20px;
+  padding: 20px;
+  animation: slideIn 0.3s ease forwards;
+  z-index: 1000;
+  color: #fff;
+}
+
+/* Sidebar header */
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.close-btn {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+.close-btn:hover {
+  color: #ff5252;
+}
+
+/* Menu list */
+.sidebar ul {
   list-style: none;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  animation: slideIn 0.3s ease forwards;
 }
 
-details ul li {
+.sidebar ul li {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
   transition: 0.3s;
   padding: 8px;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
-details ul li:hover {
+.sidebar ul li:hover {
   background: #444;
   transform: translateX(5px);
 }
 
-details ul li ion-icon {
+.sidebar ul li ion-icon {
   font-size: 1.3rem;
 }
 
-/* Animasi sidebar */
+/* Animasi */
 @keyframes slideIn {
   from { transform: translateX(-100%); }
   to { transform: translateX(0); }
 }
+
 
 /* ================== HERO SECTION ================== */
 
@@ -933,6 +961,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
