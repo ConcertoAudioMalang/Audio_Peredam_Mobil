@@ -712,24 +712,7 @@
     });
   });
 </script>
-
-      <!-- script.js menu navbar --> 
-<script>
-  const menuToggle = document.getElementById('menuToggle');
-  const mainMenu = document.getElementById('mainMenu');
-
-  menuToggle.addEventListener('click', () => {
-    mainMenu.style.display = mainMenu.style.display === 'block' ? 'none' : 'block';
-  });
-
-  // Optional: hide menu if click outside
-  document.addEventListener('click', (e) => {
-    if (!menuToggle.contains(e.target) && !mainMenu.contains(e.target)) {
-      mainMenu.style.display = 'none';
-    }
-  });
-</script>
-
+      
        <!-- script.js produk -->
       <script>
   const tabs = document.querySelectorAll(".tab");
@@ -751,6 +734,7 @@
       
 </body>
 </html>
+
 
 
 
