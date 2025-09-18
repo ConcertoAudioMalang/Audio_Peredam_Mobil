@@ -1,4 +1,4 @@
-/* ================== FONT & RESET ================== */
+/* ========== FONT & RESET ========== */
 body {
   margin: 0;
   font-family: 'Roboto', Helvetica, sans-serif;
@@ -11,7 +11,7 @@ nav {
   left: 0;
   width: 100%;
   background-color: #111;
-  z-index: 10010; /* pastikan di atas semua elemen */
+  z-index: 10010;
   padding: 10px 20px;
 }
 
@@ -53,7 +53,7 @@ nav {
   overflow-x: hidden;
   transition: width 0.4s ease;
   padding-top: 60px;
-  z-index: 10030; /* pastikan di atas semua */
+  z-index: 10030;
 }
 
 /* Sidebar Logo */
@@ -171,6 +171,7 @@ footer { text-align:center; padding:1rem; background:#1E1E1E; color:#aaa; margin
 /* ================== DARK MODE TOGGLE ================== */
 #dark-mode-toggle { position:fixed; top:20px; right:20px; padding:10px 15px; border-radius:25px; border:2px solid #000; cursor:pointer; transition:0.3s; background:#fff; color:#000; }
 #dark-mode-toggle:hover { transform:translateX(-5px); }
+
 
 
 
