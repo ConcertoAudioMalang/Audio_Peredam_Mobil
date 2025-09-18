@@ -83,46 +83,71 @@ details[open] > summary { display: none; }
   color: #fff;
 }
 
-/* ================== HERO ================== */
+/* ================== HERO SECTION ================== */
 .hero {
   position: relative;
   width: 100%;
   height: 100vh;
-  background: url('images/background-concerto.jpg') center/cover no-repeat;
+  background: url('images/background-concerto.jpg') center center / cover no-repeat;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-align: center;
+  color: #fff;
+  padding: 2rem;
+  overflow: hidden;
 }
+
 .hero-overlay {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.7); /* overlay gelap sporty */
+  z-index: 1;
 }
+
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 700px;
+  max-width: 850px;
+  margin: 0 auto;
+  animation: fadeInUp 1.2s ease;
 }
+
 .hero h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 3.8rem);
   font-weight: 700;
   margin-bottom: 1rem;
+  line-height: 1.2;
+  letter-spacing: 1px;
 }
+
 .hero p {
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
   margin-bottom: 2rem;
+  font-weight: 400;
+  color: #ddd;
 }
+
 .hero-button {
-  background: #00ADB5;
-  color: #fff;
-  padding: 0.9rem 2rem;
+  background: linear-gradient(135deg, #00ADB5, #2d6a4f);
+  color: white;
+  padding: 0.9rem 2.2rem;
   border-radius: 8px;
   text-decoration: none;
-  transition: 0.3s;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
-.hero-button:hover { background: #008b92; }
+
+.hero-button:hover {
+  background: linear-gradient(135deg, #2d6a4f, #00ADB5);
+  transform: translateY(-3px) scale(1.05);
+}
+
 
 /* ================== SECTIONS ================== */
 section {
@@ -378,3 +403,4 @@ footer {
   margin-top: 2rem;
   color: #aaa;
 }
+
