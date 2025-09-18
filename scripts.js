@@ -1,98 +1,96 @@
-// script galeri
-<script>
-  const slides = document.querySelector(".slides");
-  const totalSlides = slides.children.length;
-  let currentIndex = 0;
+// ================== SIDEBAR AUTO-CLOSE ==================
+document.addEventListener("DOMContentLoaded", () => {
+  const details = document.querySelector("details");
+  const closeBtn = document.querySelector(".close-btn");
+  const menuLinks = document.querySelectorAll(".sidebar ul li a");
 
-  function showSlide(index) {
-    // Batasi index agar looping terus
-    if (index >= totalSlides) currentIndex = 0;
-    else if (index < 0) currentIndex = totalSlides - 1;
-    else currentIndex = index;
-
-    // Geser slides dengan transform translateX
-    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-  }
-
-  function plusSlides(n) {
-    showSlide(currentIndex + n);
-  }
-
-  // Initialize slider
-  showSlide(currentIndex);
-</script>
-
-// script testimoni
-document.addEventListener('DOMContentLoaded', () => {
-  const track = document.querySelector('.testimoni-track');
-  const slides = document.querySelectorAll('.testimoni-slide');
-  const prevBtn = document.querySelector('.slider-btn.prev');
-  const nextBtn = document.querySelector('.slider-btn.next');
-  let currentIndex = 0;
-  const totalSlides = slides.length;
-
-  function updateSlidePosition() {
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-  }
-
-  prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-    updateSlidePosition();
-  });
-
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    updateSlidePosition();
-  });
-
-  // Optional: auto slide every 7 seconds
-  /*
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    updateSlidePosition();
-  }, 7000);
-  */
-});
-
-// script faq&blog-mini
-document.querySelectorAll('.faq-item').forEach(item => {
-  const question = item.querySelector('.faq-question');
-  question.addEventListener('click', () => {
-    // Tutup semua FAQ kecuali yang diklik
-    document.querySelectorAll('.faq-item').forEach(i => {
-      if(i !== item) i.classList.remove('active');
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      details.removeAttribute("open");
     });
-    // Toggle FAQ yang diklik
-    item.classList.toggle('active');
+  }
+
+  // Tutup sidebar setelah klik link
+  menuLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      details.removeAttribute("open");
+    });
   });
 });
 
-// script sosial-media-mengambang
-document.addEventListener('DOMContentLoaded', () => {
-  const toggleBtn = document.getElementById('social-toggle');
-  const socialLinks = document.querySelector('.social-links');
+// ================== PRODUK FILTER ==================
+const tabs = document.querySelectorAll(".brand-tabs .tab");
+const produkLists = document.querySelectorAll(".produk-list");
 
-  toggleBtn.addEventListener('click', () => {
-    socialLinks.classList.toggle('active');
+tabs.forEach((tab, index) => {
+  tab.addEventListener("click", () => {
+    tabs.forEach(t => t.classList.remove("active"));
+    produkLists.forEach(list => list.classList.remove("active"));
+
+    tab.classList.add("active");
+    produkLists[index].classList.add("active");
   });
 });
 
+// ================== GALERI SLIDER ==================
+let slideIndex = 0;
 
+function showSlides(index) {
+  const slidesWrapper = document.querySelector(".slides-wrapper");
+  const slides = document.querySelectorAll(".slides-wrapper img");
+  if (!slidesWrapper || slides.length === 0) return;
 
+  if (index >= slides.length) slideIndex = 0;
+  if (index < 0) slideIndex = slides.length - 1;
 
+  slidesWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
+}
 
+function plusSlides(n) {
+  slideIndex += n;
+  showSlides(slideIndex);
+}
 
+// Init galeri pertama kali
+document.addEventListener("DOMContentLoaded", () => {
+  showSlides(slideIndex);
+});
 
+// ================== TESTIMONI SLIDER ==================
+let testiIndex = 0;
 
+function showTestimoni(index) {
+  const track = document.querySelector(".testimoni-track");
+  const slides = document.querySelectorAll(".testimoni-slide");
+  if (!track || slides.length === 0) return;
 
+  if (index >= slides.length) testiIndex = 0;
+  if (index < 0) testiIndex = slides.length - 1;
 
+  track.style.transform = `translateX(-${testiIndex * 100}%)`;
+}
 
+function plusTestimoni(n) {
+  testiIndex += n;
+  showTestimoni(testiIndex);
+}
 
+// Auto-slide setiap 6 detik
+setInterval(() => {
+  testiIndex++;
+  showTestimoni(testiIndex);
+}, 6000);
 
+// Init testimoni pertama kali
+document.addEventListener("DOMContentLoaded", () => {
+  showTestimoni(testiIndex);
+});
 
-
-
-
-
-
-
+// ================== FAQ (toggle jawaban) ==================
+const faqItems = document.querySelectorAll(".faq-item");
+faqItems.forEach(item => {
+  const question = item.querySelector(".faq-question");
+  question.addEventListener("click", () => {
+    item.classList.toggle("active");
+  });
+});
