@@ -1,14 +1,17 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 /* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Roboto, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
-  background: #f9f9f9;
-  color: #333;
+  background: #121212;
+  color: #EAEAEA;
 }
 
 /* Hamburger Button */
@@ -16,13 +19,13 @@ summary {
   list-style: none;
   cursor: pointer;
   font-size: 2rem;
-  color: #333;
-  background: #fff;
-  padding: 8px;
-  border-radius: 8px;
+  color: #EAEAEA;
+  background: #1E1E1E;
+  padding: 10px;
+  border-radius: 12px;
   margin: 15px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
   position: fixed;
   top: 0;
   left: 0;
@@ -30,7 +33,9 @@ summary {
 }
 
 summary:hover {
-  background: #eee;
+  background: #00ADB5;
+  color: #fff;
+  transform: scale(1.05);
 }
 
 /* Sidebar */
@@ -39,12 +44,13 @@ summary:hover {
   top: 0;
   left: 0;
   height: 100%;
-  width: 260px;
-  background: #222;
+  width: 270px;
+  background: #1E1E1E;
   padding: 20px;
-  animation: slideIn 0.3s ease forwards;
+  animation: slideIn 0.35s ease forwards;
   z-index: 1000;
-  color: #fff;
+  color: #EAEAEA;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.6);
 }
 
 /* Sidebar header */
@@ -55,18 +61,20 @@ summary:hover {
 }
 
 .sidebar-header .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #00ADB5;
 }
 
 .close-btn {
   font-size: 2rem;
   cursor: pointer;
-  color: #fff;
+  color: #EAEAEA;
+  transition: 0.3s;
 }
 
 .close-btn:hover {
-  color: #ff5252;
+  color: #FF5252;
 }
 
 /* Menu list */
@@ -75,41 +83,42 @@ summary:hover {
   margin-top: 40px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
 .sidebar ul li {
   display: flex;
   align-items: center;
-  gap: 12px;
-  color: #fff;
-  font-size: 1rem;
+  gap: 14px;
+  color: #EAEAEA;
+  font-size: 1.05rem;
   cursor: pointer;
-  transition: 0.3s;
-  padding: 8px;
-  border-radius: 6px;
+  transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 .sidebar ul li:hover {
-  background: #444;
-  transform: translateX(5px);
+  background: #00ADB5;
+  color: #fff;
+  transform: translateX(6px);
+  box-shadow: 0 0 12px rgba(0,173,181,0.6);
 }
 
 .sidebar ul li ion-icon {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 
 /* Animasi */
 @keyframes slideIn {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 
 /* Sembunyikan hamburger ketika sidebar terbuka */
 details[open] > summary {
   display: none;
 }
-
 
 /* ================== HERO SECTION ================== */
 
@@ -966,6 +975,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
