@@ -105,6 +105,11 @@ summary:hover {
   to { transform: translateX(0); }
 }
 
+/* Sembunyikan hamburger ketika sidebar terbuka */
+details[open] > summary {
+  display: none;
+}
+
 
 /* ================== HERO SECTION ================== */
 
@@ -961,6 +966,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
