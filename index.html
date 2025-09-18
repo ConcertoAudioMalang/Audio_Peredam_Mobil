@@ -1,876 +1,152 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website Sleek Sidebar</title>
+  <title>Concerto Audio Malang</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600&display=swap" rel="stylesheet">
+
   <!-- Ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <link rel="stylesheet" href="style.css">
-</head>
 
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.png" type="image/png">
+</head>
 <body>
-  <!-- Sidebar -->
+
+  <!-- Sidebar + Hamburger -->
   <details>
-    <summary class="hamburger">
-      <ion-icon name="menu-outline"></ion-icon>
-    </summary>
+    <summary><ion-icon name="menu-outline"></ion-icon></summary>
     <div class="sidebar">
       <div class="sidebar-header">
-        <span class="logo">MyLogo</span>
-        <span class="close-btn"><ion-icon name="close-outline"></ion-icon></span>
+        <div class="logo">Concerto</div>
+        <div class="close-btn"><ion-icon name="close-outline"></ion-icon></div>
       </div>
       <ul>
-        <li><a href="#hero"><ion-icon name="home-outline"></ion-icon><span>Home</span></a></li>
-        <li><a href="#tentang"><ion-icon name="person-outline"></ion-icon><span>Tentang</span></a></li>
-        <li><a href="#produk"><ion-icon name="newspaper-outline"></ion-icon><span>Produk</span></a></li>
-        <li><a href="#galeri"><ion-icon name="images-outline"></ion-icon><span>Galeri</span></a></li>
-        <li><a href="#testimoni"><ion-icon name="chatbubbles-outline"></ion-icon><span>Testimoni</span></a></li>
-        <li><a href="#lokasi"><ion-icon name="location-outline"></ion-icon><span>Lokasi</span></a></li>
-        <li><a href="#faq-blog"><ion-icon name="help-circle-outline"></ion-icon><span>FAQ</span></a></li>
-        <li><a href="#kontak"><ion-icon name="mail-outline"></ion-icon><span>Kontak</span></a></li>
+        <li><a href="#hero"><ion-icon name="home-outline"></ion-icon> Home</a></li>
+        <li><a href="#tentang"><ion-icon name="information-circle-outline"></ion-icon> Tentang</a></li>
+        <li><a href="#produk"><ion-icon name="albums-outline"></ion-icon> Produk</a></li>
+        <li><a href="#konten"><ion-icon name="newspaper-outline"></ion-icon> Konten Kami</a></li>
+        <li><a href="#galeri"><ion-icon name="images-outline"></ion-icon> Galeri</a></li>
+        <li><a href="#lokasi"><ion-icon name="location-outline"></ion-icon> Lokasi</a></li>
+        <li><a href="#kontak"><ion-icon name="mail-outline"></ion-icon> Kontak</a></li>
       </ul>
     </div>
   </details>
 
-  <!-- Dummy Sections -->
-  <section id="hero">
-    <h1>Home Section</h1>
-    <p>Ini bagian Hero/Home.</p>
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Spesialis Audio Mobil & Peredam Malang Raya</h1>
+      <p>Kualitas suara jernih & kenyamanan kabin mobil maksimal</p>
+      <a href="#produk" class="hero-button">Lihat Produk</a>
+    </div>
   </section>
 
-  <section id="tentang">
-    <h1>Tentang</h1>
-    <p>Ini bagian Tentang.</p>
+  <!-- Tentang -->
+  <section id="tentang" class="tentang-section">
+    <div class="tentang-container">
+      <div class="tentang-text">
+        <h2>Tentang Kami</h2>
+        <p>Concerto Audio Malang adalah spesialis pemasangan <strong>audio mobil premium</strong> dan <strong>peredam suara</strong> di Malang.</p>
+        <p>Didukung tim profesional dan produk original berkualitas, kami siap memberikan hasil terbaik untuk mobil Anda.</p>
+      </div>
+      <div class="tentang-img">
+        <img src="images/concerto-workshop.jpeg" alt="Concerto Audio">
+      </div>
+    </div>
   </section>
 
-  <section id="produk">
-    <h1>Produk</h1>
-    <p>Ini bagian Produk.</p>
+  <!-- Produk -->
+  <section id="produk" class="produk-filter">
+    <h2>Produk Kami</h2>
+    <!-- (isi produk slide tetap seperti sebelumnya, fungsi tidak diubah) -->
+    <div class="produk-grid">
+      <!-- contoh produk card -->
+      <div class="produk-card">
+        <img src="img/produk1.jpg" alt="Speaker AC1">
+        <h4>Speaker AC1</h4>
+        <div class="produk-cta">
+          <a href="detail-produk1.html" class="btn-detail">Detail</a>
+          <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Pesan</a>
+        </div>
+      </div>
+    </div>
   </section>
 
+  <!-- Konten Kami -->
+  <section id="konten" class="konten-section">
+    <h2>Konten Kami</h2>
+    <div class="konten-grid">
+      <div class="konten-card">
+        <img src="images/konten1.jpg" alt="Tips Audio Mobil">
+        <h3>Tips Audio Mobil</h3>
+        <p>Pelajari cara memilih speaker dan amplifier yang tepat untuk mobil Anda.</p>
+      </div>
+      <div class="konten-card">
+        <img src="images/konten2.jpg" alt="Manfaat Peredam">
+        <h3>Manfaat Peredam</h3>
+        <p>Kenapa peredam penting untuk kenyamanan kabin? Simak penjelasannya.</p>
+      </div>
+      <div class="konten-card">
+        <img src="images/konten3.jpg" alt="Review Produk">
+        <h3>Review Produk</h3>
+        <p>Kami membahas produk audio mobil terbaru yang tersedia di workshop kami.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galeri -->
   <section id="galeri">
-    <h1>Galeri</h1>
-    <p>Ini bagian Galeri.</p>
+    <h2>Galeri Result</h2>
+    <div class="slider">
+      <div class="slides-wrapper">
+        <img src="images/galeri1.jpeg" alt="Result 1">
+        <img src="images/galeri2.jpeg" alt="Result 2">
+        <img src="images/galeri3.jpeg" alt="Result 3">
+      </div>
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
   </section>
 
-  <section id="testimoni">
-    <h1>Testimoni</h1>
-    <p>Ini bagian Testimoni.</p>
-  </section>
-
+  <!-- Lokasi -->
   <section id="lokasi">
-    <h1>Lokasi</h1>
-    <p>Ini bagian Lokasi.</p>
+    <h2>Lokasi Bengkel</h2>
+    <p>📍 Jl. Ciliwung No.57 A, Kota Malang</p>
+    <iframe src="https://www.google.com/maps?q=-7.95398,112.64149&output=embed" width="100%" height="300"></iframe>
   </section>
 
-  <section id="faq-blog">
-    <h1>FAQ & Blog</h1>
-    <p>Ini bagian FAQ/Blog.</p>
-  </section>
-
+  <!-- Kontak -->
   <section id="kontak">
-    <h1>Kontak</h1>
-    <p>Ini bagian Kontak.</p>
+    <h2>Kontak Kami</h2>
+    <p>Email: info@namaperusahaan.com</p>
+    <p>Telp: +62 81217398558</p>
+    <a href="https://wa.me/6281217398558" class="btn-whatsapp" target="_blank">Hubungi via WhatsApp</a>
   </section>
 
-  <script>
-    // Tutup sidebar setelah klik menu
-    const sidebarLinks = document.querySelectorAll(".sidebar a");
-    const details = document.querySelector("details");
-    const closeBtn = document.querySelector(".close-btn");
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Concerto Audio Malang. All rights reserved.
+  </footer>
 
-    sidebarLinks.forEach(link => {
+  <!-- Script -->
+  <script>
+    const closeBtn = document.querySelector(".close-btn");
+    const details = document.querySelector("details");
+    document.querySelectorAll(".sidebar ul li a").forEach(link => {
       link.addEventListener("click", () => {
         details.removeAttribute("open");
       });
     });
-
     closeBtn.addEventListener("click", () => {
       details.removeAttribute("open");
     });
   </script>
 </body>
-
 </html>
-
-   <!-- Favicon -->
-  <link rel="icon" href="favicon.png" type="favicon.png" />
-  
-  <!-- Hero -->
-<section class="hero" id="hero">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1>Spesialis Audio Mobil & Peredam Malang Raya</h1>
-    <p>Kualitas suara jernih & kenyamanan kabin mobil maksimal</p>
-    <a href="#produk" class="hero-button">Lihat Produk</a>
-  </div>
-</section>
-  
-      <!-- Tentang Kami -->
-    <section id="tentang" class="tentang-section">
-  <div class="tentang-container">
-    <div class="tentang-text">
-      <h2>Tentang Kami</h2>
-      <p>
-        Concerto Audio Malang adalah spesialis pemasangan <strong>audio mobil premium</strong> dan <strong>peredam suara</strong> di Malang.  
-        Kami telah membantu ratusan pelanggan mendapatkan kualitas suara terbaik dan kenyamanan kabin maksimal.  
-        Berpengalaman di bidang audio, kami menjamin kepuasan Anda dari konsultasi hingga instalasi.
-      </p>
-      <p>
-        Didukung dengan tim profesional dan produk original berkualitas seperti <em>Audio Circle, STEG, Zeloz, Dios Dela Musica</em>, kami siap memberikan hasil terbaik untuk mobil Anda.
-      </p>
-    </div>
-    <div class="tentang-img">
-      <img src="images/concerto-workshop.jpeg" alt="Concerto Audio" />
-    </div>
-  </div>
-</section>
-
-  <!-- SEO Meta Tambahan -->
-<meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://concertoaudiomobilmalang.github.io/" />
-<meta name="language" content="id" />
-<meta name="geo.region" content="ID-JI" />
-<meta name="geo.placename" content="Malang" />
-<meta name="geo.position" content="-7.95398;112.64149" />
-<meta name="ICBM" content="-7.95398, 112.64149" />
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Concerto Audio Malang</title>
-  <meta name="description" content="Spesialis Audio Mobil & Peredam Mobil di Malang." />
-
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preload" href="images/audio-circle.png" as="image" />
-  <link rel="preload" href="images/steg.png" as="image" />
-  <link rel="preload" href="images/zelos.png" as="image" />
-  <link rel="preload" href="images/dios-dela.png" as="image" />
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "LocalBusiness",
-      "@id": "https://concertoaudiomobilmalang.github.io/#concerto",
-      "name": "Concerto Audio Malang",
-      "image": "https://concertoaudiomobilmalang.github.io/images/concerto-audio-logo.png",
-      "url": "https://concertoaudiomobilmalang.github.io",
-      "telephone": "+62 81217398558",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Jl. Ciliwung No.57 A, Purwantoro, Kec. Blimbing",
-        "addressLocality": "Kota Malang",
-        "addressRegion": "Jawa Timur",
-        "postalCode": "65126",
-        "addressCountry": "ID"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -7.95398,
-        "longitude": 112.64149
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-        ],
-        "opens": "08:00",
-        "closes": "17:00"
-      },
-      "sameAs": [
-        "https://www.facebook.com/Concerto Malang",
-        "https://www.instagram.com/concerto_malang/",
-        "https://www.youtube.com/@Concerto_Malang",
-        "https://www.tiktok.com/@concertomlg"
-      ]
-    },
-
-    {
-      "@type": "Product",
-      "name": "Audio Circle Speaker",
-      "image": "https://concertoaudiomobilmalang.github.io/images/audio-circle.png",
-      "description": "Speaker mobil 2-way & 3-way berkualitas tinggi dari Jerman.",
-      "brand": {
-        "@type": "Brand",
-        "name": "Audio Circle"
-      },
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "IDR",
-        "price": "",
-        "availability": "https://schema.org/InStock",
-        "url": "https://concertoaudiomobilmalang.github.io/#produk"
-      }
-    },
-
-    {
-      "@type": "Product",
-      "name": "STEG Audio Mobil",
-      "image": "https://concertoaudiomobilmalang.github.io/images/steg.png",
-      "description": "Power, Processor, Speaker, hingga Subwoofer audio mobil premium dari Italia.",
-      "brand": {
-        "@type": "Brand",
-        "name": "STEG"
-      },
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "IDR",
-        "price": "",
-        "availability": "https://schema.org/InStock",
-        "url": "https://concertoaudiomobilmalang.github.io/#produk"
-      }
-    },
-
-    {
-      "@type": "Product",
-      "name": "Zeloz Amplifier",
-      "image": "https://concertoaudiomobilmalang.github.io/images/zelos.png",
-      "description": "Power amplifier dan Processor elegan dengan kualitas suara detail.",
-      "brand": {
-        "@type": "Brand",
-        "name": "Zeloz"
-      },
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "IDR",
-        "price": "",
-        "availability": "https://schema.org/InStock",
-        "url": "https://concertoaudiomobilmalang.github.io/#produk"
-      }
-    },
-
-    {
-      "@type": "Product",
-      "name": "Dios Dela Musica Peredam",
-      "image": "https://concertoaudiomobilmalang.github.io/images/dios-dela.png",
-      "description": "Peredam mobil berkualitas tinggi berbahan rubber butyl.",
-      "brand": {
-        "@type": "Brand",
-        "name": "Dios Dela Musica"
-      },
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "IDR",
-        "price": "",
-        "availability": "https://schema.org/InStock",
-        "url": "https://concertoaudiomobilmalang.github.io/#produk"
-      }
-    },
-
-    {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Rizky A."
-      },
-      "reviewBody": "Pengerjaan sangat rapi dan hasil suaranya luar biasa! Cocok buat pecinta audio mobil.",
-      "itemReviewed": {
-        "@id": "https://concertoaudiomobilmalang.github.io/#concerto"
-      }
-    },
-    {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "4.5",
-        "bestRating": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Fajar W."
-      },
-      "reviewBody": "Konsultasi ramah, pengerjaan cepat, dan harga sangat masuk akal.",
-      "itemReviewed": {
-        "@id": "https://concertoaudiomobilmalang.github.io/#concerto"
-      }
-    },
-
-    {
-      "@type": "Service",
-      "serviceType": "Pemasangan Audio Mobil dan Peredam Mobil",
-      "provider": {
-        "@id": "https://concertoaudiomobilmalang.github.io/#concerto"
-      },
-      "areaServed": {
-        "@type": "Place",
-        "name": "Malang Raya"
-      },
-      "availableChannel": {
-        "@type": "ServiceChannel",
-        "serviceLocation": {
-          "@type": "Place",
-          "name": "Concerto Audio Malang"
-        }
-      }
-    }
-  ]
-}
-</script>
-
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: linear-gradient(to bottom, #f0fdf4, #ffffff);
-      color: #333;
-    }
-
-    header {
-      text-align: center;
-      padding: 2rem;
-      background: url('images/header-bg.jpg') center/cover no-repeat;
-      color: white;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      background: #2d6a4f;
-      gap: 2rem;
-      padding: 1rem;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
-    section {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: #ffffffcc;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      animation: fadeInUp 0.7s ease forwards;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-  
-
-    .cta {
-      text-align: center;
-      margin-top: 3rem;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 1rem 2rem;
-      font-weight: bold;
-      background: linear-gradient(to right, #2d6a4f, #40916c);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: all 0.3s ease-in-out;
-      box-shadow: 0 4px 12px rgba(64, 145, 108, 0.3);
-    }
-
-    .button:hover {
-      background: #1b4332;
-      transform: scale(1.05);
-    }
-
-    .gallery img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    footer {
-      background: #2d6a4f;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-
-  </style>
-</head>
-<body>
-
-   <!-- Responsive & Lightweight Social Media Feed -->
-  <section id="social-feed">
-  <h2>Konten Terbaru Kami</h2>
-  <div class="feed-grid">
-    
-    <!-- Instagram Post -->
-    <div class="feed-item">
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/POST_ID_INSTAGRAM/" data-instgrm-version="14" style="width:100%;"></blockquote>
-    </div>
-
-    <!-- TikTok Video -->
-    <div class="feed-item">
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@USERNAME/video/VIDEO_ID_TIKTOK" data-video-id="VIDEO_ID_TIKTOK" style="width:100%;">
-        <section></section>
-      </blockquote>
-    </div>
-
-    <!-- YouTube Embed -->
-    <div class="feed-item">
-      <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/VIDEO_ID_YOUTUBE"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- Embed Scripts -->
-<script async defer src="https://www.instagram.com/embed.js"></script>
-<script async src="https://www.tiktok.com/embed.js"></script>
-
-
-</head>
-<body>
-  
-  <!-- Produk-->
-  <section id="produk" class="produk-filter">
-  <h2>Produk Kami</h2>
-
-  <div class="brand-tabs">
-    <button class="tab active" data-brand="brand1">
-      <img src="images/audio-circle.png" alt="Audio Circle" />
-    </button>
-    <button class="tab" data-brand="brand2">
-      <img src="images/steg.png" alt="STEG" />
-    </button>
-    <button class="tab" data-brand="brand3">
-      <img src="images/zelos.png" alt="Zelos" />
-    </button>
-    <button class="tab" data-brand="brand4">
-      <img src="images/dios-dela.png" alt="Dios Dela" />
-    </button>
-  </div>
-
-  <div class="produk-grid">
-    <!-- Brand 1 -->
-    <div class="produk-list brand1 active">
-      <div class="produk-card">
-        <img src="img/produk1.jpg" alt="Speaker AC1">
-        <h4>Speaker AC1</h4>
-        <div class="produk-cta">
-    <a href="detail-produk1.html" class="btn-detail">Detail</a>
-    <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Pesan</a>
-  </div>
-</div>
-      <div class="produk-card">
-        <img src="img/produk2.jpg" alt="Speaker AC2">
-        <h4>Speaker AC2</h4>
-        <div class="produk-cta">
-    <a href="detail-produk1.html" class="btn-detail">Detail</a>
-    <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Pesan</a>
-  </div>
-</div>
-    <!-- Brand 2 -->
-    <div class="produk-list brand2">
-      <div class="produk-card">
-        <img src="img/produk3.jpg" alt="Amplifier STEG 1">
-        <h4>Amplifier STEG 1</h4>
-        <div class="produk-cta">
-    <a href="detail-produk1.html" class="btn-detail">Detail</a>
-    <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Pesan</a>
-  </div>
-</div>
-      <div class="produk-card">
-        <img src="img/produk4.jpg" alt="Processor STEG">
-        <h4>Processor STEG</h4>
-        <div class="produk-cta">
-    <a href="detail-produk1.html" class="btn-detail">Detail</a>
-    <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Pesan</a>
-  </div>
-</div>
-
-    <!-- Brand 3 -->
-    <div class="produk-list brand3">
-      <div class="produk-card">
-        <img src="img/produk5.jpg" alt="Processor Zelos">
-        <h4>Processor Zelos</h4>
-        <div class="produk-cta">
-    <a href="detail-produk1.html" class="btn-detail">Detail</a>
-    <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Pesan</a>
-  </div>
-</div>
-
-    <!-- Brand 4 -->
-    <div class="produk-list brand4">
-      <div class="produk-card">
-        <img src="img/produk6.jpg" alt="Peredam DDM">
-        <h4>Peredam DDM</h4>
-        <div class="produk-cta">
-    <a href="detail-produk1.html" class="btn-detail">Detail</a>
-    <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Pesan</a>
-  </div>
-</div>
-  </div>
-</section>
-
-    <!-- Galeri -->
-    <<section id="galeri">
-  <h2>Galeri Result</h2>
-  <div class="slider">
-    <div class="slides-wrapper">
-      <img src="images/galeri1.jpeg" alt="Produk 1" />
-      <img src="images/galeri2.jpeg" alt="Produk 2" />
-      <img src="images/galeri3.jpeg" alt="Produk 3" />
-      <img src="images/galeri4.jpeg" alt="Produk 4" />
-    </div>
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-  </div>
-</section>
-
-<!-- Section Testimoni Slider -->
-<section id="testimoni">
-  <h2>Testimoni Pelanggan</h2>
-  <div class="testimoni-slider">
-    <div class="testimoni-track">
-
-      <!-- Slide 1 -->
-      <div class="testimoni-slide">
-        <div class="avatar"><img src="https://i.pravatar.cc/150?img=3" alt="Rizky A."></div>
-        <div class="rating">⭐⭐⭐⭐⭐</div>
-        <p>"Pengerjaan sangat rapi dan hasil suaranya luar biasa! Cocok buat pecinta audio mobil."</p>
-        <h4>Rizky A.</h4>
-      </div>
-
-      <!-- Slide 2 -->
-      <div class="testimoni-slide">
-        <div class="avatar"><img src="https://i.pravatar.cc/150?img=5" alt="Fajar W."></div>
-        <div class="rating">⭐⭐⭐⭐⭐</div>
-        <p>"Konsultasi ramah, pengerjaan cepat, dan harga sangat masuk akal."</p>
-        <h4>Fajar W.</h4>
-      </div>
-
-      <!-- Slide 3 -->
-      <div class="testimoni-slide">
-        <div class="avatar"><img src="https://i.pravatar.cc/150?img=7" alt="Nanda S."></div>
-        <div class="rating">⭐⭐⭐⭐</div>
-        <p>"Sistem peredamnya bikin kabin mobil jadi senyap, beda banget hasilnya!"</p>
-        <h4>Nanda S.</h4>
-      </div>
-
-    </div>
-
-    <!-- Panah Navigasi -->
-    <button class="slider-btn prev" aria-label="Slide sebelumnya">❮</button>
-    <button class="slider-btn next" aria-label="Slide berikutnya">❯</button>
-  </div>
-</section>
-      
-      <!-- lokasi -->
-     <section id="lokasi">
-  <h2>Lokasi Bengkel</h2>
-  <div class="lokasi-container">
-    <div class="lokasi-info">
-      <h3>Concerto Audio Malang</h3>
-      <p>📍 Jl. Ciliwung No.57 A, Purwantoro, Kec. Blimbing, Kota Malang</p>
-      <p>🕒 Senin - Sabtu, 08:00 - 17:00</p>
-      <a href="https://www.google.com/maps?q=-7.95398,112.64149" target="_blank" class="btn-map">
-        Buka di Google Maps
-      </a>
-    </div>
-    <div class="lokasi-map">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.4113200094704!2d112.63930957500366!3d-7.954108092073871!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd628257b98f207%3A0x2c95e0e4b2d3d36e!2sJl.%20Ciliwung%20No.57A%2C%20Purwantoro%2C%20Kec.%20Blimbing%2C%20Kota%20Malang%2C%20Jawa%20Timur%2065126!5e0!3m2!1sid!2sid!4v1694352638236!5m2!1sid!2sid"
-        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
-  </div>
-</section>
-
-      <!-- FAQ Section -->
-    <section id="faq-blog" class="glass-container">
-  <div class="container-two-columns">
-    
-    <div class="faq">
-      <h2>FAQ - Pertanyaan Umum</h2>
-      <div class="faq-item">
-        <button class="faq-question">Berapa lama waktu pemasangan audio mobil?</button>
-        <div class="faq-answer">
-          <p>Pemasangan biasanya memakan waktu 2-4 jam tergantung jenis dan tingkat kerumitan.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">Apakah garansi tersedia?</button>
-        <div class="faq-answer">
-          <p>Ya, kami menyediakan garansi hingga 6 bulan untuk semua produk dan jasa.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">Apakah bisa konsultasi sebelum pemasangan?</button>
-        <div class="faq-answer">
-          <p>Tentu, konsultasi gratis bisa dilakukan secara online maupun langsung ke workshop.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Blog Mini Section -->
-    <div class="blog-mini">
-      <h2>Blog Terbaru</h2>
-      <article class="blog-post">
-        <h3><a href="#">Tips Memilih Speaker Mobil Berkualitas</a></h3>
-        <p>Speaker yang bagus akan memberikan suara yang jernih dan bertenaga. Pelajari tipsnya di sini.</p>
-      </article>
-      <article class="blog-post">
-        <h3><a href="#">Manfaat Peredam Mobil untuk Kenyamanan Berkendara</a></h3>
-        <p>Peredam mobil bukan cuma meredam suara bising, tapi juga meningkatkan kualitas suara audio.</p>
-      </article>
-      <article class="blog-post">
-        <h3><a href="#">Cara Merawat Sistem Audio Mobil Anda</a></h3>
-        <p>Perawatan rutin bisa memperpanjang umur perangkat audio mobil. Simak panduannya.</p>
-      </article>
-    </div>
-
-  </div>
-</section>
-
-      <!-- Floating Social Media -->
-      
-<div class="social-floating" tabindex="0" aria-label="Social media links">
-  <div class="main-icon" aria-label="Open social media links">
-    🔗
-  </div>
-  <div class="social-icons">
-    <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="icon fb">F</a>
-    <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="icon ig">I</a>
-    <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="icon tw">T</a>
-    <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="icon ln">L</a>
-  </div>
-</div>
-
-    <!-- Kontak -->
-    <section id="kontak">
-  <h2>Kontak Kami</h2>
-  <p>Email: info@namaperusahaan.com</p>
-  <p>Telp: +62 81217398558</p>
-
-  <div class="sosmed">
-    <a href="https://facebook.com">Facebook</a> |
-    <a href="https://instagram.com">Instagram</a> |
-    <a href="https://linkedin.com">LinkedIn</a>
-  </div>
-
-  <a href="https://wa.me/6281217398558" class="btn-whatsapp" target="_blank">
-    Hubungi via WhatsApp
-  </a>
-</section>
-
-  </main>
-
-  <footer>
-    &copy; 2025 Concerto Audio Malang. All rights reserved.
-  </footer>
-<script src="script.js"></script>
-      
-  <!-- script.js Galeri -->   
-  <script>
-  const slideWrapper = document.querySelector('.slides-wrapper');
-  const totalSlides = slideWrapper.children.length;
-  let currentIndex = 0;
-
-  function showSlide(index) {
-    if (index >= totalSlides) index = 0;
-    if (index < 0) index = totalSlides - 1;
-    currentIndex = index;
-    const slideWidth = slideWrapper.clientWidth;
-    slideWrapper.style.transform = `translateX(-${index * 100}%)`;
-  }
-
-  function plusSlides(n) {
-    showSlide(currentIndex + n);
-  }
-
-  showSlide(currentIndex);
-</script>
-      
-<!-- script.js testimoni -->
-<script>
-  let currentSlide = 0;
-  const track = document.querySelector('.testimoni-track');
-  const totalSlides = document.querySelectorAll('.testimoni-slide').length;
-
-  function moveSlide(step) {
-    currentSlide = (currentSlide + step + totalSlides) % totalSlides;
-    updateSlider();
-  }
-
-  function updateSlider() {
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
-  }
-
-  // Auto-slide setiap 5 detik
-  setInterval(() => {
-    moveSlide(1);
-  }, 5000);
-
-  // Inisialisasi
-  updateSlider();
-</script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    let currentSlide = 0;
-    const track = document.querySelector('.testimoni-track');
-    const slides = document.querySelectorAll('.testimoni-slide');
-    const totalSlides = slides.length;
-
-    function moveSlide(step) {
-      currentSlide = (currentSlide + step + totalSlides) % totalSlides;
-      updateSlider();
-    }
-
-    function updateSlider() {
-      const offset = currentSlide * 100;
-      track.style.transform = `translateX(-${offset}%)`;
-    }
-
-    // Tombol manual ❮ ❯
-    document.querySelector('.slider-btn.prev').addEventListener('click', () => moveSlide(-1));
-    document.querySelector('.slider-btn.next').addEventListener('click', () => moveSlide(1));
-
-    // Auto-slide setiap 5 detik
-    setInterval(() => {
-      moveSlide(1);
-    }, 5000);
-
-    updateSlider();
-  });
-</script>
-      
-   <!-- script.js sosial-media-mengambang -->   
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const toggleBtn = document.getElementById('social-toggle');
-    const socialLinks = document.querySelector('.social-links');
-
-    toggleBtn.addEventListener('click', () => {
-      if (socialLinks.style.display === 'flex') {
-        socialLinks.style.display = 'none';
-      } else {
-        socialLinks.style.display = 'flex';
-      }
-    });
-  });
-</script>
-      
-       <!-- script.js produk -->
-      <script>
-  const tabs = document.querySelectorAll(".tab");
-  const produkLists = document.querySelectorAll(".produk-list");
-
-  tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-      // Remove active state from all
-      tabs.forEach(t => t.classList.remove("active"));
-      produkLists.forEach(list => list.classList.remove("active"));
-
-      // Activate current
-      tab.classList.add("active");
-      const brand = tab.getAttribute("data-brand");
-      document.querySelector(`.produk-list.${brand}`).classList.add("active");
-    });
-  });
-</script>
-      
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
