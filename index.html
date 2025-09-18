@@ -92,20 +92,31 @@
   <header class="navbar">
     <div class="hamburger" id="hamburger">&#9776;</div>
     <div class="logo">Logo</div>
-  </header>
+  <header class="sticky-header">
+  <div class="logo">
+    <img src="images/logo.png" alt="Logo">
+  </div>
+  <div class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
 
-  <div class="fullscreen-menu" id="fullscreenMenu">
-    <div class="close-btn" id="closeBtn">&times;</div>
-    <nav>
-      <a href="#">Beranda</a>
-      <a href="#">Tentang Kami</a>
-      <a href="#">Produk</a>
-      <a href="#">Galeri</a>
-      <a href="#">Testimoni</a>
-      <a href="#">Lokasi</a>
-      <a href="#">FAQ & Blog</a>
-      <a href="#">Kontak</a>
-    </nav>
+<!-- Sidebar Menu -->
+<nav class="side-menu" id="sideMenu">
+  <button class="close-btn" id="closeMenu">&times;</button>
+  <ul>
+    <li><a href="#beranda">Beranda</a></li>
+    <li><a href="#tentang">Tentang Kami</a></li>
+    <li><a href="#produk">Produk</a></li>
+    <li><a href="#galeri">Galeri</a></li>
+    <li><a href="#testimoni">Testimoni</a></li>
+    <li><a href="#lokasi">Lokasi</a></li>
+    <li><a href="#faq">FAQ & Blog</a></li>
+    <li><a href="#kontak">Kontak</a></li>
+  </ul>
+</nav>
   </div>
 
   <script>
@@ -843,9 +854,27 @@
     });
   });
 </script>
+      
+      <!-- script. toogle menu -->
+      <script>
+  const menuToggle = document.getElementById('menuToggle');
+  const sideMenu = document.getElementById('sideMenu');
+  const closeBtn = document.getElementById('closeMenu');
+
+  menuToggle.addEventListener('click', () => {
+    sideMenu.classList.toggle('open');
+    menuToggle.classList.toggle('active');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    sideMenu.classList.remove('open');
+    menuToggle.classList.remove('active');
+  });
+</script>
 
 </body>
 </html>
+
 
 
 
