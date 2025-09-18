@@ -14,13 +14,22 @@ document.addEventListener("DOMContentLoaded", () => {
     sidebar.style.width = "0";
   });
 
-  // Swipe HP
+  // Tutup saat klik di luar sidebar
+  window.addEventListener("click", (e) => {
+    if (e.target === sidebar) {
+      sidebar.style.width = "0";
+    }
+  });
+
+  // Swipe untuk HP
   let startX = 0;
-  sidebar.addEventListener('touchstart', (e) => startX = e.touches[0].clientX );
-  sidebar.addEventListener('touchmove', (e) => {
-    if (e.touches[0].clientX - startX < -50) sidebar.style.width = '0';
+  sidebar.addEventListener("touchstart", (e) => startX = e.touches[0].clientX );
+  sidebar.addEventListener("touchmove", (e) => {
+    if (e.touches[0].clientX - startX < -50) sidebar.style.width = "0";
   });
 });
+
+
 
 
 
