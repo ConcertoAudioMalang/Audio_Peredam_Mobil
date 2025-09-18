@@ -257,8 +257,28 @@
     });
     closeBtn.addEventListener("click", () => details.removeAttribute("open"));
   </script>
+  
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const tabs = document.querySelectorAll(".tab");
+  const produkLists = document.querySelectorAll(".produk-list");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      produkLists.forEach(list => list.classList.remove("active"));
+
+      tab.classList.add("active");
+      const brand = tab.getAttribute("data-brand");
+      document.querySelector(`.produk-list.${brand}`).classList.add("active");
+    });
+  });
+});
+</script>
+
 </body>
 </html>
+
 
 
 
