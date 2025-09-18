@@ -489,48 +489,100 @@ section p { line-height: 1.7; }
   }
 }
 
-/* ================== TESTIMONI ================== */
-.testimoni-slider {
-  position: relative;
-  overflow: hidden;
-  background: #2a2a2a;
-  border-radius: 16px;
-  padding: 2rem;
+/* ================== LOKASI & REVIEW ================== */
+.lokasi-section {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 2.5rem;
+  background: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  color: #eaeaea;
 }
-.testimoni-track {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-.testimoni-slide {
-  flex: 0 0 100%;
+
+.lokasi-section h2 {
   text-align: center;
+  color: #00ADB5;
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
-.avatar img {
-  width: 80px; height: 80px;
-  border-radius: 50%;
-  margin-bottom: 1rem;
+
+.lokasi-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
 }
-.rating { color: #ffc107; margin-bottom: 1rem; }
-.testimoni-slide p { font-style: italic; }
-.slider-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+
+.lokasi-info {
+  flex: 1 1 300px;
+}
+
+.lokasi-info h3 {
+  color: #00ADB5;
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.lokasi-info p {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.lokasi-buttons {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn-map,
+.btn-review {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-map {
   background: #00ADB5;
   color: white;
-  border: none;
-  font-size: 2rem;
-  border-radius: 50%;
-  cursor: pointer;
 }
-.slider-btn.prev { left: 10px; }
-.slider-btn.next { right: 10px; }
 
-/* ================== LOKASI ================== */
-#lokasi iframe {
-  border: 0;
-  border-radius: 12px;
-  margin-top: 1rem;
+.btn-map:hover {
+  background: #008b92;
+}
+
+.btn-review {
+  background: #ffc107;
+  color: #222;
+}
+
+.btn-review:hover {
+  background: #e0a800;
+}
+
+.lokasi-map {
+  flex: 2 1 500px;
+}
+
+.lokasi-map iframe {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .lokasi-container {
+    flex-direction: column;
+  }
+
+  .lokasi-map iframe {
+    height: 250px;
+  }
 }
 
 /* ================== SOSMED FLOATING ================== */
@@ -597,6 +649,7 @@ footer {
   margin-top: 2rem;
   color: #aaa;
 }
+
 
 
 
