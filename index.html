@@ -277,7 +277,8 @@
     });
     closeBtn.addEventListener("click", () => details.removeAttribute("open"));
   </script>
-  
+
+  script- konten kami 
   <script>
 document.addEventListener("DOMContentLoaded", () => {
   const tabs = document.querySelectorAll(".tab");
@@ -295,9 +296,37 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+ 
+  script-galeri 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const slideWrapper = document.querySelector('.slides-wrapper');
+  const totalSlides = slideWrapper.children.length;
+  let currentIndex = 0;
+
+  function showSlide(index) {
+    if (index >= totalSlides) index = 0;
+    if (index < 0) index = totalSlides - 1;
+    currentIndex = index;
+    slideWrapper.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  window.plusSlides = function(n) {
+    showSlide(currentIndex + n);
+  };
+
+  // Auto slide setiap 5 detik
+  setInterval(() => {
+    showSlide(currentIndex + 1);
+  }, 5000);
+
+  showSlide(currentIndex);
+});
+</script>
 
 </body>
 </html>
+
 
 
 
