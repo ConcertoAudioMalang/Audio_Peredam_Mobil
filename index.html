@@ -2,33 +2,36 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sidebar Modern</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Concerto Audio Malang</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <button class="menu-btn" id="open-menu">☰</button>
-<aside class="sidebar" id="sidebar">
-  <button class="close-btn" id="close-menu">×</button>
-  <!-- menu links -->
-</aside>
-<div class="overlay" id="overlay"></div>
+
+<header class="header">
+  <button id="hamburger" aria-label="Buka menu">
+    ☰
+  </button>
+  <div class="brand">BrandName</div>
+</header>
+
+<nav id="sidebar" class="sidebar">
+  <button id="close-btn" aria-label="Tutup menu">×</button>
+  <ul class="menu">
+    <li><a href="#">Beranda</a></li>
+    <li><a href="#">Tentang Kami</a></li>
+    <li><a href="#">Produk</a></li>
+    <li><a href="#">Galeri</a></li>
+    <li><a href="#">Testimoni</a></li>
+    <li><a href="#">Lokasi</a></li>
+    <li><a href="#">FAQ & Blog</a></li>
+    <li><a href="#">Kontak</a></li>
+  </ul>
+</nav>
+
+<div id="overlay"></div>
+
 <script src="script.js"></script>
-    <nav class="sidebar-nav">
-      <a href="#">Beranda</a>
-      <a href="#">Tentang Kami</a>
-      <a href="#">Produk</a>
-      <a href="#">Galeri</a>
-      <a href="#">Testimoni</a>
-      <a href="#">Lokasi</a>
-      <a href="#">FAQ & Blog</a>
-      <a href="#">Kontak</a>
-    </nav>
-  </aside>
-
-  <div class="overlay" id="overlay"></div>
-
-  <script src="script.js"></script>
 </body>
 </html>
 
@@ -734,6 +737,7 @@
       
 </body>
 </html>
+
 
 
 
