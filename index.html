@@ -17,10 +17,10 @@
   <link rel="icon" href="favicon.png" type="image/png">
 </head>
 <body>
-  <!-- DARK MODE TOGGLE -->
+  <!-- Dark Mode Toggle -->
   <button id="dark-mode-toggle">🌙</button>
 
-  <!-- SIDEBAR -->
+  <!-- Sidebar -->
   <details>
     <summary><ion-icon name="menu-outline"></ion-icon></summary>
     <div class="sidebar">
@@ -40,7 +40,7 @@
     </div>
   </details>
 
-  <!-- HERO -->
+  <!-- Hero Section -->
   <section class="hero" id="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -50,22 +50,13 @@
     </div>
   </section>
 
-  <!-- TENTANG -->
+  <!-- Tentang Kami -->
   <section id="tentang" class="tentang-section">
     <div class="tentang-container">
       <div class="tentang-text">
         <h2>Tentang Kami</h2>
-        <p>
-          <strong>Concerto Audio Malang</strong> adalah spesialis pemasangan 
-          <strong>audio mobil premium</strong> dan <strong>peredam suara</strong> 
-          di Malang. Kami telah membantu ratusan pelanggan mendapatkan kualitas suara terbaik 
-          dan kenyamanan kabin maksimal.
-        </p>
-        <p>
-          Didukung tim profesional dan produk original berkualitas seperti 
-          <em>Audio Circle, STEG, Zeloz, Dios Dela Musica</em>, 
-          kami siap memberikan hasil terbaik untuk mobil Anda.
-        </p>
+        <p><strong>Concerto Audio Malang</strong> adalah spesialis pemasangan <strong>audio mobil premium</strong> dan <strong>peredam suara</strong> di Malang. Kami telah membantu ratusan pelanggan mendapatkan kualitas suara terbaik dan kenyamanan kabin maksimal.</p>
+        <p>Didukung tim profesional dan produk original berkualitas seperti <em>Audio Circle, STEG, Zeloz, Dios Dela Musica</em>, kami siap memberikan hasil terbaik untuk mobil Anda.</p>
       </div>
       <div class="tentang-img">
         <img src="images/concerto-workshop.jpeg" alt="Concerto Audio Workshop">
@@ -73,27 +64,19 @@
     </div>
   </section>
 
-  <!-- PRODUK -->
+  <!-- Produk -->
   <section id="produk" class="produk-filter">
     <h2>Produk Kami</h2>
+
     <div class="brand-tabs">
-      <button class="tab active" data-brand="brand1">
-        <img src="images/audio-circle.png" alt="Audio Circle" />
-      </button>
-      <button class="tab" data-brand="brand2">
-        <img src="images/steg.png" alt="STEG" />
-      </button>
-      <button class="tab" data-brand="brand3">
-        <img src="images/zelos.png" alt="Zeloz" />
-      </button>
-      <button class="tab" data-brand="brand4">
-        <img src="images/dios-dela.png" alt="Dios Dela" />
-      </button>
+      <button class="tab active" data-brand="brand1"><img src="images/audio-circle.png" alt="Audio Circle" /></button>
+      <button class="tab" data-brand="brand2"><img src="images/steg.png" alt="STEG" /></button>
+      <button class="tab" data-brand="brand3"><img src="images/zelos.png" alt="Zeloz" /></button>
+      <button class="tab" data-brand="brand4"><img src="images/dios-dela.png" alt="Dios Dela" /></button>
     </div>
 
     <div class="produk-grid">
-      <!-- Brand 1 -->
-      <div class="produk-list brand1 active">
+      <div class="produk-list brand1 active" data-brand="brand1">
         <div class="produk-card">
           <img src="img/produk1.jpg" alt="Speaker AC1">
           <h4>Speaker AC1</h4>
@@ -111,9 +94,7 @@
           </div>
         </div>
       </div>
-
-      <!-- Brand 2 -->
-      <div class="produk-list brand2">
+      <div class="produk-list brand2" data-brand="brand2">
         <div class="produk-card">
           <img src="img/produk3.jpg" alt="Amplifier STEG 1">
           <h4>Amplifier STEG 1</h4>
@@ -131,9 +112,7 @@
           </div>
         </div>
       </div>
-
-      <!-- Brand 3 -->
-      <div class="produk-list brand3">
+      <div class="produk-list brand3" data-brand="brand3">
         <div class="produk-card">
           <img src="img/produk5.jpg" alt="Processor Zelos">
           <h4>Processor Zelos</h4>
@@ -143,9 +122,7 @@
           </div>
         </div>
       </div>
-
-      <!-- Brand 4 -->
-      <div class="produk-list brand4">
+      <div class="produk-list brand4" data-brand="brand4">
         <div class="produk-card">
           <img src="img/produk6.jpg" alt="Peredam DDM">
           <h4>Peredam DDM</h4>
@@ -158,15 +135,7 @@
     </div>
   </section>
 
-  <!-- KONTEN KAMI -->
-  <section id="konten" class="konten-section">
-    <h2>Konten Kami</h2>
-    <div class="konten-grid">
-      <!-- Instagram, TikTok, YouTube bisa ditambahkan disini -->
-    </div>
-  </section>
-
-  <!-- GALERI -->
+  <!-- Galeri -->
   <section id="galeri" class="galeri-section">
     <h2>Galeri Result</h2>
     <div class="slider">
@@ -181,58 +150,18 @@
     </div>
   </section>
 
-  <!-- LOKASI -->
-  <section id="lokasi" class="lokasi-section">
-    <h2>Lokasi & Review</h2>
-    <div class="lokasi-container">
-      <div class="lokasi-info">
-        <h3>Concerto Audio Malang</h3>
-        <p>📍 Jl. Ciliwung No.57 A, Purwantoro, Blimbing, Malang</p>
-        <p>🕒 Senin - Sabtu, 09.00 - 18.00</p>
-        <div class="lokasi-buttons">
-          <a href="https://goo.gl/maps/example" class="btn-map" target="_blank">Lihat Map</a>
-          <a href="https://g.page/r/CcExample/review" class="btn-review" target="_blank">Tulis Review</a>
-        </div>
-      </div>
-      <div class="lokasi-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18..." allowfullscreen="" loading="lazy"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- KONTAK -->
-  <section id="kontak" class="kontak-section">
-    <h2>Kontak Kami</h2>
-    <div class="kontak-container">
-      <div class="kontak-info">
-        <h3>Info</h3>
-        <p>📞 081234567890</p>
-        <p>✉ info@concerto.com</p>
-        <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Chat WhatsApp</a>
-      </div>
-      <form class="kontak-form">
-        <input type="text" placeholder="Nama" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Pesan" required></textarea>
-        <button type="submit">Kirim</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- SOCIAL FLOATING -->
+  <!-- Sosmed Floating -->
   <div class="social-floating">
-    <div class="main-icon"><ion-icon name="share-social-outline"></ion-icon></div>
+    <div class="main-icon">🔗</div>
     <div class="social-icons">
-      <a href="#" class="icon"><ion-icon name="logo-instagram"></ion-icon></a>
-      <a href="#" class="icon"><ion-icon name="logo-facebook"></ion-icon></a>
-      <a href="#" class="icon"><ion-icon name="logo-whatsapp"></ion-icon></a>
+      <a href="https://facebook.com" class="icon">F</a>
+      <a href="https://instagram.com" class="icon">I</a>
+      <a href="https://youtube.com" class="icon">Y</a>
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer>
-    &copy; 2025 Concerto Audio Malang. All Rights Reserved.
-  </footer>
+  <!-- Footer -->
+  <footer>&copy; 2025 Concerto Audio Malang. All rights reserved.</footer>
 
   <!-- JS -->
   <script src="script.js"></script>
