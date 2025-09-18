@@ -77,6 +77,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+//  script JS Toggle Sidebar
+const hamburger = document.getElementById('hamburger');
+const sidebarMenu = document.getElementById('sidebarMenu');
+const closeBtn = document.getElementById('closeBtn');
+const content = document.getElementById('content');
+
+hamburger.addEventListener('click', () => {
+  sidebarMenu.classList.add('active');
+  closeBtn.style.display = 'block';
+  content.classList.add('shifted');
+});
+
+closeBtn.addEventListener('click', () => {
+  sidebarMenu.classList.remove('active');
+  closeBtn.style.display = 'none';
+  content.classList.remove('shifted');
+});
+
+// Hide close button by default
+closeBtn.style.display = 'none';
+
+
 
 
 
