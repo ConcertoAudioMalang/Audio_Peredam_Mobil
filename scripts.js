@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sidebar.style.width = "0";
   });
 
-  // Tutup saat klik di luar sidebar
+  // Tutup sidebar saat klik di luar
   window.addEventListener("click", (e) => {
     if (e.target === sidebar) {
       sidebar.style.width = "0";
@@ -23,11 +23,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Swipe untuk HP
   let startX = 0;
-  sidebar.addEventListener("touchstart", (e) => startX = e.touches[0].clientX );
+  sidebar.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
   sidebar.addEventListener("touchmove", (e) => {
-    if (e.touches[0].clientX - startX < -50) sidebar.style.width = "0";
+    let diffX = e.touches[0].clientX - startX;
+    if (diffX < -50) sidebar.style.width = "0";
   });
 });
+
+
 
 
 
