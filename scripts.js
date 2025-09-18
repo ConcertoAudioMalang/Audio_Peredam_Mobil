@@ -77,7 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Ambil elemen
+// script navbar
+// Ambil elemen 
 const menuToggle = document.getElementById('menu-toggle');
 const menuClose = document.getElementById('menu-close');
 const sidebar = document.getElementById('sidebar');
@@ -103,6 +104,7 @@ menuClose.addEventListener('click', closeSidebar);
 
 // Event listener klik overlay tutup sidebar
 overlay.addEventListener('click', closeSidebar);
+
 
 
 
