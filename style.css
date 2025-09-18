@@ -97,9 +97,94 @@ h1, h2, h3, h4 {
   font-weight: 700;
   letter-spacing: 0.5px;
 }
+/* Sidebar Base */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 260px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  padding: 2rem 1.5rem;
+  transition: left 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Show Menu */
+.side-menu.open {
+  left: 0;
+}
+
+/* Close Button */
+.side-menu .close-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #1b4332;
+  align-self: flex-end;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+/* Menu Items */
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu ul li {
+  margin-bottom: 1.2rem;
+}
+
+.side-menu ul li a {
+  text-decoration: none;
+  color: #2d6a4f;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.side-menu ul li a:hover {
+  color: #1b4332;
+}
+
+/* Hamburger animation + indicator */
+.menu-toggle {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+}
+
+.menu-toggle span {
+  height: 3px;
+  background: #2d6a4f;
+  border-radius: 3px;
+  transition: 0.3s ease;
+}
+
+/* When Active */
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(6px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-6px);
+}
 
 /* ================== HERO SECTION ================== */
-/* Hero Section */
+
 .hero {
   position: relative;
   width: 100%;
@@ -953,6 +1038,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
