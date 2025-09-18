@@ -96,24 +96,27 @@ faqItems.forEach(item => {
 });
 
 // ================== tombol (Dark Mode) ==================
-const toggle = document.getElementById("dark-mode-toggle");
+document.addEventListener("DOMContentLoaded", function() {
+  const toggle = document.getElementById("dark-mode-toggle");
 
-// set tema saat load
-if(localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark-mode");
-  toggle.textContent = "☀️";
-}
-
-// toggle dark mode
-toggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-
-  if(document.body.classList.contains("dark-mode")) {
-    localStorage.setItem("theme", "dark");
+  // Set tema saat load
+  if(localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
     toggle.textContent = "☀️";
-  } else {
-    localStorage.setItem("theme", "light");
-    toggle.textContent = "🌙";
   }
+
+  // Toggle dark mode
+  toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")) {
+      localStorage.setItem("theme", "dark");
+      toggle.textContent = "☀️";
+    } else {
+      localStorage.setItem("theme", "light");
+      toggle.textContent = "🌙";
+    }
+  });
 });
+
 
