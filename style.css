@@ -104,8 +104,6 @@ body {
   pointer-events: all;
 }
 
-
-
 /* ================== HERO SECTION ================== */
 
 .hero {
@@ -961,6 +959,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
