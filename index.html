@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sidebar Menu Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidebar Modern</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <nav class="navbar">
     <div class="brand">BrandName</div>
-    <button id="menu-toggle" aria-label="Open menu">☰</button>
+    <button class="menu-btn" id="open-menu">☰</button>
   </nav>
 
-  <aside id="sidebar" class="sidebar">
-    <button id="menu-close" aria-label="Close menu">×</button>
-    <ul class="menu-list">
-      <li><a href="#">Beranda</a></li>
-      <li><a href="#">Tentang Kami</a></li>
-      <li><a href="#">Produk</a></li>
-      <li><a href="#">Galeri</a></li>
-      <li><a href="#">Testimoni</a></li>
-      <li><a href="#">Lokasi</a></li>
-      <li><a href="#">FAQ & Blog</a></li>
-      <li><a href="#">Kontak</a></li>
-    </ul>
+  <aside class="sidebar" id="sidebar">
+    <button class="close-btn" id="close-menu">×</button>
+    <nav class="sidebar-nav">
+      <a href="#">Beranda</a>
+      <a href="#">Tentang Kami</a>
+      <a href="#">Produk</a>
+      <a href="#">Galeri</a>
+      <a href="#">Testimoni</a>
+      <a href="#">Lokasi</a>
+      <a href="#">FAQ & Blog</a>
+      <a href="#">Kontak</a>
+    </nav>
   </aside>
 
-  <div id="overlay" class="overlay"></div>
+  <div class="overlay" id="overlay"></div>
 
   <script src="script.js"></script>
 </body>
@@ -734,6 +734,7 @@
       
 </body>
 </html>
+
 
 
 
