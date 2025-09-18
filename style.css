@@ -629,17 +629,113 @@ section p { line-height: 1.7; }
 }
 .social-icons .icon:hover { background: #00ADB5; border-radius: 6px; }
 
+
 /* ================== KONTAK ================== */
-.btn-whatsapp {
+.kontak-section {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 3rem 2rem;
+  background: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  color: #eaeaea;
+}
+
+.kontak-section h2 {
+  text-align: center;
+  color: #00ADB5;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.kontak-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.kontak-info {
+  flex: 1 1 300px;
+}
+
+.kontak-info h3 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: #00ADB5;
+}
+
+.kontak-info p {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.btn-wa {
   display: inline-block;
   margin-top: 1rem;
-  padding: 0.8rem 1.5rem;
-  background: #25D366;
+  padding: 0.7rem 1.2rem;
+  background: #25d366;
   color: white;
-  border-radius: 6px;
   text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background 0.3s ease;
 }
-.btn-whatsapp:hover { background: #128c7e; }
+
+.btn-wa:hover {
+  background: #128c7e;
+}
+
+.kontak-form {
+  flex: 1 1 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.kontak-form input,
+.kontak-form textarea {
+  padding: 0.9rem 1rem;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  background: #2a2a2a;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.kontak-form input:focus,
+.kontak-form textarea:focus {
+  background: #333;
+  box-shadow: 0 0 6px rgba(0,173,181,0.6);
+}
+
+.kontak-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.kontak-form button {
+  padding: 0.9rem;
+  background: #00ADB5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.kontak-form button:hover {
+  background: #008b92;
+}
+
+@media (max-width: 768px) {
+  .kontak-container {
+    flex-direction: column;
+  }
+}
 
 /* ================== FOOTER ================== */
 footer {
@@ -649,6 +745,7 @@ footer {
   margin-top: 2rem;
   color: #aaa;
 }
+
 
 
 
