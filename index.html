@@ -17,29 +17,32 @@
   <link rel="icon" href="favicon.png" type="image/png">
 </head>
 <body>
+  
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">MyLogo</div>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+    </div>
+  </nav>
 
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <div class="close-btn" id="closeBtn">&times;</div>
+    <div class="sidebar-logo">MyLogo</div>
+    <ul class="sidebar-menu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#tentang">Tentang Kami</a></li>
+      <li><a href="#produk">Produk</a></li>
+      <li><a href="#konten">Konten Kami</a></li>
+      <li><a href="#galeri">Galeri</a></li>
+      <li><a href="#lokasi">Lokasi</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+  </div>
+  
   <!-- Dark Mode Toggle -->
   <button id="dark-mode-toggle">🌙</button>
-
-  <!-- Sidebar / Hamburger Menu -->
-  <details>
-    <summary><ion-icon name="menu-outline"></ion-icon></summary>
-    <div class="sidebar">
-      <div class="sidebar-header">
-        <div class="logo">Concerto</div>
-        <div class="close-btn"><ion-icon name="close-outline"></ion-icon></div>
-      </div>
-      <ul>
-        <li><a href="#hero"><ion-icon name="home-outline"></ion-icon> Home</a></li>
-        <li><a href="#tentang"><ion-icon name="information-circle-outline"></ion-icon> Tentang Kami</a></li>
-        <li><a href="#produk"><ion-icon name="albums-outline"></ion-icon> Produk</a></li>
-        <li><a href="#konten"><ion-icon name="newspaper-outline"></ion-icon> Konten Kami</a></li>
-        <li><a href="#galeri"><ion-icon name="images-outline"></ion-icon> Galeri</a></li>
-        <li><a href="#lokasi"><ion-icon name="location-outline"></ion-icon> Lokasi</a></li>
-        <li><a href="#kontak"><ion-icon name="mail-outline"></ion-icon> Kontak</a></li>
-      </ul>
-    </div>
-  </details>
 
   <!-- Hero Section -->
   <section class="hero" id="hero">
@@ -172,3 +175,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
