@@ -750,38 +750,9 @@
   });
 </script>
       
-      // script navbar
-const hamburger = document.getElementById('hamburger');
-const sidebar = document.getElementById('sidebar');
-const closeBtn = document.getElementById('close-btn');
-
-hamburger.addEventListener('click', () => {
-  sidebar.classList.add('open');
-  sidebar.setAttribute('aria-hidden', 'false');
-  hamburger.setAttribute('aria-expanded', 'true');
-});
-
-closeBtn.addEventListener('click', () => {
-  sidebar.classList.remove('open');
-  sidebar.setAttribute('aria-hidden', 'true');
-  hamburger.setAttribute('aria-expanded', 'false');
-});
-
-// Optional: close sidebar if click outside sidebar area
-document.addEventListener('click', (e) => {
-  if (
-    sidebar.classList.contains('open') &&
-    !sidebar.contains(e.target) &&
-    e.target !== hamburger
-  ) {
-    sidebar.classList.remove('open');
-    sidebar.setAttribute('aria-hidden', 'true');
-    hamburger.setAttribute('aria-expanded', 'false');
-  }
-});
-  
 </body>
 </html>
+
 
 
 
