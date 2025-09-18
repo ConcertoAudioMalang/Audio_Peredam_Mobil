@@ -18,7 +18,7 @@
 </head>
 <body>
 
-  <!-- Sidebar + Hamburger -->
+  <!-- Sidebar -->
   <details>
     <summary><ion-icon name="menu-outline"></ion-icon></summary>
     <div class="sidebar">
@@ -32,6 +32,7 @@
         <li><a href="#produk"><ion-icon name="albums-outline"></ion-icon> Produk</a></li>
         <li><a href="#konten"><ion-icon name="newspaper-outline"></ion-icon> Konten Kami</a></li>
         <li><a href="#galeri"><ion-icon name="images-outline"></ion-icon> Galeri</a></li>
+        <li><a href="#testimoni"><ion-icon name="chatbubbles-outline"></ion-icon> Testimoni</a></li>
         <li><a href="#lokasi"><ion-icon name="location-outline"></ion-icon> Lokasi</a></li>
         <li><a href="#kontak"><ion-icon name="mail-outline"></ion-icon> Kontak</a></li>
       </ul>
@@ -62,20 +63,27 @@
     </div>
   </section>
 
-  <!-- Produk -->
+  <!-- Produk (fungsi filter tetap ada, script di bawah) -->
   <section id="produk" class="produk-filter">
     <h2>Produk Kami</h2>
-    <!-- (isi produk slide tetap seperti sebelumnya, fungsi tidak diubah) -->
+    <div class="brand-tabs">
+      <button class="tab active" data-brand="brand1"><img src="images/audio-circle.png" alt="Audio Circle"></button>
+      <button class="tab" data-brand="brand2"><img src="images/steg.png" alt="STEG"></button>
+      <button class="tab" data-brand="brand3"><img src="images/zelos.png" alt="Zeloz"></button>
+      <button class="tab" data-brand="brand4"><img src="images/dios-dela.png" alt="Dios Dela"></button>
+    </div>
     <div class="produk-grid">
-      <!-- contoh produk card -->
-      <div class="produk-card">
-        <img src="img/produk1.jpg" alt="Speaker AC1">
-        <h4>Speaker AC1</h4>
-        <div class="produk-cta">
-          <a href="detail-produk1.html" class="btn-detail">Detail</a>
-          <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Pesan</a>
+      <div class="produk-list brand1 active">
+        <div class="produk-card">
+          <img src="img/produk1.jpg" alt="Speaker AC1">
+          <h4>Speaker AC1</h4>
+          <div class="produk-cta">
+            <a href="detail-produk1.html" class="btn-detail">Detail</a>
+            <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Pesan</a>
+          </div>
         </div>
       </div>
+      <!-- isi brand lain tetap sama -->
     </div>
   </section>
 
@@ -84,24 +92,24 @@
     <h2>Konten Kami</h2>
     <div class="konten-grid">
       <div class="konten-card">
-        <img src="images/konten1.jpg" alt="Tips Audio Mobil">
+        <img src="images/konten1.jpg" alt="Tips Audio">
         <h3>Tips Audio Mobil</h3>
-        <p>Pelajari cara memilih speaker dan amplifier yang tepat untuk mobil Anda.</p>
+        <p>Pelajari cara memilih speaker dan amplifier yang tepat.</p>
       </div>
       <div class="konten-card">
-        <img src="images/konten2.jpg" alt="Manfaat Peredam">
+        <img src="images/konten2.jpg" alt="Peredam">
         <h3>Manfaat Peredam</h3>
-        <p>Kenapa peredam penting untuk kenyamanan kabin? Simak penjelasannya.</p>
+        <p>Kenapa peredam penting untuk kenyamanan kabin?</p>
       </div>
       <div class="konten-card">
-        <img src="images/konten3.jpg" alt="Review Produk">
+        <img src="images/konten3.jpg" alt="Review">
         <h3>Review Produk</h3>
-        <p>Kami membahas produk audio mobil terbaru yang tersedia di workshop kami.</p>
+        <p>Kami membahas produk audio mobil terbaru.</p>
       </div>
     </div>
   </section>
 
-  <!-- Galeri -->
+  <!-- Galeri (fungsi slider tetap ada) -->
   <section id="galeri">
     <h2>Galeri Result</h2>
     <div class="slider">
@@ -115,12 +123,44 @@
     </div>
   </section>
 
+  <!-- Testimoni -->
+  <section id="testimoni">
+    <h2>Testimoni Pelanggan</h2>
+    <div class="testimoni-slider">
+      <div class="testimoni-track">
+        <div class="testimoni-slide">
+          <div class="avatar"><img src="https://i.pravatar.cc/150?img=3"></div>
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+          <p>"Suaranya luar biasa! Cocok buat pecinta audio mobil."</p>
+          <h4>Rizky A.</h4>
+        </div>
+        <div class="testimoni-slide">
+          <div class="avatar"><img src="https://i.pravatar.cc/150?img=5"></div>
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+          <p>"Konsultasi ramah, pengerjaan cepat, harga masuk akal."</p>
+          <h4>Fajar W.</h4>
+        </div>
+      </div>
+      <button class="slider-btn prev">❮</button>
+      <button class="slider-btn next">❯</button>
+    </div>
+  </section>
+
   <!-- Lokasi -->
   <section id="lokasi">
     <h2>Lokasi Bengkel</h2>
-    <p>📍 Jl. Ciliwung No.57 A, Kota Malang</p>
     <iframe src="https://www.google.com/maps?q=-7.95398,112.64149&output=embed" width="100%" height="300"></iframe>
   </section>
+
+  <!-- Sosmed Floating -->
+  <div class="social-floating">
+    <div class="main-icon">🔗</div>
+    <div class="social-icons">
+      <a href="https://facebook.com" class="icon">F</a>
+      <a href="https://instagram.com" class="icon">I</a>
+      <a href="https://youtube.com" class="icon">Y</a>
+    </div>
+  </div>
 
   <!-- Kontak -->
   <section id="kontak">
@@ -131,22 +171,18 @@
   </section>
 
   <!-- Footer -->
-  <footer>
-    &copy; 2025 Concerto Audio Malang. All rights reserved.
-  </footer>
+  <footer>&copy; 2025 Concerto Audio Malang. All rights reserved.</footer>
 
-  <!-- Script -->
+  <!-- Scripts -->
+  <script src="script.js"></script>
   <script>
+    // Sidebar auto-close
     const closeBtn = document.querySelector(".close-btn");
     const details = document.querySelector("details");
     document.querySelectorAll(".sidebar ul li a").forEach(link => {
-      link.addEventListener("click", () => {
-        details.removeAttribute("open");
-      });
+      link.addEventListener("click", () => details.removeAttribute("open"));
     });
-    closeBtn.addEventListener("click", () => {
-      details.removeAttribute("open");
-    });
+    closeBtn.addEventListener("click", () => details.removeAttribute("open"));
   </script>
 </body>
 </html>
