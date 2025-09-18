@@ -1,123 +1,97 @@
-/* Import Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-
 /* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  background: #121212;
-  color: #EAEAEA;
+  background: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
 }
 
-/* Hamburger Button */
-summary {
-  list-style: none;
-  cursor: pointer;
+/* Hamburger */
+.hamburger {
   font-size: 2rem;
-  color: #EAEAEA;
-  background: #1E1E1E;
-  padding: 10px;
-  border-radius: 12px;
-  margin: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-  transition: all 0.3s ease;
+  cursor: pointer;
   position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1001;
-}
-
-summary:hover {
-  background: #00ADB5;
-  color: #fff;
-  transform: scale(1.05);
+  top: 15px;
+  left: 15px;
+  z-index: 1000;
 }
 
 /* Sidebar */
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 270px;
-  background: #1E1E1E;
-  padding: 20px;
-  animation: slideIn 0.35s ease forwards;
-  z-index: 1000;
-  color: #EAEAEA;
-  box-shadow: 4px 0 20px rgba(0,0,0,0.6);
+  width: 260px;
+  height: 100vh;
+  background: #1b4332;
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 20px rgba(0,0,0,0.2);
 }
 
-/* Sidebar header */
 .sidebar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 2rem;
 }
 
-.sidebar-header .logo {
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: #00ADB5;
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .close-btn {
-  font-size: 2rem;
+  font-size: 1.8rem;
   cursor: pointer;
-  color: #EAEAEA;
-  transition: 0.3s;
 }
 
-.close-btn:hover {
-  color: #FF5252;
-}
-
-/* Menu list */
+/* Menu */
 .sidebar ul {
   list-style: none;
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+  padding: 0;
 }
 
 .sidebar ul li {
+  margin: 1rem 0;
+}
+
+.sidebar ul li a {
   display: flex;
   align-items: center;
-  gap: 14px;
-  color: #EAEAEA;
-  font-size: 1.05rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 10px;
+  gap: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
   border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.sidebar ul li:hover {
-  background: #00ADB5;
-  color: #fff;
-  transform: translateX(6px);
-  box-shadow: 0 0 12px rgba(0,173,181,0.6);
+.sidebar ul li a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(5px);
 }
 
-.sidebar ul li ion-icon {
-  font-size: 1.4rem;
+/* Sections */
+section {
+  min-height: 100vh;
+  padding: 4rem 2rem;
 }
 
-/* Animasi */
-@keyframes slideIn {
-  from { transform: translateX(-100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+section:nth-child(even) {
+  background: #e9ecef;
 }
 
-/* Sembunyikan hamburger ketika sidebar terbuka */
-details[open] > summary {
-  display: none;
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
 }
 
 /* ================== HERO SECTION ================== */
@@ -975,6 +949,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
