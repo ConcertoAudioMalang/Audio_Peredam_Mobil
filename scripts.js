@@ -99,13 +99,11 @@ faqItems.forEach(item => {
 document.addEventListener("DOMContentLoaded", function() {
   const toggle = document.getElementById("dark-mode-toggle");
 
-  // Set tema saat load
   if(localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark-mode");
     toggle.textContent = "☀️";
   }
 
-  // Toggle dark mode
   toggle.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
 
@@ -118,5 +116,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 });
+
 
 
