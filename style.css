@@ -1,125 +1,82 @@
-/* Font modern, tipis, netral */
-.
-.
-
-:root {
-    --blue: #1877f2;
-    --blue-dark: #166fe5;
-    --blue-light: #e7f3ff;
-    --text-color: #050505;
-    --text-secondary: #65676b;
-    --bg-color: #f0f2f5;
-    --white: #ffffff;
-}
-
+/* === Global reset & font === */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    background-color: var(--bg-color);
+  background: #f9f9f9;
+  color: #333;
 }
 
+/* === Navbar (details & summary) === */
 details {
-    margin-top: 100px;
-    margin-left: 400px;
-    position: relative;
-    width: fit-content;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1000;
 }
 
 summary {
-    list-style: none;
-    cursor: pointer;
-    background-color: var(--blue);
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  cursor: pointer;
+  font-size: 2rem;
+  color: #333;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: 0.3s;
 }
 
 summary:hover {
-    background-color: var(--blue-dark);
-    transform: scale(1.05);
+  background: #eee;
 }
 
-summary::marker {
-    display: none;
+/* === Sidebar Menu === */
+details[open] ul {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 220px;
+  background: #222;
+  padding: 60px 20px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: slideIn 0.3s ease forwards;
 }
 
-summary::-webkit-details-marker {
-    display: none;
+details ul li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 8px;
+  border-radius: 8px;
 }
 
-summary ion-icon {
-    font-size: 1.5rem;
+details ul li:hover {
+  background: #444;
+  transform: translateX(5px);
 }
 
-details[open] summary {
-    border-radius: 50% 50% 0 0;
+details ul li ion-icon {
+  font-size: 1.3rem;
 }
 
-ul {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: var(--white);
-    border-radius: 8px;
-    padding: 20px 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 220px;
-    overflow: hidden;
-    transform-origin: top center;
-    animation: scaleIn 0.15s ease-out forwards;
-    z-index: 100;
+/* Animasi sidebar */
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
 }
-
-@keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-li {
-    list-style: none;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--text-color);
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-li:hover {
-    background-color: var(--blue-light);
-    color: var(--blue);
-}
-
-li ion-icon {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-}
-
-li:hover ion-icon {
-    color: var(--blue);
-}
-
-..
-.
 
 /* ================== HERO SECTION ================== */
 
@@ -976,6 +933,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
