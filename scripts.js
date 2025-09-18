@@ -1,48 +1,54 @@
-// ================= SIDEBAR =================
-const sidebar = document.querySelector(".sidebar");
+// ================== SIDEBAR ==================
+const details = document.querySelector("details");
 const closeBtn = document.querySelector(".close-btn");
-const summary = document.querySelector("summary");
 
 closeBtn.addEventListener("click", () => {
-  summary.removeAttribute("open");
+  details.removeAttribute("open"); // tutup sidebar
 });
 
-// ================= DARK MODE =================
+// ================== DARK MODE ==================
 const darkToggle = document.getElementById("dark-mode-toggle");
 darkToggle.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
 
-// ================= PRODUK TABS =================
+// ================== PRODUK FILTER ==================
 const tabs = document.querySelectorAll(".brand-tabs .tab");
-const lists = document.querySelectorAll(".produk-list");
+const produkLists = document.querySelectorAll(".produk-list");
 
 tabs.forEach(tab => {
   tab.addEventListener("click", () => {
+    // remove active class dari semua tab
     tabs.forEach(t => t.classList.remove("active"));
     tab.classList.add("active");
 
-    const brand = tab.dataset.brand;
-    lists.forEach(list => list.classList.remove("active"));
-    document.querySelector(`.produk-list.${brand}`).classList.add("active");
+    const target = tab.dataset.target; // ambil data-target
+    produkLists.forEach(list => {
+      if(list.id === target) {
+        list.classList.add("active");
+      } else {
+        list.classList.remove("active");
+      }
+    });
   });
 });
 
-// ================= GALERI SLIDER =================
-let slideIndex = 0;
+// ================== GALERI SLIDER ==================
+const prev = document.querySelector(".slider .prev");
+const next = document.querySelector(".slider .next");
 const slidesWrapper = document.querySelector(".slides-wrapper");
-const slides = slidesWrapper.querySelectorAll("img");
+const slides = document.querySelectorAll(".slides-wrapper img");
+let index = 0;
 
-function showSlides(n) {
-  if (n >= slides.length) slideIndex = 0;
-  if (n < 0) slideIndex = slides.length - 1;
-  slidesWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
+function showSlide(i) {
+  if(i < 0) index = slides.length - 1;
+  else if(i >= slides.length) index = 0;
+  else index = i;
+  slidesWrapper.style.transform = `translateX(-${index * 100}%)`;
 }
 
-function plusSlides(n) {
-  slideIndex += n;
-  showSlides(slideIndex);
-}
+prev.addEventListener("click", () => showSlide(index - 1));
+next.addEventListener("click", () => showSlide(index + 1));
 
 // ================= FLOATING SOSMED =================
 const mainIcon = document.querySelector(".social-floating .main-icon");
@@ -52,3 +58,4 @@ mainIcon.addEventListener("click", () => {
   socialIcons.style.opacity = socialIcons.style.opacity === "1" ? "0" : "1";
   socialIcons.style.pointerEvents = socialIcons.style.pointerEvents === "auto" ? "none" : "auto";
 });
+
