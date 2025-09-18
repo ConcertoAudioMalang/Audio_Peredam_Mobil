@@ -1,41 +1,55 @@
+.
+.
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hamburger Sidebar Menu</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Toggle Menu</title>
+    <!-- Ionicons CDN -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="header">
-    <button id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="sidebar">
-      &#9776;
-    </button>
-    <div class="brand">BrandName</div>
-  </header>
-
-  <nav id="sidebar" class="sidebar" aria-hidden="true">
-    <button id="close-btn" aria-label="Close menu">&times;</button>
-    <ul>
-      <li><a href="#">Beranda</a></li>
-      <li><a href="#">Tentang</a></li>
-      <li><a href="#">Produk</a></li>
-      <li><a href="#">Galeri</a></li>
-      <li><a href="#">Kontak</a></li>
-    </ul>
-  </nav>
-
-  <main>
-    <section>
-      <h1>Selamat datang di halaman utama</h1>
-      <p>Konten web kamu di sini...</p>
-    </section>
-  </main>
-
-  <script src="script.js"></script>
+    <details>
+        <summary>
+            <ion-icon name="menu-outline"></ion-icon>
+        </summary>
+        <ul>
+            <li>
+                <ion-icon name="home-outline"></ion-icon>
+                <span>Home</span>
+            </li>
+            <li>
+                <ion-icon name="person-outline"></ion-icon>
+                <span>Profile</span>
+            </li>
+            <li>
+                <ion-icon name="newspaper-outline"></ion-icon>
+                <span>Blog</span>
+            </li>
+            <li>
+                <ion-icon name="information-circle-outline"></ion-icon>
+                <span>About</span>
+            </li>
+            <li>
+                <ion-icon name="mail-outline"></ion-icon>
+                <span>Contact</span>
+            </li>
+            <li>
+                <ion-icon name="settings-outline"></ion-icon>
+                <span>Settings</span>
+            </li>
+        </ul>
+    </details>
 </body>
-</html>
 
+</html>
+.
+.
    <!-- Favicon -->
   <link rel="icon" href="favicon.png" type="favicon.png" />
   
@@ -768,6 +782,7 @@ document.addEventListener('click', (e) => {
   
 </body>
 </html>
+
 
 
 
