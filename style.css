@@ -8,19 +8,20 @@ body {
 nav {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   background-color: #111;
-  z-index: 1000;
+  z-index: 9999;
   padding: 10px 20px;
 }
 
-.nav-container {
+.tl-nav-container {
   display: flex;
   align-items: center;
 }
 
 /* Hamburger kiri bulat */
-.hamburger {
+.tl-hamburger {
   font-size: 1.8rem;
   cursor: pointer;
   color: #fff;
@@ -32,16 +33,16 @@ nav {
   justify-content: center;
   align-items: center;
   transition: all 0.3s;
+  z-index: 10000;
 }
 
-.hamburger:hover {
+.tl-hamburger:hover {
   background-color: #555;
-  color: #fff;
   transform: scale(1.1);
 }
 
 /* Sidebar */
-.sidebar {
+.tl-sidebar {
   height: 100%;
   width: 0;
   position: fixed;
@@ -52,11 +53,11 @@ nav {
   overflow-x: hidden;
   transition: width 0.4s ease;
   padding-top: 60px;
-  z-index: 1001;
+  z-index: 10001;
 }
 
 /* Sidebar Logo */
-.sidebar-logo {
+.tl-sidebar-logo {
   text-align: center;
   font-size: 1.8rem;
   margin-bottom: 30px;
@@ -64,16 +65,16 @@ nav {
 }
 
 /* Sidebar Menu */
-.sidebar-menu {
+.tl-sidebar-menu {
   list-style: none;
   padding: 0;
 }
 
-.sidebar-menu li {
+.tl-sidebar-menu li {
   padding: 15px 30px;
 }
 
-.sidebar-menu li a {
+.tl-sidebar-menu li a {
   color: #fff;
   text-decoration: none;
   font-size: 1.2rem;
@@ -81,12 +82,12 @@ nav {
   transition: color 0.3s;
 }
 
-.sidebar-menu li a:hover {
+.tl-sidebar-menu li a:hover {
   color: #aaa;
 }
 
 /* Close Button */
-.close-btn {
+.tl-close-btn {
   position: absolute;
   top: 15px;
   right: 20px;
@@ -95,16 +96,8 @@ nav {
   transition: color 0.3s;
 }
 
-.close-btn:hover {
+.tl-close-btn:hover {
   color: #aaa;
-}
-
-/* Section contoh */
-section {
-  height: 100vh;
-  padding: 20px;
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #ccc;
 }
 
 /* ================== HERO ================== */
@@ -178,5 +171,6 @@ footer { text-align:center; padding:1rem; background:#1E1E1E; color:#aaa; margin
 /* ================== DARK MODE TOGGLE ================== */
 #dark-mode-toggle { position:fixed; top:20px; right:20px; padding:10px 15px; border-radius:25px; border:2px solid #000; cursor:pointer; transition:0.3s; background:#fff; color:#000; }
 #dark-mode-toggle:hover { transform:translateX(-5px); }
+
 
 
