@@ -161,26 +161,45 @@
 </section>
 
   <!-- Konten Kami -->
-  <section id="konten" class="konten-section">
-    <h2>Konten Kami</h2>
-    <div class="konten-grid">
-      <div class="konten-card">
-        <img src="images/konten1.jpg" alt="Tips Audio">
-        <h3>Tips Audio Mobil</h3>
-        <p>Pelajari cara memilih speaker dan amplifier yang tepat.</p>
-      </div>
-      <div class="konten-card">
-        <img src="images/konten2.jpg" alt="Peredam">
-        <h3>Manfaat Peredam</h3>
-        <p>Kenapa peredam penting untuk kenyamanan kabin?</p>
-      </div>
-      <div class="konten-card">
-        <img src="images/konten3.jpg" alt="Review">
-        <h3>Review Produk</h3>
-        <p>Kami membahas produk audio mobil terbaru.</p>
+<section id="konten" class="konten-section">
+  <h2>Konten Kami</h2>
+  <div class="konten-grid">
+
+    <!-- Instagram Post -->
+    <div class="konten-item">
+      <blockquote class="instagram-media"
+        data-instgrm-permalink="https://www.instagram.com/p/POST_ID_INSTAGRAM/"
+        data-instgrm-version="14"
+        style="width:100%; min-width:300px;"></blockquote>
+    </div>
+
+    <!-- TikTok Video -->
+    <div class="konten-item">
+      <blockquote class="tiktok-embed"
+        cite="https://www.tiktok.com/@USERNAME/video/VIDEO_ID_TIKTOK"
+        data-video-id="VIDEO_ID_TIKTOK"
+        style="width:100%; min-width:300px;">
+        <section></section>
+      </blockquote>
+    </div>
+
+    <!-- YouTube Video -->
+    <div class="konten-item">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_YOUTUBE"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
       </div>
     </div>
-  </section>
+
+  </div>
+</section>
+
+<!-- Scripts untuk embed -->
+<script async defer src="https://www.instagram.com/embed.js"></script>
+<script async src="https://www.tiktok.com/embed.js"></script>
 
   <!-- Galeri (fungsi slider tetap ada) -->
   <section id="galeri">
@@ -278,6 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
