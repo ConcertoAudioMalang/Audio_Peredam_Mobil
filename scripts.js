@@ -78,25 +78,35 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // script navbar
+const hamburger = document.getElementById('hamburger');
 const sidebar = document.getElementById('sidebar');
-const openMenu = document.getElementById('open-menu');
-const closeMenu = document.getElementById('close-menu');
-const overlay = document.getElementById('overlay');
+const closeBtn = document.getElementById('close-btn');
 
-openMenu.addEventListener('click', () => {
-  sidebar.classList.add('active');
-  overlay.classList.add('active');
+hamburger.addEventListener('click', () => {
+  sidebar.classList.add('open');
+  sidebar.setAttribute('aria-hidden', 'false');
+  hamburger.setAttribute('aria-expanded', 'true');
 });
 
-closeMenu.addEventListener('click', () => {
-  sidebar.classList.remove('active');
-  overlay.classList.remove('active');
+closeBtn.addEventListener('click', () => {
+  sidebar.classList.remove('open');
+  sidebar.setAttribute('aria-hidden', 'true');
+  hamburger.setAttribute('aria-expanded', 'false');
 });
 
-overlay.addEventListener('click', () => {
-  sidebar.classList.remove('active');
-  overlay.classList.remove('active');
+// Optional: close sidebar if click outside sidebar area
+document.addEventListener('click', (e) => {
+  if (
+    sidebar.classList.contains('open') &&
+    !sidebar.contains(e.target) &&
+    e.target !== hamburger
+  ) {
+    sidebar.classList.remove('open');
+    sidebar.setAttribute('aria-hidden', 'true');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
 });
+
 
 
 
