@@ -1,4 +1,4 @@
-/* ======= Reset & base  ======= */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -6,9 +6,9 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f9f9f9;
-  color: #222;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
 }
 
 /* Navbar */
@@ -16,18 +16,18 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #222;
-  color: white;
+  background-color: #222;
   padding: 1rem 1.5rem;
+  color: white;
 }
 
-.navbar .brand {
-  font-weight: 600;
-  font-size: 1.3rem;
+.brand {
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 #menu-toggle {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   background: none;
   border: none;
   color: white;
@@ -38,10 +38,10 @@ body {
 .sidebar {
   position: fixed;
   top: 0;
-  left: -280px; /* Hide sidebar by default */
-  width: 280px;
+  left: -260px; /* Hidden offscreen */
+  width: 260px;
   height: 100vh;
-  background: #333;
+  background-color: #333;
   color: white;
   padding: 2rem 1.5rem;
   transition: left 0.3s ease;
@@ -56,11 +56,11 @@ body {
 
 /* Close button */
 #menu-close {
-  align-self: flex-end;
   font-size: 2rem;
   background: none;
   border: none;
   color: white;
+  align-self: flex-end;
   cursor: pointer;
   margin-bottom: 2rem;
 }
@@ -70,7 +70,7 @@ body {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.3rem;
 }
 
 .menu-list a {
@@ -92,7 +92,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.4);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -103,6 +103,7 @@ body {
   opacity: 1;
   pointer-events: all;
 }
+
 
 
 /* ================== HERO SECTION ================== */
@@ -960,6 +961,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
