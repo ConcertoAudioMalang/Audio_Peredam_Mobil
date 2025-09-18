@@ -365,24 +365,56 @@ section p { line-height: 1.7; }
 }
 
 /* ================== KONTEN KAMI ================== */
+.konten-section {
+  max-width: 1200px;
+  margin: 5rem auto;
+  padding: 2rem;
+  background: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+}
+
+.konten-section h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #00ADB5;
+  margin-bottom: 2.5rem;
+  font-weight: 700;
+}
+
 .konten-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
 }
-.konten-card {
-  background: #2a2a2a;
+
+.konten-item {
+  background: #121212;
   border-radius: 10px;
   padding: 1rem;
-  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
-.konten-card:hover { transform: translateY(-5px); }
-.konten-card img {
+
+/* Responsive YouTube */
+.video-wrapper {
+  position: relative;
   width: 100%;
-  border-radius: 8px;
-  margin-bottom: 0.8rem;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
 }
-.konten-card h3 { color: #EAEAEA; }
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
 
 /* ================== GALERI ================== */
 #galeri { text-align: center; }
@@ -518,6 +550,7 @@ footer {
   margin-top: 2rem;
   color: #aaa;
 }
+
 
 
 
