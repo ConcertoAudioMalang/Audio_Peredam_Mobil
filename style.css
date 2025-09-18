@@ -32,24 +32,15 @@ body {
   cursor: pointer;
 }
 
-/* Sidebar */
 .sidebar {
-  position: fixed;
-  top: 0;
   left: -280px;
-  width: 250px;
-  height: 100%;
-  background-color: #ffffffd9;
-  backdrop-filter: blur(8px);
-  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
-  padding: 1.5rem 1.2rem;
-  display: flex;
-  flex-direction: column;
   transition: left 0.3s ease;
-  z-index: 999;
 }
+
 .sidebar.active {
   left: 0;
+}
+
 }
 .close-btn {
   align-self: flex-end;
@@ -951,6 +942,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
