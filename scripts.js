@@ -78,32 +78,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // script navbar
-// Ambil elemen 
-const menuToggle = document.getElementById('menu-toggle');
-const menuClose = document.getElementById('menu-close');
 const sidebar = document.getElementById('sidebar');
+const openMenu = document.getElementById('open-menu');
+const closeMenu = document.getElementById('close-menu');
 const overlay = document.getElementById('overlay');
 
-// Fungsi buka sidebar
-function openSidebar() {
+openMenu.addEventListener('click', () => {
   sidebar.classList.add('active');
   overlay.classList.add('active');
-}
+});
 
-// Fungsi tutup sidebar
-function closeSidebar() {
+closeMenu.addEventListener('click', () => {
   sidebar.classList.remove('active');
   overlay.classList.remove('active');
-}
+});
 
-// Event listener tombol hamburger buka sidebar
-menuToggle.addEventListener('click', openSidebar);
+overlay.addEventListener('click', () => {
+  sidebar.classList.remove('active');
+  overlay.classList.remove('active');
+});
 
-// Event listener tombol close sidebar
-menuClose.addEventListener('click', closeSidebar);
-
-// Event listener klik overlay tutup sidebar
-overlay.addEventListener('click', closeSidebar);
 
 
 
