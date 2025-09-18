@@ -78,25 +78,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //  script JS Toggle Sidebar
-const hamburger = document.getElementById('hamburger');
-const sidebarMenu = document.getElementById('sidebarMenu');
-const closeBtn = document.getElementById('closeBtn');
-const content = document.getElementById('content');
+const menuToggle = document.getElementById('menu-toggle');
+const menuClose = document.getElementById('menu-close');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
 
-hamburger.addEventListener('click', () => {
-  sidebarMenu.classList.add('active');
-  closeBtn.style.display = 'block';
-  content.classList.add('shifted');
-});
+function openMenu() {
+  sidebar.classList.add('active');
+  overlay.classList.add('active');
+}
 
-closeBtn.addEventListener('click', () => {
-  sidebarMenu.classList.remove('active');
-  closeBtn.style.display = 'none';
-  content.classList.remove('shifted');
-});
+function closeMenu() {
+  sidebar.classList.remove('active');
+  overlay.classList.remove('active');
+}
 
-// Hide close button by default
-closeBtn.style.display = 'none';
+menuToggle.addEventListener('click', openMenu);
+menuClose.addEventListener('click', closeMenu);
+overlay.addEventListener('click', closeMenu);
+
+
 
 
 
