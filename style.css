@@ -14,41 +14,6 @@ body {
   color: #EAEAEA;
 }
 
-/* Dark mode dan tombol toggle */
-:root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-}
-
-body.dark-mode {
-  --bg-color: #121212;
-  --text-color: #ffffff;
-}
-
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
-}
-
-#dark-mode-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  border: 2px solid var(--text-color);
-  border-radius: 25px;
-  padding: 10px 15px;
-  cursor: pointer;
-  z-index: 1000;
-  transition: all 0.3s;
-}
-
-#dark-mode-toggle:hover {
-  transform: translateX(-5px);
-}
-
 /* ================== SIDEBAR ================== */
 summary {
   list-style: none;
@@ -780,6 +745,44 @@ footer {
   margin-top: 2rem;
   color: #aaa;
 }
+
+/* ===== Dark Mode & Toggle Button Modern ===== */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Tombol menyembul dari tepi kanan */
+#dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: -50px; /* mulai di luar layar */
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 2px solid var(--text-color);
+  border-radius: 25px;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: right 0.3s, background-color 0.3s, color 0.3s;
+}
+
+/* Saat hover, tombol muncul ke layar */
+#dark-mode-toggle:hover {
+  right: 20px;
+}
+
 
 
 
