@@ -417,29 +417,76 @@ section p { line-height: 1.7; }
 }
 
 /* ================== GALERI ================== */
-#galeri { text-align: center; }
+.galeri-section {
+  padding: 5rem 2rem;
+  background: #121212;
+  text-align: center;
+}
+
+.galeri-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #00ADB5;
+  font-weight: 700;
+}
+
 .slider {
   position: relative;
+  max-width: 900px;
+  margin: 0 auto;
   overflow: hidden;
   border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
 }
+
 .slides-wrapper {
   display: flex;
   transition: transform 0.5s ease-in-out;
+  width: 100%;
 }
+
 .slides-wrapper img {
   width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  flex-shrink: 0;
   border-radius: 12px;
 }
-.slider .prev, .slider .next {
+
+/* Tombol panah */
+.slider .prev,
+.slider .next {
+  cursor: pointer;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
+  font-size: 2rem;
   padding: 0.6rem;
   border-radius: 50%;
-  cursor: pointer;
+  user-select: none;
+  z-index: 10;
+  transition: background 0.3s ease;
+}
+
+.slider .prev:hover,
+.slider .next:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.slider .prev {
+  left: 15px;
+}
+
+.slider .next {
+  right: 15px;
+}
+
+@media (max-width: 600px) {
+  .slides-wrapper img {
+    max-height: 250px;
+  }
 }
 
 /* ================== TESTIMONI ================== */
@@ -550,6 +597,7 @@ footer {
   margin-top: 2rem;
   color: #aaa;
 }
+
 
 
 
