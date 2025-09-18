@@ -30,7 +30,7 @@ sidebar.addEventListener('touchmove', (e) => {
   let touchX = e.touches[0].clientX;
   let diffX = touchX - startX;
 
-  if (diffX < -50) { // geser ke kiri minimal 50px
+  if (diffX < -50) {
     sidebar.style.width = '0';
   }
 });
@@ -83,4 +83,5 @@ darkModeBtn.addEventListener('click', () => {
 
 // ================== Optional: auto slide ==================
 // setInterval(() => showSlide(index + 1), 5000);
+
 
