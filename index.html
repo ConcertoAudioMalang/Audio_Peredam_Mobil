@@ -1,49 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sidebar Toggle Menu</title>
-  <!-- Ionicons CDN -->
+  <title>Website Sleek Sidebar</title>
+  <!-- Ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- Hamburger -->
+  <!-- Sidebar -->
   <details>
-    <summary>
+    <summary class="hamburger">
       <ion-icon name="menu-outline"></ion-icon>
     </summary>
-
-    <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Logo -->
       <div class="sidebar-header">
-        <div class="logo">MyLogo</div>
-        <div class="close-btn">
-          <ion-icon name="close-outline"></ion-icon>
-        </div>
+        <span class="logo">MyLogo</span>
+        <span class="close-btn"><ion-icon name="close-outline"></ion-icon></span>
       </div>
-
-      <!-- Menu -->
       <ul>
-        <li><ion-icon name="home-outline"></ion-icon><span>Home</span></li>
-        <li><ion-icon name="person-outline"></ion-icon><span>Profile</span></li>
-        <li><ion-icon name="newspaper-outline"></ion-icon><span>Blog</span></li>
-        <li><ion-icon name="information-circle-outline"></ion-icon><span>About</span></li>
-        <li><ion-icon name="mail-outline"></ion-icon><span>Contact</span></li>
-        <li><ion-icon name="settings-outline"></ion-icon><span>Settings</span></li>
+        <li><a href="#hero"><ion-icon name="home-outline"></ion-icon><span>Home</span></a></li>
+        <li><a href="#tentang"><ion-icon name="person-outline"></ion-icon><span>Tentang</span></a></li>
+        <li><a href="#produk"><ion-icon name="newspaper-outline"></ion-icon><span>Produk</span></a></li>
+        <li><a href="#galeri"><ion-icon name="images-outline"></ion-icon><span>Galeri</span></a></li>
+        <li><a href="#testimoni"><ion-icon name="chatbubbles-outline"></ion-icon><span>Testimoni</span></a></li>
+        <li><a href="#lokasi"><ion-icon name="location-outline"></ion-icon><span>Lokasi</span></a></li>
+        <li><a href="#faq-blog"><ion-icon name="help-circle-outline"></ion-icon><span>FAQ</span></a></li>
+        <li><a href="#kontak"><ion-icon name="mail-outline"></ion-icon><span>Kontak</span></a></li>
       </ul>
     </div>
   </details>
 
+  <!-- Dummy Sections -->
+  <section id="hero">
+    <h1>Home Section</h1>
+    <p>Ini bagian Hero/Home.</p>
+  </section>
+
+  <section id="tentang">
+    <h1>Tentang</h1>
+    <p>Ini bagian Tentang.</p>
+  </section>
+
+  <section id="produk">
+    <h1>Produk</h1>
+    <p>Ini bagian Produk.</p>
+  </section>
+
+  <section id="galeri">
+    <h1>Galeri</h1>
+    <p>Ini bagian Galeri.</p>
+  </section>
+
+  <section id="testimoni">
+    <h1>Testimoni</h1>
+    <p>Ini bagian Testimoni.</p>
+  </section>
+
+  <section id="lokasi">
+    <h1>Lokasi</h1>
+    <p>Ini bagian Lokasi.</p>
+  </section>
+
+  <section id="faq-blog">
+    <h1>FAQ & Blog</h1>
+    <p>Ini bagian FAQ/Blog.</p>
+  </section>
+
+  <section id="kontak">
+    <h1>Kontak</h1>
+    <p>Ini bagian Kontak.</p>
+  </section>
+
   <script>
-    // Tutup sidebar kalau klik X
-    const closeBtn = document.querySelector(".close-btn");
+    // Tutup sidebar setelah klik menu
+    const sidebarLinks = document.querySelectorAll(".sidebar a");
     const details = document.querySelector("details");
+    const closeBtn = document.querySelector(".close-btn");
+
+    sidebarLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        details.removeAttribute("open");
+      });
+    });
 
     closeBtn.addEventListener("click", () => {
       details.removeAttribute("open");
@@ -755,6 +798,7 @@
       
 </body>
 </html>
+
 
 
 
