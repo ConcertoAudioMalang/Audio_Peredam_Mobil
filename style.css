@@ -1,22 +1,96 @@
 /* ================== FONT & RESET ================== */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+body {
+  margin: 0;
+  font-family: 'Roboto', Helvetica, sans-serif;
+}
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
-body { background-color: #fff; color: #000; transition: 0.3s; }
+/* Navbar */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #111;
+  color: #fff;
+  z-index: 1000;
+}
 
-body.dark-mode { background-color: #121212; color: #EAEAEA; }
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
 
-/* ================== HAMBURGER SIDEBAR ================== */
-details { position: fixed; top: 0; left: 0; z-index: 1000; }
-summary { cursor: pointer; font-size: 2rem; background: #1E1E1E; color: #fff; padding: 12px; border-radius: 0; margin: 10px; }
-details[open] > summary { display: none; }
-.sidebar { position: fixed; top:0; left:0; width: 270px; height: 100%; background: #1E1E1E; padding: 20px; box-shadow: 4px 0 20px rgba(0,0,0,0.5); z-index: 999; display: flex; flex-direction: column; }
-.sidebar-header { display:flex; justify-content:space-between; align-items:center; margin-bottom: 30px; }
-.sidebar-header .logo { font-size: 1.6rem; font-weight: 700; color:#00ADB5; }
-.close-btn { cursor:pointer; font-size: 2rem; color: #fff; }
-.sidebar ul { list-style:none; display:flex; flex-direction:column; gap:18px; }
-.sidebar ul li a { text-decoration:none; display:flex; align-items:center; gap:12px; color:#fff; padding:8px; transition:0.3s; }
-.sidebar ul li a:hover { background:#00ADB5; color:#fff; }
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.hamburger {
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.hamburger:hover {
+  color: #aaa;
+}
+
+/* Sidebar */
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  color: #fff;
+  overflow-x: hidden;
+  transition: 0.4s;
+  padding-top: 60px;
+  z-index: 1001;
+}
+
+.sidebar-logo {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  padding: 15px 30px;
+}
+
+.sidebar-menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: block;
+  transition: color 0.3s;
+}
+
+.sidebar-menu li a:hover {
+  color: #aaa;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  color: #aaa;
+}
 
 /* ================== HERO ================== */
 .hero { width:100%; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; background:#f5f5f5; text-align:center; padding:2rem; }
@@ -89,3 +163,4 @@ footer { text-align:center; padding:1rem; background:#1E1E1E; color:#aaa; margin
 /* ================== DARK MODE TOGGLE ================== */
 #dark-mode-toggle { position:fixed; top:20px; right:20px; padding:10px 15px; border-radius:25px; border:2px solid #000; cursor:pointer; transition:0.3s; background:#fff; color:#000; }
 #dark-mode-toggle:hover { transform:translateX(-5px); }
+
