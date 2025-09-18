@@ -77,25 +77,33 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-//  script JS Toggle Sidebar
+// Ambil elemen
 const menuToggle = document.getElementById('menu-toggle');
 const menuClose = document.getElementById('menu-close');
 const sidebar = document.getElementById('sidebar');
 const overlay = document.getElementById('overlay');
 
-function openMenu() {
+// Fungsi buka sidebar
+function openSidebar() {
   sidebar.classList.add('active');
   overlay.classList.add('active');
 }
 
-function closeMenu() {
+// Fungsi tutup sidebar
+function closeSidebar() {
   sidebar.classList.remove('active');
   overlay.classList.remove('active');
 }
 
-menuToggle.addEventListener('click', openMenu);
-menuClose.addEventListener('click', closeMenu);
-overlay.addEventListener('click', closeMenu);
+// Event listener tombol hamburger buka sidebar
+menuToggle.addEventListener('click', openSidebar);
+
+// Event listener tombol close sidebar
+menuClose.addEventListener('click', closeSidebar);
+
+// Event listener klik overlay tutup sidebar
+overlay.addEventListener('click', closeSidebar);
+
 
 
 
