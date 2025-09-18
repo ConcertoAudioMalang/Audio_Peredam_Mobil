@@ -2,11 +2,9 @@
 const details = document.querySelector("details");
 const closeBtn = document.querySelector(".close-btn");
 
-if(details && closeBtn){
-  closeBtn.addEventListener("click", () => {
-    details.removeAttribute("open");
-  });
-}
+closeBtn.addEventListener("click", () => {
+  details.removeAttribute("open");
+});
 
 // ================== PRODUK FILTER ==================
 const tabs = document.querySelectorAll(".brand-tabs .tab");
@@ -17,10 +15,10 @@ tabs.forEach(tab => {
     tabs.forEach(t => t.classList.remove("active"));
     tab.classList.add("active");
 
-    const target = tab.dataset.brand;
+    const targetBrand = tab.dataset.brand; // gunakan data-brand
 
     lists.forEach(list => {
-      if(list.dataset.brand === target){
+      if (list.dataset.brand === targetBrand) {
         list.classList.add("active");
       } else {
         list.classList.remove("active");
@@ -36,23 +34,24 @@ const slidesWrapper = document.querySelector(".slides-wrapper");
 const slides = document.querySelectorAll(".slides-wrapper img");
 let index = 0;
 
-function showSlide(i){
-  if(i < 0) index = slides.length - 1;
-  else if(i >= slides.length) index = 0;
+function showSlide(i) {
+  if (i < 0) index = slides.length - 1;
+  else if (i >= slides.length) index = 0;
   else index = i;
-
   slidesWrapper.style.transform = `translateX(-${index * 100}%)`;
 }
 
-if(prev && next){
-  prev.addEventListener("click", () => showSlide(index - 1));
-  next.addEventListener("click", () => showSlide(index + 1));
-}
+prev.addEventListener("click", () => showSlide(index - 1));
+next.addEventListener("click", () => showSlide(index + 1));
 
 // ================== DARK MODE ==================
 const darkModeBtn = document.getElementById("dark-mode-toggle");
-if(darkModeBtn){
-  darkModeBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-  });
-}
+darkModeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+});
+
+// ================== SOSIAL FLOATING ==================
+// CSS hover sudah cukup, JS tidak perlu kecuali ingin toggle klik
+
+// ================== Optional: auto slide gallery ==================
+// let autoSlide = setInterval(() => showSlide(index + 1), 5000);
