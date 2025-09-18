@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Navbar Sidebar Demo</title>
+  <title>Sidebar Menu Fix</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <nav class="navbar">
+    <div class="brand">BrandName</div>
+    <button id="menu-toggle" aria-label="Open menu">☰</button>
+  </nav>
 
-  <!-- Hamburger Icon -->
-  <div class="hamburger" id="hamburger">☰</div>
-
-  <!-- Sidebar Menu -->
-  <nav class="sidebar-menu" id="sidebarMenu">
-    <ul>
+  <aside id="sidebar" class="sidebar">
+    <button id="menu-close" aria-label="Close menu">×</button>
+    <ul class="menu-list">
       <li><a href="#">Beranda</a></li>
       <li><a href="#">Tentang Kami</a></li>
       <li><a href="#">Produk</a></li>
@@ -23,17 +24,9 @@
       <li><a href="#">FAQ & Blog</a></li>
       <li><a href="#">Kontak</a></li>
     </ul>
-  </nav>
+  </aside>
 
-  <!-- Close Button -->
-  <div class="close-btn" id="closeBtn">×</div>
-
-  <!-- Content -->
-  <div class="content" id="content">
-    <h1>Selamat datang di situs kami</h1>
-    <p>Ini adalah contoh konten halaman utama.</p>
-    <p>Klik ikon hamburger di kiri atas untuk membuka menu sidebar.</p>
-  </div>
+  <div id="overlay" class="overlay"></div>
 
   <script src="script.js"></script>
 </body>
@@ -758,6 +751,7 @@
       
 </body>
 </html>
+
 
 
 
