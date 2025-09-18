@@ -10,88 +10,105 @@
 
   <!-- Navbar -->
   <nav>
-    <div class="logo">Concerto Audio</div>
-    <div class="nav-links">
-      <a href="#hero">Home</a>
-      <a href="#produk">Produk</a>
-      <a href="#galeri">Galeri</a>
-      <a href="#kontak">Kontak</a>
+    <div class="nav-container">
+      <div class="hamburger" id="hamburger">&#9776;</div>
     </div>
-    <div class="hamburger">&#9776;</div>
   </nav>
 
   <!-- Sidebar -->
-  <div class="sidebar">
-    <a href="#hero">Home</a>
-    <a href="#produk">Produk</a>
-    <a href="#galeri">Galeri</a>
-    <a href="#kontak">Kontak</a>
+  <div id="sidebar" class="sidebar">
+    <div class="close-btn" id="closeBtn">&times;</div>
+    <div class="sidebar-logo">Concerto</div>
+    <ul class="sidebar-menu">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#tentang">Tentang Kami</a></li>
+      <li><a href="#produk">Produk</a></li>
+      <li><a href="#konten">Konten Kami</a></li>
+      <li><a href="#galeri">Galeri</a></li>
+      <li><a href="#lokasi">Lokasi</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
   </div>
 
   <!-- Hero Section -->
   <section id="hero" class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
     <div class="hero-content">
-      <h1>Audio Mobil Premium di Malang</h1>
-      <p>Upgrade pengalaman berkendara Anda dengan sistem audio terbaik.</p>
-      <a href="#produk" class="cta-button">Lihat Produk</a>
+      <h1>Spesialis Audio Mobil & Peredam</h1>
+      <p>Kualitas suara jernih, desain elegan, dan kenyamanan kabin maksimal</p>
+      <a href="#produk" class="hero-button">Lihat Produk</a>
     </div>
   </section>
 
-  <!-- Produk Section -->
-  <section id="produk" class="produk">
-    <h2>Produk Unggulan</h2>
+  <!-- Tentang Kami -->
+  <section id="tentang" class="tentang-section">
+    <div class="tentang-container">
+      <div class="tentang-text">
+        <h2>Tentang Kami</h2>
+        <p><strong>Concerto Audio Malang</strong> adalah spesialis audio mobil premium & peredam suara di Malang. Memberikan kualitas terbaik dan kenyamanan maksimal.</p>
+      </div>
+      <div class="tentang-img">
+        <img src="images/concerto-workshop.jpeg" alt="Concerto Workshop">
+      </div>
+    </div>
+  </section>
+
+  <!-- Produk -->
+  <section id="produk" class="produk-section">
+    <h2>Produk Kami</h2>
     <div class="produk-grid">
       <div class="produk-card">
-        <img src="img/produk1.jpg" alt="Produk 1">
-        <h3>Speaker AC1</h3>
-        <p>Speaker premium untuk kualitas suara terbaik.</p>
-        <a href="https://wa.me/6281234567890" class="cta-button">Pesan Sekarang</a>
+        <img src="img/produk1.jpg" alt="Speaker AC1">
+        <div class="overlay">
+          <a href="detail-produk1.html" class="btn-detail">Detail</a>
+          <a href="https://wa.me/6281234567890" class="btn-wa" target="_blank">Pesan</a>
+        </div>
+        <h4>Speaker AC1</h4>
       </div>
       <div class="produk-card">
-        <img src="img/produk2.jpg" alt="Produk 2">
-        <h3>Amplifier STEG 1</h3>
-        <p>Amplifier berkualitas tinggi untuk suara maksimal.</p>
-        <a href="https://wa.me/6281234567890" class="cta-button">Pesan Sekarang</a>
+        <img src="img/produk2.jpg" alt="Amplifier STEG">
+        <div class="overlay">
+          <a href="detail-produk2.html" class="btn-detail">Detail</a>
+          <a href="https://wa.me/6281234567890" class="btn-wa" target="_blank">Pesan</a>
+        </div>
+        <h4>Amplifier STEG</h4>
       </div>
-      <div class="produk-card">
-        <img src="img/produk3.jpg" alt="Produk 3">
-        <h3>Processor Zelos</h3>
-        <p>Processor canggih untuk pengaturan suara optimal.</p>
-        <a href="https://wa.me/6281234567890" class="cta-button">Pesan Sekarang</a>
-      </div>
+      <!-- Tambah produk lain sesuai kebutuhan -->
     </div>
   </section>
 
-  <!-- Galeri Section -->
-  <section id="galeri" class="galeri">
-    <h2>Galeri Pemasangan</h2>
+  <!-- Galeri -->
+  <section id="galeri" class="galeri-section">
+    <h2>Galeri Hasil</h2>
     <div class="slider">
-      <div class="slides">
-        <img src="img/galeri1.jpg" alt="Galeri 1">
-        <img src="img/galeri2.jpg" alt="Galeri 2">
-        <img src="img/galeri3.jpg" alt="Galeri 3">
+      <div class="slides-wrapper">
+        <img src="images/galeri1.jpeg" alt="Hasil 1">
+        <img src="images/galeri2.jpeg" alt="Hasil 2">
+        <img src="images/galeri3.jpeg" alt="Hasil 3">
       </div>
-      <button class="prev">&#10094;</button>
-      <button class="next">&#10095;</button>
+      <a class="prev">&#10094;</a>
+      <a class="next">&#10095;</a>
     </div>
   </section>
 
-  <!-- Kontak Section -->
-  <section id="kontak" class="kontak">
-    <h2>Hubungi Kami</h2>
+  <!-- Kontak -->
+  <section id="kontak" class="kontak-section">
+    <h2>Kontak</h2>
     <form>
       <input type="text" placeholder="Nama" required>
       <input type="email" placeholder="Email" required>
       <textarea placeholder="Pesan" required></textarea>
-      <button type="submit">Kirim Pesan</button>
+      <button type="submit">Kirim</button>
     </form>
   </section>
 
   <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Concerto Audio Malang. All rights reserved.</p>
-  </footer>
+  <footer>&copy; 2025 Concerto Audio Malang. All rights reserved.</footer>
 
+  <!-- JS -->
   <script src="script.js"></script>
 </body>
 </html>
