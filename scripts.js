@@ -1,24 +1,28 @@
-// Hamburger & Sidebar
-const hamburger = document.getElementById('hamburger');
-const sidebar = document.getElementById('sidebar');
-const closeBtn = document.getElementById('closeBtn');
+// Toggle Sidebar
+const hamburger = document.querySelector('.hamburger');
+const sidebar = document.querySelector('.sidebar');
 
-hamburger.addEventListener('click', () => sidebar.style.left = '0');
-closeBtn.addEventListener('click', () => sidebar.style.left = '-250px');
+hamburger.addEventListener('click', () => {
+  sidebar.style.left = sidebar.style.left === '0px' ? '-250px' : '0px';
+});
 
-// Slider
+// Slider Functionality
 const slides = document.querySelector('.slides');
-const slideImages = document.querySelectorAll('.slides img');
-const prev = document.getElementById('prev');
-const next = document.getElementById('next');
-let index = 0;
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
+let currentIndex = 0;
 
-function showSlide(i){
-  if(i<0) index = slideImages.length-1;
-  else if(i>=slideImages.length) index=0;
-  else index=i;
-  slides.style.transform = `translateX(-${index * 100}%)`;
+function updateSlidePosition() {
+  const slideWidth = slides.children[0].clientWidth;
+  slides.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
 }
 
-prev.addEventListener('click', ()=> showSlide(index-1));
-next.addEventListener('click', ()=> showSlide(index+1));
+prevButton.addEventListener('click', () => {
+  currentIndex = (currentIndex === 0) ? slides.children.length - 1 : currentIndex - 1;
+  updateSlidePosition();
+});
+
+nextButton.addEventListener('click', () => {
+  currentIndex = (currentIndex === slides.children.length - 1) ? 0 : currentIndex
+::contentReference[oaicite:0]{index=0}
+ 
