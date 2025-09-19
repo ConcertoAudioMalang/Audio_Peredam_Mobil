@@ -2,150 +2,74 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Concerto Audio Malang</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Concerto-Audio-Malang</title>
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
   <!-- Alpine.js CDN -->
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-  <!-- Font & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { inter: ['Inter', 'sans-serif'] },
-          colors: {
-            primary: '#1e40af', // biru
-            secondary: '#f59e0b', // kuning
-          }
-        }
-      }
-    }
-  </script>
-
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
+    /* Warna custom */
+    :root {
+      --primary: #006241; /* hijau khas Rivian */
+      --primary-dark: #00491f;
     }
+    .bg-primary { background-color: var(--primary); }
+    .bg-primary-dark { background-color: var(--primary-dark); }
+    .text-primary { color: var(--primary); }
   </style>
-<header class="bg-white shadow-md sticky top-0 z-50">
-  <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
-    <img src="images/concerto-audio-logo.png" alt="Concerto Audio Malang" class="h-10 w-auto">
+</head>
+<body class="bg-gray-100">
 
-    <!-- Navbar desktop (disembunyikan) -->
-    <nav class="hidden"></nav>
+  <!-- Header -->
+  <header class="fixed w-full bg-white z-50 shadow-md">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <img src="assets/logo.png" alt="Logo Perusahaan" class="h-10 w-auto" />
+      <div x-data="{ open: false }" class="relative">
+        <button @click="open = !open" class="md:hidden focus:outline-none" aria-label="Menu">
+          <svg :class="{'hidden': open, 'block': !open}" class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg :class="{'block': open, 'hidden': !open}" class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+        <nav class="hidden md:flex space-x-8 text-gray-800 font-medium">
+          <a href="#produk" class="hover:text-primary transition">Produk</a>
+          <a href="#tentang" class="hover:text-primary transition">Tentang</a>
+          <a href="#kontak" class="hover:text-primary transition">Kontak</a>
+        </nav>
 
-    <!-- Hamburger menu (selalu muncul) -->
-    <div x-data="{ open: false }" class="relative">
-      <button @click="open = !open" aria-label="Menu" class="focus:outline-none z-50 relative">
-        <svg :class="{'hidden': open, 'block': !open}" class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-        <svg :class="{'block': open, 'hidden': !open}" class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-
-      <!-- Fullscreen dropdown overlay -->
-      <div
-        x-show="open"
-        x-transition
-        @click.outside="open = false"
-        class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-40"
-        style="display: none;"
-      >
-        <div class="bg-white rounded-lg shadow-lg w-64 p-6 space-y-6 text-center">
-          <a href="#tentang" @click="open = false" class="block text-lg font-semibold text-primary hover:text-secondary transition">Tentang</a>
-          <a href="#produk" @click="open = false" class="block text-lg font-semibold text-primary hover:text-secondary transition">Produk</a>
-          <a href="#kontak" @click="open = false" class="block text-lg font-semibold text-primary hover:text-secondary transition">Kontak</a>
+        <!-- Mobile menu -->
+        <div
+          x-show="open"
+          @click.outside="open = false"
+          x-transition
+          class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-40"
+          style="display: none;"
+        >
+          <div class="bg-white rounded-lg shadow-lg w-64 p-6 space-y-4 text-center">
+            <a href="#produk" @click="open = false" class="block text-lg font-semibold text-gray-800 hover:text-primary">Produk</a>
+            <a href="#tentang" @click="open = false" class="block text-lg font-semibold text-gray-800 hover:text-primary">Tentang</a>
+            <a href="#kontak" @click="open = false" class="block text-lg font-semibold text-gray-800 hover:text-primary">Kontak</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
   <!-- Hero Section -->
-  <section class="bg-primary text-white text-center py-20 px-4">
-    <h2 class="text-4xl font-bold mb-4">Solusi Produk Berkualitas untuk Bisnis Anda</h2>
-    <p class="text-lg mb-6">Kami menjual produk dari 4 merek terpercaya untuk berbagai kebutuhan industri.</p>
-    <a href="#produk" class="bg-white text-primary px-6 py-3 rounded font-semibold hover:bg-gray-100 transition">
-      Lihat Produk
-    </a>
-  </section>
-
-  <!-- Tentang Perusahaan -->
-  <section id="tentang" class="max-w-4xl mx-auto py-16 px-4 text-center">
-    <h3 class="text-2xl font-bold mb-4">Tentang Kami</h3>
-    <p class="text-gray-600">
-      PT Contoh Perusahaan telah berpengalaman lebih dari 10 tahun di bidang distribusi produk industri, rumah tangga, dan komersial. Kami selalu mengutamakan kualitas, kecepatan layanan, dan kepuasan pelanggan.
-    </p>
-  </section>
-
-  <!-- Produk (4 Merek) -->
-  <section id="produk" class="bg-white py-16 px-4" x-data="{ brand: 'merk1' }">
-    <div class="max-w-6xl mx-auto">
-      <h3 class="text-2xl font-bold text-center mb-8">Produk Kami</h3>
-
-      <!-- Tab Menu -->
-      <div class="flex justify-center mb-6 space-x-4">
-        <button @click="brand = 'merk1'" :class="brand === 'merk1' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'" class="px-4 py-2 rounded">Merk 1</button>
-        <button @click="brand = 'merk2'" :class="brand === 'merk2' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'" class="px-4 py-2 rounded">Merk 2</button>
-        <button @click="brand = 'merk3'" :class="brand === 'merk3' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'" class="px-4 py-2 rounded">Merk 3</button>
-        <button @click="brand = 'merk4'" :class="brand === 'merk4' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'" class="px-4 py-2 rounded">Merk 4</button>
-      </div>
-
-      <!-- Daftar Produk -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Merk 1 -->
-        <div x-show="brand === 'merk1'" class="col-span-full sm:col-span-2 lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="bg-gray-100 p-4 rounded shadow">
-            <h4 class="font-semibold mb-2">Produk 1A</h4>
-            <p class="text-sm text-gray-600">Deskripsi singkat produk Merk 1A.</p>
-          </div>
-          <div class="bg-gray-100 p-4 rounded shadow">
-            <h4 class="font-semibold mb-2">Produk 1B</h4>
-            <p class="text-sm text-gray-600">Deskripsi singkat produk Merk 1B.</p>
-          </div>
-        </div>
-
-        <!-- Merk 2 -->
-        <div x-show="brand === 'merk2'" class="col-span-full">Produk dari Merk 2 akan tampil di sini...</div>
-        <!-- Merk 3 -->
-        <div x-show="brand === 'merk3'" class="col-span-full">Produk dari Merk 3 akan tampil di sini...</div>
-        <!-- Merk 4 -->
-        <div x-show="brand === 'merk4'" class="col-span-full">Produk dari Merk 4 akan tampil di sini...</div>
-      </div>
+  <section class="relative h-screen overflow-hidden">
+    <video autoplay muted loop class="absolute w-full h-full object-cover" playsinline>
+      <source src="assets/hero-video.mp4" type="video/mp4" />
+      <!-- fallback -->
+    </video>
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 bg-black bg-opacity-40">
+      <h1 class="text-5xl md:text-6xl font-bold text-white drop-shadow-lg max-w-3xl">Electric Vehicles Designed For Adventure</h1>
+      <p class="mt-4 text-xl text-gray-200 max-w-2xl">Belanja produk‑produk premium dari 4 merek utama kami yang siap mendukung petualangan Anda.</p>
+      <a href="#produk" class="mt-8 px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition">Lihat Produk</a>
     </div>
   </section>
-
-  <!-- Footer -->
-  <footer id="kontak" class="bg-gray-900 text-gray-200 py-10 px-4">
-    <div class="max-w-6xl mx-auto grid sm:grid-cols-2 gap-6">
-      <div>
-        <h4 class="text-lg font-semibold mb-2">Hubungi Kami</h4>
-        <p>Email: info@contoh.com</p>
-        <p>Telepon: (021) 123-4567</p>
-        <p>Alamat: Jl. Raya Industri No.1, Jakarta</p>
-      </div>
-      <div>
-        <h4 class="text-lg font-semibold mb-2">Ikuti Kami</h4>
-        <div class="space-x-4">
-          <a href="#" class="hover:text-white"><i class="fab fa-facebook"></i></a>
-          <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
-        </div>
-      </div>
-    </div>
-    <p class="text-center mt-8 text-sm text-gray-500">© 2025 PT Contoh Perusahaan. All rights reserved.</p>
-  </footer>
 
 </body>
 </html>
-
-
-
-
