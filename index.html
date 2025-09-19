@@ -1,11 +1,44 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <!-- Tombol Dark Mode -->
+<button
+  x-data
+  x-init="if(localStorage.theme === 'dark') document.documentElement.classList.add('dark')"
+  @click="
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark');
+      localStorage.theme = 'light';
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.theme = 'dark';
+    }
+  "
+  class="ml-4 text-xl text-gray-700 dark:text-white hover:text-primary"
+  aria-label="Toggle Dark Mode"
+>
+  🌙 
+</button>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Concerto-Audio-Malang</title>
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    darkMode: 'class', // <-- ini penting
+    theme: {
+      extend: {
+        colors: {
+          primary: '#006241',
+          'primary-dark': '#00491f',
+        },
+      }
+    }
+  }
+</script>
+
   <!-- Alpine.js CDN -->
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <style>
@@ -36,6 +69,7 @@
 
 </head>
 <body class="bg-gray-100">
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
 
   <!-- Header -->
   <header class="fixed w-full bg-white z-50 shadow-md">
@@ -96,6 +130,7 @@
       Lihat Produk
     </a>
   </div>
+ <section class="bg-white dark:bg-gray-800"> 
 </section>
   
 <!-- Section Produk -->
@@ -167,6 +202,7 @@
       </div>
     </div>
   </div>
+ <section class="bg-white dark:bg-gray-800"> 
 </section>
   <!-- Section Tentang Kami -->
 <section id="tentang" class="bg-gray-100 py-20 px-6">
@@ -191,11 +227,13 @@
       </a>
     </div>
   </div>
+ <section class="bg-white dark:bg-gray-800"> 
 </section>
 
 
 </body>
 </html>
+
 
 
 
