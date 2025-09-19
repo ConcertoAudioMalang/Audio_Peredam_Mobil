@@ -24,7 +24,7 @@
   <!-- Header -->
   <header class="fixed w-full bg-white z-50 shadow-md">
     <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-      <img src="assets/logo.png" alt="Logo Perusahaan" class="h-10 w-auto" />
+      <img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto" />
       <div x-data="{ open: false }" class="relative">
         <button @click="open = !open" class="md:hidden focus:outline-none" aria-label="Menu">
           <svg :class="{'hidden': open, 'block': !open}" class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -61,7 +61,7 @@
   <!-- Hero Section -->
   <section class="relative h-screen overflow-hidden">
     <video autoplay muted loop class="absolute w-full h-full object-cover" playsinline>
-      <source src="assets/hero-video.mp4" type="video/mp4" />
+      <source src="asset/video1.mp4" type="video/mp4" />
       <!-- fallback -->
     </video>
     <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 bg-black bg-opacity-40">
@@ -73,3 +73,4 @@
 
 </body>
 </html>
+
