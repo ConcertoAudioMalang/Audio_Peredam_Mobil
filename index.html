@@ -1,150 +1,126 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CONCERTO AUDIO MALANG</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PT Contoh Perusahaan</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Alpine.js CDN -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Font & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'sans-serif'] },
+          colors: {
+            primary: '#1e40af', // biru
+            secondary: '#f59e0b', // kuning
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800">
 
-<!-- Navbar -->
-<nav>
-  <div class="tl-nav-container">
-    <div class="tl-hamburger" id="tl-hamburger">&#9776;</div>
-    <div class="tl-nav-logo">Concerto Audio</div>
-  </div>
-</nav>
-
-<!-- Sidebar -->
-<div id="tl-sidebar" class="tl-sidebar">
-  <div class="tl-close-btn" id="tl-closeBtn">&times;</div>
-  <div class="tl-sidebar-logo">Concerto Audio</div>
-  <ul class="tl-sidebar-menu">
-    <li><a href="#hero">Home</a></li>
-    <li><a href="#tentang">Tentang Kami</a></li>
-    <li><a href="#produk">Produk</a></li>
-    <li><a href="#konten">Konten Kami</a></li>
-    <li><a href="#galeri">Galeri</a></li>
-    <li><a href="#lokasi">Lokasi</a></li>
-    <li><a href="#kontak">Kontak</a></li>
-  </ul>
-</div>
-
-<!-- Hero Section -->
-<section class="hero" id="hero">
-  <video autoplay muted loop id="hero-video">
-    <source src="video/hero-bg.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
-  </video>
-  <div class="hero-content">
-    <h1>Spesialis Audio Mobil & Peredam Malang Raya</h1>
-    <p>Kualitas suara jernih, desain elegan, dan kenyamanan kabin mobil maksimal</p>
-    <a href="#produk" class="hero-button">Lihat Produk</a>
-  </div>
-</section>
-
-<!-- Tentang Kami -->
-<section id="tentang" class="tentang-section">
-  <div class="tentang-container">
-    <div class="tentang-text">
-      <h2>Tentang Kami</h2>
-      <p><strong>Concerto Audio Malang</strong> adalah spesialis pemasangan <strong>audio mobil premium</strong> dan <strong>peredam suara</strong> di Malang. Kami telah membantu ratusan pelanggan mendapatkan kualitas suara terbaik dan kenyamanan kabin maksimal.</p>
+  <!-- Header -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto flex justify-between items-center px-4 py-4">
+      <h1 class="text-xl font-bold text-primary">PT Contoh Perusahaan</h1>
+      <nav class="space-x-4 text-sm hidden md:block">
+        <a href="#tentang" class="hover:text-primary">Tentang</a>
+        <a href="#produk" class="hover:text-primary">Produk</a>
+        <a href="#kontak" class="hover:text-primary">Kontak</a>
+      </nav>
     </div>
-    <div class="tentang-img">
-      <img src="img/workshop.jpg" alt="Concerto Audio Workshop">
-    </div>
-  </div>
-</section>
+  </header>
 
-<!-- Produk -->
-<section id="produk" class="produk-section">
-  <h2>Produk Kami</h2>
-  <div class="produk-grid">
-    <div class="produk-card">
-      <img src="img/produk1.jpg" alt="Speaker AC1">
-      <div class="produk-overlay">
-        <h4>Speaker AC1</h4>
-        <div class="produk-cta">
-          <a href="#" class="btn-detail">Detail</a>
-          <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Pesan</a>
+  <!-- Hero Section -->
+  <section class="bg-primary text-white text-center py-20 px-4">
+    <h2 class="text-4xl font-bold mb-4">Solusi Produk Berkualitas untuk Bisnis Anda</h2>
+    <p class="text-lg mb-6">Kami menjual produk dari 4 merek terpercaya untuk berbagai kebutuhan industri.</p>
+    <a href="#produk" class="bg-white text-primary px-6 py-3 rounded font-semibold hover:bg-gray-100 transition">
+      Lihat Produk
+    </a>
+  </section>
+
+  <!-- Tentang Perusahaan -->
+  <section id="tentang" class="max-w-4xl mx-auto py-16 px-4 text-center">
+    <h3 class="text-2xl font-bold mb-4">Tentang Kami</h3>
+    <p class="text-gray-600">
+      PT Contoh Perusahaan telah berpengalaman lebih dari 10 tahun di bidang distribusi produk industri, rumah tangga, dan komersial. Kami selalu mengutamakan kualitas, kecepatan layanan, dan kepuasan pelanggan.
+    </p>
+  </section>
+
+  <!-- Produk (4 Merek) -->
+  <section id="produk" class="bg-white py-16 px-4" x-data="{ brand: 'merk1' }">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-2xl font-bold text-center mb-8">Produk Kami</h3>
+
+      <!-- Tab Menu -->
+      <div class="flex justify-center mb-6 space-x-4">
+        <button @click="brand = 'merk1'" :class="brand === 'merk1' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'" class="px-4 py-2 rounded">Merk 1</button>
+        <button @click="brand = 'merk2'" :class="brand === 'merk2' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'" class="px-4 py-2 rounded">Merk 2</button>
+        <button @click="brand = 'merk3'" :class="brand === 'merk3' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'" class="px-4 py-2 rounded">Merk 3</button>
+        <button @click="brand = 'merk4'" :class="brand === 'merk4' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'" class="px-4 py-2 rounded">Merk 4</button>
+      </div>
+
+      <!-- Daftar Produk -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Merk 1 -->
+        <div x-show="brand === 'merk1'" class="col-span-full sm:col-span-2 lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-gray-100 p-4 rounded shadow">
+            <h4 class="font-semibold mb-2">Produk 1A</h4>
+            <p class="text-sm text-gray-600">Deskripsi singkat produk Merk 1A.</p>
+          </div>
+          <div class="bg-gray-100 p-4 rounded shadow">
+            <h4 class="font-semibold mb-2">Produk 1B</h4>
+            <p class="text-sm text-gray-600">Deskripsi singkat produk Merk 1B.</p>
+          </div>
+        </div>
+
+        <!-- Merk 2 -->
+        <div x-show="brand === 'merk2'" class="col-span-full">Produk dari Merk 2 akan tampil di sini...</div>
+        <!-- Merk 3 -->
+        <div x-show="brand === 'merk3'" class="col-span-full">Produk dari Merk 3 akan tampil di sini...</div>
+        <!-- Merk 4 -->
+        <div x-show="brand === 'merk4'" class="col-span-full">Produk dari Merk 4 akan tampil di sini...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="kontak" class="bg-gray-900 text-gray-200 py-10 px-4">
+    <div class="max-w-6xl mx-auto grid sm:grid-cols-2 gap-6">
+      <div>
+        <h4 class="text-lg font-semibold mb-2">Hubungi Kami</h4>
+        <p>Email: info@contoh.com</p>
+        <p>Telepon: (021) 123-4567</p>
+        <p>Alamat: Jl. Raya Industri No.1, Jakarta</p>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-2">Ikuti Kami</h4>
+        <div class="space-x-4">
+          <a href="#" class="hover:text-white"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
     </div>
-    <div class="produk-card">
-      <img src="img/produk2.jpg" alt="Amplifier STEG 1">
-      <div class="produk-overlay">
-        <h4>Amplifier STEG 1</h4>
-        <div class="produk-cta">
-          <a href="#" class="btn-detail">Detail</a>
-          <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Pesan</a>
-        </div>
-      </div>
-    </div>
-    <div class="produk-card">
-      <img src="img/produk3.jpg" alt="Processor Zelos">
-      <div class="produk-overlay">
-        <h4>Processor Zelos</h4>
-        <div class="produk-cta">
-          <a href="#" class="btn-detail">Detail</a>
-          <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">Pesan</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <p class="text-center mt-8 text-sm text-gray-500">© 2025 PT Contoh Perusahaan. All rights reserved.</p>
+  </footer>
 
-<!-- Galeri -->
-<section id="galeri" class="galeri-section">
-  <h2>Galeri Hasil</h2>
-  <div class="slider">
-    <div class="slides-wrapper">
-      <img src="img/galeri1.jpg" alt="Hasil 1">
-      <img src="img/galeri2.jpg" alt="Hasil 2">
-      <img src="img/galeri3.jpg" alt="Hasil 3">
-      <img src="img/galeri4.jpg" alt="Hasil 4">
-    </div>
-    <a class="prev">&#10094;</a>
-    <a class="next">&#10095;</a>
-  </div>
-</section>
-
-<!-- Konten Instagram -->
-<section id="konten" class="konten-section">
-  <h2>Konten Kami</h2>
-  <iframe src="https://www.instagram.com/concerto_audio_embed" frameborder="0" width="100%" height="500"></iframe>
-</section>
-
-<!-- Lokasi -->
-<section id="lokasi" class="lokasi-section">
-  <h2>Lokasi & Ulasan</h2>
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-</section>
-
-<!-- Kontak -->
-<section id="kontak" class="kontak-section">
-  <h2>Kontak</h2>
-  <form>
-    <input type="text" placeholder="Nama" required>
-    <input type="email" placeholder="Email" required>
-    <textarea placeholder="Pesan" required></textarea>
-    <button type="submit">Kirim</button>
-  </form>
-</section>
-
-<!-- Sosial Media Floating -->
-<div class="social-floating">
-  <div class="main-icon">🔗</div>
-  <div class="social-icons">
-    <a href="https://facebook.com" class="icon">F</a>
-    <a href="https://instagram.com" class="icon">I</a>
-    <a href="https://youtube.com" class="icon">Y</a>
-  </div>
-</div>
-
-<!-- Footer -->
-<footer>&copy; 2025 Concerto Audio Malang. All rights reserved.</footer>
-
-<script src="script.js"></script>
 </body>
 </html>
