@@ -15,37 +15,69 @@
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
   <style>
-    :root {
-      --color-primary: #006241;
-      --color-primary-dark: #00491f;
-    }
-    .bg-primary { background-color: var(--color-primary); }
-    .bg-primary-dark { background-color: var(--color-primary-dark); }
-    .text-primary { color: var(--color-primary); }
+    /* === Global & Dark Mode === */
+    :root { --color-primary:#006241; --color-primary-dark:#00491f; }
+    body { font-family:'Inter',sans-serif; margin:0;padding:0; background-color:#f9fafb; color:#111827; transition: background-color 0.5s, color 0.5s; }
+    body.dark { background-color:#121212; color:#e0e0e0; }
+    body.dark header, body.dark footer { background-color:#1e1e1e; color:#cfcfcf; }
 
-    body.dark { background-color: #121212; color: #e0e0e0; }
-    body.dark header, body.dark footer { background-color: #1e1e1e; color: #cfcfcf; }
-    body.dark a:hover { color: var(--color-primary); }
+    a { text-decoration:none; }
+    img { display:block; max-width:100%; }
 
-    .nav-link { @apply text-gray-100 hover:text-primary transition; }
-    body.scrolled .nav-link { @apply text-gray-800 hover:text-primary; }
-    body.dark.scrolled .nav-link { @apply text-gray-100 hover:text-primary; }
+    /* === Navbar === */
+    #navbar { position:fixed; top:0; width:100%; z-index:50; transition: background-color 0.5s, box-shadow 0.5s; }
+    .nav-link { color:#f3f4f6; transition: color 0.3s; }
+    .nav-link:hover { color: var(--color-primary); }
+    body.scrolled .nav-link { color:#111827; }
+    body.dark.scrolled .nav-link { color:#f3f4f6; }
 
-    /* Floating WhatsApp Button */
-    .floating-btn a { border-radius: 9999px !important; }
+    .hamburger { display:none; flex-direction:column; cursor:pointer; gap:4px; }
+    .hamburger span { width:24px; height:3px; background-color:#fff; transition: all 0.3s; }
+    @media (max-width:768px) { nav.hidden { display:none; } .hamburger { display:flex; } }
+
+    /* === Hero Section === */
+    .hero-section { min-height:400px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative; overflow:hidden; }
+    .hero-section h1, .hero-section p { opacity:0; transform:translateY(20px); animation: fadeInUp 1s forwards; }
+    .hero-section h1 { animation-delay:0.3s; }
+    .hero-section p { animation-delay:0.6s; }
+    @keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
+
+    /* === Produk Section === */
+    .produk-card { background-color:#f9fafb; border-radius:1rem; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
+    .produk-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
+
+    /* === Tentang Section === */
+    .about-section { position:relative; display:flex; align-items:center; justify-content:center; height:600px; overflow:hidden; text-align:center; color:white; }
+    .about-section img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .about-section .overlay { position:absolute; inset:0; background-color: rgba(0,0,0,0.5); }
+    .about-section .content { position:relative; z-index:10; max-width:700px; padding:0 1rem; }
+
+    /* === Galeri Section === */
+    .masonry { column-count:3; column-gap:1rem; }
+    @media(max-width:1024px){.masonry{column-count:2;}} 
+    @media(max-width:640px){.masonry{column-count:1;}}
+    .masonry-item { break-inside:avoid; margin-bottom:1rem; position:relative; overflow:hidden; border-radius:1rem; }
+    .masonry-item img { width:100%; display:block; transition: transform 0.5s; }
+    .masonry-item:hover img { transform:scale(1.1); }
+    .masonry-item .overlay { position:absolute; inset:0; background-color:rgba(0,0,0,0.5); opacity:0; display:flex; flex-direction:column; justify-content:center; align-items:center; transition:opacity 0.5s; }
+    .masonry-item:hover .overlay { opacity:1; }
+
+    /* === Floating WhatsApp === */
+    .floating-btn { position:fixed; bottom:2rem; right:2rem; z-index:50; }
+    .floating-btn a { display:flex; align-items:center; justify-content:center; width:56px; height:56px; background-color:#22c55e; color:white; border-radius:50%; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s; }
+    .floating-btn a:hover { transform:scale(1.1); background-color:#16a34a; }
     .pulse { animation: pulse 1.8s infinite; }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-    }
+    @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(34,197,94,0.7);} 70%{box-shadow:0 0 0 15px rgba(34,197,94,0);} 100%{box-shadow:0 0 0 0 rgba(34,197,94,0);} }
+
+    /* === Footer === */
+    footer svg { width:24px; height:24px; margin:0 0.5rem; transition: transform 0.3s, fill 0.3s; }
+    footer svg:hover { transform:scale(1.2); fill: var(--color-primary); }
   </style>
 </head>
-
-<body class="bg-gray-100 text-gray-900 transition-colors duration-500">
+<body class="transition-colors duration-500">
 
   <!-- Header -->
-  <header id="navbar" class="fixed w-full top-0 z-50 transition-colors duration-500 bg-transparent">
+  <header id="navbar" class="bg-transparent w-full fixed top-0 z-50 transition-colors duration-500">
     <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
       <div><img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto" /></div>
       <nav class="hidden md:flex space-x-8 font-medium">
@@ -54,46 +86,50 @@
         <a href="#galeri" class="nav-link">Galeri</a>
         <a href="#kontak" class="nav-link">Kontak</a>
       </nav>
-      <button id="darkToggle" aria-label="Toggle Dark Mode" class="ml-4 p-2 rounded-md border border-gray-300 hover:border-primary transition focus:outline-none">🌙</button>
+      <div class="flex items-center">
+        <button id="darkToggle" aria-label="Toggle Dark Mode" class="ml-4 p-2 rounded-md border border-gray-300 hover:border-primary transition focus:outline-none">🌙</button>
+        <div class="hamburger md:hidden ml-4">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="pt-20 min-h-[400px] bg-green-700 bg-opacity-90 flex flex-col items-center justify-center text-center text-white px-4" data-aos="fade-up">
+  <section class="hero-section pt-20 min-h-[400px] bg-green-700 bg-opacity-90 flex flex-col items-center justify-center text-center text-white px-4" data-aos="fade-up">
     <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg max-w-3xl">Electric Vehicles Designed For Adventure</h1>
     <p class="mt-4 text-lg md:text-xl max-w-2xl">Belanja produk-produk premium dari 4 merek utama kami yang siap mendukung petualangan Anda.</p>
     <a href="#produk" class="mt-8 px-6 py-3 bg-primary rounded-lg font-semibold hover:bg-primary-dark transition">Lihat Produk</a>
   </section>
 
   <!-- Produk Section -->
-  <section id="produk" class="bg-white py-16 px-6" data-aos="fade-up">
+  <section id="produk" class="bg-white py-16 px-6" data-aos="fade-up" data-aos-delay="100">
     <div class="max-w-7xl mx-auto text-center">
       <h2 class="text-4xl font-bold text-gray-800 mb-4">Produk Unggulan Kami</h2>
       <p class="text-gray-500 max-w-xl mx-auto mb-10">Kami menawarkan 4 merek utama untuk berbagai kebutuhan dan gaya hidup Anda.</p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Brand Cards -->
-        <div class="bg-gray-50 p-6 rounded-lg shadow hover:-translate-y-2 hover:shadow-xl transition transform duration-300 ease-in-out" data-aos="zoom-in">
+        <div class="produk-card p-6" data-aos="zoom-in" data-aos-delay="200">
           <img src="asset/audio-circle.png" alt="Brand A" class="h-40 w-full object-cover rounded-md mb-4" />
           <h3 class="text-xl font-semibold text-gray-800 mb-2">Brand A</h3>
           <p class="text-gray-500 text-sm mb-4">Produk inovatif dengan desain elegan dan performa tinggi.</p>
           <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition duration-300">Lihat Detail</a>
         </div>
-        <div class="bg-gray-50 p-6 rounded-lg shadow hover:-translate-y-2 hover:shadow-xl transition transform duration-300 ease-in-out" data-aos="zoom-in" data-aos-delay="100">
+        <div class="produk-card p-6" data-aos="zoom-in" data-aos-delay="300">
           <img src="asset/steg.png" alt="Brand B" class="h-40 w-full object-cover rounded-md mb-4" />
           <h3 class="text-xl font-semibold text-gray-800 mb-2">Brand B</h3>
-          <p class="text-gray-500 text-sm mb-4">Kualitas suara jernih dengan teknologi terbaru untuk mobil Anda.</p>
+          <p class="text-gray-500 text-sm mb-4">Audio berkualitas tinggi dengan suara jernih dan mendalam.</p>
           <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition duration-300">Lihat Detail</a>
         </div>
-        <div class="bg-gray-50 p-6 rounded-lg shadow hover:-translate-y-2 hover:shadow-xl transition transform duration-300 ease-in-out" data-aos="zoom-in" data-aos-delay="200">
-          <img src="asset/audiocircle.png" alt="Brand C" class="h-40 w-full object-cover rounded-md mb-4" />
+        <div class="produk-card p-6" data-aos="zoom-in" data-aos-delay="400">
+          <img src="asset/focal.png" alt="Brand C" class="h-40 w-full object-cover rounded-md mb-4" />
           <h3 class="text-xl font-semibold text-gray-800 mb-2">Brand C</h3>
-          <p class="text-gray-500 text-sm mb-4">Speaker berkualitas tinggi dengan bass yang kuat dan jernih.</p>
+          <p class="text-gray-500 text-sm mb-4">Speaker premium yang memberikan pengalaman audio luar biasa.</p>
           <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition duration-300">Lihat Detail</a>
         </div>
-        <div class="bg-gray-50 p-6 rounded-lg shadow hover:-translate-y-2 hover:shadow-xl transition transform duration-300 ease-in-out" data-aos="zoom-in" data-aos-delay="300">
-          <img src="asset/teac.png" alt="Brand D" class="h-40 w-full object-cover rounded-md mb-4" />
+        <div class="produk-card p-6" data-aos="zoom-in" data-aos-delay="500">
+          <img src="asset/earthquake.png" alt="Brand D" class="h-40 w-full object-cover rounded-md mb-4" />
           <h3 class="text-xl font-semibold text-gray-800 mb-2">Brand D</h3>
-          <p class="text-gray-500 text-sm mb-4">Perangkat audio mobil yang tahan lama dan mudah dioperasikan.</p>
+          <p class="text-gray-500 text-sm mb-4">Subwoofer dan sistem audio profesional untuk pengalaman maksimal.</p>
           <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition duration-300">Lihat Detail</a>
         </div>
       </div>
@@ -101,95 +137,81 @@
   </section>
 
   <!-- Tentang Section -->
-  <section id="tentang" class="relative h-[600px] flex items-center justify-center overflow-hidden">
-    <img src="asset/about-image.jpg" alt="Tentang Kami" class="absolute inset-0 w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-black/40 dark:bg-black/60"></div>
-    <div class="relative z-10 max-w-3xl mx-auto px-6 text-center text-white">
-      <h2 class="text-4xl lg:text-5xl font-bold mb-6">Tentang Concerto Audio</h2>
-      <p class="text-lg lg:text-xl leading-relaxed mb-8 text-gray-200">Kami menghadirkan pengalaman audio terbaik melalui koleksi produk pilihan dari berbagai brand ternama. Suara berkualitas tinggi yang mendekatkan Anda pada harmoni musik sejati.</p>
-      <a href="#kontak" class="inline-block px-8 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition">Hubungi Kami</a>
+  <section id="tentang" class="about-section" data-aos="fade-up" data-aos-delay="100">
+    <img src="asset/about-bg.jpg" alt="Tentang Kami" />
+    <div class="overlay"></div>
+    <div class="content">
+      <h2 class="text-4xl font-bold mb-4">Tentang Concerto Audio</h2>
+      <p class="text-lg">Kami adalah penyedia produk audio mobil premium di Malang, menawarkan berbagai merek terkemuka dengan layanan profesional dan instalasi terpercaya.</p>
     </div>
   </section>
 
   <!-- Galeri Section -->
-  <section id="galeri" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12">
-      <h2 class="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100">Galeri Produk</h2>
-      <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
-        <!-- Masonry Item Example -->
-        <div class="mb-4 break-inside-avoid relative group overflow-hidden rounded-xl shadow">
-          <img src="asset/produk1.jpg" alt="Produk 1" class="w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <h3 class="text-white text-xl font-semibold mb-2">Produk 1</h3>
-            <a href="#" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition">Lihat Detail</a>
-          </div>
-        </div>
-        <div class="mb-4 break-inside-avoid relative group overflow-hidden rounded-xl shadow">
-          <img src="asset/produk2.jpg" alt="Produk 2" class="w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <h3 class="text-white text-xl font-semibold mb-2">Produk 2</h3>
-            <a href="#" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition">Lihat Detail</a>
-          </div>
-        </div>
-        <!-- Tambahkan item galeri lainnya sesuai kebutuhan -->
-      </div>
+  <section id="galeri" class="py-16 px-6 bg-gray-50" data-aos="fade-up">
+    <div class="max-w-7xl mx-auto text-center mb-10">
+      <h2 class="text-4xl font-bold text-gray-800 mb-4">Galeri</h2>
+      <p class="text-gray-500 max-w-xl mx-auto">Kumpulan foto instalasi dan produk-produk kami.</p>
+    </div>
+    <div class="masonry max-w-7xl mx-auto">
+      <div class="masonry-item"><img src="asset/gallery1.jpg" alt="Galeri 1" /></div>
+      <div class="masonry-item"><img src="asset/gallery2.jpg" alt="Galeri 2" /></div>
+      <div class="masonry-item"><img src="asset/gallery3.jpg" alt="Galeri 3" /></div>
+      <div class="masonry-item"><img src="asset/gallery4.jpg" alt="Galeri 4" /></div>
+      <div class="masonry-item"><img src="asset/gallery5.jpg" alt="Galeri 5" /></div>
     </div>
   </section>
 
-  <!-- Kontak Section -->
-  <section id="kontak" class="py-20 bg-white">
-    <div class="max-w-4xl mx-auto text-center px-6">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Hubungi Kami</h2>
-      <p class="mb-8 text-gray-600 text-lg">Ingin konsultasi atau cek produk lebih lanjut? Hubungi kami melalui WhatsApp menggunakan tombol di pojok bawah.</p>
-    </div>
-  </section>
-
-  <!-- Floating WhatsApp Button -->
-  <div class="floating-btn fixed bottom-6 right-6 z-50">
-    <a href="https://wa.me/6281234567890" target="_blank" class="bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition transform hover:scale-110 pulse" aria-label="Chat via WhatsApp">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
-        <path d="M20.52 3.48A11.88 11.88 0 0 0 12 .25C5.5.25.25 5.5.25 12c0 2.1.55 4.16 1.58 5.96L.25 23.75l5.92-1.55A11.7 11.7 0 0 0 12 23.75c6.5 0 11.75-5.25 11.75-11.75 0-3.14-1.23-6.1-3.48-8.27Zm-8.52 17.02c-1.84 0-3.63-.5-5.2-1.45l-.37-.22-3.52.92.94-3.44-.24-.35a9.3 9.3 0 0 1-1.45-5.1c0-5.17 4.2-9.37 9.37-9.37 2.5 0 4.85.97 6.62 2.73a9.32 9.32 0 0 1 2.75 6.63c0 5.18-4.2 9.38-9.38 9.38Zm5.17-7.05c-.28-.14-1.67-.83-1.93-.92-.26-.1-.45-.14-.63.14-.19.28-.72.92-.88 1.1-.16.19-.33.21-.61.07-.28-.14-1.2-.44-2.28-1.4-.84-.74-1.4-1.64-1.56-1.92-.16-.28-.02-.43.12-.57.12-.12.28-.33.42-.49.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.63-1.52-.87-2.09-.23-.56-.46-.49-.63-.5h-.54c-.19 0-.49.07-.74.35-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2 3.06 4.86 4.29.68.29 1.21.46 1.63.59.68.21 1.3.18 1.79.11.55-.08 1.67-.68 1.9-1.33.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33Z"/>
-      </svg>
+  <!-- Floating WhatsApp -->
+  <div class="floating-btn pulse">
+    <a href="https://wa.me/6281234567890" target="_blank" aria-label="Chat WhatsApp">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.557 4.103 1.522 5.84L0 24l6.344-1.525A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm6.3 17.4c-.273.77-1.513 1.456-2.084 1.56-.54.096-1.197.135-5.635-2.153-1.548-.64-2.518-1.4-2.985-2.013-.472-.612-.656-1.125-.656-1.35 0-.225.04-.31.135-.408.138-.136.308-.21.47-.32.164-.107.226-.182.34-.304.112-.12.104-.198.207-.33.108-.136.218-.28.33-.408.11-.126.08-.203.165-.338.082-.135.05-.22.1-.34.048-.116.48-1.153.66-1.55.18-.398.372-.345.498-.345.126 0 .273.004.416.004.143 0 .338.047.515.22.177.173.63.61.682.655.053.046.088.08.137.135.05.056.08.093.11.154.03.06.014.11.045.176.03.067.14.295.15.315.012.02.016.033.03.054.015.02.03.037.043.057.012.02.09.21.113.274.024.065.048.12.06.17.01.05.03.09.03.12 0 .03-.003.05-.03.11-.027.064-.04.086-.065.13-.024.046-.098.13-.14.18-.04.05-.083.094-.14.14-.057.047-.46.422-.562.515-.1.09-.212.2-.278.25-.066.053-.132.117-.2.165-.068.048-.165.124-.218.163-.053.04-.12.097-.165.13-.046.034-.088.055-.127.078-.04.023-.138.073-.183.093-.045.02-.093.03-.14.03-.046 0-.09-.005-.14-.02-.048-.016-.175-.07-.21-.088-.035-.018-.07-.033-.1-.054-.03-.022-.056-.045-.08-.067-.024-.02-.04-.045-.056-.064-.014-.02-.024-.045-.036-.062-.01-.018-.016-.032-.02-.05-.005-.017-.003-.033-.004-.05 0-.015.01-.03.016-.05.005-.02.043-.115.06-.155.017-.04.032-.08.046-.11.012-.03.016-.048.03-.08.015-.03.03-.056.04-.08.012-.022.03-.04.044-.062.014-.02.033-.038.046-.058.015-.02.033-.043.048-.062.017-.02.045-.052.06-.073.013-.02.023-.034.037-.053.016-.02.03-.035.043-.056.014-.02.034-.04.05-.058.018-.02.033-.036.05-.054.014-.018.036-.035.05-.052.015-.016.028-.03.043-.046.014-.016.03-.03.043-.045.014-.013.03-.03.043-.042.012-.014.02-.024.03-.035.014-.01.03-.02.043-.03.014-.01.033-.02.046-.03.013-.008.026-.016.04-.024.015-.007.03-.014.046-.02.015-.006.03-.012.044-.018.016-.004.032-.008.048-.01.016-.005.03-.008.048-.012.015-.003.033-.004.048-.005.017-.002.033-.003.05-.003h.05c.016 0 .032 0 .048.003.016.003.03.005.048.008.016.002.03.006.048.01.017.004.032.008.048.014.016.003.03.01.048.014.015.005.03.01.044.017.016.005.03.01.045.017.015.006.03.014.043.02.014.006.03.012.044.02.014.007.03.016.043.024.012.006.03.013.043.02.012.008.027.018.04.026.01.006.023.014.035.02.01.006.022.012.033.02.01.007.023.014.033.02.01.006.02.012.033.02.01.006.02.012.033.018.01.006.02.012.033.018.01.006.02.012.033.016.01.004.02.01.03.015.012.004.023.008.033.01.012.003.024.006.035.008.013.002.024.004.035.005.01.002.02.003.03.004.01.002.02.002.03.003.01.002.02.002.03.002.01 0 .02 0 .03-.002.01-.002.02-.002.03-.003.01-.002.02-.003.03-.004.01-.002.02-.003.03-.005.01-.002.02-.003.03-.006.01-.002.02-.004.03-.006.01-.003.02-.004.03-.006.01-.002.02-.004.03-.006.01-.002.02-.003.03-.005.01-.002.02-.003.03-.004.01-.002.02-.003.03-.004.01-.002.02-.003.03-.003.01-.002.02-.003.03-.002.01 0 .02-.002.03 0 .01 0 .02.002.03.002.01.002.02.003.03.004.01.002.02.003.03.004.01.002.02.004.03.005.01.002.02.003.03.004.01.002.02.003.03.004.01.002.02.004.03.004.01.002.02.003.03.004.01.002.02.003.03.003.01.002.02.003.03.002.01 0 .02 0 .03 0z"/></svg>
     </a>
   </div>
 
   <!-- Footer -->
-  <footer class="bg-gray-100 py-8 text-center text-gray-700 transition-colors duration-500">
-    <div class="flex justify-center gap-6 mb-4">
-      <!-- Social Media Icons -->
-      <a href="#" class="text-gray-700 hover:text-primary transition"><svg class="w-6 h-6" fill="currentColor"><path d="M12 2.04c-5.5 0-10 4.48-10 10s4.5 10 10 10 10-4.48 10-10-4.5-10-10-10zm0 18.33c-4.59 0-8.33-3.74-8.33-8.33S7.41 3.71 12 3.71s8.33 3.74 8.33 8.33-3.74 8.33-8.33 8.33z"/></svg></a>
-      <a href="#" class="text-gray-700 hover:text-primary transition"><svg class="w-6 h-6" fill="currentColor"><path d="M21 6.5a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-11zM12 14.5l-5-3V8l5 3 5-3v3.5l-5 3z"/></svg></a>
-      <a href="#" class="text-gray-700 hover:text-primary transition"><svg class="w-6 h-6" fill="currentColor"><path d="M12 2.04c-5.5 0-10 4.48-10 10s4.5 10 10 10 10-4.48 10-10-4.5-10-10-10zm0 18.33c-4.59 0-8.33-3.74-8.33-8.33S7.41 3.71 12 3.71s8.33 3.74 8.33 8.33-3.74 8.33-8.33 8.33z"/></svg></a>
-      <a href="#" class="text-gray-700 hover:text-primary transition"><svg class="w-6 h-6" fill="currentColor"><path d="M12 2.04c-5.5 0-10 4.48-10 10s4.5 10 10 10 10-4.48 10-10-4.5-10-10-10zm0 18.33c-4.59 0-8.33-3.74-8.33-8.33S7.41 3.71 12 3.71s8.33 3.74 8.33 8.33-3.74 8.33-8.33 8.33z"/></svg></a>
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="max-w-7xl mx-auto flex justify-center space-x-6">
+      <!-- Instagram -->
+      <a href="https://instagram.com/concertoaudio" target="_blank" aria-label="Instagram">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.056 1.96.247 2.418.415a4.92 4.92 0 011.8 1.045 4.922 4.922 0 011.044 1.8c.168.458.358 1.247.415 2.417.058 1.266.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.056 1.17-.247 1.96-.415 2.417a4.932 4.932 0 01-1.045 1.8 4.932 4.932 0 01-1.8 1.044c-.458.168-1.247.358-2.417.415-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.056-1.96-.247-2.418-.415a4.924 4.924 0 01-1.8-1.045 4.924 4.924 0 01-1.044-1.8c-.168-.458-.358-1.247-.415-2.417C2.175 15.746 2.163 15.367 2.163 12s.012-3.584.07-4.85c.056-1.17.247-1.96.415-2.418a4.923 4.923 0 011.045-1.8 4.923 4.923 0 011.8-1.044c.458-.168 1.247-.358 2.417-.415C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.735 0 8.332.012 7.052.07 5.773.127 4.744.334 3.915.67 3.05 1.024 2.298 1.53 1.53 2.298.762 3.066.256 3.818-.098 4.682c-.336.83-.543 1.858-.6 3.138C-.012 8.332 0 8.735 0 12c0 3.265.012 3.668.07 4.948.057 1.28.264 2.308.6 3.138.354.864.76 1.616 1.53 2.384.768.768 1.52 1.174 2.384 1.528.83.336 1.858.543 3.138.6 1.28.058 1.683.07 4.948.07s3.668-.012 4.948-.07c1.28-.057 2.308-.264 3.138-.6.864-.354 1.616-.76 2.384-1.53.768-.768 1.174-1.52 1.528-2.384.336-.83.543-1.858.6-3.138.058-1.28.07-1.683.07-4.948s-.012-3.668-.07-4.948c-.057-1.28-.264-2.308-.6-3.138-.354-.864-.76-1.616-1.53-2.384-.768-.768-1.52-1.174-2.384-1.528C18.308.334 17.28.127 16 .07 14.72.012 14.317 0 12 0z"/></svg>
+      </a>
+      <!-- TikTok -->
+      <a href="https://tiktok.com/@concertoaudio" target="_blank" aria-label="TikTok">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0v8.208A4.792 4.792 0 0016.792 13H20v-4h-2.792A2.792 2.792 0 0114 6.208V0h-2z"/></svg>
+      </a>
+      <!-- YouTube -->
+      <a href="https://youtube.com/concertoaudio" target="_blank" aria-label="YouTube">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-1.623-.117-8.073-.117-8.073-.117s-6.451 0-8.074.117C1.596 3.301 0 5.067 0 12s1.596 8.699 3.468 8.816c1.623.117 8.073.117 8.073.117s6.451 0 8.074-.117C22.404 20.699 24 18.933 24 12s-1.596-8.699-4.385-8.816zM9.545 15.568V8.432l6.182 3.568-6.182 3.568z"/></svg>
+      </a>
+      <!-- Facebook -->
+      <a href="https://facebook.com/concertoaudio" target="_blank" aria-label="Facebook">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M22.676 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.406.593 24 1.325 24h11.497v-9.294H9.691V11.29h3.131V8.414c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.098 2.796.142v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.416h-3.12V24h6.116C23.406 24 24 23.406 24 22.676V1.325C24 .593 23.406 0 22.676 0z"/></svg>
+      </a>
     </div>
-    <p class="text-sm">&copy; 2025 Concerto Audio Malang. All rights reserved.</p>
   </footer>
 
-  <!-- Scripts -->
+  <!-- AOS JS -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({ once: true });
+    AOS.init({ once:true });
 
     // Dark Mode Toggle
-    const toggleBtn = document.getElementById('darkToggle');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-    });
+    const toggle = document.getElementById('darkToggle');
+    toggle.addEventListener('click', ()=>{ document.body.classList.toggle('dark'); });
 
     // Navbar Scroll Effect
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        document.body.classList.add('scrolled');
-        navbar.classList.add('bg-white', 'shadow-md');
-        navbar.classList.remove('bg-transparent');
-      } else {
-        document.body.classList.remove('scrolled');
-        navbar.classList.remove('bg-white', 'shadow-md');
-        navbar.classList.add('bg-transparent');
-      }
+    window.addEventListener('scroll', ()=>{
+      if(window.scrollY > 50){ document.body.classList.add('scrolled'); }
+      else{ document.body.classList.remove('scrolled'); }
+    });
+
+    // Hamburger Menu
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('nav');
+    hamburger.addEventListener('click', ()=>{
+      navMenu.classList.toggle('hidden');
     });
   </script>
-
 </body>
 </html>
