@@ -24,30 +24,19 @@
     .bg-primary-dark { background-color: var(--color-primary-dark); }
     .text-primary { color: var(--color-primary); }
 
-    body.dark {
-      background-color: #121212;
-      color: #e0e0e0;
-    }
+    body.dark { background-color: #121212; color: #e0e0e0; }
     body.dark header, body.dark footer { background-color: #1e1e1e; color: #cfcfcf; }
     body.dark a:hover { color: var(--color-primary); }
     body.dark .bg-white { background-color: #1e1e1e !important; }
     body.dark .bg-gray-50 { background-color: #222 !important; }
     body.dark input, body.dark textarea { background-color: #333; border-color: #555; color: #eee; }
-    body.dark input:focus, body.dark textarea:focus {
-      outline-color: var(--color-primary);
-      box-shadow: 0 0 0 2px var(--color-primary);
-    }
+    body.dark input:focus, body.dark textarea:focus { outline-color: var(--color-primary); box-shadow: 0 0 0 2px var(--color-primary); }
 
-    .nav-link {
-      @apply text-gray-100 hover:text-primary transition;
-    }
+    .nav-link { @apply text-gray-100 hover:text-primary transition; }
     body.scrolled .nav-link { @apply text-gray-800 hover:text-primary; }
     body.dark.scrolled .nav-link { @apply text-gray-100 hover:text-primary; }
 
-    /* Floating WhatsApp Button */
-    .pulse {
-      animation: pulse 1.8s infinite;
-    }
+    .pulse { animation: pulse 1.8s infinite; }
     @keyframes pulse {
       0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
       70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
@@ -55,15 +44,19 @@
     }
   </style>
 </head>
+
 <body class="bg-gray-100 text-gray-900 transition-colors duration-500">
 
-  <!-- Header -->
-  <header id="navbar" class="fixed w-full top-0 z-50 transition-colors duration-500">
+  <!-- ================= HEADER ================= -->
+  <header id="navbar" class="fixed w-full top-0 z-50 transition-colors duration-500 bg-transparent">
     <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-      <div><img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto" /></div>
+      <div>
+        <img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto" />
+      </div>
       <nav class="hidden md:flex space-x-8 font-medium">
         <a href="#produk" class="nav-link">Produk</a>
         <a href="#tentang" class="nav-link">Tentang</a>
+        <a href="#galeri" class="nav-link">Galeri</a>
         <a href="#lokasi" class="nav-link">Lokasi</a>
         <a href="#kontak" class="nav-link">Kontak</a>
       </nav>
@@ -72,127 +65,146 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- ================= HERO SECTION ================= -->
   <section class="pt-20 min-h-[400px] bg-green-700 bg-opacity-90 flex flex-col items-center justify-center text-center text-white px-4" data-aos="fade-up">
     <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg max-w-3xl">Electric Vehicles Designed For Adventure</h1>
     <p class="mt-4 text-lg md:text-xl max-w-2xl">Belanja produk-produk premium dari 4 merek utama kami yang siap mendukung petualangan Anda.</p>
     <a href="#produk" class="mt-8 px-6 py-3 bg-primary rounded-lg font-semibold hover:bg-primary-dark transition">Lihat Produk</a>
   </section>
 
-  <!-- Produk Section -->
-  <section id="produk" class="bg-white py-16 px-6" data-aos="fade-up">
+  <!-- ================= PRODUK SECTION ================= -->
+  <section id="produk" class="bg-white dark:bg-gray-900 py-16 px-6" data-aos="fade-up" data-aos-delay="100">
     <div class="max-w-7xl mx-auto text-center">
-      <h2 class="text-4xl font-bold text-gray-800 mb-4">Produk Unggulan Kami</h2>
-      <p class="text-gray-500 max-w-xl mx-auto mb-10">Kami menawarkan 4 merek utama untuk berbagai kebutuhan dan gaya hidup Anda.</p>
+      <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-4">Produk Unggulan Kami</h2>
+      <p class="text-gray-500 dark:text-gray-300 max-w-xl mx-auto mb-10">Kami menawarkan 4 merek utama untuk berbagai kebutuhan dan gaya hidup Anda.</p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Brand cards -->
-        <div class="bg-gray-50 p-6 rounded-lg shadow hover:-translate-y-2 hover:shadow-xl transition transform duration-300 ease-in-out" data-aos="zoom-in">
-          <img src="asset/audio-circle.png" alt="Brand A" class="h-40 w-full object-cover rounded-md mb-4" />
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Brand A</h3>
-          <p class="text-gray-500 text-sm mb-4">Produk inovatif dengan desain elegan dan performa tinggi.</p>
+
+        <!-- Brand A -->
+        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow hover:-translate-y-2 hover:shadow-xl transition transform duration-300 ease-in-out" data-aos="zoom-in">
+          <img src="asset/brand-a.jpg" alt="Brand A" class="h-40 w-full object-cover rounded-md mb-4" />
+          <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">Brand A</h3>
+          <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Produk inovatif dengan desain elegan dan performa tinggi.</p>
           <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition duration-300">Lihat Detail</a>
         </div>
-        <div class="bg-gray-50 p-6 rounded-lg shadow hover:-translate-y-2 hover:shadow-xl transition transform duration-300 ease-in-out" data-aos="zoom-in">
-          <img src="asset/steg.png" alt="Brand B" class="h-40 w-full object-cover rounded-md mb-4" />
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Brand B</h3>
-          <p class="text-gray-500 text-sm mb-4">Kualitas suara jernih dengan teknologi terbaru untuk mobil Anda.</p>
+
+        <!-- Brand B -->
+        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow hover:-translate-y-2 hover:shadow-xl transition transform duration-300 ease-in-out" data-aos="zoom-in" data-aos-delay="50">
+          <img src="asset/brand-b.jpg" alt="Brand B" class="h-40 w-full object-cover rounded-md mb-4" />
+          <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">Brand B</h3>
+          <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Solusi audio terbaik dengan kualitas suara menakjubkan.</p>
           <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition duration-300">Lihat Detail</a>
         </div>
-        <div class="bg-gray-50 p-6 rounded-lg shadow hover:-translate-y-2 hover:shadow-xl transition transform duration-300 ease-in-out" data-aos="zoom-in">
-          <img src="asset/audiocircle.png" alt="Brand C" class="h-40 w-full object-cover rounded-md mb-4" />
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Brand C</h3>
-          <p class="text-gray-500 text-sm mb-4">Speaker berkualitas tinggi dengan bass yang kuat dan jernih.</p>
+
+        <!-- Brand C -->
+        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow hover:-translate-y-2 hover:shadow-xl transition transform duration-300 ease-in-out" data-aos="zoom-in" data-aos-delay="100">
+          <img src="asset/brand-c.jpg" alt="Brand C" class="h-40 w-full object-cover rounded-md mb-4" />
+          <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">Brand C</h3>
+          <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Audio mobil dengan bass kuat dan treble jernih.</p>
           <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition duration-300">Lihat Detail</a>
         </div>
-        <div class="bg-gray-50 p-6 rounded-lg shadow hover:-translate-y-2 hover:shadow-xl transition transform duration-300 ease-in-out" data-aos="zoom-in">
-          <img src="asset/teac.png" alt="Brand D" class="h-40 w-full object-cover rounded-md mb-4" />
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Brand D</h3>
-          <p class="text-gray-500 text-sm mb-4">Perangkat audio mobil yang tahan lama dan mudah dioperasikan.</p>
+
+        <!-- Brand D -->
+        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow hover:-translate-y-2 hover:shadow-xl transition transform duration-300 ease-in-out" data-aos="zoom-in" data-aos-delay="150">
+          <img src="asset/brand-d.jpg" alt="Brand D" class="h-40 w-full object-cover rounded-md mb-4" />
+          <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">Brand D</h3>
+          <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Kombinasi desain stylish dengan performa audio superior.</p>
           <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition duration-300">Lihat Detail</a>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Tentang Section -->
+  <!-- ================= TENTANG SECTION ================= -->
   <section id="tentang" class="relative h-[600px] flex items-center justify-center overflow-hidden">
     <img src="asset/about-image.jpg" alt="Tentang Kami" class="absolute inset-0 w-full h-full object-cover" />
     <div class="absolute inset-0 bg-black/40 dark:bg-black/60"></div>
     <div class="relative z-10 max-w-3xl mx-auto px-6 text-center text-white">
       <h2 class="text-4xl lg:text-5xl font-bold mb-6">Tentang Concerto Audio</h2>
-      <p class="text-lg lg:text-xl leading-relaxed mb-8 text-gray-200">
-        Kami menghadirkan pengalaman audio terbaik melalui koleksi produk pilihan 
-        dari berbagai brand ternama. Suara berkualitas tinggi yang mendekatkan Anda 
-        pada harmoni musik sejati.
-      </p>
-      <a href="#kontak" class="inline-block px-8 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition">
-        Hubungi Kami
-      </a>
+      <p class="text-lg lg:text-xl leading-relaxed mb-8 text-gray-200">Kami menghadirkan pengalaman audio terbaik melalui koleksi produk pilihan dari berbagai brand ternama. Suara berkualitas tinggi yang mendekatkan Anda pada harmoni musik sejati.</p>
+      <a href="#kontak" class="inline-block px-8 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition">Hubungi Kami</a>
     </div>
   </section>
 
-  <!-- Galeri Section -->
+  <!-- ================= GALERI SECTION ================= -->
   <section id="galeri" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
     <div class="max-w-7xl mx-auto px-6 lg:px-12">
       <h2 class="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100">Galeri Produk</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <img src="asset/gallery1.jpg" alt="Produk 1" class="w-full h-[300px] object-cover rounded-2xl shadow-md hover:scale-105 transition duration-500" />
-        <img src="asset/gallery2.jpg" alt="Produk 2" class="w-full h-[300px] object-cover rounded-2xl shadow-md hover:scale-105 transition duration-500" />
-        <img src="asset/gallery3.jpg" alt="Produk 3" class="w-full h-[300px] object-cover rounded-2xl shadow-md hover:scale-105 transition duration-500" />
-        <img src="asset/gallery4.jpg" alt="Produk 4" class="w-full h-[300px] object-cover rounded-2xl shadow-md hover:scale-105 transition duration-500" />
-        <img src="asset/gallery5.jpg" alt="Produk 5" class="w-full h-[300px] object-cover rounded-2xl shadow-md hover:scale-105 transition duration-500" />
-        <img src="asset/gallery6.jpg" alt="Produk 6" class="w-full h-[300px] object-cover rounded-2xl shadow-md hover:scale-105 transition duration-500" />
+        <img src="asset/gallery1.jpg" alt="Produk 1" class="w-full h-[300px] object-cover rounded-xl shadow-md hover:scale-105 transition duration-500"/>
+        <img src="asset/gallery2.jpg" alt="Produk 2" class="w-full h-[300px] object-cover rounded-xl shadow-md hover:scale-105 transition duration-500"/>
+        <img src="asset/gallery3.jpg" alt="Produk 3" class="w-full h-[300px] object-cover rounded-xl shadow-md hover:scale-105 transition duration-500"/>
+        <img src="asset/gallery4.jpg" alt="Produk 4" class="w-full h-[300px] object-cover rounded-xl shadow-md hover:scale-105 transition duration-500"/>
+        <img src="asset/gallery5.jpg" alt="Produk 5" class="w-full h-[300px] object-cover rounded-xl shadow-md hover:scale-105 transition duration-500"/>
+        <img src="asset/gallery6.jpg" alt="Produk 6" class="w-full h-[300px] object-cover rounded-xl shadow-md hover:scale-105 transition duration-500"/>
       </div>
     </div>
   </section>
 
-  <!-- Lokasi Section -->
-  <section id="lokasi" class="py-20 bg-white">
+  <!-- ================= LOKASI SECTION ================= -->
+  <section id="lokasi" class="py-20 bg-white dark:bg-gray-800 transition-colors duration-500">
     <div class="max-w-4xl mx-auto text-center px-6">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Lokasi Kami</h2>
-      <p class="mb-8 text-gray-600 text-lg">Kunjungi toko kami di Malang untuk melihat produk secara langsung dan mendapatkan layanan terbaik.</p>
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 dark:text-gray-100">Lokasi Kami</h2>
+      <p class="mb-8 text-gray-600 dark:text-gray-300 text-lg">Kunjungi toko kami di Malang untuk melihat produk secara langsung dan mendapatkan layanan terbaik.</p>
       <div class="w-full h-[400px] rounded-lg overflow-hidden shadow-lg">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.4341341606987!2d112.64151287319781!3d-7.95400817924835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629b6215718c1%3A0x141cdb0f044d67d5!2sConcerto%20Audio%20dan%20Peredam%20Mobil%20Malang%20Raya!5e0!3m2!1sid!2sid!4v1758389695497!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.123456789!2d112.637!3d-7.980!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd628123456789%3A0xabcdef123456!2sConcerto%20Audio%20Malang!5e0!3m2!1sen!2sid!4v1695299999999!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
   </section>
 
-  <!-- Kontak Section -->
-  <section id="kontak" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+  <!-- ================= KONTAK SECTION ================= -->
+  <section id="kontak" class="py-20 bg-white dark:bg-gray-900 transition-colors duration-500">
     <div class="max-w-4xl mx-auto text-center px-6">
       <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 dark:text-gray-100">Hubungi Kami</h2>
       <p class="mb-8 text-gray-600 dark:text-gray-300 text-lg">Ingin konsultasi atau cek produk lebih lanjut? Hubungi kami langsung melalui WhatsApp.</p>
-      <a href="https://wa.me/6281234567890" target="_blank" class="flex items-center justify-center gap-2 mx-auto px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition shadow pulse w-max">
-        📲 Chat WhatsApp
-      </a>
+      <!-- Floating WA sudah ada, tombol tambahan tidak perlu -->
     </div>
   </section>
 
-  <footer class="bg-gray-100 dark:bg-gray-800 py-8 text-center text-gray-700 dark:text-gray-300 transition-colors duration-500">
+  <!-- ================= FLOATING WHATSAPP BUTTON ================= -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <a href="https://wa.me/6281234567890" target="_blank"
+       class="bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition transform hover:scale-110 pulse"
+       aria-label="Chat via WhatsApp">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+        <path d="M20.52 3.48A11.88 11.88 0 0 0 12 .25C5.5.25.25 5.5.25 12c0 2.1.55 4.16 1.58 5.96L.25 23.75l5.92-1.55A11.7 11.7 0 0 0 12 23.75c6.5 0 11.75-5.25 11.75-11.75 0-3.14-1.23-6.1-3.48-8.27Zm-8.52 17.02c-1.84 0-3.63-.5-5.2-1.45l-.37-.22-3.52.92.94-3.44-.24-.35a9.3 9.3 0 0 1-1.45-5.1c0-5.17 4.2-9.37 9.37-9.37 2.5 0 4.85.97 6.62 2.73a9.32 9.32 0 0 1 2.75 6.63c0 5.18-4.2 9.38-9.38 9.38Z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-gray-100 dark:bg-gray-900 py-8 text-center text-gray-700 dark:text-gray-300 transition-colors duration-500">
     <p>© 2025 Concerto Audio Malang. All rights reserved.</p>
   </footer>
 
-  <!-- AOS JS -->
+  <!-- ================= SCRIPTS ================= -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
 
+    // Dark Mode Toggle
     const toggleBtn = document.getElementById('darkToggle');
     const body = document.body;
     if (localStorage.getItem('theme') === 'dark') { body.classList.add('dark'); toggleBtn.textContent = '☀️'; }
     toggleBtn.addEventListener('click', () => {
       body.classList.toggle('dark');
-      if (body.classList.contains('dark')) { toggleBtn.textContent = '☀️'; localStorage.setItem('theme','dark'); } 
-      else { toggleBtn.textContent = '🌙'; localStorage.setItem('theme','light'); }
+      toggleBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
+      localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
     });
 
+    // Navbar scroll effect
     const navbar = document.getElementById("navbar");
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) { document.body.classList.add("scrolled"); navbar.classList.add("bg-white", "shadow-md"); navbar.classList.remove("bg-transparent"); } 
-      else { document.body.classList.remove("scrolled"); navbar.classList.remove("bg-white", "shadow-md"); navbar.classList.add("bg-transparent"); }
+      if (window.scrollY > 50) {
+        document.body.classList.add("scrolled");
+        navbar.classList.add("bg-white", "dark:bg-gray-900", "shadow-md");
+        navbar.classList.remove("bg-transparent");
+      } else {
+        document.body.classList.remove("scrolled");
+        navbar.classList.remove("bg-white", "dark:bg-gray-900", "shadow-md");
+        navbar.classList.add("bg-transparent");
+      }
     });
-    navbar.classList.add("bg-transparent");
   </script>
 </body>
 </html>
-
