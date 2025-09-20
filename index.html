@@ -18,7 +18,7 @@
     :root { --color-primary:#006241; --color-primary-dark:#00491f; }
 
     body { font-family:'Inter',sans-serif; margin:0; padding:0; background-color:#f9fafb; color:#111827; transition: background-color 0.5s, color 0.5s; }
-     body.dark { background-color:#121212; color:#e0e0e0; }
+    body.dark { background-color:#121212; color:#e0e0e0; }
     body.dark header, body.dark footer { background-color:#1e1e1e; color:#cfcfcf; }
   }
 
@@ -69,7 +69,7 @@
     footer svg:hover { transform:scale(1.2); fill: var(--color-primary); }
   </style>
 </head>
-<body class="transition-colors duration-500">
+<body class="transition-colors duration-500 text-gray-900 dark:text-gray-200">
 
 <!-- Navbar -->
 <header id="navbar" class="fixed w-full top-0 z-50 bg-transparent">
@@ -321,6 +321,10 @@ body.dark .floating-btn a::before {
     toggleBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
     localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
   });
+  const toggleBtn = document.getElementById('darkToggle');
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+});
 
   // ===== Navbar Scroll Effect =====
   const updateNavbar = () => {
@@ -356,6 +360,7 @@ body.dark .floating-btn a::before {
 </script>
 </body>
 </html>
+
 
 
 
