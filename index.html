@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Concerto-Audio-Malang</title>
+  <title>Concerto Audio Malang - Produk Audio Premium</title>
+  <meta name="description" content="Concerto Audio Malang menyediakan produk audio mobil premium dari 4 merek utama dengan layanan profesional dan instalasi terpercaya." />
+  <meta name="keywords" content="audio mobil, concerto audio, produk audio, audio mobil malang, speaker mobil, audio premium" />
+  <meta name="author" content="Concerto Audio Malang" />
+  
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
   tailwind.config = {
-    darkMode: 'class', // <-- ini penting
+    darkMode: 'class',
     theme: {
       extend: {
         colors: {
@@ -18,300 +22,318 @@
       }
     }
   }
-</script>
-
+  </script>
+  
   <!-- Alpine.js CDN -->
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- AOS (Animate On Scroll) CSS & JS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
   <style>
-    /* Warna custom */
     :root {
-      --primary: #006241; /* hijau khas Rivian */
+      --primary: #006241;
       --primary-dark: #00491f;
     }
     .bg-primary { background-color: var(--primary); }
     .bg-primary-dark { background-color: var(--primary-dark); }
     .text-primary { color: var(--primary); }
+    /* Fade-in-up animation fallback */
+    @keyframes fade-in-up {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in-up {
+      animation: fade-in-up 0.6s ease-out forwards;
+    }
   </style>
-  <style>
-  @keyframes fade-in-up {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  .animate-fade-in-up {
-    animation: fade-in-up 0.6s ease-out forwards;
-  }
-</style>
-
 </head>
-  <body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100" x-data x-init="AOS.init({ once: true, duration: 700 })">
 
   <!-- Header -->
-<header class="fixed w-full bg-white dark:bg-gray-900 z-50 shadow-md">
-  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+  <header class="fixed w-full bg-white dark:bg-gray-900 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto" loading="lazy" />
+      </div>
 
-    <!-- KIRI: Logo -->
-    <div class="flex-shrink-0">
-      <img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto" />
-    </div>
+      <!-- Menu Desktop -->
+      <nav class="hidden md:flex space-x-8 text-gray-800 dark:text-gray-100 font-medium">
+        <a href="#produk" class="hover:text-primary transition">Produk</a>
+        <a href="#tentang" class="hover:text-primary transition">Tentang</a>
+        <a href="#kontak" class="hover:text-primary transition">Kontak</a>
+      </nav>
 
-    <!-- TENGAH: Menu (hanya desktop) -->
-    <nav class="hidden md:flex space-x-8 text-gray-800 dark:text-gray-100 font-medium">
-      <a href="#produk" class="hover:text-primary transition">Produk</a>
-      <a href="#tentang" class="hover:text-primary transition">Tentang</a>
-      <a href="#kontak" class="hover:text-primary transition">Kontak</a>
-    </nav>
-
-    <!-- KANAN: Tombol darkmode + hamburger -->
-    <div class="flex items-center space-x-4">
-
-      <!-- Tombol Dark Mode -->
-      <button
-        x-data
-        x-init="if(localStorage.theme === 'dark') document.documentElement.classList.add('dark')"
-        @click="
-          if (document.documentElement.classList.contains('dark')) {
-            document.documentElement.classList.remove('dark');
-            localStorage.theme = 'light';
-          } else {
-            document.documentElement.classList.add('dark');
-            localStorage.theme = 'dark';
-          }
-        "
-        class="text-2xl text-gray-800 dark:text-white hover:text-primary transition"
-        aria-label="Toggle Dark Mode"
-      >
-        🌙
-      </button>
-
-      <!-- Tombol Hamburger (hanya mobile) -->
-      <div x-data="{ open: false }" class="md:hidden">
-        <button @click="open = !open" class="focus:outline-none" aria-label="Menu">
-          <svg :class="{'hidden': open, 'block': !open}" class="w-6 h-6 text-gray-800 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg :class="{'block': open, 'hidden': !open}" class="w-6 h-6 text-gray-800 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M6 18L18 6M6 6l12 12" />
-          </svg>
+      <!-- Dark Mode & Hamburger -->
+      <div class="flex items-center space-x-4">
+        <!-- Dark Mode Button -->
+        <button
+          @click="
+            if (document.documentElement.classList.contains('dark')) {
+              document.documentElement.classList.remove('dark');
+              localStorage.theme = 'light';
+            } else {
+              document.documentElement.classList.add('dark');
+              localStorage.theme = 'dark';
+            }
+          "
+          class="text-2xl text-gray-800 dark:text-white hover:text-primary transition"
+          aria-label="Toggle Dark Mode"
+          x-init="if(localStorage.theme === 'dark') document.documentElement.classList.add('dark')"
+        >
+          🌙
         </button>
 
-        <!-- Mobile menu -->
-        <div
-          x-show="open"
-          @click.outside="open = false"
-          x-transition
-          class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-40"
-          style="display: none;"
-        >
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-64 p-6 space-y-4 text-center">
-            <a href="#produk" @click="open = false" class="block text-lg font-semibold text-gray-800 dark:text-white hover:text-primary">Produk</a>
-            <a href="#tentang" @click="open = false" class="block text-lg font-semibold text-gray-800 dark:text-white hover:text-primary">Tentang</a>
-            <a href="#kontak" @click="open = false" class="block text-lg font-semibold text-gray-800 dark:text-white hover:text-primary">Kontak</a>
+        <!-- Hamburger Mobile -->
+        <div x-data="{ open: false }" class="md:hidden relative">
+          <button @click="open = !open" class="focus:outline-none" aria-label="Menu">
+            <svg :class="{'hidden': open, 'block': !open}" class="w-6 h-6 text-gray-800 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg :class="{'block': open, 'hidden': !open}" class="w-6 h-6 text-gray-800 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          <!-- Mobile menu -->
+          <div
+            x-show="open"
+            @click.outside="open = false"
+            x-transition
+            class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-40"
+            style="display: none;"
+          >
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-64 p-6 space-y-4 text-center">
+              <a href="#produk" @click="open = false" class="block text-lg font-semibold text-gray-800 dark:text-white hover:text-primary">Produk</a>
+              <a href="#tentang" @click="open = false" class="block text-lg font-semibold text-gray-800 dark:text-white hover:text-primary">Tentang</a>
+              <a href="#kontak" @click="open = false" class="block text-lg font-semibold text-gray-800 dark:text-white hover:text-primary">Kontak</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</header>
-
+  </header>
 
   <!-- Hero Section -->
-<section class="relative w-full h-screen overflow-hidden">
-  <!-- Background video -->
-  <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
-  <source src="movie.mp4" type="video/mp4">
-</video>
-  
-  <!-- Overlay konten -->
-  <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 bg-black bg-opacity-50">
-    <h1 class="text-4xl md:text-6xl font-bold text-white drop-shadow max-w-3xl">
-      Electric Vehicles Designed For Adventure
-    </h1>
-    <p class="mt-4 text-lg md:text-xl text-gray-200 max-w-2xl">
-      Belanja produk‑produk premium dari 4 merek utama kami yang siap mendukung petualangan Anda.
-    </p>
-    <a
-      href="#produk"
-      class="mt-8 px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition"
+  <section class="relative w-full h-screen overflow-hidden pt-16">
+    <!-- Background video -->
+    <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+      <source src="movie.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Overlay content -->
+    <div
+      class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 bg-black bg-opacity-60"
+      data-aos="fade-up"
     >
-      Lihat Produk
-    </a>
-  </div>
-</section>
-  
-<!-- Section Produk -->
-<section id="produk" class="bg-white dark:bg-gray-900 py-16 px-6">
-  <div class="max-w-7xl mx-auto text-center">
-    <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">Produk Unggulan Kami</h2>
-    <p class="text-gray-500 dark:text-gray-300 max-w-xl mx-auto mb-10">
-      Kami menawarkan 4 merek utama untuk berbagai kebutuhan dan gaya hidup Anda.
-    </p>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <!-- Brand A -->
-      <div
-        x-data
-        x-intersect="$el.classList.add('animate-fade-in-up')"
-        class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300 ease-in-out"
-      >
-        <div class="overflow-hidden rounded-md">
-          <img src="asset/audio-circle.png" alt="Brand A"
-               class="h-40 w-full object-cover rounded-md transform hover:scale-105 transition duration-500 ease-in-out">
-        </div>
-        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mt-4">Brand A</h3>
-        <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Produk inovatif dengan desain elegan dan performa tinggi.</p>
-        <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors duration-300">Lihat Detail</a>
-      </div>
-
-      <!-- Brand B -->
-      <div
-        x-data
-        x-intersect="$el.classList.add('animate-fade-in-up')"
-        class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300 ease-in-out"
-      >
-        <div class="overflow-hidden rounded-md">
-          <img src="asset/steg.png" alt="Brand B"
-               class="h-40 w-full object-cover rounded-md transform hover:scale-105 transition duration-500 ease-in-out">
-        </div>
-        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mt-4">Brand B</h3>
-        <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Teknologi ramah lingkungan untuk mobilitas masa depan.</p>
-        <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors duration-300">Lihat Detail</a>
-      </div>
-
-      <!-- Brand C -->
-      <div
-        x-data
-        x-intersect="$el.classList.add('animate-fade-in-up')"
-        class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300 ease-in-out"
-      >
-        <div class="overflow-hidden rounded-md">
-          <img src="asset/zelos.png" alt="Brand C"
-               class="h-40 w-full object-cover rounded-md transform hover:scale-105 transition duration-500 ease-in-out">
-        </div>
-        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mt-4">Brand C</h3>
-        <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Performa kuat dipadukan dengan kenyamanan maksimal.</p>
-        <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors duration-300">Lihat Detail</a>
-      </div>
-
-      <!-- Brand D -->
-      <div
-        x-data
-        x-intersect="$el.classList.add('animate-fade-in-up')"
-        class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300 ease-in-out"
-      >
-        <div class="overflow-hidden rounded-md">
-          <img src="asset/dios-dela.png" alt="Brand D"
-               class="h-40 w-full object-cover rounded-md transform hover:scale-105 transition duration-500 ease-in-out">
-        </div>
-        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mt-4">Brand D</h3>
-        <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Inovasi futuristik yang mendefinisikan ulang petualangan.</p>
-        <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors duration-300">Lihat Detail</a>
-      </div>
-    </div>
-  </div>
-</section>
-          
-  <!-- Section Tentang Kami -->
-<section id="tentang" class="bg-gray-100 dark:bg-gray-900 py-20 px-6">
-  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-
-    <!-- Gambar -->
-    <div class="w-full md:w-1/2">
-      <img src="asset/pengerjaan5-min.jpeg" alt="Tentang Kami" class="rounded-lg shadow-lg object-cover w-full h-80 md:h-full" />
-    </div>
-
-    <!-- Teks -->
-    <div class="w-full md:w-1/2">
-      <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">Tentang Concerto Audio</h2>
-      <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-        Concerto Audio Malang telah menjadi solusi audio mobil sejak tahun 2010...
+      <h1 class="text-4xl md:text-6xl font-bold text-white drop-shadow max-w-3xl">
+        Electric Vehicles Designed For Adventure
+      </h1>
+      <p class="mt-4 text-lg md:text-xl text-gray-200 max-w-2xl">
+        Belanja produk‑produk premium dari 4 merek utama kami yang siap mendukung petualangan Anda.
       </p>
-      <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-        Dengan tim profesional dan layanan instalasi terpercaya...
-      </p>
-      <a href="#kontak" class="inline-block px-6 py-3 bg-primary text-white rounded hover:bg-primary-dark transition">
-        Hubungi Kami
+      <a
+        href="#produk"
+        class="mt-8 px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition"
+      >
+        Lihat Produk
       </a>
     </div>
-  </div>
-</section>
-    
-    <!-- Footer -->
-<footer class="bg-gradient-to-br from-gray-900 to-gray-800 text-gray-300 dark:from-black dark:to-gray-900 pt-12 px-6">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 pb-10">
+  </section>
 
-    <!-- Tentang -->
-    <div class="space-y-4">
-      <h4 class="text-lg font-semibold text-white">Tentang Kami</h4>
-      <p class="text-sm leading-relaxed text-gray-400">
-        Concerto Audio Malang hadir untuk memberikan produk audio berkualitas tinggi dan layanan terbaik bagi pelanggan di seluruh Indonesia.
+  <!-- Produk Section -->
+  <section id="produk" class="bg-white dark:bg-gray-900 py-16 px-6">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4" data-aos="fade-up">Produk Unggulan Kami</h2>
+      <p class="text-gray-500 dark:text-gray-300 max-w-xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="100">
+        Kami menawarkan 4 merek utama untuk berbagai kebutuhan dan gaya hidup Anda.
       </p>
-    </div>
 
-    <!-- Navigasi -->
-    <div class="space-y-4">
-      <h4 class="text-lg font-semibold text-white">Navigasi</h4>
-      <ul class="space-y-2 text-sm">
-        <li><a href="#produk" class="hover:text-white transition">Produk</a></li>
-        <li><a href="#tentang" class="hover:text-white transition">Tentang</a></li>
-        <li><a href="#kontak" class="hover:text-white transition">Kontak</a></li>
-        <li><a href="#home" class="hover:text-white transition">Beranda</a></li>
-      </ul>
-    </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Brand A -->
+        <div
+          class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300 ease-in-out"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <div class="overflow-hidden rounded-md">
+            <img
+              src="asset/audio-circle.png"
+              alt="Brand A"
+              class="h-40 w-full object-cover rounded-md transform hover:scale-105 transition duration-500 ease-in-out"
+              loading="lazy"
+            />
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 dark:text-white mt-4">Brand A</h3>
+          <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Produk inovatif dengan desain elegan dan performa tinggi.</p>
+          <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors duration-300">Lihat Detail</a>
+        </div>
 
-    <!-- Kontak -->
-    <div class="space-y-4">
-      <h4 class="text-lg font-semibold text-white">Kontak</h4>
-      <p class="text-sm text-gray-400">
-        <span class="block">📧 <a href="mailto:info@concertoaudio.com" class="hover:text-white transition">info@concertoaudio.com</a></span>
-        <span class="block">📞 <a href="tel:+628123456789" class="hover:text-white transition">+62 812‑3456‑789</a></span>
+        <!-- Brand B -->
+        <div
+          class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300 ease-in-out"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <div class="overflow-hidden rounded-md">
+            <img
+              src="asset/steg.png"
+              alt="Brand B"
+              class="h-40 w-full object-cover rounded-md transform hover:scale-105 transition duration-500 ease-in-out"
+              loading="lazy"
+            />
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 dark:text-white mt-4">Brand B</h3>
+          <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Teknologi ramah lingkungan untuk mobilitas masa depan.</p>
+          <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors duration-300">Lihat Detail</a>
+        </div>
+
+        <!-- Brand C -->
+        <div
+          class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300 ease-in-out"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
+          <div class="overflow-hidden rounded-md">
+            <img
+              src="asset/zelos.png"
+              alt="Brand C"
+              class="h-40 w-full object-cover rounded-md transform hover:scale-105 transition duration-500 ease-in-out"
+              loading="lazy"
+            />
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 dark:text-white mt-4">Brand C</h3>
+          <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Performa kuat dipadukan dengan kenyamanan maksimal.</p>
+          <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors duration-300">Lihat Detail</a>
+        </div>
+
+        <!-- Brand D -->
+        <div
+          class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300 ease-in-out"
+          data-aos="fade-up"
+          data-aos-delay="500"
+        >
+          <div class="overflow-hidden rounded-md">
+            <img
+              src="asset/dios-dela.png"
+              alt="Brand D"
+              class="h-40 w-full object-cover rounded-md transform hover:scale-105 transition duration-500 ease-in-out"
+              loading="lazy"
+            />
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 dark:text-white mt-4">Brand D</h3>
+          <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Inovasi futuristik yang mendefinisikan ulang petualangan.</p>
+          <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors duration-300">Lihat Detail</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tentang Kami Section -->
+  <section id="tentang" class="bg-gray-100 dark:bg-gray-900 py-20 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12" data-aos="fade-up">
+      <!-- Image -->
+      <div class="w-full md:w-1/2">
+        <img src="asset/pengerjaan5-min.jpeg" alt="Tentang Kami" class="rounded-lg shadow-lg object-cover w-full h-80 md:h-full" loading="lazy" />
+      </div>
+
+      <!-- Text -->
+      <div class="w-full md:w-1/2">
+        <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">Tentang Concerto Audio</h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+          Concerto Audio Malang telah menjadi solusi audio mobil sejak tahun 2010...
+        </p>
+        <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+          Dengan tim profesional dan layanan instalasi terpercaya...
+        </p>
+        <a href="#kontak" class="inline-block px-6 py-3 bg-primary text-white rounded hover:bg-primary-dark transition">
+          Hubungi Kami
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontak Section -->
+  <section id="kontak" class="bg-white dark:bg-gray-900 py-16 px-6">
+    <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+      <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-6">Kontak Kami</h2>
+      <p class="text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto">
+        Jangan ragu menghubungi kami untuk pertanyaan atau konsultasi produk.
       </p>
-      <p class="text-sm text-gray-400">📍 Jl. Contoh No. 1, Malang, Indonesia</p>
-    </div>
-
-    <!-- Sosial Media -->
-    <div class="space-y-4">
-      <h4 class="text-lg font-semibold text-white">Ikuti Kami</h4>
-      <div class="flex space-x-4 text-xl">
-        <a href="#" class="hover:text-white transition" aria-label="Facebook">🔵</a>
-        <a href="#" class="hover:text-white transition" aria-label="Instagram">📸</a>
-        <a href="#" class="hover:text-white transition" aria-label="YouTube">▶️</a>
-      </div>
-      <div class="text-sm space-y-1 mt-4 text-gray-400">
-        <a href="#" class="hover:text-white transition block">Kebijakan Privasi</a>
-        <a href="#" class="hover:text-white transition block">Syarat & Ketentuan</a>
+      <div class="space-y-4 text-gray-700 dark:text-gray-300">
+        <p><strong>Email:</strong> <a href="mailto:info@concertoaudio.com" class="text-primary hover:underline">info@concertoaudio.com</a></p>
+        <p><strong>Telepon:</strong> <a href="tel:+628123456789" class="text-primary hover:underline">+62 812‑3456‑789</a></p>
+        <p><strong>Alamat:</strong> Jl. Contoh No. 1, Malang, Indonesia</p>
       </div>
     </div>
+  </section>
 
-  </div>
+  <!-- Footer -->
+  <footer class="bg-gradient-to-br from-gray-900 to-gray-800 text-gray-300 dark:from-black dark:to-gray-900 pt-12 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 pb-10">
+      <!-- Tentang -->
+      <div class="space-y-4">
+        <h4 class="text-lg font-semibold text-white">Tentang Kami</h4>
+        <p class="text-sm leading-relaxed text-gray-400">
+          Concerto Audio Malang hadir untuk memberikan produk audio berkualitas tinggi dan layanan terbaik bagi pelanggan di seluruh Indonesia.
+        </p>
+      </div>
 
-  <!-- Garis & Copyright -->
-  <div class="border-t border-gray-700 mt-10 pt-6 text-center text-sm text-gray-500">
-    © 2025 Concerto Audio. All rights reserved.
-  </div>
-</footer>
+      <!-- Navigasi -->
+      <div class="space-y-4">
+        <h4 class="text-lg font-semibold text-white">Navigasi</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#produk" class="hover:text-white transition">Produk</a></li>
+          <li><a href="#tentang" class="hover:text-white transition">Tentang</a></li>
+          <li><a href="#kontak" class="hover:text-white transition">Kontak</a></li>
+          <li><a href="#hero" class="hover:text-white transition">Beranda</a></li>
+        </ul>
+      </div>
 
+      <!-- Kontak -->
+      <div class="space-y-4">
+        <h4 class="text-lg font-semibold text-white">Kontak</h4>
+        <p class="text-sm text-gray-400">
+          <span class="block">📧 <a href="mailto:info@concertoaudio.com" class="hover:text-white transition">info@concertoaudio.com</a></span>
+          <span class="block">📞 <a href="tel:+628123456789" class="hover:text-white transition">+62 812-3456-789</a></span>
+          <span class="block">📍 Jl. Contoh No. 1, Malang</span>
+        </p>
+      </div>
+
+      <!-- Sosial Media -->
+      <div class="space-y-4">
+        <h4 class="text-lg font-semibold text-white">Sosial Media</h4>
+        <div class="flex space-x-4">
+          <a href="#" aria-label="Facebook" class="hover:text-white transition">📘</a>
+          <a href="#" aria-label="Twitter" class="hover:text-white transition">🐦</a>
+          <a href="#" aria-label="Instagram" class="hover:text-white transition">📸</a>
+          <a href="#" aria-label="LinkedIn" class="hover:text-white transition">🔗</a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 pt-6 pb-8 text-center text-sm text-gray-400">
+      &copy; 2025 Concerto Audio Malang. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Initialize AOS after page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      AOS.init({
+        once: true,
+        duration: 700,
+      });
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
