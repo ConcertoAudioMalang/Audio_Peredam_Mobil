@@ -24,7 +24,7 @@
   }
   </script>
   
-  <!-- Alpine.js CDN -->
+  <!-- Alpine.js CDN for interactivity -->
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   <!-- AOS (Animate On Scroll) CSS & JS -->
@@ -39,7 +39,7 @@
     .bg-primary { background-color: var(--primary); }
     .bg-primary-dark { background-color: var(--primary-dark); }
     .text-primary { color: var(--primary); }
-    /* Fade-in-up animation fallback */
+
     @keyframes fade-in-up {
       0% {
         opacity: 0;
@@ -56,8 +56,13 @@
   </style>
 </head>
 
-<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100" x-data x-init="AOS.init({ once: true, duration: 700 })">
-
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100" x-data="{ darkMode: localStorage.theme === 'dark' }" 
+  x-init="
+    if (darkMode) { document.documentElement.classList.add('dark') } 
+    AOS.init({ once: true, duration: 700 });
+  " 
+  :class="{ 'dark': darkMode }"
+>
   <!-- Header -->
   <header class="fixed w-full bg-white dark:bg-gray-900 z-50 shadow-md">
     <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
@@ -75,23 +80,22 @@
 
       <!-- Dark Mode & Hamburger -->
       <div class="flex items-center space-x-4">
-        <!-- Dark Mode Button -->
+        <!-- Dark Mode Toggle Button -->
         <button
           @click="
-            if (document.documentElement.classList.contains('dark')) {
-              document.documentElement.classList.remove('dark');
-              localStorage.theme = 'light';
-            } else {
+            darkMode = !darkMode;
+            if(darkMode) {
               document.documentElement.classList.add('dark');
               localStorage.theme = 'dark';
+            } else {
+              document.documentElement.classList.remove('dark');
+              localStorage.theme = 'light';
             }
           "
           class="text-2xl text-gray-800 dark:text-white hover:text-primary transition"
           aria-label="Toggle Dark Mode"
-          x-init="if(localStorage.theme === 'dark') document.documentElement.classList.add('dark')"
-        >
-          🌙
-        </button>
+          x-text="darkMode ? '🌞' : '🌙'"
+        ></button>
 
         <!-- Hamburger Mobile -->
         <div x-data="{ open: false }" class="md:hidden relative">
@@ -126,7 +130,7 @@
   <!-- Hero Section -->
   <section class="relative w-full h-screen overflow-hidden pt-16">
     <!-- Background video -->
-    <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+    <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0" loading="lazy">
       <source src="asset/video1.mp4" type="video/mp4" />
     </video>
 
@@ -192,8 +196,9 @@
               loading="lazy"
             />
           </div>
+          <h3 class="text-xl font-semibold text
           <h3 class="text-xl font-semibold text-gray-800 dark:text-white mt-4">Brand B</h3>
-          <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Teknologi ramah lingkungan untuk mobilitas masa depan.</p>
+          <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Kualitas suara jernih dengan teknologi terbaru untuk mobil Anda.</p>
           <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors duration-300">Lihat Detail</a>
         </div>
 
@@ -205,14 +210,14 @@
         >
           <div class="overflow-hidden rounded-md">
             <img
-              src="asset/zelos.png"
+              src="asset/audiocircle.png"
               alt="Brand C"
               class="h-40 w-full object-cover rounded-md transform hover:scale-105 transition duration-500 ease-in-out"
               loading="lazy"
             />
           </div>
           <h3 class="text-xl font-semibold text-gray-800 dark:text-white mt-4">Brand C</h3>
-          <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Performa kuat dipadukan dengan kenyamanan maksimal.</p>
+          <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Speaker berkualitas tinggi dengan bass yang kuat dan jernih.</p>
           <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors duration-300">Lihat Detail</a>
         </div>
 
@@ -224,114 +229,72 @@
         >
           <div class="overflow-hidden rounded-md">
             <img
-              src="asset/dios-dela.png"
+              src="asset/teac.png"
               alt="Brand D"
               class="h-40 w-full object-cover rounded-md transform hover:scale-105 transition duration-500 ease-in-out"
               loading="lazy"
             />
           </div>
           <h3 class="text-xl font-semibold text-gray-800 dark:text-white mt-4">Brand D</h3>
-          <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Inovasi futuristik yang mendefinisikan ulang petualangan.</p>
+          <p class="text-gray-500 dark:text-gray-300 text-sm mb-4">Perangkat audio mobil yang tahan lama dan mudah dioperasikan.</p>
           <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors duration-300">Lihat Detail</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Tentang Kami Section -->
-  <section id="tentang" class="bg-gray-100 dark:bg-gray-900 py-20 px-6">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12" data-aos="fade-up">
-      <!-- Image -->
-      <div class="w-full md:w-1/2">
-        <img src="asset/pengerjaan5-min.jpeg" alt="Tentang Kami" class="rounded-lg shadow-lg object-cover w-full h-80 md:h-full" loading="lazy" />
-      </div>
-
-      <!-- Text -->
-      <div class="w-full md:w-1/2">
-        <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">Tentang Concerto Audio</h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-          Concerto Audio Malang telah menjadi solusi audio mobil sejak tahun 2010...
-        </p>
-        <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-          Dengan tim profesional dan layanan instalasi terpercaya...
-        </p>
-        <a href="#kontak" class="inline-block px-6 py-3 bg-primary text-white rounded hover:bg-primary-dark transition">
-          Hubungi Kami
-        </a>
-      </div>
+  <!-- Tentang Section -->
+  <section id="tentang" class="py-16 px-6 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white">Tentang Concerto Audio Malang</h2>
+      <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto">
+        Concerto Audio Malang adalah penyedia produk audio mobil premium di Malang dengan pengalaman bertahun-tahun dalam menghadirkan solusi audio terbaik untuk kendaraan Anda. Kami menghadirkan layanan instalasi profesional dan produk berkualitas dari merek-merek terkemuka untuk memastikan kepuasan pelanggan.
+      </p>
     </div>
   </section>
 
   <!-- Kontak Section -->
-  <section id="kontak" class="bg-white dark:bg-gray-900 py-16 px-6">
+  <section id="kontak" class="py-16 px-6 bg-white dark:bg-gray-900">
     <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
-      <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-6">Kontak Kami</h2>
-      <p class="text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto">
-        Jangan ragu menghubungi kami untuk pertanyaan atau konsultasi produk.
-      </p>
-      <div class="space-y-4 text-gray-700 dark:text-gray-300">
-        <p><strong>Email:</strong> <a href="mailto:info@concertoaudio.com" class="text-primary hover:underline">info@concertoaudio.com</a></p>
-        <p><strong>Telepon:</strong> <a href="tel:+628123456789" class="text-primary hover:underline">+62 812‑3456‑789</a></p>
-        <p><strong>Alamat:</strong> Jl. Contoh No. 1, Malang, Indonesia</p>
-      </div>
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 dark:text-white">Kontak Kami</h2>
+      <p class="mb-6 text-gray-600 dark:text-gray-300 text-lg">Hubungi kami untuk informasi lebih lanjut atau konsultasi produk.</p>
+
+      <form class="max-w-xl mx-auto space-y-6" action="#" method="POST" novalidate>
+        <div>
+          <label for="name" class="block mb-2 text-left text-gray-700 dark:text-gray-300 font-medium">Nama</label>
+          <input type="text" id="name" name="name" required
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+        </div>
+
+        <div>
+          <label for="email" class="block mb-2 text-left text-gray-700 dark:text-gray-300 font-medium">Email</label>
+          <input type="email" id="email" name="email" required
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+        </div>
+
+        <div>
+          <label for="message" class="block mb-2 text-left text-gray-700 dark:text-gray-300 font-medium">Pesan</label>
+          <textarea id="message" name="message" rows="4" required
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white resize-none"></textarea>
+        </div>
+
+        <button type="submit"
+          class="px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition duration-300">
+          Kirim Pesan
+        </button>
+      </form>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gradient-to-br from-gray-900 to-gray-800 text-gray-300 dark:from-black dark:to-gray-900 pt-12 px-6">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 pb-10">
-      <!-- Tentang -->
-      <div class="space-y-4">
-        <h4 class="text-lg font-semibold text-white">Tentang Kami</h4>
-        <p class="text-sm leading-relaxed text-gray-400">
-          Concerto Audio Malang hadir untuk memberikan produk audio berkualitas tinggi dan layanan terbaik bagi pelanggan di seluruh Indonesia.
-        </p>
-      </div>
-
-      <!-- Navigasi -->
-      <div class="space-y-4">
-        <h4 class="text-lg font-semibold text-white">Navigasi</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="#produk" class="hover:text-white transition">Produk</a></li>
-          <li><a href="#tentang" class="hover:text-white transition">Tentang</a></li>
-          <li><a href="#kontak" class="hover:text-white transition">Kontak</a></li>
-          <li><a href="#hero" class="hover:text-white transition">Beranda</a></li>
-        </ul>
-      </div>
-
-      <!-- Kontak -->
-      <div class="space-y-4">
-        <h4 class="text-lg font-semibold text-white">Kontak</h4>
-        <p class="text-sm text-gray-400">
-          <span class="block">📧 <a href="mailto:info@concertoaudio.com" class="hover:text-white transition">info@concertoaudio.com</a></span>
-          <span class="block">📞 <a href="tel:+628123456789" class="hover:text-white transition">+62 812-3456-789</a></span>
-          <span class="block">📍 Jl. Contoh No. 1, Malang</span>
-        </p>
-      </div>
-
-      <!-- Sosial Media -->
-      <div class="space-y-4">
-        <h4 class="text-lg font-semibold text-white">Sosial Media</h4>
-        <div class="flex space-x-4">
-          <a href="#" aria-label="Facebook" class="hover:text-white transition">📘</a>
-          <a href="#" aria-label="Twitter" class="hover:text-white transition">🐦</a>
-          <a href="#" aria-label="Instagram" class="hover:text-white transition">📸</a>
-          <a href="#" aria-label="LinkedIn" class="hover:text-white transition">🔗</a>
-        </div>
-      </div>
-    </div>
-    <div class="border-t border-gray-700 pt-6 pb-8 text-center text-sm text-gray-400">
-      &copy; 2025 Concerto Audio Malang. All rights reserved.
-    </div>
+  <footer class="bg-gray-100 dark:bg-gray-900 py-8 text-center text-gray-700 dark:text-gray-400">
+    <p>© 2025 Concerto Audio Malang. All rights reserved.</p>
   </footer>
 
+  <!-- Initialize AOS -->
   <script>
-    // Initialize AOS after page loads
-    document.addEventListener('DOMContentLoaded', () => {
-      AOS.init({
-        once: true,
-        duration: 700,
-      });
+    document.addEventListener('alpine:init', () => {
+      AOS.init();
     });
   </script>
 </body>
