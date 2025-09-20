@@ -15,20 +15,18 @@
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
   <style>
+    /* Colors */
     :root {
       --color-primary: #006241;
       --color-primary-dark: #00491f;
     }
 
-    .bg-primary {
-      background-color: var(--color-primary);
-    }
-    .bg-primary-dark {
-      background-color: var(--color-primary-dark);
-    }
-    .text-primary {
-      color: var(--color-primary);
-    }
+    .bg-primary { background-color: var(--color-primary); }
+    .bg-primary-dark { background-color: var(--color-primary-dark); }
+    .text-primary { color: var(--color-primary); }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
 
     /* Dark mode */
     body.dark {
@@ -40,37 +38,68 @@
       background-color: #1e1e1e;
       color: #cfcfcf;
     }
-    body.dark a:hover {
-      color: var(--color-primary);
-    }
-    body.dark .bg-white {
-      background-color: #1e1e1e !important;
-    }
-    body.dark .bg-gray-50 {
-      background-color: #222 !important;
-    }
-    body.dark input,
-    body.dark textarea {
+    body.dark a:hover { color: var(--color-primary); }
+    body.dark .bg-white { background-color: #1e1e1e !important; }
+    body.dark .bg-gray-50 { background-color: #222 !important; }
+    body.dark input, body.dark textarea {
       background-color: #333;
       border-color: #555;
       color: #eee;
     }
-    body.dark input:focus,
-    body.dark textarea:focus {
+    body.dark input:focus, body.dark textarea:focus {
       outline-color: var(--color-primary);
       box-shadow: 0 0 0 2px var(--color-primary);
     }
 
-    /* Navbar link styling */
+    /* Navbar link styling (plain CSS: @apply not usable in CDN) */
     .nav-link {
-      @apply text-gray-100 hover:text-primary transition;
+      color: #f8fafc; /* text-gray-100 */
+      text-decoration: none;
+      transition: color .2s ease;
     }
     body.scrolled .nav-link {
-      @apply text-gray-800 hover:text-primary;
+      color: #1f2937; /* text-gray-800 */
     }
     body.dark.scrolled .nav-link {
-      @apply text-gray-100 hover:text-primary;
+      color: #f8fafc;
     }
+
+    /* Efek Pulse untuk Floating Button */
+    .pulse { animation: pulse 1.8s infinite; }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(34,197,94,0); }
+      100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+    }
+
+    /* Tooltip Floating Button */
+    .floating-btn { display: inline-block; }
+    .floating-btn .tooltip {
+      visibility: hidden;
+      opacity: 0;
+      width: max-content;
+      background-color: rgba(17,24,39,0.95);
+      color: #fff;
+      text-align: center;
+      padding: 6px 10px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 120%;
+      right: 50%;
+      transform: translateX(50%);
+      white-space: nowrap;
+      font-size: 14px;
+      transition: opacity .2s ease, transform .2s ease;
+      pointer-events: none;
+    }
+    .floating-btn:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(50%) translateY(-4px);
+    }
+
+    /* small helper so tooltip inside fixed container is positioned correctly */
+    .floating-btn.fixed { position: fixed; }
   </style>
 </head>
 
@@ -156,224 +185,90 @@
     </div>
   </section>
 
-  <!-- Tentang Section -->
-  <section id="tentang" class="py-16 px-6 bg-gray-50" data-aos="fade-up" data-aos-delay="600">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Tentang Concerto Audio Malang</h2>
-      <p class="text-gray-600 leading-relaxed text-lg max-w-3xl mx-auto">
-        Concerto Audio Malang adalah penyedia produk audio mobil premium di Malang dengan pengalaman bertahun-tahun dalam menghadirkan solusi audio terbaik untuk kendaraan Anda. Kami menghadirkan layanan instalasi profesional dan produk berkualitas dari merek-merek terkemuka untuk memastikan kepuasan pelanggan.
+  <!-- About Section (Fullwidth) -->
+  <section id="tentang" class="relative h-[600px] flex items-center justify-center overflow-hidden">
+    <img src="asset/about-image.jpg" alt="Tentang Kami" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/40 dark:bg-black/60"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-6 text-center text-white">
+      <h2 class="text-4xl lg:text-5xl font-bold mb-6">Tentang Concerto Audio</h2>
+      <p class="text-lg lg:text-xl leading-relaxed mb-8 text-gray-200">
+        Kami menghadirkan pengalaman audio terbaik melalui koleksi produk pilihan dari berbagai brand ternama. Suara berkualitas tinggi yang mendekatkan Anda pada harmoni musik sejati.
       </p>
+      <a href="#kontak" class="inline-block px-8 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition">Hubungi Kami</a>
     </div>
   </section>
 
-  <!-- About Section (Fullwidth) -->
-<section id="tentang" class="relative h-[600px] flex items-center justify-center overflow-hidden">
-  <!-- Background Gambar -->
-  <img src="asset/about-image.jpg" 
-       alt="Tentang Kami" 
-       class="absolute inset-0 w-full h-full object-cover" />
+  <!-- Galeri Masonry (overlay) -->
+  <section id="galeri" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-gray-800 text-center mb-12">Galeri Produk</h2>
+      <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
+        <div class="mb-4 break-inside-avoid relative group overflow-hidden rounded-xl shadow">
+          <img src="asset/produk1.jpg" alt="Produk 1" class="w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <h3 class="text-white text-xl font-semibold mb-2">Produk 1</h3>
+            <a href="#" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition">Lihat Detail</a>
+          </div>
+        </div>
 
-  <!-- Overlay gelap biar teks kebaca -->
-  <div class="absolute inset-0 bg-black/40 dark:bg-black/60"></div>
+        <div class="mb-4 break-inside-avoid relative group overflow-hidden rounded-xl shadow">
+          <img src="asset/produk2.jpg" alt="Produk 2" class="w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <h3 class="text-white text-xl font-semibold mb-2">Produk 2</h3>
+            <a href="#" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition">Lihat Detail</a>
+          </div>
+        </div>
 
-  <!-- Konten Teks -->
-  <div class="relative z-10 max-w-3xl mx-auto px-6 text-center text-white">
-    <h2 class="text-4xl lg:text-5xl font-bold mb-6">
-      Tentang Concerto Audio
-    </h2>
-    <p class="text-lg lg:text-xl leading-relaxed mb-8 text-gray-200">
-      Kami menghadirkan pengalaman audio terbaik melalui koleksi produk pilihan 
-      dari berbagai brand ternama. Suara berkualitas tinggi yang mendekatkan Anda 
-      pada harmoni musik sejati.
-    </p>
-    <a href="#kontak" 
-       class="inline-block px-8 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition">
-      Hubungi Kami
+        <div class="mb-4 break-inside-avoid relative group overflow-hidden rounded-xl shadow">
+          <img src="asset/produk3.jpg" alt="Produk 3" class="w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <h3 class="text-white text-xl font-semibold mb-2">Produk 3</h3>
+            <a href="#" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition">Lihat Detail</a>
+          </div>
+        </div>
+
+        <div class="mb-4 break-inside-avoid relative group overflow-hidden rounded-xl shadow">
+          <img src="asset/produk4.jpg" alt="Produk 4" class="w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <h3 class="text-white text-xl font-semibold mb-2">Produk 4</h3>
+            <a href="#" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition">Lihat Detail</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontak Section (simple CTA) -->
+  <section id="kontak" class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto text-center px-6">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Hubungi Kami</h2>
+      <p class="mb-8 text-gray-600 text-lg">Ingin konsultasi atau cek produk lebih lanjut? Hubungi kami langsung melalui WhatsApp atau kunjungi lokasi kami.</p>
+
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer"
+           class="flex items-center justify-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition shadow">
+          📲 WhatsApp Kami
+        </a>
+
+        <a href="https://maps.google.com/?q=Concerto+Audio+Malang" target="_blank" rel="noopener noreferrer"
+           class="flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition shadow">
+          📍 Lihat Lokasi
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating WhatsApp Button + Tooltip -->
+  <div class="floating-btn fixed bottom-6 right-6 z-50">
+    <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer"
+       class="bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition transform hover:scale-110 pulse"
+       aria-label="Chat via WhatsApp">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+        <path d="M20.52 3.48A11.88 11.88 0 0 0 12 .25C5.5.25.25 5.5.25 12c0 2.1.55 4.16 1.58 5.96L.25 23.75l5.92-1.55A11.7 11.7 0 0 0 12 23.75c6.5 0 11.75-5.25 11.75-11.75 0-3.14-1.23-6.1-3.48-8.27Zm-8.52 17.02c-1.84 0-3.63-.5-5.2-1.45l-.37-.22-3.52.92.94-3.44-.24-.35a9.3 9.3 0 0 1-1.45-5.1c0-5.17 4.2-9.37 9.37-9.37 2.5 0 4.85.97 6.62 2.73a9.32 9.32 0 0 1 2.75 6.63c0 5.18-4.2 9.38-9.38 9.38Zm5.17-7.05c-.28-.14-1.67-.83-1.93-.92-.26-.1-.45-.14-.63.14-.19.28-.72.92-.88 1.1-.16.19-.33.21-.61.07-.28-.14-1.2-.44-2.28-1.4-.84-.74-1.4-1.64-1.56-1.92-.16-.28-.02-.43.12-.57.12-.12.28-.33.42-.49.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.63-1.52-.87-2.09-.23-.56-.46-.49-.63-.5h-.54c-.19 0-.49.07-.74.35-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2 3.06 4.86 4.29.68.29 1.21.46 1.63.59.68.21 1.3.18 1.79.11.55-.08 1.67-.68 1.9-1.33.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33Z"/>
+      </svg>
     </a>
+    <div class="tooltip">Chat WhatsApp</div>
   </div>
-</section>
-  
-  <!-- Galeri Section -->
-<section id="galeri" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <!-- Judul -->
-    <h2 class="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100">
-      Galeri Produk
-    </h2>
-
-    <!-- Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div>
-        <img src="asset/gallery1.jpg" alt="Produk 1"
-             class="w-full h-[300px] object-cover rounded-2xl shadow-md hover:scale-105 transition duration-500" />
-      </div>
-      <div>
-        <img src="asset/gallery2.jpg" alt="Produk 2"
-             class="w-full h-[300px] object-cover rounded-2xl shadow-md hover:scale-105 transition duration-500" />
-      </div>
-      <div>
-        <img src="asset/gallery3.jpg" alt="Produk 3"
-             class="w-full h-[300px] object-cover rounded-2xl shadow-md hover:scale-105 transition duration-500" />
-      </div>
-      <div>
-        <img src="asset/gallery4.jpg" alt="Produk 4"
-             class="w-full h-[300px] object-cover rounded-2xl shadow-md hover:scale-105 transition duration-500" />
-      </div>
-      <div>
-        <img src="asset/gallery5.jpg" alt="Produk 5"
-             class="w-full h-[300px] object-cover rounded-2xl shadow-md hover:scale-105 transition duration-500" />
-      </div>
-      <div>
-        <img src="asset/gallery6.jpg" alt="Produk 6"
-             class="w-full h-[300px] object-cover rounded-2xl shadow-md hover:scale-105 transition duration-500" />
-      </div>
-    </div>
-  </div>
-</section>
-
-  <!-- Galeri Section -->
-<section id="galeri" class="py-20 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-4xl font-bold text-gray-800 text-center mb-12">Galeri Produk</h2>
-
-    <!-- Masonry Grid -->
-    <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
-      
-      <!-- Item -->
-      <div class="mb-4 break-inside-avoid relative group overflow-hidden rounded-xl shadow">
-        <img src="asset/produk1.jpg" alt="Produk 1" class="w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <h3 class="text-white text-xl font-semibold mb-2">Produk 1</h3>
-          <a href="#" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition">Lihat Detail</a>
-        </div>
-      </div>
-
-      <!-- Item -->
-      <div class="mb-4 break-inside-avoid relative group overflow-hidden rounded-xl shadow">
-        <img src="asset/produk2.jpg" alt="Produk 2" class="w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <h3 class="text-white text-xl font-semibold mb-2">Produk 2</h3>
-          <a href="#" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition">Lihat Detail</a>
-        </div>
-      </div>
-
-      <!-- Item -->
-      <div class="mb-4 break-inside-avoid relative group overflow-hidden rounded-xl shadow">
-        <img src="asset/produk3.jpg" alt="Produk 3" class="w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <h3 class="text-white text-xl font-semibold mb-2">Produk 3</h3>
-          <a href="#" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition">Lihat Detail</a>
-        </div>
-      </div>
-
-      <!-- Item -->
-      <div class="mb-4 break-inside-avoid relative group overflow-hidden rounded-xl shadow">
-        <img src="asset/produk4.jpg" alt="Produk 4" class="w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <h3 class="text-white text-xl font-semibold mb-2">Produk 4</h3>
-          <a href="#" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition">Lihat Detail</a>
-        </div>
-      </div>
-
-      <!-- Tambahin item lainnya dengan format sama -->
-    </div>
-  </div>
-</section>
-
-  <!-- Kontak Section -->
-<section id="kontak" class="py-20 bg-white">
-  <div class="max-w-4xl mx-auto text-center px-6">
-    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Hubungi Kami</h2>
-    <p class="mb-8 text-gray-600 text-lg">
-      Ingin konsultasi atau cek produk lebih lanjut? Hubungi kami langsung melalui WhatsApp atau kunjungi lokasi kami.
-    </p>
-
-    <div class="flex flex-col sm:flex-row justify-center gap-4">
-      <!-- Tombol WhatsApp -->
-      <a href="https://wa.me/6281234567890" target="_blank"
-         class="flex items-center justify-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition shadow">
-        📲 WhatsApp Kami
-      </a>
-
-      <!-- Tombol Lokasi -->
-      <a href="https://maps.google.com/?q=Concerto+Audio+Malang" target="_blank"
-         class="flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition shadow">
-        📍 Lihat Lokasi
-      </a>
-    </div>
-  </div>
-</section>
-  
-<!-- Floating WhatsApp Button + Tooltip -->
-<div class="floating-btn fixed bottom-6 right-6 z-50">
-  <a href="https://wa.me/6281234567890" target="_blank"
-     class="bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition transform hover:scale-110 pulse"
-     aria-label="Chat via WhatsApp">
-    <!-- Ikon WhatsApp -->
-    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
-      <path d="M20.52 3.48A11.88 11.88 0 0 0 12 .25C5.5.25.25 5.5.25 12c0 2.1.55 4.16 1.58 5.96L.25 23.75l5.92-1.55A11.7 11.7 0 0 0 12 23.75c6.5 0 11.75-5.25 11.75-11.75 0-3.14-1.23-6.1-3.48-8.27Zm-8.52 17.02c-1.84 0-3.63-.5-5.2-1.45l-.37-.22-3.52.92.94-3.44-.24-.35a9.3 9.3 0 0 1-1.45-5.1c0-5.17 4.2-9.37 9.37-9.37 2.5 0 4.85.97 6.62 2.73a9.32 9.32 0 0 1 2.75 6.63c0 5.18-4.2 9.38-9.38 9.38Zm5.17-7.05c-.28-.14-1.67-.83-1.93-.92-.26-.1-.45-.14-.63.14-.19.28-.72.92-.88 1.1-.16.19-.33.21-.61.07-.28-.14-1.2-.44-2.28-1.4-.84-.74-1.4-1.64-1.56-1.92-.16-.28-.02-.43.12-.57.12-.12.28-.33.42-.49.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.63-1.52-.87-2.09-.23-.56-.46-.49-.63-.5h-.54c-.19 0-.49.07-.74.35-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2 3.06 4.86 4.29.68.29 1.21.46 1.63.59.68.21 1.3.18 1.79.11.55-.08 1.67-.68 1.9-1.33.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33Z"/>
-    </svg>
-  </a>
-  <!-- Tooltip -->
-  <div class="tooltip">Chat WhatsApp</div>
-</div>
-
-  <!-- Ikon WhatsApp -->
-  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
-    <path d="M20.52 3.48A11.88 11.88 0 0 0 12 .25C5.5.25.25 5.5.25 12c0 2.1.55 4.16 1.58 5.96L.25 23.75l5.92-1.55A11.7 11.7 0 0 0 12 23.75c6.5 0 11.75-5.25 11.75-11.75 0-3.14-1.23-6.1-3.48-8.27Zm-8.52 17.02c-1.84 0-3.63-.5-5.2-1.45l-.37-.22-3.52.92.94-3.44-.24-.35a9.3 9.3 0 0 1-1.45-5.1c0-5.17 4.2-9.37 9.37-9.37 2.5 0 4.85.97 6.62 2.73a9.32 9.32 0 0 1 2.75 6.63c0 5.18-4.2 9.38-9.38 9.38Zm5.17-7.05c-.28-.14-1.67-.83-1.93-.92-.26-.1-.45-.14-.63.14-.19.28-.72.92-.88 1.1-.16.19-.33.21-.61.07-.28-.14-1.2-.44-2.28-1.4-.84-.74-1.4-1.64-1.56-1.92-.16-.28-.02-.43.12-.57.12-.12.28-.33.42-.49.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.63-1.52-.87-2.09-.23-.56-.46-.49-.63-.5h-.54c-.19 0-.49.07-.74.35-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2 3.06 4.86 4.29.68.29 1.21.46 1.63.59.68.21 1.3.18 1.79.11.55-.08 1.67-.68 1.9-1.33.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33Z"/>
-  </svg>
-</a>
-
-  <!-- Ikon WhatsApp -->
-  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
-    <path d="M20.52 3.48A11.88 11.88 0 0 0 12 .25C5.5.25.25 5.5.25 12c0 2.1.55 4.16 1.58 5.96L.25 23.75l5.92-1.55A11.7 11.7 0 0 0 12 23.75c6.5 0 11.75-5.25 11.75-11.75 0-3.14-1.23-6.1-3.48-8.27Zm-8.52 17.02c-1.84 0-3.63-.5-5.2-1.45l-.37-.22-3.52.92.94-3.44-.24-.35a9.3 9.3 0 0 1-1.45-5.1c0-5.17 4.2-9.37 9.37-9.37 2.5 0 4.85.97 6.62 2.73a9.32 9.32 0 0 1 2.75 6.63c0 5.18-4.2 9.38-9.38 9.38Zm5.17-7.05c-.28-.14-1.67-.83-1.93-.92-.26-.1-.45-.14-.63.14-.19.28-.72.92-.88 1.1-.16.19-.33.21-.61.07-.28-.14-1.2-.44-2.28-1.4-.84-.74-1.4-1.64-1.56-1.92-.16-.28-.02-.43.12-.57.12-.12.28-.33.42-.49.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.63-1.52-.87-2.09-.23-.56-.46-.49-.63-.5h-.54c-.19 0-.49.07-.74.35-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2 3.06 4.86 4.29.68.29 1.21.46 1.63.59.68.21 1.3.18 1.79.11.55-.08 1.67-.68 1.9-1.33.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33Z"/>
-  </svg>
-</a>
-  
-  /* Efek Pulse untuk Floating Button */
-.pulse {
-  animation: pulse 1.8s infinite;
-}
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
-  }
-}
-
-  /* Tooltip Floating Button */
-.floating-btn {
-  position: relative;
-  display: inline-block;
-}
-
-.floating-btn .tooltip {
-  visibility: hidden;
-  opacity: 0;
-  width: max-content;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 6px 10px;
-  border-radius: 6px;
-  position: absolute;
-  bottom: 120%; /* posisi di atas tombol */
-  right: 50%;
-  transform: translateX(50%);
-  white-space: nowrap;
-  font-size: 14px;
-  transition: opacity 0.3s;
-}
-
-.floating-btn:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
-}
 
   <!-- Footer -->
   <footer class="bg-gray-100 py-8 text-center text-gray-700 transition-colors duration-500">
@@ -383,60 +278,47 @@
   <!-- AOS JS -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 800,
-      once: true,
-    });
+    AOS.init({ duration: 800, once: true });
 
-    // Dark mode toggle
+    // Dark mode toggle (safe)
     const toggleBtn = document.getElementById('darkToggle');
     const body = document.body;
-
-    if (localStorage.getItem('theme') === 'dark') {
-      body.classList.add('dark');
-      toggleBtn.textContent = '☀️';
-    }
-
-    toggleBtn.addEventListener('click', () => {
-      body.classList.toggle('dark');
-      if (body.classList.contains('dark')) {
+    if (toggleBtn) {
+      if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark');
         toggleBtn.textContent = '☀️';
-        localStorage.setItem('theme', 'dark');
       } else {
         toggleBtn.textContent = '🌙';
-        localStorage.setItem('theme', 'light');
       }
-    });
 
-    // Navbar scroll effect
+      toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark');
+        if (body.classList.contains('dark')) {
+          toggleBtn.textContent = '☀️';
+          localStorage.setItem('theme', 'dark');
+        } else {
+          toggleBtn.textContent = '🌙';
+          localStorage.setItem('theme', 'light');
+        }
+      });
+    }
+
+    // Navbar scroll effect (safe)
     const navbar = document.getElementById("navbar");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        document.body.classList.add("scrolled");
-        navbar.classList.add("bg-white", "shadow-md");
-        navbar.classList.remove("bg-transparent");
-      } else {
-        document.body.classList.remove("scrolled");
-        navbar.classList.remove("bg-white", "shadow-md");
-        navbar.classList.add("bg-transparent");
-      }
-    });
-    navbar.classList.add("bg-transparent");
+    if (navbar) {
+      navbar.classList.add("bg-transparent");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          document.body.classList.add("scrolled");
+          navbar.classList.add("bg-white", "shadow-md");
+          navbar.classList.remove("bg-transparent");
+        } else {
+          document.body.classList.remove("scrolled");
+          navbar.classList.remove("bg-white", "shadow-md");
+          navbar.classList.add("bg-transparent");
+        }
+      });
+    }
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
