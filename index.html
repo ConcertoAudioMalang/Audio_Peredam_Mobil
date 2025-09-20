@@ -174,10 +174,82 @@
   </div>
 
   <!-- ================= FOOTER ================= -->
-  <footer class="bg-gray-100 dark:bg-gray-900 py-8 text-center text-gray-700 dark:text-gray-300 transition-colors duration-500">
-    <p>© 2025 Concerto Audio Malang. All rights reserved.</p>
-  </footer>
+  
+<footer class="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 py-12 transition-colors duration-500">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
+    <!-- Logo & Brand -->
+    <div class="flex flex-col items-start gap-4">
+      <img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto" />
+      <p class="text-sm">
+        Menyediakan produk audio mobil premium dengan layanan profesional di Malang.
+      </p>
+    </div>
+
+    <!-- Navigasi Footer -->
+    <div class="flex flex-col gap-2">
+      <h3 class="font-semibold mb-2 text-gray-800 dark:text-gray-100">Menu</h3>
+      <a href="#produk" class="hover:text-primary transition">Produk</a>
+      <a href="#tentang" class="hover:text-primary transition">Tentang</a>
+      <a href="#galeri" class="hover:text-primary transition">Galeri</a>
+      <a href="#kontak" class="hover:text-primary transition">Kontak</a>
+    </div>
+
+    <!-- Sosial Media -->
+    <div class="flex flex-col gap-4">
+      <h3 class="font-semibold mb-2 text-gray-800 dark:text-gray-100">Ikuti Kami</h3>
+      <div class="flex gap-4">
+        <!-- TikTok -->
+        <a href="#" class="social-icon" aria-label="TikTok">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="w-6 h-6 fill-current">
+            <path d="M128 0C57.308 0 0 57.308 0 128c0 70.693 57.308 128 128 128 70.693 0 128-57.307 128-128C256 57.308 198.693 0 128 0zm51.95 128.23c-12.207-.014-23.842-5.456-31.968-14.62v62.077c0 18.485-14.978 33.462-33.462 33.462-18.485 0-33.462-14.978-33.462-33.462 0-18.485 14.977-33.462 33.462-33.462 3.534 0 6.95.57 10.077 1.615V90.462c-4.053-1.16-8.464-1.78-13.077-1.78-30.67 0-55.538 24.867-55.538 55.538s24.867 55.538 55.538 55.538c30.671 0 55.538-24.867 55.538-55.538V128h-.002z"/>
+          </svg>
+        </a>
+
+        <!-- YouTube -->
+        <a href="#" class="social-icon" aria-label="YouTube">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-6 h-6 fill-current">
+            <path d="M549.655 124.083c-6.281-23.721-24.789-42.279-48.45-48.547C458.946 64 288 64 288 64s-170.946 0-213.205 11.536c-23.661 6.268-42.169 24.826-48.45 48.547C16 166.372 16 256 16 256s0 89.628 10.345 131.917c6.281 23.721 24.789 42.279 48.45 48.547C117.054 448 288 448 288 448s170.946 0 213.205-11.536c23.661-6.268 42.169-24.826 48.45-48.547C560 345.628 560 256 560 256s0-89.628-10.345-131.917zM232 334V178l142 78-142 78z"/>
+          </svg>
+        </a>
+
+        <!-- Instagram -->
+        <a href="#" class="social-icon" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-6 h-6 fill-current">
+            <path d="M224 202.66A53.34 53.34 0 1 0 277.34 256 53.38 53.38 0 0 0 224 202.66zm124.71-41a54.18 54.18 0 0 0-30.12-30.13C296.69 128 224 128 224 128s-72.69 0-94.59 3.53a54.18 54.18 0 0 0-30.12 30.13C96 155.31 96 224 96 224s0 68.69 3.53 94.59a54.18 54.18 0 0 0 30.12 30.13C151.31 352 224 352 224 352s72.69 0 94.59-3.53a54.18 54.18 0 0 0 30.12-30.13C352 292.69 352 224 352 224s0-68.69-3.29-62.34zM224 338a84 84 0 1 1 84-84 84.1 84.1 0 0 1-84 84zm85.33-148a19.2 19.2 0 1 1 19.2-19.2 19.19 19.19 0 0 1-19.2 19.2z"/>
+          </svg>
+        </a>
+
+        <!-- Facebook -->
+        <a href="#" class="social-icon" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-6 h-6 fill-current">
+            <path d="M279.14 288l14.22-92.66h-88.91V127.8c0-25.35 12.42-50.06 52.24-50.06H293V6.26S259.57 0 225.36 0C141.09 0 89.6 54.42 89.6 154.44v41.9H0v92.66h89.6V512h107.72V288z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Copyright -->
+  <div class="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+    &copy; 2025 Concerto Audio Malang. All rights reserved.
+  </div>
+</footer>
+
+<!-- CSS Animasi Hover -->
+<style>
+  .social-icon {
+    display: inline-flex;
+    transition: transform 0.3s ease, color 0.3s ease;
+    color: inherit;
+  }
+  .social-icon:hover {
+    transform: translateY(-5px) scale(1.1);
+    color: var(--color-primary);
+  }
+</style>
+  
   <!-- ================= SCRIPTS ================= -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
@@ -209,4 +281,5 @@
   </script>
 </body>
 </html>
+
 
