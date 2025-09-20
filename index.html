@@ -15,39 +15,39 @@
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
   <style>
-    /* === Colors & Dark Mode === */
     :root { --color-primary:#006241; --color-primary-dark:#00491f; }
-    body { font-family:'Inter',sans-serif; margin:0;padding:0; background-color:#f9fafb; color:#111827; transition: background-color 0.5s, color 0.5s; }
+
+    body { font-family:'Inter',sans-serif; margin:0; padding:0; background-color:#f9fafb; color:#111827; transition: background-color 0.5s, color 0.5s; }
     body.dark { background-color:#121212; color:#e0e0e0; }
     body.dark header, body.dark footer { background-color:#1e1e1e; color:#cfcfcf; }
 
     a { text-decoration:none; }
-    img { display:block; max-width:100%; }
+    img, video { display:block; max-width:100%; }
 
-    /* === Header / Navbar === */
-    #navbar { position:fixed; top:0; width:100%; z-index:50; transition: background-color 0.5s, box-shadow 0.5s; }
-    #navbar.scrolled { box-shadow:0 4px 10px rgba(0,0,0,0.1); }
-    .nav-link { transition: color 0.3s; }
+    /* Navbar */
+    #navbar { transition: background-color 0.5s, box-shadow 0.5s; }
+    .nav-link { color:inherit; font-weight:500; transition: color 0.3s; }
     .nav-link:hover { color:var(--color-primary); }
 
-    /* === Hero Section === */
-    .hero-section { min-height:400px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative; overflow:hidden; }
-    .hero-section h1, .hero-section p { opacity:0; transform:translateY(20px); animation: fadeInUp 1s forwards; }
+    /* Hero */
+    .hero-section h1, .hero-section p, .hero-section a { opacity:0; transform:translateY(20px); animation: fadeInUp 1s forwards; }
     .hero-section h1 { animation-delay:0.3s; }
     .hero-section p { animation-delay:0.6s; }
+    .hero-section a { animation-delay:0.9s; }
     @keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
 
-    /* === Produk Section === */
+    /* Produk Card */
     .produk-card { background-color:#f9fafb; border-radius:1rem; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
     .produk-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
+    body.dark .produk-card { background-color:#1e1e1e; color:#e0e0e0; }
 
-    /* === Tentang Section === */
+    /* Tentang Section */
     .about-section { position:relative; display:flex; align-items:center; justify-content:center; height:600px; overflow:hidden; text-align:center; color:white; }
     .about-section img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
     .about-section .overlay { position:absolute; inset:0; background-color: rgba(0,0,0,0.5); }
     .about-section .content { position:relative; z-index:10; max-width:700px; padding:0 1rem; }
 
-    /* === Galeri Section === */
+    /* Galeri Masonry */
     .masonry { column-count:3; column-gap:1rem; }
     @media(max-width:1024px){.masonry{column-count:2;}} 
     @media(max-width:640px){.masonry{column-count:1;}}
@@ -57,185 +57,234 @@
     .masonry-item .overlay { position:absolute; inset:0; background-color:rgba(0,0,0,0.5); opacity:0; display:flex; flex-direction:column; justify-content:center; align-items:center; transition:opacity 0.5s; }
     .masonry-item:hover .overlay { opacity:1; }
 
-    /* === Floating WhatsApp === */
-    .floating-btn { position:fixed; bottom:2rem; right:2rem; z-index:50; }
+    /* Floating WhatsApp */
     .floating-btn a { display:flex; align-items:center; justify-content:center; width:56px; height:56px; background-color:#22c55e; color:white; border-radius:50%; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s; }
     .floating-btn a:hover { transform:scale(1.1); background-color:#16a34a; }
     .pulse { animation: pulse 1.8s infinite; }
     @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(34,197,94,0.7);} 70%{box-shadow:0 0 0 15px rgba(34,197,94,0);} 100%{box-shadow:0 0 0 0 rgba(34,197,94,0);} }
 
-    /* === Footer === */
+    /* Footer Icons */
     footer svg { width:24px; height:24px; margin:0 0.5rem; transition: transform 0.3s, fill 0.3s; }
     footer svg:hover { transform:scale(1.2); fill: var(--color-primary); }
   </style>
 </head>
 <body class="transition-colors duration-500">
 
-  <!-- Header / Navbar -->
-  <header id="navbar" class="bg-transparent">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-      <!-- Logo -->
-      <div><img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto" /></div>
+<!-- Navbar -->
+<header id="navbar" class="fixed w-full top-0 z-50 bg-transparent">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    <div><img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto" /></div>
 
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex space-x-8 font-medium">
-        <a href="#produk" class="nav-link text-gray-900 dark:text-gray-100">Produk</a>
-        <a href="#tentang" class="nav-link text-gray-900 dark:text-gray-100">Tentang</a>
-        <a href="#galeri" class="nav-link text-gray-900 dark:text-gray-100">Galeri</a>
-        <a href="#kontak" class="nav-link text-gray-900 dark:text-gray-100">Kontak</a>
-      </nav>
+    <nav class="hidden md:flex space-x-8 font-medium">
+      <a href="#produk" class="nav-link">Produk</a>
+      <a href="#tentang" class="nav-link">Tentang</a>
+      <a href="#galeri" class="nav-link">Galeri</a>
+      <a href="#kontak" class="nav-link">Kontak</a>
+    </nav>
 
-      <!-- Dark Mode & Hamburger -->
-      <div class="flex items-center">
-        <button id="darkToggle" aria-label="Toggle Dark Mode" class="ml-4 p-2 rounded-md border border-gray-300 dark:border-gray-600 hover:border-primary transition focus:outline-none text-gray-800 dark:text-gray-100">🌙</button>
-        <button id="hamburgerBtn" class="md:hidden ml-4 p-2 rounded-md border border-gray-300 dark:border-gray-600 hover:border-primary transition focus:outline-none">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800 dark:text-gray-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
-      </div>
+    <div class="flex items-center">
+      <button id="darkToggle" aria-label="Toggle Dark Mode" class="ml-4 p-2 rounded-md border border-gray-300 hover:border-primary transition focus:outline-none">🌙</button>
+      <button id="hamburgerBtn" class="md:hidden ml-4 p-2 rounded-md border border-gray-300 hover:border-primary transition focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
     </div>
-
-    <!-- Mobile Sidebar -->
-    <div id="mobileSidebar" class="fixed top-0 right-[-100%] h-full w-64 bg-white dark:bg-gray-900 shadow-lg z-40 transition-all duration-300">
-      <div class="flex justify-end p-4">
-        <button id="closeSidebar" class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition text-gray-900 dark:text-gray-100">✕</button>
-      </div>
-      <nav class="flex flex-col space-y-6 mt-8 px-6 text-gray-900 dark:text-gray-100">
-        <a href="#produk" class="text-lg font-semibold hover:text-primary transition">Produk</a>
-        <a href="#tentang" class="text-lg font-semibold hover:text-primary transition">Tentang</a>
-        <a href="#galeri" class="text-lg font-semibold hover:text-primary transition">Galeri</a>
-        <a href="#kontak" class="text-lg font-semibold hover:text-primary transition">Kontak</a>
-      </nav>
-    </div>
-
-    <!-- Mobile overlay -->
-    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-30 transition-opacity duration-300"></div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero-section pt-20 min-h-[400px] bg-green-700 bg-opacity-90 flex flex-col items-center justify-center text-center text-white px-4" data-aos="fade-up">
-    <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg max-w-3xl">Electric Vehicles Designed For Adventure</h1>
-    <p class="mt-4 text-lg md:text-xl max-w-2xl">Belanja produk-produk premium dari 4 merek utama kami yang siap mendukung petualangan Anda.</p>
-    <a href="#produk" class="mt-8 px-6 py-3 bg-primary rounded-lg font-semibold hover:bg-primary-dark transition">Lihat Produk</a>
-  </section>
-
-  <!-- Produk Section -->
-  <section id="produk" class="bg-white py-16 px-6" data-aos="fade-up" data-aos-delay="100">
-    <div class="max-w-7xl mx-auto text-center">
-      <h2 class="text-4xl font-bold text-gray-800 mb-4">Produk Unggulan Kami</h2>
-      <p class="text-gray-500 max-w-xl mx-auto mb-10">Kami menawarkan 4 merek utama untuk berbagai kebutuhan dan gaya hidup Anda.</p>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Produk Cards -->
-        <div class="produk-card p-6" data-aos="zoom-in" data-aos-delay="200">
-          <img src="asset/audio-circle.png" alt="Brand A" class="h-40 w-full object-cover rounded-md mb-4" />
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Brand A</h3>
-          <p class="text-gray-500 text-sm mb-4">Produk inovatif dengan desain elegan dan performa tinggi.</p>
-          <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition duration-300">Lihat Detail</a>
-        </div>
-        <div class="produk-card p-6" data-aos="zoom-in" data-aos-delay="300">
-          <img src="asset/steg.png" alt="Brand B" class="h-40 w-full object-cover rounded-md mb-4" />
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Brand B</h3>
-          <p class="text-gray-500 text-sm mb-4">Audio berkualitas tinggi dengan suara jernih dan mendalam.</p>
-          <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition duration-300">Lihat Detail</a>
-        </div>
-        <div class="produk-card p-6" data-aos="zoom-in" data-aos-delay="400">
-          <img src="asset/focal.png" alt="Brand C" class="h-40 w-full object-cover rounded-md mb-4" />
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Brand C</h3>
-          <p class="text-gray-500 text-sm mb-4">Speaker premium yang memberikan pengalaman audio luar biasa.</p>
-          <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition duration-300">Lihat Detail</a>
-        </div>
-        <div class="produk-card p-6" data-aos="zoom-in" data-aos-delay="500">
-          <img src="asset/earthquake.png" alt="Brand D" class="h-40 w-full object-cover rounded-md mb-4" />
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Brand D</h3>
-          <p class="text-gray-500 text-sm mb-4">Subwoofer dan sistem audio profesional untuk pengalaman maksimal.</p>
-          <a href="#" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition duration-300">Lihat Detail</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tentang Section -->
-  <section id="tentang" class="about-section" data-aos="fade-up" data-aos-delay="100">
-    <img src="asset/about-bg.jpg" alt="Tentang Kami" />
-    <div class="overlay"></div>
-    <div class="content">
-      <h2 class="text-4xl font-bold mb-4">Tentang Concerto Audio</h2>
-      <p class="text-lg">Kami adalah penyedia produk audio mobil premium di Malang, menawarkan berbagai merek terkemuka dengan layanan profesional dan instalasi terpercaya.</p>
-    </div>
-  </section>
-
-  <!-- Galeri Section -->
-  <section id="galeri" class="py-16 px-6 bg-gray-50" data-aos="fade-up">
-    <div class="max-w-7xl mx-auto text-center mb-10">
-      <h2 class="text-4xl font-bold text-gray-800 mb-4">Galeri</h2>
-      <p class="text-gray-500 max-w-xl mx-auto">Kumpulan foto instalasi dan produk-produk kami.</p>
-    </div>
-    <div class="masonry max-w-7xl mx-auto">
-      <div class="masonry-item"><img src="asset/gallery1.jpg" alt="Galeri 1" /></div>
-      <div class="masonry-item"><img src="asset/gallery2.jpg" alt="Galeri 2" /></div>
-      <div class="masonry-item"><img src="asset/gallery3.jpg" alt="Galeri 3" /></div>
-      <div class="masonry-item"><img src="asset/gallery4.jpg" alt="Galeri 4" /></div>
-      <div class="masonry-item"><img src="asset/gallery5.jpg" alt="Galeri 5" /></div>
-    </div>
-  </section>
-
-  <!-- Floating WhatsApp -->
-  <div class="floating-btn pulse">
-    <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="Chat via WhatsApp">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-7 h-7" viewBox="0 0 24 24">
-        <path d="M20.52 3.48A11.88 11.88 0 0 0 12 .25C5.5.25.25 5.5.25 12c0 2.1.55 4.16 1.58 5.96L.25 23.75l5.92-1.55A11.7 11.7 0 0 0 12 23.75c6.5 0 11.75-5.25 11.75-11.75 0-3.14-1.23-6.1-3.48-8.27Zm-8.52 17.02c-1.84 0-3.63-.5-5.2-1.45l-.37-.22-3.52.92.94-3.44-.24-.35a9.3 9.3 0 0 1-1.45-5.1c0-5.17 4.2-9.37 9.37-9.37 2.5 0 4.85.97 6.62 2.73a9.32 9.32 0 0 1 2.75 6.63c0 5.18-4.2 9.38-9.38 9.38Zm5.17-7.05c-.28-.14-1.67-.83-1.93-.92-.26-.1-.45-.14-.63.14-.19.28-.72.92-.88 1.1-.16.19-.33.21-.61.07-.28-.14-1.2-.44-2.28-1.4-.84-.74-1.4-1.64-1.56-1.92-.16-.28-.02-.43.12-.57.12-.12.28-.33.42-.49.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.63-1.52-.87-2.09-.23-.56-.46-.49-.63-.5h-.54c-.19 0-.49.07-.74.35-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2 3.06 4.86 4.29.68.29 1.21.46 1.63.59.68.2 1.3.17 1.79.1.55-.09 1.67-.68 1.91-1.34.24-.66.24-1.23.17-1.35-.07-.12-.26-.19-.54-.33Z"/>
-      </svg>
-    </a>
   </div>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-gray-200 py-10">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <p>&copy; 2025 Concerto Audio Malang. All rights reserved.</p>
-      <div class="flex justify-center mt-4">
-        <!-- Social Icons -->
-        <a href="https://www.instagram.com/concerto.audio" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.584.012 4.85.07 1.17.056 1.995.248 2.463.413a4.928 4.928 0 0 1 1.789 1.02 4.927 4.927 0 0 1 1.02 1.789c.165.468.357 1.293.413 2.463.058 1.266.07 1.65.07 4.85s-.012 3.584-.07 4.85c-.056 1.17-.248 1.995-.413 2.463a4.923 4.923 0 0 1-1.02 1.789 4.928 4.928 0 0 1-1.789 1.02c-.468.165-1.293.357-2.463.413-1.266.058-1.65.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.056-1.995-.248-2.463-.413a4.928 4.928 0 0 1-1.789-1.02 4.928 4.928 0 0 1-1.02-1.789c-.165-.468-.357-1.293-.413-2.463C2.212 15.584 2.2 15.2 2.2 12s.012-3.584.07-4.85c.056-1.17.248-1.995.413-2.463a4.93 4.93 0 0 1 1.02-1.789 4.93 4.93 0 0 1 1.789-1.02c.468-.165 1.293-.357 2.463-.413C8.416 2.212 8.8 2.2 12 2.2zm0 1.8c-3.165 0-3.536.012-4.78.069-1.036.048-1.598.218-1.97.363-.495.194-.848.428-1.222.802a3.138 3.138 0 0 0-.802 1.222c-.145.372-.315.934-.363 1.97-.057 1.244-.069 1.615-.069 4.78s.012 3.536.069 4.78c.048 1.036.218 1.598.363 1.97.194.495.428.848.802 1.222.374.374.727.608 1.222.802.372.145.934.315 1.97.363 1.244.057 1.615.069 4.78.069s3.536-.012 4.78-.069c1.036-.048 1.598-.218 1.97-.363.495-.194.848-.428 1.222-.802.374-.374.608-.727.802-1.222.145-.372.315-.934.363-1.97.057-1.244.069-1.615.069-4.78s-.012-3.536-.069-4.78c-.048-1.036-.218-1.598-.363-1.97a3.133 3.133 0 0 0-.802-1.222 3.133 3.133 0 0 0-1.222-.802c-.372-.145-.934-.315-1.97-.363-1.244-.057-1.615-.069-4.78-.069zm0 4.8a5.4 5.4 0 1 1 0 10.8 5.4 5.4 0 0 1 0-10.8zm0 1.8a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 0 0 0-7.2zm6.4-3.2a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg></a>
+  <!-- Mobile Sidebar -->
+  <div id="mobileSidebar" class="fixed top-0 right-[-100%] h-full w-64 bg-white dark:bg-gray-900 shadow-lg z-40 transition-all duration-300">
+    <div class="flex justify-end p-4">
+      <button id="closeSidebar" class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition">✕</button>
+    </div>
+    <nav class="flex flex-col space-y-6 mt-8 px-6">
+      <a href="#produk" class="text-lg font-semibold hover:text-primary transition">Produk</a>
+      <a href="#tentang" class="text-lg font-semibold hover:text-primary transition">Tentang</a>
+      <a href="#galeri" class="text-lg font-semibold hover:text-primary transition">Galeri</a>
+      <a href="#kontak" class="text-lg font-semibold hover:text-primary transition">Kontak</a>
+    </nav>
+  </div>
+  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-30 transition-opacity duration-300"></div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero-section relative h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden">
+  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+    <source src="asset/hero-video.mp4" type="video/mp4" />
+  </video>
+  <div class="absolute inset-0 bg-black bg-opacity-50 dark:bg-black dark:bg-opacity-60 transition-colors duration-500"></div>
+  <div class="relative z-10 max-w-3xl px-4">
+    <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg mb-4" data-aos="fade-up" data-aos-delay="200">
+      Electric Vehicles Designed For Adventure
+    </h1>
+    <p class="text-lg md:text-xl mb-8" data-aos="fade-up" data-aos-delay="400">
+      Belanja produk-produk premium dari 4 merek utama kami yang siap mendukung petualangan Anda.
+    </p>
+    <a href="#produk"
+       class="inline-block px-6 py-3 bg-primary text-white rounded-lg font-semibold shadow-lg hover:bg-primary-dark hover:scale-105 transition transform duration-300"
+       data-aos="fade-up" data-aos-delay="600">
+      Lihat Produk
+    </a>
+  </div>
+</section>
+
+<!-- Produk Section -->
+<section id="produk" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Produk Unggulan</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Contoh Produk Card -->
+      <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="100">
+        <img src="asset/produk1.jpg" alt="Produk 1" class="rounded-lg mb-4" />
+        <h3 class="font-semibold text-lg mb-2">Speaker A</h3>
+        <p class="text-sm mb-2">Audio mobil premium untuk kualitas suara terbaik.</p>
+        <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
+      </div>
+      <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="200">
+        <img src="asset/produk2.jpg" alt="Produk 2" class="rounded-lg mb-4" />
+        <h3 class="font-semibold text-lg mb-2">Subwoofer B</h3>
+        <p class="text-sm mb-2">Bass terdalam untuk pengalaman audio maksimal.</p>
+        <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
+      </div>
+      <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="300">
+        <img src="asset/produk3.jpg" alt="Produk 3" class="rounded-lg mb-4" />
+        <h3 class="font-semibold text-lg mb-2">Amplifier C</h3>
+        <p class="text-sm mb-2">Meningkatkan kualitas suara hingga 200%.</p>
+        <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
+      </div>
+      <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="400">
+        <img src="asset/produk4.jpg" alt="Produk 4" class="rounded-lg mb-4" />
+        <h3 class="font-semibold text-lg mb-2">Speaker Door D</h3>
+        <p class="text-sm mb-2">Kenyamanan audio maksimal di setiap pintu mobil.</p>
+        <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- AOS JS -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({ once:true, duration:800 });
+<!-- Tentang Section -->
+<section id="tentang" class="about-section">
+  <img src="asset/tentang-bg.jpg" alt="Tentang Kami" />
+  <div class="overlay"></div>
+  <div class="content" data-aos="fade-up">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">Tentang Concerto Audio</h2>
+    <p class="text-lg md:text-xl">
+      Kami menyediakan produk audio mobil premium dari 4 merek utama dengan layanan instalasi profesional. Kepuasan pelanggan adalah prioritas utama kami.
+    </p>
+  </div>
+</section>
 
-    // === Navbar Scroll Shadow ===
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if(window.scrollY > 10) navbar.classList.add('scrolled');
-      else navbar.classList.remove('scrolled');
-    });
+<!-- Galeri Section -->
+<section id="galeri" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Galeri Produk & Instalasi</h2>
+    <div class="masonry">
+      <div class="masonry-item" data-aos="fade-up" data-aos-delay="100">
+        <img src="asset/galeri1.jpg" alt="Galeri 1" />
+      </div>
+      <div class="masonry-item" data-aos="fade-up" data-aos-delay="200">
+        <img src="asset/galeri2.jpg" alt="Galeri 2" />
+      </div>
+      <div class="masonry-item" data-aos="fade-up" data-aos-delay="300">
+        <img src="asset/galeri3.jpg" alt="Galeri 3" />
+      </div>
+      <div class="masonry-item" data-aos="fade-up" data-aos-delay="400">
+        <img src="asset/galeri4.jpg" alt="Galeri 4" />
+      </div>
+    </div>
+  </div>
+</section>
 
-    // === Dark Mode Toggle ===
-    const darkToggle = document.getElementById('darkToggle');
-    darkToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-    });
+<!-- Kontak Section -->
+<section id="kontak" class="py-20 bg-gray-100 dark:bg-gray-800 transition-colors duration-500">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-8" data-aos="fade-up">Hubungi Kami</h2>
+    <p class="mb-8" data-aos="fade-up" data-aos-delay="200">
+      Hubungi kami untuk pemesanan, konsultasi, atau pertanyaan seputar produk.
+    </p>
+    <a href="https://wa.me/6281234567890" target="_blank"
+       class="inline-block px-6 py-3 bg-primary text-white rounded-lg font-semibold shadow-lg hover:bg-primary-dark hover:scale-105 transition transform duration-300"
+       data-aos="fade-up" data-aos-delay="400">
+      Chat WhatsApp Sekarang
+    </a>
+  </div>
+</section>
 
-    // === Mobile Sidebar Toggle ===
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const mobileSidebar = document.getElementById('mobileSidebar');
-    const closeSidebar = document.getElementById('closeSidebar');
-    const overlay = document.getElementById('overlay');
+<!-- Footer -->
+<footer class="py-10 bg-gray-200 dark:bg-gray-900 transition-colors duration-500">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <p class="mb-4">&copy; 2025 Concerto Audio Malang. Semua hak cipta dilindungi.</p>
+    <div class="flex justify-center mb-4">
+      <a href="#" aria-label="Instagram"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.07 1.87.24 2.3.4a4.6 4.6 0 011.64 1.06 4.6 4.6 0 011.06 1.64c.16.43.33 1.1.4 2.3.07 1.2.07 1.6.07 4.8s0 3.6-.07 4.8c-.07 1.2-.24 1.87-.4 2.3a4.6 4.6 0 01-1.06 1.64 4.6 4.6 0 01-1.64 1.06c-.43.16-1.1.33-2.3.4-1.2.07-1.6.07-4.8.07s-3.6 0-4.8-.07c-1.2-.07-1.87-.24-2.3-.4a4.6 4.6 0 01-1.64-1.06 4.6 4.6 0 01-1.06-1.64c-.16-.43-.33-1.1-.4-2.3C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.8c.07-1.2.24-1.87.4-2.3a4.6 4.6 0 011.06-1.64 4.6 4.6 0 011.64-1.06c.43-.16 1.1-.33 2.3-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.07-1.03.06-1.58.23-1.95.38-.48.2-.83.43-1.2.8-.37.37-.6.72-.8 1.2-.15.37-.32.92-.38 1.95-.07 1.2-.07 1.6-.07 4.7s0 3.5.07 4.7c.06 1.03.23 1.58.38 1.95.2.48.43.83.8 1.2.37.37.72.6 1.2.8.37.15.92.32 1.95.38 1.2.07 1.6.07 4.7.07s3.5 0 4.7-.07c1.03-.06 1.58-.23 1.95-.38.48-.2.83-.43 1.2-.8.37-.37.6-.72.8-1.2.15-.37.32-.92.38-1.95.07-1.2.07-1.6.07-4.7s0-3.5-.07-4.7c-.06-1.03-.23-1.58-.38-1.95-.2-.48-.43-.83-.8-1.2a3.2 3.2 0 00-1.2-.8c-.37-.15-.92-.32-1.95-.38-1.2-.07-1.6-.07-4.7-.07zm0 4.8a5.2 5.2 0 110 10.4 5.2 5.2 0 010-10.4zm0 1.8a3.4 3.4 0 100 6.8 3.4 3.4 0 000-6.8zm5.4-4.02a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z"/></svg></a>
+      <a href="#" aria-label="Facebook"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M22.67 0H1.33C.6 0 0 .6 0 1.33v21.34C0 23.4.6 24 1.33 24H12v-9.33H9.33V12H12V9.33c0-2.67 1.6-4.13 3.93-4.13 1.13 0 2.1.08 2.38.12v2.77H16.2c-1.2 0-1.44.57-1.44 1.41V12h2.85l-.37 2.67h-2.48V24h4.87c.73 0 1.33-.6 1.33-1.33V1.33C24 .6 23.4 0 22.67 0z"/></svg></a>
+    </div>
+    <p>Email: info@concertoaudio.com | Telp: 0812-3456-7890</p>
+  </div>
+</footer>
 
-    hamburgerBtn.addEventListener('click', () => {
-      mobileSidebar.style.right = '0';
-      overlay.classList.remove('hidden');
+<!-- Floating WhatsApp -->
+<div class="floating-btn pulse fixed bottom-6 right-6 z-50">
+  <a href="https://wa.me/6281234567890" target="_blank" aria-label="Chat via WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-7 h-7" viewBox="0 0 24 24">
+      <path d="M20.52 3.48A11.88 11.88 0 0 0 12 .25C5.5.25.25 5.5.25 12c0 2.1.55 4.16 1.58 5.96L.25 23.75l5.92-1.55A11.7 11.7 0 0 0 12 23.75c6.5 0 11.75-5.25 11.75-11.75 0-3.14-1.23-6.1-3.48-8.27Zm-8.52 17.02c-1.84 0-3.63-.5-5.2-1.45l-.37-.22-3.52.92.94-3.44-.24-.35a9.3 9.3 0 0 1-1.45-5.1c0-5.17 4.2-9.37 9.37-9.37 2.5 0 4.85.97 6.62 2.73a9.32 9.32 0 0 1 2.75 6.63c0 5.18-4.2 9.38-9.38 9.38Zm5.17-7.05c-.28-.14-1.67-.83-1.93-.92-.26-.1-.45-.14-.63.14-.19.28-.72.92-.88 1.1-.16.19-.33.21-.61.07-.28-.14-1.2-.44-2.28-1.4-.84-.74-1.4-1.64-1.56-1.92-.16-.28-.02-.43.12-.57.12-.12.28-.33.42-.49.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.63-1.52-.87-2.09-.23-.56-.46-.49-.63-.5h-.54c-.19 0-.49.07-.74.35-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2 3.06 4.86 4.29.68.29 1.21.46 1.63.59.68.21 1.3.18 1.79.11.55-.08 1.67-.68 1.9-1.33.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33Z"/>
+    </svg>
+  </a>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ once:true, duration:1000 });
+
+  const body = document.body;
+  const navbar = document.getElementById('navbar');
+  const toggleBtn = document.getElementById('darkToggle');
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileSidebar = document.getElementById('mobileSidebar');
+  const closeSidebar = document.getElementById('closeSidebar');
+  const overlay = document.getElementById('overlay');
+
+  // ===== Dark Mode Toggle =====
+  if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark');
+    toggleBtn.textContent = '☀️';
+  }
+  toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    toggleBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
+    localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+  });
+
+  // ===== Navbar Scroll Effect =====
+  const updateNavbar = () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add("bg-white","shadow-md");
+      navbar.classList.remove("bg-transparent");
+      if(body.classList.contains('dark')) navbar.classList.replace("bg-white","bg-gray-900");
+    } else {
+      navbar.classList.remove("bg-white","shadow-md","bg-gray-900");
+      navbar.classList.add("bg-transparent");
+    }
+  };
+  window.addEventListener('scroll', updateNavbar);
+  updateNavbar();
+
+  // ===== Hamburger Menu =====
+  const openSidebar = () => { mobileSidebar.style.right='0'; overlay.classList.remove('hidden'); };
+  const closeSidebarFunc = () => { mobileSidebar.style.right='-100%'; overlay.classList.add('hidden'); };
+  hamburgerBtn.addEventListener('click', openSidebar);
+  closeSidebar.addEventListener('click', closeSidebarFunc);
+  overlay.addEventListener('click', closeSidebarFunc);
+
+  // ===== Smooth Scroll =====
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e){
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if(target) target.scrollIntoView({ behavior: 'smooth' });
+      closeSidebarFunc(); // close mobile sidebar if open
     });
-    closeSidebar.addEventListener('click', () => {
-      mobileSidebar.style.right = '-100%';
-      overlay.classList.add('hidden');
-    });
-    overlay.addEventListener('click', () => {
-      mobileSidebar.style.right = '-100%';
-      overlay.classList.add('hidden');
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
