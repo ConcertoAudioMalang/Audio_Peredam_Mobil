@@ -24,17 +24,54 @@
     a { text-decoration:none; }
     img { display:block; max-width:100%; }
 
-    /* === Navbar === */
-    #navbar { position:fixed; top:0; width:100%; z-index:50; transition: background-color 0.5s, box-shadow 0.5s; }
-    .nav-link { color:#f3f4f6; transition: color 0.3s; }
-    .nav-link:hover { color: var(--color-primary); }
-    body.scrolled .nav-link { color:#111827; }
-    body.dark.scrolled .nav-link { color:#f3f4f6; }
+    /* === Header / Navbar === */
+    
+<header id="navbar" class="fixed w-full top-0 z-50 transition-colors duration-500 bg-transparent">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    <!-- Logo -->
+    <div>
+      <img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto" />
+    </div>
 
-    .hamburger { display:none; flex-direction:column; cursor:pointer; gap:4px; }
-    .hamburger span { width:24px; height:3px; background-color:#fff; transition: all 0.3s; }
-    @media (max-width:768px) { nav.hidden { display:none; } .hamburger { display:flex; } }
+    <!-- Desktop Nav Links -->
+    <nav class="hidden md:flex space-x-8 font-medium">
+      <a href="#produk" class="nav-link text-gray-900 dark:text-gray-100 hover:text-primary transition">Produk</a>
+      <a href="#tentang" class="nav-link text-gray-900 dark:text-gray-100 hover:text-primary transition">Tentang</a>
+      <a href="#kontak" class="nav-link text-gray-900 dark:text-gray-100 hover:text-primary transition">Kontak</a>
+    </nav>
 
+    <!-- Dark Mode Toggle -->
+    <button id="darkToggle" aria-label="Toggle Dark Mode"
+      class="ml-4 p-2 rounded-md border border-gray-300 dark:border-gray-600 hover:border-primary transition focus:outline-none text-gray-800 dark:text-gray-100">
+      🌙
+    </button>
+
+    <!-- Hamburger Menu (Mobile) -->
+    <button id="hamburgerBtn" class="md:hidden ml-4 p-2 rounded-md border border-gray-300 dark:border-gray-600 hover:border-primary transition focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800 dark:text-gray-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Sidebar -->
+  <div id="mobileSidebar" class="fixed top-0 right-[-100%] h-full w-64 bg-white dark:bg-gray-900 shadow-lg z-40 transition-all duration-300">
+    <div class="flex justify-end p-4">
+      <button id="closeSidebar" class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition text-gray-900 dark:text-gray-100">
+        ✕
+      </button>
+    </div>
+    <nav class="flex flex-col space-y-6 mt-8 px-6 text-gray-900 dark:text-gray-100">
+      <a href="#produk" class="text-lg font-semibold hover:text-primary transition">Produk</a>
+      <a href="#tentang" class="text-lg font-semibold hover:text-primary transition">Tentang</a>
+      <a href="#kontak" class="text-lg font-semibold hover:text-primary transition">Kontak</a>
+    </nav>
+  </div>
+
+  <!-- Mobile overlay -->
+  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-30 transition-opacity duration-300"></div>
+</header>
+    
     /* === Hero Section === */
     .hero-section { min-height:400px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative; overflow:hidden; }
     .hero-section h1, .hero-section p { opacity:0; transform:translateY(20px); animation: fadeInUp 1s forwards; }
@@ -195,29 +232,66 @@
     </div>
   </footer>
 
-  <!-- AOS JS -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({ once:true });
+ <script>
+  const body = document.body;
+  const navbar = document.getElementById('navbar');
+  const toggleBtn = document.getElementById('darkToggle');
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileSidebar = document.getElementById('mobileSidebar');
+  const closeSidebar = document.getElementById('closeSidebar');
+  const overlay = document.getElementById('overlay');
 
-    // Dark Mode Toggle
-    const toggle = document.getElementById('darkToggle');
-    toggle.addEventListener('click', ()=>{ document.body.classList.toggle('dark'); });
+  // ===== Dark Mode Toggle =====
+  if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark');
+    toggleBtn.textContent = '☀️';
+  }
 
-    // Navbar Scroll Effect
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', ()=>{
-      if(window.scrollY > 50){ document.body.classList.add('scrolled'); }
-      else{ document.body.classList.remove('scrolled'); }
-    });
+  toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    if (body.classList.contains('dark')) {
+      toggleBtn.textContent = '☀️';
+      localStorage.setItem('theme', 'dark');
+    } else {
+      toggleBtn.textContent = '🌙';
+      localStorage.setItem('theme', 'light');
+    }
+  });
 
-    // Hamburger Menu
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('nav');
-    hamburger.addEventListener('click', ()=>{
-      navMenu.classList.toggle('hidden');
-    });
-  </script>
+  // ===== Navbar Scroll Effect =====
+  const updateNavbar = () => {
+    if (window.scrollY > 50) {
+      document.body.classList.add("scrolled");
+      navbar.classList.add("bg-white", "shadow-md");
+      navbar.classList.remove("bg-transparent");
+      if(body.classList.contains('dark')) {
+        navbar.classList.replace("bg-white", "bg-gray-900");
+      }
+    } else {
+      document.body.classList.remove("scrolled");
+      navbar.classList.remove("bg-white", "shadow-md", "bg-gray-900");
+      navbar.classList.add("bg-transparent");
+    }
+  };
+  window.addEventListener('scroll', updateNavbar);
+  updateNavbar();
+
+  // ===== Hamburger Menu =====
+  const openSidebar = () => {
+    mobileSidebar.style.right = '0';
+    overlay.classList.remove('hidden');
+  };
+
+  const closeSidebarFunc = () => {
+    mobileSidebar.style.right = '-100%';
+    overlay.classList.add('hidden');
+  };
+
+  hamburgerBtn.addEventListener('click', openSidebar);
+  closeSidebar.addEventListener('click', closeSidebarFunc);
+  overlay.addEventListener('click', closeSidebarFunc);
+</script>
 </body>
 </html>
+
 
