@@ -109,21 +109,19 @@
 </header>
 
 <!-- Hero Section -->
-<section class="hero-section relative h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden">
-  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-    <source src="asset/hero-video.mp4" type="video/mp4" />
-  </video>
-  <div class="absolute inset-0 bg-black bg-opacity-50 dark:bg-black dark:bg-opacity-60 transition-colors duration-500"></div>
+<section class="hero-section relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
+  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover"></video>
+  <div class="absolute inset-0 bg-black/50 dark:bg-black/60 transition-colors duration-500"></div>
   <div class="relative z-10 max-w-3xl px-4">
-    <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg mb-4" data-aos="fade-up" data-aos-delay="200">
+    <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg mb-4 opacity-0 translate-y-5 animate-fadeInUp" style="animation-delay:200ms">
       Electric Vehicles Designed For Adventure
     </h1>
-    <p class="text-lg md:text-xl mb-8" data-aos="fade-up" data-aos-delay="400">
+    <p class="text-lg md:text-xl mb-8 opacity-0 translate-y-5 animate-fadeInUp" style="animation-delay:400ms">
       Belanja produk-produk premium dari 4 merek utama kami yang siap mendukung petualangan Anda.
     </p>
     <a href="#produk"
-       class="inline-block px-6 py-3 bg-primary text-white rounded-lg font-semibold shadow-lg hover:bg-primary-dark hover:scale-105 transition transform duration-300"
-       data-aos="fade-up" data-aos-delay="600">
+       class="inline-block px-6 py-3 bg-primary text-white rounded-lg font-semibold shadow-lg hover:bg-primary-dark hover:scale-105 transition transform duration-300 opacity-0 translate-y-5 animate-fadeInUp"
+       style="animation-delay:600ms">
       Lihat Produk
     </a>
   </div>
@@ -134,29 +132,43 @@
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Produk Unggulan</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      <!-- Contoh Produk Card -->
-      <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 p-4" data-aos="fade-up">
         <img src="asset/produk1.jpg" alt="Produk 1" class="rounded-lg mb-4" />
-        <h3 class="font-semibold text-lg mb-2">Speaker A</h3>
-        <p class="text-sm mb-2">Audio mobil premium untuk kualitas suara terbaik.</p>
+        <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-gray-200">Speaker A</h3>
+        <p class="text-sm mb-2 text-gray-700 dark:text-gray-300">Audio mobil premium untuk kualitas suara terbaik.</p>
         <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
       </div>
-      <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="200">
-        <img src="asset/produk2.jpg" alt="Produk 2" class="rounded-lg mb-4" />
-        <h3 class="font-semibold text-lg mb-2">Subwoofer B</h3>
-        <p class="text-sm mb-2">Bass terdalam untuk pengalaman audio maksimal.</p>
+      
+     <section id="produk" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Produk Unggulan</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 p-4" data-aos="fade-up">
+        <img src="asset/produk1.jpg" alt="Produk 1" class="rounded-lg mb-4" />
+        <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-gray-200">Speaker A</h3>
+        <p class="text-sm mb-2 text-gray-700 dark:text-gray-300">Audio mobil premium untuk kualitas suara terbaik.</p>
         <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
       </div>
-      <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="300">
-        <img src="asset/produk3.jpg" alt="Produk 3" class="rounded-lg mb-4" />
-        <h3 class="font-semibold text-lg mb-2">Amplifier C</h3>
-        <p class="text-sm mb-2">Meningkatkan kualitas suara hingga 200%.</p>
+      
+      <section id="produk" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Produk Unggulan</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 p-4" data-aos="fade-up">
+        <img src="asset/produk1.jpg" alt="Produk 1" class="rounded-lg mb-4" />
+        <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-gray-200">Speaker A</h3>
+        <p class="text-sm mb-2 text-gray-700 dark:text-gray-300">Audio mobil premium untuk kualitas suara terbaik.</p>
         <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
       </div>
-      <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="400">
-        <img src="asset/produk4.jpg" alt="Produk 4" class="rounded-lg mb-4" />
-        <h3 class="font-semibold text-lg mb-2">Speaker Door D</h3>
-        <p class="text-sm mb-2">Kenyamanan audio maksimal di setiap pintu mobil.</p>
+      
+      <section id="produk" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Produk Unggulan</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 p-4" data-aos="fade-up">
+        <img src="asset/produk1.jpg" alt="Produk 1" class="rounded-lg mb-4" />
+        <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-gray-200">Speaker A</h3>
+        <p class="text-sm mb-2 text-gray-700 dark:text-gray-300">Audio mobil premium untuk kualitas suara terbaik.</p>
         <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
       </div>
     </div>
@@ -224,15 +236,16 @@
 </footer>
 
 <!-- Floating WhatsApp -->
-<div class="floating-btn">
-  <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="Chat via WhatsApp">
-    <!-- SVG WhatsApp Icon -->
-    <svg xmlns="http://www.w3.org/2000/svg" fill="white" class="w-7 h-7" viewBox="0 0 24 24">
-      <path d="M20.52 3.48A11.88 11.88 0 0 0 12 .25C5.5.25.25 5.5.25 12c0 2.1.55 4.16 1.58 5.96L.25 23.75l5.92-1.55A11.7 11.7 0 0 0 12 23.75c6.5 0 11.75-5.25 11.75-11.75 0-3.14-1.23-6.1-3.48-8.27Zm-8.52 17.02c-1.84 0-3.63-.5-5.2-1.45l-.37-.22-3.52.92.94-3.44-.24-.35a9.3 9.3 0 0 1-1.45-5.1c0-5.17 4.2-9.37 9.37-9.37 2.5 0 4.85.97 6.62 2.73a9.32 9.32 0 0 1 2.75 6.63c0 5.18-4.2 9.38-9.38 9.38Zm5.17-7.05c-.28-.14-1.67-.83-1.93-.92-.26-.1-.45-.14-.63.14-.19.28-.72.92-.88 1.1-.16.19-.33.21-.61.07-.28-.14-1.2-.44-2.28-1.4-.84-.74-1.4-1.64-1.56-1.92-.16-.28-.02-.43.12-.57.12-.12.28-.33.42-.49.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.63-1.52-.87-2.09-.23-.56-.46-.49-.63-.5h-.54c-.19 0-.49.07-.74.35-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2 3.06 4.86 4.29.68.29 1.21.46 1.63.59.68.21 1.3.18 1.79.11.55-.08 1.67-.68 1.9-1.33.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33Z"/>
+<div class="fixed bottom-8 right-8 z-50">
+  <a href="https://wa.me/6281234567890" target="_blank" class="relative w-14 h-14 flex items-center justify-center bg-green-500 dark:bg-green-700 text-white rounded-full shadow-lg hover:scale-110 transition-transform">
+    <span class="absolute inset-0 rounded-full animate-pulse bg-green-400/50 dark:bg-green-600/50"></span>
+    <!-- SVG WA -->
+    <svg xmlns="http://www.w3.org/2000/svg" fill="white" class="w-7 h-7 relative" viewBox="0 0 24 24">
+      <path d="..."/>
     </svg>
   </a>
 </div>
-
+  
 <style>
 /* Floating WhatsApp */
 .floating-btn {
@@ -295,6 +308,12 @@ body.dark .floating-btn a:hover {
 body.dark .floating-btn a::before {
   background-color: rgba(22,163,74,0.5);
 }
+  @keyframes fadeInUp {
+  to { opacity:1; transform:translateY(0); }
+}
+.animate-fadeInUp { animation: fadeInUp 1s forwards; }
+  @keyframes pulse {0%{transform:scale(1);opacity:.7;}70%{transform:scale(1.8);opacity:0;}100%{transform:scale(1);opacity:0;}}
+.animate-pulse { animation: pulse 1.8s infinite; }
 </style>
 
 
@@ -356,6 +375,7 @@ body.dark .floating-btn a::before {
 </script>
 </body>
 </html>
+
 
 
 
