@@ -15,235 +15,293 @@
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
 <style>
-:root { --color-primary:#006241; --color-primary-dark:#00491f; }
+  :root {
+    --color-primary:#006241;
+    --color-primary-dark:#00491f;
+  }
 
-/* General */
-body { font-family:'Inter',sans-serif; margin:0; padding:0; background-color:#f9fafb; color:#111827; transition: background-color 0.5s, color 0.5s; }
-body.dark { background-color:#121212; color:#e0e0e0; }
-body.dark header, body.dark footer { background-color:#1e1e1e; color:#cfcfcf; }
+  /* General */
+  body {
+    font-family:'Inter',sans-serif;
+    margin:0;
+    padding:0;
+    background-color:#f9fafb;
+    color:#111827;
+    transition: background-color 0.5s, color 0.5s;
+  }
+  body.dark {
+    background-color:#121212;
+    color:#e0e0e0;
+  }
+  body.dark header, body.dark footer {
+    background-color:#1e1e1e;
+    color:#cfcfcf;
+  }
 
-a { text-decoration:none; }
-img, video { display:block; max-width:100%; transition: transform 0.5s; }
+  a { text-decoration:none; }
+  img, video { display:block; max-width:100%; transition: transform 0.5s; }
 
-/* Navbar */
-#navbar { transition: background-color 0.5s, box-shadow 0.5s; }
-.nav-link { color:inherit; font-weight:500; transition: color 0.3s; }
-.nav-link:hover { color:var(--color-primary); }
+  /* Navbar */
+  #navbar { transition: background-color 0.5s, box-shadow 0.5s; }
+  .nav-link { color:inherit; font-weight:500; transition: color 0.3s; }
+  .nav-link:hover { color:var(--color-primary); }
 
-/* Hero Section */
-.hero-section h1, .hero-section p, .hero-section a { opacity:0; transform:translateY(20px); animation: fadeInUp 1s forwards; }
-.hero-section h1 { animation-delay:0.3s; }
-.hero-section p { animation-delay:0.6s; }
-.hero-section a { animation-delay:0.9s; }
-@keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
+  /* Hero Section Animations */
+  .hero-section h1, .hero-section p, .hero-section a {
+    opacity:0;
+    transform:translateY(20px);
+    animation: fadeInUp 1s forwards;
+  }
+  .hero-section h1 { animation-delay:0.3s; }
+  .hero-section p { animation-delay:0.6s; }
+  .hero-section a { animation-delay:0.9s; }
+  @keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
 
-/* Produk Card */
-.produk-card { background-color:#f9fafb; border-radius:1rem; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s, background-color 0.5s; }
-.produk-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
-body.dark .produk-card { background-color:#1e1e1e; color:#e0e0e0; }
+  /* Produk Card */
+  .produk-card {
+    background-color:#f9fafb;
+    border-radius:1rem;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.5s;
+  }
+  .produk-card:hover {
+    transform:translateY(-5px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+  }
+  body.dark .produk-card { background-color:#1e1e1e; color:#e0e0e0; }
 
-/* About Section */
-.about-section { position:relative; display:flex; align-items:center; justify-content:center; height:600px; overflow:hidden; text-align:center; color:white; }
-.about-section img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-.about-section .overlay { position:absolute; inset:0; background-color: rgba(0,0,0,0.5); transition: background-color 0.5s; }
-.about-section .content { position:relative; z-index:10; max-width:700px; padding:0 1rem; }
+  /* About Section */
+  .about-section {
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:600px;
+    overflow:hidden;
+    text-align:center;
+    color:white;
+  }
+  .about-section img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .about-section .overlay { position:absolute; inset:0; background-color: rgba(0,0,0,0.5); transition: background-color 0.5s; }
+  .about-section .content { position:relative; z-index:10; max-width:700px; padding:0 1rem; }
 
-/* Galeri Masonry */
-.masonry { column-count:3; column-gap:1rem; }
-@media(max-width:1024px){.masonry{column-count:2;}} 
-@media(max-width:640px){.masonry{column-count:1;}}
-.masonry-item { break-inside:avoid; margin-bottom:1rem; position:relative; overflow:hidden; border-radius:1rem; }
-.masonry-item img { width:100%; display:block; transition: transform 0.5s; }
-.masonry-item:hover img { transform:scale(1.1); }
-.masonry-item .overlay { position:absolute; inset:0; background-color:rgba(0,0,0,0.5); opacity:0; display:flex; flex-direction:column; justify-content:center; align-items:center; transition:opacity 0.5s; }
-.masonry-item:hover .overlay { opacity:1; }
+  /* Galeri Masonry */
+  .masonry { column-count:3; column-gap:1rem; }
+  @media(max-width:1024px){.masonry{column-count:2;}} 
+  @media(max-width:640px){.masonry{column-count:1;}}
+  .masonry-item { break-inside:avoid; margin-bottom:1rem; position:relative; overflow:hidden; border-radius:1rem; }
+  .masonry-item img { width:100%; display:block; transition: transform 0.5s; }
+  .masonry-item:hover img { transform:scale(1.1); }
+  .masonry-item .overlay {
+    position:absolute;
+    inset:0;
+    background-color:rgba(0,0,0,0.5);
+    opacity:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    transition:opacity 0.5s;
+  }
+  .masonry-item:hover .overlay { opacity:1; }
 
-/* Dark Mode Slider */
-input#darkToggle { display:none; }
-input#darkToggle + span { display:block; width:48px; height:24px; background:#d1d5db; border-radius:9999px; position:relative; transition: background-color 0.3s; }
-input#darkToggle + span .dot { width:20px; height:20px; background:#fff; border-radius:50%; position:absolute; top:2px; left:2px; transition: transform 0.3s; }
-input#darkToggle:checked + span { background-color:#4ade80; }
-input#darkToggle:checked + span .dot { transform: translateX(24px); }
+  /* Dark Mode Slider */
+  input#darkToggle { display:none; }
+  input#darkToggle + span {
+    display:block;
+    width:48px;
+    height:24px;
+    background:#d1d5db;
+    border-radius:9999px;
+    position:relative;
+    transition: background-color 0.3s;
+  }
+  input#darkToggle + span .dot {
+    width:20px;
+    height:20px;
+    background:#fff;
+    border-radius:50%;
+    position:absolute;
+    top:2px;
+    left:2px;
+    transition: transform 0.3s;
+  }
+  input#darkToggle:checked + span { background-color:#4ade80; }
+  input#darkToggle:checked + span .dot { transform: translateX(24px); }
 
-/* Footer Icons */
-footer svg { width:24px; height:24px; margin:0 0.5rem; transition: transform 0.3s, fill 0.3s; }
-footer svg:hover { transform:scale(1.2); fill: var(--color-primary); }
+  /* Footer Icons */
+  footer svg { width:24px; height:24px; margin:0 0.5rem; transition: transform 0.3s, fill 0.3s; }
+  footer svg:hover { transform:scale(1.2); fill: var(--color-primary); }
 
-/* Smooth transitions for sections */
-body, header, footer, section, .produk-card, .masonry-item { transition: background-color 0.5s, color 0.5s, transform 0.3s, box-shadow 0.3s; }
+  /* Smooth transitions for sections */
+  body, header, footer, section, .produk-card, .masonry-item {
+    transition: background-color 0.5s, color 0.5s, transform 0.3s, box-shadow 0.3s;
+  }
 </style>
 </head>
 <body class="transition-colors duration-500 text-gray-900 dark:text-gray-200">
-  
-<!-- Navbar -->
-<header id="navbar" class="fixed w-full top-0 z-50 bg-transparent transition-colors">
-  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-    <div><img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto" /></div>
 
-    <nav class="hidden md:flex space-x-8 font-medium">
-      <a href="#produk" class="nav-link">Produk</a>
-      <a href="#tentang" class="nav-link">Tentang</a>
-      <a href="#galeri" class="nav-link">Galeri</a>
-      <a href="#kontak" class="nav-link">Kontak</a>
-    </nav>
-
-    <div class="flex items-center">
-      <!-- Dark Mode Slider -->
-      <label class="relative inline-block w-12 h-6 cursor-pointer ml-4">
-        <input type="checkbox" id="darkToggle" class="sr-only">
-        <span class="block bg-gray-300 dark:bg-gray-600 w-full h-6 rounded-full transition-colors duration-300">
-          <span class="dot absolute top-0.5 left-0 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300"></span>
-        </span>
-      </label>
-    </div>
-  </div>
-</header>
-
-<!-- Hero Section -->
-<section class="hero-section relative h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden">
-  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-    <source src="asset/video1.mp4" type="video/mp4" />
-  </video>
-  <div class="absolute inset-0 bg-black bg-opacity-50 dark:bg-black dark:bg-opacity-60 transition-colors duration-500"></div>
-  <div class="relative z-10 max-w-3xl px-4">
-    <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg mb-4" data-aos="fade-up" data-aos-delay="200">
-      Electric Vehicles Designed For Adventure
-    </h1>
-    <p class="text-lg md:text-xl mb-8" data-aos="fade-up" data-aos-delay="400">
-      Belanja produk-produk premium dari 4 merek utama kami yang siap mendukung petualangan Anda.
-    </p>
-    <a href="#produk"
-       class="inline-block px-6 py-3 bg-primary text-white rounded-lg font-semibold shadow-lg hover:bg-primary-dark hover:scale-105 transition transform duration-300"
-       data-aos="fade-up" data-aos-delay="600">
-      Lihat Produk
-    </a>
-  </div>
-</section>
-
-<!-- Produk Section -->
-<section id="produk" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Produk Unggulan</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="100">
-        <img src="asset/produk1.jpg" alt="Produk 1" class="rounded-lg mb-4" />
-        <h3 class="font-semibold text-lg mb-2">Speaker A</h3>
-        <p class="text-sm mb-2">Audio mobil premium untuk kualitas suara terbaik.</p>
-        <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
-      </div>
-      <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="200">
-        <img src="asset/produk2.jpg" alt="Produk 2" class="rounded-lg mb-4" />
-        <h3 class="font-semibold text-lg mb-2">Subwoofer B</h3>
-        <p class="text-sm mb-2">Bass terdalam untuk pengalaman audio maksimal.</p>
-        <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
-      </div>
-      <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="300">
-        <img src="asset/produk3.jpg" alt="Produk 3" class="rounded-lg mb-4" />
-        <h3 class="font-semibold text-lg mb-2">Amplifier C</h3>
-        <p class="text-sm mb-2">Meningkatkan kualitas suara hingga 200%.</p>
-        <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
-      </div>
-      <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="400">
-        <img src="asset/produk4.jpg" alt="Produk 4" class="rounded-lg mb-4" />
-        <h3 class="font-semibold text-lg mb-2">Speaker Door D</h3>
-        <p class="text-sm mb-2">Kenyamanan audio maksimal di setiap pintu mobil.</p>
-        <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
+  <!-- Navbar -->
+  <header id="navbar" class="fixed w-full top-0 z-50 bg-transparent transition-colors">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <div><img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto" /></div>
+      <nav class="hidden md:flex space-x-8 font-medium">
+        <a href="#produk" class="nav-link">Produk</a>
+        <a href="#tentang" class="nav-link">Tentang</a>
+        <a href="#galeri" class="nav-link">Galeri</a>
+        <a href="#kontak" class="nav-link">Kontak</a>
+      </nav>
+      <div class="flex items-center">
+        <!-- Dark Mode Slider -->
+        <label class="relative inline-block w-12 h-6 cursor-pointer ml-4">
+          <input type="checkbox" id="darkToggle" class="sr-only">
+          <span class="block bg-gray-300 dark:bg-gray-600 w-full h-6 rounded-full transition-colors duration-300">
+            <span class="dot absolute top-0.5 left-0 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300"></span>
+          </span>
+        </label>
       </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<!-- About Section -->
-<section id="tentang" class="about-section">
-  <img src="asset/about-bg.jpg" alt="Tentang Kami" class="absolute inset-0 w-full h-full object-cover" />
-  <div class="overlay"></div>
-  <div class="content" data-aos="fade-up">
-    <h2 class="text-3xl md:text-4xl font-bold mb-4">Tentang Concerto Audio</h2>
-    <p class="text-lg md:text-xl">Kami menyediakan audio mobil premium dari 4 merek ternama, dengan layanan instalasi profesional dan konsultasi gratis untuk pelanggan.</p>
-  </div>
-</section>
+  <!-- Hero Section -->
+  <section class="hero-section relative h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden">
+    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+      <source src="asset/video1.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-black bg-opacity-50 dark:bg-black dark:bg-opacity-60 transition-colors duration-500"></div>
+    <div class="relative z-10 max-w-3xl px-4">
+      <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg mb-4" data-aos="fade-up" data-aos-delay="200">
+        Electric Vehicles Designed For Adventure
+      </h1>
+      <p class="text-lg md:text-xl mb-8" data-aos="fade-up" data-aos-delay="400">
+        Belanja produk-produk premium dari 4 merek utama kami yang siap mendukung petualangan Anda.
+      </p>
+      <a href="#produk"
+         class="inline-block px-6 py-3 bg-primary text-white rounded-lg font-semibold shadow-lg hover:bg-primary-dark hover:scale-105 transition transform duration-300"
+         data-aos="fade-up" data-aos-delay="600">
+        Lihat Produk
+      </a>
+    </div>
+  </section>
 
-<!-- Galeri Section -->
-<section id="galeri" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Galeri Instalasi</h2>
-    <div class="masonry">
-      <div class="masonry-item" data-aos="fade-up" data-aos-delay="100">
-        <img src="asset/galeri1.jpg" alt="Galeri 1" />
-      </div>
-      <div class="masonry-item" data-aos="fade-up" data-aos-delay="200">
-        <img src="asset/galeri2.jpg" alt="Galeri 2" />
-      </div>
-      <div class="masonry-item" data-aos="fade-up" data-aos-delay="300">
-        <img src="asset/galeri3.jpg" alt="Galeri 3" />
-      </div>
-      <div class="masonry-item" data-aos="fade-up" data-aos-delay="400">
-        <img src="asset/galeri4.jpg" alt="Galeri 4" />
+  <!-- Produk Section -->
+  <section id="produk" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Produk Unggulan</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="100">
+          <img src="asset/produk1.jpg" alt="Produk 1" class="rounded-lg mb-4" />
+          <h3 class="font-semibold text-lg mb-2">Speaker A</h3>
+          <p class="text-sm mb-2">Audio mobil premium untuk kualitas suara terbaik.</p>
+          <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
+        </div>
+        <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="200">
+          <img src="asset/produk2.jpg" alt="Produk 2" class="rounded-lg mb-4" />
+          <h3 class="font-semibold text-lg mb-2">Subwoofer B</h3>
+          <p class="text-sm mb-2">Bass terdalam untuk pengalaman audio maksimal.</p>
+          <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
+        </div>
+        <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="300">
+          <img src="asset/produk3.jpg" alt="Produk 3" class="rounded-lg mb-4" />
+          <h3 class="font-semibold text-lg mb-2">Amplifier C</h3>
+          <p class="text-sm mb-2">Meningkatkan kualitas suara hingga 200%.</p>
+          <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
+        </div>
+        <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="400">
+          <img src="asset/produk4.jpg" alt="Produk 4" class="rounded-lg mb-4" />
+          <h3 class="font-semibold text-lg mb-2">Speaker Door D</h3>
+          <p class="text-sm mb-2">Kenyamanan audio maksimal di setiap pintu mobil.</p>
+          <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Kontak Section -->
-<section id="kontak" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
-  <div class="max-w-4xl mx-auto px-6">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Kontak Kami</h2>
-    <form class="space-y-6" data-aos="fade-up" data-aos-delay="200">
-      <input type="text" placeholder="Nama" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" />
-      <input type="email" placeholder="Email" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" />
-      <textarea placeholder="Pesan" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-      <button type="submit" class="px-6 py-3 bg-primary text-white rounded-lg font-semibold shadow-lg hover:bg-primary-dark hover:scale-105 transition transform duration-300">Kirim Pesan</button>
-    </form>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="py-8 bg-gray-100 dark:bg-gray-800 transition-colors duration-500">
-  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
-    <p>&copy; 2025 Concerto Audio Malang. All Rights Reserved.</p>
-    <div class="flex mt-4 md:mt-0">
-      <a href="#"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.326v21.348C0 23.407.593 24 1.325 24h11.494v-9.294H9.691v-3.622h3.128V8.408c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.794.143v3.24l-1.918.001c-1.504 0-1.796.716-1.796 1.765v2.317h3.587l-.467 3.622h-3.12V24h6.116C23.407 24 24 23.407 24 22.674V1.326C24 .593 23.407 0 22.675 0z"/></svg></a>
-      <a href="#"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557a9.835 9.835 0 01-2.828.775 4.932 4.932 0 002.165-2.724 9.865 9.865 0 01-3.127 1.195 4.918 4.918 0 00-8.379 4.482 13.949 13.949 0 01-10.141-5.144 4.822 4.822 0 001.523 6.573A4.903 4.903 0 01.964 9.1v.062a4.918 4.918 0 003.946 4.827 4.902 4.902 0 01-2.212.084 4.919 4.919 0 004.588 3.417A9.867 9.867 0 010 19.54a13.92 13.92 0 007.548 2.212c9.056 0 14.01-7.496 14.01-13.986 0-.21-.004-.423-.014-.634A10.025 10.025 0 0024 4.557z"/></svg></a>
+  <!-- About Section -->
+  <section id="tentang" class="about-section">
+    <img src="asset/about-bg.jpg" alt="Tentang Kami" />
+    <div class="overlay"></div>
+    <div class="content" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Tentang Concerto Audio</h2>
+      <p class="text-lg md:text-xl">Kami menyediakan audio mobil premium dari 4 merek ternama, dengan layanan instalasi profesional dan konsultasi gratis untuk pelanggan.</p>
     </div>
-  </div>
-</footer>
-    <!-- Floating WhatsApp Button -->
-<a href="https://wa.me/6281234567890" target="_blank"
-   class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 text-white rounded-full shadow-lg flex items-center justify-center transition-transform transform hover:scale-110 relative overflow-visible"
-   aria-label="Chat via WhatsApp">
+  </section>
 
-  <!-- Pulse effect -->
-  <span class="absolute inset-0 rounded-full bg-green-400 opacity-50 animate-ping"></span>
+  <!-- Galeri Section -->
+  <section id="galeri" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Galeri Instalasi</h2>
+      <div class="masonry">
+        <div class="masonry-item" data-aos="fade-up" data-aos-delay="100">
+          <img src="asset/galeri1.jpg" alt="Galeri 1" />
+        </div>
+        <div class="masonry-item" data-aos="fade-up" data-aos-delay="200">
+          <img src="asset/galeri2.jpg" alt="Galeri 2" />
+        </div>
+        <div class="masonry-item" data-aos="fade-up" data-aos-delay="300">
+          <img src="asset/galeri3.jpg" alt="Galeri 3" />
+        </div>
+        <div class="masonry-item" data-aos="fade-up" data-aos-delay="400">
+          <img src="asset/galeri4.jpg" alt="Galeri 4" />
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- WhatsApp Icon -->
-  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-7 h-7 relative z-10" viewBox="0 0 24 24">
-    <path d="M20.52 3.48A11.88 11.88 0 0 0 12 .25C5.5.25.25 5.5.25 12c0 2.1.55 4.16 1.58 5.96L.25 23.75l5.92-1.55A11.7 11.7 0 0 0 12 23.75c6.5 0 11.75-5.25 11.75-11.75 0-3.14-1.23-6.1-3.48-8.27Zm-8.52 17.02c-1.84 0-3.63-.5-5.2-1.45l-.37-.22-3.52.92.94-3.44-.24-.35a9.3 9.3 0 0 1-1.45-5.1c0-5.17 4.2-9.37 9.37-9.37 2.5 0 4.85.97 6.62 2.73a9.32 9.32 0 0 1 2.75 6.63c0 5.18-4.2 9.38-9.38 9.38Z"/>
-  </svg>
-</a>
+  <!-- Kontak Section -->
+  <section id="kontak" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Kontak Kami</h2>
+      <form class="space-y-6" data-aos="fade-up" data-aos-delay="200">
+        <input type="text" placeholder="Nama" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" />
+        <input type="email" placeholder="Email" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" />
+        <textarea placeholder="Pesan" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+        <button type="submit" class="px-6 py-3 bg-primary text-white rounded-lg font-semibold shadow-lg hover:bg-primary-dark hover:scale-105 transition transform duration-300">Kirim Pesan</button>
+      </form>
+    </div>
+  </section>
 
-<!-- AOS & Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-AOS.init({ once:true, duration:1000 });
+  <!-- Footer -->
+  <footer class="py-8 bg-gray-100 dark:bg-gray-800 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+      <p>&copy; 2025 Concerto Audio Malang. All Rights Reserved.</p>
+      <div class="flex mt-4 md:mt-0">
+        <a href="#"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.326v21.348C0 23.407.593 24 1.325 24h11.494v-9.294H9.691v-3.622h3.128V8.408c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.794.143v3.24l-1.918.001c-1.504 0-1.796.716-1.796 1.765v2.317h3.587l-.467 3.622h-3.12V24h6.116C23.407 24 24 23.407 24 22.674V1.326C24 .593 23.407 0 22.675 0z"/></svg></a>
+        <a href="#"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557a9.835 9.835 0 01-2.828.775 4.932 4.932 0 002.165-2.724 9.865 9.865 0 01-3.127 1.195 4.918 4.918 0 00-8.379 4.482 13.949 13.949 0 01-10.141-5.144 4.822 4.822 0 001.523 6.573A4.903 4.903 0 01.964 9.1v.062a4.918 4.918 0 003.946 4.827 4.902 4.902 0 01-2.212.084 4.919 4.919 0 004.588 3.417A9.867 9.867 0 010 19.54a13.92 13.92 0 007.548 2.212c9.056 0 14.01-7.496 14.01-13.986 0-.21-.004-.423-.014-.634A10.025 10.025 0 0024 4.557z"/></svg></a>
+      </div>
+    </div>
+  </footer>
 
-const body = document.body;
-const toggleCheckbox = document.getElementById('darkToggle');
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/6281234567890" target="_blank"
+     class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 text-white rounded-full shadow-lg flex items-center justify-center transition-transform transform hover:scale-110 relative overflow-visible"
+     aria-label="Chat via WhatsApp">
+    <span class="absolute inset-0 rounded-full bg-green-400 opacity-50 animate-ping"></span>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-7 h-7 relative z-10" viewBox="0 0 24 24">
+      <path d="M20.52 3.48A11.88 11.88 0 0 0 12 .25C5.5.25.25 5.5.25 12c0 2.1.55 4.16 1.58 5.96L.25 23.75l5.92-1.55A11.7 11.7 0 0 0 12 23.75c6.5 0 11.75-5.25 11.75-11.75 0-3.14-1.23-6.1-3.48-8.27Zm-8.52 17.02c-1.84 0-3.63-.5-5.2-1.45l-.37-.22-3.52.92.94-3.44-.24-.35a9.3 9.3 0 0 1-1.45-5.1c0-5.17 4.2-9.37 9.37-9.37 2.5 0 4.85.97 6.62 2.73a9.32 9.32 0 0 1 2.75 6.63c0 5.18-4.2 9.38-9.38 9.38Z"/>
+    </svg>
+  </a>
 
-// Set initial dark mode
-if(localStorage.getItem('theme')==='dark'){
-  body.classList.add('dark');
-  toggleCheckbox.checked = true;
-}
+  <!-- AOS & Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ once:true, duration:1000 });
 
-// Toggle dark mode
-toggleCheckbox.addEventListener('change', ()=>{
-  body.classList.toggle('dark');
-  localStorage.setItem('theme', body.classList.contains('dark')?'dark':'light');
-});
-</script>
+    const body = document.body;
+    const toggleCheckbox = document.getElementById('darkToggle');
+
+    // Set initial dark mode
+    if(localStorage.getItem('theme')==='dark'){
+      body.classList.add('dark');
+      toggleCheckbox.checked = true;
+    }
+
+    // Toggle dark mode
+    toggleCheckbox.addEventListener('change', ()=>{
+      body.classList.toggle('dark');
+      localStorage.setItem('theme', body.classList.contains('dark')?'dark':'light');
+    });
+  </script>
 </body>
 </html>
-
-
-
-
