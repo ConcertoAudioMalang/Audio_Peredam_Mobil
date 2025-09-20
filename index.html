@@ -16,51 +16,60 @@
 
   <style>
     /* Extend Tailwind config colors */
-    :root {
-      --color-primary: #006241;
-      --color-primary-dark: #00491f;
-    }
+    <style>
+  /* 🎨 Global Colors */
+  :root {
+    --color-primary: #006241;
+    --color-primary-dark: #00491f;
+  }
 
-    .bg-primary {
-      background-color: var(--color-primary);
-    }
-    .bg-primary-dark {
-      background-color: var(--color-primary-dark);
-    }
-    .text-primary {
-      color: var(--color-primary);
-    }
-    /* Dark mode styles */
-    body.dark {
-      background-color: #121212;
-      color: #e0e0e0;
-    }
-    body.dark header,
-    body.dark footer {
-      background-color: #1e1e1e;
-      color: #cfcfcf;
-    }
-    body.dark a:hover {
-      color: var(--color-primary);
-    }
-    body.dark .bg-white {
-      background-color: #1e1e1e !important;
-    }
-    body.dark .bg-gray-50 {
-      background-color: #222 !important;
-    }
-    body.dark input, 
-    body.dark textarea {
-      background-color: #333;
-      border-color: #555;
-      color: #eee;
-    }
-    body.dark input:focus, 
-    body.dark textarea:focus {
-      outline-color: var(--color-primary);
-      box-shadow: 0 0 0 2px var(--color-primary);
-    }
-  </style>
+  /* 🌐 Global Settings */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* 🔵 Utility Colors */
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .bg-primary-dark {
+    background-color: var(--color-primary-dark);
+  }
+  .text-primary {
+    color: var(--color-primary);
+  }
+
+  /* 🌙 Dark Mode Styles */
+  body.dark {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  body.dark header,
+  body.dark footer {
+    background-color: #1e1e1e;
+    color: #cfcfcf;
+  }
+  body.dark a:hover {
+    color: var(--color-primary);
+  }
+  body.dark .bg-white {
+    background-color: #1e1e1e !important;
+  }
+  body.dark .bg-gray-50 {
+    background-color: #222 !important;
+  }
+  body.dark input,
+  body.dark textarea {
+    background-color: #333;
+    border-color: #555;
+    color: #eee;
+  }
+  body.dark input:focus,
+  body.dark textarea:focus {
+    outline-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary);
+  }
+</style>
 </head>
 
 <body class="bg-gray-100 text-gray-900 transition-colors duration-500">
@@ -240,5 +249,6 @@
   </script>
 </body>
 </html>
+
 
 
