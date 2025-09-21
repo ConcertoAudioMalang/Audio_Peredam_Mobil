@@ -20,7 +20,6 @@
     --color-primary-dark:#00491f;
   }
 
-  /* General */
   body {
     font-family:'Inter',sans-serif;
     margin:0;
@@ -40,82 +39,6 @@
 
   a { text-decoration:none; }
   img, video { display:block; max-width:100%; transition: transform 0.5s; }
-
-   <!-- Hero Section -->
-<section class="relative h-[80vh] md:h-[90vh] lg:h-screen flex items-center justify-center overflow-hidden">
-
-  <!-- Video Background -->
-  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-    <source src="asset/hero-video.mp4" type="video/mp4">
-  </video>
-
-  <!-- Overlay -->
-  <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-
-  <!-- Content -->
-  <div class="relative z-10 text-center px-6 md:px-12">
-    <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-      Concerto Audio – Suara Premium, Desain Elegan
-    </h1>
-    <p class="mt-4 text-base md:text-lg lg:text-xl text-gray-200 max-w-2xl mx-auto">
-      Nikmati kualitas audio terbaik dengan sentuhan teknologi modern yang elegan.
-    </p>
-    <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="#produk" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg transition">
-        Lihat Produk
-      </a>
-      <a href="#kontak" class="px-6 py-3 bg-white hover:bg-gray-200 text-gray-900 rounded-full shadow-lg transition">
-        Hubungi Kami
-      </a>
-    </div>
-  </div>
-</section>
-
- <!-- Navbar -->
-<header id="navbar" class="fixed w-full top-0 z-50 bg-white dark:bg-gray-900 shadow-md transition-colors duration-500">
-  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-    
-    <!-- Logo -->
-    <div>
-      <a href="#"><img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto"></a>
-    </div>
-
-    <!-- Menu Desktop -->
-    <nav class="hidden md:flex space-x-8 font-medium text-gray-900 dark:text-gray-200">
-      <a href="#produk" class="nav-link hover:text-green-600 transition">Produk</a>
-      <a href="#tentang" class="nav-link hover:text-green-600 transition">Tentang</a>
-      <a href="#galeri" class="nav-link hover:text-green-600 transition">Galeri</a>
-      <a href="#kontak" class="nav-link hover:text-green-600 transition">Kontak</a>
-    </nav>
-
-    <!-- Dark Mode Toggle & Mobile Button -->
-    <div class="flex items-center space-x-4">
-      <!-- Dark Mode Slider -->
-      <label class="relative inline-block w-12 h-6 cursor-pointer">
-        <input type="checkbox" id="darkToggle" class="sr-only">
-        <span class="block bg-gray-300 dark:bg-gray-600 w-full h-6 rounded-full transition-colors duration-300">
-          <span class="dot absolute top-0.5 left-0 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300"></span>
-        </span>
-      </label>
-
-      <!-- Hamburger Mobile -->
-      <button id="nav-toggle" class="md:hidden focus:outline-none">
-        <svg class="w-6 h-6 text-gray-900 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-    </div>
-
-  </div>
-
-  <!-- Menu Mobile -->
-  <nav id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-md">
-    <a href="#produk" class="block px-6 py-3 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">Produk</a>
-    <a href="#tentang" class="block px-6 py-3 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">Tentang</a>
-    <a href="#galeri" class="block px-6 py-3 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">Galeri</a>
-    <a href="#kontak" class="block px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">Kontak</a>
-  </nav>
-</header>
 
   /* Produk Card */
   .produk-card {
@@ -153,18 +76,6 @@
   .masonry-item { break-inside:avoid; margin-bottom:1rem; position:relative; overflow:hidden; border-radius:1rem; }
   .masonry-item img { width:100%; display:block; transition: transform 0.5s; }
   .masonry-item:hover img { transform:scale(1.1); }
-  .masonry-item .overlay {
-    position:absolute;
-    inset:0;
-    background-color:rgba(0,0,0,0.5);
-    opacity:0;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    transition:opacity 0.5s;
-  }
-  .masonry-item:hover .overlay { opacity:1; }
 
   /* Dark Mode Slider */
   input#darkToggle { display:none; }
@@ -194,7 +105,7 @@
   footer svg { width:24px; height:24px; margin:0 0.5rem; transition: transform 0.3s, fill 0.3s; }
   footer svg:hover { transform:scale(1.2); fill: var(--color-primary); }
 
-  /* Smooth transitions for sections */
+  /* Smooth transitions */
   body, header, footer, section, .produk-card, .masonry-item {
     transition: background-color 0.5s, color 0.5s, transform 0.3s, box-shadow 0.3s;
   }
@@ -203,25 +114,45 @@
 <body class="transition-colors duration-500 text-gray-900 dark:text-gray-200">
 
   <!-- Navbar -->
-  <header id="navbar" class="fixed w-full top-0 z-50 bg-transparent transition-colors">
+  <header id="navbar" class="fixed w-full top-0 z-50 bg-white dark:bg-gray-900 shadow-md transition-colors duration-500">
     <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-      <div><img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto" /></div>
-      <nav class="hidden md:flex space-x-8 font-medium">
-        <a href="#produk" class="nav-link">Produk</a>
-        <a href="#tentang" class="nav-link">Tentang</a>
-        <a href="#galeri" class="nav-link">Galeri</a>
-        <a href="#kontak" class="nav-link">Kontak</a>
+      <!-- Logo -->
+      <div><a href="#"><img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto"></a></div>
+      
+      <!-- Menu Desktop -->
+      <nav class="hidden md:flex space-x-8 font-medium text-gray-900 dark:text-gray-200">
+        <a href="#produk" class="nav-link hover:text-green-600 transition">Produk</a>
+        <a href="#tentang" class="nav-link hover:text-green-600 transition">Tentang</a>
+        <a href="#galeri" class="nav-link hover:text-green-600 transition">Galeri</a>
+        <a href="#kontak" class="nav-link hover:text-green-600 transition">Kontak</a>
       </nav>
-      <div class="flex items-center">
+
+      <!-- Dark Mode + Hamburger -->
+      <div class="flex items-center space-x-4">
         <!-- Dark Mode Slider -->
-        <label class="relative inline-block w-12 h-6 cursor-pointer ml-4">
+        <label class="relative inline-block w-12 h-6 cursor-pointer">
           <input type="checkbox" id="darkToggle" class="sr-only">
           <span class="block bg-gray-300 dark:bg-gray-600 w-full h-6 rounded-full transition-colors duration-300">
             <span class="dot absolute top-0.5 left-0 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300"></span>
           </span>
         </label>
+
+        <!-- Hamburger -->
+        <button id="nav-toggle" class="md:hidden focus:outline-none">
+          <svg class="w-6 h-6 text-gray-900 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
       </div>
     </div>
+
+    <!-- Menu Mobile -->
+    <nav id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-md">
+      <a href="#produk" class="block px-6 py-3 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">Produk</a>
+      <a href="#tentang" class="block px-6 py-3 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">Tentang</a>
+      <a href="#galeri" class="block px-6 py-3 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">Galeri</a>
+      <a href="#kontak" class="block px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">Kontak</a>
+    </nav>
   </header>
 
   <!-- Hero Section -->
@@ -250,24 +181,28 @@
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Produk Unggulan</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Card 1 -->
         <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="100">
           <img src="asset/produk1.jpg" alt="Produk 1" class="rounded-lg mb-4" />
           <h3 class="font-semibold text-lg mb-2">Speaker A</h3>
           <p class="text-sm mb-2">Audio mobil premium untuk kualitas suara terbaik.</p>
           <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
         </div>
+        <!-- Card 2 -->
         <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="200">
           <img src="asset/produk2.jpg" alt="Produk 2" class="rounded-lg mb-4" />
           <h3 class="font-semibold text-lg mb-2">Subwoofer B</h3>
           <p class="text-sm mb-2">Bass terdalam untuk pengalaman audio maksimal.</p>
           <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
         </div>
+        <!-- Card 3 -->
         <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="300">
           <img src="asset/produk3.jpg" alt="Produk 3" class="rounded-lg mb-4" />
           <h3 class="font-semibold text-lg mb-2">Amplifier C</h3>
           <p class="text-sm mb-2">Meningkatkan kualitas suara hingga 200%.</p>
           <a href="#kontak" class="text-primary font-semibold hover:underline">Pesan Sekarang</a>
         </div>
+        <!-- Card 4 -->
         <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="400">
           <img src="asset/produk4.jpg" alt="Produk 4" class="rounded-lg mb-4" />
           <h3 class="font-semibold text-lg mb-2">Speaker Door D</h3>
@@ -328,71 +263,28 @@
       <p>&copy; 2025 Concerto Audio Malang. All Rights Reserved.</p>
       <div class="flex mt-4 md:mt-0">
         <a href="#"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.326v21.348C0 23.407.593 24 1.325 24h11.494v-9.294H9.691v-3.622h3.128V8.408c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.794.143v3.24l-1.918.001c-1.504 0-1.796.716-1.796 1.765v2.317h3.587l-.467 3.622h-3.12V24h6.116C23.407 24 24 23.407 24 22.674V1.326C24 .593 23.407 0 22.675 0z"/></svg></a>
-        <a href="#"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557a9.835 9.835 0 01-2.828.775 4.932 4.932 0 002.165-2.724 9.865 9.865 0 01-3.127 1.195 4.918 4.918 0 00-8.379 4.482 13.949 13.949 0 01-10.141-5.144 4.822 4.822 0 001.523 6.573A4.903 4.903 0 01.964 9.1v.062a4.918 4.918 0 003.946 4.827 4.902 4.902 0 01-2.212.084 4.919 4.919 0 004.588 3.417A9.867 9.867 0 010 19.54a13.92 13.92 0 007.548 2.212c9.056 0 14.01-7.496 14.01-13.986 0-.21-.004-.423-.014-.634A10.025 10.025 0 0024 4.557z"/></svg></a>
+        <a href="#"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557a9.835 9.835 0 01-2.828.775 4.932 4.932 0 002.165-2.724 9.865 9.865 0 01-3.127 1.195 4.918 4.918 0 00-8.379 4.482 13.949 13.949 0 01-10.141-5.144 4.822 4.822 0 001.523 6.573A4.903 4.903 0 01.964 9.1v.062a4.918 4.918 0 003.946 4.827 4.902 4.902 0 01-2.212.084 4.923 4.923 0 004.6 3.419A9.867 9.867 0 010 19.54a13.94 13.94 0 007.548 2.212c9.056 0 14.01-7.496 14.01-13.986 0-.213-.005-.425-.014-.636A9.98 9.98 0 0024 4.557z"/></svg></a>
+        <a href="#"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184a9.998 9.998 0 01-2.828.775 4.932 4.932 0 002.165-2.724 9.865 9.865 0 01-3.127 1.195A4.918 4.918 0 0012 0a4.918 4.918 0 00-4.826 6.042A13.949 13.949 0 011.032.886a4.822 4.822 0 001.523 6.573A4.903 4.903 0 01.964 9.1v.062a4.918 4.918 0 003.946 4.827 4.902 4.902 0 01-2.212.084 4.923 4.923 0 004.6 3.419A9.867 9.867 0 010 19.54a13.94 13.94 0 007.548 2.212c9.056 0 14.01-7.496 14.01-13.986 0-.213-.005-.425-.014-.636A9.98 9.98 0 0024 4.557z"/></svg></a>
       </div>
     </div>
   </footer>
 
- <!-- Floating WhatsApp Button -->
-<a href="https://wa.me/6281234567890" target="_blank"
-   class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 text-white rounded-full shadow-lg flex items-center justify-center overflow-visible"
-   aria-label="Chat via WhatsApp">
-
-  <!-- Pulse effect -->
-  <span class="absolute inset-0 rounded-full bg-green-400 opacity-50 animate-ping"></span>
-
-  <!-- WhatsApp Icon -->
-  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-7 h-7 relative z-10" viewBox="0 0 24 24">
-    <path d="M20.52 3.48A11.88 11.88 0 0 0 12 .25C5.5.25.25 5.5.25 12c0 2.1.55 4.16 1.58 5.96L.25 23.75l5.92-1.55A11.7 11.7 0 0 0 12 23.75c6.5 0 11.75-5.25 11.75-11.75 0-3.14-1.23-6.1-3.48-8.27Zm-8.52 17.02c-1.84 0-3.63-.5-5.2-1.45l-.37-.22-3.52.92.94-3.44-.24-.35a9.3 9.3 0 0 1-1.45-5.1c0-5.17 4.2-9.37 9.37-9.37 2.5 0 4.85.97 6.62 2.73a9.32 9.32 0 0 1 2.75 6.63c0 5.18-4.2 9.38-9.38 9.38Z"/>
-  </svg>
-</a>
-
-<style>
-  @media (max-width: 640px){
-    a[aria-label="Chat via WhatsApp"] {
-      width: 50px; 
-      height: 50px; 
-      bottom: 1.5rem; 
-      right: 1.5rem;
-    }
-    a[aria-label="Chat via WhatsApp"] svg {
-      width: 1.5rem;
-      height: 1.5rem;
-    }
-  }
-</style>
-
-  <!-- AOS & Scripts -->
+  <!-- AOS JS -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({ once:true, duration:1000 });
+    AOS.init({ duration:1000, once:true });
 
-    const body = document.body;
-    const toggleCheckbox = document.getElementById('darkToggle');
-
-    // Set initial dark mode
-    if(localStorage.getItem('theme')==='dark'){
-      body.classList.add('dark');
-      toggleCheckbox.checked = true;
-    }
-
-    // Toggle dark mode
-    toggleCheckbox.addEventListener('change', ()=>{
-      body.classList.toggle('dark');
-      localStorage.setItem('theme', body.classList.contains('dark')?'dark':'light');
+    // Dark mode toggle
+    document.getElementById('darkToggle').addEventListener('change', function(){
+      document.body.classList.toggle('dark', this.checked);
     });
-    <!-- Script Toggle Mobile (di akhir body) -->
-<script>
-const toggle = document.getElementById('nav-toggle');
-const mobileMenu = document.getElementById('mobile-menu');
 
-toggle.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
-});
+    // Mobile menu toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    navToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
   </script>
 </body>
 </html>
-
-
-
-
