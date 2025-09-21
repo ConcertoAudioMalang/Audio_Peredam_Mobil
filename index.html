@@ -15,76 +15,205 @@
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
 <style>
-  :root { --color-primary:#006241; --color-primary-dark:#00491f; }
+:root {
+  --color-primary:#006241;
+  --color-primary-dark:#00491f;
+}
 
-  body { font-family:'Inter',sans-serif; margin:0; padding:0; background:#fff; color:#111827; transition: background-color 0.5s, color 0.5s; }
-  body.dark { background:#121212; color:#e0e0e0; }
-  body.dark header, body.dark footer { background-color:#1e1e1e; color:#cfcfcf; }
+body { font-family:'Inter',sans-serif; margin:0; padding:0; background:#fff; color:#111827; transition: background-color 0.5s, color 0.5s; }
+body.dark { background:#121212; color:#e0e0e0; }
+body.dark header, body.dark footer { background-color:#1e1e1e; color:#cfcfcf; }
 
-  a { text-decoration:none; }
-  img, video { display:block; max-width:100%; transition: transform 0.5s; }
+a { text-decoration:none; }
+img, video { display:block; max-width:100%; transition: transform 0.5s; }
 
-  /* Produk Card */
-  .produk-card { background-color:#f9fafb; border-radius:1rem; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s, background-color 0.5s; }
-  .produk-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
-  body.dark .produk-card { background-color:#1e1e1e; color:#e0e0e0; }
+/* Produk Card */
+.produk-card { background-color:#f9fafb; border-radius:1rem; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s, background-color 0.5s; }
+.produk-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
+body.dark .produk-card { background-color:#1e1e1e; color:#e0e0e0; }
 
-  /* About Section */
-  .about-section { position:relative; display:flex; align-items:center; justify-content:center; height:600px; overflow:hidden; text-align:center; color:white; }
-  .about-section img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .about-section .overlay { position:absolute; inset:0; background-color: rgba(0,0,0,0.5); transition: background-color 0.5s; }
-  .about-section .content { position:relative; z-index:10; max-width:700px; padding:0 1rem; }
+/* About Section */
+.about-section { position:relative; display:flex; align-items:center; justify-content:center; height:600px; overflow:hidden; text-align:center; color:white; }
+.about-section img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.about-section .overlay { position:absolute; inset:0; background-color: rgba(0,0,0,0.5); transition: background-color 0.5s; }
+.about-section .content { position:relative; z-index:10; max-width:700px; padding:0 1rem; }
 
-  /* Galeri Masonry */
-  .masonry { column-count:3; column-gap:1rem; }
-  @media(max-width:1024px){.masonry{column-count:2;}} 
-  @media(max-width:640px){.masonry{column-count:1;}}
-  .masonry-item { break-inside:avoid; margin-bottom:1rem; position:relative; overflow:hidden; border-radius:1rem; }
-  .masonry-item img { width:100%; display:block; transition: transform 0.5s; }
-  .masonry-item:hover img { transform:scale(1.1); }
+/* Galeri Masonry */
+.masonry { column-count:3; column-gap:1rem; }
+@media(max-width:1024px){.masonry{column-count:2;}} 
+@media(max-width:640px){.masonry{column-count:1;}}
+.masonry-item { break-inside:avoid; margin-bottom:1rem; position:relative; overflow:hidden; border-radius:1rem; }
+.masonry-item img { width:100%; display:block; transition: transform 0.5s; }
+.masonry-item:hover img { transform:scale(1.1); }
 
-  /* Dark Mode Slider */
-  input#darkToggle { display:none; }
-  input#darkToggle + span { display:block; width:48px; height:24px; background:#d1d5db; border-radius:9999px; position:relative; transition: background-color 0.3s; }
-  input#darkToggle + span .dot { width:20px; height:20px; background:#fff; border-radius:50%; position:absolute; top:2px; left:2px; transition: transform 0.3s; }
-  input#darkToggle:checked + span { background-color:#4ade80; }
-  input#darkToggle:checked + span .dot { transform: translateX(24px); }
+/* Dark Mode Slider */
+input#darkToggle { display:none; }
+input#darkToggle + span { display:block; width:48px; height:24px; background:#d1d5db; border-radius:9999px; position:relative; transition: background-color 0.3s; }
+input#darkToggle + span .dot { width:20px; height:20px; background:#fff; border-radius:50%; position:absolute; top:2px; left:2px; transition: transform 0.3s; }
+input#darkToggle:checked + span { background-color:#4ade80; }
+input#darkToggle:checked + span .dot { transform: translateX(24px); }
 
-  /* Footer Icons */
-  footer svg { width:24px; height:24px; margin:0 0.5rem; transition: transform 0.3s, fill 0.3s; }
-  footer svg:hover { transform:scale(1.2); fill: var(--color-primary); }
+/* Footer Icons */
+footer svg { width:24px; height:24px; margin:0 0.5rem; transition: transform 0.3s, fill 0.3s; }
+footer svg:hover { transform:scale(1.2); fill: var(--color-primary); }
 
-  /* Floating WhatsApp */
-  #whatsapp-float {
-    position: fixed; bottom: 20px; right: 20px; z-index:9999;
-    background:#25d366; color:white; border-radius:50%; padding:14px; display:flex;
-    align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(0,0,0,0.15);
-    animation:pulse 2s infinite; transition: background 0.3s ease;
-  }
-  #whatsapp-float:hover { background:#1ebe5d; }
-  @keyframes pulse { 0% { transform: scale(1); box-shadow:0 0 0 0 rgba(37,211,102,0.6); } 70% { transform: scale(1.05); box-shadow:0 0 0 15px rgba(37,211,102,0); } 100% { transform: scale(1); box-shadow:0 0 0 0 rgba(37,211,102,0); } }
+/* Floating WhatsApp */
+#whatsapp-float {
+  position: fixed; bottom: 20px; right: 20px; z-index:9999;
+  background:#25d366; color:white; border-radius:50%; padding:14px; display:flex;
+  align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(0,0,0,0.15);
+  animation:pulse 2s infinite; transition: background 0.3s ease;
+}
+#whatsapp-float:hover { background:#1ebe5d; }
+@keyframes pulse { 0% { transform: scale(1); box-shadow:0 0 0 0 rgba(37,211,102,0.6); } 70% { transform: scale(1.05); box-shadow:0 0 0 15px rgba(37,211,102,0); } 100% { transform: scale(1); box-shadow:0 0 0 0 rgba(37,211,102,0); } }
 
-  /* Scroll To Top */
-  #scrollTopBtn {
-    position: fixed; bottom: 20px; left:50%; transform:translateX(-50%) translateY(20px);
-    z-index:9999; background:#333; color:white; border-radius:50%; padding:14px; display:flex;
-    align-items:center; justify-content:center; cursor:pointer; opacity:0; pointer-events:none;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
-  #scrollTopBtn.show { opacity:1; pointer-events:auto; transform:translateX(-50%) translateY(0); }
-  #scrollTopBtn:hover { background:#555; }
-  body.dark #scrollTopBtn { background:#f5f5f5; color:#222; }
-  body.dark #scrollTopBtn:hover { background:#ddd; }
+/* Scroll To Top */
+#scrollTopBtn {
+  position: fixed; bottom: 20px; left:50%; transform:translateX(-50%) translateY(20px);
+  z-index:9999; background:#333; color:white; border-radius:50%; padding:14px; display:flex;
+  align-items:center; justify-content:center; cursor:pointer; opacity:0; pointer-events:none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+#scrollTopBtn.show { opacity:1; pointer-events:auto; transform:translateX(-50%) translateY(0); }
+#scrollTopBtn:hover { background:#555; }
+body.dark #scrollTopBtn { background:#f5f5f5; color:#222; }
+body.dark #scrollTopBtn:hover { background:#ddd; }
 
-  /* Smooth transitions */
-  body, header, footer, section, .produk-card, .masonry-item { transition: background-color 0.5s, color 0.5s, transform 0.3s, box-shadow 0.3s; }
+/* Smooth transitions */
+body, header, footer, section, .produk-card, .masonry-item { transition: background-color 0.5s, color 0.5s, transform 0.3s, box-shadow 0.3s; }
 </style>
 </head>
 
 <body class="transition-colors duration-500 text-gray-900 dark:text-gray-200">
 
-  <!-- NAVBAR, HERO, PRODUK, ABOUT, GALERI, KONTAK, FOOTER -->
-  <!-- (Content tetap sama seperti yang sudah kamu paste di atas, tidak berubah) -->
+  <!-- NAVBAR -->
+  <header id="navbar" class="fixed w-full top-0 z-50 bg-white dark:bg-gray-900 shadow-md transition-colors duration-500">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <div><a href="#"><img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto"></a></div>
+      <nav class="hidden md:flex space-x-8 font-medium text-gray-900 dark:text-gray-200">
+        <a href="#produk" class="nav-link hover:text-green-600 transition">Produk</a>
+        <a href="#tentang" class="nav-link hover:text-green-600 transition">Tentang</a>
+        <a href="#galeri" class="nav-link hover:text-green-600 transition">Galeri</a>
+        <a href="#kontak" class="nav-link hover:text-green-600 transition">Kontak</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <label class="relative inline-block w-12 h-6 cursor-pointer">
+          <input type="checkbox" id="darkToggle" class="sr-only">
+          <span class="block bg-gray-300 dark:bg-gray-600 w-full h-6 rounded-full transition-colors duration-300">
+            <span class="dot absolute top-0.5 left-0 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300"></span>
+          </span>
+        </label>
+        <button id="nav-toggle" class="md:hidden focus:outline-none">
+          <svg class="w-6 h-6 text-gray-900 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-md">
+      <a href="#produk" class="block px-6 py-3 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">Produk</a>
+      <a href="#tentang" class="block px-6 py-3 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">Tentang</a>
+      <a href="#galeri" class="block px-6 py-3 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">Galeri</a>
+      <a href="#kontak" class="block px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">Kontak</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section relative h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden">
+    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+      <source src="asset/video1.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-black bg-opacity-30 dark:bg-black dark:bg-opacity-60 transition-colors duration-500"></div>
+    <div class="relative z-10 max-w-3xl px-4">
+      <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg mb-4" data-aos="fade-up" data-aos-delay="200">
+        Electric Vehicles Designed For Adventure
+      </h1>
+      <p class="text-lg md:text-xl mb-8" data-aos="fade-up" data-aos-delay="400">
+        Belanja produk-produk premium dari 4 merek utama kami yang siap mendukung petualangan Anda.
+      </p>
+      <a href="#produk" class="inline-block px-6 py-3 bg-primary text-white rounded-lg font-semibold shadow-lg hover:bg-primary-dark hover:scale-105 transition transform duration-300" data-aos="fade-up" data-aos-delay="600">
+        Lihat Produk
+      </a>
+    </div>
+  </section>
+
+  <!-- PRODUK SECTION -->
+  <section id="produk" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Produk Unggulan</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Produk Card -->
+        <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="100">
+          <img src="asset/produk1.jpg" alt="Produk 1" class="rounded-lg mb-4">
+          <h3 class="text-xl font-semibold mb-2">Speaker X</h3>
+          <p class="text-gray-600 dark:text-gray-300">Deskripsi singkat produk X.</p>
+        </div>
+        <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="200">
+          <img src="asset/produk2.jpg" alt="Produk 2" class="rounded-lg mb-4">
+          <h3 class="text-xl font-semibold mb-2">Speaker Y</h3>
+          <p class="text-gray-600 dark:text-gray-300">Deskripsi singkat produk Y.</p>
+        </div>
+        <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="300">
+          <img src="asset/produk3.jpg" alt="Produk 3" class="rounded-lg mb-4">
+          <h3 class="text-xl font-semibold mb-2">Speaker Z</h3>
+          <p class="text-gray-600 dark:text-gray-300">Deskripsi singkat produk Z.</p>
+        </div>
+        <div class="produk-card p-4" data-aos="fade-up" data-aos-delay="400">
+          <img src="asset/produk4.jpg" alt="Produk 4" class="rounded-lg mb-4">
+          <h3 class="text-xl font-semibold mb-2">Speaker A</h3>
+          <p class="text-gray-600 dark:text-gray-300">Deskripsi singkat produk A.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="tentang" class="about-section">
+    <img src="asset/about-bg.jpg" alt="Tentang Kami">
+    <div class="overlay"></div>
+    <div class="content" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Tentang Concerto Audio</h2>
+      <p class="text-lg md:text-xl">Concerto Audio Malang menyediakan produk audio mobil premium dari berbagai merek terpercaya, lengkap dengan layanan instalasi profesional.</p>
+    </div>
+  </section>
+
+  <!-- GALERI SECTION -->
+  <section id="galeri" class="py-20 bg-gray-100 dark:bg-gray-800 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Galeri</h2>
+      <div class="masonry">
+        <div class="masonry-item" data-aos="fade-up"><img src="asset/galeri1.jpg" alt="Galeri 1"></div>
+        <div class="masonry-item" data-aos="fade-up" data-aos-delay="100"><img src="asset/galeri2.jpg" alt="Galeri 2"></div>
+        <div class="masonry-item" data-aos="fade-up" data-aos-delay="200"><img src="asset/galeri3.jpg" alt="Galeri 3"></div>
+        <div class="masonry-item" data-aos="fade-up" data-aos-delay="300"><img src="asset/galeri4.jpg" alt="Galeri 4"></div>
+        <div class="masonry-item" data-aos="fade-up" data-aos-delay="400"><img src="asset/galeri5.jpg" alt="Galeri 5"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK SECTION -->
+  <section id="kontak" class="py-20 bg-white dark:bg-gray-900 transition-colors duration-500">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Kontak Kami</h2>
+      <form class="grid grid-cols-1 md:grid-cols-2 gap-6" data-aos="fade-up">
+        <input type="text" placeholder="Nama" class="p-4 border rounded-lg w-full bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-700">
+        <input type="email" placeholder="Email" class="p-4 border rounded-lg w-full bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-700">
+        <textarea placeholder="Pesan" class="p-4 border rounded-lg w-full md:col-span-2 bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-700"></textarea>
+        <button type="submit" class="md:col-span-2 px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition">Kirim Pesan</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-6 text-center text-gray-700 dark:text-gray-300">
+      <p>&copy; 2025 Concerto Audio Malang. All rights reserved.</p>
+      <div class="mt-4 flex justify-center">
+        <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.056 1.97.24 2.43.413a4.92 4.92 0 011.77 1.025 4.92 4.92 0 011.025 1.77c.174.46.357 1.26.413 2.43.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.056 1.17-.24 1.97-.413 2.43a4.92 4.92 0 01-1.025 1.77 4.92 4.92 0 01-1.77 1.025c-.46.174-1.26.357-2.43.413-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.056-1.97-.24-2.43-.413a4.92 4.92 0 01-1.77-1.025 4.92 4.92 0 01-1.025-1.77c-.174-.46-.357-1.26-.413-2.43-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.056-1.17.24-1.97.413-2.43a4.92 4.92 0 011.025-1.77 4.92 4.92 0 011.77-1.025c.46-.174 1.26-.357 2.43-.413 1.266-.058 1.646-.07 4.85-.07zm0-2.163C8.741 0 8.332.012 7.052.07 5.772.128 4.802.312 4.042.617a7.075 7.075 0 00-2.57 1.658A7.075 7.075 0 00.617 4.042C.312 4.802.128 5.772.07 7.052.012 8.332 0 8.741 0 12c0 3.259.012 3.668.07 4.948.058 1.28.242 2.25.547 3.01a7.075 7.075 0 001.658 2.57 7.075 7.075 0 002.57 1.658c.76.305 1.73.489 3.01.547 1.28.058 1.689.07 4.948.07s3.668-.012 4.948-.07c1.28-.058 2.25-.242 3.01-.547a7.075 7.075 0 002.57-1.658 7.075 7.075 0 001.658-2.57c.305-.76.489-1.73.547-3.01.058-1.28.07-1.689.07-4.948s-.012-3.668-.07-4.948c-.058-1.28-.242-2.25-.547-3.01a7.075 7.075 0 00-1.658-2.57A7.075 7.075 0 0019.958.617c-.76-.305-1.73-.489-3.01-.547C15.668.012 15.259 0 12 0z"/><path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.326v21.348C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.657-4.788 1.325 0 2.463.099 2.794.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.31h3.588l-.467 3.622h-3.121V24h6.116c.73 0 1.323-.593 1.323-1.326V1.326C24 .593 23.407 0 22.675 0z"/></svg></a>
+      </div>
+    </div>
+  </footer>
 
   <!-- WhatsApp Floating Button -->
   <a id="whatsapp-float" href="https://wa.me/6281234567890" target="_blank" aria-label="Chat on WhatsApp">
