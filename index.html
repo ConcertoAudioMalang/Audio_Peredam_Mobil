@@ -222,13 +222,42 @@ body, header, footer, section, .produk-card, .masonry-item { transition: backgro
     </svg>
   </a>
 
-  <!-- Scroll To Top Button -->
-  <button id="scrollTopBtn" aria-label="Scroll to top">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
-         class="w-6 h-6" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
-    </svg>
-  </button>
+  <!-- Scroll To Top -->
+<button id="scrollTopBtn" aria-label="Scroll to top" class="z-50">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+       class="w-6 h-6" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+  </svg>
+</button>
+  <style>
+#scrollTopBtn {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%) translateY(20px);
+  background: #333;
+  color: white;
+  border-radius: 50%;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+#scrollTopBtn.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+#scrollTopBtn:hover { background: #555; }
+
+/* Adaptif Dark Mode */
+body.dark #scrollTopBtn { background: #f5f5f5; color: #222; }
+body.dark #scrollTopBtn:hover { background: #ddd; }
+</style>
 
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -264,19 +293,32 @@ body, header, footer, section, .produk-card, .masonry-item { transition: backgro
       whatsappFloat.classList.add("show");
     });
 
-    // Scroll To Top Button
-    const scrollTopBtn = document.getElementById("scrollTopBtn");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 200) {
-        scrollTopBtn.classList.add("show");
-      } else {
-        scrollTopBtn.classList.remove("show");
-      }
-    });
-    scrollTopBtn.addEventListener("click", () => {
-      window.scrollTo({ top:0, behavior:"smooth" });
-    });
-  </script>
+// Scroll-to-Top with footer collision detection
+document.addEventListener("DOMContentLoaded", () => {
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+  const footer = document.querySelector("footer");
+
+  window.addEventListener("scroll", () => {
+    // Show/hide button
+    if (window.scrollY > 200) scrollTopBtn.classList.add("show");
+    else scrollTopBtn.classList.remove("show");
+
+    // Adjust bottom if footer is visible
+    const rect = footer.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    if (rect.top < windowHeight) {
+      scrollTopBtn.style.bottom = (windowHeight - rect.top + 20) + "px";
+    } else {
+      scrollTopBtn.style.bottom = "20px";
+    }
+  });
+
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+</script>
 
 </body>
 </html>
+
