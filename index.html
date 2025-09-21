@@ -41,10 +41,51 @@
   a { text-decoration:none; }
   img, video { display:block; max-width:100%; transition: transform 0.5s; }
 
-  /* Navbar */
-  #navbar { transition: background-color 0.5s, box-shadow 0.5s; }
-  .nav-link { color:inherit; font-weight:500; transition: color 0.3s; }
-  .nav-link:hover { color:var(--color-primary); }
+ <!-- Navbar -->
+<header id="navbar" class="fixed w-full top-0 z-50 bg-white dark:bg-gray-900 shadow-md transition-colors duration-500">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    
+    <!-- Logo -->
+    <div>
+      <a href="#"><img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto"></a>
+    </div>
+
+    <!-- Menu Desktop -->
+    <nav class="hidden md:flex space-x-8 font-medium text-gray-900 dark:text-gray-200">
+      <a href="#produk" class="nav-link hover:text-green-600 transition">Produk</a>
+      <a href="#tentang" class="nav-link hover:text-green-600 transition">Tentang</a>
+      <a href="#galeri" class="nav-link hover:text-green-600 transition">Galeri</a>
+      <a href="#kontak" class="nav-link hover:text-green-600 transition">Kontak</a>
+    </nav>
+
+    <!-- Dark Mode Toggle & Mobile Button -->
+    <div class="flex items-center space-x-4">
+      <!-- Dark Mode Slider -->
+      <label class="relative inline-block w-12 h-6 cursor-pointer">
+        <input type="checkbox" id="darkToggle" class="sr-only">
+        <span class="block bg-gray-300 dark:bg-gray-600 w-full h-6 rounded-full transition-colors duration-300">
+          <span class="dot absolute top-0.5 left-0 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300"></span>
+        </span>
+      </label>
+
+      <!-- Hamburger Mobile -->
+      <button id="nav-toggle" class="md:hidden focus:outline-none">
+        <svg class="w-6 h-6 text-gray-900 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Menu Mobile -->
+  <nav id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-md">
+    <a href="#produk" class="block px-6 py-3 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">Produk</a>
+    <a href="#tentang" class="block px-6 py-3 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">Tentang</a>
+    <a href="#galeri" class="block px-6 py-3 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">Galeri</a>
+    <a href="#kontak" class="block px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">Kontak</a>
+  </nav>
+</header>
 
   /* Hero Section Animations */
   .hero-section h1, .hero-section p, .hero-section a {
@@ -321,7 +362,16 @@
       body.classList.toggle('dark');
       localStorage.setItem('theme', body.classList.contains('dark')?'dark':'light');
     });
+    <!-- Script Toggle Mobile (di akhir body) -->
+<script>
+const toggle = document.getElementById('nav-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+
+toggle.addEventListener('click', () => {
+  mobileMenu.classList.toggle('hidden');
+});
   </script>
 </body>
 </html>
+
 
