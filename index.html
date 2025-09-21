@@ -20,13 +20,12 @@
     --color-primary-dark:#00491f;
   }
 
-  body {
-    font-family:'Inter',sans-serif;
-    margin:0;
-    padding:0;
-    background-color:#f9fafb;
-    color:#111827;
-    transition: background-color 0.5s, color 0.5s;
+  body { 
+    font-family:'Inter',sans-serif; 
+    margin:0; padding:0; 
+    background-color:#ffffff; 
+    color:#111827; 
+    transition: background-color 0.5s, color 0.5s; }
   }
   body.dark {
     background-color:#121212;
@@ -160,7 +159,7 @@
     <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
       <source src="asset/video1.mp4" type="video/mp4" />
     </video>
-    <div class="absolute inset-0 bg-black bg-opacity-50 dark:bg-black dark:bg-opacity-60 transition-colors duration-500"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-30 dark:bg-black dark:bg-opacity-60 transition-colors duration-500"></div>
     <div class="relative z-10 max-w-3xl px-4">
       <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg mb-4" data-aos="fade-up" data-aos-delay="200">
         Electric Vehicles Designed For Adventure
@@ -270,21 +269,43 @@
   </footer>
 
   <!-- AOS JS -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration:1000, once:true });
+ <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ duration:1000, once:true });
 
-    // Dark mode toggle
-    document.getElementById('darkToggle').addEventListener('change', function(){
-      document.body.classList.toggle('dark', this.checked);
-    });
+  const body = document.body;
+  const toggleCheckbox = document.getElementById('darkToggle');
 
-    // Mobile menu toggle
-    const navToggle = document.getElementById('nav-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    navToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-  </script>
+  // Set initial dark mode dari localStorage
+  if(localStorage.getItem('theme')==='dark'){
+    body.classList.add('dark');
+    toggleCheckbox.checked = true;
+  }
+
+  // Dark mode toggle
+  toggleCheckbox.addEventListener('change', ()=>{
+    body.classList.toggle('dark');
+    localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+  });
+
+  // Mobile menu toggle
+  const navToggle = document.getElementById('nav-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  navToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-lg', 'dark:bg-gray-900/90');
+    } else {
+      navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-lg', 'dark:bg-gray-900/90');
+    }
+  });
+</script>
 </body>
 </html>
+
+
