@@ -328,19 +328,24 @@ body, header, footer, section, .produk-card, .masonry-item { transition: backgro
 }
 
  #scrollTopBtn {
-    position: fixed;
-    right: 20px;          /* kanan bawah */
-    bottom: 80px;         /* agak naik supaya gak nutup floating WA */
-    background: #333;
-    color: white;
-    border-radius: 50%;
-    padding: 14px;
-    cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease, bottom 0.4s ease;
-    z-index: 9999;
-  }
+  position: fixed;
+  right: 20px;
+  bottom: 80px;
+  background: #333;
+  color: white;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, bottom 0.4s ease;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+    
   #scrollTopBtn.show {
     opacity: 1;
     pointer-events: auto;
@@ -442,4 +447,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
