@@ -304,24 +304,56 @@ body, header, footer, section, .produk-card, .masonry-item, a, button {
   
 <!-- Tombol float -->
 <div class="float-buttons" id="floatButtons">
-<a href="https://wa.me/628123456789" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24" fill="white">
-    <path d="M380.9 97.1C339-44.2 203-47.4 141.4 11.5 92.7 53.1 76.2 120 76.2 120s-3 11.6 8.3 24.2c8.3 9.6 18.6 20.2 31.2 33.3 16.4 16.8 34.3 37 50 56.3 15.3 18.6 30.4 37.1 47 51.6 16.7 14.5 34.6 27.7 55.1 36.2 20.1 8.2 41.3 11.3 62.5 9.7 12.7-.9 24.5-3.5 35.2-7.3 0 0 9.4-2.8 16.2-7.5s10-12.5 10.5-20.4c.3-6.3 0-12.5 0-12.5s-.4-9-2.3-14.1c-1.7-4.6-7.6-12.7-12.1-17.4-4.5-4.7-9-9-13.5-13.6-4.2-4.4-8.7-9.6-12.1-14.1-3.6-4.7-5.3-7.9-5.3-7.9z"/>
-  </svg>
-</a>
-
+  <!-- Scroll Up Button (di atas WhatsApp) -->
   <button class="scroll-up-btn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" aria-label="Scroll Up">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
-    <path d="M12 4l-8 8h6v8h4v-8h6z"/>
-  </svg>
-</button>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#007BFF" viewBox="0 0 24 24">
+      <path d="M12 4l-8 8h6v8h4v-8h6z"/>
+    </svg>
+  </button>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/628123456789" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+      <path d="M20 2a10 10 0 00-10 10c0 1.7.4 3.3 1.1 4.8L3 21l4.2-8.1A9.96 9.96 0 0010 22a10 10 0 1010-10z"/>
+    </svg>
+  </a>
 </div>
 
 <style>
-  .scroll-up-btn {
-  background-color: transparent; /* transparan */
-  border: 2px solid #007BFF;    /* lingkaran biru */
-  color: #007BFF;               /* ikon panah biru */
+.float-buttons {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 12px;
+  z-index: 9999;
+  transition: bottom 0.2s;
+}
+
+/* WhatsApp Button */
+.whatsapp-btn {
+  background-color: #25D366;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Scroll Up Button */
+.scroll-up-btn {
+  background-color: transparent;
+  border: 2px solid #007BFF;
+  color: #007BFF;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -335,112 +367,37 @@ body, header, footer, section, .produk-card, .masonry-item, a, button {
 
 .scroll-up-btn:hover {
   transform: scale(1.1);
-  background-color: rgba(0,123,255,0.1); /* sedikit highlight saat hover */
+  background-color: rgba(0,123,255,0.1);
 }
 
-  .float-buttons {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 12px;
-    z-index: 9999;
-    transition: bottom 0.2s;
-  }
-
+/* Responsif HP */
+@media (max-width: 768px) {
   .float-buttons a,
   .float-buttons button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
-    font-family: 'Roboto', sans-serif;
+    width: 45px;
+    height: 45px;
   }
-
- .whatsapp-btn {
-  background-color: #25D366; /* hijau WA */
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  text-decoration: none;
-  transition: transform 0.2s;
 }
-  
-  .scroll-up-btn {
-    background-color: #007BFF;
-    border: none;
-  }
-
-  .float-buttons a:hover,
-  .float-buttons button:hover {
-    transform: scale(1.1);
-  }
-
-  /* Responsif untuk HP */
-  @media (max-width: 768px) {
-    .float-buttons a,
-    .float-buttons button {
-      width: 45px;
-      height: 45px;
-    }
-  }
 </style>
-  
-<!-- SCRIPTS -->
-  <script>
-  const floatButtons = document.getElementById('floatButtons');
-  const footer = document.querySelector('footer');
 
-  window.addEventListener('scroll', () => {
-    const footerRect = footer.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    if (footerRect.top < windowHeight) {
-      floatButtons.style.bottom = (windowHeight - footerRect.top + 15) + 'px';
-    } else {
-      floatButtons.style.bottom = '20px';
-    }
-  });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
-  AOS.init({ duration:800, once:true });
+const floatButtons = document.getElementById('floatButtons');
+const footer = document.querySelector('footer'); // pastikan ada <footer> di halaman
 
-  const darkToggle = document.getElementById('darkToggle');
-  darkToggle.addEventListener('change', () => { document.body.classList.toggle('dark'); });
+window.addEventListener('scroll', () => {
+  const footerRect = footer.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
 
-  const navToggle = document.getElementById('nav-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  navToggle.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
-
-  const scrollTopBtn = document.getElementById("scrollTopBtn");
-  const footer = document.querySelector("footer");
-  window.addEventListener("scroll", () => {
-    if(window.scrollY > 200){ scrollTopBtn.classList.add("show"); }
-    else{ scrollTopBtn.classList.remove("show"); }
-
-    if(footer){
-      const rect = footer.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      if(rect.top < windowHeight){ scrollTopBtn.style.bottom = `${windowHeight - rect.top + 80}px`; }
-      else{ scrollTopBtn.style.bottom = "96px"; }
-    }
-  });
-  scrollTopBtn.addEventListener("click", () => { window.scrollTo({ top:0, behavior:"smooth" }); });
-</script>
+  if (footerRect.top < windowHeight) {
+    floatButtons.style.bottom = (windowHeight - footerRect.top + 15) + 'px';
+  } else {
+    floatButtons.style.bottom = '20px';
+  }
+});
 </script>
 </body>
 </html>
+
 
 
 
