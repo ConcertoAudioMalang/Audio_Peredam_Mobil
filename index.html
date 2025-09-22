@@ -8,11 +8,13 @@
 <meta name="keywords" content="audio mobil, concerto audio, produk audio, audio mobil malang, speaker mobil, audio premium" />
 <meta name="author" content="Concerto Audio Malang" />
 
+
 <!-- Tailwind CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 
 <!-- AOS CSS -->
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
 <style>
 :root {
@@ -191,18 +193,45 @@ body, header, footer, section, .produk-card, .masonry-item { transition: backgro
     </div>
   </section>
 
-  <!-- KONTAK SECTION -->
-  <section id="kontak" class="py-20 bg-white dark:bg-gray-900 transition-colors duration-500">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Kontak Kami</h2>
-      <form class="grid grid-cols-1 md:grid-cols-2 gap-6" data-aos="fade-up">
-        <input type="text" placeholder="Nama" class="p-4 border rounded-lg w-full bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-700">
-        <input type="email" placeholder="Email" class="p-4 border rounded-lg w-full bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-700">
-        <textarea placeholder="Pesan" class="p-4 border rounded-lg w-full md:col-span-2 bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-700"></textarea>
-        <button type="submit" class="md:col-span-2 px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition">Kirim Pesan</button>
-      </form>
+ <!-- KONTAK SECTION (Tailwind + AOS + Dark Mode) -->
+<section id="kontak" class="py-20 bg-gray-100 dark:bg-gray-900 transition-colors duration-500">
+  <div class="max-w-4xl mx-auto px-6 text-gray-800 dark:text-gray-200">
+    <h2 class="text-4xl font-semibold mb-12 text-center" data-aos="fade-up">Hubungi Kami</h2>
+    <div class="grid md:grid-cols-2 gap-12">
+      
+      <!-- INFO KONTAK -->
+      <div class="space-y-8" data-aos="fade-right">
+        <div>
+          <h3 class="text-xl font-semibold mb-3">Alamat Kantor</h3>
+          <p>Jl. Contoh No. 123, Jakarta Selatan, Indonesia</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-3">Jam Operasional</h3>
+          <p>Senin - Jumat, 08.00 - 17.00 WIB</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-3">Telepon / WhatsApp</h3>
+          <p>
+            <a href="https://wa.me/628123456789" target="_blank" rel="noopener noreferrer" class="text-green-600 hover:underline flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.52 3.48A11.6 11.6 0 0012 0a11.6 11.6 0 00-8.52 3.48A11.6 11.6 0 000 12a11.6 11.6 0 003.48 8.52A11.6 11.6 0 0012 24a11.6 11.6 0 008.52-3.48A11.6 11.6 0 0024 12a11.6 11.6 0 00-3.48-8.52zm-1.88 13.24l-1.44 1.38c-.3.3-.77.43-1.2.3a9.6 9.6 0 01-3.92-2.4 8.7 8.7 0 01-2.4-3.92c-.13-.43 0-.9.3-1.2l1.38-1.44a.83.83 0 011.2-.13l1.64 1.22c.17.12.38.18.59.15a.72.72 0 00.59-.44l.88-1.98a.82.82 0 00-.15-.93l-1.3-1.3a2.36 2.36 0 00-3.5 0L7.23 8.88a7.22 7.22 0 00-2.16 4.8 7.32 7.32 0 0012.15 4.84z" />
+              </svg>
+              +62 812-3456-789
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <!-- GOOGLE MAPS -->
+      <div data-aos="fade-left" data-aos-delay="200">
+        <iframe 
+          src= <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.43408296618!2d112.64151287482021!3d-7.954013492070509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629b6215718c1%3A0x141cdb0f044d67d5!2sConcerto%20Audio%20dan%20Peredam%20Mobil%20Malang%20Raya!5e0!3m2!1sen!2sid!4v1758508483715!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-lg shadow-lg"></iframe>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- FOOTER -->
   <footer class="py-8 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
@@ -336,8 +365,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    once: true,
+    duration: 800,
+  });
+</script>
 
 </body>
 </html>
+
 
 
