@@ -192,37 +192,53 @@ body, header, footer, section, .produk-card, .masonry-item { transition: backgro
       </div>
     </div>
   </section>
-
-<!-- KONTAK SECTION -->
+  
+  <!-- Section Kontak -->
 <section id="kontak" class="py-20 bg-white dark:bg-gray-900 transition-colors duration-500">
   <div class="max-w-4xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
 
-    <!-- INFO KONTAK -->
+    <!-- Info Kontak -->
     <div class="space-y-8" data-aos="fade-right">
-      <div>
-        <h3 class="text-xl font-semibold mb-3">Alamat Kantor</h3>
-        <p>Jl. Contoh No. 123, Jakarta Selatan, Indonesia</p>
-      </div>
-      <div>
-        <h3 class="text-xl font-semibold mb-3">Jam Operasional</h3>
-        <p>Senin - Jumat, 08.00 - 17.00 WIB</p>
+      <!-- Alamat -->
+      <div class="flex items-center gap-4 p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
+        <!-- Icon alamat -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 10h1l1 2 1-2h1l-2 4 2 4H6l-2-4-2 4H1l2-4-2-4h1l1 2 1-2z" />
+        </svg>
+        <div>
+          <h3 class="text-xl font-semibold mb-1">Alamat Kantor</h3>
+          <p class="text-gray-700 dark:text-gray-300">Jl. Contoh No. 123, Jakarta Selatan, Indonesia</p>
+        </div>
       </div>
 
-      <!-- CTA ARAHKAN KE FLOATING WA -->
-      <div class="flex items-center gap-3 cursor-pointer text-green-600 hover:text-green-700" aria-label="Klik ikon WhatsApp di pojok kanan bawah untuk menghubungi kami" onclick="alert('Klik ikon WhatsApp di pojok kanan bawah untuk menghubungi kami!')">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Jam Operasional -->
+      <div class="flex items-center gap-4 p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
+        <!-- Icon jam -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2v-5H3v5a2 2 0 002 2z" />
+        </svg>
+        <div>
+          <h3 class="text-xl font-semibold mb-1">Jam Operasional</h3>
+          <p class="text-gray-700 dark:text-gray-300">Senin - Jumat, 08.00 - 17.00 WIB</p>
+        </div>
+      </div>
+
+      <!-- CTA ke Floating WA -->
+      <div class="flex items-center gap-4 p-6 bg-green-50 dark:bg-green-900 rounded-lg shadow-inner border border-green-400 cursor-pointer hover:bg-green-100 dark:hover:bg-green-800 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
           <path d="M9 5l7 7-7 7" />
         </svg>
-        <span class="font-semibold underline">Klik ikon WhatsApp di pojok kanan bawah untuk menghubungi kami</span>
+        <span class="text-green-700 dark:text-green-300 font-semibold select-none">
+          Klik ikon WhatsApp di pojok kanan bawah untuk menghubungi kami
+        </span>
       </div>
     </div>
 
-    <!-- GOOGLE MAPS -->
-    <div data-aos="fade-left" data-aos-delay="200">
+    <!-- Google Maps -->
+    <div data-aos="fade-left" data-aos-delay="200" class="rounded-lg overflow-hidden shadow-lg">
       <iframe 
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.43408296618!2d112.64151287482021!3d-7.954013492070509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629b6215718c1%3A0x141cdb0f044d67d5!2sConcerto%20Audio%20dan%20Peredam%20Mobil%20Malang%20Raya!5e0!3m2!1sen!2sid!4v1758508483715!5m2!1sen!2sid" 
-        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-lg shadow-lg"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
+        width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
   </div>
@@ -370,6 +386,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
