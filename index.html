@@ -18,8 +18,8 @@
     theme: {
       extend: {
         colors: {
-          primary: '#EF4444', // merah primary untuk light mode
-          darkPrimary: '#006241', // hijau untuk dark accent
+          primary: '#EF4444',
+          darkPrimary: '#006241',
         },
         fontFamily: {
           sans: ['Roboto', 'Helvetica', 'Arial', 'sans-serif']
@@ -36,18 +36,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
 
 <style>
-body { margin:0; padding:0; background:#fff; color:#111827; transition: background-color 0.5s, color 0.5s; font-weight:300; }
+body { margin:0; padding:0; background:#fff; color:#111827; font-weight:300; transition: background-color 0.5s, color 0.5s; }
 body.dark { background:#121212; color:#e0e0e0; }
 body.dark header, body.dark footer { background-color:#1e1e1e; color:#cfcfcf; }
 
 a { text-decoration:none; }
-
 img, video { display:block; max-width:100%; transition: transform 0.5s; }
 
-.produk-card {
-  background-color:#f9fafb; border-radius:1rem; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); 
-  transition: transform 0.3s, box-shadow 0.3s, background-color 0.5s;
-}
+.produk-card { background-color:#f9fafb; border-radius:1rem; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s, background-color 0.5s; }
 .produk-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
 body.dark .produk-card { background-color:#1e1e1e; color:#e0e0e0; }
 
@@ -61,7 +57,7 @@ body.dark .produk-card { background-color:#1e1e1e; color:#e0e0e0; }
 @media(max-width:640px){.masonry{column-count:1;}}
 .masonry-item { break-inside:avoid; margin-bottom:1rem; position:relative; overflow:hidden; border-radius:1rem; }
 .masonry-item img { width:100%; display:block; transition: transform 0.5s; }
-.masonry-item:hover img { transform:scale(1.1); }
+.masonry-item:hover img { transform:scale(1.05); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
 
 input#darkToggle { display:none; }
 input#darkToggle + span { display:block; width:48px; height:24px; background:#d1d5db; border-radius:9999px; position:relative; transition: background-color 0.3s; }
@@ -72,53 +68,10 @@ input#darkToggle:checked + span .dot { transform: translateX(24px); }
 footer svg { width:24px; height:24px; margin:0 0.5rem; transition: transform 0.3s, fill 0.3s; }
 footer svg:hover { transform:scale(1.2); fill: var(--color-primary); }
 
-body, header, footer, section, .produk-card, .masonry-item { transition: background-color 0.5s, color 0.5s, transform 0.3s, box-shadow 0.3s; }
+.btn-hero { display:inline-block; padding:0.75rem 1.5rem; background-color:var(--tw-color-primary,#EF4444); color:white; font-weight:500; border-radius:0.5rem; transition:all 0.3s; }
+.btn-hero:hover { background-color:#DC2626; transform:translateY(-2px) scale(1.05); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
 
-.btn-hero {
-  display:inline-block; padding:0.75rem 1.5rem; background-color:var(--tw-color-primary,#EF4444); color:white; font-weight:500; border-radius:0.5rem; transition:all 0.3s;
-}
-.btn-hero:hover { background-color:#DC2626; transform:translateY(-2px); }
-  /* Tombol & Link Sleek Hover */
-.btn-hero, a, button {
-  transition: all 0.3s ease;
-}
-a:hover, .btn-hero:hover, button:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-/* Produk Card lebih sleek */
-.produk-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
-}
-.produk-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
-}
-
-/* Galeri Masonry hover smooth */
-.masonry-item:hover img {
-  transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-/* Floating WhatsApp hover */
-#whatsapp-float:hover {
-  transform: scale(1.1);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.25);
-}
-
-/* Scroll-to-top hover */
-#scrollTopBtn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.25);
-}
-
-/* Smooth transitions global */
-body, header, footer, section, .produk-card, .masonry-item, a, button {
-  transition: all 0.3s ease;
-}
-
+body, header, footer, section, .produk-card, .masonry-item, a, button { transition: all 0.3s ease; }
 </style>
 </head>
 
@@ -301,109 +254,53 @@ body, header, footer, section, .produk-card, .masonry-item, a, button {
     </nav>
   </div>
 </footer>
-  
-<!-- Tombol float -->
+
+<!-- FLOATING BUTTONS -->
 <div class="float-buttons" id="floatButtons">
-  <!-- Scroll Up Button (di atas WhatsApp) -->
-  <button class="scroll-up-btn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" aria-label="Scroll Up">
+  <button id="scrollTopBtn" class="scroll-up-btn" aria-label="Scroll Up">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#007BFF" viewBox="0 0 24 24">
       <path d="M12 4l-8 8h6v8h4v-8h6z"/>
     </svg>
   </button>
 
-  <!-- WhatsApp Button -->
-  <a href="https://wa.me/628123456789" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
-      <path d="M20 2a10 10 0 00-10 10c0 1.7.4 3.3 1.1 4.8L3 21l4.2-8.1A9.96 9.96 0 0010 22a10 10 0 1010-10z"/>
+  <a href="https://wa.me/628123456789" id="whatsapp-float" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24" fill="white">
+      <path d="M380.9 97.1C339-44.2 203-47.4 141.4 11.5 92.7 53.1 76.2 120 76.2 120s-3 11.6 8.3 24.2c8.3 9.6 18.6 20.2 31.2 33.3 16.4 16.8 34.3 37 50 56.3 9 11.4 17.6 22.4 24.8 32.3 15 22.2 23.3 41.3 23.3 41.3s-2.6 12.7-17.3 15.2c-13.2 2.2-25.7-1.3-37.2-6.4-11-5-22.4-11-34-17.2-27.6-14-49.4-28.2-63.8-39.6-21.2-16.1-38.3-32.7-52.3-49.4-11-13-19.2-25.6-25.5-36.2C2.1 104.7-3.5 96.7.3 85.6 4.2 74.5 9.6 67.5 15.6 58.7 31.1 36.5 55.5 13 88.3-8.7c70.5-39.7 167.5-18.6 218.1 60.1 17.2 23.7 25.2 50.8 24.5 75.7-.8 31.2-8.9 57.8-24.8 80.5-7.5 11.1-16.1 22.5-25.2 33.5 0 0-7.1 6.3-13.7 4.5-5.9-1.5-8.3-8-11-15.2-2.6-6.9-4.7-14.2-7.1-20.5-3.2-8.2-5.6-16.5-9.4-24.3-11.2-25-25-45.1-40.4-63.6-14.6-17.5-30-32.2-45.1-43.8-15.7-12-32.6-21.3-48.7-29.3-25.1-12.5-52.1-17.5-75-13.2z"/>
     </svg>
   </a>
 </div>
 
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ once:true, duration:800 });
+
+  // Navbar toggle mobile
+  const navToggle = document.getElementById('nav-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  navToggle.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+  // Dark mode toggle
+  const darkToggle = document.getElementById('darkToggle');
+  darkToggle.addEventListener('change', () => document.body.classList.toggle('dark'));
+
+  // Scroll to top button
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.style.display = (window.scrollY > 300) ? 'block' : 'none';
+  });
+  scrollTopBtn.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+
+</script>
+
 <style>
-.float-buttons {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 12px;
-  z-index: 9999;
-  transition: bottom 0.2s;
-}
-
-/* WhatsApp Button */
-.whatsapp-btn {
-  background-color: #25D366;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  text-decoration: none;
-  transition: transform 0.2s;
-}
-
-.whatsapp-btn:hover {
-  transform: scale(1.1);
-}
-
-/* Scroll Up Button */
-.scroll-up-btn {
-  background-color: transparent;
-  border: 2px solid #007BFF;
-  color: #007BFF;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s, background-color 0.2s;
-}
-
-.scroll-up-btn:hover {
-  transform: scale(1.1);
-  background-color: rgba(0,123,255,0.1);
-}
-
-/* Responsif HP */
-@media (max-width: 768px) {
-  .float-buttons a,
-  .float-buttons button {
-    width: 45px;
-    height: 45px;
-  }
-}
+/* Floating Buttons CSS */
+.float-buttons { position:fixed; right:1rem; bottom:1rem; display:flex; flex-direction:column; gap:1rem; z-index:50; }
+.scroll-up-btn { background:rgba(0,123,255,0.85); border:none; border-radius:50%; padding:0.75rem; cursor:pointer; display:none; transition:all 0.3s; }
+.scroll-up-btn:hover { transform:scale(1.1); background:rgba(0,123,255,1); }
+.whatsapp-btn { background:#25D366; border:none; border-radius:50%; padding:0.75rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(0,0,0,0.3); transition:all 0.3s; }
+.whatsapp-btn:hover { transform:scale(1.1); }
 </style>
 
-<script>
-const floatButtons = document.getElementById('floatButtons');
-const footer = document.querySelector('footer'); // pastikan ada <footer> di halaman
-
-window.addEventListener('scroll', () => {
-  const footerRect = footer.getBoundingClientRect();
-  const windowHeight = window.innerHeight;
-
-  if (footerRect.top < windowHeight) {
-    floatButtons.style.bottom = (windowHeight - footerRect.top + 15) + 'px';
-  } else {
-    floatButtons.style.bottom = '20px';
-  }
-});
-</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
