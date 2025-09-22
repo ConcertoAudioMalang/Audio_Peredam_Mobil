@@ -302,55 +302,89 @@ body, header, footer, section, .produk-card, .masonry-item, a, button {
   </div>
 </footer>
   
-<!-- Scroll To Top Button (pindah ke kanan di atas WhatsApp) -->
+<!-- Tombol float -->
 <div class="float-buttons" id="floatButtons">
-  <a href="https://wa.me/628123456789" class="whatsapp-btn" target="_blank">WhatsApp</a>
-  <button class="scroll-up-btn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑</button>
+  <a href="https://wa.me/628123456789" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
+    <!-- Icon WA -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+      <path d="M...WA_ICON_PATH_HERE..."/>
+    </svg>
+  </a>
+  <button class="scroll-up-btn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" aria-label="Scroll Up">
+    <!-- Icon panah atas -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+      <path d="M12 4l-8 8h6v8h4v-8h6z"/>
+    </svg>
+  </button>
 </div>
 
 <style>
   .float-buttons {
     position: fixed;
     right: 20px;
-    bottom: 20px; /* default jarak dari bawah */
+    bottom: 20px;
     display: flex;
     flex-direction: column-reverse;
-    gap: 10px;
+    gap: 12px;
     z-index: 9999;
-    transition: bottom 0.2s; /* animasi geser */
+    transition: bottom 0.2s;
+  }
+
+  .float-buttons a,
+  .float-buttons button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    font-family: 'Roboto', sans-serif;
   }
 
   .whatsapp-btn {
     background-color: #25D366;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 50px;
     text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    transition: transform 0.2s;
   }
-
-  .whatsapp-btn:hover { transform: scale(1.1); }
 
   .scroll-up-btn {
     background-color: #007BFF;
-    color: white;
     border: none;
-    padding: 12px 18px;
-    border-radius: 50px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    transition: transform 0.2s;
   }
 
-  .scroll-up-btn:hover { transform: scale(1.1); }
+  .float-buttons a:hover,
+  .float-buttons button:hover {
+    transform: scale(1.1);
+  }
+
+  /* Responsif untuk HP */
+  @media (max-width: 768px) {
+    .float-buttons a,
+    .float-buttons button {
+      width: 45px;
+      height: 45px;
+    }
+  }
 </style>
   
 <!-- SCRIPTS -->
+  <script>
+  const floatButtons = document.getElementById('floatButtons');
+  const footer = document.querySelector('footer');
+
+  window.addEventListener('scroll', () => {
+    const footerRect = footer.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    if (footerRect.top < windowHeight) {
+      floatButtons.style.bottom = (windowHeight - footerRect.top + 15) + 'px';
+    } else {
+      floatButtons.style.bottom = '20px';
+    }
+  });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
   AOS.init({ duration:800, once:true });
@@ -377,24 +411,10 @@ body, header, footer, section, .produk-card, .masonry-item, a, button {
   });
   scrollTopBtn.addEventListener("click", () => { window.scrollTo({ top:0, behavior:"smooth" }); });
 </script>
-<script>
-  const floatButtons = document.getElementById('floatButtons');
-  const footer = document.querySelector('footer'); // pastikan footer ada tag <footer>
-
-  window.addEventListener('scroll', () => {
-    const footerRect = footer.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    if (footerRect.top < windowHeight) {
-      // geser tombol ke atas sesuai tinggi footer
-      floatButtons.style.bottom = (windowHeight - footerRect.top + 20) + 'px';
-    } else {
-      floatButtons.style.bottom = '20px';
-    }
-  });
 </script>
 </body>
 </html>
+
 
 
 
