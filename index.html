@@ -292,14 +292,14 @@ body, header, footer, section, .produk-card, .masonry-item { transition: backgro
     </nav>
   </div>
 </footer>
-
-  <!-- WhatsApp Floating Button -->
+  
+<!-- WhatsApp Floating Button -->
 <a
   id="whatsapp-float"
   href="https://wa.me/6281234567890"
   target="_blank"
   aria-label="Chat on WhatsApp"
-  class="fixed bottom-5 right-5 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300"
+  class="fixed bottom-5 right-5 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition duration-300"
 >
   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
     <path
@@ -312,61 +312,15 @@ body, header, footer, section, .produk-card, .masonry-item { transition: backgro
 <button
   id="scrollTopBtn"
   aria-label="Scroll to top"
-  class="fixed right-5 bottom-20 z-50 flex items-center justify-center w-12 h-12 bg-gray-800 text-white rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300 hover:bg-gray-700 dark:bg-gray-200 dark:text-gray-800 dark:hover:bg-gray-300"
+  class="fixed right-5 bottom-24 z-50 flex items-center justify-center w-12 h-12 bg-gray-800 text-white rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300 hover:bg-gray-700 dark:bg-gray-200 dark:text-gray-800 dark:hover:bg-gray-300"
 >
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    class="w-6 h-6"
-    viewBox="0 0 24 24"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
     <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
   </svg>
 </button>
 
-  <style>
-    .btn-hero {
-  display: inline-block;
-  padding: 0.75rem 1.5rem; /* px-6 py-3 */
-  border-radius: 0.5rem; /* rounded-lg */
-  font-weight: 600; /* font-semibold */
-  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.5), 0 4px 6px -4px rgba(59, 130, 246, 0.5); /* shadow-lg dengan warna biru */
-  color: white;
-  background-color: #2563eb;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  text-decoration: none;
-  text-align: center;
-}
-
-.btn-hero:hover {
-  background-color: #1d4ed8;
-  transform: scale(1.05);
-}
-
- #scrollTopBtn {
-  position: fixed;
-  right: 20px;
-  bottom: 80px;
-  background: #333;
-  color: white;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, bottom 0.4s ease;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} 
-</style>
-
-  <!-- SCRIPTS -->
-  <script>
+<!-- Script Scroll to Top -->
+<script>
   document.addEventListener("DOMContentLoaded", () => {
     const scrollTopBtn = document.getElementById("scrollTopBtn");
     const footer = document.querySelector("footer");
@@ -380,13 +334,15 @@ body, header, footer, section, .produk-card, .masonry-item { transition: backgro
         scrollTopBtn.classList.remove("opacity-100", "pointer-events-auto");
       }
 
-      const rect = footer.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      if (rect.top < windowHeight) {
-        scrollTopBtn.style.bottom = `${windowHeight - rect.top + 80}px`;
-      } else {
-        scrollTopBtn.style.bottom = "80px"; // sama seperti bottom-20
+      // Posisi tombol menyesuaikan footer agar tidak tertabrak
+      if (footer) {
+        const rect = footer.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        if (rect.top < windowHeight) {
+          scrollTopBtn.style.bottom = `${windowHeight - rect.top + 80}px`;
+        } else {
+          scrollTopBtn.style.bottom = "96px"; // bottom-24 (jarak dari WA)
+        }
       }
     });
 
@@ -397,6 +353,3 @@ body, header, footer, section, .produk-card, .masonry-item { transition: backgro
 </script>
 </body>
 </html>
-
-
-
