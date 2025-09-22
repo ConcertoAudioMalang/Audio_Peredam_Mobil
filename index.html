@@ -72,26 +72,6 @@ input#darkToggle:checked + span .dot { transform: translateX(24px); }
 footer svg { width:24px; height:24px; margin:0 0.5rem; transition: transform 0.3s, fill 0.3s; }
 footer svg:hover { transform:scale(1.2); fill: var(--color-primary); }
 
-#whatsapp-float {
-  position: fixed; bottom: 20px; right: 20px; z-index:9999;
-  background:#25d366; color:white; border-radius:50%; padding:14px; display:flex;
-  align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(0,0,0,0.15);
-  animation:pulse 2s infinite; transition: background 0.3s ease;
-}
-#whatsapp-float:hover { background:#1ebe5d; }
-@keyframes pulse { 0% { transform: scale(1); box-shadow:0 0 0 0 rgba(37,211,102,0.6); } 70% { transform: scale(1.05); box-shadow:0 0 0 15px rgba(37,211,102,0); } 100% { transform: scale(1); box-shadow:0 0 0 0 rgba(37,211,102,0); } }
-
-#scrollTopBtn {
-  position: fixed; bottom: 96px; left:50%; transform:translateX(-50%) translateY(0);
-  z-index:9999; background:#EF4444; color:white; border-radius:50%; padding:14px; display:flex;
-  align-items:center; justify-content:center; cursor:pointer; opacity:0; pointer-events:none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-#scrollTopBtn.show { opacity:1; pointer-events:auto; transform:translateX(-50%) translateY(0); }
-#scrollTopBtn:hover { background:#DC2626; }
-body.dark #scrollTopBtn { background:#333; color:#f5f5f5; }
-body.dark #scrollTopBtn:hover { background:#555; }
-
 body, header, footer, section, .produk-card, .masonry-item { transition: background-color 0.5s, color 0.5s, transform 0.3s, box-shadow 0.3s; }
 
 .btn-hero {
@@ -335,16 +315,57 @@ body, header, footer, section, .produk-card, .masonry-item, a, button {
 </a>
 
 <!-- Scroll To Top Button (pindah ke kanan di atas WhatsApp) -->
-<button
-  id="scrollTopBtn"
-  aria-label="Scroll to top"
-  class="fixed bottom-20 right-5 z-50 flex items-center justify-center w-12 h-12 bg-gray-800 text-white rounded-full shadow-xl opacity-0 pointer-events-none transition-all duration-300 hover:bg-gray-700 dark:bg-gray-200 dark:text-gray-800 dark:hover:bg-gray-300"
->
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
-  </svg>
-</button>
+<div class="float-buttons">
+  <a href="https://wa.me/628123456789" class="whatsapp-btn" target="_blank">WhatsApp</a>
+  <button class="scroll-up-btn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑</button>
+</div>
+<style>
+  /* Container tombol */
+  .float-buttons {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column-reverse; /* scroll up di atas WA */
+    gap: 10px;
+    z-index: 9999;
+  }
 
+  /* Tombol WhatsApp */
+  .whatsapp-btn {
+    background-color: #25D366; /* hijau WA */
+    color: white;
+    padding: 12px 18px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+  }
+
+  .whatsapp-btn:hover {
+    transform: scale(1.1);
+  }
+
+  /* Tombol scroll up */
+  .scroll-up-btn {
+    background-color: #007BFF; /* biru modern */
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+  }
+
+  .scroll-up-btn:hover {
+    transform: scale(1.1);
+  }
+</style>
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
@@ -375,4 +396,5 @@ body, header, footer, section, .produk-card, .masonry-item, a, button {
 
 </body>
 </html>
+
 
