@@ -10,72 +10,12 @@
 
 <!-- Google Fonts: Roboto -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-<!-- Tailwind CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          primary: '#EF4444',
-          darkPrimary: '#006241',
-        },
-        fontFamily: {
-          sans: ['Roboto', 'Helvetica', 'Arial', 'sans-serif']
-        }
-      }
-    }
-  }
-</script>
-
 <!-- AOS CSS -->
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
-
-<style>
-body { margin:0; padding:0; background:#fff; color:#111827; font-weight:300; transition: background-color 0.5s, color 0.5s; }
-body.dark { background:#121212; color:#e0e0e0; }
-body.dark header, body.dark footer { background-color:#1e1e1e; color:#cfcfcf; }
-
-a { text-decoration:none; }
-img, video { display:block; max-width:100%; transition: transform 0.5s; }
-
-.produk-card { background-color:#f9fafb; border-radius:1rem; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s, background-color 0.5s; }
-.produk-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
-body.dark .produk-card { background-color:#1e1e1e; color:#e0e0e0; }
-
-.about-section { position:relative; display:flex; align-items:center; justify-content:center; height:600px; overflow:hidden; text-align:center; color:white; }
-.about-section img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-.about-section .overlay { position:absolute; inset:0; background-color: rgba(0,0,0,0.5); transition: background-color 0.5s; }
-.about-section .content { position:relative; z-index:10; max-width:700px; padding:0 1rem; }
-
-.masonry { column-count:3; column-gap:1rem; }
-@media(max-width:1024px){.masonry{column-count:2;}}
-@media(max-width:640px){.masonry{column-count:1;}}
-.masonry-item { break-inside:avoid; margin-bottom:1rem; position:relative; overflow:hidden; border-radius:1rem; }
-.masonry-item img { width:100%; display:block; transition: transform 0.5s; }
-.masonry-item:hover img { transform:scale(1.05); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
-
-input#darkToggle { display:none; }
-input#darkToggle + span { display:block; width:48px; height:24px; background:#d1d5db; border-radius:9999px; position:relative; transition: background-color 0.3s; }
-input#darkToggle + span .dot { width:20px; height:20px; background:#fff; border-radius:50%; position:absolute; top:2px; left:2px; transition: transform 0.3s; }
-input#darkToggle:checked + span { background-color:#4ade80; }
-input#darkToggle:checked + span .dot { transform: translateX(24px); }
-
-footer svg { width:24px; height:24px; margin:0 0.5rem; transition: transform 0.3s, fill 0.3s; }
-footer svg:hover { transform:scale(1.2); fill: var(--color-primary); }
-
-.btn-hero {
-  @apply inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition;
-}
-
-body, header, footer, section, .produk-card, .masonry-item, a, button { transition: all 0.3s ease; }
-</style>
 </head>
-
+  
 <body class="transition-colors duration-500 text-gray-900 dark:text-gray-200">
 
 <!-- NAVBAR -->
@@ -302,9 +242,63 @@ body, header, footer, section, .produk-card, .masonry-item, a, button { transiti
 
   window.addEventListener('scroll', checkFooterOverlap);
   window.addEventListener('resize', checkFooterOverlap);
+  <!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: '#EF4444',
+          darkPrimary: '#006241',
+        },
+        fontFamily: {
+          sans: ['Roboto', 'Helvetica', 'Arial', 'sans-serif']
+        }
+      }
+    }
+  }
 </script>
 
 <style>
+body { margin:0; padding:0; background:#fff; color:#111827; font-weight:300; transition: background-color 0.5s, color 0.5s; }
+body.dark { background:#121212; color:#e0e0e0; }
+body.dark header, body.dark footer { background-color:#1e1e1e; color:#cfcfcf; }
+
+a { text-decoration:none; }
+img, video { display:block; max-width:100%; transition: transform 0.5s; }
+
+.produk-card { background-color:#f9fafb; border-radius:1rem; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s, background-color 0.5s; }
+.produk-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
+body.dark .produk-card { background-color:#1e1e1e; color:#e0e0e0; }
+
+.about-section { position:relative; display:flex; align-items:center; justify-content:center; height:600px; overflow:hidden; text-align:center; color:white; }
+.about-section img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.about-section .overlay { position:absolute; inset:0; background-color: rgba(0,0,0,0.5); transition: background-color 0.5s; }
+.about-section .content { position:relative; z-index:10; max-width:700px; padding:0 1rem; }
+
+.masonry { column-count:3; column-gap:1rem; }
+@media(max-width:1024px){.masonry{column-count:2;}}
+@media(max-width:640px){.masonry{column-count:1;}}
+.masonry-item { break-inside:avoid; margin-bottom:1rem; position:relative; overflow:hidden; border-radius:1rem; }
+.masonry-item img { width:100%; display:block; transition: transform 0.5s; }
+.masonry-item:hover img { transform:scale(1.05); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
+
+input#darkToggle { display:none; }
+input#darkToggle + span { display:block; width:48px; height:24px; background:#d1d5db; border-radius:9999px; position:relative; transition: background-color 0.3s; }
+input#darkToggle + span .dot { width:20px; height:20px; background:#fff; border-radius:50%; position:absolute; top:2px; left:2px; transition: transform 0.3s; }
+input#darkToggle:checked + span { background-color:#4ade80; }
+input#darkToggle:checked + span .dot { transform: translateX(24px); }
+
+footer svg { width:24px; height:24px; margin:0 0.5rem; transition: transform 0.3s, fill 0.3s; }
+footer svg:hover { transform:scale(1.2); fill: var(--color-primary); }
+
+.btn-hero {
+  @apply inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition;
+}
+
+body, header, footer, section, .produk-card, .masonry-item, a, button { transition: all 0.3s ease; }
+  
 /* Floating Buttons CSS */
 .float-buttons {
   position: fixed;
@@ -355,5 +349,6 @@ body, header, footer, section, .produk-card, .masonry-item, a, button { transiti
 </style>
 </body>
 </html>
+
 
 
