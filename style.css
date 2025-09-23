@@ -1,45 +1,49 @@
-/* =======================================
-   ROOT VARIABLES
-======================================= */
-:root {
-  --float-right: 1rem;
-  --float-gap: 1rem;
-  --primary: #EF4444;
-  --darkPrimary: #006241;
-  --transition-time: 0.3s;
-}
-
-/* =======================================
-   BASE STYLES
-======================================= */
-body {
-  font-family: 'Roboto', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+/* ===== BASIC RESET ===== */
+* {
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth;
-  background-color: #fff;
-  color: #111827;
-  transition: background-color var(--transition-time), color var(--transition-time);
+  box-sizing: border-box;
 }
 
-body.dark {
-  background-color: #111827;
-  color: #e5e7eb;
+body {
+  font-family: 'Roboto', sans-serif;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-a {
-  text-decoration: none;
+/* ===== NAVBAR ===== */
+#navbar {
+  backdrop-filter: blur(10px);
+}
+.nav-link {
   color: inherit;
+  transition: color 0.3s;
+}
+.nav-link:hover {
+  color: #EF4444; /* primary */
 }
 
-img {
-  max-width: 100%;
-  display: block;
+/* ===== HERO ===== */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
 }
-
-/* =======================================
-   BUTTON HERO
-======================================= */
+.hero-section video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-section > div {
+  position: relative;
+  z-index: 10;
+}
 .btn-hero {
   background: rgba(255,255,255,0.12);
   border: 1px solid rgba(255,255,255,0.18);
@@ -47,163 +51,118 @@ img {
   border-radius: 9999px;
   color: white;
   font-weight: 600;
-  transition: transform 0.18s ease, background 0.18s;
+  transition: transform 0.18s, background 0.18s;
 }
-
 .btn-hero:hover {
   transform: translateY(-3px);
   background: rgba(255,255,255,0.95);
   color: #111827;
 }
 
-/* =======================================
-   HERO VIDEO OVERLAY
-======================================= */
-.hero-section video {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
-.hero-section .absolute.bg-gradient-to-b {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
-}
-
-/* =======================================
-   MASONRY GRID
-======================================= */
+/* ===== MASONRY GRID ===== */
 .masonry {
-  column-count: 3;
+  column-count: 4;
   column-gap: 1rem;
 }
-
 .masonry-item {
-  break-inside: avoid;
+  display: inline-block;
   margin-bottom: 1rem;
+  width: 100%;
 }
+@media (max-width:1024px) { .masonry { column-count: 2; } }
+@media (max-width:640px) { .masonry { column-count: 1; } }
 
-@media (max-width:1024px) {
-  .masonry { column-count: 2; }
-}
-
-@media (max-width:640px) {
-  .masonry { column-count: 1; }
-}
-
-/* =======================================
-   FLOATING BUTTONS
-======================================= */
+/* ===== FLOATING BUTTONS ===== */
 .float-buttons {
   position: fixed;
-  right: var(--float-right);
-  bottom: var(--float-right);
+  right: 1rem;
+  bottom: 1rem;
   display: flex;
   flex-direction: column;
-  gap: var(--float-gap);
-  z-index: 60;
+  gap: 1rem;
+  z-index: 50;
+}
+
+.scroll-up-btn, .whatsapp-btn {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  backdrop-filter: blur(4px);
 }
 
 .scroll-up-btn {
-  width: 48px;
-  height: 48px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.7);
-  border: none;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
-  transition: all 0.3s;
+  background: rgba(255, 255, 255, 0.7);
+  display: none; /* hide initially */
 }
-
-.scroll-up-btn:hover {
-  transform: scale(1.1);
-  background: rgba(255,255,255,1);
-}
+.scroll-up-btn:hover { transform: scale(1.1); background: rgba(255,255,255,1); }
 
 .whatsapp-btn {
   background: #25D366;
-  border-radius: 50%;
-  padding: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: white;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: all 0.3s;
   animation: pulse 1.5s infinite;
 }
-
-.whatsapp-btn:hover {
-  transform: scale(1.1);
-}
+.whatsapp-btn:hover { transform: scale(1.1); }
 
 @keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-  70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0.7);}
+  70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(37,211,102,0);}
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0);}
 }
 
-/* =======================================
-   NAVBAR
-======================================= */
-header {
-  width: 100%;
-  top: 0;
-  position: fixed;
-  z-index: 50;
-  backdrop-blur: 6px;
-  transition: background var(--transition-time);
+/* ===== DARK MODE ===== */
+body.dark {
+  background-color: #111827;
+  color: #e5e7eb;
 }
 
-header a:hover {
-  color: var(--primary);
+/* ===== MOBILE MENU ===== */
+#mobile-menu a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid #ddd;
 }
+#mobile-menu a:last-child { border-bottom: none; }
 
-/* Dark toggle */
-label.relative.inline-block {
+/* ===== ABOUT, GALERI, CONTACT ===== */
+section { padding: 4rem 0; }
+.about-section {
   position: relative;
-  display: inline-block;
-  width: 3rem;
-  height: 1.5rem;
+  height: 520px;
+  overflow: hidden;
+}
+.about-section img {
+  width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;
+}
+.about-section .content {
+  position: relative; z-index: 10;
+  text-align: center; color: white;
 }
 
-label.relative.inline-block input {
-  display: none;
+/* ===== EMBED SOSIAL MEDIA ===== */
+.social-embed {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.social-embed iframe {
+  border: none;
+  border-radius: 0.5rem;
+  width: 300px;
+  height: 400px;
 }
 
-label.relative.inline-block .dot {
-  position: absolute;
-  top: 0.125rem;
-  left: 0.125rem;
-  width: 1.25rem;
-  height: 1.25rem;
-  background: white;
-  border-radius: 50%;
-  transition: transform 0.3s;
-}
-
-/* =======================================
-   CONTACT CARD
-======================================= */
-#kontak .flex {
-  transition: background var(--transition-time);
-}
-
-#kontak .flex:hover {
-  transform: translateY(-2px);
-}
-
-/* =======================================
-   FOOTER
-======================================= */
+/* ===== FOOTER ===== */
 footer {
-  transition: background var(--transition-time), color var(--transition-time);
+  background: #111827;
+  color: #ccc;
+  padding: 2rem 0;
+  text-align: center;
 }
-
-/* =======================================
-   MEDIA QUERIES
-======================================= */
-@media (max-width:768px) {
-  #mobile-menu a { display: block; padding: 0.75rem 1rem; }
-}
+footer a:hover { color: #EF4444; }
