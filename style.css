@@ -238,3 +238,63 @@ footer {
         font-size: 1rem;
     }
 }
+
+/* ==================================== */
+/* GAYA UNTUK PORTFOLIO/PROJECTS */
+/* ==================================== */
+.projects {
+    padding: 4rem 1rem;
+    background-color: #e9ecef;
+    text-align: center;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.project-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-decoration: none;
+    color: #343a40;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.card-content {
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.card-content h3 {
+    margin-top: 0;
+    color: #007bff;
+}
+
+.card-content p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+}
+
+/* Tambahkan media query untuk tata letak di ponsel */
+@media screen and (max-width: 768px) {
+    .project-grid {
+        grid-template-columns: 1fr; /* Tumpuk kartu di layar kecil */
+    }
+}
