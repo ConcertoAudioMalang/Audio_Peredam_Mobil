@@ -11,7 +11,12 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CDN (utility classes) -->
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Font Awesome (optional) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+   <!-- Tailwind CDN (utility classes) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     // optional tailwind config
@@ -29,14 +34,7 @@
       }
     }
   </script>
-
-  <!-- AOS CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-
-  <!-- Font Awesome (optional) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
-
-  <style>
+   <style>
     :root { --float-right: 1rem; --float-gap: 1rem; }
 
     /* Basic page */
@@ -389,27 +387,6 @@
         }
       });
     }
-
-    // Scroll-to-top button
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
-    const floatButtons = document.getElementById('floatButtons');
-    const footer = document.querySelector('footer');
-
-    function toggleScrollBtn() {
-      if (!scrollTopBtn) return;
-      if (window.scrollY > 300) {
-        scrollTopBtn.style.display = 'flex';
-      } else {
-        scrollTopBtn.style.display = 'none';
-      }
-    }
-    window.addEventListener('scroll', toggleScrollBtn);
-    window.addEventListener('load', toggleScrollBtn);
-
-    if (scrollTopBtn) {
-      scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    }
-
     // Keep floating buttons above footer (avoid overlap)
     function adjustFloatButtons() {
       if (!footer || !floatButtons) return;
@@ -469,6 +446,28 @@ if (darkToggle) {
   });
 }
   </script>
+  <script>
+   // Scroll-to-top button
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    const floatButtons = document.getElementById('floatButtons');
+    const footer = document.querySelector('footer');
+
+    function toggleScrollBtn() {
+      if (!scrollTopBtn) return;
+      if (window.scrollY > 300) {
+        scrollTopBtn.style.display = 'flex';
+      } else {
+        scrollTopBtn.style.display = 'none';
+      }
+    }
+    window.addEventListener('scroll', toggleScrollBtn);
+    window.addEventListener('load', toggleScrollBtn);
+
+    if (scrollTopBtn) {
+      scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+  </script>
 </body>
 </html>
+
 
