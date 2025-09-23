@@ -17,6 +17,26 @@
     --secondary-text-color: #bbbbbb;
     --accent-color: #00FFFF;
 }
+/* Aturan untuk Light Mode */
+.light-mode {
+    --primary-bg-color: #f0f0f0;
+    --secondary-bg-color: #ffffff;
+    --primary-text-color: #212121;
+    --secondary-text-color: #555555;
+    --accent-color: #007bff; /* Warna Biru Klasik */
+    --glow-shadow: 0 0 10px rgba(0, 123, 255, 0.4), 0 0 20px rgba(0, 123, 255, 0.2);
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Update gaya hero untuk light mode */
+.light-mode .hero header {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.light-mode h1, 
+.light-mode h2 {
+    text-shadow: none;
+}
 
 /* Reset Gaya Dasar */
 body {
@@ -399,3 +419,4 @@ footer {
         font-size: 1rem;
     }
 }
+
