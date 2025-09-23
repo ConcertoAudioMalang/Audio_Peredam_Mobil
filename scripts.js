@@ -3,6 +3,7 @@ const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
 hamburger.addEventListener('click', () => {
+    // Menambahkan/menghapus kelas 'active' untuk menampilkan/menyembunyikan menu
     navLinks.classList.toggle('active');
 });
 
@@ -10,8 +11,10 @@ hamburger.addEventListener('click', () => {
 const themeToggleCheckbox = document.getElementById('checkbox');
 const body = document.body;
 
-// Periksa preferensi tema dari localStorage
+// 1. Periksa preferensi tema dari localStorage saat halaman dimuat
 const currentTheme = localStorage.getItem('theme');
+
+// Jika ada preferensi yang tersimpan, terapkan
 if (currentTheme) {
     body.classList.add(currentTheme);
     if (currentTheme === 'dark-mode') {
@@ -19,14 +22,17 @@ if (currentTheme) {
     }
 }
 
+// 2. Tambahkan event listener untuk perubahan pada slider
 themeToggleCheckbox.addEventListener('change', () => {
-    // Toggle class 'dark-mode' pada body
-    body.classList.toggle('dark-mode');
+    // Hapus kedua kelas tema untuk menghindari konflik
+    body.classList.remove('dark-mode', 'light-mode');
 
-    // Simpan preferensi tema ke localStorage
-    if (body.classList.contains('dark-mode')) {
+    // Tentukan tema baru dan tambahkan kelas yang benar
+    if (themeToggleCheckbox.checked) {
+        body.classList.add('dark-mode');
         localStorage.setItem('theme', 'dark-mode');
     } else {
+        body.classList.add('light-mode');
         localStorage.setItem('theme', 'light-mode');
     }
 });
