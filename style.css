@@ -15,14 +15,14 @@ body {
 }
 
 /* ==================================== */
-/* GAYA UNTUK NAVBAR           */
+/* GAYA UNTUK NAVBAR */
 /* ==================================== */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.9); /* Latar belakang transparan */
+    background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
@@ -60,8 +60,31 @@ body {
     color: #007bff;
 }
 
+/* Tombol hamburger (sembunyikan di desktop) */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    z-index: 1001;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    border-radius: 3px;
+    margin: 6px 0;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
 /* ==================================== */
-/* GAYA UNTUK HERO SECTION     */
+/* GAYA UNTUK SECTIONS */
 /* ==================================== */
 .hero {
     height: 100vh;
@@ -92,16 +115,9 @@ body {
     font-style: italic;
 }
 
-/* ==================================== */
-/* GAYA UNTUK SECTIONS         */
-/* ==================================== */
 .content-section {
     padding: 4rem 1rem;
     text-align: center;
-}
-
-.content-section.alternate {
-    background-color: #e9ecef;
 }
 
 .features {
@@ -175,4 +191,50 @@ footer {
     background-color: #343a40;
     color: #f8f9fa;
     margin-top: 2rem;
+}
+
+/* ==================================== */
+/* MEDIA QUERIES UNTUK TAMPILAN MOBILE */
+/* ==================================== */
+@media screen and (max-width: 768px) {
+    /* Tampilkan hamburger dan sembunyikan menu */
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 60%;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.95);
+        transform: translateX(100%); /* Sembunyikan di luar layar */
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* Tampilkan menu saat tombol diklik (kelas 'active' dari JS) */
+    .nav-links.active {
+        transform: translateX(0); /* Geser ke dalam layar */
+    }
+
+    /* Atur ulang tata letak fitur */
+    .feature-grid {
+        flex-direction: column;
+    }
+
+    /* Gaya hero section untuk mobile */
+    .hero header {
+        padding: 1rem 2rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
 }
