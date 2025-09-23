@@ -41,6 +41,19 @@ body {
     text-decoration: none;
 }
 
+.logo {
+    height: 40px; /* Atur tinggi total area logo */
+    width: auto;
+    display: flex; /* Untuk menengahkan gambar di dalam tautan */
+    align-items: center;
+}
+
+.logo img {
+    height: 100%; /* Gambar akan mengisi tinggi logo */
+    width: auto;
+    display: block;
+}
+
 .nav-links {
     list-style: none;
     display: flex;
@@ -346,4 +359,5 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
 
