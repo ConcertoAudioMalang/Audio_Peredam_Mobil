@@ -1,24 +1,24 @@
-/* Definisikan variabel warna */
+/* Palet Warna Baru untuk Gaya Tech Neon */
 :root {
-    primary-bg-color: #f8f9fa;
-    secondary-bg-color: #e9ecef;
-    primary-text-color: #343a40;
-    link-color: #007bff;
-    header-bg-color: rgba(0, 0, 0, 0.4);
-    card-shadow: rgba(0, 0, 0, 0.1);
+    --primary-bg-color: #121212;
+    --secondary-bg-color: #1a1a1a;
+    --primary-text-color: #e0e0e0;
+    --secondary-text-color: #bbbbbb;
+    --accent-color: #00FFFF; /* Warna Neon */
+    --glow-shadow: 0 0 10px rgba(0, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.4);
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-/* Aturan untuk Dark Mode */
+/* Dark Mode - Sesuaikan untuk konsistensi */
 .dark-mode {
-    primary-bg-color: #212529;
-    secondary-bg-color: #343a40;
-    primary-text-color: #f8f9fa;
-    link-color: #87ceeb;
-    header-bg-color: rgba(0, 0, 0, 0.6);
-    card-shadow: rgba(0, 0, 0, 0.2);
+    --primary-bg-color: #121212;
+    --secondary-bg-color: #1a1a1a;
+    --primary-text-color: #e0e0e0;
+    --secondary-text-color: #bbbbbb;
+    --accent-color: #00FFFF;
 }
 
-/* Atur ulang gaya dasar dengan variabel */
+/* Reset Gaya Dasar */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--primary-bg-color);
@@ -42,7 +42,7 @@ body {
     left: 0;
     width: 100%;
     background-color: var(--primary-bg-color);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;
 }
 
@@ -88,10 +88,9 @@ body {
 }
 
 .nav-links a:hover {
-    color: var(--link-color);
+    color: var(--accent-color);
 }
 
-/* Tombol hamburger (sembunyikan di desktop) */
 .hamburger {
     display: none;
     background: none;
@@ -140,8 +139,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--primary-text-color);
-    -webkit-transition: .4s;
+    background-color: var(--secondary-text-color);
     transition: .4s;
 }
 
@@ -152,22 +150,20 @@ body {
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
+    background-color: #fff;
     transition: .4s;
 }
 
 input:checked + .slider {
-    background-color: var(--link-color);
+    background-color: var(--accent-color);
+    box-shadow: 0 0 5px var(--accent-color);
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px var(--link-color);
+    box-shadow: 0 0 1px var(--accent-color);
 }
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
 
@@ -182,7 +178,7 @@ input:checked + .slider:before {
 /* GAYA UNTUK HERO SECTION */
 .hero {
     height: 100vh;
-    background-image: url('https://images.unsplash.com/photo-1621213601569-80ac9b736b70?q=80&w=2670&auto=format&fit=crop');
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1510519138101-570d1d770517?q=80&w=2670&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -194,19 +190,23 @@ input:checked + .slider:before {
 }
 
 .hero header {
-    background-color: var(--header-bg-color);
+    background-color: rgba(0, 0, 0, 0.4);
     padding: 2rem 4rem;
     border-radius: 10px;
+    box-shadow: var(--glow-shadow);
 }
 
 .hero h1 {
+    font-family: 'Roboto Mono', monospace;
     font-size: 3.5rem;
     margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
 }
 
 .hero p {
     font-size: 1.25rem;
     font-style: italic;
+    color: var(--secondary-text-color);
 }
 
 /* GAYA UNTUK SECTIONS */
@@ -231,12 +231,13 @@ section {
     padding: 2rem;
     background-color: var(--secondary-bg-color);
     border-radius: 10px;
-    box-shadow: 0 4px 8px var(--card-shadow);
-    transition: transform 0.3s ease;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .brand-item:hover {
     transform: translateY(-5px);
+    box-shadow: var(--glow-shadow);
 }
 
 .brand-logo {
@@ -244,11 +245,12 @@ section {
     width: auto;
     object-fit: contain;
     margin-bottom: 1rem;
+    filter: brightness(0.8) contrast(1.2);
 }
 
 .brand-item h3 {
     font-size: 1.5rem;
-    color: var(--link-color);
+    color: var(--accent-color);
     margin-top: 0;
 }
 
@@ -267,12 +269,13 @@ section {
     background-color: var(--secondary-bg-color);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 10px var(--card-shadow);
+    box-shadow: var(--card-shadow);
     transition: transform 0.3s ease;
 }
 
 .gallery-item:hover {
     transform: scale(1.05);
+    box-shadow: var(--glow-shadow);
 }
 
 .gallery-item img {
@@ -284,6 +287,7 @@ section {
 
 .contact {
     background-color: var(--secondary-bg-color);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .contact-grid {
@@ -296,19 +300,22 @@ section {
 
 .contact-info p {
     margin: 1rem 0;
+    color: var(--secondary-text-color);
 }
 
 .contact-map iframe {
     width: 100%;
     height: 400px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--glow-shadow);
+    border: none;
 }
 
 h2 {
     font-size: 2.5rem;
-    color: var(--link-color);
+    color: var(--accent-color);
     margin-bottom: 1rem;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
 }
 
 h3 {
@@ -322,19 +329,21 @@ p {
 }
 
 button {
-    background-color: var(--link-color);
-    color: var(--primary-text-color);
+    background-color: var(--accent-color);
+    color: var(--primary-bg-color);
     border: none;
     padding: 12px 24px;
     border-radius: 50px;
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease;
+    text-shadow: none;
 }
 
 button:hover {
     background-color: var(--primary-text-color);
     color: var(--primary-bg-color);
+    box-shadow: var(--glow-shadow);
 }
 
 footer {
@@ -343,11 +352,11 @@ footer {
     background-color: var(--secondary-bg-color);
     color: var(--primary-text-color);
     margin-top: 2rem;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* MEDIA QUERIES UNTUK TAMPILAN MOBILE */
 @media screen and (max-width: 768px) {
-    /* Tampilkan hamburger dan sembunyikan menu */
     .hamburger {
         display: block;
     }
