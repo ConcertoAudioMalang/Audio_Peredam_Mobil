@@ -1,103 +1,46 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Concerto Audio Malang - Produk Audio Premium</title>
-  <meta name="description" content="Concerto Audio Malang menyediakan produk audio mobil premium dari 4 merek utama dengan layanan profesional dan instalasi terpercaya.">
-  <meta name="keywords" content="audio mobil, concerto audio, produk audio, audio mobil malang, speaker mobil, audio premium">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-  <!-- AOS CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Style -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyek GitHub Pages Saya</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="transition-colors duration-500 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-200">
+<body>
 
-  <!-- NAVBAR -->
-  <header id="navbar" class="fixed w-full top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur shadow transition-colors duration-300">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-      <div><a href="#"><img src="asset/concerto-audio-logo.png" alt="Concerto Audio" class="h-10 w-auto" loading="lazy"></a></div>
-
-      <nav class="hidden md:flex space-x-8 font-medium text-gray-900 dark:text-gray-200">
-        <a href="#produk" class="nav-link">Produk</a>
-        <a href="#tentang" class="nav-link">Tentang</a>
-        <a href="#galeri" class="nav-link">Galeri</a>
-        <a href="#kontak" class="nav-link">Kontak</a>
-      </nav>
-
-      <div class="flex items-center space-x-4">
-        <!-- Dark toggle -->
-        <label class="relative inline-block w-12 h-6 cursor-pointer">
-          <input type="checkbox" id="darkToggle" class="sr-only">
-          <span class="block bg-gray-300 dark:bg-gray-600 w-full h-6 rounded-full relative transition-colors duration-300">
-            <span class="dot absolute top-0.5 left-0 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300"></span>
-          </span>
-        </label>
-
-        <!-- Mobile toggle -->
-        <button id="nav-toggle" class="md:hidden focus:outline-none" aria-label="Toggle menu">
-          <svg class="w-6 h-6 text-gray-900 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
-      </div>
+    <div class="hero">
+        <header>
+            <h1>Proyek Web Rivian-Inspired</h1>
+            <p>Situs portfolio sederhana dan modern.</p>
+        </header>
     </div>
 
-    <!-- Mobile menu -->
-    <nav id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-md">
-      <a href="#produk" class="block px-6 py-3 border-b border-gray-200 dark:border-gray-700">Produk</a>
-      <a href="#tentang" class="block px-6 py-3 border-b border-gray-200 dark:border-gray-700">Tentang</a>
-      <a href="#galeri" class="block px-6 py-3 border-b border-gray-200 dark:border-gray-700">Galeri</a>
-      <a href="#kontak" class="block px-6 py-3">Kontak</a>
-    </nav>
-  </header>
+    <section class="content-section">
+        <div class="container">
+            <h2>Tentang Proyek Ini</h2>
+            <p>
+                Ini adalah contoh halaman yang didesain dengan inspirasi dari Rivian.com. 
+                Kami fokus pada tata letak yang bersih, penggunaan ruang kosong, dan 
+                tipografi yang minimalis untuk pengalaman pengguna yang lebih baik.
+            </p>
+            <button id="myButton">Klik Saya!</button>
+        </div>
+    </section>
 
-  <!-- HERO -->
-  <section class="hero-section relative min-h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden pt-16">
-    <video autoplay muted loop playsinline preload="none" class="absolute inset-0 w-full h-full object-cover object-center" aria-hidden="true">
-      <source src="asset/video1.mp4" type="video/mp4">
-    </video>
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30"></div>
-    <div class="relative z-10 max-w-3xl px-4 sm:px-6 md:px-8">
-      <h1 class="text-2xl sm:text-4xl md:text-6xl font-bold drop-shadow-lg mb-4" data-aos="fade-up">Electric Vehicles Designed For Adventure</h1>
-      <p class="text-base sm:text-lg md:text-xl font-light mb-8" data-aos="fade-up" data-aos-delay="200">Belanja produk-produk premium dari 4 merek utama kami yang siap mendukung petualangan Anda.</p>
-      <a href="#produk" class="btn-hero inline-block" data-aos="fade-up" data-aos-delay="400">Lihat Produk</a>
-    </div>
-  </section>
+    <section class="content-section alternate">
+        <div class="container">
+            <h2>Karya Saya</h2>
+            <p>
+                Ganti teks ini dengan deskripsi proyek, gambar, atau tautan ke hasil 
+                karya Anda. Gunakan bagian ini untuk menampilkan portofolio Anda.
+            </p>
+        </div>
+    </section>
 
-  <!-- PRODUK -->
-  <section id="produk" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 dark:text-white" data-aos="fade-up">Produk Unggulan</h2>
-      <div class="masonry">
-        <!-- Contoh produk -->
-        <div class="masonry-item" data-aos="fade-up"><img src="asset/produk1.jpg" alt="Produk 1" class="rounded-lg w-full"><h3>Speaker X</h3></div>
-        <div class="masonry-item" data-aos="fade-up" data-aos-delay="100"><img src="asset/produk2.jpg" alt="Produk 2" class="rounded-lg w-full"><h3>Speaker Y</h3></div>
-        <div class="masonry-item" data-aos="fade-up" data-aos-delay="200"><img src="asset/produk3.jpg" alt="Produk 3" class="rounded-lg w-full"><h3>Speaker Z</h3></div>
-        <div class="masonry-item" data-aos="fade-up" data-aos-delay="300"><img src="asset/produk4.jpg" alt="Produk 4" class="rounded-lg w-full"><h3>Speaker A</h3></div>
-      </div>
-    </div>
-  </section>
+    <footer>
+        <p>&copy; 2025 Nama Anda</p>
+    </footer>
 
-  <!-- Tentang, Galeri, Kontak, Sosial Media, Footer -->
-  <!-- [Kita bisa lanjut ke bagian ini setelah CSS dan JS selesai] -->
-
-  <!-- Floating Buttons -->
-  <div class="float-buttons" id="floatButtons">
-    <button id="scrollTopBtn" class="scroll-up-btn" aria-label="Scroll Up"><i class="fa fa-arrow-up"></i></button>
-    <a href="https://wa.me/628123456789" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
-  </div>
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
