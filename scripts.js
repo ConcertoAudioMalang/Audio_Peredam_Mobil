@@ -1,89 +1,54 @@
-// === Init AOS ===
-AOS.init({
-  duration: 1000,
-  once: true,
-});
+// AOS init
+AOS.init({ once: true, duration: 700 });
 
-// === Dark Mode Toggle ===
-const toggle = document.getElementById("darkToggle");
-const html = document.documentElement;
-
-if (localStorage.theme === "dark") {
-  html.classList.add("dark");
-  toggle.checked = true;
-}
-
-toggle.addEventListener("change", () => {
-  if (toggle.checked) {
-    html.classList.add("dark");
-    localStorage.theme = "dark";
-  } else {
-    html.classList.remove("dark");
-    localStorage.theme = "light";
-  }
-});
-
-// === Mobile Nav ===
+// Mobile menu toggle
 const navToggle = document.getElementById("nav-toggle");
 const mobileMenu = document.getElementById("mobile-menu");
+if (navToggle && mobileMenu) {
+  navToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+}
 
-navToggle.addEventListener("click", () => {
-  mobileMenu.classList.toggle("hidden");
-});
-
-// === Scroll Up Button ===
-const scrollBtn = document.getElementById("scrollTopBtn");
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    scrollBtn.classList.remove("hidden");
+// Dark mode
+const darkToggle = document.getElementById("darkToggle");
+const htmlEl = document.documentElement;
+if (localStorage.getItem("theme") === "dark") {
+  htmlEl.classList.add("dark");
+  darkToggle.checked = true;
+}
+darkToggle.addEventListener("change", () => {
+  if (darkToggle.checked) {
+    htmlEl.classList.add("dark");
+    localStorage.setItem("theme", "dark");
   } else {
-    scrollBtn.classList.add("hidden");
+    htmlEl.classList.remove("dark");
+    localStorage.setItem("theme", "light");
   }
 });
-scrollBtn.addEventListener("click", () => {
+
+// Scroll to top
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    scrollTopBtn.style.display = "flex";
+  } else {
+    scrollTopBtn.style.display = "none";
+  }
+});
+scrollTopBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// === Copyright Year ===
+// Footer year
 document.getElementById("copyright").textContent =
   `© ${new Date().getFullYear()} Concerto Audio Malang. All rights reserved.`;
+// Facebook SDK
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
 
-// === Lightbox Gallery ===
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
-const closeBtn = document.querySelector(".lightbox .close");
-const nextBtn = document.getElementById("next");
-const prevBtn = document.getElementById("prev");
-const galleryItems = document.querySelectorAll(".masonry-item");
-
-let currentIndex = 0;
-
-galleryItems.forEach((item, index) => {
-  item.addEventListener("click", () => {
-    lightbox.classList.remove("hidden");
-    lightboxImg.src = item.src;
-    currentIndex = index;
-  });
-});
-
-closeBtn.addEventListener("click", () => {
-  lightbox.classList.add("hidden");
-});
-
-nextBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % galleryItems.length;
-  lightboxImg.src = galleryItems[currentIndex].src;
-});
-
-prevBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-  lightboxImg.src = galleryItems[currentIndex].src;
-});
-
-window.addEventListener("keydown", (e) => {
-  if (!lightbox.classList.contains("hidden")) {
-    if (e.key === "ArrowRight") nextBtn.click();
-    if (e.key === "ArrowLeft") prevBtn.click();
-    if (e.key === "Escape") closeBtn.click();
-  }
-});
