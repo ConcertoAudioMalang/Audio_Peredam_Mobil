@@ -11,8 +11,8 @@ hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
 });
 
-// Aksi untuk Dark/Light Mode
-const themeToggleBtn = document.getElementById('theme-toggle');
+// Aksi untuk Dark/Light Mode Slider
+const themeToggleCheckbox = document.getElementById('checkbox');
 const body = document.body;
 
 // Periksa preferensi tema dari localStorage
@@ -20,20 +20,19 @@ const currentTheme = localStorage.getItem('theme');
 if (currentTheme) {
     body.classList.add(currentTheme);
     if (currentTheme === 'dark-mode') {
-        themeToggleBtn.textContent = '🌙';
+        themeToggleCheckbox.checked = true;
     }
 }
 
-themeToggleBtn.addEventListener('click', () => {
+themeToggleCheckbox.addEventListener('change', () => {
     // Toggle class 'dark-mode' pada body
     body.classList.toggle('dark-mode');
 
-    // Ubah ikon tombol
+    // Simpan preferensi tema ke localStorage
     if (body.classList.contains('dark-mode')) {
-        themeToggleBtn.textContent = '🌙';
         localStorage.setItem('theme', 'dark-mode');
     } else {
-        themeToggleBtn.textContent = '☀️';
         localStorage.setItem('theme', 'light-mode');
     }
 });
+
