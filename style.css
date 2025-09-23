@@ -137,6 +137,7 @@ body {
 .theme-switch-wrapper {
     display: flex;
     align-items: center;
+    margin-left: auto; /* Tambahkan baris ini */
 }
 
 .theme-switch {
@@ -419,4 +420,5 @@ footer {
         font-size: 1rem;
     }
 }
+
 
