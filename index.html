@@ -4,190 +4,157 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Concerto Audio Malang - Produk Audio Premium</title>
-  <meta name="description" content="Concerto Audio Malang menyediakan produk audio mobil premium dari 4 merek utama dengan layanan profesional dan instalasi terpercaya.">
-  <meta name="keywords" content="audio mobil, concerto audio, produk audio, audio mobil malang, speaker mobil, audio premium">
-  <meta name="author" content="Concerto Audio Malang">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-  <!-- AOS -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Custom CSS -->
+  <meta name="description" content="Concerto Audio Malang menyediakan produk audio mobil premium dari 4 merek utama dengan layanan profesional dan instalasi terpercaya." />
   <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-500">
-  <div id="fb-root"></div>
-  <!-- NAVBAR -->
-  <header id="navbar" class="fixed top-0 w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur shadow transition">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-      <a href="#"><img src="assets/img1.jpg" alt="Concerto Audio Logo" class="h-10 w-auto"></a>
 
-      <nav class="hidden md:flex space-x-8 font-medium">
-        <a href="#produk" class="nav-link hover:text-primary">Produk</a>
-        <a href="#tentang" class="nav-link hover:text-primary">Tentang</a>
-        <a href="#galeri" class="nav-link hover:text-primary">Galeri</a>
-        <a href="#kontak" class="nav-link hover:text-primary">Kontak</a>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header id="navbar">
+    <div class="nav-container">
+      <a href="#"><img src="assets/logo.png" alt="Concerto Audio"></a>
+
+      <nav class="desktop-nav">
+        <a href="#produk">Produk</a>
+        <a href="#tentang">Tentang</a>
+        <a href="#galeri">Galeri</a>
+        <a href="#kontak">Kontak</a>
       </nav>
 
-      <div class="flex items-center space-x-4">
-        <!-- Dark mode toggle -->
-        <label class="relative inline-block w-12 h-6 cursor-pointer">
-          <input type="checkbox" id="darkToggle" class="sr-only">
-          <span class="block bg-gray-300 dark:bg-gray-600 w-full h-6 rounded-full relative">
-            <span class="dot absolute top-0.5 left-0 w-5 h-5 bg-white rounded-full shadow-md transition-transform"></span>
-          </span>
+      <div class="nav-controls">
+        <!-- Dark toggle -->
+        <label class="dark-switch">
+          <input type="checkbox" id="darkToggle">
+          <span class="slider"></span>
         </label>
 
-        <!-- Mobile menu toggle -->
-        <button id="nav-toggle" class="md:hidden">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
+        <!-- Mobile toggle -->
+        <button id="nav-toggle" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
         </button>
       </div>
     </div>
 
     <!-- Mobile menu -->
-    <nav id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-md">
-      <a href="#produk" class="block px-6 py-3 border-b">Produk</a>
-      <a href="#tentang" class="block px-6 py-3 border-b">Tentang</a>
-      <a href="#galeri" class="block px-6 py-3 border-b">Galeri</a>
-      <a href="#kontak" class="block px-6 py-3">Kontak</a>
+    <nav id="mobile-menu" class="mobile-nav">
+      <a href="#produk">Produk</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#kontak">Kontak</a>
     </nav>
   </header>
 
   <!-- HERO -->
-  <section class="hero-section relative min-h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden pt-16">
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+  <section class="hero-section">
+    <video autoplay muted loop playsinline class="hero-video">
       <source src="assets/video1.mp4" type="video/mp4">
     </video>
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30"></div>
-    <div class="relative z-10 max-w-3xl px-6">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4" data-aos="fade-up">Electric Vehicles Designed For Adventure</h1>
-      <p class="text-lg md:text-xl mb-8" data-aos="fade-up" data-aos-delay="200">
-        Belanja produk-produk premium dari 4 merek utama kami yang siap mendukung petualangan Anda.
-      </p>
-      <a href="#produk" class="btn-hero" data-aos="fade-up" data-aos-delay="400">Lihat Produk</a>
+    <div class="hero-overlay"></div>
+    <div class="hero-content" data-aos="fade-up">
+      <h1>Electric Vehicles Designed For Adventure</h1>
+      <p>Belanja produk-produk premium dari 4 merek utama kami yang siap mendukung petualangan Anda.</p>
+      <a href="#produk" class="btn-hero">Lihat Produk</a>
     </div>
   </section>
 
-  <!-- PRODUK -->
-  <section id="produk" class="py-20 bg-gray-50 dark:bg-gray-900">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Produk Unggulan</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="produk-card" data-aos="fade-up"><img src="assets/img1.jpg" alt="Produk 1"></div>
-        <div class="produk-card" data-aos="fade-up" data-aos-delay="100"><img src="assets/img2.jpg" alt="Produk 2"></div>
-        <div class="produk-card" data-aos="fade-up" data-aos-delay="200"><img src="assets/img1.jpg" alt="Produk 3"></div>
-        <div class="produk-card" data-aos="fade-up" data-aos-delay="300"><img src="assets/img2.jpg" alt="Produk 4"></div>
+  <!-- PRODUK SECTION -->
+  <section id="produk">
+    <h2 data-aos="fade-up">Produk Unggulan</h2>
+    <div class="produk-grid">
+      <div class="produk-card" data-aos="fade-up" data-aos-delay="100">
+        <img src="assets/img1.jpg" alt="Produk 1">
+        <h3>Speaker X</h3>
+        <p>Deskripsi singkat produk X.</p>
+      </div>
+      <div class="produk-card" data-aos="fade-up" data-aos-delay="200">
+        <img src="assets/img2.jpg" alt="Produk 2">
+        <h3>Speaker Y</h3>
+        <p>Deskripsi singkat produk Y.</p>
+      </div>
+      <div class="produk-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="assets/img3.jpg" alt="Produk 3">
+        <h3>Speaker Z</h3>
+        <p>Deskripsi singkat produk Z.</p>
+      </div>
+      <div class="produk-card" data-aos="fade-up" data-aos-delay="400">
+        <img src="assets/img4.jpg" alt="Produk 4">
+        <h3>Speaker A</h3>
+        <p>Deskripsi singkat produk A.</p>
       </div>
     </div>
   </section>
 
-  <!-- GALERI -->
-  <section id="galeri" class="py-20 bg-gray-100 dark:bg-gray-800">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Galeri</h2>
-      <div class="masonry">
-        <img src="assets/img1.jpg" alt="Galeri 1" class="rounded-lg mb-4" data-aos="fade-up">
-        <img src="assets/img2.jpg" alt="Galeri 2" class="rounded-lg mb-4" data-aos="fade-up" data-aos-delay="100">
-      </div>
+  <!-- ABOUT SECTION -->
+  <section id="tentang" class="about-section">
+    <img src="assets/about-bg.jpg" alt="Tentang Kami">
+    <div class="about-content" data-aos="fade-up">
+      <h2>Tentang Concerto Audio</h2>
+      <p>Concerto Audio Malang menyediakan produk audio mobil premium dari berbagai merek terpercaya, lengkap dengan layanan instalasi profesional.</p>
     </div>
   </section>
-  
-  <!-- SOSIAL MEDIA -->
-  <section id="sosial" class="py-20 bg-gray-50 dark:bg-gray-900">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-12">Ikuti Kami di Sosial Media</h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        
-        <!-- Instagram -->
-        <div class="social-card" data-aos="fade-up">
-          <h3 class="font-semibold mb-4">Instagram</h3>
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Cya_linkk/"
-            data-instgrm-version="14" style="background:#fff; border:0; margin:0 auto; max-width:320px; width:100%;">
-          </blockquote>
-          <script async src="//www.instagram.com/embed.js"></script>
+  <!-- GALERI SECTION -->
+  <section id="galeri">
+    <h2 data-aos="fade-up">Galeri</h2>
+    <div class="masonry-grid">
+      <img src="assets/galeri1.jpg" alt="Galeri 1" data-aos="fade-up">
+      <img src="assets/galeri2.jpg" alt="Galeri 2" data-aos="fade-up" data-aos-delay="100">
+      <img src="assets/galeri3.jpg" alt="Galeri 3" data-aos="fade-up" data-aos-delay="200">
+      <img src="assets/galeri4.jpg" alt="Galeri 4" data-aos="fade-up" data-aos-delay="300">
+      <img src="assets/galeri5.jpg" alt="Galeri 5" data-aos="fade-up" data-aos-delay="400">
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="kontak">
+    <div class="contact-grid">
+      <div class="contact-info" data-aos="fade-right">
+        <div class="contact-card">
+          <h3>Alamat Kantor</h3>
+          <p>Jl. Contoh No. 123, Jakarta Selatan, Indonesia</p>
         </div>
-
-        <!-- Facebook -->
-        <div class="social-card" data-aos="fade-up" data-aos-delay="100">
-          <h3 class="font-semibold mb-4">Facebook</h3>
-          <div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline"
-            data-width="" data-height="" data-small-header="false"
-            data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-            <blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore">
-              <a href="https://www.facebook.com/facebook">Facebook</a>
-            </blockquote>
-          </div>
+        <div class="contact-card">
+          <h3>Jam Operasional</h3>
+          <p>Senin - Jumat, 08.00 - 17.00 WIB</p>
         </div>
-
-        <!-- TikTok -->
-        <div class="social-card" data-aos="fade-up" data-aos-delay="200">
-          <h3 class="font-semibold mb-4">TikTok</h3>
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@tiktok"
-            data-video-id="" style="max-width: 325px; min-width: 220px;">
-            <section> <a target="_blank" title="@tiktok" href="https://www.tiktok.com/@tiktok">@tiktok</a> </section>
-          </blockquote>
-          <script async src="https://www.tiktok.com/embed.js"></script>
-        </div>
-
-        <!-- YouTube -->
-        <div class="social-card" data-aos="fade-up" data-aos-delay="300">
-          <h3 class="font-semibold mb-4">YouTube</h3>
-          <div class="aspect-w-16 aspect-h-9">
-            <iframe class="w-full h-64 rounded-lg shadow"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-              title="YouTube video" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-
+      </div>
+      <div class="contact-map" data-aos="fade-left">
+        <iframe src="https://www.google.com/maps/embed?pb=..."></iframe>
       </div>
     </div>
   </section>
 
-  <!-- KONTAK -->
-  <section id="kontak" class="py-20 bg-white dark:bg-gray-900">
-    <div class="max-w-4xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
-      <div data-aos="fade-right">
-        <h3 class="text-xl font-bold mb-4">Alamat</h3>
-        <p>Jl. Contoh No. 123, Malang, Indonesia</p>
-      </div>
-      <div data-aos="fade-left">
-        <iframe src="https://www.google.com/maps/embed?..."></iframe>
-      </div>
+  <!-- SOCIAL MEDIA -->
+  <section class="social-media">
+    <h2 data-aos="fade-up">Temukan Kami di Media Sosial</h2>
+    <div class="social-icons" data-aos="fade-up" data-aos-delay="100">
+      <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+      <a href="https://facebook.com/yourprofile" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+      <a href="https://tiktok.com/@yourprofile" target="_blank"><i class="fab fa-tiktok fa-2x"></i></a>
+      <a href="https://youtube.com/yourchannel" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
     </div>
   </section>
-  
+
   <!-- FOOTER -->
-  <footer class="bg-black py-6 text-center text-gray-400">
+  <footer>
     <p id="copyright"></p>
   </footer>
 
-  <!-- FLOAT BUTTONS -->
-  <div class="float-buttons" id="floatButtons">
-    <button id="scrollTopBtn" class="scroll-up-btn" aria-label="Scroll Up">⬆</button>
-    <a href="https://wa.me/628123456789" target="_blank" class="whatsapp-btn" aria-label="WhatsApp">
-      <i class="fab fa-whatsapp text-white text-2xl"></i>
-    </a>
+  <!-- FLOATING BUTTONS -->
+  <div class="float-buttons">
+    <button id="scrollTopBtn" aria-label="Scroll Up"><i class="fas fa-arrow-up"></i></button>
+    <a href="https://wa.me/628123456789" target="_blank" class="whatsapp-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
   </div>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>
-
