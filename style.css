@@ -1,4 +1,4 @@
-/* Palet Warna Baru untuk Gaya Tech Neon */
+/* Palet Warna Default (Mode Gelap) */
 :root {
     --primary-bg-color: #121212;
     --secondary-bg-color: #1a1a1a;
@@ -9,15 +9,7 @@
     --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-/* Dark Mode - Sesuaikan untuk konsistensi */
-.dark-mode {
-    --primary-bg-color: #121212;
-    --secondary-bg-color: #1a1a1a;
-    --primary-text-color: #e0e0e0;
-    --secondary-text-color: #bbbbbb;
-    --accent-color: #00FFFF;
-}
-/* Aturan untuk Light Mode */
+/* Palet Warna untuk Light Mode */
 .light-mode {
     --primary-bg-color: #f0f0f0;
     --secondary-bg-color: #ffffff;
@@ -137,7 +129,7 @@ body {
 .theme-switch-wrapper {
     display: flex;
     align-items: center;
-    margin-left: auto; /* Tambahkan baris ini */
+    margin-left: auto; 
 }
 
 .theme-switch {
@@ -420,5 +412,3 @@ footer {
         font-size: 1rem;
     }
 }
-
-
