@@ -1,114 +1,171 @@
-/* ================== RESET & FONT ================== */
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: 'Roboto', Helvetica, sans-serif; }
+/* === Base === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-/* ================== NAVBAR ================== */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+}
+
+/* === Navbar === */
+.nav-link, .mobile-link {
+  @apply text-gray-800 dark:text-gray-200 hover:text-blue-500 transition;
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+/* === Hero Section === */
+.hero-section {
+  position: relative;
+  color: white;
+}
+.hero-title {
+  @apply text-4xl md:text-6xl font-bold mb-4;
+}
+.hero-subtitle {
+  @apply text-lg md:text-xl mb-8;
+}
+.btn-hero {
+  @apply bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-lg transition;
+}
+
+/* === Section === */
+.section {
+  @apply py-16 px-6;
+}
+.section-title {
+  @apply text-3xl font-bold mb-10 text-center;
+}
+.container {
+  @apply max-w-7xl mx-auto;
+}
+
+/* === Produk === */
+.produk-card {
+  @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden text-center p-4 transition hover:scale-105;
+}
+.produk-img {
+  @apply w-full h-40 object-cover mb-4 rounded-md;
+}
+.produk-title {
+  @apply text-lg font-semibold mb-2;
+}
+.produk-desc {
+  @apply text-sm text-gray-600 dark:text-gray-400;
+}
+
+/* === About === */
+.about-section {
+  @apply relative text-white flex items-center justify-center;
+}
+
+/* === Masonry Gallery === */
+.masonry {
+  column-count: 2;
+  column-gap: 1rem;
+}
+@media (min-width: 768px) {
+  .masonry {
+    column-count: 3;
+  }
+}
+@media (min-width: 1024px) {
+  .masonry {
+    column-count: 4;
+  }
+}
+.masonry-item {
   width: 100%;
-  background: #111;
-  z-index: 10010;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.tl-nav-logo { color: #fff; font-size: 1.5rem; font-weight: bold; }
-.tl-hamburger {
-  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.masonry-item:hover {
+  transform: scale(1.03);
+}
+
+/* === Kontak === */
+.kontak-card {
+  @apply flex items-start space-x-4;
+}
+.kontak-title {
+  @apply text-lg font-semibold;
+}
+.kontak-desc {
+  @apply text-sm text-gray-600 dark:text-gray-400;
+}
+
+/* === Footer === */
+footer a {
+  @apply text-gray-400 hover:text-blue-500 transition;
+}
+
+/* === Floating Buttons === */
+.float-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 50;
+}
+.scroll-up-btn, .whatsapp-btn {
+  @apply bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition;
+}
+.whatsapp-btn {
+  background: #25D366;
+}
+.whatsapp-btn:hover {
+  background: #1ebe5d;
+}
+
+/* === Lightbox === */
+.lightbox {
+  position: fixed;
+  z-index: 100;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.lightbox.hidden {
+  display: none;
+}
+.lightbox-content {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  font-size: 40px;
   color: #fff;
-  width: 50px; height: 50px;
-  border-radius: 50%;
-  background: #222;
-  display: flex; justify-content: center; align-items: center;
-  transition: all 0.3s;
+  cursor: pointer;
 }
-.tl-hamburger:hover { background: #555; transform: scale(1.1); }
-
-/* ================== SIDEBAR ================== */
-.tl-sidebar {
-  position: fixed; top:0; left:0; height:100%; width:0;
-  background:#111; color:#fff; overflow-x:hidden;
-  transition: width 0.4s ease; padding-top:60px; z-index:10020;
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  font-size: 3rem;
+  padding: 0 20px;
+  user-select: none;
 }
-.tl-sidebar-logo { text-align:center; font-size:1.8rem; margin-bottom:30px; font-weight:bold; }
-.tl-sidebar-menu { list-style:none; padding:0; }
-.tl-sidebar-menu li { padding:15px 30px; }
-.tl-sidebar-menu li a { color:#fff; text-decoration:none; font-size:1.2rem; display:block; transition:0.3s; }
-.tl-sidebar-menu li a:hover { color:#00ADB5; }
-.tl-close-btn {
-  position:absolute; top:15px; right:20px; font-size:2rem; cursor:pointer;
+.lightbox-nav span {
+  cursor: pointer;
 }
-.tl-close-btn:hover { color:#aaa; }
-
-/* ================== HERO ================== */
-.hero {
-  position: relative; width:100%; height:100vh; display:flex; justify-content:center; align-items:center;
-  overflow:hidden; color:#fff; text-align:center;
-}
-.hero video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1; }
-.hero-content { z-index:1; }
-.hero h1 { font-size:3rem; margin-bottom:1rem; }
-.hero p { font-size:1.2rem; margin-bottom:2rem; }
-.hero-button { text-decoration:none; padding:1rem 2rem; background:#00ADB5; color:#fff; font-weight:500; transition:0.3s; }
-.hero-button:hover { background:#007c85; }
-
-/* ================== TENTANG ================== */
-.tentang-section { display:flex; gap:2rem; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:4rem 2rem; background:#f8f8f8; }
-.tentang-text { flex:1; }
-.tentang-text h2 { font-size:2rem; color:#00ADB5; margin-bottom:1rem; }
-.tentang-text p { font-size:1rem; color:#333; }
-.tentang-img { flex:1; text-align:center; }
-.tentang-img img { width:100%; max-width:400px; border-radius:8px; object-fit:cover; }
-@media(max-width:768px){ .tentang-section { flex-direction:column; text-align:center; } }
-
-/* ================== PRODUK ================== */
-.produk-section { padding:4rem 2rem; background:#f5f5f5; text-align:center; }
-.produk-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2rem; max-width:1100px; margin:0 auto; }
-.produk-card { position:relative; border-radius:8px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.15); cursor:pointer; transition:0.3s; }
-.produk-card img { width:100%; height:160px; object-fit:cover; display:block; }
-.produk-overlay {
-  position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7);
-  color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; opacity:0; transition:0.3s;
-}
-.produk-card:hover .produk-overlay { opacity:1; }
-.produk-overlay h4 { margin-bottom:10px; }
-.produk-cta { display:flex; gap:10px; }
-.btn-detail, .btn-wa { padding:0.5rem 1rem; border-radius:4px; color:#fff; text-decoration:none; font-size:0.9rem; transition:0.3s; }
-.btn-detail { background:#00ADB5; } .btn-detail:hover { background:#007c85; }
-.btn-wa { background:#25d366; } .btn-wa:hover { background:#128c7e; }
-
-/* ================== GALERI ================== */
-.galeri-section { padding:4rem 2rem; background:#f5f5f5; text-align:center; }
-.slider { position:relative; max-width:900px; margin:0 auto; overflow:hidden; border-radius:8px; }
-.slides-wrapper { display:flex; transition:transform 0.5s ease; }
-.slides-wrapper img { width:100%; flex-shrink:0; object-fit:cover; }
-.prev, .next {
-  position:absolute; top:50%; transform:translateY(-50%);
-  background:rgba(0,0,0,0.5); color:#fff; font-size:2rem; padding:0.5rem; border-radius:50%; cursor:pointer;
-}
-.prev:hover, .next:hover { background:rgba(0,0,0,0.8); }
-.prev { left:10px; } .next { right:10px; }
-
-/* ================== KONTAK ================== */
-.kontak-section form { max-width:500px; margin:0 auto; display:flex; flex-direction:column; gap:1rem; }
-.kontak-section input, .kontak-section textarea { padding:0.8rem; border:1px solid #ccc; border-radius:4px; width:100%; }
-.kontak-section button { padding:0.8rem; border:none; border-radius:4px; background:#00ADB5; color:#fff; cursor:pointer; transition:0.3s; }
-.kontak-section button:hover { background:#007c85; }
-
-/* ================== SOSMED FLOATING ================== */
-.social-floating { position:fixed; bottom:30px; right:30px; display:flex; flex-direction:column-reverse; align-items:flex-end; gap:12px; z-index:999; }
-.main-icon { width:56px; height:56px; background:#00ADB5; color:#fff; font-size:32px; display:flex; justify-content:center; align-items:center; cursor:pointer; border-radius:50%; }
-.social-icons { display:flex; flex-direction:column; gap:10px; opacity:0; pointer-events:none; transition:0.3s; }
-.social-floating:hover .social-icons { opacity:1; pointer-events:auto; }
-.social-icons .icon { width:32px; height:32px; background:#222; color:#fff; display:flex; justify-content:center; align-items:center; border-radius:4px; text-decoration:none; transition:0.3s; }
-.social-icons .icon:hover { background:#00ADB5; }
-
-/* ================== FOOTER ================== */
-footer { text-align:center; padding:1rem; background:#1E1E1E; color:#aaa; margin-top:2rem; }
-
-/* ================== RESPONSIVE HERO BUTTON ================== */
-@media(max-width:768px){ .hero h1{ font-size:2rem; } .hero p{ font-size:1rem; } .hero-button{ padding:0.8rem 1.5rem; } }
