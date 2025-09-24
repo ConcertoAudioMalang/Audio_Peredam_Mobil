@@ -1,137 +1,100 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyek GitHub Pages Saya</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bengkel Audio Mobil</title>
+  <link rel="icon" href="favicon.png" />
+  <link href="style.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    
-<nav class="navbar">
-    <div class="container nav-container">
-        <a href="#hero" class="logo">
-            <img src="assets/logo.png" alt="Logo Bengkel Audio">
-        </a>
-        
-        <div class="menu-wrapper">
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" />
-                    <div class="slider round"></div>
-                </label>
-            </div>
-            
-            <button class="hamburger" aria-label="Toggle navigation menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
-            <ul class="nav-links">
-                <li><a href="#hero">Beranda</a></li>
-                <li><a href="#brands">Merek</a></li>
-                <li><a href="#gallery">Galeri</a></li>
-                <li><a href="#contact">Kontak</a></li>
-            </ul>
-        </div>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+  <!-- Header -->
+  <header class="flex justify-between items-center p-4 shadow-md bg-white/80 dark:bg-gray-800/80 backdrop-blur sticky top-0 z-50">
+    <h1 class="text-xl font-bold">Concerto Audio</h1>
+    <nav class="hidden md:flex space-x-6">
+      <a href="#produk" class="hover:text-blue-500">Produk</a>
+      <a href="#galeri" class="hover:text-blue-500">Galeri</a>
+      <a href="#kontak" class="hover:text-blue-500">Kontak</a>
+    </nav>
+    <button id="darkToggle" class="ml-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700">
+      🌙
+    </button>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative w-full h-screen flex items-center justify-center text-center">
+    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="relative z-10 max-w-2xl text-white px-4">
+      <h2 class="text-4xl md:text-6xl font-bold mb-4">Premium Car Audio</h2>
+      <p class="text-lg md:text-xl mb-6">"Drive the Sound of Excellence"</p>
+      <a href="#produk" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-medium">Explore Products</a>
     </div>
-</nav>
-    
-<div class="hero" id="hero">
-    <header>
-        <h1>Proyek Web Rivian-Inspired</h1>
-        <p>Situs portfolio sederhana dan modern.</p>
-    </header>
-</div>
+  </section>
 
-<section class="brands" id="brands">
-    <div class="container">
-        <h2>Merek Audio Unggulan Kami</h2>
-        <p>Kami bangga bekerja sama dengan merek-merek ternama untuk memberikan kualitas suara terbaik bagi kendaraan Anda.</p>
-        <div class="brand-grid">
-            <div class="brand-item">
-                <img src="https://via.placeholder.com/150x75.png?text=Merk+1" alt="Logo Merek 1" class="brand-logo">
-                <h3>Merk 1</h3>
-                <p>Spesialisasi pada komponen audio mobil kelas atas dengan performa detail yang superior.</p>
-            </div>
-            
-            <div class="brand-item">
-                <img src="https://via.placeholder.com/150x75.png?text=Merk+2" alt="Logo Merek 2" class="brand-logo">
-                <h3>Merk 2</h3>
-                <p>Dikenal karena power amplifier yang kuat dan speaker yang menghasilkan bass bertenaga.</p>
-            </div>
-            
-            <div class="brand-item">
-                <img src="https://via.placeholder.com/150x75.png?text=Merk+3" alt="Logo Merek 3" class="brand-logo">
-                <h3>Merk 3</h3>
-                <p>Menawarkan head unit dan prosesor audio canggih dengan fitur konektivitas lengkap.</p>
-            </div>
-
-            <div class="brand-item">
-                <img src="https://via.placeholder.com/150x75.png?text=Merk+4" alt="Logo Merek 4" class="brand-logo">
-                <h3>Merk 4</h3>
-                <p>Pilihan tepat untuk subwoofer dan enclosure yang didesain presisi untuk setiap mobil.</p>
-            </div>
+  <!-- Produk Slider -->
+  <section id="produk" class="py-16 px-6 text-center">
+    <h3 class="text-3xl font-bold mb-10">Our Main Brands</h3>
+    <div class="relative max-w-4xl mx-auto overflow-hidden">
+      <div id="produkSlider" class="flex transition-transform duration-500">
+        <div class="min-w-full flex flex-col items-center p-6">
+          <img src="assets/logo1.png" alt="Brand 1" class="h-20 mb-4" />
+          <a href="#" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white">Discover</a>
         </div>
-    </div>
-</section>
-
-<section class="gallery" id="gallery">
-    <div class="container">
-        <h2>Galeri Pengerjaan Kami</h2>
-        <p>Lihat hasil kerja tim teknisi kami yang detail dan rapi. Kualitas adalah prioritas utama kami.</p>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1594955743202-6019f20c4c47?q=80&w=2564&auto=format&fit=crop" alt="Pemasangan Audio Mobil 1">
-            </div>
-            
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1595168019777-2b737d2f47ee?q=80&w=2670&auto=format&fit=crop" alt="Pemasangan Audio Mobil 2">
-            </div>
-            
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=2670&auto=format&fit=crop" alt="Pemasangan Audio Mobil 3">
-            </div>
-
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1517404215738-15263e9f9178?q=80&w=2670&auto=format&fit=crop" alt="Pemasangan Audio Mobil 4">
-            </div>
-
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1550995642-f8c6d16279f6?q=80&w=2576&auto=format&fit=crop" alt="Pemasangan Audio Mobil 5">
-            </div>
-            
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1549646633-b26a6c433c2e?q=80&w=2670&auto=format&fit=crop" alt="Pemasangan Audio Mobil 6">
-            </div>
+        <div class="min-w-full flex flex-col items-center p-6">
+          <img src="assets/logo2.png" alt="Brand 2" class="h-20 mb-4" />
+          <a href="#" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white">Discover</a>
         </div>
-    </div>
-</section>
-
-<section class="contact" id="contact">
-    <div class="container">
-        <h2>Hubungi Kami</h2>
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h3>Informasi Bengkel</h3>
-                <p><strong>Alamat:</strong> <br>Jalan Nama Bengkel No. 123<br>Kota, Kode Pos</p>
-                <p><strong>Telepon:</strong> <a href="tel:+628123456789">+62 812-345-6789</a></p>
-                <p><strong>Jam Kerja:</strong> <br>Senin - Jumat: 09:00 - 18:00<br>Sabtu: 09:00 - 15:00</p>
-            </div>
-            <div class="contact-map">
-                <h3>Lokasi Kami</h3>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.529080709212!2d106.82024227599544!3d-6.192750693798484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f430c443425b%3A0x629c1356f96d66e5!2sMonumen%20Nasional%20(Monas)!5e0!3m2!1sen!2sid!4v1709405404555!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+        <div class="min-w-full flex flex-col items-center p-6">
+          <img src="assets/logo3.png" alt="Brand 3" class="h-20 mb-4" />
+          <a href="#" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white">Discover</a>
         </div>
+        <div class="min-w-full flex flex-col items-center p-6">
+          <img src="assets/logo4.png" alt="Brand 4" class="h-20 mb-4" />
+          <a href="#" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white">Discover</a>
+        </div>
+      </div>
+      <!-- Controls -->
+      <button id="produkPrev" class="absolute top-1/2 left-0 -translate-y-1/2 bg-gray-800 text-white px-3 py-2">‹</button>
+      <button id="produkNext" class="absolute top-1/2 right-0 -translate-y-1/2 bg-gray-800 text-white px-3 py-2">›</button>
     </div>
-</section>
+  </section>
 
-<footer>
-    <p>© 2025 Nama Anda</p>
-</footer>
+  <!-- Galeri Slider -->
+  <section id="galeri" class="py-16 px-6 bg-gray-50 dark:bg-gray-800">
+    <h3 class="text-3xl font-bold text-center mb-10">Installation Gallery</h3>
+    <div class="relative max-w-5xl mx-auto overflow-hidden">
+      <div id="galeriSlider" class="flex transition-transform duration-500">
+        <img src="https://picsum.photos/800/400?random=1" class="min-w-full rounded-lg" />
+        <img src="https://picsum.photos/800/400?random=2" class="min-w-full rounded-lg" />
+        <img src="https://picsum.photos/800/400?random=3" class="min-w-full rounded-lg" />
+        <img src="https://picsum.photos/800/400?random=4" class="min-w-full rounded-lg" />
+      </div>
+      <!-- Controls -->
+      <button id="galeriPrev" class="absolute top-1/2 left-0 -translate-y-1/2 bg-gray-800 text-white px-3 py-2">‹</button>
+      <button id="galeriNext" class="absolute top-1/2 right-0 -translate-y-1/2 bg-gray-800 text-white px-3 py-2">›</button>
+    </div>
+  </section>
 
-<script src="script.js"></script>
+  <!-- Kontak Section -->
+  <section id="kontak" class="py-16 px-6 text-center">
+    <h3 class="text-3xl font-bold mb-6">Get In Touch</h3>
+    <p class="mb-4">Kunjungi workshop kami atau hubungi melalui WhatsApp</p>
+    <div class="flex flex-col md:flex-row justify-center gap-6 mt-6">
+      <a href="https://maps.google.com" target="_blank" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg text-white">Google Maps</a>
+      <a href="https://wa.me/628123456789" target="_blank" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg text-white">WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-6 text-center text-sm bg-gray-100 dark:bg-gray-900">
+    © 2025 Concerto Audio. All Rights Reserved.
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
