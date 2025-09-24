@@ -206,6 +206,80 @@
                 </div>
             </div>
         </section>
+        <section class="py-20 px-4 md:px-12 bg-gray-200 dark:bg-slate-900">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Lihat Perbedaannya Secara Langsung</h2>
+    
+    <div class="max-w-4xl mx-auto rounded-lg shadow-xl overflow-hidden relative group cursor-ew-resize before-after-slider" data-aos="zoom-in">
+        
+        <div class="relative w-full h-full">
+            <img src="https://images.unsplash.com/photo-1621252028169-d3e26b106f30?q=80&w=1920&auto=format&fit=crop" alt="Sesudah Pengerjaan" class="w-full h-full object-cover">
+            
+            <span class="absolute top-4 left-4 py-1 px-4 text-sm font-bold bg-white/70 backdrop-blur-sm rounded-full text-slate-800">SESUDAH</span>
+        </div>
+        
+        <div class="before-img absolute top-0 left-0 h-full w-1/2 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1621252028169-d3e26b106f30?q=80&w=1920&auto=format&fit=crop&sepia=100" alt="Sebelum Pengerjaan" class="w-full h-full object-cover">
+            
+            <span class="absolute top-4 right-4 py-1 px-4 text-sm font-bold bg-white/70 backdrop-blur-sm rounded-full text-slate-800">SEBELUM</span>
+        </div>
+
+        <div class="slider-divider absolute top-0 left-1/2 transform -translate-x-1/2 w-1 h-full bg-white/70 dark:bg-gray-100 dark:border-slate-800 border-l-2 border-r-2 border-solid border-gray-100 group-hover:border-red-600 transition-colors duration-300">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white/70 dark:bg-gray-100 rounded-full shadow-lg border-2 border-gray-100 dark:border-slate-800 flex justify-center items-center group-hover:bg-red-600 group-hover:border-red-600 transition-colors duration-300">
+                <svg class="w-6 h-6 text-slate-800 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h-2v-2h4v8zm-2-10h2V7h-2v2z"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const slider = document.querySelector('.before-after-slider');
+    const beforeImg = slider.querySelector('.before-img');
+    const divider = slider.querySelector('.slider-divider');
+    let isDragging = false;
+
+    // Event listener untuk desktop
+    slider.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        updateSlider(e.clientX);
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        updateSlider(e.clientX);
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+
+    // Event listener untuk mobile (touch)
+    slider.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        updateSlider(e.touches[0].clientX);
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault(); // Mencegah scrolling saat menggeser
+        updateSlider(e.touches[0].clientX);
+    }, { passive: false });
+
+    document.addEventListener('touchend', () => {
+        isDragging = false;
+    });
+
+    function updateSlider(x) {
+        const sliderRect = slider.getBoundingClientRect();
+        let newX = x - sliderRect.left;
+        newX = Math.max(0, Math.min(newX, sliderRect.width)); // Pastikan di dalam batas
+
+        const newWidth = (newX / sliderRect.width) * 100;
+        beforeImg.style.width = newWidth + '%';
+        divider.style.left = newWidth + '%';
+    }
+</script>
         
         <section id="faq" class="py-20 px-4 md:px-12 bg-gray-200 dark:bg-slate-900">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Pertanyaan Umum</h2>
@@ -413,3 +487,4 @@
     </script>
 </body>
 </html>
+
