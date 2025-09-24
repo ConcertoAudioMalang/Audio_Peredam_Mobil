@@ -1,100 +1,108 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bengkel Audio Mobil</title>
-  <link rel="icon" href="favicon.png" />
-  <link href="style.css" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bengkel Audio Mobil Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
 </head>
-<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+<body class="bg-gray-100 dark:bg-slate-900 text-slate-800 dark:text-gray-100 transition-colors duration-500">
 
-  <!-- Header -->
-  <header class="flex justify-between items-center p-4 shadow-md bg-white/80 dark:bg-gray-800/80 backdrop-blur sticky top-0 z-50">
-    <h1 class="text-xl font-bold">Concerto Audio</h1>
-    <nav class="hidden md:flex space-x-6">
-      <a href="#produk" class="hover:text-blue-500">Produk</a>
-      <a href="#galeri" class="hover:text-blue-500">Galeri</a>
-      <a href="#kontak" class="hover:text-blue-500">Kontak</a>
-    </nav>
-    <button id="darkToggle" class="ml-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700">
-      🌙
-    </button>
-  </header>
+    <header class="py-6 px-4 md:px-12 flex justify-between items-center fixed w-full z-50">
+        <a href="#" class="text-xl font-bold dark:text-gray-100">AUDIO-PREMIUM</a>
+        <button id="theme-toggle" class="bg-gray-200 dark:bg-slate-800 p-2 rounded-full shadow-lg transition-colors duration-300">
+            <svg class="w-6 h-6 text-yellow-500 dark:text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+        </button>
+    </header>
 
-  <!-- Hero Section -->
-  <section class="relative w-full h-screen flex items-center justify-center text-center">
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-      <source src="assets/hero.mp4" type="video/mp4">
-    </video>
-    <div class="absolute inset-0 bg-black/50"></div>
-    <div class="relative z-10 max-w-2xl text-white px-4">
-      <h2 class="text-4xl md:text-6xl font-bold mb-4">Premium Car Audio</h2>
-      <p class="text-lg md:text-xl mb-6">"Drive the Sound of Excellence"</p>
-      <a href="#produk" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-medium">Explore Products</a>
-    </div>
-  </section>
+    <main>
+        <section class="h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542362567-b080c10057fb?q=80&w=2670&auto=format&fit=crop');">
+            <div class="bg-black bg-opacity-60 p-8 md:p-16 rounded-lg" data-aos="fade-up">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4">Pengalaman Audio Terbaik untuk Mobil Anda</h1>
+                <p class="text-xl text-gray-200 mb-8">Pemasangan profesional, kualitas tak tertandingi.</p>
+                <a href="#produk" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300">Lihat Produk</a>
+            </div>
+        </section>
 
-  <!-- Produk Slider -->
-  <section id="produk" class="py-16 px-6 text-center">
-    <h3 class="text-3xl font-bold mb-10">Our Main Brands</h3>
-    <div class="relative max-w-4xl mx-auto overflow-hidden">
-      <div id="produkSlider" class="flex transition-transform duration-500">
-        <div class="min-w-full flex flex-col items-center p-6">
-          <img src="assets/logo1.png" alt="Brand 1" class="h-20 mb-4" />
-          <a href="#" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white">Discover</a>
+        <section id="produk" class="py-20 px-4 md:px-12 bg-gray-200 dark:bg-slate-800">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Merk Audio Unggulan</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <a href="#" data-aos="zoom-in" data-aos-delay="100" class="flex flex-col items-center justify-center bg-white dark:bg-slate-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="https://via.placeholder.com/150x80.png?text=MERK+A" alt="Merk A" class="h-16 mb-4">
+                    <span class="font-semibold text-center">Brand A</span>
+                </a>
+                <a href="#" data-aos="zoom-in" data-aos-delay="200" class="flex flex-col items-center justify-center bg-white dark:bg-slate-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="https://via.placeholder.com/150x80.png?text=MERK+B" alt="Merk B" class="h-16 mb-4">
+                    <span class="font-semibold text-center">Brand B</span>
+                </a>
+                <a href="#" data-aos="zoom-in" data-aos-delay="300" class="flex flex-col items-center justify-center bg-white dark:bg-slate-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="https://via.placeholder.com/150x80.png?text=MERK+C" alt="Merk C" class="h-16 mb-4">
+                    <span class="font-semibold text-center">Brand C</span>
+                </a>
+                <a href="#" data-aos="zoom-in" data-aos-delay="400" class="flex flex-col items-center justify-center bg-white dark:bg-slate-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="https://via.placeholder.com/150x80.png?text=MERK+D" alt="Merk D" class="h-16 mb-4">
+                    <span class="font-semibold text-center">Brand D</span>
+                </a>
+            </div>
+        </section>
+
+        <section id="galeri" class="py-20 px-4 md:px-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Hasil Pemasangan Kami</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-max">
+                <div data-aos="fade-up" class="col-span-1 row-span-2">
+                    <img src="https://images.unsplash.com/photo-1621252028169-d3e26b106f30?q=80&w=1500&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg shadow-md" alt="Galeri 1">
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1616421067332-6019b88ed79d?q=80&w=1500&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg shadow-md" alt="Galeri 2">
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1621252028169-d3e26b106f30?q=80&w=1500&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg shadow-md" alt="Galeri 3">
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300" class="col-span-1 row-span-2">
+                    <img src="https://images.unsplash.com/photo-1594953796590-f20387b33783?q=80&w=1500&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg shadow-md" alt="Galeri 4">
+                </div>
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://images.unsplash.com/photo-1621252028169-d3e26b106f30?q=80&w=1500&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg shadow-md" alt="Galeri 5">
+                </div>
+            </div>
+        </section>
+
+        <section id="kontak" class="py-20 px-4 md:px-12 bg-gray-200 dark:bg-slate-800 text-center" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Hubungi Kami</h2>
+            <div class="max-w-xl mx-auto">
+                <p class="text-lg mb-4">Jalan Contoh No. 123, Kota Audio, Provinsi Musik</p>
+                <p class="text-lg mb-4">Telepon: <span class="font-bold">+62 812-3456-7890</span></p>
+                <div class="aspect-video">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.56847426162!2d106.82270921477093!3d-6.174780895526978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d179782573%3A0x6a2c3d5268c2f0f0!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1628173456789!5m2!1sid!2sid" class="w-full h-full rounded-lg shadow-lg" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-8 px-4 md:px-12 text-center">
+        <p>&copy; 2025 Bengkel Audio Mobil. Hak Cipta Dilindungi.</p>
+        <div class="flex justify-center gap-4 mt-4">
+            <a href="#" class="hover:text-white transition-colors duration-200">Instagram</a>
+            <a href="#" class="hover:text-white transition-colors duration-200">Facebook</a>
+            <a href="#" class="hover:text-white transition-colors duration-200">YouTube</a>
         </div>
-        <div class="min-w-full flex flex-col items-center p-6">
-          <img src="assets/logo2.png" alt="Brand 2" class="h-20 mb-4" />
-          <a href="#" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white">Discover</a>
-        </div>
-        <div class="min-w-full flex flex-col items-center p-6">
-          <img src="assets/logo3.png" alt="Brand 3" class="h-20 mb-4" />
-          <a href="#" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white">Discover</a>
-        </div>
-        <div class="min-w-full flex flex-col items-center p-6">
-          <img src="assets/logo4.png" alt="Brand 4" class="h-20 mb-4" />
-          <a href="#" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white">Discover</a>
-        </div>
-      </div>
-      <!-- Controls -->
-      <button id="produkPrev" class="absolute top-1/2 left-0 -translate-y-1/2 bg-gray-800 text-white px-3 py-2">‹</button>
-      <button id="produkNext" class="absolute top-1/2 right-0 -translate-y-1/2 bg-gray-800 text-white px-3 py-2">›</button>
-    </div>
-  </section>
+    </footer>
 
-  <!-- Galeri Slider -->
-  <section id="galeri" class="py-16 px-6 bg-gray-50 dark:bg-gray-800">
-    <h3 class="text-3xl font-bold text-center mb-10">Installation Gallery</h3>
-    <div class="relative max-w-5xl mx-auto overflow-hidden">
-      <div id="galeriSlider" class="flex transition-transform duration-500">
-        <img src="https://picsum.photos/800/400?random=1" class="min-w-full rounded-lg" />
-        <img src="https://picsum.photos/800/400?random=2" class="min-w-full rounded-lg" />
-        <img src="https://picsum.photos/800/400?random=3" class="min-w-full rounded-lg" />
-        <img src="https://picsum.photos/800/400?random=4" class="min-w-full rounded-lg" />
-      </div>
-      <!-- Controls -->
-      <button id="galeriPrev" class="absolute top-1/2 left-0 -translate-y-1/2 bg-gray-800 text-white px-3 py-2">‹</button>
-      <button id="galeriNext" class="absolute top-1/2 right-0 -translate-y-1/2 bg-gray-800 text-white px-3 py-2">›</button>
-    </div>
-  </section>
-
-  <!-- Kontak Section -->
-  <section id="kontak" class="py-16 px-6 text-center">
-    <h3 class="text-3xl font-bold mb-6">Get In Touch</h3>
-    <p class="mb-4">Kunjungi workshop kami atau hubungi melalui WhatsApp</p>
-    <div class="flex flex-col md:flex-row justify-center gap-6 mt-6">
-      <a href="https://maps.google.com" target="_blank" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg text-white">Google Maps</a>
-      <a href="https://wa.me/628123456789" target="_blank" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg text-white">WhatsApp</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-6 text-center text-sm bg-gray-100 dark:bg-gray-900">
-    © 2025 Concerto Audio. All Rights Reserved.
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
