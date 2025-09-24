@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bengkel Audio Mobil Premium</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -11,9 +12,11 @@
         }
     </script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         body { font-family: 'Poppins', sans-serif; }
     </style>
@@ -87,14 +90,14 @@
                 <p class="text-lg mb-4">Jalan Contoh No. 123, Kota Audio, Provinsi Musik</p>
                 <p class="text-lg mb-4">Telepon: <span class="font-bold">+62 812-3456-7890</span></p>
                 <div class="aspect-video">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.56847426162!2d106.82270921477093!3d-6.174780895526978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d179782573%3A0x6a2c3d5268c2f0f0!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1628173456789!5m2!1sid!2sid" class="w-full h-full rounded-lg shadow-lg" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5290680419215!2d106.8242130752538!3d-6.194751793796511!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f52a71f00b95%3A0x19a071f4b2f15951!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1700204649721!5m2!1sid!2sid" class="w-full h-full rounded-lg shadow-lg" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </section>
     </main>
 
     <footer class="bg-gray-800 text-gray-300 py-8 px-4 md:px-12 text-center">
-        <p>&copy; 2025 Bengkel Audio Mobil. Hak Cipta Dilindungi.</p>
+        <p>© 2025 Bengkel Audio Mobil. Hak Cipta Dilindungi.</p>
         <div class="flex justify-center gap-4 mt-4">
             <a href="#" class="hover:text-white transition-colors duration-200">Instagram</a>
             <a href="#" class="hover:text-white transition-colors duration-200">Facebook</a>
@@ -103,6 +106,33 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
+
+    <script>
+        // Inisialisasi AOS
+        AOS.init({
+            once: true, // Animasi hanya berjalan sekali saat digulir ke bawah
+        });
+
+        // Logika Dark/Light Mode
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        const storedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+            htmlElement.classList.add('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
 </body>
 </html>
