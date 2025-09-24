@@ -1,38 +1,34 @@
-// Aksi untuk tombol Hamburger Menu
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-    // Menambahkan/menghapus kelas 'active' untuk menampilkan/menyembunyikan menu
-    navLinks.classList.toggle('active');
+// Dark mode toggle
+const darkToggle = document.getElementById("darkToggle");
+darkToggle.addEventListener("click", () => {
+  document.documentElement.classList.toggle("dark");
+  darkToggle.textContent = document.documentElement.classList.contains("dark") ? "☀️" : "🌙";
 });
 
-// Aksi untuk Dark/Light Mode Slider
-const themeToggleCheckbox = document.getElementById('checkbox');
-const body = document.body;
+// Slider logic
+function setupSlider(containerId, prevId, nextId) {
+  const slider = document.getElementById(containerId);
+  const prevBtn = document.getElementById(prevId);
+  const nextBtn = document.getElementById(nextId);
+  let index = 0;
 
-// 1. Periksa preferensi tema dari localStorage saat halaman dimuat
-const currentTheme = localStorage.getItem('theme');
+  const updateSlide = () => {
+    slider.style.transform = `translateX(-${index * 100}%)`;
+  };
 
-// Jika ada preferensi yang tersimpan, terapkan
-if (currentTheme) {
-    body.classList.add(currentTheme);
-    if (currentTheme === 'dark-mode') {
-        themeToggleCheckbox.checked = true;
-    }
+  nextBtn.addEventListener("click", () => {
+    if (index < slider.children.length - 1) index++;
+    else index = 0;
+    updateSlide();
+  });
+
+  prevBtn.addEventListener("click", () => {
+    if (index > 0) index--;
+    else index = slider.children.length - 1;
+    updateSlide();
+  });
 }
 
-// 2. Tambahkan event listener untuk perubahan pada slider
-themeToggleCheckbox.addEventListener('change', () => {
-    // Hapus kedua kelas tema untuk menghindari konflik
-    body.classList.remove('dark-mode', 'light-mode');
-
-    // Tentukan tema baru dan tambahkan kelas yang benar
-    if (themeToggleCheckbox.checked) {
-        body.classList.add('dark-mode');
-        localStorage.setItem('theme', 'dark-mode');
-    } else {
-        body.classList.add('light-mode');
-        localStorage.setItem('theme', 'light-mode');
-    }
-});
+// Init sliders
+setupSlider("produkSlider", "produkPrev", "produkNext");
+setupSlider("galeriSlider", "galeriPrev", "galeriNext");
