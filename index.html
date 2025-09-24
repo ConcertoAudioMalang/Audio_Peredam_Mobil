@@ -23,108 +23,54 @@
 </head>
 <body class="bg-gray-100 dark:bg-slate-950 text-slate-800 dark:text-gray-100 transition-colors duration-500">
 
-    <header class="py-6 px-4 md:px-12 flex justify-between items-center fixed w-full z-50">
-        <nav class="bg-white dark:bg-slate-950 shadow-lg fixed top-0 w-full z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex items-center">
-                <a href="#" class="flex-shrink-0 font-bold text-2xl dark:text-gray-100">AUDIO-PREMIUM</a>
+    <nav class="bg-white dark:bg-slate-950 shadow-lg fixed top-0 w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0 font-bold text-2xl dark:text-gray-100">AUDIO-PREMIUM</a>
+                </div>
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="#produk" class="text-slate-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-600 px-3 py-2 transition-colors duration-200">Produk</a>
+                    <a href="#keunggulan" class="text-slate-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-600 px-3 py-2 transition-colors duration-200">Keunggulan</a>
+                    <a href="#galeri" class="text-slate-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-600 px-3 py-2 transition-colors duration-200">Galeri</a>
+                    <a href="#kontak" class="text-slate-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-600 px-3 py-2 transition-colors duration-200">Kontak</a>
+                    <button id="theme-toggle" class="bg-gray-200 dark:bg-slate-800 p-2 rounded-full shadow-lg transition-colors duration-300">
+                        <svg class="w-6 h-6 text-yellow-500 dark:text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500">
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <div class="hidden md:flex md:items-center md:space-x-8">
-                <a href="#produk" class="text-slate-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-600 px-3 py-2 transition-colors duration-200">Produk</a>
-                <a href="#keunggulan" class="text-slate-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-600 px-3 py-2 transition-colors duration-200">Keunggulan</a>
-                <a href="#galeri" class="text-slate-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-600 px-3 py-2 transition-colors duration-200">Galeri</a>
-                <a href="#kontak" class="text-slate-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-600 px-3 py-2 transition-colors duration-200">Kontak</a>
-                <button id="theme-toggle" class="bg-gray-200 dark:bg-slate-800 p-2 rounded-full shadow-lg transition-colors duration-300">
-                    <svg class="w-6 h-6 text-yellow-500 dark:text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+        </div>
+
+        <div class="md:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#produk" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-800">Produk</a>
+                <a href="#keunggulan" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-800">Keunggulan</a>
+                <a href="#galeri" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-800">Galeri</a>
+                <a href="#kontak" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-800">Kontak</a>
+                <button id="mobile-theme-toggle" class="w-full flex justify-center items-center py-2 rounded-md text-base font-medium bg-gray-200 dark:bg-slate-800 text-yellow-500 dark:text-slate-400">
+                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                     </svg>
-                </button>
-            </div>
-            
-            <div class="-mr-2 flex items-center md:hidden">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-16">
-        <div class="flex items-center">
-            <a href="#" class="flex-shrink-0 font-bold text-2xl dark:text-gray-100">AUDIO-PREMIUM</a>
-        </div>
-        
-        <div class="-mr-2 flex items-center md:hidden">
-            <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500">
-                <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-                <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-    </div>
-</div>
-                <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500">
-                    <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                    <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                    Mode Gelap
                 </button>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <div class="md:hidden" id="mobile-menu">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#produk" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-800">Produk</a>
-            <a href="#keunggulan" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-800">Keunggulan</a>
-            <a href="#galeri" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-800">Galeri</a>
-            <a href="#kontak" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-800">Kontak</a>
-            <button id="mobile-theme-toggle" class="w-full flex justify-center items-center py-2 rounded-md text-base font-medium bg-gray-200 dark:bg-slate-800 text-yellow-500 dark:text-slate-400">
-                <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                </svg>
-                Mode Gelap
-            </button>
-        </div>
-    </div>
-</nav>
-
-<main class="pt-16">
-</main>
-
-<script>
-    // ... (logic JavaScript yang sudah ada) ...
-
-    // Tambahkan logika untuk Mobile Menu
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    mobileMenuButton.addEventListener('click', () => {
-        const isMenuOpen = mobileMenu.classList.toggle('hidden');
-        
-        // Ganti ikon hamburger/close
-        const iconOpen = mobileMenuButton.querySelector('svg.block');
-        const iconClose = mobileMenuButton.querySelector('svg.hidden');
-        
-        iconOpen.classList.toggle('hidden');
-        iconClose.classList.toggle('hidden');
-    });
-
-    // Tambahkan logika theme toggle untuk mobile
-    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
-    mobileThemeToggle.addEventListener('click', () => {
-        if (htmlElement.classList.contains('dark')) {
-            htmlElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        } else {
-            htmlElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-        }
-    });
-</script>
-    </header>
-
-    <main>
+    <main class="pt-16">
         <section class="min-h-screen flex items-center justify-center text-center bg-cover bg-center px-4 md:px-12" style="background-image: url('https://images.unsplash.com/photo-1542362567-b080c10057fb?q=80&w=2670&auto=format&fit=crop');">
             <div class="bg-black bg-opacity-70 p-8 md:p-16 rounded-lg max-w-4xl" data-aos="fade-up">
                 <h1 class="text-4xl md:text-7xl font-bold text-white mb-4 leading-tight tracking-tight">Audio Mobil, Didesain Ulang.</h1>
@@ -155,37 +101,32 @@
             </div>
         </section>
         
-       <section id="keunggulan" class="py-20 px-4 md:px-12 bg-white dark:bg-slate-950">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Mengapa Pilih Audio-Premium?</h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-6xl mx-auto">
-        
-        <div data-aos="fade-up" data-aos-delay="100" class="p-8 rounded-lg dark:bg-slate-900 shadow-md transition-shadow hover:shadow-xl">
-            <svg class="w-16 h-16 mx-auto mb-4 text-red-600 dark:text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h-2v-2h4v8zm-2-10h2V7h-2v2z"></path>
-            </svg>
-            <h3 class="text-xl font-semibold mb-2">Instalasi Presisi</h3>
-            <p class="text-slate-600 dark:text-gray-400">Tim teknisi kami terlatih untuk memastikan setiap detail instalasi audio sempurna.</p>
-        </div>
-        
-        <div data-aos="fade-up" data-aos-delay="200" class="p-8 rounded-lg dark:bg-slate-900 shadow-md transition-shadow hover:shadow-xl">
-            <svg class="w-16 h-16 mx-auto mb-4 text-red-600 dark:text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
-            </svg>
-            <h3 class="text-xl font-semibold mb-2">Produk Autentik</h3>
-            <p class="text-slate-600 dark:text-gray-400">Kami hanya menggunakan produk dan komponen audio asli dari merek-merek ternama.</p>
-        </div>
-        
-        <div data-aos="fade-up" data-aos-delay="300" class="p-8 rounded-lg dark:bg-slate-900 shadow-md transition-shadow hover:shadow-xl">
-            <svg class="w-16 h-16 mx-auto mb-4 text-red-600 dark:text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 9h-4V3H9v6H5l7 8zM4 19h16v2H4z"></path>
-            </svg>
-            <h3 class="text-xl font-semibold mb-2">Garansi Pemasangan</h3>
-            <p class="text-slate-600 dark:text-gray-400">Setiap instalasi dilengkapi dengan garansi untuk kenyamanan dan ketenangan pikiran Anda.</p>
-        </div>
-        
-    </div>
-</section>
+        <section id="keunggulan" class="py-20 px-4 md:px-12 bg-white dark:bg-slate-950">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Mengapa Pilih Audio-Premium?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-6xl mx-auto">
+                <div data-aos="fade-up" data-aos-delay="100" class="p-8 rounded-lg dark:bg-slate-900 shadow-md transition-shadow hover:shadow-xl">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-red-600 dark:text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h-2v-2h4v8zm-2-10h2V7h-2v2z"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2">Instalasi Presisi</h3>
+                    <p class="text-slate-600 dark:text-gray-400">Tim teknisi kami terlatih untuk memastikan setiap detail instalasi audio sempurna.</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200" class="p-8 rounded-lg dark:bg-slate-900 shadow-md transition-shadow hover:shadow-xl">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-red-600 dark:text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2">Produk Autentik</h3>
+                    <p class="text-slate-600 dark:text-gray-400">Kami hanya menggunakan produk dan komponen audio asli dari merek-merek ternama.</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300" class="p-8 rounded-lg dark:bg-slate-900 shadow-md transition-shadow hover:shadow-xl">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-red-600 dark:text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 9h-4V3H9v6H5l7 8zM4 19h16v2H4z"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2">Garansi Pemasangan</h3>
+                    <p class="text-slate-600 dark:text-gray-400">Setiap instalasi dilengkapi dengan garansi untuk kenyamanan dan ketenangan pikiran Anda.</p>
+                </div>
+            </div>
+        </section>
 
         <section id="galeri" class="py-20 px-4 md:px-12">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Hasil Pemasangan Kami</h2>
@@ -230,7 +171,6 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
     <script>
         AOS.init({
             once: true,
@@ -238,7 +178,6 @@
             duration: 800
         });
 
-        const themeToggle = document.getElementById('theme-toggle');
         const htmlElement = document.documentElement;
 
         const storedTheme = localStorage.getItem('theme');
@@ -248,21 +187,36 @@
             htmlElement.classList.add('dark');
         }
 
-        themeToggle.addEventListener('click', () => {
-            if (htmlElement.classList.contains('dark')) {
-                htmlElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
-                htmlElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const themeToggles = [themeToggle, mobileThemeToggle];
+        
+        themeToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+
+        // Logika untuk Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            
+            // Ganti ikon hamburger/close
+            const iconOpen = mobileMenuButton.querySelector('svg.block');
+            const iconClose = mobileMenuButton.querySelector('svg.hidden');
+            
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
         });
     </script>
 </body>
 </html>
-
-
-
-
-
-
