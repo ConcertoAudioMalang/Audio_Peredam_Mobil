@@ -248,7 +248,7 @@
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({
         duration: 1000,
@@ -265,7 +265,8 @@
     const mainHeader = document.getElementById('main-header');
     const logoDark = document.getElementById('logo-dark');
     const logoWhite = document.getElementById('logo-white');
-    const navLinks = document.querySelectorAll('#nav-links a, .nav-icon-color');
+
+    let lastScrollY = window.scrollY;
 
     function updateThemeIcon(isDark) {
         if (isDark) {
@@ -282,7 +283,7 @@
         const isDark = document.documentElement.classList.contains('dark');
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
         updateThemeIcon(isDark);
-        // Panggil handleScroll untuk memperbarui warna header setelah tema diubah
+        // Memanggil handleScroll untuk memperbarui warna header setelah tema diubah
         handleScroll(); 
     }
 
@@ -304,11 +305,22 @@
 
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
-    // LOGIKA UNTUK HEADER & TOMBOL SCROLL
+    // LOGIKA BARU UNTUK SCROLLING NAVBAR
     function handleScroll() {
         const isScrolled = window.scrollY > 50;
-        const isDarkMode = document.documentElement.classList.contains('dark');
 
+        // Logika untuk menyembunyikan/menampilkan header
+        if (window.scrollY > lastScrollY && window.scrollY > 100) {
+            // Scroll ke bawah, sembunyikan header
+            mainHeader.classList.add('-translate-y-full', 'opacity-0');
+        } else {
+            // Scroll ke atas atau di bagian paling atas, tampilkan header
+            mainHeader.classList.remove('-translate-y-full', 'opacity-0');
+        }
+        
+        lastScrollY = window.scrollY;
+
+        // Logika untuk perubahan warna & logo saat di-scroll
         if (isScrolled) {
             mainHeader.classList.add('scrolled');
             mainHeader.classList.remove('bg-secondary/0', 'dark:bg-primary/0', 'backdrop-blur-md');
@@ -320,7 +332,8 @@
             logoDark.classList.add('hidden');
             logoWhite.classList.remove('hidden');
         }
-        
+
+        // Logika untuk tombol "Kembali ke Atas"
         if (window.scrollY > 300) {
             scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
             scrollToTopBtn.classList.add('opacity-100');
@@ -342,5 +355,6 @@
 </script>
 </body>
 </html>
+
 
 
