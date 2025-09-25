@@ -37,7 +37,7 @@
 
 <body class="bg-secondary dark:bg-primary text-primary dark:text-secondary transition-colors duration-500">
 
-    <header class="fixed top-0 left-0 w-full z-50 transition-colors duration-500 bg-secondary/90 dark:bg-primary/90 backdrop-blur-md">
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-colors duration-500 bg-secondary/0 dark:bg-primary/0 backdrop-blur-md">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0">
@@ -173,6 +173,10 @@
         </section>
 
     </main>
+    
+    <button id="scroll-to-top" class="fixed bottom-6 right-6 p-4 rounded-full bg-primary text-secondary dark:bg-secondary dark:text-primary shadow-lg transition-all duration-300 opacity-0 pointer-events-none focus:outline-none z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <footer class="bg-primary dark:bg-gray-950 text-gray-400 py-16 px-4 md:px-12">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
@@ -270,7 +274,38 @@
         updateThemeIcon(isDark);
 
         document.getElementById('copyright-year').textContent = new Date().getFullYear();
+        
+        // TAMBAHAN: LOGIKA BARU UNTUK HEADER & TOMBOL SCROLL
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        const mainHeader = document.getElementById('main-header');
+
+        window.addEventListener('scroll', () => {
+            // Logika untuk header transparan
+            if (window.scrollY > 50) {
+                mainHeader.classList.remove('bg-secondary/0', 'dark:bg-primary/0');
+                mainHeader.classList.add('bg-secondary', 'dark:bg-primary', 'shadow-md');
+            } else {
+                mainHeader.classList.remove('bg-secondary', 'dark:bg-primary', 'shadow-md');
+                mainHeader.classList.add('bg-secondary/0', 'dark:bg-primary/0');
+            }
+
+            // Logika untuk tombol "Kembali ke Atas"
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                scrollToTopBtn.classList.add('opacity-100');
+            } else {
+                scrollToTopBtn.classList.remove('opacity-100');
+                scrollToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+            }
+        });
+
+        // Logika saat tombol "Kembali ke Atas" diklik
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
 </body>
 </html>
-
