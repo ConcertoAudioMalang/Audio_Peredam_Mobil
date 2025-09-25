@@ -356,93 +356,143 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            once: true,
+<script>
+    AOS.init({
+        duration: 800,
+        once: true,
+    });
+
+    // SCRIPT PERBAIKAN: Tombol Scroll to Top tidak menutupi footer
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    const footer = document.querySelector('footer');
+
+    // Menampilkan tombol saat scroll ke bawah
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollToTopBtn.classList.remove('opacity-0', 'scale-0');
+            scrollToTopBtn.classList.add('opacity-100', 'scale-100');
+        } else {
+            scrollToTopBtn.classList.remove('opacity-100', 'scale-100');
+            scrollToTopBtn.classList.add('opacity-0', 'scale-0');
+        }
+    });
+
+    // Fungsi untuk kembali ke atas
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Menggunakan Intersection Observer untuk mendeteksi footer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Saat footer masuk viewport, geser tombol ke atas
+                const distance = entry.intersectionRect.height;
+                scrollToTopBtn.style.transform = `translateY(-${distance}px)`;
+            } else {
+                // Saat footer keluar viewport, kembalikan posisi normal
+                scrollToTopBtn.style.transform = `translateY(0)`;
+            }
+        });
+    }, {
+        rootMargin: '0px 0px 0px 0px'
+    });
+
+    if (footer) {
+        observer.observe(footer);
+    }
+
+    // SCRIPT UNTUK MOBILE MENU, DARK MODE, SCROLL TO TOP, DAN FAQ
+    document.addEventListener("DOMContentLoaded", function() {
+        // SCRIPT UNTUK MOBILE MENU
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuSvg = mobileMenuButton.querySelector('svg:first-child');
+        const closeSvg = mobileMenuButton.querySelector('svg:last-child');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuSvg.classList.toggle('hidden');
+            closeSvg.classList.toggle('hidden');
+        });
+        
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuSvg.classList.remove('hidden');
+                closeSvg.classList.add('hidden');
+            });
         });
 
-        // TUGAS: SCRIPT UNTUK MOBILE MENU, DARK MODE, SCROLL TO TOP, DAN FAQ
-        document.addEventListener("DOMContentLoaded", function() {
-            // SCRIPT UNTUK MOBILE MENU
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuSvg = mobileMenuButton.querySelector('svg:first-child');
-            const closeSvg = mobileMenuButton.querySelector('svg:last-child');
-            
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                menuSvg.classList.toggle('hidden');
-                closeSvg.classList.toggle('hidden');
-            });
-            
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    menuSvg.classList.remove('hidden');
-                    closeSvg.classList.add('hidden');
-                });
-            });
+        // SCRIPT UNTUK DARK MODE
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle');
 
-            // SCRIPT UNTUK DARK MODE
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle');
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
 
-            const toggleTheme = () => {
-                document.documentElement.classList.toggle('dark');
-            };
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        mobileThemeToggleBtn.addEventListener('click', toggleTheme);
 
-            themeToggleBtn.addEventListener('click', toggleTheme);
-            mobileThemeToggleBtn.addEventListener('click', toggleTheme);
-            
-            // SCRIPT UNTUK SCROLL TO TOP BUTTON
-            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-
-            window.addEventListener("scroll", () => {
-                if (window.scrollY > 300) {
-                    scrollToTopBtn.classList.remove("opacity-0", "scale-0");
-                    scrollToTopBtn.classList.add("opacity-100", "scale-100");
-                } else {
-                    scrollToTopBtn.classList.remove("opacity-100", "scale-100");
-                    scrollToTopBtn.classList.add("opacity-0", "scale-0");
-                }
-            });
-
-            scrollToTopBtn.addEventListener("click", () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-            });
-
-            // SCRIPT UNTUK FAQ
-            const faqQuestions = document.querySelectorAll('.faq-question');
-            faqQuestions.forEach(question => {
-                question.addEventListener('click', () => {
-                    const answer = question.nextElementSibling;
-                    const icon = question.querySelector('svg');
-
-                    if (answer.classList.contains('hidden')) {
-                        // Tutup semua jawaban FAQ lain sebelum membuka yang baru
-                        document.querySelectorAll('.faq-answer').forEach(ans => {
-                            if (ans !== answer) {
-                                ans.classList.add('hidden');
-                                ans.previousElementSibling.querySelector('svg').classList.remove('rotate-180');
-                            }
-                        });
-
-                        // Buka jawaban yang dipilih
-                        answer.classList.remove('hidden');
-                        icon.classList.add('rotate-180');
-                    } else {
-                        // Tutup jawaban jika sudah terbuka
-                        answer.classList.add('hidden');
-                        icon.classList.remove('rotate-180');
-                    }
-                });
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    
+        // SCRIPT UNTUK FAQ
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const icon = button.querySelector('svg');
+                
+                answer.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
             });
         });
-    </script>
+
+        // SCRIPT UNTUK BEFORE/AFTER SLIDER
+        const slider = document.querySelector('.before-after-slider');
+        const beforeImg = document.querySelector('.before-img');
+        const divider = document.querySelector('.slider-divider');
+        let isDragging = false;
+
+        if (slider) {
+            slider.addEventListener('mousedown', (e) => {
+                isDragging = true;
+            });
+            slider.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+            slider.addEventListener('mouseleave', () => {
+                isDragging = false;
+            });
+
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const rect = slider.getBoundingClientRect();
+                let x = e.clientX - rect.left;
+                if (x < 0) x = 0;
+                if (x > rect.width) x = rect.width;
+                
+                beforeImg.style.width = `${x}px`;
+                divider.style.left = `${x}px`;
+            });
+        }
+    });
+</script>
 </body>
 </html>
+
