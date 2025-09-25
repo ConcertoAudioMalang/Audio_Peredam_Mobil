@@ -32,6 +32,20 @@
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; }
+    
+    /* CSS BARU UNTUK HEADER YANG DI-SCROLL */
+    .scrolled {
+        background-color: var(--tw-secondary);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    .dark .scrolled {
+        background-color: var(--tw-primary);
+    }
+    .scrolled #logo-dark { display: block; }
+    .scrolled #logo-white { display: none; }
+    .scrolled .nav-link-color { color: var(--tw-primary); }
+    .scrolled.dark .nav-link-color { color: var(--tw-secondary); }
+    .scrolled .nav-link-color:hover { color: var(--tw-accent); }
     </style>
 </head>
 
@@ -243,8 +257,7 @@
     const mainHeader = document.getElementById('main-header');
     const logoDark = document.getElementById('logo-dark');
     const logoWhite = document.getElementById('logo-white');
-    const navLinks = document.getElementById('nav-links');
-    const allNavLinks = document.querySelectorAll('#nav-links a, #mobile-menu a');
+    const allNavLinks = document.querySelectorAll('#nav-links a, #mobile-menu a, #mobile-menu-button, #theme-toggle');
 
     function updateThemeIcon(isDark) {
         if (isDark) {
@@ -281,45 +294,31 @@
 
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
-    // LOGIKA BARU UNTUK HEADER & TOMBOL SCROLL
+    // LOGIKA YANG LEBIH BAIK UNTUK HEADER & TOMBOL SCROLL
     function handleScroll() {
         const isScrolled = window.scrollY > 50;
-
-        // Logika untuk header transparan
+        const navLinks = document.getElementById('nav-links').querySelectorAll('a');
+        
+        // Atur kelas 'scrolled' pada header
         if (isScrolled) {
-            // Saat di-scroll
+            mainHeader.classList.add('scrolled');
             mainHeader.classList.remove('bg-secondary/0', 'dark:bg-primary/0', 'backdrop-blur-md');
-            mainHeader.classList.add('bg-secondary', 'dark:bg-primary', 'shadow-md');
-            
-            // Ubah logo menjadi gelap
-            logoDark.classList.remove('hidden');
-            logoWhite.classList.add('hidden');
-
-            // Ubah warna teks navigasi dan ikon menjadi lebih kontras
-            allNavLinks.forEach(link => {
-                link.classList.remove('text-white', 'hover:text-accent');
-                link.classList.add('text-primary', 'hover:text-accent');
+            navLinks.forEach(link => {
+                link.classList.remove('text-white');
+                link.classList.add('text-primary');
             });
             mobileMenuButton.classList.remove('text-white');
-            mobileMenuButton.classList.add('text-primary', 'hover:text-accent');
+            mobileMenuButton.classList.add('text-primary');
             themeToggleBtn.classList.remove('text-white');
             themeToggleBtn.classList.add('text-primary');
-
         } else {
-            // Saat di bagian atas
-            mainHeader.classList.remove('bg-secondary', 'dark:bg-primary', 'shadow-md');
+            mainHeader.classList.remove('scrolled');
             mainHeader.classList.add('bg-secondary/0', 'dark:bg-primary/0', 'backdrop-blur-md');
-
-            // Ubah logo menjadi putih
-            logoDark.classList.add('hidden');
-            logoWhite.classList.remove('hidden');
-            
-            // Ubah warna teks navigasi dan ikon menjadi putih
-            allNavLinks.forEach(link => {
-                link.classList.remove('text-primary', 'hover:text-accent');
-                link.classList.add('text-white', 'hover:text-accent');
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary');
+                link.classList.add('text-white');
             });
-            mobileMenuButton.classList.remove('text-primary', 'hover:text-accent');
+            mobileMenuButton.classList.remove('text-primary');
             mobileMenuButton.classList.add('text-white');
             themeToggleBtn.classList.remove('text-primary');
             themeToggleBtn.classList.add('text-white');
@@ -350,4 +349,5 @@
 </script>
 </body>
 </html>
+
 
