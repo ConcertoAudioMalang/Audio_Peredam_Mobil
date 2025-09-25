@@ -228,84 +228,126 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true,
-            disable: 'mobile',
-        });
+    AOS.init({
+        duration: 1000,
+        once: true,
+        disable: 'mobile',
+    });
 
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const moonIcon = document.getElementById('moon-icon');
-        const sunIcon = document.getElementById('sun-icon');
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const moonIcon = document.getElementById('moon-icon');
+    const sunIcon = document.getElementById('sun-icon');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    const mainHeader = document.getElementById('main-header');
+    const logoDark = document.getElementById('logo-dark');
+    const logoWhite = document.getElementById('logo-white');
+    const navLinks = document.getElementById('nav-links');
+    const allNavLinks = document.querySelectorAll('#nav-links a, #mobile-menu a');
 
-        function updateThemeIcon(isDark) {
-            if (isDark) {
-                moonIcon.classList.remove('hidden');
-                sunIcon.classList.add('hidden');
-            } else {
-                moonIcon.classList.add('hidden');
-                sunIcon.classList.remove('hidden');
-            }
-        }
-
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-            const isDark = document.documentElement.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            updateThemeIcon(isDark);
-        }
-
-        themeToggleBtn.addEventListener('click', toggleTheme);
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const storedTheme = localStorage.getItem('theme');
-        const isDark = storedTheme === 'dark' || (!storedTheme && isSystemDark);
-
+    function updateThemeIcon(isDark) {
         if (isDark) {
-            document.documentElement.classList.add('dark');
+            moonIcon.classList.remove('hidden');
+            sunIcon.classList.add('hidden');
         } else {
-            document.documentElement.classList.remove('dark');
+            moonIcon.classList.add('hidden');
+            sunIcon.classList.remove('hidden');
         }
+    }
+
+    function toggleTheme() {
+        document.documentElement.classList.toggle('dark');
+        const isDark = document.documentElement.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
         updateThemeIcon(isDark);
+    }
 
-        document.getElementById('copyright-year').textContent = new Date().getFullYear();
-        
-        // TAMBAHAN: LOGIKA BARU UNTUK HEADER & TOMBOL SCROLL
-        const scrollToTopBtn = document.getElementById('scroll-to-top');
-        const mainHeader = document.getElementById('main-header');
+    themeToggleBtn.addEventListener('click', toggleTheme);
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
 
-        window.addEventListener('scroll', () => {
-            // Logika untuk header transparan
-            if (window.scrollY > 50) {
-                mainHeader.classList.remove('bg-secondary/0', 'dark:bg-primary/0');
-                mainHeader.classList.add('bg-secondary', 'dark:bg-primary', 'shadow-md');
-            } else {
-                mainHeader.classList.remove('bg-secondary', 'dark:bg-primary', 'shadow-md');
-                mainHeader.classList.add('bg-secondary/0', 'dark:bg-primary/0');
-            }
+    const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = localStorage.getItem('theme');
+    const isDark = storedTheme === 'dark' || (!storedTheme && isSystemDark);
 
-            // Logika untuk tombol "Kembali ke Atas"
-            if (window.scrollY > 300) {
-                scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
-                scrollToTopBtn.classList.add('opacity-100');
-            } else {
-                scrollToTopBtn.classList.remove('opacity-100');
-                scrollToTopBtn.classList.add('opacity-0', 'pointer-events-none');
-            }
-        });
+    if (isDark) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+    updateThemeIcon(isDark);
 
-        // Logika saat tombol "Kembali ke Atas" diklik
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+    // LOGIKA BARU UNTUK HEADER & TOMBOL SCROLL
+    function handleScroll() {
+        const isScrolled = window.scrollY > 50;
+
+        // Logika untuk header transparan
+        if (isScrolled) {
+            // Saat di-scroll
+            mainHeader.classList.remove('bg-secondary/0', 'dark:bg-primary/0', 'backdrop-blur-md');
+            mainHeader.classList.add('bg-secondary', 'dark:bg-primary', 'shadow-md');
+            
+            // Ubah logo menjadi gelap
+            logoDark.classList.remove('hidden');
+            logoWhite.classList.add('hidden');
+
+            // Ubah warna teks navigasi dan ikon menjadi lebih kontras
+            allNavLinks.forEach(link => {
+                link.classList.remove('text-white', 'hover:text-accent');
+                link.classList.add('text-primary', 'hover:text-accent');
             });
+            mobileMenuButton.classList.remove('text-white');
+            mobileMenuButton.classList.add('text-primary', 'hover:text-accent');
+            themeToggleBtn.classList.remove('text-white');
+            themeToggleBtn.classList.add('text-primary');
+
+        } else {
+            // Saat di bagian atas
+            mainHeader.classList.remove('bg-secondary', 'dark:bg-primary', 'shadow-md');
+            mainHeader.classList.add('bg-secondary/0', 'dark:bg-primary/0', 'backdrop-blur-md');
+
+            // Ubah logo menjadi putih
+            logoDark.classList.add('hidden');
+            logoWhite.classList.remove('hidden');
+            
+            // Ubah warna teks navigasi dan ikon menjadi putih
+            allNavLinks.forEach(link => {
+                link.classList.remove('text-primary', 'hover:text-accent');
+                link.classList.add('text-white', 'hover:text-accent');
+            });
+            mobileMenuButton.classList.remove('text-primary', 'hover:text-accent');
+            mobileMenuButton.classList.add('text-white');
+            themeToggleBtn.classList.remove('text-primary');
+            themeToggleBtn.classList.add('text-white');
+        }
+
+        // Logika untuk tombol "Kembali ke Atas"
+        if (window.scrollY > 300) {
+            scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+            scrollToTopBtn.classList.add('opacity-100');
+        } else {
+            scrollToTopBtn.classList.remove('opacity-100');
+            scrollToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+        }
+    }
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    // Panggil saat halaman dimuat untuk setting awal
+    handleScroll();
+
+    // Logika saat tombol "Kembali ke Atas" diklik
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
-    </script>
+    });
+</script>
 </body>
 </html>
+
