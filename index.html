@@ -20,6 +20,11 @@
     
     <style>
         body { font-family: 'DM Sans', sans-serif; }
+    /* Tambahkan kode ini */
+    #scrollToTopBtn.shifted-up {
+        transform: translateY(-260px); /* Ganti nilai ini jika kurang atau berlebihan */
+        transition: transform 0.5s ease-in-out;
+    }
     </style>
 </head>
 <body class="bg-gray-100 dark:bg-slate-950 text-slate-800 dark:text-gray-100 transition-colors duration-500">
@@ -355,18 +360,18 @@
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({
         duration: 800,
         once: true,
     });
 
-    // SCRIPT PERBAIKAN: Tombol Scroll to Top tidak menutupi footer
+    // SCRIPT UTAMA UNTUK MENGATASI TOMBOL UP DAN FOOTER
     const scrollToTopBtn = document.getElementById('scrollToTopBtn');
     const footer = document.querySelector('footer');
 
-    // Menampilkan tombol saat scroll ke bawah
+    // Menampilkan atau menyembunyikan tombol saat scroll
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
             scrollToTopBtn.classList.remove('opacity-0', 'scale-0');
@@ -389,23 +394,23 @@
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Saat footer masuk viewport, geser tombol ke atas
-                const distance = entry.intersectionRect.height;
-                scrollToTopBtn.style.transform = `translateY(-${distance}px)`;
+                // Saat footer terlihat, tambahkan kelas untuk menggeser tombol
+                scrollToTopBtn.classList.add('shifted-up');
             } else {
-                // Saat footer keluar viewport, kembalikan posisi normal
-                scrollToTopBtn.style.transform = `translateY(0)`;
+                // Saat footer tidak terlihat, kembalikan posisi normal
+                scrollToTopBtn.classList.remove('shifted-up');
             }
         });
     }, {
-        rootMargin: '0px 0px 0px 0px'
+        rootMargin: '0px',
+        threshold: 0
     });
 
     if (footer) {
         observer.observe(footer);
     }
 
-    // SCRIPT UNTUK MOBILE MENU, DARK MODE, SCROLL TO TOP, DAN FAQ
+    // SCRIPT UNTUK MOBILE MENU, DARK MODE, FAQ, DAN BEFORE/AFTER SLIDER
     document.addEventListener("DOMContentLoaded", function() {
         // SCRIPT UNTUK MOBILE MENU
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -495,4 +500,5 @@
 </script>
 </body>
 </html>
+
 
