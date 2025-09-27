@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="id" class="dark">
+<html lang="id" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://www.namawebsiteanda.com/">
+    <meta name="theme-color" content="#1A1A1A" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#F5F5F5" media="(prefers-color-scheme: light)">
     
     <title>Concerto Audio | Ahli Instalasi & Tuning Audio Mobil Malang</title>
     <meta name="description" content="Bengkel spesialis audio mobil di Malang. Instalasi Sound Quality, Peredam, Kustomisasi, dan Tuning DSP profesional. Kualitas suara sempurna bergaransi.">
@@ -37,18 +40,23 @@
     </script>
 
     <style>
-        body { font-family: 'Inter', sans-serif; }
-    
-        /* Variabel CSS diperbaiki agar kompatibel dengan Tailwind */
+        /* Menggunakan Tailwind Utility sebagai Fallback */
+        /* body { font-family: 'Inter', sans-serif; } */
+        
+        /* Definisi Variabel CSS (Dipertahankan) */
         :root {
             --tw-primary: #1A1A1A;
             --tw-secondary: #F5F5F5;
             --tw-accent: #E53E3E;
         }
 
+        /* Class Header Scrolled */
         .scrolled {
             background-color: var(--tw-secondary);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            /* Mengganti box-shadow dengan Tailwind utility untuk konsistensi */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            backdrop-filter: blur(8px); /* Efek Blur modern ditambahkan */
+            -webkit-backdrop-filter: blur(8px);
         }
         .dark .scrolled {
             background-color: var(--tw-primary);
@@ -58,7 +66,7 @@
         .scrolled .nav-link-color, .scrolled .nav-icon-color {
             color: var(--tw-primary); /* Default Light Mode */
         }
-        .scrolled.dark .nav-link-color, .scrolled.dark .nav-icon-color {
+        .dark .scrolled .nav-link-color, .dark .scrolled .nav-icon-color {
             color: var(--tw-secondary); /* Dark Mode */
         }
 
@@ -66,14 +74,40 @@
             color: var(--tw-accent);
         }
         
-        /* LOGO SWITCHING (Dioptimalkan) */
+        /* LOGO SWITCHING (DITINGKATKAN: CSS Saja tanpa JS berlebihan) */
+        /* Default: Logo Putih (Light/White) terlihat, Logo Gelap (Dark) tersembunyi */
+        #main-header #logo-dark { display: none; }
+        #main-header #logo-white { display: block; }
+        
+        /* Jika di-scroll: Logo Putih tersembunyi, Logo Gelap terlihat */
         .scrolled #logo-dark { display: block; }
         .scrolled #logo-white { display: none; }
-        #main-header:not(.scrolled) #logo-dark.scrolled-hidden { display: none !important; }
-        #main-header.scrolled #logo-white.scrolled-hidden { display: block !important; }
+
+        /* Tambahan untuk FAQ (Styling Dasar Dipertahankan) */
+        .faq-item summary { 
+            cursor: pointer; 
+            padding: 1rem 0; 
+            font-weight: 600; 
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            /* UPGRADE: Tambahkan ikon panah otomatis */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none; /* Hilangkan default marker */
+        }
+        /* Tambahkan ikon panah menggunakan pseudo-element */
+        .faq-item summary::after {
+            content: "\25BC"; /* Panah ke bawah */
+            margin-left: 1rem;
+            transition: transform 0.3s;
+            color: #ccc;
+            font-size: 0.8em;
+        }
+        .faq-item[open] summary::after {
+            transform: rotate(180deg);
+            color: var(--tw-accent);
+        }
         
-        /* Tambahan untuk FAQ (Hanya Styling Dasar) */
-        .faq-item summary { cursor: pointer; padding: 1rem 0; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.1); }
         .dark .faq-item summary { border-bottom: 1px solid rgba(255,255,255,0.1); }
         .faq-item[open] summary { border-bottom: none; color: var(--tw-accent); }
         .faq-item p { padding: 1rem 0 1.5rem; }
@@ -82,57 +116,57 @@
 
 <body class="bg-secondary dark:bg-primary text-primary dark:text-secondary transition-colors duration-500">
 
-    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-md bg-secondary/0 dark:bg-primary/0">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0">
                     <a href="#hero" aria-label="Home Concerto Audio">
-                        <img id="logo-dark" src="asset/concerto-audio-logo-dark.png" alt="Concerto Audio Logo Dark" class="h-8 md:h-10 hidden scrolled-hidden">
+                        <img id="logo-dark" src="asset/concerto-audio-logo-dark.png" alt="Concerto Audio Logo Dark" class="h-8 md:h-10">
                         <img id="logo-white" src="asset/concerto-audio-logo-light.png" alt="Concerto Audio Logo Light" class="h-8 md:h-10">
                     </a>
                 </div>
                 <div id="nav-links" class="hidden md:flex items-center space-x-6">
-                    <a href="#tentang" class="nav-link-color text-white text-sm font-medium hover:text-accent transition-colors duration-200">Tentang</a>
-                    <a href="#layanan" class="nav-link-color text-white text-sm font-medium hover:text-accent transition-colors duration-200">Layanan</a>
-                    <a href="#galeri" class="nav-link-color text-white text-sm font-medium hover:text-accent transition-colors duration-200">Galeri</a>
-                    <a href="#produk" class="nav-link-color text-white text-sm font-medium hover:text-accent transition-colors duration-200">Produk</a>
-                    <a href="#kontak" class="nav-link-color text-white text-sm font-medium hover:text-accent transition-colors duration-200">Kontak</a>
+                    <a href="#tentang" class="nav-link-color text-sm font-medium hover:text-accent transition-colors duration-200">Tentang</a>
+                    <a href="#layanan" class="nav-link-color text-sm font-medium hover:text-accent transition-colors duration-200">Layanan</a>
+                    <a href="#galeri" class="nav-link-color text-sm font-medium hover:text-accent transition-colors duration-200">Galeri</a>
+                    <a href="#produk" class="nav-link-color text-sm font-medium hover:text-accent transition-colors duration-200">Produk</a>
+                    <a href="#kontak" class="nav-link-color text-sm font-medium hover:text-accent transition-colors duration-200">Kontak</a>
                     
-                    <button id="theme-toggle" class="nav-icon-color text-white p-2 rounded-full transition-colors duration-300 hover:bg-gray-200 dark:hover:bg-gray-800" aria-label="Toggle Dark Mode">
+                    <button id="theme-toggle" class="nav-icon-color text-sm p-2 rounded-full transition-colors duration-300 hover:bg-gray-200 dark:hover:bg-gray-800" aria-label="Toggle Dark Mode">
                         <i id="moon-icon" class="fas fa-moon"></i>
                         <i id="sun-icon" class="fas fa-sun hidden"></i>
                     </button>
                 </div>
                 <div class="md:hidden flex items-center space-x-2">
-                    <button id="theme-toggle-mobile" class="nav-icon-color text-white p-2 rounded-full transition-colors duration-300 hover:bg-gray-200 dark:hover:bg-gray-800" aria-label="Toggle Dark Mode Mobile">
+                    <button id="theme-toggle-mobile" class="nav-icon-color p-2 rounded-full transition-colors duration-300 hover:bg-gray-200 dark:hover:bg-gray-800" aria-label="Toggle Dark Mode Mobile">
                         <i id="moon-icon-mobile" class="fas fa-moon"></i>
                         <i id="sun-icon-mobile" class="fas fa-sun hidden"></i>
                     </button>
-                    <button id="mobile-menu-button" class="nav-icon-color text-white inline-flex items-center justify-center p-2 rounded-md transition-colors duration-200" aria-label="Toggle Mobile Menu">
-                        <i class="fas fa-bars h-6 w-6"></i>
+                    <button id="mobile-menu-button" class="nav-icon-color inline-flex items-center justify-center p-2 rounded-md transition-colors duration-200" aria-label="Toggle Mobile Menu">
+                        <i id="menu-icon" class="fas fa-bars h-6 w-6"></i>
                     </button>
                 </div>
             </div>
         </nav>
-        <div class="md:hidden hidden bg-secondary/90 dark:bg-primary/90 backdrop-blur-sm" id="mobile-menu">
+        <div class="md:hidden hidden bg-secondary/90 dark:bg-primary/90 backdrop-blur-md shadow-xl" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#tentang" class="mobile-nav-link block px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Tentang</a>
-                <a href="#layanan" class="mobile-nav-link block px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Layanan</a>
-                <a href="#galeri" class="mobile-nav-link block px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Galeri</a>
-                <a href="#produk" class="mobile-nav-link block px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Produk</a>
-                <a href="#kontak" class="mobile-nav-link block px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Kontak</a>
+                <a href="#tentang" class="mobile-nav-link block px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md text-primary dark:text-secondary">Tentang</a>
+                <a href="#layanan" class="mobile-nav-link block px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md text-primary dark:text-secondary">Layanan</a>
+                <a href="#galeri" class="mobile-nav-link block px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md text-primary dark:text-secondary">Galeri</a>
+                <a href="#produk" class="mobile-nav-link block px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md text-primary dark:text-secondary">Produk</a>
+                <a href="#kontak" class="mobile-nav-link block px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md text-primary dark:text-secondary">Kontak</a>
             </div>
         </div>
     </header>
 
-    <section id="hero" class="relative min-h-screen bg-cover bg-center flex items-end p-8" style="background-image: url('asset/background-concerto.jpg');">
+    <section id="hero" class="relative min-h-screen bg-cover bg-center flex items-end p-8" style="background-image: url('asset/background-concerto.jpg');" role="img" aria-label="Mobil dengan sistem audio yang terpasang">
         <div class="absolute inset-0 bg-black opacity-30" aria-hidden="true"></div>
         <div class="relative z-10 w-full max-w-7xl mx-auto text-white pb-24" data-aos="fade-up">
             <p class="text-base sm:text-lg mb-4 tracking-widest">CONCERTO AUDIO MALANG</p>
             <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-6">
                 Tidak Ada Suara Lain,<br>Selain yang Sempurna.
             </h1>
-            <a href="https://wa.me/6281234567890" target="_blank" class="inline-block py-3 px-8 border-2 border-white text-white font-medium transition-colors duration-300 hover:bg-accent hover:border-accent">
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="inline-block py-3 px-8 border-2 border-white text-white font-medium transition-colors duration-300 hover:bg-accent hover:border-accent">
                 KONSULTASI GRATIS
             </a>
         </div>
@@ -188,7 +222,7 @@
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <article class="relative h-96 overflow-hidden group rounded-lg shadow-xl" data-aos="fade-up" data-aos-delay="100">
-                        <img src="asset/pengerjaan2.jpeg" alt="Instalasi" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="asset/pengerjaan2.jpeg" alt="Instalasi" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                         <div class="absolute inset-0 bg-black opacity-60 group-hover:opacity-75 transition-opacity duration-300"></div>
                         <div class="relative z-10 h-full flex items-end p-8 text-white">
                             <div>
@@ -199,7 +233,7 @@
                     </article>
                     
                     <article class="relative h-96 overflow-hidden group rounded-lg shadow-xl" data-aos="fade-up" data-aos-delay="200">
-                        <img src="asset/pengerjaan3.jpeg" alt="Peredam" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="asset/pengerjaan3.jpeg" alt="Peredam" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                         <div class="absolute inset-0 bg-black opacity-60 group-hover:opacity-75 transition-opacity duration-300"></div>
                         <div class="relative z-10 h-full flex items-end p-8 text-white">
                             <div>
@@ -210,7 +244,7 @@
                     </article>
                     
                     <article class="relative h-96 overflow-hidden group rounded-lg shadow-xl" data-aos="fade-up" data-aos-delay="300">
-                        <img src="asset/pengerjaan1.jpeg" alt="Custom Audio" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="asset/pengerjaan1.jpeg" alt="Custom Audio" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                         <div class="absolute inset-0 bg-black opacity-60 group-hover:opacity-75 transition-opacity duration-300"></div>
                         <div class="relative z-10 h-full flex items-end p-8 text-white">
                             <div>
@@ -230,42 +264,42 @@
                     Kerapian Adalah Prioritas Kami
                 </h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <img src="asset/galeri-1.jpeg" alt="Instalasi Speaker Pintu Rapi" class="w-full h-48 object-cover rounded-lg shadow-md transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="50">
-                    <img src="asset/galeri-2.jpeg" alt="Pengerjaan Box Subwoofer Custom" class="w-full h-48 object-cover rounded-lg shadow-md transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="asset/galeri-3.jpeg" alt="Pemasangan DSP di Kabin" class="w-full h-48 object-cover rounded-lg shadow-md transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="150">
-                    <img src="asset/galeri-4.jpeg" alt="Detail Wiring Kabel Audio" class="w-full h-48 object-cover rounded-lg shadow-md transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="asset/galeri-1.jpeg" alt="Instalasi Speaker Pintu Rapi" class="w-full h-48 object-cover rounded-lg shadow-md transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="50" loading="lazy">
+                    <img src="asset/galeri-2.jpeg" alt="Pengerjaan Box Subwoofer Custom" class="w-full h-48 object-cover rounded-lg shadow-md transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="100" loading="lazy">
+                    <img src="asset/galeri-3.jpeg" alt="Pemasangan DSP di Kabin" class="w-full h-48 object-cover rounded-lg shadow-md transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="150" loading="lazy">
+                    <img src="asset/galeri-4.jpeg" alt="Detail Wiring Kabel Audio" class="w-full h-48 object-cover rounded-lg shadow-md transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="200" loading="lazy">
                 </div>
-                <a href="[https://www.tiktok.com/@concertomlg]" class="mt-12 inline-block text-accent font-medium hover:underline" data-aos="fade-up">Lihat Galeri Lebih Lengkap →</a>
+                <a href="https://www.tiktok.com/@concertomlg" target="_blank" rel="noopener noreferrer" class="mt-12 inline-block text-accent font-medium hover:underline" data-aos="fade-up">Lihat Galeri Lebih Lengkap →</a>
             </div>
         </section>
 
-      <section id="produk" class="py-24 px-4 md:px-12">
-    <div class="max-w-6xl mx-auto text-center">
-        <p class="text-sm uppercase text-gray-500 mb-2" data-aos="fade-up">Produk</p>
-        <h2 class="text-3xl md:text-4xl font-bold mb-16" data-aos="fade-up">
-            Kemitraan Dengan Merek Unggulan
-        </h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center items-center">
-            
-            <div class="p-4 rounded-full bg-white shadow-xl w-36 h-36 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="100">
-                <img src="asset/merk1.png" alt="Logo Audiocircle" class="max-w-[80%] max-h-[80%] object-contain">
+        <section id="produk" class="py-24 px-4 md:px-12">
+            <div class="max-w-6xl mx-auto text-center">
+                <p class="text-sm uppercase text-gray-500 mb-2" data-aos="fade-up">Produk</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-16" data-aos="fade-up">
+                    Kemitraan Dengan Merek Unggulan
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center items-center">
+                    
+                    <div class="p-4 rounded-full bg-white shadow-xl w-36 h-36 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="asset/merk1.png" alt="Logo Audiocircle" class="max-w-[80%] max-h-[80%] object-contain" loading="lazy">
+                    </div>
+                    
+                    <div class="p-4 rounded-full bg-white shadow-xl w-36 h-36 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="asset/merk2.png" alt="Logo STEG" class="max-w-[80%] max-h-[80%] object-contain" loading="lazy">
+                    </div>
+                    
+                    <div class="p-4 rounded-full bg-white shadow-xl w-36 h-36 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="300">
+                        <img src="asset/merk3.png" alt="Logo Dios Dela Musica" class="max-w-[80%] max-h-[80%] object-contain" loading="lazy">
+                    </div>
+                    
+                    <div class="p-4 rounded-full bg-white shadow-xl w-36 h-36 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="400">
+                        <img src="asset/merk4.png" alt="Logo Zeloz" class="max-w-[80%] max-h-[80%] object-contain" loading="lazy">
+                    </div>
+                    
+                </div>
             </div>
-            
-            <div class="p-4 rounded-full bg-white shadow-xl w-36 h-36 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="200">
-                <img src="asset/merk2.png" alt="Logo STEG" class="max-w-[80%] max-h-[80%] object-contain">
-            </div>
-            
-            <div class="p-4 rounded-full bg-white shadow-xl w-36 h-36 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="300">
-                <img src="asset/merk3.png" alt="Logo Dios Dela Musica" class="max-w-[80%] max-h-[80%] object-contain">
-            </div>
-            
-            <div class="p-4 rounded-full bg-white shadow-xl w-36 h-36 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="400">
-                <img src="asset/merk4.png" alt="Logo Zeloz" class="max-w-[80%] max-h-[80%] object-contain">
-            </div>
-            
-        </div>
-    </div>
-</section>
+        </section>
         
         <section id="faq" class="py-24 px-4 md:px-12 bg-gray-100 dark:bg-gray-900 transition-colors duration-500">
             <div class="max-w-4xl mx-auto">
@@ -296,7 +330,7 @@
                 <p class="text-lg md:text-xl font-light mb-8">
                     Hubungi kami sekarang untuk konsultasi gratis dan dapatkan penawaran terbaik.
                 </p>
-                <a href="https://wa.me/6281234567890" target="_blank" class="inline-block bg-white text-accent dark:text-red-700 font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105 shadow-xl">
+                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="inline-block bg-white text-accent dark:text-red-700 font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105 shadow-xl">
                     <i class="fab fa-whatsapp mr-2"></i> Hubungi via WhatsApp
                 </a>
             </div>
@@ -313,19 +347,19 @@
             
             <div class="flex flex-col md:flex-row justify-between items-center pb-8 border-b border-gray-700/50">
                 <div class="text-sm text-gray-400 mb-4 md:mb-0 order-2 md:order-1">
-                    &copy; <span id="copyright-year">2025</span> Concerto Audio. All Rights Reserved.
+                    © <span id="copyright-year">2025</span> Concerto Audio. All Rights Reserved.
                 </div>
                 <div class="flex gap-4 mb-4 md:mb-0 order-1 md:order-2">
-                    <a href="https://www.instagram.com/concerto_malang/?hl=en" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-200" aria-label="Instagram Concerto Audio">
+                    <a href="https://www.instagram.com/concerto_malang/?hl=en" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-200" aria-label="Instagram Concerto Audio">
                         <i class="fab fa-instagram text-xl"></i>
                     </a>
-                    <a href="https://www.facebook.com/concerto.malang.2025?locale=id_ID" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-200" aria-label="Facebook Concerto Audio">
+                    <a href="https://www.facebook.com/concerto.malang.2025?locale=id_ID" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-200" aria-label="Facebook Concerto Audio">
                         <i class="fab fa-facebook-f text-xl"></i>
                     </a>
-                    <a href="https://www.youtube.com/@Concerto_Malang" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-200" aria-label="YouTube Concerto Audio">
+                    <a href="https://www.youtube.com/@Concerto_Malang" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-200" aria-label="YouTube Concerto Audio">
                         <i class="fab fa-youtube text-xl"></i>
                     </a>
-                    <a href="https://www.tiktok.com/@concertomlg" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-200" aria-label="TikTok Concerto Audio">
+                    <a href="https://www.tiktok.com/@concertomlg" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-200" aria-label="TikTok Concerto Audio">
                         <i class="fab fa-tiktok text-xl"></i>
                     </a>
                 </div>
@@ -365,7 +399,7 @@
                     <h3 class="font-bold text-base mb-4 text-white uppercase tracking-wider">Lokasi Kami</h3>
                     <div class="space-y-3 text-sm text-gray-400">
                         <p>Jl. Ciliwung No.57 A, Purwantoro, Kota Malang.
-                            <a href="<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62975049.21644237!2d11.83325254350797!3d15.55463512141259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629b6215718c1%3A0x141cdb0f044d67d5!2sConcerto%20Audio%20dan%20Peredam%20Mobil%20Malang%20Raya!5e0!3m2!1sen!2sid!4v1758946859592!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" target="_blank" class="text-accent hover:underline block mt-1">Lihat di Google Maps 📍</a>
+                            <a href="https://maps.app.goo.gl/ALamatGoogleMapsAnda" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline block mt-1">Lihat di Google Maps 📍</a>
                         </p>
                         <p class="mt-4">
                             <strong>Jam Operasional:</strong><br>
@@ -381,148 +415,209 @@
     </footer>
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init({
-        duration: 1000,
-        once: true,
-        disable: 'mobile',
-    });
-
-    // Deklarasi Elemen
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
-    const moonIcon = document.getElementById('moon-icon');
-    const sunIcon = document.getElementById('sun-icon');
-    const moonIconMobile = document.getElementById('moon-icon-mobile');
-    const sunIconMobile = document.getElementById('sun-icon-mobile');
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileMenuLinks = document.querySelectorAll('.mobile-nav-link');
-    const scrollToTopBtn = document.getElementById('scroll-to-top');
-    const mainHeader = document.getElementById('main-header');
-    const logoDark = document.getElementById('logo-dark');
-    const logoWhite = document.getElementById('logo-white');
-
-    let lastScrollY = window.scrollY;
-
-    // --- LOGIKA THEME START ---
-    function updateThemeIcon(isDark) {
-        if (isDark) {
-            moonIcon.classList.add('hidden');
-            sunIcon.classList.remove('hidden');
-            moonIconMobile.classList.add('hidden');
-            sunIconMobile.classList.remove('hidden');
-        } else {
-            moonIcon.classList.remove('hidden');
-            sunIcon.classList.add('hidden');
-            moonIconMobile.classList.remove('hidden');
-            sunIconMobile.classList.add('hidden');
-        }
-    }
-
-    function toggleTheme() {
-        document.documentElement.classList.toggle('dark');
-        const isDark = document.documentElement.classList.contains('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        updateThemeIcon(isDark);
-        // Memanggil handleScroll untuk memperbarui warna header setelah tema diubah
-        handleScroll(); 
-    }
-
-    // Event Listeners untuk Toggle Theme (Desktop & Mobile)
-    themeToggleBtn.addEventListener('click', toggleTheme);
-    themeToggleBtnMobile.addEventListener('click', toggleTheme);
-    
-    // Inisialisasi Tema
-    const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const storedTheme = localStorage.getItem('theme');
-    const isDark = storedTheme === 'dark' || (!storedTheme && isSystemDark);
-
-    if (isDark) {
-        document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark');
-    }
-    updateThemeIcon(isDark);
-    // --- LOGIKA THEME END ---
-
-
-    // --- LOGIKA MOBILE MENU START ---
-    mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-
-    // Tutup menu mobile saat link diklik
-    mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            disable: 'mobile',
         });
-    });
-    // --- LOGIKA MOBILE MENU END ---
 
-
-    // --- LOGIKA SCROLLING NAVBAR & SCROLL TO TOP START ---
-    function handleScroll() {
-        const isScrolled = window.scrollY > 50;
-
-        // Logika untuk menyembunyikan/menampilkan header (Dipertahankan)
-        if (window.scrollY > lastScrollY && window.scrollY > 100) {
-            // Scroll ke bawah, sembunyikan header
-            mainHeader.classList.add('-translate-y-full', 'opacity-0');
-        } else {
-            // Scroll ke atas atau di bagian paling atas, tampilkan header
-            mainHeader.classList.remove('-translate-y-full', 'opacity-0');
-        }
+        // Deklarasi Elemen
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
+        const moonIcon = document.getElementById('moon-icon');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIconMobile = document.getElementById('moon-icon-mobile');
+        const sunIconMobile = document.getElementById('sun-icon-mobile');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-nav-link');
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        const mainHeader = document.getElementById('main-header');
+        const navLinks = document.querySelectorAll('#nav-links a.nav-link-color');
+        const navIcons = document.querySelectorAll('#nav-links button.nav-icon-color, .md\\:hidden button.nav-icon-color'); // Tangkap semua ikon navigasi
         
-        lastScrollY = window.scrollY;
+        // UPGRADE: Hilangkan logo-dark & logo-white dari JS dan biarkan CSS yang mengontrol switch logo
+        // const logoDark = document.getElementById('logo-dark');
+        // const logoWhite = document.getElementById('logo-white');
+        
+        let lastScrollY = window.scrollY;
 
-        // Logika untuk perubahan warna & logo saat di-scroll (Dioptimalkan)
-        if (isScrolled) {
-            mainHeader.classList.add('scrolled');
-            mainHeader.classList.remove('bg-secondary/0', 'dark:bg-primary/0'); // Hapus class transparan
-            logoDark.classList.remove('hidden');
-            logoWhite.classList.add('hidden');
-        } else {
-            mainHeader.classList.remove('scrolled');
-            // Tambahkan class transparan di Light/Dark Mode saat di atas
-            if(document.documentElement.classList.contains('dark')) {
-                 mainHeader.classList.add('bg-primary/0');
-                 mainHeader.classList.remove('bg-secondary/0');
+        // --- LOGIKA THEME START ---
+        function updateThemeIcon(isDark) {
+            if (isDark) {
+                moonIcon.classList.add('hidden');
+                sunIcon.classList.remove('hidden');
+                moonIconMobile.classList.add('hidden');
+                sunIconMobile.classList.remove('hidden');
             } else {
-                 mainHeader.classList.add('bg-secondary/0');
-                 mainHeader.classList.remove('bg-primary/0');
+                moonIcon.classList.remove('hidden');
+                sunIcon.classList.add('hidden');
+                moonIconMobile.classList.remove('hidden');
+                sunIconMobile.classList.add('hidden');
             }
-            mainHeader.classList.add('backdrop-blur-md'); // Tambahkan backdrop blur untuk efek modern
-            logoDark.classList.add('hidden');
-            logoWhite.classList.remove('hidden');
         }
 
-        // Logika untuk tombol "Kembali ke Atas"
-        if (window.scrollY > 300) {
-            scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
-            scrollToTopBtn.classList.add('opacity-100');
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeIcon(isDark);
+            // Panggil handleScroll untuk memperbarui warna header
+            handleScroll(); 
+        }
+
+        // Event Listeners untuk Toggle Theme (Desktop & Mobile)
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        themeToggleBtnMobile.addEventListener('click', toggleTheme);
+        
+        // Inisialisasi Tema
+        const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const storedTheme = localStorage.getItem('theme');
+        const isDark = storedTheme === 'dark' || (!storedTheme && isSystemDark);
+
+        if (isDark) {
+            document.documentElement.classList.add('dark');
         } else {
-            scrollToTopBtn.classList.remove('opacity-100');
-            scrollToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+            document.documentElement.classList.remove('dark');
         }
-    }
-    
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Panggil saat load pertama untuk inisialisasi header
+        updateThemeIcon(isDark);
+        // --- LOGIKA THEME END ---
 
-    scrollToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+
+        // --- LOGIKA MOBILE MENU START ---
+        const menuIcon = document.getElementById('menu-icon');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // UPGRADE: Ganti icon hamburger menjadi X saat menu terbuka
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            }
         });
-    });
-    // --- LOGIKA SCROLLING NAVBAR & SCROLL TO TOP END ---
-    
-    // Script kecil untuk mengupdate tahun pada copyright secara otomatis (Dipertahankan)
-    document.getElementById('copyright-year').textContent = new Date().getFullYear();
-</script>
+
+        // Tutup menu mobile saat link diklik (dipertahankan)
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+        // --- LOGIKA MOBILE MENU END ---
+
+
+        // --- LOGIKA SCROLLING NAVBAR & SCROLL TO TOP START (DIPERBAIKI) ---
+        function updateNavColors(isScrolled, isDark) {
+            const colorClass = isScrolled ? 'text-primary dark:text-secondary' : 'text-white';
+
+            // Reset semua link & icon ke warna default header tidak di-scroll (text-white)
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary', 'dark:text-secondary', 'text-white');
+                link.classList.add(isScrolled ? 'text-primary' : 'text-white');
+                // Khusus Dark Mode, pastikan saat tidak di-scroll, warna tetap putih
+                if (!isScrolled && isDark) {
+                    link.classList.add('text-white');
+                } else if (isScrolled && isDark) {
+                    link.classList.add('dark:text-secondary');
+                }
+            });
+            
+            navIcons.forEach(icon => {
+                icon.classList.remove('text-primary', 'dark:text-secondary', 'text-white');
+                icon.classList.add(isScrolled ? 'text-primary' : 'text-white');
+                if (!isScrolled && isDark) {
+                    icon.classList.add('text-white');
+                } else if (isScrolled && isDark) {
+                    icon.classList.add('dark:text-secondary');
+                }
+            });
+
+            // LOGIKA PENGATURAN WARNA UTAMA:
+            if (isScrolled) {
+                // Saat di-scroll: Class CSS .scrolled akan mengambil alih warna, JS hanya perlu mengatur warna untuk transisi awal.
+                // Logika utama ada di CSS untuk .scrolled .nav-link-color
+            } else {
+                // Saat di atas (isScrolled = false): Selalu gunakan text-white
+                navLinks.forEach(link => {
+                    link.classList.remove('text-primary', 'dark:text-secondary');
+                    link.classList.add('text-white');
+                });
+                navIcons.forEach(icon => {
+                    icon.classList.remove('text-primary', 'dark:text-secondary');
+                    icon.classList.add('text-white');
+                });
+            }
+        }
+
+
+        function handleScroll() {
+            const isScrolled = window.scrollY > 50;
+            const isDark = document.documentElement.classList.contains('dark');
+
+            // Logika untuk menyembunyikan/menampilkan header (Dipertahankan)
+            if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                mainHeader.classList.add('-translate-y-full', 'opacity-0');
+            } else {
+                mainHeader.classList.remove('-translate-y-full', 'opacity-0');
+            }
+            lastScrollY = window.scrollY;
+
+            // Logika untuk perubahan class header (Dioptimalkan)
+            if (isScrolled) {
+                mainHeader.classList.add('scrolled');
+                // Hapus background transparan untuk menghindari efek ganda saat scrolled
+                mainHeader.classList.remove('bg-secondary/0', 'dark:bg-primary/0', 'backdrop-blur-md'); 
+            } else {
+                mainHeader.classList.remove('scrolled');
+                // Tambahkan background transparan dan blur saat di atas
+                mainHeader.classList.add('backdrop-blur-md');
+                if(isDark) {
+                    mainHeader.classList.add('dark:bg-primary/0');
+                    mainHeader.classList.remove('bg-secondary/0');
+                } else {
+                    mainHeader.classList.add('bg-secondary/0');
+                    mainHeader.classList.remove('dark:bg-primary/0');
+                }
+            }
+            
+            // Panggil fungsi pembaruan warna navigasi
+            updateNavColors(isScrolled, isDark);
+
+
+            // Logika untuk tombol "Kembali ke Atas" (Dipertahankan)
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                scrollToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+            }
+        }
+
+        // Panggil saat inisialisasi untuk mengatur tampilan awal
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll); // Pastikan warna awal header benar saat halaman dimuat
+
+        // Fungsi Scroll ke Atas
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // PEMBERSIHAN FOOTER: Otomatis tahun copyright
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+        // UPGRADE: Panggil updateNavColors saat load agar warna link di header transparan benar di awal
+        window.onload = function() {
+            const isDark = document.documentElement.classList.contains('dark');
+            updateNavColors(window.scrollY > 50, isDark);
+        }
+        // --- LOGIKA SCROLLING NAVBAR & SCROLL TO TOP END ---
+
+    </script>
 </body>
 </html>
-
-
-
