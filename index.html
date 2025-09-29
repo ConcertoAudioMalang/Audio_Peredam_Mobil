@@ -140,6 +140,7 @@
                     <a href="#galeri" class="nav-link-color text-sm font-medium hover:text-accent transition-colors duration-200">Galeri</a>
                     <a href="#produk" class="nav-link-color text-sm font-medium hover:text-accent transition-colors duration-200">Produk</a>
                     <a href="#kontak" class="nav-link-color text-sm font-medium hover:text-accent transition-colors duration-200">Kontak</a>
+                    <a href="#katalog" class="nav-link-color text-sm font-medium hover:text-accent transition-colors duration-200">Katalog</a>
                     
                     <button id="theme-toggle" class="nav-icon-color text-sm p-2 rounded-full transition-colors duration-300 hover:bg-gray-200 dark:hover:bg-gray-800" aria-label="Toggle Dark Mode">
                         <i id="moon-icon" class="fas fa-moon"></i>
@@ -164,6 +165,7 @@
                 <a href="#galeri" class="mobile-nav-link block px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md text-primary dark:text-secondary">Galeri</a>
                 <a href="#produk" class="mobile-nav-link block px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md text-primary dark:text-secondary">Produk</a>
                 <a href="#kontak" class="mobile-nav-link block px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md text-primary dark:text-secondary">Kontak</a>
+                <a href="#katalog" class="mobile-nav-link block px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md text-primary dark:text-secondary">Katalog</a>
             </div>
         </div>
     </header>
@@ -266,21 +268,31 @@
             </div>
         </section>
 
-        <section id="galeri" class="py-24 px-4 md:px-12 bg-gray-100 dark:bg-gray-900 transition-colors duration-500">
-            <div class="max-w-6xl mx-auto text-center">
-                <p class="text-sm uppercase text-gray-500 mb-2" data-aos="fade-up">Portofolio Kami</p>
-                <h2 class="text-3xl md:text-4xl font-bold mb-12" data-aos="fade-up">
-                    Kerapian Adalah Prioritas Kami
-                </h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <img src="asset/galeri-1.jpeg" alt="Instalasi Speaker Pintu Rapi" class="w-full h-48 object-cover rounded-lg shadow-md transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="50" loading="lazy">
-                    <img src="asset/galeri-2.jpeg" alt="Pengerjaan Box Subwoofer Custom" class="w-full h-48 object-cover rounded-lg shadow-md transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="100" loading="lazy">
-                    <img src="asset/galeri-3.jpeg" alt="Pemasangan DSP di Kabin" class="w-full h-48 object-cover rounded-lg shadow-md transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="150" loading="lazy">
-                    <img src="asset/galeri-4.jpeg" alt="Detail Wiring Kabel Audio" class="w-full h-48 object-cover rounded-lg shadow-md transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="200" loading="lazy">
-                </div>
-                <a href="https://www.tiktok.com/@concertomlg" target="_blank" rel="noopener noreferrer" class="mt-12 inline-block text-accent font-medium hover:underline" data-aos="fade-up">Lihat Galeri Lebih Lengkap →</a>
-            </div>
-        </section>
+        <section id="galeri" class="relative py-24 px-4 md:px-12 overflow-hidden">
+    
+    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+        <source src="asset/video-background.mp4" type="video/mp4">
+        Browser Anda tidak mendukung tag video.
+    </video>
+
+    <div class="absolute inset-0 bg-primary opacity-70" aria-hidden="true"></div>
+    
+    <div class="relative z-10 max-w-6xl mx-auto text-center text-white">
+        <p class="text-sm uppercase mb-2" data-aos="fade-up">Portofolio Kami</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-12" data-aos="fade-up">
+            Kerapian Adalah Prioritas Kami
+        </h2>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <img src="asset/galeri-1.jpeg" alt="Instalasi Speaker Pintu Rapi" class="w-full h-48 object-cover rounded-lg shadow-xl transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="50" loading="lazy">
+            <img src="asset/galeri-2.jpeg" alt="Pengerjaan Box Subwoofer Custom" class="w-full h-48 object-cover rounded-lg shadow-xl transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="100" loading="lazy">
+            <img src="asset/galeri-3.jpeg" alt="Pemasangan DSP di Kabin" class="w-full h-48 object-cover rounded-lg shadow-xl transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="150" loading="lazy">
+            <img src="asset/galeri-4.jpeg" alt="Detail Wiring Kabel Audio" class="w-full h-48 object-cover rounded-lg shadow-xl transition-all duration-300 transform hover:scale-[1.02]" data-aos="zoom-in" data-aos-delay="200" loading="lazy">
+        </div>
+        
+        <a href="https://www.tiktok.com/@concertomlg" target="_blank" rel="noopener noreferrer" class="mt-12 inline-block text-accent font-medium hover:underline" data-aos="fade-up">Lihat Video Pengerjaan Lebih Lengkap →</a>
+    </div>
+</section>
 
       <section id="produk" class="py-24 px-4 md:px-12">
     <div class="max-w-6xl mx-auto text-center">
@@ -309,6 +321,73 @@
             
         </div>
         </div>
+</section>
+
+        <section id="katalog" class="py-24 px-4 md:px-12 bg-gray-100 dark:bg-gray-900 transition-colors duration-500">
+    <div class="max-w-6xl mx-auto">
+        <p class="text-sm uppercase text-gray-500 mb-2 text-center" data-aos="fade-up">Katalog Produk</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center" data-aos="fade-up">
+            Produk Audio Pilihan Kami
+        </h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="bg-secondary dark:bg-primary rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="100">
+                <img src="asset/product-dsp.jpg" alt="Processor DSP STEG SDSP-6" class="w-full h-56 object-cover" loading="lazy">
+                <div class="p-6">
+                    <span class="inline-block bg-accent/20 text-accent text-xs font-semibold px-3 py-1 rounded-full mb-3">DSP Amplifier</span>
+                    <h3 class="text-xl font-bold mb-2">STEG SDSP-6</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">DSP 6 Channel dengan output daya besar, ideal untuk sistem audio 3-way. Termasuk tuning profesional.</p>
+                    
+                    <p class="text-base font-semibold mb-4 text-primary dark:text-secondary">Fitur: Output Hi-Power & 32bit Processing.</p>
+                    
+                    <div class="flex justify-center items-center">
+                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20produk%20STEG%20SDSP-6%20dan%20ingin%20tahu%20harganya" target="_blank" rel="noopener noreferrer" class="w-full text-white bg-accent hover:bg-red-700 py-3 px-4 rounded-lg text-sm font-semibold text-center transition-colors duration-200">
+                            Tanya Harga & Detail Produk
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-secondary dark:bg-primary rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+                <img src="asset/product-speaker.jpg" alt="Speaker 2 Way Audiocircle" class="w-full h-56 object-cover" loading="lazy">
+                <div class="p-6">
+                    <span class="inline-block bg-accent/20 text-accent text-xs font-semibold px-3 py-1 rounded-full mb-3">Speaker Set</span>
+                    <h3 class="text-xl font-bold mb-2">Audiocircle 2-Way SQ</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">Set speaker komponen 6.5 inci dengan karakter suara yang hangat dan detail. Sangat baik untuk SQ entry-level.</p>
+                    
+                    <p class="text-base font-semibold mb-4 text-primary dark:text-secondary">Fitur: Karakter Warm Sound & High Clarity.</p>
+                    
+                    <div class="flex justify-center items-center">
+                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20produk%20Speaker%20Audiocircle%20dan%20ingin%20tahu%20harganya" target="_blank" rel="noopener noreferrer" class="w-full text-white bg-accent hover:bg-red-700 py-3 px-4 rounded-lg text-sm font-semibold text-center transition-colors duration-200">
+                            Tanya Harga & Detail Produk
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-secondary dark:bg-primary rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="300">
+                <img src="asset/product-sub.jpg" alt="Subwoofer Zeloz 10 Inch" class="w-full h-56 object-cover" loading="lazy">
+                <div class="p-6">
+                    <span class="inline-block bg-accent/20 text-accent text-xs font-semibold px-3 py-1 rounded-full mb-3">Subwoofer</span>
+                    <h3 class="text-xl font-bold mb-2">Zeloz Subwoofer 10"</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">Subwoofer 10 inci berkarakter bass lembut dan akurat, cocok untuk sistem Sound Quality yang minimalis.</p>
+                    
+                    <p class="text-base font-semibold mb-4 text-primary dark:text-secondary">Fitur: Bass Akurat & Box Minimalis.</p>
+                    
+                    <div class="flex justify-center items-center">
+                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20produk%20Subwoofer%20Zeloz%20dan%20ingin%20tahu%20harganya" target="_blank" rel="noopener noreferrer" class="w-full text-white bg-accent hover:bg-red-700 py-3 px-4 rounded-lg text-sm font-semibold text-center transition-colors duration-200">
+                            Tanya Harga & Detail Produk
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="text-center mt-12" data-aos="fade-up">
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="inline-block text-accent font-medium hover:underline">Konsultasikan Kebutuhan Audio Lainnya →</a>
+        </div>
+    </div>
 </section>
         
         <section id="faq" class="py-24 px-4 md:px-12 bg-gray-100 dark:bg-gray-900 transition-colors duration-500">
@@ -544,6 +623,7 @@
     </script>
 </body>
 </html>
+
 
 
 
