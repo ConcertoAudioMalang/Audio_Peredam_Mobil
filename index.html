@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#1A1A1A" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#F5F5F5" media="(prefers-color-scheme: light)">
     
-    <title>Concerto Audio Malang | Peredam Mobil, Tuning DSP & Sound Quality Mobil Malang Raya</title>
+    <title>Concerto Audio Malang | Ahli Instalasi, Tuning DSP & Sound Quality Mobil Bergaransi</title>
     <meta name="description" content="Bengkel spesialis audio mobil di Malang. Instalasi Sound Quality (SQ), Peredam, Kustomisasi, dan Tuning DSP profesional menggunakan RTA. Kualitas suara sempurna bergaransi.">
     <meta name="keywords" content="audio mobil malang, bengkel audio mobil, instalasi audio, tuning dsp, custom audio, sound quality, sq, peredam mobil, concerto audio">
     
@@ -46,7 +46,7 @@
             --tw-accent: #E53E3E;
         }
 
-        /* HEADER SCROLLED: Ditingkatkan dengan class 'scrolled' */
+        /* HEADER SCROLLED */
         .scrolled {
             background-color: var(--tw-secondary);
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -57,20 +57,18 @@
             background-color: var(--tw-primary);
         }
 
-        /* Nav & Icon Color: Warna link/icon default di Light Mode menjadi secondary */
+        /* Nav & Icon Color Handling */
         .nav-link-color, .nav-icon-color {
-            color: var(--tw-secondary); /* Default Light Mode (sebelum scroll, di atas HERO) */
+            color: var(--tw-secondary); /* Default: White/Secondary (Di atas HERO) */
         }
-
-        /* Warna Nav Saat Scroll: Berubah menjadi Primary (Dark) */
         .scrolled .nav-link-color, .scrolled .nav-icon-color {
-            color: var(--tw-primary); 
+            color: var(--tw-primary); /* Scroll Light: Black/Primary */
         }
         .dark .nav-link-color, .dark .nav-icon-color {
-            color: var(--tw-secondary); /* Default Dark Mode (di atas HERO) */
+            color: var(--tw-secondary); /* Default Dark: White/Secondary */
         }
         .dark .scrolled .nav-link-color, .dark .scrolled .nav-icon-color {
-            color: var(--tw-secondary); /* Dark Mode saat Scroll */
+            color: var(--tw-secondary); /* Scroll Dark: White/Secondary */
         }
         .scrolled .nav-link-color:hover, .scrolled .nav-icon-color:hover,
         .nav-link-color:hover, .nav-icon-color:hover {
@@ -78,25 +76,24 @@
         }
 
         /* LOGO SWITCHING */
-        /* Default: Logo Putih (Light/White) terlihat, Logo Gelap (Dark) tersembunyi */
         #main-header #logo-dark { display: none; }
         #main-header #logo-white { display: block; }
         
-        /* Jika di-scroll: Logo Putih tersembunyi, Logo Gelap terlihat */
         .scrolled #logo-dark { display: block; }
         .scrolled #logo-white { display: none; }
 
-        /* UPGRADE: GRASCALE LOGO PRODUK */
+        /* MODIFIKASI: GRASCALE LOGO PRODUK & UKURAN HOVER */
         .grayscale-logo {
             filter: grayscale(100%);
             transition: filter 0.5s ease-in-out, transform 0.3s;
         }
         .grayscale-logo:hover {
             filter: grayscale(0%);
-            transform: scale(1.05); /* Tambah efek sedikit zoom saat hover */
+            /* Efek pembesaran 15% saat hover */
+            transform: scale(1.15); 
         }
 
-        /* FAQ Styling: Dipertahankan */
+        /* FAQ Styling */
         .faq-item summary { 
             cursor: pointer; 
             padding: 1rem 0; 
@@ -345,19 +342,19 @@
                 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 justify-items-center items-center">
                     
-                    <div class="p-4 w-full h-24 md:h-40 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="p-4 w-full h-32 md:h-48 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="100">
                         <img src="asset/1Copy.png" alt="Logo Audiocircle" class="max-w-full max-h-full object-contain grayscale-logo" loading="lazy">
                     </div>
                     
-                    <div class="p-4 w-full h-24 md:h-40 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="p-4 w-full h-32 md:h-48 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="200">
                         <img src="asset/2.png" alt="Logo STEG" class="max-w-full max-h-full object-contain grayscale-logo" loading="lazy">
                     </div>
                     
-                    <div class="p-4 w-full h-24 md:h-40 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="p-4 w-full h-32 md:h-48 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="300">
                         <img src="asset/3.png" alt="Logo Dios Dela Musica" class="max-w-full max-h-full object-contain grayscale-logo" loading="lazy">
                     </div>
                     
-                    <div class="p-4 w-full h-24 md:h-40 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="p-4 w-full h-32 md:h-48 flex items-center justify-center transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="400">
                         <img src="asset/4.png" alt="Logo Zeloz" class="max-w-full max-h-full object-contain grayscale-logo" loading="lazy">
                     </div>
                     
@@ -670,9 +667,9 @@
             if (savedTheme) {
                 toggleTheme(savedTheme === 'dark');
             } else if (prefersDark) {
-                toggleTheme(true); // Default ke dark jika sistem prefer dark
+                toggleTheme(true); 
             } else {
-                toggleTheme(false); // Default ke light
+                toggleTheme(false);
             }
         }
         initTheme();
