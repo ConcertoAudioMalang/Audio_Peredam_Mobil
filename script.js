@@ -1,207 +1,174 @@
-/* =========================================================
-    CONCERTO AUDIO | SCRIPT.JS
-    Fungsi: Navigasi, Dark Mode, AOS, FAQ Accordion, dan CTA WhatsApp Dinamis.
-========================================================= */
-
 document.addEventListener('DOMContentLoaded', () => {
+    // ----------------------------------------------------
+    // 1. VARIABLE DAN ELEMENT SELECTION
+    // ----------------------------------------------------
     
-    // Ambil elemen HTML root
-    const html = document.documentElement;
+    // Dark Mode
+    const desktopToggle = document.getElementById('theme-toggle');
+    const mobileToggle = document.getElementById('theme-toggle-mobile');
+    const moonIcons = document.querySelectorAll('.moon-icon');
+    const sunIcons = document.querySelectorAll('.sun-icon');
 
-    /* -------------------------------------------
-        0. INITIAL SETUP & AOS
-    ------------------------------------------- */
+    // Mobile Menu
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
-    // Inisialisasi AOS (Animasi Scroll)
+    // Scroll Effects
+    const header = document.getElementById('main-header');
+    const scrollBtn = document.getElementById('scroll-to-top'); // Pastikan ini ada di HTML Body!
+    const SCROLL_THRESHOLD = 150; // Jarak scroll sebelum header bersembunyi/tombol muncul
+    
+    // WhatsApp CTA
+    const whatsappLinks = document.querySelectorAll('.cta-whatsapp-link');
+    const phoneNumber = '6281234567890'; // Ganti dengan nomor WhatsApp Anda!
+
+    // Inisialisasi AOS (Animation on Scroll)
     AOS.init({
-        duration: 900,  // Durasi sedikit lebih lama untuk kesan elegan
-        once: true,     // Hanya animasikan saat pertama masuk viewport
-        offset: 120,    // Mulai animasi lebih awal
+        duration: 800,
+        once: true,
+        offset: 50,
+        easing: 'ease-in-out',
     });
 
-    /* -------------------------------------------
-        1. DARK MODE TOGGLE (Gabungan Desktop & Mobile)
-    ------------------------------------------- */
-    const desktopToggle = document.getElementById("theme-toggle");
-    const mobileToggle = document.getElementById("theme-toggle-mobile");
-    const moonIcons = document.querySelectorAll('.fa-moon');
-    const sunIcons = document.querySelectorAll('.fa-sun');
+
+    // ----------------------------------------------------
+    // 2. FUNGSI DARK MODE
+    // ----------------------------------------------------
     
-    /** Fungsi untuk menerapkan/menyimpan tema */
-    const applyTheme = (theme) => {
-        if (theme === 'dark') {
-            html.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-            // Tampilkan ikon matahari (sun) dan sembunyikan bulan (moon)
-            moonIcons.forEach(i => i.classList.add('hidden'));
-            sunIcons.forEach(i => i.classList.remove('hidden'));
+    // Cek preferensi sistem atau local storage saat memuat
+    function loadTheme() {
+        const storedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (storedTheme === 'dark' || (!storedTheme && systemPrefersDark)) {
+            document.documentElement.classList.add('dark');
+            updateIcons(true);
         } else {
-            html.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-            // Tampilkan ikon bulan (moon) dan sembunyikan matahari (sun)
-            moonIcons.forEach(i => i.classList.remove('hidden'));
-            sunIcons.forEach(i => i.classList.add('hidden'));
+            document.documentElement.classList.remove('dark');
+            updateIcons(false);
         }
     }
 
-    /** Cek preferensi awal: localStorage atau OS */
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-        applyTheme('dark');
-    } else {
-        applyTheme('light');
+    // Mengubah tampilan ikon (bulan/matahari)
+    function updateIcons(isDark) {
+        moonIcons.forEach(icon => {
+            icon.classList.toggle('hidden', isDark);
+        });
+        sunIcons.forEach(icon => {
+            icon.classList.toggle('hidden', !isDark);
+        });
     }
 
-    /** Event listener untuk toggle */
-    const handleToggleClick = () => {
-        const currentTheme = html.classList.contains('dark') ? 'dark' : 'light';
-        applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
-    };
+    // Menangani klik tombol toggle
+    function handleThemeToggle() {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateIcons(isDark);
+    }
 
-    desktopToggle?.addEventListener("click", handleToggleClick);
-    mobileToggle?.addEventListener("click", handleToggleClick);
+    loadTheme(); // Jalankan saat startup
+
+    // Pasang Event Listener
+    if (desktopToggle) {
+        desktopToggle.addEventListener('click', handleThemeToggle);
+    }
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', handleThemeToggle);
+    }
 
 
-    /* -------------------------------------------
-        2. MOBILE MENU & NAVIGASI
-    ------------------------------------------- */
-    const mobileMenuButton = document.getElementById("mobile-menu-button");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const mobileNavLinks = document.querySelectorAll("#mobile-menu a");
+    // ----------------------------------------------------
+    // 3. MOBILE MENU TOGGLE
+    // ----------------------------------------------------
     
-    // Toggle menu
-    mobileMenuButton?.addEventListener("click", () => {
-        mobileMenu?.classList.toggle("hidden");
-        // Mengubah ikon hamburger menjadi close (X)
-        const icon = mobileMenuButton.querySelector('i');
-        if (mobileMenu?.classList.contains('hidden')) {
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
-        } else {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-xmark');
-        }
-    });
+    function toggleMobileMenu() {
+        mobileMenu.classList.toggle('hidden');
+        // Optional: Tambahkan class untuk animasi jika diperlukan
+    }
 
-    // Tutup menu saat klik link
-    mobileNavLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            mobileMenu?.classList.add("hidden");
-            // Reset ikon ke hamburger
-            mobileMenuButton.querySelector('i').classList.remove('fa-xmark');
-            mobileMenuButton.querySelector('i').classList.add('fa-bars');
+    if (mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+    }
+
+    // Tutup menu saat link diklik (agar navigasi berjalan)
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (!mobileMenu.classList.contains('hidden')) {
+                toggleMobileMenu();
+            }
         });
     });
-    
 
-  /* -------------------------------------------
-    3. SCROLL EFFECTS (Header & Scroll to Top) - VERSI TRANSISI HALUS
-------------------------------------------- */
-const scrollBtn = document.getElementById("scroll-to-top");
-const header = document.getElementById("main-header"); 
-const mobileMenu = document.getElementById("mobile-menu"); 
 
-const SCROLL_THRESHOLD = 200; 
+    // ----------------------------------------------------
+    // 4. SCROLL EFFECTS (Header & Scroll to Top)
+    // ----------------------------------------------------
 
-// Pastikan header memiliki class transisi di HTML: transition-all duration-300
-// dan class transform: translate-y-0
+    let lastScrollY = window.scrollY;
 
-window.addEventListener("scroll", () => {
-    const scrolled = window.scrollY > SCROLL_THRESHOLD;
-
-    // A. Logic Menyembunyikan Navbar dengan Transisi
-    if (scrolled) {
-        // 1. Sembunyikan Header Utama (meluncur ke atas)
-        // Geser ke atas (di luar viewport) dan buat transparan
-        header?.classList.add("-translate-y-full", "opacity-0"); 
-        header?.classList.remove("translate-y-0", "opacity-100");
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
         
-        // Opsional: Tutup menu mobile jika sedang terbuka saat scroll
-        mobileMenu?.classList.add("hidden");
+        // LOGIC HEADER HIDE/SHOW
+        if (header) {
+            // Scroll ke bawah (sembunyikan header)
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                header.classList.remove('translate-y-0', 'opacity-100');
+                header.classList.add('-translate-y-full', 'opacity-0');
+            } 
+            // Scroll ke atas (tampilkan header, hanya jika sudah melewati batas)
+            else if (currentScrollY < lastScrollY && currentScrollY > 100) {
+                header.classList.remove('-translate-y-full', 'opacity-0');
+                header.classList.add('translate-y-0', 'opacity-100');
+            }
+            // Di bagian atas halaman (selalu tampilkan header)
+            else if (currentScrollY <= 100) {
+                header.classList.remove('-translate-y-full', 'opacity-0');
+                header.classList.add('translate-y-0', 'opacity-100');
+            }
+        }
+
+        // LOGIC SCROLL TO TOP BUTTON
+        if (scrollBtn) {
+            if (currentScrollY > SCROLL_THRESHOLD) {
+                scrollBtn.classList.remove('opacity-0', 'pointer-events-none');
+                scrollBtn.classList.add('opacity-100', 'pointer-events-auto');
+            } else {
+                scrollBtn.classList.remove('opacity-100', 'pointer-events-auto');
+                scrollBtn.classList.add('opacity-0', 'pointer-events-none');
+            }
+        }
         
-        // 2. Tampilkan Tombol Scroll To Top
-        scrollBtn?.classList.remove("opacity-0", "pointer-events-none");
-    } else {
-        // Saat kembali ke atas (di bawah threshold)
-        // 1. Tampilkan kembali Header Utama (meluncur kembali)
-        header?.classList.remove("-translate-y-full", "opacity-0");
-        header?.classList.add("translate-y-0", "opacity-100");
-        
-        // 2. Sembunyikan Tombol Scroll To Top
-        scrollBtn?.classList.add("opacity-0", "pointer-events-none");
+        lastScrollY = currentScrollY; // Update posisi scroll terakhir
+    });
+
+    // Event Listener untuk tombol Scroll To Top
+    if (scrollBtn) {
+        scrollBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     }
-});
 
-scrollBtn?.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-    /* -------------------------------------------
-        4. WHATSAPP CTA DINAMIS
-    ------------------------------------------- */
-    const whatsappLinks = document.querySelectorAll(".cta-whatsapp-link");
-    const whatsappNumber = "628123456789"; // Ganti dengan nomor WhatsApp Bisnis Anda (tanpa +)
-    const defaultMessage = "Halo Concerto Audio Malang, saya tertarik dengan layanan Anda. Bisakah saya berkonsultasi lebih lanjut?";
-
+    // ----------------------------------------------------
+    // 5. WHATSAPP LINK GENERATOR
+    // ----------------------------------------------------
     whatsappLinks.forEach(link => {
-        link.addEventListener("click", (e) => {
+        link.addEventListener('click', (e) => {
             e.preventDefault();
             
-            // Ambil nama produk dari data-attribute
-            const productName = link.getAttribute('data-product');
+            const product = link.getAttribute('data-product') || 'Konsultasi Umum';
+            const message = encodeURIComponent(
+                `Halo Concerto Audio, saya tertarik dengan layanan "${product}". Bisakah saya mendapatkan konsultasi lebih lanjut?`
+            );
+            const url = `https://wa.me/${phoneNumber}?text=${message}`;
             
-            let message = defaultMessage;
-            if (productName) {
-                message = `Halo Concerto Audio, saya tertarik dengan layanan/produk *${productName}*. Mohon informasinya lebih lanjut.`;
-            }
-
-            // Encode pesan untuk URL
-            const encodedMessage = encodeURIComponent(message);
-            
-            // Buat URL WhatsApp
-            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-            
-            window.open(whatsappURL, '_blank');
-        });
-    });
-    
-    
-    /* -------------------------------------------
-        5. FAQ ACCORDION LOGIC (Pengganti Details/Summary)
-    ------------------------------------------- */
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    faqItems.forEach(item => {
-        const toggle = item.querySelector('.faq-toggle');
-        const content = item.querySelector('.faq-content');
-        
-        // Pastikan konten tersembunyi secara default
-        content.classList.add('hidden');
-
-        toggle.addEventListener('click', () => {
-            // Tutup semua item FAQ yang sedang terbuka (Single-open mode)
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item && otherItem.classList.contains('active')) {
-                    otherItem.classList.remove('active');
-                    otherItem.querySelector('.faq-content').classList.add('hidden');
-                }
-            });
-
-            // Buka atau tutup item yang diklik
-            item.classList.toggle('active');
-            content.classList.toggle('hidden');
+            window.open(url, '_blank');
         });
     });
 
-    /* -------------------------------------------
-        6. COPYRIGHT YEAR
-    ------------------------------------------- */
-    const copyrightYear = document.getElementById('copyright-year');
-    if (copyrightYear) {
-        copyrightYear.textContent = new Date().getFullYear();
-    }
-});
-
-
+}); // DOMContentLoaded end
