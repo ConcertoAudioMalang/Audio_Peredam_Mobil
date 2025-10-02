@@ -1,0 +1,243 @@
+/* =========================
+   GLOBAL STYLE
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  transition: background 0.4s, color 0.4s;
+}
+
+a {
+  text-decoration: none;
+  transition: color 0.3s, background 0.3s;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+/* =========================
+   COLOR VARIABLES
+========================= */
+:root {
+  --accent: #f59e0b; /* amber-500 */
+  --accent-hover: #d97706;
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.bg-accent {
+  background: var(--accent);
+}
+
+.bg-accent:hover {
+  background: var(--accent-hover);
+}
+
+/* =========================
+   NAVBAR
+========================= */
+#main-header {
+  background: transparent;
+  backdrop-filter: blur(6px);
+}
+
+#main-header.scrolled {
+  background: rgba(17, 17, 17, 0.8);
+}
+
+.nav-link {
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: var(--accent);
+}
+
+.mobile-nav-link {
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 6px 0;
+  transition: color 0.3s;
+}
+
+.mobile-nav-link:hover {
+  color: var(--accent);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-outline {
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+section {
+  position: relative;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.section-desc {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #666;
+}
+
+/* =========================
+   HERO
+========================= */
+#hero {
+  background-size: cover;
+  background-position: center;
+}
+
+#hero h1 {
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+}
+
+#hero p {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================
+   CARD STYLE
+========================= */
+.card, .service-card, .testimonial-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover, .service-card:hover, .testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-title, .service-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.card-desc, .service-desc {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* =========================
+   FAQ
+========================= */
+.faq-item {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: all 0.3s;
+}
+
+.faq-item:hover {
+  background: #f9fafb;
+}
+
+.faq-item summary {
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+}
+
+.faq-item p {
+  margin-top: 10px;
+  color: #555;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* =========================
+   SCROLL TO TOP
+========================= */
+#scroll-to-top {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+#scroll-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+.dark .card,
+.dark .service-card,
+.dark .testimonial-card,
+.dark .faq-item {
+  background: #1f2937; /* gray-800 */
+  color: #f3f4f6;
+}
+
+.dark .section-desc {
+  color: #ccc;
+}
+
+.dark .faq-item:hover {
+  background: #374151;
+}
