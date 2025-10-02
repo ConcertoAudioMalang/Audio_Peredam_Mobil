@@ -87,6 +87,21 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileMenuButton.querySelector('i').classList.add('fa-bars');
         });
     });
+   
+   // === Navbar Pill Effect (Modifikasi untuk Style 2) ===
+const header = document.getElementById("main-header");
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+        // Saat scrolled, buat padding vertikal lebih kecil
+        header.classList.add("py-2"); // Padding baru
+        header.classList.remove("py-3"); // Padding lama
+    } else {
+        // Kembali ke ukuran semula
+        header.classList.remove("py-2");
+        header.classList.add("py-3");
+    }
+});
+// (Pastikan Anda menggunakan kode script.js yang lengkap dari jawaban sebelumnya)
 
 
     /* -------------------------------------------
@@ -169,3 +184,4 @@ document.addEventListener('DOMContentLoaded', () => {
         copyrightYear.textContent = new Date().getFullYear();
     }
 });
+
