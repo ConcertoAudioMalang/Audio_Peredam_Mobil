@@ -96,35 +96,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
 
-    /* -------------------------------------------
-        3. SCROLL EFFECTS (Header & Scroll to Top)
-    ------------------------------------------- */
-    const scrollBtn = document.getElementById("scroll-to-top");
-    const header = document.getElementById("main-header"); 
+   /* -------------------------------------------
+    3. SCROLL EFFECTS (Header & Scroll to Top)
+------------------------------------------- */
+const scrollBtn = document.getElementById("scroll-to-top");
+const header = document.getElementById("main-header"); 
+const mobileMenu = document.getElementById("mobile-menu"); // Tambahkan ini jika belum ada
+
+const SCROLL_THRESHOLD = 200; // Jarak scroll sebelum navbar menghilang (dalam px)
+
+window.addEventListener("scroll", () => {
+    const scrolled = window.scrollY > SCROLL_THRESHOLD;
+
+    // A. Logic Menyembunyikan Navbar
+    if (scrolled) {
+        // 1. Sembunyikan Header Utama (geser ke atas/transparan)
+        // Kita menggunakan class 'hidden' untuk menghilangkan dari layout, atau
+        // menggunakan 'transform -translate-y-full' jika ingin transisi halus.
+        header?.classList.add("hidden"); 
+        
+        // Opsional: Tutup menu mobile jika sedang terbuka saat scroll
+        mobileMenu?.classList.add("hidden");
+        
+        // 2. Tampilkan Tombol Scroll To Top
+        scrollBtn?.classList.remove("opacity-0", "pointer-events-none");
+    } else {
+        // Saat kembali ke atas (di bawah threshold)
+        // 1. Tampilkan kembali Header Utama
+        header?.classList.remove("hidden");
+        
+        // 2. Sembunyikan Tombol Scroll To Top
+        scrollBtn?.classList.add("opacity-0", "pointer-events-none");
+    }
     
-    window.addEventListener("scroll", () => {
-        const scrolled = window.scrollY > 50;
+    // Catatan: Jika Anda tetap ingin efek 'scrolled' pada header (py-2)
+    // saat berada di atas 50px tetapi di bawah 200px, Anda memerlukan logic yang lebih kompleks.
+    // Untuk tujuan "menghilang total", logic di atas sudah cukup.
+});
 
-        // Navbar Scroll Effect (Padding & Shadow/Blur)
-        if (scrolled) {
-            header?.classList.add("scrolled", "py-2"); 
-            header?.classList.remove("py-3"); 
-        } else {
-            header?.classList.remove("scrolled", "py-2");
-            header?.classList.add("py-3");
-        }
-
-        // Tampilkan tombol Scroll To Top
-        if (window.scrollY > 500) {
-            scrollBtn?.classList.remove("opacity-0", "pointer-events-none");
-        } else {
-            scrollBtn?.classList.add("opacity-0", "pointer-events-none");
-        }
-    });
-
-    scrollBtn?.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+scrollBtn?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
 
 
     /* -------------------------------------------
@@ -192,3 +204,4 @@ document.addEventListener('DOMContentLoaded', () => {
         copyrightYear.textContent = new Date().getFullYear();
     }
 });
+
