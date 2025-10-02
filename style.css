@@ -184,3 +184,33 @@ img {
     }
 } */
 
+Kode CSS (Efek Grayscale & Hover)
+
+Untuk membuat efek *grayscale* dan *hover* berwarna, Anda perlu menambahkan kode CSS kustom berikut ke *file* **`style.css`** Anda:
+
+```css
+/* --- CUSTOM: Logo Grayscale Effect --- */
+.logo-grayscale-effect {
+    /* Menerapkan filter Grayscale (abu-abu) dan Opacity (agak buram) */
+    filter: grayscale(100%) opacity(70%);
+    /* Durasi transisi agar efek hover halus */
+    transition: filter 0.5s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.logo-grayscale-effect:hover {
+    /* Saat di-hover, hilangkan filter (kembali berwarna) */
+    filter: grayscale(0%) opacity(100%);
+    /* Tambahkan sedikit efek pembesaran saat di-hover */
+    transform: scale(1.1);
+}
+
+/* Optional: Tambahkan styling untuk Dark Mode jika Anda ingin logo terlihat berbeda */
+.dark .logo-grayscale-effect {
+    /* Di dark mode, kurangi opacity agar tidak terlalu menyilaukan */
+    filter: grayscale(100%) opacity(50%);
+}
+
+.dark .logo-grayscale-effect:hover {
+    filter: grayscale(0%) opacity(100%);
+}
+
