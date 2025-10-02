@@ -1,10 +1,10 @@
 /* =========================================================
-   CONCERTO AUDIO | CUSTOM STYLES (style.css)
-   Fokus: Minimal CSS, Maksimal Tailwind.
-   Hanya berisi styling yang tidak bisa diatasi oleh Utility Classes.
+    CONCERTO AUDIO | CUSTOM STYLES (style.css)
+    Fokus: Minimal CSS, Maksimal Tailwind.
+    Hanya berisi styling yang tidak bisa diatasi oleh Utility Classes.
 ========================================================= */
 
-/* --- 1. FONT IMPORT (Menggunakan Inter untuk kesan lebih sleek dan modern) --- */
+/* --- 1. FONT IMPORT (Menggunakan Inter) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 /* --- 2. GLOBAL RESET & BASE STYLES --- */
@@ -15,38 +15,32 @@
 }
 
 html {
-    /* Menggunakan scroll-behavior: smooth; untuk transisi yang halus */
-    scroll-behavior: smooth;
+    /* Menggunakan scroll-behavior: smooth; untuk transisi yang halus (sudah ada di tag html) */
     /* Set font default body menggunakan Inter/Sans-Serif */
     font-family: 'Inter', sans-serif; 
 }
 
 a {
-    /* Hanya memastikan transisi warna smooth untuk link */
     transition: color 0.3s;
 }
 
 img {
-    /* Memastikan gambar tidak melebihi container */
     max-width: 100%;
     display: block;
 }
 
-/* --- 3. CUSTOM UTILITY CLASSES UNTUK KONSISTENSI (Jika ada custom config Tailwind) --- */
+/* --- 3. CUSTOM UTILITY CLASSES MENGGUNAKAN @APPLY --- */
 
-/* Menggantikan variabel warna lama dengan warna dari konfigurasi Tailwind di index.html */
-/* Accent: #DC2626 (Red-600) */
-
-/* Custom: Membuat kelas 'nav-link' dan 'mobile-nav-link' lebih dinamis */
+/* Navigation Links */
 .nav-link {
     @apply relative font-medium text-gray-700 dark:text-gray-300 transition duration-300;
 }
 
 .nav-link:hover {
-    @apply text-accent; /* Menggunakan warna accent dari Tailwind config */
+    @apply text-accent;
 }
 
-/* Garis bawah modern pada nav link saat hover/active (Hanya untuk estetika) */
+/* Garis bawah modern pada nav link saat hover */
 .nav-link::after {
     content: '';
     position: absolute;
@@ -68,7 +62,6 @@ img {
 
 /* Style untuk Tombol */
 .btn {
-    /* Menggabungkan styling yang ada dengan Tailwind */
     @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2;
 }
 
@@ -84,59 +77,44 @@ img {
 
 /* Style Judul Section */
 .section-title {
-    /* Mengganti font-size default Anda dengan Tailwind class yang lebih responsive */
     @apply text-3xl md:text-4xl font-extrabold mb-4 text-primary dark:text-white;
 }
 
 .section-desc {
-    /* Memastikan deskripsi lebih terbaca */
     @apply text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto;
 }
 
-/* --- 4. ANIMASI UNTUK FAQ (Details) --- */
-/* Mengatasi bug transisi pada elemen <details> di beberapa browser */
-.faq-item summary {
-    list-style: none; /* Menghilangkan marker default */
-}
-
-.faq-item summary::-webkit-details-marker {
-    display: none;
-}
-
-/* Rotasi panah (chevron) saat FAQ terbuka */
-.faq-item[open] summary i {
-    transform: rotate(180deg);
+/* --- 4. ANIMASI UNTUK FAQ (Ikon) --- */
+/* Rotasi ikon plus/minus saat FAQ terbuka */
+.faq-toggle .faq-icon {
     transition: transform 0.3s ease;
 }
 
-.faq-item summary i {
-    transition: transform 0.3s ease;
+.faq-item.active .faq-toggle .faq-icon {
+    transform: rotate(45deg); /* Mengubah ikon plus menjadi X atau minus */
 }
 
-/* --- 5. PERBAIKAN DARK MODE (Menggunakan variabel CSS untuk konsistensi) --- */
-/* Mengatasi warna bayangan/border di dark mode */
+
+/* --- 5. PERBAIKAN DARK MODE CARD/SHADOW --- */
 
 .dark .card,
 .dark .service-card,
 .dark .testimonial-card {
-    /* Menghilangkan bayangan hitam yang kontras di dark mode */
-    @apply shadow-none border border-gray-800;
+    /* Menghilangkan bayangan hitam yang kontras di dark mode & mengontrol border */
+    @apply shadow-none border border-gray-700;
 }
 
 /* Mengatur warna hover card agar tetap elegan di Dark Mode */
 .dark .card:hover, 
 .dark .service-card:hover, 
 .dark .testimonial-card:hover {
-    @apply bg-gray-700;
+    /* Gunakan gray-800 agar kontras dengan body (gray-950) */
+    @apply bg-gray-800; 
 }
 
-/* Mengatasi warna text default pada body untuk Dark Mode */
-.dark .section-title {
-    @apply text-white;
-}
 
-/* --- 6. SCROLLBAR (Opsional, untuk estetika modern) --- */
-/* Hanya berlaku pada browser berbasis Webkit (Chrome, Safari, dll.) */
+/* --- 6. SCROLLBAR (Aestetik) --- */
+
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -151,45 +129,35 @@ img {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #b91c1c; /* Lebih gelap saat hover */
+    background: #b91c1c; 
 }
 
-/* Untuk dark mode */
+/* Untuk dark mode scrollbar */
 .dark ::-webkit-scrollbar-track {
-    background: #1F2937; /* Dark Gray */
+    background: #111827; /* Gray-900 */
 }
 .dark ::-webkit-scrollbar-thumb {
     background: #F97316; /* Warna secondary yang mencolok */
 }
 
-/* --- CUSTOM: Minimalist Navbar Fade-in Effect --- */
-#main-header {
-    background: transparent;
-}
+
+/* --- 7. NAVBAR SCROLL EFFECT (Transisi Latar Belakang) --- */
+/* Base style di HTML menggunakan kelas Tailwind 'bg-white/95 dark:bg-gray-800/95' */
 
 #main-header.scrolled {
-    /* Latar belakang solid (putih/gelap) dengan blur & bayangan lembut */
-    background: rgba(255, 255, 255, 0.95); /* Putih semi-transparan */
+    /* Untuk Light Mode */
+    background: rgba(255, 255, 255, 0.98); 
     backdrop-filter: blur(8px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
-    /* Untuk Dark Mode: */
-    @apply dark:bg-gray-900/90 dark:shadow-xl dark:shadow-gray-950/20;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); 
 }
 
-/* === Tambahkan media queries kustom di bawah ini jika diperlukan === */
-/* Contoh: */
-/* @media (max-width: 768px) {
-    .section-title {
-        font-size: 1.8rem;
-    }
-} */
+#main-header.scrolled.dark {
+    /* Untuk Dark Mode: Menggunakan warna dari config (gray-900 atau sekitarnya) */
+    background: rgba(17, 24, 39, 0.95); /* dark:bg-gray-900/95 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
 
-Kode CSS (Efek Grayscale & Hover)
-
-Untuk membuat efek *grayscale* dan *hover* berwarna, Anda perlu menambahkan kode CSS kustom berikut ke *file* **`style.css`** Anda:
-
-```css
-/* --- CUSTOM: Logo Grayscale Effect --- */
+/* --- 8. LOGO GRAYSCALE EFFECT (Brand Partners) --- */
 .logo-grayscale-effect {
     /* Menerapkan filter Grayscale (abu-abu) dan Opacity (agak buram) */
     filter: grayscale(100%) opacity(70%);
@@ -204,7 +172,6 @@ Untuk membuat efek *grayscale* dan *hover* berwarna, Anda perlu menambahkan kode
     transform: scale(1.1);
 }
 
-/* Optional: Tambahkan styling untuk Dark Mode jika Anda ingin logo terlihat berbeda */
 .dark .logo-grayscale-effect {
     /* Di dark mode, kurangi opacity agar tidak terlalu menyilaukan */
     filter: grayscale(100%) opacity(50%);
@@ -213,4 +180,3 @@ Untuk membuat efek *grayscale* dan *hover* berwarna, Anda perlu menambahkan kode
 .dark .logo-grayscale-effect:hover {
     filter: grayscale(0%) opacity(100%);
 }
-
