@@ -1,21 +1,26 @@
 /* =========================================================
-   CONCERTO AUDIO | SCRIPT.JS
-   Fungsi: Navigasi, Dark Mode, AOS, dan CTA WhatsApp Dinamis.
+    CONCERTO AUDIO | SCRIPT.JS
+    Fungsi: Navigasi, Dark Mode, AOS, FAQ Accordion, dan CTA WhatsApp Dinamis.
 ========================================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Inisialisasi AOS (Animasi Scroll)
-    AOS.init({
-        duration: 900, // Durasi sedikit lebih lama untuk kesan elegan
-        once: true,    // Hanya animasikan saat pertama masuk viewport
-        offset: 120,   // Mulai animasi lebih awal
-    });
-
+    
     // Ambil elemen HTML root
     const html = document.documentElement;
 
     /* -------------------------------------------
-       1. DARK MODE TOGGLE (Gabungan Desktop & Mobile)
+        0. INITIAL SETUP & AOS
+    ------------------------------------------- */
+
+    // Inisialisasi AOS (Animasi Scroll)
+    AOS.init({
+        duration: 900,  // Durasi sedikit lebih lama untuk kesan elegan
+        once: true,     // Hanya animasikan saat pertama masuk viewport
+        offset: 120,    // Mulai animasi lebih awal
+    });
+
+    /* -------------------------------------------
+        1. DARK MODE TOGGLE (Gabungan Desktop & Mobile)
     ------------------------------------------- */
     const desktopToggle = document.getElementById("theme-toggle");
     const mobileToggle = document.getElementById("theme-toggle-mobile");
@@ -41,7 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /** Cek preferensi awal: localStorage atau OS */
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
         applyTheme('dark');
     } else {
         applyTheme('light');
@@ -58,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* -------------------------------------------
-       2. MOBILE MENU & NAVIGASI
+        2. MOBILE MENU & NAVIGASI
     ------------------------------------------- */
     const mobileMenuButton = document.getElementById("mobile-menu-button");
     const mobileMenu = document.getElementById("mobile-menu");
@@ -87,38 +94,32 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileMenuButton.querySelector('i').classList.add('fa-bars');
         });
     });
-   
-   // === Navbar Pill Effect (Modifikasi untuk Style 2) ===
-const header = document.getElementById("main-header");
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-        // Saat scrolled, buat padding vertikal lebih kecil
-        header.classList.add("py-2"); // Padding baru
-        header.classList.remove("py-3"); // Padding lama
-    } else {
-        // Kembali ke ukuran semula
-        header.classList.remove("py-2");
-        header.classList.add("py-3");
-    }
-});
-// (Pastikan Anda menggunakan kode script.js yang lengkap dari jawaban sebelumnya)
-
+    
 
     /* -------------------------------------------
-       3. SCROLL TO TOP & NAVBAR SCROLL
+        3. SCROLL EFFECTS (Header & Scroll to Top)
     ------------------------------------------- */
     const scrollBtn = document.getElementById("scroll-to-top");
-    // const header = document.getElementById("main-header"); // Navbar sticky tidak butuh class 'scrolled' lagi
+    const header = document.getElementById("main-header"); 
     
     window.addEventListener("scroll", () => {
+        const scrolled = window.scrollY > 50;
+
+        // Navbar Scroll Effect (Padding & Shadow/Blur)
+        if (scrolled) {
+            header?.classList.add("scrolled", "py-2"); 
+            header?.classList.remove("py-3"); 
+        } else {
+            header?.classList.remove("scrolled", "py-2");
+            header?.classList.add("py-3");
+        }
+
         // Tampilkan tombol Scroll To Top
         if (window.scrollY > 500) {
-            scrollBtn?.classList.remove("opacity-0");
+            scrollBtn?.classList.remove("opacity-0", "pointer-events-none");
         } else {
-            scrollBtn?.classList.add("opacity-0");
+            scrollBtn?.classList.add("opacity-0", "pointer-events-none");
         }
-        
-        // Catatan: Navbar fixed/shadow effect sudah dihandle oleh Tailwind di index.html
     });
 
     scrollBtn?.addEventListener("click", () => {
@@ -127,7 +128,7 @@ window.addEventListener("scroll", () => {
 
 
     /* -------------------------------------------
-       4. WHATSAPP CTA DINAMIS (PENTING untuk Bisnis)
+        4. WHATSAPP CTA DINAMIS
     ------------------------------------------- */
     const whatsappLinks = document.querySelectorAll(".cta-whatsapp-link");
     const whatsappNumber = "628123456789"; // Ganti dengan nomor WhatsApp Bisnis Anda (tanpa +)
@@ -154,47 +155,40 @@ window.addEventListener("scroll", () => {
             window.open(whatsappURL, '_blank');
         });
     });
-   
-  /* -------------------------------------------
-       5.  // === FAQ Accordion Logic ===
+    
+    
+    /* -------------------------------------------
+        5. FAQ ACCORDION LOGIC (Pengganti Details/Summary)
     ------------------------------------------- */
-  
-document.addEventListener('DOMContentLoaded', () => {
     const faqItems = document.querySelectorAll('.faq-item');
 
     faqItems.forEach(item => {
         const toggle = item.querySelector('.faq-toggle');
         const content = item.querySelector('.faq-content');
-        const icon = item.querySelector('.faq-icon');
+        
+        // Pastikan konten tersembunyi secara default
+        content.classList.add('hidden');
 
         toggle.addEventListener('click', () => {
-            // Tutup semua item FAQ yang sedang terbuka
+            // Tutup semua item FAQ yang sedang terbuka (Single-open mode)
             faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    const otherContent = otherItem.querySelector('.faq-content');
-                    const otherIcon = otherItem.querySelector('.faq-icon');
-                    if (!otherContent.classList.contains('hidden')) {
-                        otherContent.classList.add('hidden');
-                        otherIcon.classList.replace('fa-minus', 'fa-plus');
-                    }
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-content').classList.add('hidden');
                 }
             });
 
             // Buka atau tutup item yang diklik
+            item.classList.toggle('active');
             content.classList.toggle('hidden');
-            icon.classList.toggle('fa-plus');
-            icon.classList.toggle('fa-minus');
         });
     });
-});
 
     /* -------------------------------------------
-       6. COPYRIGHT YEAR
+        6. COPYRIGHT YEAR
     ------------------------------------------- */
     const copyrightYear = document.getElementById('copyright-year');
     if (copyrightYear) {
         copyrightYear.textContent = new Date().getFullYear();
     }
 });
-
-
