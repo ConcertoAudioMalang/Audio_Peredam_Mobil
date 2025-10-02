@@ -1,243 +1,172 @@
-/* =========================
-   GLOBAL STYLE
-========================= */
+/* =========================================================
+   CONCERTO AUDIO | CUSTOM STYLES (style.css)
+   Fokus: Minimal CSS, Maksimal Tailwind.
+   Hanya berisi styling yang tidak bisa diatasi oleh Utility Classes.
+========================================================= */
+
+/* --- 1. FONT IMPORT (Menggunakan Inter untuk kesan lebih sleek dan modern) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* --- 2. GLOBAL RESET & BASE STYLES --- */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.6;
-  transition: background 0.4s, color 0.4s;
+    /* Menggunakan scroll-behavior: smooth; untuk transisi yang halus */
+    scroll-behavior: smooth;
+    /* Set font default body menggunakan Inter/Sans-Serif */
+    font-family: 'Inter', sans-serif; 
 }
 
 a {
-  text-decoration: none;
-  transition: color 0.3s, background 0.3s;
+    /* Hanya memastikan transisi warna smooth untuk link */
+    transition: color 0.3s;
 }
 
 img {
-  max-width: 100%;
-  display: block;
-  border-radius: 12px;
+    /* Memastikan gambar tidak melebihi container */
+    max-width: 100%;
+    display: block;
 }
 
-/* =========================
-   COLOR VARIABLES
-========================= */
-:root {
-  --accent: #f59e0b; /* amber-500 */
-  --accent-hover: #d97706;
-}
+/* --- 3. CUSTOM UTILITY CLASSES UNTUK KONSISTENSI (Jika ada custom config Tailwind) --- */
 
-.text-accent {
-  color: var(--accent);
-}
+/* Menggantikan variabel warna lama dengan warna dari konfigurasi Tailwind di index.html */
+/* Accent: #DC2626 (Red-600) */
 
-.bg-accent {
-  background: var(--accent);
-}
-
-.bg-accent:hover {
-  background: var(--accent-hover);
-}
-
-/* =========================
-   NAVBAR
-========================= */
-#main-header {
-  background: transparent;
-  backdrop-filter: blur(6px);
-}
-
-#main-header.scrolled {
-  background: rgba(17, 17, 17, 0.8);
-}
-
+/* Custom: Membuat kelas 'nav-link' dan 'mobile-nav-link' lebih dinamis */
 .nav-link {
-  font-weight: 500;
-  transition: color 0.3s;
+    @apply relative font-medium text-gray-700 dark:text-gray-300 transition duration-300;
 }
 
 .nav-link:hover {
-  color: var(--accent);
+    @apply text-accent; /* Menggunakan warna accent dari Tailwind config */
+}
+
+/* Garis bawah modern pada nav link saat hover/active (Hanya untuk estetika) */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #DC2626; /* Warna accent */
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
 }
 
 .mobile-nav-link {
-  font-size: 1.1rem;
-  font-weight: 500;
-  padding: 6px 0;
-  transition: color 0.3s;
+    @apply text-xl font-medium text-gray-800 dark:text-gray-200 hover:text-accent transition duration-300;
 }
 
-.mobile-nav-link:hover {
-  color: var(--accent);
-}
-
-/* =========================
-   BUTTONS
-========================= */
+/* Style untuk Tombol */
 .btn {
-  display: inline-block;
-  padding: 10px 20px;
-  font-weight: 600;
-  border-radius: 12px;
-  transition: all 0.3s ease;
+    /* Menggabungkan styling yang ada dengan Tailwind */
+    @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2;
 }
 
 .btn-primary {
-  background: var(--accent);
-  color: #fff;
-}
-
-.btn-primary:hover {
-  background: var(--accent-hover);
+    /* Merah accent */
+    @apply bg-accent text-white hover:bg-red-700 focus:ring-accent dark:hover:bg-red-500;
 }
 
 .btn-outline {
-  border: 2px solid var(--accent);
-  color: var(--accent);
-  background: transparent;
+    /* Menggunakan border-color accent */
+    @apply border-2 border-accent text-accent bg-transparent hover:bg-accent hover:text-white focus:ring-accent;
 }
 
-.btn-outline:hover {
-  background: var(--accent);
-  color: #fff;
-}
-
-/* =========================
-   SECTIONS
-========================= */
-section {
-  position: relative;
-}
-
+/* Style Judul Section */
 .section-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--accent);
+    /* Mengganti font-size default Anda dengan Tailwind class yang lebih responsive */
+    @apply text-3xl md:text-4xl font-extrabold mb-4 text-primary dark:text-white;
 }
 
 .section-desc {
-  max-width: 700px;
-  margin: 0 auto;
-  color: #666;
+    /* Memastikan deskripsi lebih terbaca */
+    @apply text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto;
 }
 
-/* =========================
-   HERO
-========================= */
-#hero {
-  background-size: cover;
-  background-position: center;
-}
-
-#hero h1 {
-  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
-}
-
-#hero p {
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-}
-
-/* =========================
-   CARD STYLE
-========================= */
-.card, .service-card, .testimonial-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover, .service-card:hover, .testimonial-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-}
-
-.card-title, .service-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.card-desc, .service-desc {
-  color: #555;
-  font-size: 0.95rem;
-}
-
-/* =========================
-   FAQ
-========================= */
-.faq-item {
-  background: #fff;
-  border-radius: 12px;
-  padding: 16px 20px;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  transition: all 0.3s;
-}
-
-.faq-item:hover {
-  background: #f9fafb;
-}
-
+/* --- 4. ANIMASI UNTUK FAQ (Details) --- */
+/* Mengatasi bug transisi pada elemen <details> di beberapa browser */
 .faq-item summary {
-  font-weight: 600;
-  cursor: pointer;
-  outline: none;
+    list-style: none; /* Menghilangkan marker default */
 }
 
-.faq-item p {
-  margin-top: 10px;
-  color: #555;
+.faq-item summary::-webkit-details-marker {
+    display: none;
 }
 
-/* =========================
-   FOOTER
-========================= */
-footer {
-  text-align: center;
-  font-size: 0.9rem;
+/* Rotasi panah (chevron) saat FAQ terbuka */
+.faq-item[open] summary i {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
 }
 
-/* =========================
-   SCROLL TO TOP
-========================= */
-#scroll-to-top {
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
+.faq-item summary i {
+    transition: transform 0.3s ease;
 }
 
-#scroll-to-top.show {
-  opacity: 1;
-  visibility: visible;
-}
+/* --- 5. PERBAIKAN DARK MODE (Menggunakan variabel CSS untuk konsistensi) --- */
+/* Mengatasi warna bayangan/border di dark mode */
 
-/* =========================
-   DARK MODE
-========================= */
 .dark .card,
 .dark .service-card,
-.dark .testimonial-card,
-.dark .faq-item {
-  background: #1f2937; /* gray-800 */
-  color: #f3f4f6;
+.dark .testimonial-card {
+    /* Menghilangkan bayangan hitam yang kontras di dark mode */
+    @apply shadow-none border border-gray-800;
 }
 
-.dark .section-desc {
-  color: #ccc;
+/* Mengatur warna hover card agar tetap elegan di Dark Mode */
+.dark .card:hover, 
+.dark .service-card:hover, 
+.dark .testimonial-card:hover {
+    @apply bg-gray-700;
 }
 
-.dark .faq-item:hover {
-  background: #374151;
+/* Mengatasi warna text default pada body untuk Dark Mode */
+.dark .section-title {
+    @apply text-white;
 }
+
+/* --- 6. SCROLLBAR (Opsional, untuk estetika modern) --- */
+/* Hanya berlaku pada browser berbasis Webkit (Chrome, Safari, dll.) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #DC2626; /* Warna accent */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b91c1c; /* Lebih gelap saat hover */
+}
+
+/* Untuk dark mode */
+.dark ::-webkit-scrollbar-track {
+    background: #1F2937; /* Dark Gray */
+}
+.dark ::-webkit-scrollbar-thumb {
+    background: #F97316; /* Warna secondary yang mencolok */
+}
+
+
+/* === Tambahkan media queries kustom di bawah ini jika diperlukan === */
+/* Contoh: */
+/* @media (max-width: 768px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+} */
