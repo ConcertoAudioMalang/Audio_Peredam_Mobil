@@ -44,11 +44,12 @@
     <div class="fixed top-0 left-0 right-0 z-[90] p-4 lg:p-6"> 
 
         <header id="main-header"
-            class="bg-white/95 dark:bg-gray-800/95 
-                    mx-auto max-w-7xl 
-                    rounded-full shadow-lg backdrop-blur-sm 
-                    transition-all duration-300 ease-in-out 
-                    py-3 px-6 lg:py-4 lg:px-8">
+           class="bg-white/95 dark:bg-gray-800/95 
+            mx-auto max-w-7xl 
+            rounded-full shadow-lg backdrop-blur-sm 
+            transition-all duration-300 ease-in-out 
+            transform translate-y-0 opacity-100  <-- INI YANG DITAMBAHKAN
+            py-3 px-6 lg:py-4 lg:px-8"> 
             <nav class="flex items-center justify-between">
                 
                 <a href="#hero" class="flex items-center group">
@@ -80,17 +81,6 @@
                     </button>
                 </div>
                 
-                <div class="md:hidden flex items-center gap-3">
-                    
-                    <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300" aria-label="Toggle Dark Mode (Mobile)">
-                        <i class="fa-solid fa-moon text-lg moon-icon"></i>
-                        <i class="fa-solid fa-sun text-lg sun-icon hidden"></i>
-                    </button>
-
-                    <button id="mobile-menu-button" class="p-2" aria-label="Buka Menu Navigasi">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                    
                     <button id="theme-toggle" class="ml-1 p-2 rounded-full text-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300" aria-label="Toggle Dark Mode">
                     <i class="fa-solid fa-moon text-lg moon-icon"></i>
                     <i class="fa-solid fa-sun text-lg sun-icon hidden"></i>
@@ -100,9 +90,15 @@
                     <i class="fa-solid fa-moon text-lg moon-icon"></i>
                     <i class="fa-solid fa-sun text-lg sun-icon hidden"></i>
                     </button>
-                 
-                </div>
-
+                
+                <button 
+                id="scroll-to-top" 
+                class="fixed bottom-6 right-6 p-4 rounded-full bg-accent text-white shadow-xl z-50 
+                opacity-0 pointer-events-none transition-all duration-300 transform hover:scale-105" 
+                aria-label="Kembali ke atas">
+                <i class="fa-solid fa-arrow-up text-xl"></i>
+             </button>
+                
             </nav>
         </header>
 
@@ -599,6 +595,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
