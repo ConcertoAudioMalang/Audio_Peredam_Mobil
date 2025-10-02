@@ -162,6 +162,19 @@ img {
     background: #F97316; /* Warna secondary yang mencolok */
 }
 
+/* --- CUSTOM: Minimalist Navbar Fade-in Effect --- */
+#main-header {
+    background: transparent;
+}
+
+#main-header.scrolled {
+    /* Latar belakang solid (putih/gelap) dengan blur & bayangan lembut */
+    background: rgba(255, 255, 255, 0.95); /* Putih semi-transparan */
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
+    /* Untuk Dark Mode: */
+    @apply dark:bg-gray-900/90 dark:shadow-xl dark:shadow-gray-950/20;
+}
 
 /* === Tambahkan media queries kustom di bawah ini jika diperlukan === */
 /* Contoh: */
@@ -170,3 +183,4 @@ img {
         font-size: 1.8rem;
     }
 } */
+
