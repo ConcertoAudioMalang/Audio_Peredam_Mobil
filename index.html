@@ -52,34 +52,19 @@
 
             <nav class="flex items-center justify-between">
                 
-                <header id="main-header" class="fixed top-0 left-0 w-full z-40 transition-all duration-300 py-3 bg-white/95 dark:bg-gray-900/95">
-    <div class="container mx-auto flex justify-between items-center px-4 md:px-8">
-        
-        <a href="#hero" class="flex items-center group">
-            <img 
-                src="asset/concerto-audio-logo-light.png" 
-                alt="Concerto Audio Logo" 
-                class="h-8 transition-transform duration-300 hover:scale-[1.05]"
-            >
-        </a>
+                <a href="#hero" class="flex items-center group">
+                    <img 
+                        src="assets/img/concerto-audio-logo-light.png" 
+                        alt="Concerto Audio Logo" 
+                        class="h-8 transition-transform duration-300 hover:scale-[1.05] dark:hidden"
+                    >
+                    <img 
+                        src="assets/img/concerto-audio-logo-dark.png" 
+                        alt="Concerto Audio Logo Dark" 
+                        class="h-8 transition-transform duration-300 hover:scale-[1.05] hidden dark:block"
+                    >
+                </a>
 
-        </div>
-</header>
-
-<div id="mobile-menu" class="hidden fixed inset-0 z-30 bg-white dark:bg-gray-900 pt-20">
-    <div class="px-4 py-6 space-y-4">
-
-        <a href="#hero" class="block mb-6">
-            <img 
-                src="assets/img/logo-concerto.svg" 
-                alt="Concerto Audio Logo" 
-                class="h-8 mx-auto"
-            >
-        </a>
-
-        </div>
-</div>
-                
                 <div class="hidden md:flex items-center gap-6 lg:gap-8">
                     <a href="#tentang" class="nav-link">Tentang</a>
                     <a href="#produk" class="nav-link">Produk</a>
@@ -604,4 +589,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
