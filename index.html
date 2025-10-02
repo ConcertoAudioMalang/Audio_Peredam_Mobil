@@ -41,69 +41,52 @@
         <i class="fa-brands fa-whatsapp text-3xl"></i>
     </a>
 
-    <div class="fixed top-0 left-0 right-0 z-[90] p-4 lg:p-6"> 
+    <div class="fixed top-0 left-0 right-0 z-[90] p-4 lg:p-6"> 
 
-        <header id="main-header"
-           class="bg-white/95 dark:bg-gray-800/95 
-            mx-auto max-w-7xl 
-            rounded-full shadow-lg backdrop-blur-sm 
-            transition-all duration-300 ease-in-out 
-            transform translate-y-0 opacity-100  <-- INI YANG DITAMBAHKAN
-            py-3 px-6 lg:py-4 lg:px-8"> 
-            <nav class="flex items-center justify-between">
-                
-                <a href="#hero" class="flex items-center group">
-                    <img 
-                        src="assets/img/concerto-audio-logo-light.png" 
-                        alt="Concerto Audio Logo" 
-                        class="h-8 transition-transform duration-300 hover:scale-[1.05] dark:hidden"
-                    >
-                    <img 
-                        src="assets/img/concerto-audio-logo-dark.png" 
-                        alt="Concerto Audio Logo Dark" 
-                        class="h-8 transition-transform duration-300 hover:scale-[1.05] hidden dark:block"
-                    >
-                </a>
+    <header id="main-header"
+        class="bg-white/95 dark:bg-gray-800/95 
+               mx-auto max-w-7xl 
+               rounded-full shadow-lg backdrop-blur-sm 
+               transition-all duration-300 ease-in-out 
+               transform translate-y-0 opacity-100  py-3 px-6 lg:py-4 lg:px-8">
+        <nav class="flex items-center justify-between">
+            
+            <a href="#hero" class="flex items-center group">
+                <img 
+                    src="assets/img/concerto-audio-logo-light.png" 
+                    alt="Concerto Audio Logo" 
+                    class="h-8 transition-transform duration-300 hover:scale-[1.05] dark:hidden"
+                >
+                <img 
+                    src="assets/img/concerto-audio-logo-dark.png" 
+                    alt="Concerto Audio Logo Dark" 
+                    class="h-8 transition-transform duration-300 hover:scale-[1.05] hidden dark:block"
+                >
+            </a>
 
-                <div class="hidden md:flex items-center gap-6 lg:gap-8">
-                    <a href="#tentang" class="nav-link">Tentang</a>
-                    <a href="#produk" class="nav-link">Produk</a>
-                    <a href="#layanan" class="nav-link">Layanan</a>
-                    <a href="#galeri" class="nav-link">Galeri</a>
-                    <a href="#testimoni" class="nav-link">Testimoni</a>
-                    <a href="#faq" class="nav-link">FAQ</a>
-                    
-                    <a href="#kontak" class="btn btn-primary ml-2">Hubungi Kami</a>
-                    
-                    <button id="theme-toggle" class="ml-1 p-2 rounded-full text-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300" aria-label="Toggle Dark Mode">
-                        <i class="fa-solid fa-moon text-lg moon-icon"></i>
-                        <i class="fa-solid fa-sun text-lg sun-icon hidden"></i>
-                    </button>
-                </div>
+            <div class="hidden md:flex items-center gap-6 lg:gap-8">
+                <a href="#tentang" class="nav-link">Tentang</a>
+                <a href="#produk" class="nav-link">Produk</a>
+                <a href="#layanan" class="nav-link">Layanan</a>
+                <a href="#galeri" class="nav-link">Galeri</a>
+                <a href="#testimoni" class="nav-link">Testimoni</a>
+                <a href="#faq" class="nav-link">FAQ</a>
                 
-                    <button id="theme-toggle" class="ml-1 p-2 rounded-full text-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300" aria-label="Toggle Dark Mode">
+                <a href="#kontak" class="btn btn-primary ml-2">Hubungi Kami</a>
+                
+                <button id="theme-toggle" class="ml-1 p-2 rounded-full text-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300" aria-label="Toggle Dark Mode">
                     <i class="fa-solid fa-moon text-lg moon-icon"></i>
                     <i class="fa-solid fa-sun text-lg sun-icon hidden"></i>
-                    </button>
+                </button>
+            </div>
+            
+            <div class="md:hidden flex items-center gap-3"></div>
 
-                    <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300" aria-label="Toggle Dark Mode (Mobile)">
-                    <i class="fa-solid fa-moon text-lg moon-icon"></i>
-                    <i class="fa-solid fa-sun text-lg sun-icon hidden"></i>
-                    </button>
-                
-                <button 
-                id="scroll-to-top" 
-                class="fixed bottom-6 right-6 p-4 rounded-full bg-accent text-white shadow-xl z-50 
-                opacity-0 pointer-events-none transition-all duration-300 transform hover:scale-105" 
-                aria-label="Kembali ke atas">
-                <i class="fa-solid fa-arrow-up text-xl"></i>
-             </button>
-                
-            </nav>
-        </header>
+        </nav>
+    </header>
 
-    </div> 
-
+</div>
+    
     <div id="mobile-menu" class="hidden fixed top-[100px] left-4 right-4 z-[80] 
         flex-col items-center gap-4 py-6 px-4 
         bg-white dark:bg-gray-800 rounded-xl shadow-2xl 
@@ -593,8 +576,21 @@
         });
     </script>
     <script src="script.js"></script>
+      
+    <button 
+        id="scroll-to-top" 
+        class="fixed bottom-16 right-6 p-4 rounded-full bg-accent text-white shadow-xl z-50 
+               opacity-0 pointer-events-none transition-all duration-300 transform hover:scale-105" 
+        aria-label="Kembali ke atas">
+        <i class="fa-solid fa-arrow-up text-xl"></i>
+    </button>
+
+    <script src="script.js"></script> 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 </body>
 </html>
+
 
 
 
