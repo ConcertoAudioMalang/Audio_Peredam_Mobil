@@ -96,24 +96,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
 
-   /* -------------------------------------------
-    3. SCROLL EFFECTS (Header & Scroll to Top)
+  /* -------------------------------------------
+    3. SCROLL EFFECTS (Header & Scroll to Top) - VERSI TRANSISI HALUS
 ------------------------------------------- */
 const scrollBtn = document.getElementById("scroll-to-top");
 const header = document.getElementById("main-header"); 
-const mobileMenu = document.getElementById("mobile-menu"); // Tambahkan ini jika belum ada
+const mobileMenu = document.getElementById("mobile-menu"); 
 
-const SCROLL_THRESHOLD = 200; // Jarak scroll sebelum navbar menghilang (dalam px)
+const SCROLL_THRESHOLD = 200; 
+
+// Pastikan header memiliki class transisi di HTML: transition-all duration-300
+// dan class transform: translate-y-0
 
 window.addEventListener("scroll", () => {
     const scrolled = window.scrollY > SCROLL_THRESHOLD;
 
-    // A. Logic Menyembunyikan Navbar
+    // A. Logic Menyembunyikan Navbar dengan Transisi
     if (scrolled) {
-        // 1. Sembunyikan Header Utama (geser ke atas/transparan)
-        // Kita menggunakan class 'hidden' untuk menghilangkan dari layout, atau
-        // menggunakan 'transform -translate-y-full' jika ingin transisi halus.
-        header?.classList.add("hidden"); 
+        // 1. Sembunyikan Header Utama (meluncur ke atas)
+        // Geser ke atas (di luar viewport) dan buat transparan
+        header?.classList.add("-translate-y-full", "opacity-0"); 
+        header?.classList.remove("translate-y-0", "opacity-100");
         
         // Opsional: Tutup menu mobile jika sedang terbuka saat scroll
         mobileMenu?.classList.add("hidden");
@@ -122,22 +125,18 @@ window.addEventListener("scroll", () => {
         scrollBtn?.classList.remove("opacity-0", "pointer-events-none");
     } else {
         // Saat kembali ke atas (di bawah threshold)
-        // 1. Tampilkan kembali Header Utama
-        header?.classList.remove("hidden");
+        // 1. Tampilkan kembali Header Utama (meluncur kembali)
+        header?.classList.remove("-translate-y-full", "opacity-0");
+        header?.classList.add("translate-y-0", "opacity-100");
         
         // 2. Sembunyikan Tombol Scroll To Top
         scrollBtn?.classList.add("opacity-0", "pointer-events-none");
     }
-    
-    // Catatan: Jika Anda tetap ingin efek 'scrolled' pada header (py-2)
-    // saat berada di atas 50px tetapi di bawah 200px, Anda memerlukan logic yang lebih kompleks.
-    // Untuk tujuan "menghilang total", logic di atas sudah cukup.
 });
 
 scrollBtn?.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
-
 
     /* -------------------------------------------
         4. WHATSAPP CTA DINAMIS
@@ -204,4 +203,5 @@ scrollBtn?.addEventListener("click", () => {
         copyrightYear.textContent = new Date().getFullYear();
     }
 });
+
 
