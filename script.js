@@ -154,27 +154,39 @@ window.addEventListener("scroll", () => {
             window.open(whatsappURL, '_blank');
         });
     });
-
-    /* -------------------------------------------
-       5. FAQ ACCORDION (Menggunakan markup <details>)
+   
+  /* -------------------------------------------
+       5.  // === FAQ Accordion Logic ===
     ------------------------------------------- */
-    // Tidak perlu JavaScript berlebihan karena kita menggunakan elemen <details> di HTML
-    // Tambahkan event listener untuk mencegah penutupan semua detail saat satu terbuka (opsional)
-    const faqItems = document.querySelectorAll(".faq-item");
+  
+document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
 
     faqItems.forEach(item => {
-        item.addEventListener("toggle", (e) => {
-            if (item.open) {
-                // Tutup semua item lain saat item ini dibuka
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item && otherItem.open) {
-                        otherItem.open = false;
+        const toggle = item.querySelector('.faq-toggle');
+        const content = item.querySelector('.faq-content');
+        const icon = item.querySelector('.faq-icon');
+
+        toggle.addEventListener('click', () => {
+            // Tutup semua item FAQ yang sedang terbuka
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    const otherContent = otherItem.querySelector('.faq-content');
+                    const otherIcon = otherItem.querySelector('.faq-icon');
+                    if (!otherContent.classList.contains('hidden')) {
+                        otherContent.classList.add('hidden');
+                        otherIcon.classList.replace('fa-minus', 'fa-plus');
                     }
-                });
-            }
+                }
+            });
+
+            // Buka atau tutup item yang diklik
+            content.classList.toggle('hidden');
+            icon.classList.toggle('fa-plus');
+            icon.classList.toggle('fa-minus');
         });
     });
-
+});
 
     /* -------------------------------------------
        6. COPYRIGHT YEAR
@@ -184,4 +196,5 @@ window.addEventListener("scroll", () => {
         copyrightYear.textContent = new Date().getFullYear();
     }
 });
+
 
