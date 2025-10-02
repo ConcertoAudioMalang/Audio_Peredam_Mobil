@@ -52,9 +52,33 @@
 
             <nav class="flex items-center justify-between">
                 
-                <a href="#hero" class="font-extrabold text-xl lg:text-2xl tracking-wider text-accent hover:text-secondary transition duration-300">
-                    CONCERTO AUDIO
-                </a>
+                <header id="main-header" class="fixed top-0 left-0 w-full z-40 transition-all duration-300 py-3 bg-white/95 dark:bg-gray-900/95">
+    <div class="container mx-auto flex justify-between items-center px-4 md:px-8">
+        
+        <a href="#hero" class="flex items-center group">
+            <img 
+                src="asset/concerto-audio-logo-light.png" 
+                alt="Concerto Audio Logo" 
+                class="h-8 transition-transform duration-300 hover:scale-[1.05]"
+            >
+        </a>
+
+        </div>
+</header>
+
+<div id="mobile-menu" class="hidden fixed inset-0 z-30 bg-white dark:bg-gray-900 pt-20">
+    <div class="px-4 py-6 space-y-4">
+
+        <a href="#hero" class="block mb-6">
+            <img 
+                src="assets/img/logo-concerto.svg" 
+                alt="Concerto Audio Logo" 
+                class="h-8 mx-auto"
+            >
+        </a>
+
+        </div>
+</div>
                 
                 <div class="hidden md:flex items-center gap-6 lg:gap-8">
                     <a href="#tentang" class="nav-link">Tentang</a>
@@ -106,7 +130,7 @@
     <main>
         
         <section id="hero" class="relative min-h-screen flex items-center justify-center bg-cover bg-center overflow-hidden"
-            style="background-image: url('assets/background-concerto.jpg'); background-attachment: fixed;"> <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-primary/50 dark:from-gray-950/80 dark:to-gray-950/50"></div> 
+            style="background-image: url('asset/background-concerto.jpg'); background-attachment: fixed;"> <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-primary/50 dark:from-gray-950/80 dark:to-gray-950/50"></div> 
             
             <div class="relative z-10 text-center text-white px-4 py-32 md:py-0 max-w-5xl mx-auto">
                 
@@ -580,3 +604,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
