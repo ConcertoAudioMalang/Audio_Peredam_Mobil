@@ -36,65 +36,71 @@
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-500">
 
-    <a href="#" id="floating-whatsapp" class="fixed bottom-6 right-6 p-4 rounded-full bg-green-500 text-white shadow-2xl z-[999] hover:bg-green-600 transition-all duration-300 transform hover:scale-105" aria-label="Chat via WhatsApp">
+    <a href="#" id="floating-whatsapp" class="cta-whatsapp-link fixed bottom-6 right-6 p-4 rounded-full bg-green-500 text-white shadow-2xl z-[999] hover:bg-green-600 transition-all duration-300 transform hover:scale-105" aria-label="Chat via WhatsApp" data-product="Konsultasi Audio Cepat">
         <i class="fa-brands fa-whatsapp text-3xl"></i>
     </a>
 
-    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 backdrop-blur-sm bg-white/80 dark:bg-gray-950/80 shadow-md">
-        <nav class="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-12 py-3 md:py-4">
-            <a href="#hero" class="font-extrabold text-2xl tracking-wider text-accent hover:text-secondary transition duration-300">
-                CONCERTO AUDIO
-            </a>
-            <div class="fixed top-0 left-0 right-0 z-50 p-4 lg:p-6"> 
+    <div class="fixed top-0 left-0 right-0 z-[90] p-4 lg:p-6"> 
 
-    <header id="main-header"
-        class="bg-white/95 dark:bg-gray-800/95 
-               mx-auto max-w-7xl 
-               rounded-full shadow-lg backdrop-blur-sm 
-               transition-all duration-300 ease-in-out 
-               py-2 px-4 lg:py-3 lg:px-8"> 
+        <header id="main-header"
+            class="bg-white/95 dark:bg-gray-800/95 
+                   mx-auto max-w-7xl 
+                   rounded-full shadow-lg backdrop-blur-sm 
+                   transition-all duration-300 ease-in-out 
+                   py-3 px-6 lg:py-4 lg:px-8"> 
 
-        <nav class="flex items-center justify-between">
+            <nav class="flex items-center justify-between">
+                
+                <a href="#hero" class="font-extrabold text-xl lg:text-2xl tracking-wider text-accent hover:text-secondary transition duration-300">
+                    CONCERTO AUDIO
+                </a>
+                
+                <div class="hidden md:flex items-center gap-6 lg:gap-8">
+                    <a href="#tentang" class="nav-link">Tentang</a>
+                    <a href="#produk" class="nav-link">Produk</a>
+                    <a href="#layanan" class="nav-link">Layanan</a>
+                    <a href="#galeri" class="nav-link">Galeri</a>
+                    <a href="#testimoni" class="nav-link">Testimoni</a>
+                    <a href="#faq" class="nav-link">FAQ</a>
+                    
+                    <a href="#kontak" class="btn btn-primary ml-2">Hubungi Kami</a>
+                    
+                    <button id="theme-toggle" class="ml-1 p-2 rounded-full text-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300" aria-label="Toggle Dark Mode">
+                        <i class="fa-solid fa-moon text-lg moon-icon"></i>
+                        <i class="fa-solid fa-sun text-lg sun-icon hidden"></i>
+                    </button>
+                </div>
+                
+                <div class="md:hidden flex items-center gap-3">
+                    
+                    <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300" aria-label="Toggle Dark Mode (Mobile)">
+                        <i class="fa-solid fa-moon text-lg moon-icon"></i>
+                        <i class="fa-solid fa-sun text-lg sun-icon hidden"></i>
+                    </button>
+
+                    <button id="mobile-menu-button" class="p-2" aria-label="Buka Menu Navigasi">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
             </nav>
-    </header>
-</div>
-            
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#tentang" class="nav-link">Tentang</a>
-                <a href="#produk" class="nav-link">Produk</a>
-                <a href="#layanan" class="nav-link">Layanan</a>
-                <a href="#galeri" class="nav-link">Galeri</a>
-                <a href="#testimoni" class="nav-link">Testimoni</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#kontak" class="btn btn-primary ml-2">Hubungi Kami</a> 
-                
-                <button id="theme-toggle" class="ml-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-300" aria-label="Toggle Dark Mode">
-                    <i id="moon-icon" class="fa-solid fa-moon text-lg"></i>
-                    <i id="sun-icon" class="fa-solid fa-sun text-lg hidden"></i>
-                </button>
-            </div>
-            
-            <button id="mobile-menu-button" class="md:hidden p-2" aria-label="Buka Menu Navigasi">
-                <i class="fa-solid fa-bars text-2xl"></i>
-            </button>
-        </nav>
+        </header>
+
+        </div> 
+
+    <div id="mobile-menu" class="hidden fixed top-[100px] left-4 right-4 z-[80] 
+        flex-col items-center gap-4 py-6 px-4 
+        bg-white dark:bg-gray-800 rounded-xl shadow-2xl 
+        border border-gray-100 dark:border-gray-700 transition-all duration-300 md:hidden">
         
-        <div id="mobile-menu" class="hidden flex-col items-center gap-4 py-4 md:hidden bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 transition-all duration-300">
-            <a href="#tentang" class="mobile-nav-link">Tentang</a>
-            <a href="#produk" class="mobile-nav-link">Produk</a>
-            <a href="#layanan" class="mobile-nav-link">Layanan</a>
-            <a href="#galeri" class="mobile-nav-link">Galeri</a>
-            <a href="#testimoni" class="mobile-nav-link">Testimoni</a>
-            <a href="#faq" class="mobile-nav-link">FAQ</a>
-            <a href="#kontak" class="mobile-nav-link font-bold text-accent">Kontak</a>
-            
-            <button id="theme-toggle-mobile" class="mt-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-300" aria-label="Toggle Dark Mode (Mobile)">
-                <i id="moon-icon-mobile" class="fa-solid fa-moon text-lg"></i>
-                <i id="sun-icon-mobile" class="fa-solid fa-sun text-lg hidden"></i>
-                
-            </button>
-        </div>
-    </header>
+        <a href="#tentang" class="mobile-nav-link w-full text-center">Tentang</a>
+        <a href="#produk" class="mobile-nav-link w-full text-center">Produk</a>
+        <a href="#layanan" class="mobile-nav-link w-full text-center">Layanan</a>
+        <a href="#galeri" class="mobile-nav-link w-full text-center">Galeri</a>
+        <a href="#testimoni" class="mobile-nav-link w-full text-center">Testimoni</a>
+        <a href="#faq" class="mobile-nav-link w-full text-center">FAQ</a>
+        <a href="#kontak" class="mobile-nav-link font-bold text-accent w-full text-center">Kontak</a>
+    </div>
 
     <main>
         <section id="hero" class="relative min-h-screen flex items-center justify-center text-center bg-cover bg-center"
@@ -342,4 +348,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
