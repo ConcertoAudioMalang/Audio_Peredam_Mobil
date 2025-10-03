@@ -4,93 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concerto Audio Malang | Spesialis Audio Mobil Sound Quality (SQ) Terbaik</title>
-    
     <meta name="description" content="Spesialis upgrade audio mobil Sound Quality (SQ) di Malang. Instalasi profesional, tuning presisi, dan produk audio mobil premium. Tingkatkan pengalaman berkendara Anda!">
-    
     <meta name="keywords" content="audio mobil malang, sound quality malang, SQ car audio, instalasi audio mobil, tuning dsp malang, concerto audio">
     
     <link rel="icon" type="image/png" href="favicon.png">
     
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <script>
-        // Custom Tailwind Configuration (Wajib untuk Dark Mode dan Color Palette)
         tailwind.config = {
             darkMode: 'class', 
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#0F172A', // Navy / Dark Blue, untuk teks atau background utama
-                        'accent': '#DC2626', // Merah Cerah, untuk CTA dan elemen menonjol
-                        'secondary': '#F97316', // Oranye, untuk highlight
-                        'gray-850': '#1f2937', // Custom dark gray untuk kartu di dark mode
+                        'primary': '#0F172A', 
+                        'accent': '#DC2626', 
+                        'secondary': '#F97316', 
+                        'gray-850': '#1f2937', 
                     }
                 }
             }
         }
     </script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-
+    
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-500">
 
-    <a href="#" id="floating-whatsapp" class="cta-whatsapp-link fixed bottom-6 right-6 p-4 rounded-full bg-green-500 text-white shadow-2xl z-[999] hover:bg-green-600 transition-all duration-300 transform hover:scale-105" aria-label="Chat via WhatsApp" data-product="Konsultasi Audio Cepat">
+    <a href="#" id="floating-whatsapp" 
+        class="cta-whatsapp-link fixed bottom-6 right-6 p-4 rounded-full bg-green-500 text-white shadow-2xl z-[999] hover:bg-green-600 transition-all duration-300 transform hover:scale-105" 
+        aria-label="Chat via WhatsApp" 
+        data-product="Konsultasi Audio Cepat">
         <i class="fa-brands fa-whatsapp text-3xl"></i>
     </a>
 
-    <div class="fixed top-0 left-0 right-0 z-[90] p-4 lg:p-6"> 
+    <div class="fixed top-0 left-0 right-0 z-[90] p-4 lg:p-6"> 
 
-    <header id="main-header"
-        class="bg-white/95 dark:bg-gray-800/95 
-               mx-auto max-w-7xl 
-               rounded-full shadow-lg backdrop-blur-sm 
-               transition-all duration-300 ease-in-out 
-               transform translate-y-0 opacity-100  py-3 px-6 lg:py-4 lg:px-8">
-        <nav class="flex items-center justify-between">
-            
-            <a href="#hero" class="flex items-center group">
-                <img 
-                    src="assets/img/concerto-audio-logo-light.png" 
-                    alt="Concerto Audio Logo" 
-                    class="h-8 transition-transform duration-300 hover:scale-[1.05] dark:hidden"
-                >
-                <img 
-                    src="assets/img/concerto-audio-logo-dark.png" 
-                    alt="Concerto Audio Logo Dark" 
-                    class="h-8 transition-transform duration-300 hover:scale-[1.05] hidden dark:block"
-                >
-            </a>
-
-            <div class="hidden md:flex items-center gap-6 lg:gap-8">
-                <a href="#tentang" class="nav-link">Tentang</a>
-                <a href="#produk" class="nav-link">Produk</a>
-                <a href="#layanan" class="nav-link">Layanan</a>
-                <a href="#galeri" class="nav-link">Galeri</a>
-                <a href="#testimoni" class="nav-link">Testimoni</a>
-                <a href="#faq" class="nav-link">FAQ</a>
+        <header id="main-header"
+            class="bg-white/95 dark:bg-gray-800/95 
+                   mx-auto max-w-7xl 
+                   rounded-full shadow-lg backdrop-blur-sm 
+                   transition-all duration-300 ease-in-out 
+                   py-3 px-6 lg:py-4 lg:px-8">
+            <nav class="flex items-center justify-between">
                 
-                <a href="#kontak" class="btn btn-primary ml-2">Hubungi Kami</a>
+                <a href="#hero" class="flex items-center group" aria-label="Home">
+                    <img 
+                        src="assets/img/concerto-audio-logo-light.png" 
+                        alt="Concerto Audio Logo" 
+                        class="h-8 transition-transform duration-300 hover:scale-[1.05] dark:hidden"
+                    >
+                    <img 
+                        src="assets/img/concerto-audio-logo-dark.png" 
+                        alt="Concerto Audio Logo Dark" 
+                        class="h-8 transition-transform duration-300 hover:scale-[1.05] hidden dark:block"
+                    >
+                </a>
+
+                <div class="hidden md:flex items-center gap-6 lg:gap-8">
+                    <a href="#tentang" class="nav-link">Tentang</a>
+                    <a href="#produk" class="nav-link">Produk</a>
+                    <a href="#layanan" class="nav-link">Layanan</a>
+                    <a href="#galeri" class="nav-link">Galeri</a>
+                    <a href="#testimoni" class="nav-link">Testimoni</a>
+                    <a href="#faq" class="nav-link">FAQ</a>
+                    
+                    <a href="#kontak" class="btn btn-primary ml-2">Hubungi Kami</a>
+                    
+                    <button id="theme-toggle" class="ml-1 p-2 rounded-full text-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300" aria-label="Toggle Dark Mode">
+                        <i class="fa-solid fa-moon text-lg moon-icon"></i>
+                        <i class="fa-solid fa-sun text-lg sun-icon hidden"></i>
+                    </button>
+                </div>
                 
-                <button id="theme-toggle" class="ml-1 p-2 rounded-full text-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300" aria-label="Toggle Dark Mode">
-                    <i class="fa-solid fa-moon text-lg moon-icon"></i>
-                    <i class="fa-solid fa-sun text-lg sun-icon hidden"></i>
-                </button>
-            </div>
-            
-            <div class="md:hidden flex items-center gap-3"></div>
+                <div class="md:hidden flex items-center gap-3">
+                     <button id="theme-toggle-mobile" class="p-2 rounded-full text-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300" aria-label="Toggle Dark Mode">
+                        <i class="fa-solid fa-moon text-lg moon-icon"></i>
+                        <i class="fa-solid fa-sun text-lg sun-icon hidden"></i>
+                    </button>
+                    <button id="mobile-menu-button" 
+                            class="p-2 text-2xl" 
+                            aria-label="Toggle Mobile Menu"
+                            aria-controls="mobile-menu"
+                            aria-expanded="false">
+                        <i class="fa-solid fa-bars menu-open-icon"></i>
+                        <i class="fa-solid fa-xmark menu-close-icon hidden"></i>
+                    </button>
+                </div>
 
-        </nav>
-    </header>
+            </nav>
+        </header>
 
-</div>
+    </div>
     
-    <div id="mobile-menu" class="hidden fixed top-[100px] left-4 right-4 z-[80] 
-        flex-col items-center gap-4 py-6 px-4 
-        bg-white dark:bg-gray-800 rounded-xl shadow-2xl 
-        border border-gray-100 dark:border-gray-700 transition-all duration-300 md:hidden">
+    <div id="mobile-menu" 
+        role="menu"
+        class="hidden fixed top-[100px] left-4 right-4 z-[80] 
+               flex-col items-center gap-4 py-6 px-4 
+               bg-white dark:bg-gray-800 rounded-xl shadow-2xl 
+               border border-gray-100 dark:border-gray-700 transition-all duration-300 md:hidden">
         
         <a href="#tentang" class="mobile-nav-link w-full text-center">Tentang</a>
         <a href="#produk" class="mobile-nav-link w-full text-center">Produk</a>
@@ -104,7 +120,9 @@
     <main>
         
         <section id="hero" class="relative min-h-screen flex items-center justify-center bg-cover bg-center overflow-hidden"
-            style="background-image: url('asset/background-concerto.jpg'); background-attachment: fixed;"> <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-primary/50 dark:from-gray-950/80 dark:to-gray-950/50"></div> 
+            style="background-image: url('assets/background-concerto.jpg'); background-attachment: fixed;">
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-primary/50 dark:from-gray-950/80 dark:to-gray-950/50"></div> 
             
             <div class="relative z-10 text-center text-white px-4 py-32 md:py-0 max-w-5xl mx-auto">
                 
@@ -224,7 +242,7 @@
                         </a>
                     </div>
 
-                    <div class="card p-6 lg:p-8 bg-gray-100 dark:bg-gray-800 border-2 border-accent transform scale-[1.03] shadow-2xl transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative card p-6 lg:p-8 bg-gray-100 dark:bg-gray-800 border-2 border-accent transform scale-[1.03] shadow-2xl transition duration-300" data-aos="fade-up" data-aos-delay="300">
                         
                         <div class="absolute top-0 right-0 bg-accent text-white px-4 py-1 rounded-bl-lg font-bold">Pilihan Terbaik</div>
 
@@ -289,7 +307,7 @@
 
             </div>
         </section>
-        
+
         <section id="layanan" class="py-20 lg:py-32 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
             <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
                 
@@ -467,31 +485,31 @@
                 <div id="faq-accordion" class="space-y-4 text-left">
                     
                     <div class="faq-item p-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm" data-aos="fade-up" data-aos-delay="200">
-                        <button class="faq-toggle flex justify-between items-center w-full font-semibold text-lg py-2 text-primary dark:text-white hover:text-accent transition duration-300">
+                        <button class="faq-toggle flex justify-between items-center w-full font-semibold text-lg py-2 text-primary dark:text-white hover:text-accent transition duration-300" aria-expanded="false" aria-controls="faq-answer-1">
                             <span>Apakah perbedaan utama Sound Quality (SQ) dan Sound Pressure Level (SPL)?</span>
                             <i class="fa-solid fa-plus faq-icon transition-transform duration-300"></i>
                         </button>
-                        <div class="faq-content hidden pt-2 text-gray-600 dark:text-gray-400">
+                        <div id="faq-answer-1" class="faq-content hidden pt-2 text-gray-600 dark:text-gray-400">
                             <p>SQ (Sound Quality) berfokus pada **kualitas suara**, staging, kejernihan detail (mikro), dan keseimbangan tonal, tujuannya adalah pengalaman mendengarkan musik yang natural. SPL (Sound Pressure Level) berfokus pada **kekuatan volume** dan dentuman bass.</p>
                         </div>
                     </div>
 
                     <div class="faq-item p-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm" data-aos="fade-up" data-aos-delay="300">
-                        <button class="faq-toggle flex justify-between items-center w-full font-semibold text-lg py-2 text-primary dark:text-white hover:text-accent transition duration-300">
+                        <button class="faq-toggle flex justify-between items-center w-full font-semibold text-lg py-2 text-primary dark:text-white hover:text-accent transition duration-300" aria-expanded="false" aria-controls="faq-answer-2">
                             <span>Berapa lama waktu yang dibutuhkan untuk instalasi audio SQ lengkap?</span>
                             <i class="fa-solid fa-plus faq-icon transition-transform duration-300"></i>
                         </button>
-                        <div class="faq-content hidden pt-2 text-gray-600 dark:text-gray-400">
+                        <div id="faq-answer-2" class="faq-content hidden pt-2 text-gray-600 dark:text-gray-400">
                             <p>Waktu pengerjaan sangat bergantung pada paket dan tingkat kustomisasi. Umumnya, instalasi paket dasar membutuhkan 1-2 hari, sementara paket *full custom* dengan peredaman penuh bisa memakan waktu 3-5 hari. Kami akan menginformasikannya secara detail saat konsultasi.</p>
                         </div>
                     </div>
 
                     <div class="faq-item p-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm" data-aos="fade-up" data-aos-delay="400">
-                        <button class="faq-toggle flex justify-between items-center w-full font-semibold text-lg py-2 text-primary dark:text-white hover:text-accent transition duration-300">
+                        <button class="faq-toggle flex justify-between items-center w-full font-semibold text-lg py-2 text-primary dark:text-white hover:text-accent transition duration-300" aria-expanded="false" aria-controls="faq-answer-3">
                             <span>Apakah tuning DSP bergaransi?</span>
                             <i class="fa-solid fa-plus faq-icon transition-transform duration-300"></i>
                         </button>
-                        <div class="faq-content hidden pt-2 text-gray-600 dark:text-gray-400">
+                        <div id="faq-answer-3" class="faq-content hidden pt-2 text-gray-600 dark:text-gray-400">
                             <p>Ya, kami memberikan garansi kepuasan tuning. Kami akan melakukan revisi tuning secara gratis dalam waktu tertentu jika ada penyesuaian yang Anda inginkan setelah instalasi, karena kami percaya *tuning* adalah seni yang disesuaikan dengan telinga pendengar.</p>
                         </div>
                     </div>
@@ -549,24 +567,32 @@
                 <p class="text-sm text-gray-300 mb-4">
                     Jl. Raya Audio Indah No. 55, Kota Malang. (Klik di bawah untuk Google Maps)
                 </p>
-                <a href="https://maps.app.goo.gl/ContohAlamatMaps" target="_blank" class="text-accent hover:text-secondary transition duration-300 text-sm font-semibold">
+                <a href="#" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-secondary transition duration-300 text-sm font-semibold">
                     Buka di Google Maps <i class="fa-solid fa-location-dot ml-1"></i>
                 </a>
                 
                 <div class="flex space-x-4 mt-6">
-                    <a href="https://instagram.com/concertoaudio" target="_blank" class="text-white hover:text-accent transition duration-300 text-2xl" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://facebook.com/concertoaudio" target="_blank" class="text-white hover:text-accent transition duration-300 text-2xl" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://wa.me/6281234567890" target="_blank" class="text-white hover:text-accent transition duration-300 text-2xl" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://instagram.com/concertoaudio" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition duration-300 text-2xl" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com/concertoaudio" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition duration-300 text-2xl" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition duration-300 text-2xl" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
 
         </div>
         
         <div class="max-w-7xl mx-auto px-4 md:px-12 pt-8 text-center text-gray-400 text-xs">
-            © 2025 Concerto Audio Malang. All Rights Reserved. Designed & Developed by <a href="https://github.com/yourusername" target="_blank" class="hover:text-accent transition duration-300">Your Name</a>.
+            © 2025 Concerto Audio Malang. All Rights Reserved. Designed & Developed by <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition duration-300">Your Name</a>.
         </div>
     </footer>
 
+
+    <button 
+        id="scroll-to-top" 
+        class="fixed bottom-16 right-6 p-4 rounded-full bg-accent text-white shadow-xl z-50 
+               opacity-0 pointer-events-none transition-all duration-300 transform hover:scale-105" 
+        aria-label="Kembali ke atas">
+        <i class="fa-solid fa-arrow-up text-xl"></i>
+    </button>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -576,24 +602,6 @@
         });
     </script>
     <script src="script.js"></script>
-      
-    <button 
-        id="scroll-to-top" 
-        class="fixed bottom-16 right-6 p-4 rounded-full bg-accent text-white shadow-xl z-50 
-               opacity-0 pointer-events-none transition-all duration-300 transform hover:scale-105" 
-        aria-label="Kembali ke atas">
-        <i class="fa-solid fa-arrow-up text-xl"></i>
-    </button>
-
-    <script src="script.js"></script> 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+    
 </body>
 </html>
-
-
-
-
-
-
-
