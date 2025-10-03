@@ -184,3 +184,27 @@ img {
     background: rgba(17, 24, 39, 0.95);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
+/* =========================================================
+   PERBAIKAN: JAMINAN WARNA TEKS DI MODE TERANG SAAT HEADER DI-SCROLL
+========================================================= */
+
+/* Menargetkan semua link navigasi di dalam header yang sedang di-scroll (Light Mode) */
+#main-header.scrolled .nav-link {
+    /* Gunakan warna yang sangat gelap (misalnya gray-800 atau black) */
+    color: #1f2937 !important; /* Standar: gray-800 */
+    
+    /* OPSIONAL: Jika ada teks lain (misalnya Logo atau Nomor Telepon) */
+    /* text-decoration: none; */
+}
+
+/* Jika Anda memiliki ikon/teks lain yang harus gelap (misalnya tombol mobile toggle atau logo) */
+#main-header.scrolled .dark-mode-icon,
+#main-header.scrolled .logo-text {
+    color: #1f2937 !important;
+}
+
+/* PASTIKAN WARNA TEKS TIDAK BERUBAH DI DARK MODE SCROLLED */
+#main-header.scrolled.dark .nav-link {
+    /* Mengembalikan warna ke terang untuk Dark Mode */
+    color: #d1d5db !important; /* Standar: gray-300 */
+}
