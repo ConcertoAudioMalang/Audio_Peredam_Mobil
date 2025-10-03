@@ -186,25 +186,31 @@ img {
 }
 /* =========================================================
    PERBAIKAN: JAMINAN WARNA TEKS DI MODE TERANG SAAT HEADER DI-SCROLL
+   (Menggunakan Spesifisitas Tinggi, Tanpa !important)
 ========================================================= */
 
-/* Menargetkan semua link navigasi di dalam header yang sedang di-scroll (Light Mode) */
+/* Selector ini memiliki spesifisitas tinggi (ID + Class + Element) 
+   untuk menimpa style lain yang membuat teks terang di Light Mode. */
+
+/* Light Mode: Teks harus gelap saat header di-scroll (putih) */
 #main-header.scrolled .nav-link {
-    /* Gunakan warna yang sangat gelap (misalnya gray-800 atau black) */
-    color: #1f2937 !important; /* Standar: gray-800 */
-    
-    /* OPSIONAL: Jika ada teks lain (misalnya Logo atau Nomor Telepon) */
-    /* text-decoration: none; */
+    color: #1f2937; /* gray-800 */
 }
 
-/* Jika Anda memiliki ikon/teks lain yang harus gelap (misalnya tombol mobile toggle atau logo) */
-#main-header.scrolled .dark-mode-icon,
-#main-header.scrolled .logo-text {
-    color: #1f2937 !important;
+/* Jika Anda memiliki elemen/ikon lain di navbar yang harus gelap: */
+#main-header.scrolled .logo-text,
+#main-header.scrolled .menu-icon {
+    color: #1f2937; /* gray-800 */
 }
 
-/* PASTIKAN WARNA TEKS TIDAK BERUBAH DI DARK MODE SCROLLED */
+
+/* Dark Mode: Kembalikan teks ke terang agar kontras dengan latar belakang gelap */
 #main-header.scrolled.dark .nav-link {
-    /* Mengembalikan warna ke terang untuk Dark Mode */
-    color: #d1d5db !important; /* Standar: gray-300 */
+    color: #d1d5db; /* gray-300 */
+}
+
+/* Kembalikan juga logo/ikon ke terang */
+#main-header.scrolled.dark .logo-text,
+#main-header.scrolled.dark .menu-icon {
+    color: #f3f4f6; /* gray-100 atau white */
 }
