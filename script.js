@@ -43,7 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
         offset: 50,
         easing: 'ease-in-out',
     });
-
+    
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
 
     // ----------------------------------------------------
     // 2. MODUL: DARK MODE
@@ -186,6 +188,53 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ----------------------------------------------------
+    // 4. MODUL: FAQ ACCORDION (Logika Buka/Tutup)
+    //    Dipindahkan ke sini agar berurutan dengan Modul 3
+    // ----------------------------------------------------
+
+    /** Menangani logika buka/tutup untuk satu item FAQ */
+    function toggleFaqItem(item) {
+        const isActive = item.classList.contains('active');
+        const content = item.querySelector('.faq-content');
+        const toggleButton = item.querySelector('.faq-toggle');
+
+        // Jika saat ini aktif (terbuka), kita tutup
+        if (isActive) {
+            item.classList.remove('active');
+            content.classList.add('hidden');
+            toggleButton.setAttribute('aria-expanded', 'false');
+        } else {
+            // Logika Accordion: Tutup semua item FAQ lain yang terbuka
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-content').classList.add('hidden');
+                    otherItem.querySelector('.faq-toggle').setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Buka item saat ini
+            item.classList.add('active');
+            content.classList.remove('hidden');
+            toggleButton.setAttribute('aria-expanded', 'true');
+        }
+    }
+
+    // Pasang Event Listener ke setiap tombol FAQ
+    faqItems.forEach(item => {
+        const toggleButton = item.querySelector('.faq-toggle');
+        
+        if (toggleButton) {
+            toggleButton.addEventListener('click', () => {
+                toggleFaqItem(item);
+            });
+        }
+    });
+
+    // Catatan: AOS.refresh() akan membantu animasi jika FAQ menyebabkan perubahan layout
+    // Anda dapat memanggil AOS.refresh() di dalam toggleFaqItem jika perlu.
+
 
     // ----------------------------------------------------
     // 5. MODUL: WHATSAPP LINK GENERATOR
@@ -208,3 +257,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 }); // DOMContentLoaded end
+
