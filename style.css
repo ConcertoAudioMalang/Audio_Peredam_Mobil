@@ -7,11 +7,12 @@
 /* GLOBAL STYLES (Overrides/Additions) */
 /* ----------------------------------- */
 .section-title {
-    /* Menerapkan class dari konfigurasi Tailwind */
-    @apply text-3xl lg:text-5xl font-extrabold mb-4 text-text-light;
+    /* Judul Utama menyesuaikan mode */
+    @apply text-3xl lg:text-5xl font-extrabold mb-4 text-text-light dark:text-text-dark;
 }
 .section-desc {
-    @apply text-lg text-gray-400 max-w-3xl mx-auto mb-10;
+    /* Deskripsi menyesuaikan mode */
+    @apply text-lg text-gray-400 dark:text-gray-600 max-w-3xl mx-auto mb-10;
 }
 .btn {
     @apply inline-block font-bold rounded-full shadow-2xl transition duration-300 transform hover:scale-[1.05];
@@ -26,16 +27,12 @@
 /* ----------------------------------- */
 .hero-bg {
     /* GANTI DENGAN URL GAMBAR CUSTOM ANDA */
-    background-image: url('asset/background-concerto.jpg'); 
+    background-image: url('https://via.placeholder.com/1920x1080/101010/FFFFFF?text=SPORTY+CAR+AUDIO+INTERIOR'); 
     background-size: cover;
     background-position: center;
     position: relative;
-    /* Memberi padding ekstra di bawah agar potongan miring tidak memotong konten */
     padding-bottom: 12rem !important; 
-    
-    /* === INI ADALAH KUNCI EFEK POTONGAN MIRING === */
     clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); 
-    /* Polygon points: Kiri Atas, Kanan Atas, Kanan Bawah (88% dari tinggi), Kiri Bawah */
 }
 
 /* Overlay Gelap dengan Gradien untuk Teks Agar Terlihat Jelas */
@@ -46,10 +43,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    /* Mengikuti potongan miring Hero */
     clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); 
     
-    /* Gradien untuk kesan gelap/futuristik */
+    /* Gunakan gradien gelap terlepas dari mode, karena hero background adalah gambar gelap */
     background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.95) 100%);
     z-index: 10;
 }
@@ -57,13 +53,15 @@
 /* ----------------------------------- */
 /* ADJUSTMENT UNTUK SECTION BERIKUTNYA */
 /* ----------------------------------- */
-/* Section berikutnya (Tentang) harus ditarik sedikit ke atas agar menyatu */
 #tentang {
-    margin-top: -6rem; /* Tarik section ke atas untuk overlap */
+    margin-top: -6rem; 
     position: relative;
     z-index: 5;
-    /* Tambahkan bayangan ke atas agar potongan terlihat lebih jelas */
+    /* Bayangan menyesuaikan mode */
     box-shadow: 0 -10px 20px rgba(0,0,0,0.5); 
+}
+.dark #tentang {
+    box-shadow: 0 -10px 20px rgba(0,0,0,0.1); /* Bayangan lebih ringan di Light Mode */
 }
 
 
@@ -71,17 +69,22 @@
 /* GLASS CARD EFFECT (Minimalis Futuristik) */
 /* ----------------------------------- */
 .glass-card {
-    /* Transparansi dan Blur */
-    background-color: rgba(30, 30, 30, 0.7); /* secondary-dark dengan transparansi */
+    /* Transparansi dan Blur (Dark Mode Style) */
+    background-color: rgba(30, 30, 30, 0.7); 
     backdrop-filter: blur(5px);
-    
-    /* Border Neon Tipis */
     border: 1px solid rgba(255, 255, 255, 0.1); 
-    
     transition: all 0.3s ease;
 }
+
+/* Light Mode Variation for Glass Card */
+.dark .glass-card {
+    /* Light Mode: Warna lebih terang dengan transparansi */
+    background-color: rgba(255, 255, 255, 0.8); 
+    border: 1px solid rgba(0, 0, 0, 0.1); 
+    color: #1f2937; /* text-dark */
+}
+
 .glass-card:hover {
-    /* Efek hover border menjadi accent-red dan sedikit terangkat */
     border-color: #E30000; /* accent-red */
     transform: translateY(-5px);
 }
