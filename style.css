@@ -1,11 +1,46 @@
 /* ==================================== */
 /* style.css: Custom Styles for CONCERTO */
-/* Konsep: Angular Cut + Slanted Navbar Menu */
+/* Konsep: Angular Cut + Slanted Navbar Menu & Neon Shadow */
 /* ==================================== */
-...
-/* --- Tambahkan atau modifikasi bagian ini --- */
 
+/* --- TINGKATKAN FONT UNTUK KONSISTENSI SPORTY --- */
+/* Pastikan font-heading yang digunakan memiliki bobot yang kuat */
+.font-heading {
+    /* Ini adalah placeholder jika Anda mendefinisikan font-family kustom di Tailwind config */
+    /* Jika tidak, ini memastikan heading tetap tebal dan menonjol */
+    @apply font-extrabold;
+}
+
+/* Penyesuaian Global untuk Judul Section */
+.section-title {
+    /* Menggunakan font-heading dan memastikan ukuran yang berani */
+    @apply text-4xl lg:text-5xl font-extrabold font-heading mb-4 text-white dark:text-text-dark;
+}
+.section-desc {
+    /* Menjaga deskripsi tetap mudah dibaca */
+    @apply text-lg text-gray-400 dark:text-gray-600 max-w-3xl mx-auto;
+}
+
+/* ----------------------------------- */
+/* EFEK KHUSUS FUTURISTIK (Neon Shadow) */
+/* ----------------------------------- */
+/* Neon Glow Shadow untuk elemen penting (Button, Cards) */
+.shadow-neon-sm {
+    box-shadow: 0 0 5px 0px rgba(0, 255, 255, 0.5), 
+                0 0 10px 0px rgba(0, 255, 255, 0.3);
+}
+.shadow-neon-lg {
+    box-shadow: 0 0 10px 0px rgba(227, 0, 0, 0.6), 
+                0 0 25px 0px rgba(227, 0, 0, 0.4);
+}
+.hover\:shadow-neon-sm:hover {
+    box-shadow: 0 0 5px 0px rgba(0, 255, 255, 0.8), 
+                0 0 15px 0px rgba(0, 255, 255, 0.5);
+}
+
+/* ----------------------------------- */
 /* SLANTED NAV MENU EFFECT (Hanya untuk Desktop) */
+/* ----------------------------------- */
 .menu-slanted {
     /* Padding horizontal yang cukup untuk efek miring */
     padding-left: 2rem; 
@@ -31,40 +66,15 @@
     border-bottom: 3px solid #E30000; /* accent-red */ 
 }
 
-/* JANGAN LUPA: Hero Section juga masih menggunakan clip-path yang sama */
-.hero-bg {
-    /* GANTI DENGAN URL GAMBAR CUSTOM ANDA */
-    background-image: url('https://via.placeholder.com/1920x1080/101010/FFFFFF?text=SPORTY+CAR+AUDIO+INTERIOR'); 
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    padding-bottom: 12rem !important; 
-    
-    /* === Kunci EFEK POTONGAN MIRING HERO === */
-    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); 
-}
-
 /* ----------------------------------- */
-/* GLOBAL STYLES (Pastikan tetap sama) */
+/* GLOBAL STYLES (Button Konsistensi) */
 /* ----------------------------------- */
 .btn {
     @apply inline-block font-bold rounded-full shadow-lg transition duration-300 transform hover:scale-[1.03] tracking-wider;
 }
-.btn-primary {
-    @apply bg-accent-red text-white hover:bg-red-700 shadow-accent-red/50;
-}
-
 /* Primary Button (Accent Red) */
 .btn-primary {
     @apply bg-accent-red text-white hover:bg-red-700 shadow-accent-red/50;
-}
-/* Secondary/CTA Button (Accent Neon) */
-.btn-secondary {
-    @apply bg-accent-neon text-primary-dark hover:bg-cyan-400 shadow-accent-neon/50;
-}
-/* Khusus untuk WhatsApp CTA di Navbar/Hero (Menggunakan Secondary Style) */
-.cta-whatsapp-link.btn {
-    @apply bg-accent-neon text-primary-dark hover:bg-cyan-400 shadow-lg;
 }
 /* Secondary/CTA Button (Accent Neon) */
 .btn-secondary {
@@ -75,6 +85,7 @@
 .cta-whatsapp-link.btn {
     @apply bg-accent-neon text-primary-dark hover:bg-cyan-400 shadow-lg;
 }
+
 
 /* ----------------------------------- */
 /* HERO BACKGROUND & OVERLAY (Futuristic & Angular) */
@@ -99,7 +110,9 @@
     left: 0;
     right: 0;
     bottom: 0;
+    /* Overlay harus mengikuti bentuk potongan Hero */
     clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); 
+    /* Gradient yang lebih gelap di bagian bawah untuk transisi ke section berikutnya */
     background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.95) 100%);
     z-index: 10;
 }
@@ -117,7 +130,6 @@
 .dark #tentang {
     box-shadow: 0 -10px 20px rgba(0,0,0,0.15); /* Bayangan lebih ringan di Light Mode */
 }
-
 
 /* ----------------------------------- */
 /* GLASS CARD EFFECT (Minimalis Futuristik & Dinamis) */
@@ -146,6 +158,11 @@
     transform: translateY(-5px);
 }
 
+/* Penyesuaian untuk kartu yang Paling Populer (SQ.02) */
+#produk .scale-\[1\.03\] {
+    transform: scale(1.03);
+}
+
 /* ----------------------------------- */
 /* UTILITY / SCROLL TO TOP */
 /* ----------------------------------- */
@@ -158,4 +175,23 @@
     @apply bg-accent-neon text-primary-dark shadow-lg shadow-accent-neon/50;
 }
 
+/* ----------------------------------- */
+/* BACKGROUND DECORATION (GRID HOLOGRAFIS) */
+/* ----------------------------------- */
+/* Menerapkan efek Grid/Circuit Board pada background section */
+/* Catatan: Ini membutuhkan sedikit trik CSS untuk grid pattern */
+.bg-primary-dark, .bg-secondary-dark {
+    background-size: 40px 40px;
+    /* Hanya pada Dark Mode */
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
 
+.dark .bg-primary-light, .dark .bg-secondary-light {
+    background-size: 40px 40px;
+    /* Hanya pada Light Mode (warna grid lebih terang) */
+    background-image: 
+        linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
