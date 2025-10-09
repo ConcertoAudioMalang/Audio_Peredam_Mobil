@@ -1,186 +1,98 @@
-/**
- * =========================================================
- * CONCERTO AUDIO | CUSTOM JAVASCRIPT (script.js)
- * Struktur: Modular, Efisien, dan Mudah Dipelihara (Maintainable).
- * =========================================================
- */
-
-document.addEventListener('DOMContentLoaded', () => {
-
+document.addEventListener('DOMContentLoaded', function () {
     // ----------------------------------------------------
-    // 1. KONFIGURASI DAN SELEKSI ELEMEN (DIATAS)
-    //    Membuat konstanta global di dalam DOMContentLoaded scope.
+    // 1. Mobile Menu Toggle
     // ----------------------------------------------------
-
-    // # KONFIGURASI
-    const PHONE_NUMBER = '6281234567890'; // Ganti dengan nomor WhatsApp Anda!
-    const SCROLL_THRESHOLD = 150; // Jarak scroll untuk tombol 'Scroll to Top'
-    const HEADER_TRANSITION_POINT = 100; // Jarak scroll untuk efek header hide/show
-
-    // # ELEMEN DOM
-    // Dark Mode
-    const desktopToggle = document.getElementById('theme-toggle');
-    const mobileToggle = document.getElementById('theme-toggle-mobile');
-    const moonIcons = document.querySelectorAll('.moon-icon');
-    const sunIcons = document.querySelectorAll('.sun-icon');
-    
-    // Mobile Menu
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-    
-    // Scroll Effects
-    const header = document.getElementById('main-header');
-    const scrollBtn = document.getElementById('scroll-to-top');
-    
-    // WhatsApp CTA
-    const whatsappLinks = document.querySelectorAll('.cta-whatsapp-link');
-    
-    // Inisialisasi AOS (Animation on Scroll)
-    AOS.init({
-        duration: 800,
-        once: true,
-        offset: 50,
-        easing: 'ease-in-out',
-    });
-    
-    // FAQ Accordion
-    const faqItems = document.querySelectorAll('.faq-item');
 
-    // ----------------------------------------------------
-    // 2. MODUL: DARK MODE
-    // ----------------------------------------------------
-
-    /** Mengubah tampilan ikon (bulan/matahari) */
-    function updateIcons(isDark) {
-        moonIcons.forEach(icon => {
-            // Menggunakan hidden class dari Tailwind
-            icon.classList.toggle('hidden', isDark);
-        });
-        sunIcons.forEach(icon => {
-            icon.classList.toggle('hidden', !isDark);
-        });
-    }
-
-    /** Menangani klik tombol toggle */
-    function handleThemeToggle() {
-        // Toggle class 'dark' pada elemen <html>
-        const isDark = document.documentElement.classList.toggle('dark');
-        // Simpan preferensi ke Local Storage
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        // Update ikon
-        updateIcons(isDark);
-        // Memuat ulang AOS agar animasi menyesuaikan dark/light mode
-        AOS.refresh();
-    }
-
-    /** Cek preferensi sistem atau local storage saat memuat */
-    function loadTheme() {
-        const storedTheme = localStorage.getItem('theme');
-        // System preference hanya dipertimbangkan jika tidak ada storedTheme
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-        const isDark = storedTheme === 'dark' || (!storedTheme && systemPrefersDark);
-
-        if (isDark) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-        updateIcons(isDark);
-    }
-
-    // Pasang Event Listener
-    loadTheme(); // Jalankan saat startup
-    [desktopToggle, mobileToggle].forEach(toggle => {
-        if (toggle) {
-            toggle.addEventListener('click', handleThemeToggle);
-        }
-    });
-
-
-    // ----------------------------------------------------
-    // 3. MODUL: MOBILE MENU
-    // ----------------------------------------------------
-
-    /** Menangani logika buka/tutup mobile menu */
-    function toggleMobileMenu() {
-        // Logika sederhana (Toggle 'hidden')
+    mobileMenuButton.addEventListener('click', function () {
         mobileMenu.classList.toggle('hidden');
-        // Tambahkan atribut ARIA untuk accessibility
-        mobileMenuButton.setAttribute('aria-expanded', mobileMenu.classList.contains('hidden') ? 'false' : 'true');
-    }
+        const icon = mobileMenuButton.querySelector('i');
+        if (mobileMenu.classList.contains('hidden')) {
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        } else {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-xmark');
+        }
+    });
 
-    // Pasang Event Listener untuk tombol
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', toggleMobileMenu);
-    }
-
-    // Tutup menu saat link diklik
+    // Close mobile menu when a link is clicked
+    const mobileLinks = mobileMenu.querySelectorAll('a[href^="#"]');
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
-            // Hapus pemeriksaan 'if (!mobileMenu.classList.contains('hidden'))'
-            // Karena toggleMobileMenu sudah mengurus logikanya.
-            toggleMobileMenu();
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.querySelector('i').classList.remove('fa-xmark');
+            mobileMenuButton.querySelector('i').classList.add('fa-bars');
         });
     });
 
 
     // ----------------------------------------------------
-    // 4. MODUL: SCROLL EFFECTS (Header & Scroll to Top)
+    // 2. Dark Mode Toggle
     // ----------------------------------------------------
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const darkModeToggleMobile = document.getElementById('dark-mode-toggle-mobile');
+    const html = document.documentElement;
+    const modeIcon = document.getElementById('mode-icon');
 
-    let lastScrollY = window.scrollY;
-
-    window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-        
-        // --- SCROLL LOGIC UNTUK HEADER (Header Hide/Show) ---
-        if (header) {
-            // Menggunakan header.classList.toggle untuk kode yang lebih ringkas dan clean
-            const isScrollingDown = currentScrollY > lastScrollY && currentScrollY > HEADER_TRANSITION_POINT;
-            const isAtTop = currentScrollY <= HEADER_TRANSITION_POINT;
-            
-            // Logika untuk menyembunyikan/menampilkan header saat scroll ke bawah/atas
-            if (!isAtTop) {
-                // Sembunyikan saat scroll ke bawah
-                header.classList.toggle('-translate-y-full', isScrollingDown);
-                header.classList.toggle('opacity-0', isScrollingDown);
-                
-                // Tampilkan saat scroll ke atas
-                header.classList.toggle('translate-y-0', !isScrollingDown);
-                header.classList.toggle('opacity-100', !isScrollingDown);
-            } else {
-                // Selalu tampilkan saat berada di bagian atas halaman
-                header.classList.remove('-translate-y-full', 'opacity-0');
-                header.classList.add('translate-y-0', 'opacity-100');
+    // Function to set the mode
+    function setDarkMode(isDark) {
+        if (isDark) {
+            html.classList.add('dark');
+            if (modeIcon) {
+                 modeIcon.classList.remove('fa-moon');
+                 modeIcon.classList.add('fa-sun');
             }
-
-            // Tambahkan class 'scrolled' dari CSS (untuk efek latar belakang/blur/shadow)
-            header.classList.toggle('scrolled', currentScrollY > 1);
-            // Menambah/menghapus kelas 'dark' pada header saat 'scrolled'
-            if (document.documentElement.classList.contains('dark')) {
-                 header.classList.toggle('dark', currentScrollY > 1);
+        } else {
+            html.classList.remove('dark');
+            if (modeIcon) {
+                modeIcon.classList.remove('fa-sun');
+                modeIcon.classList.add('fa-moon');
             }
         }
-        
-        // --- SCROLL LOGIC UNTUK SCROLL TO TOP BUTTON ---
-        if (scrollBtn) {
-            const isPastThreshold = currentScrollY > SCROLL_THRESHOLD;
-            
-            scrollBtn.classList.toggle('opacity-100', isPastThreshold);
-            scrollBtn.classList.toggle('pointer-events-auto', isPastThreshold);
-            scrollBtn.classList.toggle('opacity-0', !isPastThreshold);
-            scrollBtn.classList.toggle('pointer-events-none', !isPastThreshold);
+    }
+
+    // Check saved preference or system preference
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        setDarkMode(true);
+    } else {
+        setDarkMode(false);
+    }
+
+    // Toggle event listener
+    function toggleDarkMode() {
+        if (html.classList.contains('dark')) {
+            localStorage.theme = 'light';
+            setDarkMode(false);
+        } else {
+            localStorage.theme = 'dark';
+            setDarkMode(true);
         }
-        
-        lastScrollY = currentScrollY; // Update posisi scroll terakhir
+    }
+
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+    }
+    if (darkModeToggleMobile) {
+        darkModeToggleMobile.addEventListener('click', toggleDarkMode);
+    }
+
+    // ----------------------------------------------------
+    // 3. Scroll-to-Top Button Visibility
+    // ----------------------------------------------------
+    const scrollToTopButton = document.getElementById('scroll-to-top');
+
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 400) {
+            scrollToTopButton.classList.remove('opacity-0', 'pointer-events-none');
+        } else {
+            scrollToTopButton.classList.add('opacity-0', 'pointer-events-none');
+        }
     });
 
-    // Event Listener untuk tombol Scroll To Top
-    if (scrollBtn) {
-        scrollBtn.addEventListener('click', (e) => {
-            e.preventDefault();
+    if (scrollToTopButton) {
+        scrollToTopButton.addEventListener('click', function () {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -189,72 +101,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 4. MODUL: FAQ ACCORDION (Logika Buka/Tutup)
-    //    Dipindahkan ke sini agar berurutan dengan Modul 3
+    // 4. FAQ Accordion Logic
     // ----------------------------------------------------
+    const faqItems = document.querySelectorAll('.faq-item');
 
-    /** Menangani logika buka/tutup untuk satu item FAQ */
-    function toggleFaqItem(item) {
-        const isActive = item.classList.contains('active');
+    faqItems.forEach(item => {
+        const toggle = item.querySelector('.faq-toggle');
         const content = item.querySelector('.faq-content');
-        const toggleButton = item.querySelector('.faq-toggle');
+        const icon = item.querySelector('.faq-icon');
 
-        // Jika saat ini aktif (terbuka), kita tutup
-        if (isActive) {
-            item.classList.remove('active');
-            content.classList.add('hidden');
-            toggleButton.setAttribute('aria-expanded', 'false');
-        } else {
-            // Logika Accordion: Tutup semua item FAQ lain yang terbuka
+        toggle.addEventListener('click', () => {
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true' || false;
+            
+            // Close all other open items
             faqItems.forEach(otherItem => {
-                if (otherItem !== item && otherItem.classList.contains('active')) {
-                    otherItem.classList.remove('active');
-                    otherItem.querySelector('.faq-content').classList.add('hidden');
-                    otherItem.querySelector('.faq-toggle').setAttribute('aria-expanded', 'false');
+                if (otherItem !== item) {
+                    const otherToggle = otherItem.querySelector('.faq-toggle');
+                    const otherContent = otherItem.querySelector('.faq-content');
+                    const otherIcon = otherItem.querySelector('.faq-icon');
+                    
+                    if (otherToggle.getAttribute('aria-expanded') === 'true') {
+                        otherToggle.setAttribute('aria-expanded', 'false');
+                        otherContent.classList.add('hidden');
+                        otherIcon.classList.remove('fa-minus');
+                        otherIcon.classList.add('fa-plus');
+                    }
                 }
             });
 
-            // Buka item saat ini
-            item.classList.add('active');
-            content.classList.remove('hidden');
-            toggleButton.setAttribute('aria-expanded', 'true');
-        }
-    }
-
-    // Pasang Event Listener ke setiap tombol FAQ
-    faqItems.forEach(item => {
-        const toggleButton = item.querySelector('.faq-toggle');
-        
-        if (toggleButton) {
-            toggleButton.addEventListener('click', () => {
-                toggleFaqItem(item);
-            });
-        }
-    });
-
-    // Catatan: AOS.refresh() akan membantu animasi jika FAQ menyebabkan perubahan layout
-    // Anda dapat memanggil AOS.refresh() di dalam toggleFaqItem jika perlu.
-
-
-    // ----------------------------------------------------
-    // 5. MODUL: WHATSAPP LINK GENERATOR
-    // ----------------------------------------------------
-
-    whatsappLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            // Mengambil data-product dari HTML, fallback ke 'Konsultasi Umum'
-            const product = link.getAttribute('data-product') || 'Konsultasi Umum';
-            const message = encodeURIComponent(
-                `Halo Concerto Audio, saya tertarik dengan layanan "${product}". Bisakah saya mendapatkan konsultasi lebih lanjut?`
-            );
-            
-            const url = `https://wa.me/${PHONE_NUMBER}?text=${message}`;
-            
-            window.open(url, '_blank');
+            // Toggle current item
+            toggle.setAttribute('aria-expanded', !isExpanded);
+            content.classList.toggle('hidden');
+            icon.classList.toggle('fa-plus');
+            icon.classList.toggle('fa-minus');
         });
     });
 
-}); // DOMContentLoaded end
+    // ----------------------------------------------------
+    // 5. Dynamic WhatsApp CTA Link
+    // ----------------------------------------------------
+    const whatsappLinks = document.querySelectorAll('.cta-whatsapp-link');
+    const phoneNumber = '6281217398558'; // Ganti dengan nomor WhatsApp Anda
 
+    whatsappLinks.forEach(link => {
+        const product = link.getAttribute('data-product') || 'Informasi Umum';
+        const message = encodeURIComponent(`Halo Concerto Audio Malang, saya tertarik dengan layanan/produk Anda (${product}). Bisa bantu saya mendapatkan informasi lebih lanjut?`);
+        link.href = `https://wa.me/${phoneNumber}?text=${message}`;
+    });
+
+});
