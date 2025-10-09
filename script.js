@@ -1,98 +1,52 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // ----------------------------------------------------
+// ===================================
+// script.js: Interactivity for CONCERTO
+// ===================================
+
+document.addEventListener('DOMContentLoaded', () => {
+
     // 1. Mobile Menu Toggle
-    // ----------------------------------------------------
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    mobileMenuButton.addEventListener('click', function () {
-        mobileMenu.classList.toggle('hidden');
-        const icon = mobileMenuButton.querySelector('i');
-        if (mobileMenu.classList.contains('hidden')) {
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
-        } else {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-xmark');
-        }
-    });
-
-    // Close mobile menu when a link is clicked
-    const mobileLinks = mobileMenu.querySelectorAll('a[href^="#"]');
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-            mobileMenuButton.querySelector('i').classList.remove('fa-xmark');
-            mobileMenuButton.querySelector('i').classList.add('fa-bars');
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // Ganti icon
+            const icon = mobileMenuButton.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
         });
-    });
-
-
-    // ----------------------------------------------------
-    // 2. Dark Mode Toggle
-    // ----------------------------------------------------
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const darkModeToggleMobile = document.getElementById('dark-mode-toggle-mobile');
-    const html = document.documentElement;
-    const modeIcon = document.getElementById('mode-icon');
-
-    // Function to set the mode
-    function setDarkMode(isDark) {
-        if (isDark) {
-            html.classList.add('dark');
-            if (modeIcon) {
-                 modeIcon.classList.remove('fa-moon');
-                 modeIcon.classList.add('fa-sun');
-            }
-        } else {
-            html.classList.remove('dark');
-            if (modeIcon) {
-                modeIcon.classList.remove('fa-sun');
-                modeIcon.classList.add('fa-moon');
-            }
-        }
+        
+        // Tutup menu mobile saat link diklik (untuk navigasi)
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.querySelector('i').classList.remove('fa-xmark');
+                mobileMenuButton.querySelector('i').classList.add('fa-bars');
+            });
+        });
     }
 
-    // Check saved preference or system preference
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        setDarkMode(true);
-    } else {
-        setDarkMode(false);
-    }
-
-    // Toggle event listener
-    function toggleDarkMode() {
-        if (html.classList.contains('dark')) {
-            localStorage.theme = 'light';
-            setDarkMode(false);
-        } else {
-            localStorage.theme = 'dark';
-            setDarkMode(true);
-        }
-    }
-
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener('click', toggleDarkMode);
-    }
-    if (darkModeToggleMobile) {
-        darkModeToggleMobile.addEventListener('click', toggleDarkMode);
-    }
-
-    // ----------------------------------------------------
-    // 3. Scroll-to-Top Button Visibility
-    // ----------------------------------------------------
+    // 2. Scroll-to-Top Button Visibility
     const scrollToTopButton = document.getElementById('scroll-to-top');
 
-    window.addEventListener('scroll', function () {
-        if (window.scrollY > 400) {
-            scrollToTopButton.classList.remove('opacity-0', 'pointer-events-none');
-        } else {
-            scrollToTopButton.classList.add('opacity-0', 'pointer-events-none');
-        }
-    });
-
     if (scrollToTopButton) {
-        scrollToTopButton.addEventListener('click', function () {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopButton.classList.remove('opacity-0', 'pointer-events-none');
+                scrollToTopButton.classList.add('opacity-100');
+            } else {
+                scrollToTopButton.classList.remove('opacity-100');
+                scrollToTopButton.classList.add('opacity-0', 'pointer-events-none');
+            }
+        });
+
+        scrollToTopButton.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -100,9 +54,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ----------------------------------------------------
-    // 4. FAQ Accordion Logic
-    // ----------------------------------------------------
+
+    // 3. FAQ Accordion Functionality
     const faqItems = document.querySelectorAll('.faq-item');
 
     faqItems.forEach(item => {
@@ -111,42 +64,52 @@ document.addEventListener('DOMContentLoaded', function () {
         const icon = item.querySelector('.faq-icon');
 
         toggle.addEventListener('click', () => {
-            const isExpanded = toggle.getAttribute('aria-expanded') === 'true' || false;
-            
-            // Close all other open items
+            // Tutup semua item FAQ yang sedang terbuka, kecuali yang sedang diklik
             faqItems.forEach(otherItem => {
                 if (otherItem !== item) {
-                    const otherToggle = otherItem.querySelector('.faq-toggle');
                     const otherContent = otherItem.querySelector('.faq-content');
                     const otherIcon = otherItem.querySelector('.faq-icon');
-                    
-                    if (otherToggle.getAttribute('aria-expanded') === 'true') {
-                        otherToggle.setAttribute('aria-expanded', 'false');
+                    if (!otherContent.classList.contains('hidden')) {
                         otherContent.classList.add('hidden');
                         otherIcon.classList.remove('fa-minus');
                         otherIcon.classList.add('fa-plus');
+                        otherItem.querySelector('.faq-toggle').setAttribute('aria-expanded', 'false');
                     }
                 }
             });
 
-            // Toggle current item
-            toggle.setAttribute('aria-expanded', !isExpanded);
+            // Buka/tutup item yang sedang diklik
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true' || false;
+            
             content.classList.toggle('hidden');
+            toggle.setAttribute('aria-expanded', !isExpanded);
+            
             icon.classList.toggle('fa-plus');
             icon.classList.toggle('fa-minus');
         });
     });
 
-    // ----------------------------------------------------
-    // 5. Dynamic WhatsApp CTA Link
-    // ----------------------------------------------------
-    const whatsappLinks = document.querySelectorAll('.cta-whatsapp-link');
-    const phoneNumber = '6281217398558'; // Ganti dengan nomor WhatsApp Anda
+    // 4. WhatsApp CTA Link Handler (Penting untuk Tracking Produk/Layanan)
+    const ctaLinks = document.querySelectorAll('.cta-whatsapp-link');
+    const baseWAURL = "https://wa.me/6281217398558"; 
+    const defaultText = "Halo Concerto, saya tertarik dengan layanan audio mobil SQ. Bisa dibantu konsultasi?";
 
-    whatsappLinks.forEach(link => {
-        const product = link.getAttribute('data-product') || 'Informasi Umum';
-        const message = encodeURIComponent(`Halo Concerto Audio Malang, saya tertarik dengan layanan/produk Anda (${product}). Bisa bantu saya mendapatkan informasi lebih lanjut?`);
-        link.href = `https://wa.me/${phoneNumber}?text=${message}`;
+    ctaLinks.forEach(link => {
+        const product = link.getAttribute('data-product');
+        let message = defaultText;
+
+        if (product) {
+            // Encode message sesuai data-product
+            message = `Halo Concerto, saya melihat penawaran Anda dan tertarik dengan: *${product}*. Mohon info lebih lanjut.`;
+        }
+
+        // Encode URI Component untuk URL
+        const fullURL = `${baseWAURL}?text=${encodeURIComponent(message)}`;
+        
+        // Set href untuk link yang sesuai
+        link.setAttribute('href', fullURL);
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
     });
 
 });
