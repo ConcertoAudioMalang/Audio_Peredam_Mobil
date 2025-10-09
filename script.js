@@ -1,23 +1,21 @@
 // ===================================
 // script.js: Interactivity for CONCERTO
+// (Dark Mode, Mobile Menu, Scroll, CTA)
 // ===================================
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- DARK/LIGHT MODE LOGIC ---
+    // --- 1. DARK/LIGHT MODE LOGIC ---
     const htmlElement = document.documentElement;
     const toggleButtons = document.querySelectorAll('#theme-toggle-desktop, #theme-toggle-mobile');
     const icons = document.querySelectorAll('#theme-icon-desktop, #theme-icon-mobile');
 
-    // Cek preferensi pengguna/status tersimpan
-    const currentTheme = localStorage.getItem('theme');
-    
-    // Fungsi untuk memperbarui UI sesuai mode
     const updateThemeUI = (isDark) => {
+        // Ganti ikon pada semua tombol
         icons.forEach(icon => {
             if (isDark) {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
+                icon.classList.remove('fa-sun'); // Icon Light: Sun
+                icon.classList.add('fa-moon');  // Icon Dark: Moon
             } else {
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
@@ -25,20 +23,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Aplikasikan tema saat load
-    if (currentTheme === 'dark' || (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    // Load tema saat halaman dimuat
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
         htmlElement.classList.add('dark');
         updateThemeUI(true);
-    } else if (currentTheme === 'light') {
+    } else if (savedTheme === 'light') {
         htmlElement.classList.remove('dark');
         updateThemeUI(false);
     } else {
-         // Default ke Dark Mode jika tidak ada preferensi (seperti desain awal)
-         htmlElement.classList.add('dark');
-         updateThemeUI(true);
+        // Default ke Dark Mode jika tidak ada preferensi
+        htmlElement.classList.add('dark');
+        updateThemeUI(true);
     }
 
-    // Event listener untuk toggle
+    // Event listener untuk toggle mode
     toggleButtons.forEach(button => {
         button.addEventListener('click', () => {
             const isCurrentlyDark = htmlElement.classList.contains('dark');
@@ -54,10 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-    // --- END DARK/LIGHT MODE LOGIC ---
 
 
-    // 1. Mobile Menu Toggle (Dipertahankan)
+    // --- 2. MOBILE MENU TOGGLE ---
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
             const icon = mobileMenuButton.querySelector('i');
+            // Ganti ikon hamburger/x
             if (mobileMenu.classList.contains('hidden')) {
                 icon.classList.remove('fa-xmark');
                 icon.classList.add('fa-bars');
@@ -78,17 +79,20 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
+                // Kembalikan ikon ke hamburger
                 mobileMenuButton.querySelector('i').classList.remove('fa-xmark');
                 mobileMenuButton.querySelector('i').classList.add('fa-bars');
             });
         });
     }
 
-    // 2. Scroll-to-Top Button Visibility (Dipertahankan)
+
+    // --- 3. SCROLL-TO-TOP BUTTON VISIBILITY ---
     const scrollToTopButton = document.getElementById('scroll-to-top');
 
     if (scrollToTopButton) {
         window.addEventListener('scroll', () => {
+            // Tampilkan setelah 300px scroll
             if (window.scrollY > 300) {
                 scrollToTopButton.classList.remove('opacity-0', 'pointer-events-none');
                 scrollToTopButton.classList.add('opacity-100');
@@ -107,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // 3. FAQ Accordion Functionality (Dipertahankan)
+    // --- 4. FAQ ACCORDION FUNCTIONALITY ---
     const faqItems = document.querySelectorAll('.faq-item');
 
     faqItems.forEach(item => {
@@ -116,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const icon = item.querySelector('.faq-icon');
 
         toggle.addEventListener('click', () => {
-            // ... (logika accordion yang sama)
+            // Tutup semua item FAQ lain yang terbuka
              faqItems.forEach(otherItem => {
                 if (otherItem !== item) {
                     const otherContent = otherItem.querySelector('.faq-content');
@@ -130,8 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
+            // Toggle item yang sedang diklik
             const isExpanded = toggle.getAttribute('aria-expanded') === 'true' || false;
-            
             content.classList.toggle('hidden');
             toggle.setAttribute('aria-expanded', !isExpanded);
             
@@ -140,8 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. WhatsApp CTA Link Handler (Dipertahankan)
+
+    // --- 5. WHATSAPP CTA LINK HANDLER ---
     const ctaLinks = document.querySelectorAll('.cta-whatsapp-link');
+    // GANTI dengan nomor WA Anda jika berbeda
     const baseWAURL = "https://wa.me/6281217398558"; 
     const defaultText = "Halo Concerto, saya tertarik dengan layanan audio mobil SQ. Bisa dibantu konsultasi?";
 
@@ -150,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let message = defaultText;
 
         if (product) {
+            // Gunakan pesan spesifik jika ada data-product
             message = `Halo Concerto, saya melihat penawaran Anda dan tertarik dengan: *${product}*. Mohon info lebih lanjut.`;
         }
 
