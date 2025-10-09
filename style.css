@@ -1,21 +1,57 @@
 /* ==================================== */
 /* style.css: Custom Styles for CONCERTO */
-/* Konsep: Angular Cut + Glass Card & Neon Buttons */
+/* Konsep: Angular Cut + Slanted Navbar Menu */
 /* ==================================== */
+...
+/* --- Tambahkan atau modifikasi bagian ini --- */
+
+/* SLANTED NAV MENU EFFECT (Hanya untuk Desktop) */
+.menu-slanted {
+    /* Padding horizontal yang cukup untuk efek miring */
+    padding-left: 2rem; 
+    padding-right: 2rem;
+    
+    /* Ganti warna background untuk area menu saja */
+    background-color: #0f0f0f; /* secondary-dark */
+    position: relative;
+    
+    /* Potongan Miring: Kiri Bawah 10% dari lebar, Kanan Lurus */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%);
+    
+    /* Tambahkan Border Aksen Neon di bawah */
+    border-bottom: 3px solid #00FFFF; /* accent-neon */
+    
+    transition: background-color 0.5s;
+}
+
+/* Penyesuaian untuk Light Mode */
+.dark .menu-slanted {
+    background-color: #f0f0f0; /* secondary-light */
+    /* Border aksen tetap kuat, tapi warnanya berubah */
+    border-bottom: 3px solid #E30000; /* accent-red */ 
+}
+
+/* JANGAN LUPA: Hero Section juga masih menggunakan clip-path yang sama */
+.hero-bg {
+    /* GANTI DENGAN URL GAMBAR CUSTOM ANDA */
+    background-image: url('https://via.placeholder.com/1920x1080/101010/FFFFFF?text=SPORTY+CAR+AUDIO+INTERIOR'); 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding-bottom: 12rem !important; 
+    
+    /* === Kunci EFEK POTONGAN MIRING HERO === */
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); 
+}
 
 /* ----------------------------------- */
-/* GLOBAL STYLES (Overrides/Additions) */
+/* GLOBAL STYLES (Pastikan tetap sama) */
 /* ----------------------------------- */
-.section-title {
-    /* Menggunakan class dari konfigurasi Tailwind (Dinamis) */
-    @apply text-3xl lg:text-5xl font-extrabold mb-4 text-text-light dark:text-text-dark;
-}
-.section-desc {
-    @apply text-lg text-gray-400 dark:text-gray-600 max-w-3xl mx-auto mb-10;
-}
 .btn {
-    /* Base style untuk semua button */
     @apply inline-block font-bold rounded-full shadow-lg transition duration-300 transform hover:scale-[1.03] tracking-wider;
+}
+.btn-primary {
+    @apply bg-accent-red text-white hover:bg-red-700 shadow-accent-red/50;
 }
 
 /* Primary Button (Accent Red) */
@@ -121,4 +157,5 @@
 .dark #scroll-to-top {
     @apply bg-accent-neon text-primary-dark shadow-lg shadow-accent-neon/50;
 }
+
 
