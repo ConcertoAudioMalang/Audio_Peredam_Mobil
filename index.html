@@ -4,23 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CONCERTO | Audio Mobil SQ - Futuristik & Sporty</title>
-    <meta name="description" content="Upgrade pengalaman berkendara Anda dengan Sound Quality (SQ) terbaik. Spesialis tuning DSP, instalasi audio, dan peredam mobil di Malang. Garansi tuning memuaskan.">
-    <meta name="keywords" content="audio mobil malang, sound quality malang, dsp tuning, peredam mobil, instalasi audio mobil, toko audio malang">
     <meta name="author" content="Concerto Audio Malang">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        // Pastikan Tailwind mengizinkan class 'dark' di body/html tag
         tailwind.config = {
-            darkMode: 'class',
+            darkMode: 'class', 
             theme: {
                 extend: {
                     colors: {
-                        // Skema Futuristik & Sporty
-                        'primary-dark': '#000000', // Black, sangat dominan
-                        'secondary-dark': '#0f0f0f', // Dark Gray untuk latar
-                        'accent-red': '#E30000', // Merah Racing
-                        'accent-neon': '#00FFFF', // Cyan Neon untuk sentuhan futuristik
-                        'text-light': '#F3F4F6', // Off-White
+                        // Skema Futuristik & Sporty (tetap sama)
+                        'primary-dark': '#000000', 
+                        'secondary-dark': '#0f0f0f', 
+                        'accent-red': '#E30000', 
+                        'accent-neon': '#00FFFF', 
+                        'text-light': '#F3F4F6',
+                        // Tambahan untuk Light Mode
+                        'primary-light': '#ffffff',
+                        'secondary-light': '#f0f0f0',
+                        'text-dark': '#1f2937', 
                     }
                 }
             }
@@ -35,51 +38,52 @@
     
 </head>
 
-<body class="bg-primary-dark text-text-light antialiased">
+<body class="bg-primary-dark text-text-light antialiased"> 
 
-    <a href="https://wa.me/6281217398558?text=Halo%20Concerto%2C%20saya%20tertarik%20dengan%20layanan%20audio%20mobil%20SQ%20untuk%20mobil%20saya.%20Bisa%20dibantu%20konsultasi%3F" 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       class="fixed bottom-6 left-6 p-4 rounded-full bg-accent-neon text-primary-dark shadow-2xl z-50 
-              transition duration-300 transform hover:scale-110 hover:bg-cyan-400"
-       aria-label="Hubungi kami via WhatsApp">
-        <i class="fa-brands fa-whatsapp text-2xl"></i>
-    </a>
-
-    <nav class="sticky top-0 z-40 bg-primary-dark bg-opacity-95 backdrop-blur-sm shadow-xl transition-all duration-500" id="navbar">
+    <nav class="sticky top-0 z-40 bg-primary-dark bg-opacity-95 dark:bg-primary-light dark:bg-opacity-95 backdrop-blur-sm shadow-xl transition-colors duration-500" id="navbar">
         <div class="max-w-7xl mx-auto px-4 md:px-12">
             <div class="flex justify-between items-center h-20">
-                <a href="#hero" class="font-extrabold text-2xl tracking-widest text-accent-red hover:text-accent-neon transition duration-300">
-                    CONCERTO AUDIO
+                
+                <a href="#hero" class="flex items-center space-x-2 font-black text-2xl tracking-widest text-accent-red hover:text-accent-neon dark:text-text-dark dark:hover:text-accent-red transition duration-300">
+                    <img src="https://via.placeholder.com/30x30/E30000/FFFFFF?text=L" alt="Logo Concerto" class="h-8 w-8 rounded-full border-2 border-accent-red dark:border-text-dark">
+                    <span>CONCERTO</span>
                 </a>
 
                 <div class="hidden lg:flex space-x-8 items-center text-lg font-medium">
-                    <a href="#tentang" class="text-text-light hover:text-accent-red transition duration-300">Tentang</a>
-                    <a href="#layanan" class="text-text-light hover:text-accent-red transition duration-300">Layanan</a>
-                    <a href="#produk" class="text-text-light hover:text-accent-red transition duration-300">Paket</a>
-                    <a href="#galeri" class="text-text-light hover:text-accent-red transition duration-300">Galeri</a>
-                    <a href="#kontak" class="text-text-light hover:text-accent-red transition duration-300">Kontak</a>
+                    <a href="#tentang" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Tentang</a>
+                    <a href="#layanan" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Layanan</a>
+                    <a href="#produk" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Paket</a>
+                    <a href="#galeri" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Galeri</a>
+                    <a href="#kontak" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Kontak</a>
+                    
+                    <button id="theme-toggle-desktop" class="p-2 rounded-full text-accent-neon dark:text-accent-red hover:bg-secondary-dark dark:hover:bg-secondary-light transition duration-300" aria-label="Toggle dark/light mode">
+                        <i id="theme-icon-desktop" class="fa-solid fa-moon text-xl"></i>
+                    </button>
                     
                     <a href="#" class="cta-whatsapp-link btn bg-accent-neon text-primary-dark px-5 py-2 text-base font-extrabold hover:bg-cyan-400" data-product="Konsultasi dari Navbar">
                         <i class="fa-brands fa-whatsapp mr-1"></i> Konsultasi SQ
                     </a>
                 </div>
 
-                <div class="flex lg:hidden items-center">
-                    <button id="mobile-menu-button" class="text-text-light hover:text-accent-red focus:outline-none" aria-label="Open Mobile Menu">
+                <div class="flex lg:hidden items-center space-x-4">
+                    <button id="theme-toggle-mobile" class="p-2 rounded-full text-accent-neon dark:text-accent-red hover:bg-secondary-dark dark:hover:bg-secondary-light transition duration-300" aria-label="Toggle dark/light mode">
+                        <i id="theme-icon-mobile" class="fa-solid fa-moon text-xl"></i>
+                    </button>
+                    
+                    <button id="mobile-menu-button" class="text-text-light dark:text-text-dark hover:text-accent-red focus:outline-none" aria-label="Open Mobile Menu">
                         <i class="fa-solid fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <div class="lg:hidden hidden border-t border-gray-800" id="mobile-menu">
+        <div class="lg:hidden hidden border-t border-gray-800 dark:border-gray-300 bg-primary-dark dark:bg-primary-light transition-colors duration-500" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
-                <a href="#tentang" class="block px-3 py-2 rounded-md text-base font-medium text-text-light hover:bg-secondary-dark hover:text-accent-red transition duration-300">Tentang</a>
-                <a href="#layanan" class="block px-3 py-2 rounded-md text-base font-medium text-text-light hover:bg-secondary-dark hover:text-accent-red transition duration-300">Layanan</a>
-                <a href="#produk" class="block px-3 py-2 rounded-md text-base font-medium text-text-light hover:bg-secondary-dark hover:text-accent-red transition duration-300">Paket</a>
-                <a href="#galeri" class="block px-3 py-2 rounded-md text-base font-medium text-text-light hover:bg-secondary-dark hover:text-accent-red transition duration-300">Galeri</a>
-                <a href="#kontak" class="block px-3 py-2 rounded-md text-base font-medium text-text-light hover:bg-secondary-dark hover:text-accent-red transition duration-300">Kontak</a>
+                <a href="#tentang" class="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-secondary-dark dark:hover:bg-secondary-light hover:text-accent-red transition duration-300">Tentang</a>
+                <a href="#layanan" class="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-secondary-dark dark:hover:bg-secondary-light hover:text-accent-red transition duration-300">Layanan</a>
+                <a href="#produk" class="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-secondary-dark dark:hover:bg-secondary-light hover:text-accent-red transition duration-300">Paket</a>
+                <a href="#galeri" class="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-secondary-dark dark:hover:bg-secondary-light hover:text-accent-red transition duration-300">Galeri</a>
+                <a href="#kontak" class="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-secondary-dark dark:hover:bg-secondary-light hover:text-accent-red transition duration-300">Kontak</a>
                 <a href="#" class="cta-whatsapp-link block mt-4 mx-4 btn bg-accent-neon text-primary-dark px-5 py-2 text-base font-extrabold hover:bg-cyan-400" data-product="Konsultasi dari Mobile Menu">
                     <i class="fa-brands fa-whatsapp mr-1"></i> Konsultasi Gratis
                 </a>
@@ -542,7 +546,18 @@
     </script>
     
     <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 900, 
+            once: true,
+            delay: 50,
+        });
+    </script>
+    
+    <script src="script.js"></script>
     
 </body>
 </html>
+
 
