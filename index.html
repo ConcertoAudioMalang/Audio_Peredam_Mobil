@@ -52,9 +52,9 @@
         <i class="fa-brands fa-whatsapp text-2xl"></i>
     </a>
 
-   <nav class="sticky top-0 z-40 
+  <nav class="sticky top-0 z-40 
             bg-primary-dark dark:bg-primary-light 
-            shadow-lg transition-colors duration-500 
+            shadow-xl transition-colors duration-500 
             border-b border-gray-800 dark:border-gray-300" 
      id="navbar">
     <div class="max-w-7xl mx-auto px-4 md:px-12">
@@ -65,37 +65,32 @@
                 <span>CONCERTO</span>
             </a>
 
-            <div class="hidden lg:flex space-x-8 items-center text-lg font-medium">
-                <a href="#tentang" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Tentang</a>
-                <a href="#layanan" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Layanan</a>
-                <a href="#produk" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Paket</a>
-                <a href="#galeri" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Galeri</a>
-                <a href="#kontak" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Kontak</a>
+            <div class="hidden lg:flex items-center space-x-0 relative"> 
                 
-                <button id="theme-toggle-desktop" class="p-2 rounded-full text-gray-400 dark:text-gray-600 hover:text-accent-neon dark:hover:text-accent-red hover:bg-secondary-dark dark:hover:bg-secondary-light transition duration-300" aria-label="Toggle dark/light mode">
-                    <i id="theme-icon-desktop" class="fa-solid fa-moon text-xl"></i>
-                </button>
-                
-                <a href="#" class="cta-whatsapp-link btn btn-secondary px-5 py-2 text-base font-extrabold" data-product="Konsultasi dari Navbar">
-                    <i class="fa-brands fa-whatsapp mr-1"></i> Konsultasi SQ
-                </a>
+                <div class="flex space-x-8 items-center text-lg font-medium pr-12 h-full menu-slanted">
+                    <a href="#tentang" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Tentang</a>
+                    <a href="#layanan" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Layanan</a>
+                    <a href="#produk" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Paket</a>
+                    <a href="#galeri" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Galeri</a>
+                    <a href="#kontak" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Kontak</a>
+                </div>
+                <div class="flex items-center space-x-4 ml-6">
+                    <button id="theme-toggle-desktop" class="p-2 rounded-full text-gray-400 dark:text-gray-600 hover:text-accent-neon dark:hover:text-accent-red hover:bg-secondary-dark dark:hover:bg-secondary-light transition duration-300" aria-label="Toggle dark/light mode">
+                        <i id="theme-icon-desktop" class="fa-solid fa-moon text-xl"></i>
+                    </button>
+                    
+                    <a href="#" class="cta-whatsapp-link btn btn-primary px-5 py-2 text-base font-extrabold" data-product="Konsultasi dari Navbar Slanted">
+                        <i class="fa-brands fa-whatsapp mr-1"></i> Konsultasi SQ
+                    </a>
+                </div>
             </div>
 
             <div class="flex lg:hidden items-center space-x-4">
-                <button id="theme-toggle-mobile" class="p-2 rounded-full text-gray-400 dark:text-gray-600 hover:text-accent-neon dark:hover:text-accent-red hover:bg-secondary-dark dark:hover:bg-secondary-light transition duration-300" aria-label="Toggle dark/light mode">
-                    <i id="theme-icon-mobile" class="fa-solid fa-moon text-xl"></i>
-                </button>
-                
-                <button id="mobile-menu-button" class="text-text-light dark:text-text-dark hover:text-accent-red focus:outline-none" aria-label="Open Mobile Menu">
-                    <i class="fa-solid fa-bars text-2xl"></i>
-                </button>
-            </div>
+                </div>
         </div>
     </div>
 
-    <div class="lg:hidden hidden border-t border-gray-800 dark:border-gray-300 bg-primary-dark dark:bg-primary-light transition-colors duration-500" id="mobile-menu">
-        </div>
-</nav>
+    </nav>
     
     <main>
         <section id="hero" class="hero-bg min-h-[80vh] flex items-center pt-20 pb-28 lg:pt-32 lg:pb-40 relative z-10">
@@ -556,4 +551,5 @@
     
 </body>
 </html>
+
 
