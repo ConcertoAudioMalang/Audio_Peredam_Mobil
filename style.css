@@ -1,5 +1,6 @@
 /* ==================================== */
 /* style.css: Custom Styles for CONCERTO */
+/* Konsep: Angular Cut / Potongan Miring Sporty */
 /* ==================================== */
 
 /* ----------------------------------- */
@@ -21,14 +22,20 @@
 }
 
 /* ----------------------------------- */
-/* HERO BACKGROUND & OVERLAY (Futuristic) */
+/* HERO BACKGROUND & OVERLAY (Futuristic & Angular) */
 /* ----------------------------------- */
 .hero-bg {
-    /* GANTI DENGAN GAMBAR MOBIL SPORTY/AUDIO NYALA RESOLUSI TINGGI */
-    background-image: url('https://via.placeholder.com/1920x1080/101010/FFFFFF?text=SPORTY+CAR+AUDIO+INTERIOR'); 
+    /* GANTI DENGAN URL GAMBAR CUSTOM ANDA */
+    background-image: url('asset/background-concerto.jpg'); 
     background-size: cover;
     background-position: center;
     position: relative;
+    /* Memberi padding ekstra di bawah agar potongan miring tidak memotong konten */
+    padding-bottom: 12rem !important; 
+    
+    /* === INI ADALAH KUNCI EFEK POTONGAN MIRING === */
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); 
+    /* Polygon points: Kiri Atas, Kanan Atas, Kanan Bawah (88% dari tinggi), Kiri Bawah */
 }
 
 /* Overlay Gelap dengan Gradien untuk Teks Agar Terlihat Jelas */
@@ -39,10 +46,26 @@
     left: 0;
     right: 0;
     bottom: 0;
-    /* Gradien dari gelap ke sangat gelap di bagian bawah */
-    background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%);
+    /* Mengikuti potongan miring Hero */
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); 
+    
+    /* Gradien untuk kesan gelap/futuristik */
+    background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.95) 100%);
     z-index: 10;
 }
+
+/* ----------------------------------- */
+/* ADJUSTMENT UNTUK SECTION BERIKUTNYA */
+/* ----------------------------------- */
+/* Section berikutnya (Tentang) harus ditarik sedikit ke atas agar menyatu */
+#tentang {
+    margin-top: -6rem; /* Tarik section ke atas untuk overlap */
+    position: relative;
+    z-index: 5;
+    /* Tambahkan bayangan ke atas agar potongan terlihat lebih jelas */
+    box-shadow: 0 -10px 20px rgba(0,0,0,0.5); 
+}
+
 
 /* ----------------------------------- */
 /* GLASS CARD EFFECT (Minimalis Futuristik) */
