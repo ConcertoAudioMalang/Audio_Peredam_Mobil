@@ -30,7 +30,15 @@
 .cta-whatsapp-link.btn {
     @apply bg-accent-neon text-primary-dark hover:bg-cyan-400 shadow-lg;
 }
-
+/* Secondary/CTA Button (Accent Neon) */
+.btn-secondary {
+    /* Menggantikan class bg-accent-neon manual di HTML */
+    @apply bg-accent-neon text-primary-dark hover:bg-cyan-400 shadow-accent-neon/50;
+}
+/* Khusus untuk WhatsApp CTA link yang menggunakan btn-secondary */
+.cta-whatsapp-link.btn {
+    @apply bg-accent-neon text-primary-dark hover:bg-cyan-400 shadow-lg;
+}
 
 /* ----------------------------------- */
 /* HERO BACKGROUND & OVERLAY (Futuristic & Angular) */
@@ -113,3 +121,4 @@
 .dark #scroll-to-top {
     @apply bg-accent-neon text-primary-dark shadow-lg shadow-accent-neon/50;
 }
+
