@@ -1,26 +1,36 @@
 /* ==================================== */
 /* style.css: Custom Styles for CONCERTO */
-/* Konsep: Angular Cut / Potongan Miring Sporty */
+/* Konsep: Angular Cut + Glass Card & Neon Buttons */
 /* ==================================== */
 
 /* ----------------------------------- */
 /* GLOBAL STYLES (Overrides/Additions) */
 /* ----------------------------------- */
 .section-title {
-    /* Judul Utama menyesuaikan mode */
+    /* Menggunakan class dari konfigurasi Tailwind (Dinamis) */
     @apply text-3xl lg:text-5xl font-extrabold mb-4 text-text-light dark:text-text-dark;
 }
 .section-desc {
-    /* Deskripsi menyesuaikan mode */
     @apply text-lg text-gray-400 dark:text-gray-600 max-w-3xl mx-auto mb-10;
 }
 .btn {
-    @apply inline-block font-bold rounded-full shadow-2xl transition duration-300 transform hover:scale-[1.05];
+    /* Base style untuk semua button */
+    @apply inline-block font-bold rounded-full shadow-lg transition duration-300 transform hover:scale-[1.03] tracking-wider;
 }
+
+/* Primary Button (Accent Red) */
 .btn-primary {
-    /* Menggunakan accent-red yang didefinisikan di tailwind.config */
-    @apply bg-accent-red text-white hover:bg-red-700;
+    @apply bg-accent-red text-white hover:bg-red-700 shadow-accent-red/50;
 }
+/* Secondary/CTA Button (Accent Neon) */
+.btn-secondary {
+    @apply bg-accent-neon text-primary-dark hover:bg-cyan-400 shadow-accent-neon/50;
+}
+/* Khusus untuk WhatsApp CTA di Navbar/Hero (Menggunakan Secondary Style) */
+.cta-whatsapp-link.btn {
+    @apply bg-accent-neon text-primary-dark hover:bg-cyan-400 shadow-lg;
+}
+
 
 /* ----------------------------------- */
 /* HERO BACKGROUND & OVERLAY (Futuristic & Angular) */
@@ -32,10 +42,12 @@
     background-position: center;
     position: relative;
     padding-bottom: 12rem !important; 
+    
+    /* === Kunci EFEK POTONGAN MIRING === */
     clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); 
 }
 
-/* Overlay Gelap dengan Gradien untuk Teks Agar Terlihat Jelas */
+/* Overlay Gelap (Selalu gelap agar gambar Hero terlihat kontras) */
 .hero-bg::after {
     content: '';
     position: absolute;
@@ -44,9 +56,7 @@
     right: 0;
     bottom: 0;
     clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); 
-    
-    /* Gunakan gradien gelap terlepas dari mode, karena hero background adalah gambar gelap */
-    background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.95) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.95) 100%);
     z-index: 10;
 }
 
@@ -61,30 +71,45 @@
     box-shadow: 0 -10px 20px rgba(0,0,0,0.5); 
 }
 .dark #tentang {
-    box-shadow: 0 -10px 20px rgba(0,0,0,0.1); /* Bayangan lebih ringan di Light Mode */
+    box-shadow: 0 -10px 20px rgba(0,0,0,0.15); /* Bayangan lebih ringan di Light Mode */
 }
 
 
 /* ----------------------------------- */
-/* GLASS CARD EFFECT (Minimalis Futuristik) */
+/* GLASS CARD EFFECT (Minimalis Futuristik & Dinamis) */
 /* ----------------------------------- */
 .glass-card {
-    /* Transparansi dan Blur (Dark Mode Style) */
-    background-color: rgba(30, 30, 30, 0.7); 
-    backdrop-filter: blur(5px);
+    /* Dark Mode Default */
+    background-color: rgba(30, 30, 30, 0.75); /* secondary-dark dengan transparansi */
+    backdrop-filter: blur(8px); /* Blur lebih kuat */
     border: 1px solid rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Tambah bayangan */
     transition: all 0.3s ease;
 }
 
 /* Light Mode Variation for Glass Card */
 .dark .glass-card {
     /* Light Mode: Warna lebih terang dengan transparansi */
-    background-color: rgba(255, 255, 255, 0.8); 
-    border: 1px solid rgba(0, 0, 0, 0.1); 
+    background-color: rgba(255, 255, 255, 0.9); 
+    border: 1px solid rgba(0, 0, 0, 0.15); 
     color: #1f2937; /* text-dark */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Bayangan lebih ringan */
 }
 
+/* Efek Hover Glass Card */
 .glass-card:hover {
     border-color: #E30000; /* accent-red */
     transform: translateY(-5px);
+}
+
+/* ----------------------------------- */
+/* UTILITY / SCROLL TO TOP */
+/* ----------------------------------- */
+#scroll-to-top {
+    /* Default dark mode color */
+    @apply bg-accent-red text-white shadow-lg shadow-accent-red/50;
+}
+/* Light mode adjustment for scroll button */
+.dark #scroll-to-top {
+    @apply bg-accent-neon text-primary-dark shadow-lg shadow-accent-neon/50;
 }
