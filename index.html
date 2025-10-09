@@ -52,56 +52,50 @@
         <i class="fa-brands fa-whatsapp text-2xl"></i>
     </a>
 
-    <nav class="sticky top-0 z-40 bg-primary-dark bg-opacity-95 dark:bg-primary-light dark:bg-opacity-95 backdrop-blur-sm shadow-xl transition-colors duration-500" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 md:px-12">
-            <div class="flex justify-between items-center h-20">
+   <nav class="sticky top-0 z-40 
+            bg-primary-dark dark:bg-primary-light 
+            shadow-lg transition-colors duration-500 
+            border-b border-gray-800 dark:border-gray-300" 
+     id="navbar">
+    <div class="max-w-7xl mx-auto px-4 md:px-12">
+        <div class="flex justify-between items-center h-20">
+            
+            <a href="#hero" class="flex items-center space-x-2 font-black text-2xl tracking-widest text-accent-red hover:text-accent-neon dark:text-text-dark dark:hover:text-accent-red transition duration-300">
+                <img src="https://via.placeholder.com/30x30/E30000/FFFFFF?text=L" alt="Logo Concerto" class="h-8 w-8 rounded-full border-2 border-accent-red dark:border-text-dark">
+                <span>CONCERTO</span>
+            </a>
+
+            <div class="hidden lg:flex space-x-8 items-center text-lg font-medium">
+                <a href="#tentang" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Tentang</a>
+                <a href="#layanan" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Layanan</a>
+                <a href="#produk" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Paket</a>
+                <a href="#galeri" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Galeri</a>
+                <a href="#kontak" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Kontak</a>
                 
-                <a href="#hero" class="flex items-center space-x-2 font-black text-2xl tracking-widest text-accent-red hover:text-accent-neon dark:text-text-dark dark:hover:text-accent-red transition duration-300">
-                    <img src="https://via.placeholder.com/30x30/E30000/FFFFFF?text=L" alt="Logo Concerto" class="h-8 w-8 rounded-full border-2 border-accent-red dark:border-text-dark">
-                    <span>CONCERTO</span>
-                </a>
-
-                <div class="hidden lg:flex space-x-8 items-center text-lg font-medium">
-                    <a href="#tentang" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Tentang</a>
-                    <a href="#layanan" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Layanan</a>
-                    <a href="#produk" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Paket</a>
-                    <a href="#galeri" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Galeri</a>
-                    <a href="#kontak" class="text-text-light dark:text-text-dark hover:text-accent-red transition duration-300">Kontak</a>
-                    
-                    <button id="theme-toggle-desktop" class="p-2 rounded-full text-accent-neon dark:text-accent-red hover:bg-secondary-dark dark:hover:bg-secondary-light transition duration-300" aria-label="Toggle dark/light mode">
-                        <i id="theme-icon-desktop" class="fa-solid fa-moon text-xl"></i>
-                    </button>
-                    
-                    <a href="#" class="cta-whatsapp-link btn bg-accent-neon text-primary-dark px-5 py-2 text-base font-extrabold hover:bg-cyan-400" data-product="Konsultasi dari Navbar">
-                        <i class="fa-brands fa-whatsapp mr-1"></i> Konsultasi SQ
-                    </a>
-                </div>
-
-                <div class="flex lg:hidden items-center space-x-4">
-                    <button id="theme-toggle-mobile" class="p-2 rounded-full text-accent-neon dark:text-accent-red hover:bg-secondary-dark dark:hover:bg-secondary-light transition duration-300" aria-label="Toggle dark/light mode">
-                        <i id="theme-icon-mobile" class="fa-solid fa-moon text-xl"></i>
-                    </button>
-                    
-                    <button id="mobile-menu-button" class="text-text-light dark:text-text-dark hover:text-accent-red focus:outline-none" aria-label="Open Mobile Menu">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="lg:hidden hidden border-t border-gray-800 dark:border-gray-300 bg-primary-dark dark:bg-primary-light transition-colors duration-500" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
-                <a href="#tentang" class="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-secondary-dark dark:hover:bg-secondary-light hover:text-accent-red transition duration-300">Tentang</a>
-                <a href="#layanan" class="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-secondary-dark dark:hover:bg-secondary-light hover:text-accent-red transition duration-300">Layanan</a>
-                <a href="#produk" class="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-secondary-dark dark:hover:bg-secondary-light hover:text-accent-red transition duration-300">Paket</a>
-                <a href="#galeri" class="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-secondary-dark dark:hover:bg-secondary-light hover:text-accent-red transition duration-300">Galeri</a>
-                <a href="#kontak" class="block px-3 py-2 rounded-md text-base font-medium text-text-light dark:text-text-dark hover:bg-secondary-dark dark:hover:bg-secondary-light hover:text-accent-red transition duration-300">Kontak</a>
-                <a href="#" class="cta-whatsapp-link block mt-4 mx-4 btn bg-accent-neon text-primary-dark px-5 py-2 text-base font-extrabold hover:bg-cyan-400" data-product="Konsultasi dari Mobile Menu">
-                    <i class="fa-brands fa-whatsapp mr-1"></i> Konsultasi Gratis
+                <button id="theme-toggle-desktop" class="p-2 rounded-full text-gray-400 dark:text-gray-600 hover:text-accent-neon dark:hover:text-accent-red hover:bg-secondary-dark dark:hover:bg-secondary-light transition duration-300" aria-label="Toggle dark/light mode">
+                    <i id="theme-icon-desktop" class="fa-solid fa-moon text-xl"></i>
+                </button>
+                
+                <a href="#" class="cta-whatsapp-link btn btn-secondary px-5 py-2 text-base font-extrabold" data-product="Konsultasi dari Navbar">
+                    <i class="fa-brands fa-whatsapp mr-1"></i> Konsultasi SQ
                 </a>
             </div>
+
+            <div class="flex lg:hidden items-center space-x-4">
+                <button id="theme-toggle-mobile" class="p-2 rounded-full text-gray-400 dark:text-gray-600 hover:text-accent-neon dark:hover:text-accent-red hover:bg-secondary-dark dark:hover:bg-secondary-light transition duration-300" aria-label="Toggle dark/light mode">
+                    <i id="theme-icon-mobile" class="fa-solid fa-moon text-xl"></i>
+                </button>
+                
+                <button id="mobile-menu-button" class="text-text-light dark:text-text-dark hover:text-accent-red focus:outline-none" aria-label="Open Mobile Menu">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
         </div>
-    </nav>
+    </div>
+
+    <div class="lg:hidden hidden border-t border-gray-800 dark:border-gray-300 bg-primary-dark dark:bg-primary-light transition-colors duration-500" id="mobile-menu">
+        </div>
+</nav>
     
     <main>
         <section id="hero" class="hero-bg min-h-[80vh] flex items-center pt-20 pb-28 lg:pt-32 lg:pb-40 relative z-10">
@@ -562,3 +556,4 @@
     
 </body>
 </html>
+
