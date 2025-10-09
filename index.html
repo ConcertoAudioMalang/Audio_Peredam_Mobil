@@ -27,53 +27,12 @@
         }
     </script>
     
+    <link rel="stylesheet" href="style.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <style>
-        .section-title {
-            @apply text-3xl lg:text-5xl font-extrabold mb-4 text-text-light;
-        }
-        .section-desc {
-            @apply text-lg text-gray-400 max-w-3xl mx-auto mb-10;
-        }
-        .btn {
-            @apply inline-block font-bold rounded-full shadow-2xl transition duration-300 transform hover:scale-[1.05];
-        }
-        .btn-primary {
-            @apply bg-accent-red text-white hover:bg-red-700;
-        }
-        /* Efek Hero Background Image */
-        .hero-bg {
-            background-image: url('https://via.placeholder.com/1920x1080/101010/FFFFFF?text=SPORTY+CAR+AUDIO+INTERIOR'); /* GANTI DENGAN GAMBAR MOBIL SPORTY/AUDIO NYALA */
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        .hero-bg::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            /* Overlay Gelap dengan Gradien Ringan */
-            background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 100%);
-            z-index: 10;
-        }
-        /* Glass/Frosted Effect untuk card Testimoni/Layanan */
-        .glass-card {
-            background-color: rgba(30, 30, 30, 0.7);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        .glass-card:hover {
-            border-color: #E30000;
-            transform: translateY(-5px);
-        }
-    </style>
 </head>
 
 <body class="bg-primary-dark text-text-light antialiased">
@@ -577,7 +536,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
-            duration: 900, // Lebih cepat untuk kesan sporty
+            duration: 900, 
             once: true,
             delay: 50,
         });
