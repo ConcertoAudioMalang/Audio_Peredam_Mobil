@@ -1,208 +1,126 @@
-// ===================================
-// script.js: Interactivity for CONCERTO
-// (Dark Mode, Mobile Menu, Scroll, CTA, Active Nav)
-// ===================================
-
 document.addEventListener('DOMContentLoaded', () => {
+    // ===============================================
+    // 1. LOGIKA DARK/LIGHT MODE
+    // ===============================================
 
-    // Nomor WA Anda
-    const WA_NUMBER = "6281217398558"; 
-    const BASE_WA_URL = `https://wa.me/${WA_NUMBER}`;
+    const body = document.body;
+    const toggleButtons = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile');
+    const toggleIcons = document.querySelectorAll('#theme-icon, #theme-icon-mobile');
 
-    // --- 1. DARK/LIGHT MODE LOGIC ---
-    const htmlElement = document.documentElement;
-    const toggleButtons = document.querySelectorAll('#theme-toggle-desktop, #theme-toggle-mobile');
-    const icons = document.querySelectorAll('#theme-icon-desktop, #theme-icon-mobile');
+    // Cek preferensi user atau simpanan local
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
 
-    const updateThemeUI = (isDark) => {
-        // Ganti ikon pada semua tombol
-        icons.forEach(icon => {
-            if (isDark) {
-                icon.classList.replace('fa-sun', 'fa-moon');
-            } else {
-                icon.classList.replace('fa-moon', 'fa-sun');
-            }
-        });
-    };
-
-    const loadInitialTheme = () => {
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        // Prioritas: 1. Saved Theme, 2. System Preference, 3. Default to Dark
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-            htmlElement.classList.add('dark');
-            updateThemeUI(true);
-            localStorage.setItem('theme', 'dark'); // Tetapkan dark sebagai default awal jika tidak ada
+    // Fungsi untuk menerapkan tema
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            body.classList.remove('dark');
+            toggleIcons.forEach(icon => {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            });
         } else {
-            htmlElement.classList.remove('dark');
-            updateThemeUI(false);
-            if (!savedTheme) localStorage.setItem('theme', 'light'); // Tetapkan light jika system preference light
+            body.classList.add('dark');
+            toggleIcons.forEach(icon => {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            });
         }
-    };
+    }
 
-    loadInitialTheme();
+    // Terapkan tema saat halaman dimuat
+    applyTheme(savedTheme);
 
-    // Event listener untuk toggle mode
+    // Event listener untuk tombol toggle
     toggleButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const isCurrentlyDark = htmlElement.classList.contains('dark');
-            
-            if (isCurrentlyDark) {
-                htmlElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-                updateThemeUI(false);
-            } else {
-                htmlElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-                updateThemeUI(true);
-            }
+            const currentTheme = body.classList.contains('dark') ? 'light' : 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
         });
     });
 
-    // --- 2. MOBILE MENU TOGGLE ---
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+    // ===============================================
+    // 2. LOGIKA HAMBURGER MENU (MOBILE)
+    // ===============================================
+
+    const menuButton = document.getElementById('menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = mobileMenuButton ? mobileMenuButton.querySelector('i') : null;
+    const menuIcon = document.getElementById('menu-icon');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-    if (mobileMenuButton && mobileMenu && menuIcon) {
-        mobileMenuButton.addEventListener('click', () => {
-            const isHidden = mobileMenu.classList.toggle('hidden');
-            
-            // Ganti ikon hamburger/x
-            if (isHidden) {
-                menuIcon.classList.replace('fa-xmark', 'fa-bars');
-            } else {
-                menuIcon.classList.replace('fa-bars', 'fa-xmark');
-            }
-        });
+    menuButton.addEventListener('click', () => {
+        const isMenuOpen = mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('-translate-y-full');
         
-        // Tutup menu mobile saat link diklik
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                menuIcon.classList.replace('fa-xmark', 'fa-bars');
-            });
-        });
-    }
+        // Ganti ikon hamburger menjadi X
+        if (!isMenuOpen) {
+            menuIcon.classList.remove('fa-bars');
+            menuIcon.classList.add('fa-xmark');
+        } else {
+            menuIcon.classList.remove('fa-xmark');
+            menuIcon.classList.add('fa-bars');
+        }
+    });
 
-
-    // --- 3. SCROLL-TO-TOP BUTTON VISIBILITY ---
-    const scrollToTopButton = document.getElementById('scroll-to-top');
-
-    if (scrollToTopButton) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                // Menggunakan opacity dan visibility
-                scrollToTopButton.classList.remove('opacity-0', 'pointer-events-none');
-                scrollToTopButton.classList.add('opacity-100');
-            } else {
-                scrollToTopButton.classList.remove('opacity-100');
-                scrollToTopButton.classList.add('opacity-0', 'pointer-events-none');
-            }
-        });
-
-        scrollToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
-
-    // --- 4. FAQ ACCORDION FUNCTIONALITY ---
-    // Logika sudah sangat baik, dipertahankan.
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    faqItems.forEach(item => {
-        const toggle = item.querySelector('.faq-toggle');
-        const content = item.querySelector('.faq-content');
-        const icon = item.querySelector('.faq-icon');
-
-        toggle.addEventListener('click', () => {
-             // Tutup semua item FAQ lain yang terbuka
-             faqItems.forEach(otherItem => {
-                 if (otherItem !== item) {
-                     const otherContent = otherItem.querySelector('.faq-content');
-                     const otherIcon = otherItem.querySelector('.faq-icon');
-                     if (!otherContent.classList.contains('hidden')) {
-                         otherContent.classList.add('hidden');
-                         otherIcon.classList.replace('fa-minus', 'fa-plus');
-                         otherItem.querySelector('.faq-toggle').setAttribute('aria-expanded', 'false');
-                     }
-                 }
-             });
-
-             // Toggle item yang sedang diklik
-             const isExpanded = toggle.getAttribute('aria-expanded') === 'true' || false;
-             content.classList.toggle('hidden');
-             toggle.setAttribute('aria-expanded', !isExpanded);
-             
-             icon.classList.toggle('fa-plus');
-             icon.classList.toggle('fa-minus');
+    // Tutup menu setelah klik link (untuk navigasi yang lancar)
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden', '-translate-y-full');
+            menuIcon.classList.remove('fa-xmark');
+            menuIcon.classList.add('fa-bars');
         });
     });
 
 
-    // --- 5. WHATSAPP CTA LINK HANDLER ---
+    // ===============================================
+    // 3. LOGIKA BACK TO TOP BUTTON
+    // ===============================================
+    
+    const backToTopButton = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+         if (window.scrollY > 300) {
+             backToTopButton.classList.remove('opacity-0', 'invisible');
+             backToTopButton.classList.add('opacity-100', 'visible');
+         } else {
+             backToTopButton.classList.remove('opacity-100', 'visible');
+             backToTopButton.classList.add('opacity-0', 'invisible');
+         }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+         window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+
+    // ===============================================
+    // 4. LOGIKA CUSTOM WHATSAPP CTA LINK
+    // ===============================================
+    
     const ctaLinks = document.querySelectorAll('.cta-whatsapp-link');
-    const defaultText = "Halo Concerto, saya tertarik dengan layanan audio mobil SQ. Bisa dibantu konsultasi?";
+    const whatsappNumber = '6281217398558'; // Ganti dengan nomor WhatsApp Anda
 
     ctaLinks.forEach(link => {
-        const product = link.getAttribute('data-product');
-        let message = defaultText;
-
-        if (product) {
-            // Gunakan pesan spesifik jika ada data-product
-            message = `Halo Concerto, saya melihat penawaran Anda dan tertarik dengan: *${product}*. Mohon info lebih lanjut.`;
-        }
-
-        const fullURL = `${BASE_WA_URL}?text=${encodeURIComponent(message)}`;
-        
-        link.setAttribute('href', fullURL);
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener noreferrer');
-    });
-
-    // --- 6. ACTIVE NAV LINK HIGHLIGHT (Futuristik/Sporty) ---
-    const navLinks = document.querySelectorAll('#desktop-menu a:not(.cta-whatsapp-link), #mobile-menu a:not(.cta-whatsapp-link)');
-    const sections = document.querySelectorAll('section');
-
-    const observerOptions = {
-        root: null, // viewport
-        rootMargin: '0px',
-        threshold: 0.5 // Section dianggap aktif jika 50% terlihat
-    };
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Hapus kelas aktif dari semua link
-                navLinks.forEach(link => {
-                    link.classList.remove('text-accent-neon', 'border-b-2', 'border-accent-neon', 'dark:border-accent-red');
-                    link.classList.add('hover:text-accent-neon'); // Kembalikan efek hover default
-                });
-
-                // Tambahkan kelas aktif pada link yang sesuai
-                const activeId = entry.target.id;
-                navLinks.forEach(link => {
-                    if (link.getAttribute('href') === `#${activeId}`) {
-                        // Gaya aktif yang sporty dan futuristik
-                        link.classList.add('text-accent-neon', 'border-b-2', 'border-accent-neon', 'dark:border-accent-red');
-                        link.classList.remove('hover:text-accent-neon');
-                    }
-                });
-            }
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Ambil data-product dari elemen yang diklik
+            const product = link.getAttribute('data-product') || 'Informasi Umum';
+            
+            // Buat pesan template
+            const message = `Halo Concerto Audio, saya tertarik dengan "${product}". Mohon informasi lebih lanjut. Terima kasih!`;
+            
+            // Encode pesan untuk URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Buat URL WhatsApp
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            // Buka di tab baru
+            window.open(whatsappUrl, '_blank');
         });
-    }, observerOptions);
-
-    // Amati setiap section
-    sections.forEach(section => {
-        sectionObserver.observe(section);
     });
-    // Tambahkan observasi untuk Hero Section (#hero) jika belum termasuk dalam 'section'
-    const heroSection = document.getElementById('hero');
-    if (heroSection) {
-        sectionObserver.observe(heroSection);
-    }
+    
 });
