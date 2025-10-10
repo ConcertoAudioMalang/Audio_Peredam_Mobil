@@ -19,7 +19,7 @@ body {
 
 .hero-bg {
     /* Ganti URL ini dengan gambar berkualitas tinggi yang relevan (misalnya interior mobil mewah dengan audio) */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x1080/111827/FFFFFF?text=CAR+AUDIO+SQ+BACKGROUND');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url('./assets/hero-bg.jpg')
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Efek parallax modern */
@@ -27,7 +27,7 @@ body {
 
 /* Tambahkan efek overlay gelap pada dark mode agar teks di Hero tetap kontras */
 .dark .hero-bg {
-     background-image: linear-gradient(rgba(17, 24, 39, 0.85), rgba(17, 24, 39, 0.85)), url('https://via.placeholder.com/1920x1080/111827/FFFFFF?text=CAR+AUDIO+SQ+BACKGROUND');
+     background-image: linear-gradient(rgba(17, 24, 39, 0.85), rgba(17, 24, 39, 0.85)), url('./assets/hero-bg.jpg')
 }
 
 /* ========================================= */
@@ -56,3 +56,4 @@ body {
 .service-icon {
     transition: all 0.3s ease;
 }
+
