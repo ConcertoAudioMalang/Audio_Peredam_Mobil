@@ -14,20 +14,32 @@ body {
 }
 
 /* ========================================= */
-/* 2. Hero Section Styling (Critical) */
+/* 2. Hero Section Styling (CRITICAL) */
 /* ========================================= */
 
 .hero-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('asset/background-concerto.jpg'); 
+    /* Deklarasi Properti Utama (Light Mode Default) */
+    
+    /* 1. KOREKSI JALUR FILE: Menggunakan './assets/' yang benar */
+    /* 2. OVERLAY CAHAYA (Light Mode): Menggunakan transparansi 0.6 */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('asset/background-concerto.jpg');
+    
+    /* 3. Properti Visual: Terapkan SEKALI saja untuk kedua mode */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
-/* Tambahkan efek overlay gelap pada dark mode agar teks di Hero tetap kontras */
+/* --- Untuk DARK MODE (Mengubah hanya OVERLAY) --- */
+/* PENTING: Hanya perlu mendefinisikan ulang 'background-image' */
 .dark .hero-bg {
-     background-image: linear-gradient(rgba(17, 24, 39, 0.85), rgba(17, 24, 39, 0.85)), url('./assets/hero-bg.jpg')
+    /* OVERLAY GELAP (Dark Mode): Menggunakan transparansi 0.8 
+       atau menggunakan warna gelap Tailwind (RGB 17, 24, 39) 
+       untuk sinkronisasi visual.
+    */
+    background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('asset/background-concerto.jpg');
 }
+
 
 /* ========================================= */
 /* 3. CTA & Buttons */
@@ -55,6 +67,7 @@ body {
 .service-icon {
     transition: all 0.3s ease;
 }
+
 
 
 
