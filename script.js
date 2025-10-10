@@ -166,20 +166,20 @@ document.addEventListener('DOMContentLoaded', () => {
         easing: 'ease-in-out'
     });
 
-    /* ========================================= */
-    /* 8. NAVBAR SCROLL (SOLID-to-HIDE) */
-    /* ========================================= */
-    const navbar = document.getElementById('navbar');
-    // Navbar akan mulai menghilang setelah user scroll 100px
-    const scrollThreshold = 100; 
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > scrollThreshold) {
-            // HIDE: Membuat navbar menghilang
-            navbar.classList.add('opacity-0', 'invisible'); 
-        } else {
-            // SHOW: Memastikan navbar muncul kembali
-            navbar.classList.remove('opacity-0', 'invisible');
-        }
-    });
+   /* ========================================= */
+/* 8. NAVBAR SCROLL (SLIGHTLY TRANSPARENT-to-HIDE) */
+/* ========================================= */
+const navbar = document.getElementById('navbar');
+const scrollThreshold = 100; // Mulai menghilang setelah 100px
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > scrollThreshold) {
+        // HIDE: Sekarang transisi 500ms akan membuat ini super mulus
+        navbar.classList.add('opacity-0', 'invisible'); 
+    } else {
+        // SHOW: Muncul kembali dengan background 95% transparan (dari CSS)
+        navbar.classList.remove('opacity-0', 'invisible');
+    }
+});
     }); // End DOMContentLoaded
+
