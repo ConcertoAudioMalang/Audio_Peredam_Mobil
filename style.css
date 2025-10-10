@@ -18,11 +18,10 @@ body {
 /* ========================================= */
 
 .hero-bg {
-    /* Ganti URL ini dengan gambar berkualitas tinggi yang relevan (misalnya interior mobil mewah dengan audio) */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url('.asset/background-concerto.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./assets/background-concerto.jpg'); 
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Efek parallax modern */
+    background-attachment: fixed;
 }
 
 /* Tambahkan efek overlay gelap pada dark mode agar teks di Hero tetap kontras */
@@ -56,6 +55,7 @@ body {
 .service-icon {
     transition: all 0.3s ease;
 }
+
 
 
 
