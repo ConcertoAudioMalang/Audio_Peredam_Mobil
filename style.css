@@ -1,85 +1,58 @@
-/* Pastikan transisi warna latar belakang dan teks smooth saat ganti mode */
+/* ========================================= */
+/* 1. Global Tailwind Overrides (Minor Fixes) */
+/* ========================================= */
+
+/* Pastikan transisi warna halus saat berganti mode */
 body {
     transition: background-color 0.5s, color 0.5s;
 }
 
-/* Styling Judul Section (Sleek Look: Tebal, Minimalis, Kontras Tinggi) */
-.section-title {
-    /* Teks berubah berdasarkan mode */
-    --tw-text-opacity: 1;
-    color: rgb(249 250 251 / var(--tw-text-opacity)); /* text-text-light (gelap) */
-    font-size: 2.5rem; /* text-4xl sm:text-5xl lg:text-6xl */
-    font-weight: 900; /* font-black */
-    line-height: 1.1; /* leading-tight */
-}
-.dark .section-title {
-    --tw-text-opacity: 1;
-    color: rgb(17 24 39 / var(--tw-text-opacity)); /* dark:text-text-dark (terang) */
+/* Penyesuaian font untuk heading/judul agar terlihat lebih modern/powerfull */
+.font-heading {
+    /* Jika Anda menggunakan font kustom seperti Poppins, ini akan diterapkan */
+    font-family: 'Poppins', 'Inter', sans-serif;
 }
 
-/* Styling Tombol CTA Utama */
-.btn {
-    font-weight: 800;
-    border-radius: 0.5rem; /* Sedikit kotak, lebih sleek */
-    transition-duration: 300ms;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-.btn:hover {
-    transform: translateY(-2px); /* Efek lift yang lebih halus */
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-}
-.btn-primary {
-    /* Warna tombol utama (Aksen Merah) */
-    background-color: #C8102E; /* accent-red */
-    color: white;
-}
-.btn-primary:hover {
-    background-color: #A00D26; /* Slightly darker red on hover */
-}
+/* ========================================= */
+/* 2. Hero Section Styling (Critical) */
+/* ========================================= */
 
-/* Hero Section Background (Menggunakan Overlay Ringan untuk kontras yang lebih baik) */
 .hero-bg {
-    /* Mode Gelap (default di CSS) */
-    background-image: linear-gradient(rgba(31, 41, 55, 0.8), rgba(31, 41, 55, 0.9)), url('https://via.placeholder.com/1920x1080/1F2937/F9FAFB?text=Background+Hero+Minimalis');
+    /* Ganti URL ini dengan gambar berkualitas tinggi yang relevan (misalnya interior mobil mewah dengan audio) */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x1080/111827/FFFFFF?text=CAR+AUDIO+SQ+BACKGROUND');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed; /* Efek parallax modern */
 }
+
+/* Tambahkan efek overlay gelap pada dark mode agar teks di Hero tetap kontras */
 .dark .hero-bg {
-    /* Hero background di Light Mode */
-    background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.9)), url('https://via.placeholder.com/1920x1080/F9FAFB/1F2937?text=Background+Hero+Light');
+     background-image: linear-gradient(rgba(17, 24, 39, 0.85), rgba(17, 24, 39, 0.85)), url('https://via.placeholder.com/1920x1080/111827/FFFFFF?text=CAR+AUDIO+SQ+BACKGROUND');
 }
 
+/* ========================================= */
+/* 3. CTA & Buttons */
+/* ========================================= */
 
-/* Style Card di Section About/Tentang (Sleek Bordered Card) */
-.sleek-card {
-    /* Mode Gelap */
-    background-color: #1F2937; /* primary-dark */
-    border: 1px solid #374151; /* secondary-dark border */
-    transition-duration: 300ms;
-    transition-property: all;
-}
-.sleek-card:hover {
-    border-color: #C8102E; /* accent-red on hover */
-    transform: translateY(-3px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-}
-.dark .sleek-card {
-    /* Mode Terang */
-    background-color: white; /* primary-light */
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); /* shadow-sm */
-    border-color: #e5e7eb; /* gray-200 */
-}
-.dark .sleek-card:hover {
-    border-color: #C8102E; /* accent-red on hover */
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-/* Penyesuaian ikon layanan (Aksen Merah di background terang/gelap) */
+/* Hover effect untuk kartu layanan */
+.sleek-card:hover .service-icon {
+    transform: scale(1.1);
+    background-color: var(--accent-red); /* Menggunakan variabel warna jika Anda menggunakannya di CSS murni */
+    color: white;
+}
+
 .service-icon {
-    color: #C8102E; /* accent-red */
-    background-color: #111827; /* dark bg (di light mode) */
-}
-.dark .service-icon {
-    background-color: #f5f5f5; /* light bg (di dark mode) */
+    transition: all 0.3s ease;
 }
