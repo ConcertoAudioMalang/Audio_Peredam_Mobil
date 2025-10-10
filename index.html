@@ -56,63 +56,55 @@
         <i class="fa-solid fa-arrow-up text-xl"></i>
     </button>
 
-    <nav class="sticky top-0 z-40 
-                bg-primary-light/95 dark:bg-primary-dark/95 
-                backdrop-blur-sm shadow-md transition-colors duration-500 
-                border-b border-gray-200 dark:border-gray-800"
-            id="navbar">
-        <div class="max-w-7xl mx-auto px-4 md:px-12">
-            <div class="flex justify-between items-center h-20">
-                
-                <a href="#hero" class="flex items-center space-x-2 font-black text-2xl tracking-widest text-accent-red hover:text-red-700 transition duration-300 font-heading">
-                    <svg class="h-8 w-8 text-accent-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.536a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L18.09 13H10a1 1 0 110-2h8.09l-2.554-2.554a1 1 0 010-1.414z"></path></svg>
-                    <span>CONCERTO</span>
-                </a>
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition duration-300 bg-primary-light dark:bg-primary-dark shadow-md border-b border-gray-100 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 md:px-12 h-20 flex items-center justify-between">
+        
+        <a href="#hero" class="flex items-center space-x-2 font-black text-2xl tracking-widest text-accent-red font-heading">
+            <svg class="h-8 w-8 text-accent-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.536a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L18.09 13H10a1 1 0 110-2h8.09l-2.554-2.554a1 1 0 010-1.414z"></path></svg>
+            <span>CONCERTO Audio Malang</span>
+        </a>
 
-               <div class="hidden lg:flex items-center space-x-6">
-                    <div class="flex space-x-8 items-center text-lg font-medium">
-                        <a href="#tentang" class="nav-link text-text-dark dark:text-text-light hover:text-accent-red transition duration-300">Keunggulan</a>
-                        <a href="#layanan" class="nav-link text-text-dark dark:text-text-light hover:text-accent-red transition duration-300">Layanan</a>
-                        <a href="#produk" class="nav-link text-text-dark dark:text-text-light hover:text-accent-red transition duration-300">Paket</a>
-                        <a href="#galeri" class="nav-link text-text-dark dark:text-text-light hover:text-accent-red transition duration-300">Galeri</a>
-                        <a href="#testimoni" class="nav-link text-text-dark dark:text-text-light hover:text-accent-red transition duration-300">Ulasan</a>
-                        <a href="#kontak" class="nav-link text-text-dark dark:text-text-light hover:text-accent-red transition duration-300">Kontak</a>
-                    </div>
-                    
-                    <div class="flex items-center space-x-4 ml-6">
-                        <button id="theme-toggle" class="p-2 rounded-full text-text-dark dark:text-text-light hover:text-accent-red transition duration-300" aria-label="Toggle dark/light mode">
-                            <i id="theme-icon" class="fa-solid fa-moon text-xl"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="flex lg:hidden items-center space-x-2">
-                    <button id="theme-toggle-mobile" class="p-2 rounded-full text-text-dark dark:text-text-light hover:text-accent-red transition duration-300" aria-label="Toggle dark/light mode mobile">
-                        <i id="theme-icon-mobile" class="fa-solid fa-moon text-xl"></i>
-                    </button>
-                    <button id="menu-button" class="p-2 rounded-lg text-text-dark dark:text-text-light hover:text-accent-red transition duration-300" aria-label="Toggle navigation menu">
-                        <i id="menu-icon" class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
+        <div class="hidden lg:flex items-center space-x-6">
+            <div class="flex space-x-8 items-center text-lg font-medium">
+                <a href="#tentang" class="nav-link text-text-dark dark:text-text-light hover:text-accent-red transition duration-300">Keunggulan</a>
+                <a href="#layanan" class="nav-link text-text-dark dark:text-text-light hover:text-accent-red transition duration-300">Layanan</a>
+                <a href="#produk" class="nav-link text-text-dark dark:text-text-light hover:text-accent-red transition duration-300">Paket</a>
+                <a href="#galeri" class="nav-link text-text-dark dark:text-text-light hover:text-accent-red transition duration-300">Galeri</a>
+                <a href="#testimoni" class="nav-link text-text-dark dark:text-text-light hover:text-accent-red transition duration-300">Ulasan</a>
+                <a href="#kontak" class="nav-link text-text-dark dark:text-text-light hover:text-accent-red transition duration-300">Kontak</a>
             </div>
+            
+            <button id="theme-toggle" class="p-2 rounded-full text-text-dark dark:text-text-light hover:text-accent-red transition duration-300" aria-label="Toggle dark/light mode">
+                <i id="theme-icon" class="fa-solid fa-moon text-xl"></i>
+            </button>
         </div>
 
-        <div id="mobile-menu" class="lg:hidden absolute top-20 left-0 w-full 
-                                    bg-primary-light dark:bg-primary-dark border-t 
-                                    border-gray-200 dark:border-gray-800 shadow-xl 
-                                    transform -translate-y-full transition-transform duration-300 ease-in-out">
-            <div class="flex flex-col space-y-3 p-4 text-lg font-medium">
-                <a href="#tentang" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">Keunggulan</a>
-                <a href="#layanan" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">Layanan</a>
-                <a href="#proses" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">Proses</a>
-                <a href="#produk" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">Paket</a>
-                <a href="#galeri" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">Galeri</a>
-                <a href="#testimoni" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">Ulasan</a>
-                <a href="#faq" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">FAQ</a>
-                <a href="#kontak" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">Kontak</a>
-            </div>
+        <div class="flex items-center lg:hidden space-x-4">
+            <button id="theme-toggle-mobile" class="p-2 rounded-full text-text-dark dark:text-text-light hover:text-accent-red transition duration-300" aria-label="Toggle dark/light mode">
+                <i id="theme-icon-mobile" class="fa-solid fa-moon text-xl"></i>
+            </button>
+            <button id="menu-toggle" class="text-text-dark dark:text-text-light hover:text-accent-red transition duration-300 p-2" aria-label="Toggle menu">
+                <i id="menu-icon" class="fa-solid fa-bars text-2xl"></i>
+            </button>
         </div>
-    </nav>
+    </div>
+
+    <div id="mobile-menu" class="lg:hidden absolute top-20 left-0 w-full 
+                                bg-primary-light dark:bg-primary-dark border-t 
+                                border-gray-200 dark:border-gray-800 shadow-xl 
+                                transform -translate-y-full transition-transform duration-300 ease-in-out">
+        <div class="flex flex-col space-y-3 p-4 text-lg font-medium">
+            <a href="#tentang" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">Keunggulan</a>
+            <a href="#layanan" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">Layanan</a>
+            <a href="#proses" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">Proses Kerja</a>
+            <a href="#produk" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">Paket</a>
+            <a href="#galeri" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">Galeri</a>
+            <a href="#testimoni" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">Ulasan</a>
+            <a href="#faq" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">FAQ</a>
+            <a href="#kontak" class="mobile-nav-link block p-2 rounded-lg text-text-dark dark:text-text-light hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-accent-red">Kontak</a>
+        </div>
+    </div>
+</header>
     
     <main>
         
@@ -751,6 +743,7 @@
     
 </body>
 </html>
+
 
 
 
