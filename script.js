@@ -1,140 +1,106 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+    
     /* ========================================= */
-    /* 1. SETUP WHATSAPP LINK HANDLER */
+    /* 1. CONFIGURATION (PENTING!) */
     /* ========================================= */
-    const waLinks = document.querySelectorAll('.cta-whatsapp-link');
-    const phoneNumber = '6281234567890'; // GANTI DENGAN NOMOR WHATSAPP ANDA
-
-    waLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const product = link.getAttribute('data-product') || 'Informasi Umum';
-            const message = `Halo Concerto Audio, saya tertarik dengan layanan/paket: *${product}*. Bisakah saya mendapatkan info lebih lanjut? (Ditemukan dari website)`;
-            const encodedMessage = encodeURIComponent(message);
-            
-            // Logika untuk mendeteksi perangkat dan menggunakan link yang tepat
-            let waURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                waURL = `whatsapp://send?phone=${phoneNumber}&text=${encodedMessage}`;
-            }
-
-            window.open(waURL, '_blank');
-        });
-    });
-
-
+    const phoneNumber = '6281234567890'; // GANTI dengan NOMOR WHATSAPP Anda
+    const waBaseUrl = `https://wa.me/${phoneNumber}?text=`;
+    
     /* ========================================= */
     /* 2. DARK MODE TOGGLE */
     /* ========================================= */
+    const setupThemeToggle = (buttonId, iconId) => {
+        const toggleButton = document.getElementById(buttonId);
+        const toggleIcon = document.getElementById(iconId);
+        
+        if (!toggleButton || !toggleIcon) return;
 
-    const html = document.documentElement;
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
-    const themeIcons = [document.getElementById('theme-icon'), document.getElementById('theme-icon-mobile')];
+        const updateIcon = (isDark) => {
+            if (isDark) {
+                toggleIcon.classList.remove('fa-sun');
+                toggleIcon.classList.add('fa-moon');
+            } else {
+                toggleIcon.classList.remove('fa-moon');
+                toggleIcon.classList.add('fa-sun');
+            }
+        };
 
-    // Fungsi untuk mengatur tema berdasarkan state
-    function applyTheme(isDark) {
-        if (isDark) {
-            html.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-            themeIcons.forEach(icon => {
-                if(icon) {
-                    icon.classList.remove('fa-sun');
-                    icon.classList.add('fa-moon');
-                }
-            });
+        // Cek preferensi user saat loading
+        const isDarkMode = localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        
+        if (isDarkMode) {
+            document.documentElement.classList.add('dark');
         } else {
-            html.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-            themeIcons.forEach(icon => {
-                if(icon) {
-                    icon.classList.remove('fa-moon');
-                    icon.classList.add('fa-sun');
-                }
-            });
+            document.documentElement.classList.remove('dark');
         }
-    }
+        updateIcon(document.documentElement.classList.contains('dark'));
 
-    // Cek tema saat load: Jika ada di localStorage, gunakan itu. Jika tidak, cek preferensi sistem.
-    const storedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    if (storedTheme) {
-        applyTheme(storedTheme === 'dark');
-    } else {
-        applyTheme(prefersDark); // Gunakan preferensi sistem sebagai default
-    }
-
-    // Listener untuk toggle
-    const toggleTheme = () => {
-        const isDark = html.classList.contains('dark');
-        applyTheme(!isDark);
+        toggleButton.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateIcon(isDark);
+        });
     };
 
-    if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
-    if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
-
+    setupThemeToggle('theme-toggle', 'theme-icon'); // Desktop
+    setupThemeToggle('theme-toggle-mobile', 'theme-icon-mobile'); // Mobile
 
     /* ========================================= */
-    /* 3. HAMBURGER MENU */
+    /* 3. HAMBURGER MENU & SCROLL BEHAVIOR */
     /* ========================================= */
-    const menuButton = document.getElementById('menu-button');
+    const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIcon = document.getElementById('menu-icon');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-    if (menuButton) {
-        menuButton.addEventListener('click', () => {
-            const isMenuOpen = mobileMenu.classList.contains('menu-open');
-
-            if (isMenuOpen) {
-                // Tutup Menu
-                mobileMenu.classList.remove('menu-open');
-                mobileMenu.classList.remove('translate-y-0');
-                mobileMenu.classList.add('-translate-y-full', 'hidden'); // Tambah hidden agar tidak menimpa konten
+    
+    if (menuToggle && mobileMenu && menuIcon) {
+        menuToggle.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('-translate-y-full');
+            if (isOpen) {
                 menuIcon.classList.remove('fa-xmark');
                 menuIcon.classList.add('fa-bars');
-                document.body.style.overflowY = 'auto'; // Buka scroll body
             } else {
-                // Buka Menu
-                mobileMenu.classList.add('menu-open');
-                mobileMenu.classList.remove('-translate-y-full', 'hidden');
-                mobileMenu.classList.add('translate-y-0');
                 menuIcon.classList.remove('fa-bars');
                 menuIcon.classList.add('fa-xmark');
-                // document.body.style.overflowY = 'hidden'; // Kunci scroll body
             }
+        });
+
+        // Tutup menu saat link diklik (di mobile)
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('-translate-y-full');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
         });
     }
 
-    // Tutup menu saat link diklik (agar responsif)
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (menuButton) menuButton.click();
+    // Smooth Scroll untuk semua Nav Link
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            document.querySelector(targetId).scrollIntoView({
+                behavior: 'smooth'
+            });
         });
     });
 
-
     /* ========================================= */
-    /* 4. SCROLL-TO-TOP BUTTON (UP BUTTON) */
+    /* 4. SCROLL TO TOP BUTTON (OPSIONAL) */
     /* ========================================= */
-    const backToTopButton = document.getElementById('back-to-top');
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
 
-    // Tampilkan/Sembunyikan tombol
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) { // Tampilkan setelah scroll 300px
-            backToTopButton.classList.remove('invisible', 'opacity-0');
-            backToTopButton.classList.add('opacity-100');
-        } else {
-            backToTopButton.classList.remove('opacity-100');
-            backToTopButton.classList.add('invisible', 'opacity-0');
-        }
-    });
+    if (scrollToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+            } else {
+                scrollToTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        });
 
-    // Fungsi scroll ke atas
-    if (backToTopButton) {
-        backToTopButton.addEventListener('click', () => {
+        scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -143,26 +109,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ========================================= */
-    /* 5. NAVBAR SCROLL EFFECT (Optional) */
+    /* 5. CTA WHATSAPP HANDLER */
     /* ========================================= */
-    const nav = document.getElementById('navbar');
-    const originalHeightClass = 'h-20';
-    const scrolledHeightClass = 'h-16';
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 80) {
-            nav.classList.remove(originalHeightClass);
-            nav.classList.add(scrolledHeightClass);
-        } else {
-            nav.classList.remove(scrolledHeightClass);
-            nav.classList.add(originalHeightClass);
-        }
+    document.querySelectorAll('.cta-whatsapp-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const product = link.getAttribute('data-product');
+            const message = `Halo Concerto Audio Malang, saya tertarik dengan: *${product}*. Mohon informasinya lebih lanjut. Terima kasih!`;
+            window.open(waBaseUrl + encodeURIComponent(message), '_blank');
+        });
     });
 
-});
 
-
-/* ========================================= */
+    /* ========================================= */
     /* 6. FAQ ACCORDION LOGIC */
     /* ========================================= */
     const faqItems = document.querySelectorAll('.faq-item');
@@ -176,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleButton.addEventListener('click', () => {
                 const isHidden = content.classList.contains('hidden');
 
-                // Tutup semua item FAQ yang terbuka (opsional, tapi disarankan)
+                // Tutup semua item FAQ yang terbuka (untuk efek accordion)
                 faqItems.forEach(i => {
                     const c = i.querySelector('.faq-content');
                     const ic = i.querySelector('.fa-plus');
@@ -189,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Buka/Tutup item yang diklik
                 if (isHidden) {
                     content.classList.remove('hidden');
-                    icon.classList.add('rotate-45');
+                    icon.classList.add('rotate-45'); // Memutar ikon + menjadi X
                 } else {
                     content.classList.add('hidden');
                     icon.classList.remove('rotate-45');
@@ -197,3 +156,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    /* ========================================= */
+    /* 7. AOS (Animate On Scroll) INITIALIZATION */
+    /* ========================================= */
+    AOS.init({
+        duration: 800,
+        once: true,
+        easing: 'ease-in-out'
+    });
+
+}); // End DOMContentLoaded
