@@ -581,13 +581,91 @@
         </section>
     </main>
 
-    <footer class="bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 py-12" aria-label="Footer Information">
-        <div class="max-w-7xl mx-auto px-4 md:px-12">
-            <div class="text-center text-xs pt-4 text-gray-500 dark:text-gray-700">
-                <p>&copy; 2025 CONCERTO Audio Malang. All rights reserved. | Engineered by <span class="text-accent-red font-semibold">Sleek Digital</span></p>
+    <footer class="bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 py-12 lg:py-16" aria-label="Footer Information">
+    <div class="max-w-7xl mx-auto px-4 md:px-12">
+        
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-10 text-text-dark dark:text-text-light">
+
+            <div class="col-span-2 lg:col-span-1">
+                <a href="#hero" class="flex items-center space-x-2 font-black text-2xl tracking-widest text-accent-red font-heading mb-4">
+                    <svg class="h-8 w-8 text-accent-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.536a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L18.09 13H10a1 1 0 110-2h8.09l-2.554-2.554a1 1 0 010-1.414z"></path></svg>
+                    <span>CONCERTO</span>
+                </a>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 max-w-xs">
+                    Upgrade pengalaman berkendara Anda dengan sistem Sound Quality (SQ) terbaik. Spesialis tuning DSP di Malang Raya.
+                </p>
+                
+                <p class="text-sm font-semibold text-text-dark dark:text-text-light">
+                    <i class="fa-solid fa-phone mr-2 text-accent-red"></i> Telepon: <span class="text-gray-600 dark:text-gray-400">0812-345-67890</span>
+                </p>
+                <p class="text-sm font-semibold text-text-dark dark:text-text-light">
+                    <i class="fa-solid fa-location-dot mr-2 text-accent-red"></i> Malang, Jawa Timur
+                </p>
+
             </div>
+
+            <div>
+                <h4 class="font-bold text-lg mb-4 uppercase tracking-wider text-text-dark dark:text-text-light font-heading">Layanan Kami</h4>
+                <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                    <li><a href="#layanan" class="hover:text-accent-red transition duration-300">DSP Tuning Profesional</a></li>
+                    <li><a href="#layanan" class="hover:text-accent-red transition duration-300">Instalasi Peredam</a></li>
+                    <li><a href="#produk" class="hover:text-accent-red transition duration-300">Paket SQ Premium</a></li>
+                    <li><a href="#proses" class="hover:text-accent-red transition duration-300">Alur Kerja Transparan</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-lg mb-4 uppercase tracking-wider text-text-dark dark:text-text-light font-heading">Informasi Cepat</h4>
+                <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                    <li><a href="#galeri" class="hover:text-accent-red transition duration-300">Lihat Portofolio</a></li>
+                    <li><a href="#testimoni" class="hover:text-accent-red transition duration-300">Ulasan Pelanggan</a></li>
+                    <li><a href="#faq" class="hover:text-accent-red transition duration-300">FAQ (Tanya Jawab)</a></li>
+                    <li><a href="#" class="cta-whatsapp-link hover:text-accent-red transition duration-300" data-product="Footer Permintaan Konsultasi">Konsultasi Gratis</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-lg mb-4 uppercase tracking-wider text-text-dark dark:text-text-light font-heading">Ikuti Kami</h4>
+                <div class="flex space-x-4">
+                    
+                    <a href="https://instagram.com/akun_anda" target="_blank" aria-label="Instagram Concerto" 
+                       class="footer-social-icon text-2xl text-gray-500 dark:text-gray-600 hover:text-accent-red transition duration-300">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/akun_anda" target="_blank" aria-label="Facebook Concerto" 
+                       class="footer-social-icon text-2xl text-gray-500 dark:text-gray-600 hover:text-accent-red transition duration-300">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://tiktok.com/@akun_anda" target="_blank" aria-label="TikTok Concerto" 
+                       class="footer-social-icon text-2xl text-gray-500 dark:text-gray-600 hover:text-accent-red transition duration-300">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                    <a href="https://youtube.com/channel/anda" target="_blank" aria-label="YouTube Concerto" 
+                       class="footer-social-icon text-2xl text-gray-500 dark:text-gray-600 hover:text-accent-red transition duration-300">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+                
+                <div class="mt-8">
+                    <p class="text-sm font-semibold mb-2 text-text-dark dark:text-text-light">Dapatkan Update</p>
+                    <form action="#" method="POST">
+                        <input type="email" placeholder="Email Anda" required 
+                               class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm bg-primary-light dark:bg-primary-dark text-text-dark dark:text-text-light focus:ring-accent-red focus:border-accent-red">
+                        <button type="submit" 
+                                class="w-full mt-2 p-2 bg-accent-red text-white text-sm font-semibold rounded-lg hover:bg-red-700 transition duration-300">
+                            Daftar
+                        </button>
+                    </form>
+                </div>
+            </div>
+
         </div>
-    </footer>
+
+        <div class="border-t border-gray-200 dark:border-gray-800 pt-8 text-center text-xs text-gray-500 dark:text-gray-700">
+            <p>&copy; 2025 CONCERTO Audio Malang. All rights reserved. | Engineered by <span class="text-accent-red font-semibold">Concerto Media Team</span></p>
+        </div>
+    </div>
+</footer>
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
@@ -604,6 +682,7 @@
     
 </body>
 </html>
+
 
 
 
