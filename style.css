@@ -18,7 +18,7 @@ body {
 /* ========================================= */
 
 .hero-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./assets/background-concerto.jpg'); 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('asset/background-concerto.jpg'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -55,6 +55,7 @@ body {
 .service-icon {
     transition: all 0.3s ease;
 }
+
 
 
 
