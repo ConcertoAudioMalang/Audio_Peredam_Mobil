@@ -166,4 +166,21 @@ document.addEventListener('DOMContentLoaded', () => {
         easing: 'ease-in-out'
     });
 
+    /* ========================================= */
+/* 8. NAVBAR SCROLL STICKY/TRANSPARENCY (BARU) */
+/* ========================================= */
+const navbar = document.getElementById('navbar');
+const heroHeight = document.getElementById('hero') ? document.getElementById('hero').offsetHeight / 2 : 300; 
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) { // Munculkan background setelah scroll 50px
+        navbar.classList.add('bg-primary-light', 'dark:bg-primary-dark');
+        navbar.classList.remove('bg-opacity-0', 'shadow-none');
+    } else {
+        navbar.classList.remove('bg-primary-light', 'dark:bg-primary-dark');
+        navbar.classList.add('bg-opacity-0', 'shadow-none');
+    }
+});
+
 }); // End DOMContentLoaded
+
