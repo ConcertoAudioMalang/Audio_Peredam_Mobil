@@ -14,6 +14,27 @@ body {
 }
 
 /* ========================================= */
+/* NAVBAR TRANSPARENCY FIX */
+/* ========================================= */
+
+/* LIGHT MODE: BACKGROUND AGAK TRANSPARAN (95% Opacity) */
+.bg-primary-light {
+    /* Menggunakan RGBA: Misal, warna putih (255, 255, 255) dengan Opacity 0.95 */
+    /* Jika warna primary light Anda adalah Putih */
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* DARK MODE: BACKGROUND AGAK TRANSPARAN (95% Opacity) */
+.dark .bg-primary-dark {
+    /* Menggunakan RGBA: Misal, warna hitam/dark gray (17, 24, 39) dengan Opacity 0.95 */
+    /* Jika warna primary dark Anda adalah Tailwind Gray-900 */
+    background-color: rgba(17, 24, 39, 0.95);
+}
+
+/* Pastikan styling ini diletakkan SETELAH library Tailwind CSS dimuat
+   (Jika Anda menggunakan custom CSS file) */
+
+/* ========================================= */
 /* 2. Hero Section Styling (CRITICAL) */
 /* ========================================= */
 
