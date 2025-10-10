@@ -12,14 +12,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fungsi untuk menerapkan tema
     function applyTheme(theme) {
+        // Dalam konteks tailwind.config, 'dark' berarti mode GELAP
+        // Jika savedTheme == 'dark', kita TIDAK menambah class 'dark' ke body
         if (theme === 'dark') {
-            body.classList.remove('dark');
+            body.classList.remove('dark'); 
+            // Ikon harusnya bulan saat mode gelap aktif (class 'dark' tidak ada)
             toggleIcons.forEach(icon => {
                 icon.classList.remove('fa-sun');
                 icon.classList.add('fa-moon');
             });
         } else {
-            body.classList.add('dark');
+            // Jika savedTheme == 'light', kita menambah class 'dark' ke body
+            // ini adalah kebalikan dari setting Tailwind default yang sedikit membingungkan, tapi ini cara kerjanya.
+            body.classList.add('dark'); 
+            // Ikon harusnya matahari saat mode terang aktif (class 'dark' ada)
             toggleIcons.forEach(icon => {
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
@@ -33,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event listener untuk tombol toggle
     toggleButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const currentTheme = body.classList.contains('dark') ? 'light' : 'dark';
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const isDarkMode = !body.classList.contains('dark');
+            const newTheme = isDarkMode ? 'light' : 'dark';
 
             localStorage.setItem('theme', newTheme);
             applyTheme(newTheme);
@@ -65,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Tutup menu setelah klik link (untuk navigasi yang lancar)
+    // Tutup menu setelah klik link
     mobileNavLinks.forEach(link => {
         link.addEventListener('click', () => {
             mobileMenu.classList.add('hidden', '-translate-y-full');
@@ -81,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const backToTopButton = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => {
+         // Tampilkan tombol setelah user scroll 300px
          if (window.scrollY > 300) {
              backToTopButton.classList.remove('opacity-0', 'invisible');
              backToTopButton.classList.add('opacity-100', 'visible');
