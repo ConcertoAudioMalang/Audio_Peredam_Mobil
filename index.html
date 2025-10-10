@@ -3,47 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONCERTO | Audio Mobil SQ - Futuristik & Sporty</title>
+    <title>CONCERTO Malang | Audio Mobil SQ - Peredam Mobil</title>
     <meta name="description" content="Upgrade pengalaman berkendara Anda dengan Sound Quality (SQ) terbaik. Spesialis tuning DSP, instalasi audio, dan peredam mobil di Malang. Garansi tuning memuaskan.">
     <meta name="keywords" content="audio mobil malang, sound quality malang, dsp tuning, peredam mobil, instalasi audio mobil, toko audio malang">
     <meta name="author" content="Concerto Audio Malang">
 
     <script src="https://cdn.tailwindcss.com"></script>
-<script>
-    tailwind.config = {
-        darkMode: 'class', 
-        theme: {
-            extend: {
-                colors: {
-                    'primary-dark': '#000000',      // Latar belakang utama gelap
-                    'secondary-dark': '#0f0f0f',    // Latar belakang sekunder gelap (section)
-                    'text-light': '#F3F4F6',        // Warna teks di mode gelap
-                    'primary-light': '#ffffff',     // Latar belakang utama terang
-                    'secondary-light': '#f0f0f0',   // Latar belakang sekunder terang (section)
-                    'text-dark': '#1f2937',         // Warna teks di mode terang
-                    'accent-red': '#E30000',        // Aksen kuat (merah)
-                    'accent-neon': '#00FFFF',       // Aksen sekunder (cyan neon)
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class', 
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#000000',      // Latar belakang utama gelap
+                        'secondary-dark': '#0f0f0f',    // Latar belakang sekunder gelap (section)
+                        'text-light': '#F3F4F6',        // Warna teks di mode gelap
+                        'primary-light': '#ffffff',     // Latar belakang utama terang
+                        'secondary-light': '#f0f0f0',   // Latar belakang sekunder terang (section)
+                        'text-dark': '#1f2937',         // Warna teks di mode terang
+                        'accent-red': '#E30000',        // Aksen kuat (merah)
+                        'accent-neon': '#00FFFF',       // Aksen sekunder (cyan neon)
+                    }
                 }
             }
         }
-    }
-</script>
-
-<link rel="stylesheet" href="style.css"> 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    // Hanya sisakan AOS.init() di sini
-    AOS.init({
-        duration: 800, 
-        once: true,
-        easing: 'ease-in-out',
-    });
-</script>
-<script src="script.js"></script>
+    </script>
+    
+    <link rel="stylesheet" href="style.css">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -58,11 +45,12 @@
         <i class="fa-solid fa-arrow-up text-xl"></i>
     </button>
 
-    <a href="https://wa.me/6281217398558?text=Halo%20Concerto%2C%20saya%20tertarik%20dengan%20layanan%20audio%20mobil%20SQ.%20Bisa%20dibantu%20konsultasi%3F"
-        target="_blank"
+    <a href="#"
+        id="floating-whatsapp-link"
         rel="noopener noreferrer"
         class="fixed bottom-6 left-6 p-4 rounded-full bg-accent-neon text-primary-dark shadow-2xl z-50
-               transition duration-300 transform hover:scale-110 hover:bg-cyan-400"
+               transition duration-300 transform hover:scale-110 hover:bg-cyan-400 cta-whatsapp-link"
+        data-product="Konsultasi dari Floating CTA"
         aria-label="Hubungi kami via WhatsApp">
         <i class="fa-brands fa-whatsapp text-2xl"></i>
     </a>
@@ -502,6 +490,18 @@
             </div>
         </div>
     </footer>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        AOS.init({
+            duration: 800, 
+            once: true,
+            easing: 'ease-in-out',
+        });
+    </script>
+
+    <script src="script.js"></script>
+    
 </body>
 </html>
-
