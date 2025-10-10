@@ -9,73 +9,45 @@
     <meta name="author" content="Concerto Audio Malang">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class', 
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-dark': '#000000',      // Latar belakang utama gelap
-                        'secondary-dark': '#0f0f0f',    // Latar belakang sekunder gelap (section)
-                        'text-light': '#F3F4F6',        // Warna teks di mode gelap
-                        'primary-light': '#ffffff',     // Latar belakang utama terang
-                        'secondary-light': '#f0f0f0',   // Latar belakang sekunder terang (section)
-                        'text-dark': '#1f2937',         // Warna teks di mode terang
-                        'accent-red': '#E30000',        // Aksen kuat (merah)
-                        'accent-neon': '#00FFFF',       // Aksen sekunder (cyan neon)
-                    }
+<script>
+    tailwind.config = {
+        darkMode: 'class', 
+        theme: {
+            extend: {
+                colors: {
+                    'primary-dark': '#000000',      // Latar belakang utama gelap
+                    'secondary-dark': '#0f0f0f',    // Latar belakang sekunder gelap (section)
+                    'text-light': '#F3F4F6',        // Warna teks di mode gelap
+                    'primary-light': '#ffffff',     // Latar belakang utama terang
+                    'secondary-light': '#f0f0f0',   // Latar belakang sekunder terang (section)
+                    'text-dark': '#1f2937',         // Warna teks di mode terang
+                    'accent-red': '#E30000',        // Aksen kuat (merah)
+                    'accent-neon': '#00FFFF',       // Aksen sekunder (cyan neon)
                 }
             }
         }
-    </script>
+    }
+</script>
+
+<link rel="stylesheet" href="style.css"> 
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Hanya sisakan AOS.init() di sini
+    AOS.init({
+        duration: 800, 
+        once: true,
+        easing: 'ease-in-out',
+    });
+</script>
+<script src="script.js"></script>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <style>
-        /* Memastikan transisi warna latar belakang dan teks smooth saat ganti mode */
-        body {
-            transition: background-color 0.5s, color 0.5s;
-        }
-
-        /* Styling Judul Section (Sleek Look) */
-        .section-title {
-            @apply text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight;
-            /* Teks berubah berdasarkan mode */
-            @apply text-text-light dark:text-text-dark;
-        }
-
-        /* Styling Tombol CTA Utama */
-        .btn {
-            @apply font-extrabold rounded-full transition duration-300 transform hover:scale-[1.03];
-        }
-        .btn-primary {
-            /* Warna tombol utama (misal: tombol ke paket) */
-            @apply bg-accent-red text-white hover:bg-red-700;
-        }
-        
-        /* Hero Section Background (Menggunakan Overlay untuk kontras yang lebih baik) */
-        .hero-bg {
-            /* Ganti 'url-gambar-anda.jpg' dengan URL gambar latar belakang yang diinginkan */
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://via.placeholder.com/1920x1080/000000/F3F4F6?text=Background+Hero+Futuristik');
-            background-size: cover;
-            background-position: center;
-        }
-
-        /* Style Card di Section About/Tentang */
-        .glass-card {
-             /* Mode Gelap: Tampilan glass-like dengan border neon */
-            @apply bg-white/5 backdrop-blur-sm border border-opacity-20 transition duration-500 ease-in-out;
-            /* Mode Terang: Tampilan bersih dengan shadow ringan */
-            @apply dark:bg-white dark:shadow-lg dark:shadow-gray-300 dark:border-gray-200;
-        }
-        .dark .glass-card {
-            /* Menghapus glass effect di light mode, hanya shadow */
-            background-color: transparent; 
-            backdrop-filter: none;
-        }
-    </style>
 </head>
 
 <body class="bg-primary-dark text-text-light antialiased dark:bg-primary-light dark:text-text-dark">
@@ -526,45 +498,10 @@
             </div>
             
             <div class="text-center text-xs pt-4 text-gray-600 dark:text-gray-700">
-                <p>&copy; 2025 CONCERTO Audio Malang. All rights reserved. | Engineered by <span class="text-accent-neon">Futuristic Digital</span></p>
+                <p>&copy; 2025 CONCERTO Audio Malang. All rights reserved. | Engineered by <span class="text-accent-neon">Concerto Malang</span></p>
             </div>
         </div>
     </footer>
-    
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
-    
-    <script>
-        // INISIALISASI AOS
-        AOS.init({
-            duration: 800, 
-            once: true,
-            easing: 'ease-in-out',
-        });
-        
-        // =================================================================================
-        // LOGIKA DARK MODE, HAMBURGER, BACK TO TOP (PASTIKAN KODE INI ADA DI script.js ANDA)
-        // =================================================================================
-        /* Jika Anda tidak menggunakan script.js, hapus baris di atas dan pindahkan 
-        logika JS dari Tahap 1 (Dark Mode, Hamburger, Back to Top) ke dalam tag <script> ini.
-        */
-        
-        // Contoh: Back to Top Logic (jika tidak di script.js)
-        const backToTopButton = document.getElementById('back-to-top');
-        window.addEventListener('scroll', () => {
-             if (window.scrollY > 300) {
-                 backToTopButton.classList.remove('opacity-0', 'invisible');
-                 backToTopButton.classList.add('opacity-100', 'visible');
-             } else {
-                 backToTopButton.classList.remove('opacity-100', 'visible');
-                 backToTopButton.classList.add('opacity-0', 'invisible');
-             }
-        });
-
-        backToTopButton.addEventListener('click', () => {
-             window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-    </script>
 </body>
 </html>
+
