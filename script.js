@@ -166,21 +166,35 @@ document.addEventListener('DOMContentLoaded', () => {
         easing: 'ease-in-out'
     });
 
-    /* ========================================= */
-/* 8. NAVBAR SCROLL STICKY/TRANSPARENCY (BARU) */
+/* ========================================= */
+/* 8. NAVBAR SCROLL (SOLID-to-TRANSPARENT/HIDE) */
 /* ========================================= */
 const navbar = document.getElementById('navbar');
-const heroHeight = document.getElementById('hero') ? document.getElementById('hero').offsetHeight / 2 : 300; 
+// Tentukan seberapa jauh scroll sebelum efek diterapkan (misal: 100px)
+const scrollThreshold = 100; 
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) { // Munculkan background setelah scroll 50px
-        navbar.classList.add('bg-primary-light', 'dark:bg-primary-dark');
-        navbar.classList.remove('bg-opacity-0', 'shadow-none');
+    if (window.scrollY > scrollThreshold) {
+        // Jika user scroll ke bawah:
+        
+        // Membuatnya sangat transparan
+        navbar.classList.add('opacity-0', 'invisible'); 
+        
+        // Opsi 1: Membuatnya transparan tetapi masih ada (rekomendasi: gunakan opacity)
+        // navbar.classList.add('bg-opacity-10', 'shadow-none');
+        // navbar.classList.remove('bg-primary-light', 'dark:bg-primary-dark', 'shadow-md'); 
+
     } else {
-        navbar.classList.remove('bg-primary-light', 'dark:bg-primary-dark');
-        navbar.classList.add('bg-opacity-0', 'shadow-none');
+        // Jika user di puncak halaman:
+        
+        // Memastikan ia kembali solid
+        navbar.classList.remove('opacity-0', 'invisible');
+        
+        // Opsi 1: Memastikan ia kembali solid
+        // navbar.classList.remove('bg-opacity-10', 'shadow-none');
+        // navbar.classList.add('bg-primary-light', 'dark:bg-primary-dark', 'shadow-md'); 
     }
 });
-
 }); // End DOMContentLoaded
+
 
