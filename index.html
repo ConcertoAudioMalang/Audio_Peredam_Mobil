@@ -45,6 +45,7 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMD/CDQd6Tz8xGf7VnC6yF55w3w3Y6dC5p3P5P1d2c3N6l0H3P3F6l5g=" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
 </head>
 
@@ -791,22 +792,211 @@
     </div>
     </div>
 </footer>
-    
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <script>
-        // INISIALISASI AOS
-        AOS.init({
-            duration: 800, 
-            once: true,
-            easing: 'ease-in-out',
-        });
-    </script>
 
-    <script src="script.js"></script>
+   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+    // ===========================================
+    // BAGIAN 1: KONFIGURASI TAILWIND (HARUS DI LUAR DOMContentLoaded)
+    // ===========================================
+    tailwind.config = {
+        darkMode: 'class', 
+        theme: {
+            extend: {
+                colors: {
+                    'primary-light': '#ffffff',
+                    'secondary-light': '#f5f5f5',
+                    'text-dark': '#111827',
+                    'primary-dark': '#111827',
+                    'secondary-dark': '#1F2937',
+                    'text-light': '#F9FAFB',
+                    'accent-red': '#DC2626',
+                },
+                fontFamily: {
+                    sans: ['Inter', 'system-ui', 'sans-serif'],
+                    heading: ['Poppins', 'sans-serif'],
+                }
+            }
+        }
+    }
+
+    // ===========================================
+    // BAGIAN 2: SEMUA LOGIKA JAVASCRIPT (DI DALAM DOMContentLoaded)
+    // ===========================================
+    document.addEventListener('DOMContentLoaded', () => {
+
+        /* 1. CONFIGURATION */
+        const phoneNumber = '6281234567890'; // GANTI
+        const waBaseUrl = `https://wa.me/${phoneNumber}?text=`;
+
+        /* 2. DARK MODE TOGGLE */
+        const setupThemeToggle = (buttonId, iconId) => {
+            const toggleButton = document.getElementById(buttonId);
+            const toggleIcon = document.getElementById(iconId);
+            
+            if (!toggleButton || !toggleIcon) return;
+
+            const updateIcon = (isDark) => {
+                if (isDark) {
+                    toggleIcon.classList.remove('fa-moon');
+                    toggleIcon.classList.add('fa-sun'); 
+                } else {
+                    toggleIcon.classList.remove('fa-sun');
+                    toggleIcon.classList.add('fa-moon');
+                }
+            };
+
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            let initialIsDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+            
+            if (initialIsDark) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            updateIcon(document.documentElement.classList.contains('dark'));
+
+            toggleButton.addEventListener('click', () => {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                updateIcon(isDark);
+            });
+        };
+
+        setupThemeToggle('theme-toggle', 'theme-icon'); 
+        setupThemeToggle('theme-toggle-mobile', 'theme-icon-mobile'); 
+
+
+        /* 3. HAMBURGER MENU LOGIC */
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        
+        if (menuToggle && mobileMenu && menuIcon) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('-translate-y-full'); 
+                mobileMenu.classList.toggle('translate-y-0');
+                
+                if (mobileMenu.classList.contains('translate-y-0')) { 
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-xmark');
+                } else {
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                }
+            });
+
+            // Tutup menu saat link diklik
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('translate-y-0');
+                    mobileMenu.classList.add('-translate-y-full');
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                });
+            });
+        }
+
+        /* 4. SMOOTH SCROLL FOR NAV LINKS */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        /* 5. NAVBAR SCROLL (HIDE/SHOW) */
+        const navbar = document.getElementById('navbar');
+        const scrollThreshold = 100; 
+        if (navbar) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > scrollThreshold) {
+                    navbar.classList.add('opacity-0', 'invisible'); 
+                } else {
+                    navbar.classList.remove('opacity-0', 'invisible');
+                }
+            });
+        }
+
+        /* 6. CTA WHATSAPP HANDLER */
+        document.querySelectorAll('.cta-whatsapp-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const product = link.getAttribute('data-product') || 'Informasi umum';
+                const message = `Halo Concerto Audio Malang, saya tertarik dengan: *${product}*. Mohon informasinya lebih lanjut. Terima kasih!`;
+                window.open(waBaseUrl + encodeURIComponent(message), '_blank');
+            });
+        });
+
+        /* 7. FAQ ACCORDION LOGIC */
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const toggleButton = item.querySelector('.faq-toggle');
+            const content = item.querySelector('.faq-content');
+            const icon = item.querySelector('.fa-plus'); 
+            
+            if (toggleButton && content && icon) {
+                toggleButton.addEventListener('click', () => {
+                    const isHidden = content.classList.contains('hidden');
+                    faqItems.forEach(i => {
+                        const c = i.querySelector('.faq-content');
+                        const ic = i.querySelector('.fa-plus');
+                        if (c && ic && c !== content && !c.classList.contains('hidden')) {
+                            c.classList.add('hidden');
+                            ic.classList.remove('rotate-45');
+                        }
+                    });
+                    if (isHidden) {
+                        content.classList.remove('hidden');
+                        icon.classList.add('rotate-45'); 
+                    } else {
+                        content.classList.add('hidden');
+                        icon.classList.remove('rotate-45');
+                    }
+                });
+            }
+        });
+
+        /* 8. SCROLL TO TOP BUTTON */
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+
+        if (scrollToTopBtn) {
+            const visibilityThreshold = 300;
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > visibilityThreshold) {
+                    scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+                } else {
+                    scrollToTopBtn.classList.add('opacity-0', 'invisible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        /* 9. AOS (Animate On Scroll) INITIALIZATION */
+        // AOS diinisialisasi di sini, setelah elemen DOM siap.
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                once: true,
+                easing: 'ease-in-out'
+            });
+        }
+    }); // END of DOMContentLoaded
+</script>
     
 </body>
 </html>
+
 
 
 
