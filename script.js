@@ -1,35 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ------------------------------------------
-    // 1. DARK MODE TOGGLE & PERSISTENCE
-    // ------------------------------------------
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
-    const html = document.documentElement;
+   // ------------------------------------------
+// 1. DARK MODE TOGGLE & PERSISTENCE
+// ------------------------------------------
+// Menggunakan querySelectorAll karena sekarang ada dua tombol dengan ID 'theme-toggle'
+const themeToggles = document.querySelectorAll('#theme-toggle');
+const html = document.documentElement;
 
-    // Load saved preference
-    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        html.classList.add('dark');
-    } else {
+// Load saved preference
+if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    html.classList.add('dark');
+} else {
+    html.classList.remove('dark');
+}
+
+// Toggle logic function
+function toggleTheme() {
+    if (html.classList.contains('dark')) {
         html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+    } else {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
     }
+}
 
-    // Toggle logic function
-    function toggleTheme() {
-        if (html.classList.contains('dark')) {
-            html.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        } else {
-            html.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-        }
-    }
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
-    }
-    if (themeToggleMobile) {
-        themeToggleMobile.addEventListener('click', toggleTheme);
-    }
+// Attach event listener to all toggle buttons
+themeToggles.forEach(toggle => {
+    toggle.addEventListener('click', toggleTheme);
+});
 
     // ------------------------------------------
     // 2. MOBILE MENU TOGGLE
@@ -133,3 +131,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
