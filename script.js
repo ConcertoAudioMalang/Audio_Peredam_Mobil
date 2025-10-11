@@ -70,6 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
             message += "Saya tertarik dengan Paket Instalasi *Premium Stage* (SQ.02). Bisakah Anda mengirimkan daftar komponen dan estimasi biayanya untuk mobil [Sebutkan Tipe Mobil]?";
         } else if (productInfo.includes('Full Treatment')) {
             message += "Saya ingin konsultasi mengenai Paket Instalasi *Full Treatment* (SQ.03). Mohon dibantu detail lengkap paket ini.";
+        } else if (productInfo.includes('Proses Kerja - Tanya Detail')) { // BARU
+            message += "Saya sudah melihat 4 langkah proses kerja instalasi audio. Saya ingin bertanya lebih detail mengenai garansi tuning dan ketersediaan jadwal pengerjaan.";
         } else {
              message += "Saya ingin berkonsultasi mengenai upgrade audio mobil. Mohon informasinya lebih lanjut. Terima kasih.";
         }
@@ -157,3 +159,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
