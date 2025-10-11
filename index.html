@@ -28,7 +28,6 @@
                         'text-light': '#F9FAFB',
                     },
                     fontFamily: {
-                        // Gunakan font Sans-Serif default Tailwind
                         'heading': ['Inter', 'sans-serif'], 
                     },
                 }
@@ -69,13 +68,6 @@
                 </button>
                 <button id="mobile-menu-button" class="text-2xl hover:text-accent-red transition duration-200" aria-label="Toggle mobile menu">
                     <i class="fa-solid fa-bars"></i>
-                </button>
-                <button 
-                    id="scroll-to-top" 
-                    class="fixed bottom-6 right-6 z-50 p-4 bg-accent-red text-white rounded-full shadow-2xl transition-all duration-300 opacity-0 invisible hover:bg-red-700" 
-                    aria-label="Kembali ke atas"
-                    onclick="scrollToTop()">
-                    <i class="fa-solid fa-arrow-up text-xl"></i>
                 </button>
             </div>
         </nav>
@@ -593,10 +585,17 @@
             </div>
 
             <div class="border-t border-gray-200 dark:border-gray-800 pt-8 text-center text-xs text-gray-500 dark:text-gray-400">
-                <p>&copy; 2025 CONCERTO Audio Malang. All rights reserved. | Engineered by <span class="text-accent-red font-semibold">Concerto Media Team</span></p>
+                <p>© 2025 CONCERTO Audio Malang. All rights reserved. | Engineered by <span class="text-accent-red font-semibold">Concerto Media Team</span></p>
             </div>
         </div>
     </footer>
+    
+    <button 
+        id="scroll-to-top" 
+        class="fixed bottom-6 right-6 z-50 p-4 bg-accent-red text-white rounded-full shadow-2xl transition-all duration-300 opacity-0 invisible hover:bg-red-700" 
+        aria-label="Kembali ke atas">
+        <i class="fa-solid fa-arrow-up text-xl"></i>
+    </button>
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -609,8 +608,5 @@
     </script>
     
     <script src="script.js"></script>
-    
 </body>
 </html>
-
-
