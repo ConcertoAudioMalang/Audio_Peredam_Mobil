@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menuToggle && mobileMenu && menuIcon) {
         menuToggle.addEventListener('click', () => {
             // Mengganti posisi menu
-            const isClosing = mobileMenu.classList.toggle('-translate-y-full'); 
+            mobileMenu.classList.toggle('-translate-y-full'); 
             mobileMenu.classList.toggle('translate-y-0');
             
             // Logika Perbaikan: Jika menu TERBUKA (translate-y-0 ada), tampilkan ikon 'X'
@@ -112,11 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
     /* 5. NAVBAR SCROLL (SLIGHTLY HIDE/SHOW) */
     /* ========================================= */
     const navbar = document.getElementById('navbar');
-    const scrollThreshold = 100; // Mulai menghilang setelah 100px
+    const scrollThreshold = 100; 
 
     if (navbar) {
         window.addEventListener('scroll', () => {
-            // Logika: Menyembunyikan navbar setelah scroll melebihi ambang batas
+            // Menyembunyikan navbar setelah scroll melebihi ambang batas
             if (window.scrollY > scrollThreshold) {
                 navbar.classList.add('opacity-0', 'invisible'); 
             } else {
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     faqItems.forEach(item => {
         const toggleButton = item.querySelector('.faq-toggle');
         const content = item.querySelector('.faq-content');
-        const icon = item.querySelector('.fa-plus'); // Asumsi ikon adalah 'fa-plus'
+        const icon = item.querySelector('.fa-plus'); 
         
         if (toggleButton && content && icon) {
             toggleButton.addEventListener('click', () => {
@@ -174,9 +174,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ========================================= */
-    /* 8. AOS (Animate On Scroll) INITIALIZATION */
+    /* 8. SCROLL TO TOP BUTTON (DIKEMBALIKAN!) */
     /* ========================================= */
-    // Pastikan Anda telah menyertakan library AOS.js
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+
+    if (scrollToTopBtn) {
+        const visibilityThreshold = 300; // Ambang batas (dalam piksel) untuk menampilkan tombol
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > visibilityThreshold) {
+                // Tampilkan tombol
+                scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+            } else {
+                // Sembunyikan tombol
+                scrollToTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+    
+    /* ========================================= */
+    /* 9. AOS (Animate On Scroll) INITIALIZATION */
+    /* ========================================= */
     if (typeof AOS !== 'undefined') {
         AOS.init({
             duration: 800,
