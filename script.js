@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     mobileMenuButton.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
-        // Mengubah ikon hamburger
         const icon = mobileMenuButton.querySelector('i');
         if (mobileMenu.classList.contains('hidden')) {
             icon.classList.remove('fa-xmark');
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Sembunyikan menu mobile saat link di dalamnya diklik (untuk smooth scrolling)
     mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
@@ -29,12 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-
-    // Inisialisasi Dark Mode
     const themeToggle = document.getElementById('theme-toggle');
     const themeToggleMobile = document.getElementById('theme-toggle-mobile');
 
-    // Cek preferensi user atau simpanan local storage
     if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
     } else {
@@ -59,19 +54,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2. FUNGSI WHATSAPP CTA LINK GENERATOR
     // =========================================================
 
-    // Nomor WhatsApp tujuan
     const whatsappNumber = "6281234567890"; // GANTI DENGAN NOMOR ANDA YANG BENAR!
-
-    // Handler untuk semua elemen dengan class 'cta-whatsapp-link'
     const ctaLinks = document.querySelectorAll('.cta-whatsapp-link');
 
     ctaLinks.forEach(link => {
-        // Ambil data-product/data-tracking untuk membuat pesan kustom
         const productInfo = link.getAttribute('data-product') || 'Halaman Utama';
 
         let message = `Halo Concerto Audio, saya tertarik dengan layanan *${productInfo}*.\n\n`;
         
-        // Pesan khusus berdasarkan jenis CTA
         if (productInfo.includes('Diagnosa Audio Gratis')) {
             message += "Saya ingin mengklaim Diagnosa Audio Gratis untuk mobil saya. Mohon infonya mengenai jadwal dan persyaratannya. Terima kasih.";
         } else if (productInfo.includes('Base Stage')) {
@@ -84,10 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
              message += "Saya ingin berkonsultasi mengenai upgrade audio mobil. Mohon informasinya lebih lanjut. Terima kasih.";
         }
 
-        // Encode pesan untuk URL
         const encodedMessage = encodeURIComponent(message);
-
-        // Set atribut href
         link.setAttribute('href', `https://wa.me/${whatsappNumber}?text=${encodedMessage}`);
     });
 
@@ -103,16 +90,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const content = item.querySelector('.faq-content');
         const icon = button.querySelector('i');
 
-        // Mengatur status awal (semua tertutup)
         content.style.maxHeight = '0';
         content.style.overflow = 'hidden';
         content.style.transition = 'max-height 0.3s ease-in-out, padding 0.3s ease-in-out';
-        content.classList.remove('hidden'); // Hilangkan hidden untuk mengaktifkan transisi
+        content.classList.remove('hidden'); 
 
         button.addEventListener('click', () => {
             const isExpanded = icon.classList.contains('fa-xmark');
             
-            // Tutup semua item FAQ lainnya
             faqItems.forEach(otherItem => {
                 if (otherItem !== item) {
                     const otherContent = otherItem.querySelector('.faq-content');
@@ -126,59 +111,49 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
-            // Buka atau tutup item yang diklik
             if (isExpanded) {
-                // Tutup
                 content.style.maxHeight = '0';
                 content.style.paddingTop = '0';
                 content.style.paddingBottom = '0';
                 icon.classList.remove('fa-xmark');
                 icon.classList.add('fa-plus');
             } else {
-                // Buka
-                // Atur max-height ke scrollHeight untuk konten + padding (p-5 = 1.25rem * 2 = 2.5rem/40px)
-                content.style.maxHeight = content.scrollHeight + 40 + 'px'; 
-                content.style.paddingTop = '1.25rem'; // p-5
-                content.style.paddingBottom = '1.25rem'; // p-5
+                content.style.maxHeight = content.scrollHeight + 40 + 'px'; // + padding
+                content.style.paddingTop = '1.25rem'; 
+                content.style.paddingBottom = '1.25rem';
                 icon.classList.remove('fa-plus');
                 icon.classList.add('fa-xmark');
-
-                // Opsional: reset max-height setelah transisi untuk konten yang dinamis
-                content.addEventListener('transitionend', function handler() {
-                    if (!isExpanded) {
-                        content.style.maxHeight = 'none';
-                    }
-                    content.removeEventListener('transitionend', handler);
-                });
             }
         });
     });
 
-});
 
- // =========================================================
-    // 4. FUNGSI SCROLL TO TOP (BUTTON UP)
+    // =========================================================
+    // 4. FUNGSI SCROLL TO TOP (BUTTON UP) - PERBAIKAN
     // =========================================================
 
     const scrollToTopButton = document.getElementById('scroll-to-top');
-    const scrollThreshold = 300; // Tombol akan muncul setelah scroll 300px
+    const scrollThreshold = 300; 
 
-    // Menangani kemunculan/penghilangan tombol
+    // 4a. Menangani kemunculan/penghilangan tombol saat scrolling
     window.addEventListener('scroll', () => {
+        // Menggunakan window.scrollY untuk mendapatkan posisi scroll
         if (window.scrollY > scrollThreshold) {
+            // Tampilkan tombol
             scrollToTopButton.classList.remove('invisible', 'opacity-0');
             scrollToTopButton.classList.add('visible', 'opacity-100');
         } else {
+            // Sembunyikan tombol
             scrollToTopButton.classList.remove('visible', 'opacity-100');
             scrollToTopButton.classList.add('invisible', 'opacity-0');
         }
     });
 
-    // Fungsi gulir halus (Smooth scroll)
-    // Fungsi ini dipanggil melalui atribut onclick="scrollToTop()" di HTML
-    window.scrollToTop = function() {
+    // 4b. Menangani fungsi scroll ke atas saat tombol diklik
+    scrollToTopButton.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth'
+            behavior: 'smooth' // Gulir halus
         });
-    };
+    });
+});
