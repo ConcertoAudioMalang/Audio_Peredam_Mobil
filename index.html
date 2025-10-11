@@ -40,13 +40,9 @@
     <header class="sticky top-0 z-50 bg-secondary-light/95 dark:bg-secondary-dark/95 backdrop-blur-sm shadow-md border-b border-gray-200 dark:border-gray-800">
         <nav class="max-w-7xl mx-auto px-4 md:px-12 py-3 flex justify-between items-center">
             
-            <a href="#hero" class="flex items-center space-x-2 font-black text-2xl tracking-widest text-accent-red font-heading">
-                <svg class="h-8 w-8 text-accent-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.536a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L18.09 13H10a1 1 0 110-2h8.09l-2.554-2.554a1 1 0 010-1.414z"></path></svg>
-                <span>CONCERTO</span>
-            </a>
-
             <div class="hidden lg:flex items-center space-x-6 text-sm font-semibold">
-                <a href="#layanan" class="hover:text-accent-red transition duration-200">Layanan</a>
+                <a href="#nilai" class="hover:text-accent-red transition duration-200">Nilai Kami</a> <a href="#layanan" class="hover:text-accent-red transition duration-200">Layanan</a>
+                <a href="#proses" class="hover:text-accent-red transition duration-200">Alur Kerja</a>
                 <a href="#produk" class="hover:text-accent-red transition duration-200">Paket Instalasi</a>
                 <a href="#testimoni" class="hover:text-accent-red transition duration-200">Testimoni</a>
                 <a href="#galeri" class="hover:text-accent-red transition duration-200">Galeri</a>
@@ -61,32 +57,22 @@
                 </button>
             </div>
 
-            <div class="flex lg:hidden items-center space-x-3">
-                <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-200" aria-label="Toggle Dark Mode">
-                    <i class="fa-solid fa-moon dark:hidden"></i>
-                    <i class="fa-solid fa-sun hidden dark:inline"></i>
-                </button>
-                <button id="mobile-menu-button" class="text-2xl hover:text-accent-red transition duration-200" aria-label="Toggle mobile menu">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+            <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 shadow-xl py-4 transition-all duration-300 ease-in-out">
+                <div class="flex flex-col space-y-3 px-4 text-center font-medium">
+                    <a href="#nilai" class="hover:text-accent-red transition duration-200 p-2 block">Nilai Kami</a> <a href="#layanan" class="hover:text-accent-red transition duration-200 p-2 block">Layanan</a>
+                    <a href="#proses" class="hover:text-accent-red transition duration-200 p-2 block">Alur Kerja</a>
+                    <a href="#produk" class="hover:text-accent-red transition duration-200 p-2 block">Paket Instalasi</a>
+                    <a href="#testimoni" class="hover:text-accent-red transition duration-200 p-2 block">Testimoni</a>
+                    <a href="#galeri" class="hover:text-accent-red transition duration-200 p-2 block">Galeri</a>
+                    <a href="#faq" class="hover:text-accent-red transition duration-200 p-2 block">FAQ</a>
+                    <a href="#lokasi" class="hover:text-accent-red transition duration-200 p-2 block">Lokasi</a>
+                    <a href="#" class="cta-whatsapp-link bg-accent-red text-white px-4 py-2 mt-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 mx-auto w-1/2" data-product="Navigasi Mobile Konsultasi">
+                        Konsultasi Gratis <i class="fa-brands fa-whatsapp ml-1"></i>
+                    </a>
+                </div>
             </div>
         </nav>
-
-        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 shadow-xl py-4 transition-all duration-300 ease-in-out">
-            <div class="flex flex-col space-y-3 px-4 text-center font-medium">
-                <a href="#layanan" class="hover:text-accent-red transition duration-200 p-2 block">Layanan</a>
-                <a href="#produk" class="hover:text-accent-red transition duration-200 p-2 block">Paket Instalasi</a>
-                <a href="#testimoni" class="hover:text-accent-red transition duration-200 p-2 block">Testimoni</a>
-                <a href="#galeri" class="hover:text-accent-red transition duration-200 p-2 block">Galeri</a>
-                <a href="#faq" class="hover:text-accent-red transition duration-200 p-2 block">FAQ</a>
-                <a href="#lokasi" class="hover:text-accent-red transition duration-200 p-2 block">Lokasi</a>
-                <a href="#" class="cta-whatsapp-link bg-accent-red text-white px-4 py-2 mt-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 mx-auto w-1/2" data-product="Navigasi Mobile Konsultasi">
-                    Konsultasi Gratis <i class="fa-brands fa-whatsapp ml-1"></i>
-                </a>
-            </div>
-        </div>
     </header>
-
     <main>
         <section id="hero" class="py-20 lg:py-40 bg-primary-light dark:bg-primary-dark">
             <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
@@ -363,7 +349,66 @@
             </div>
         </section>
 
+        <section id="merk" class="py-16 lg:py-24 bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
+                <h2 class="section-title text-3xl lg:text-4xl font-black font-heading mb-12" data-aos="fade-up">
+                    Didukung Penuh oleh <span class="text-accent-red">Brand Audio Terbaik</span>
+                </h2>
 
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center max-w-5xl mx-auto">
+                    
+                    <div class="p-4 flex justify-center items-center h-24" data-aos="zoom-in" data-aos-delay="100">
+                        <img 
+                            src="https://via.placeholder.com/200x80/D3D3D3/000000?text=BRAND+A" 
+                            alt="Logo Brand A" 
+                            class="logo-brand transition-all duration-500 ease-in-out w-full max-h-full" 
+                            style="filter: grayscale(100%);"
+                            onmouseover="this.style.filter='grayscale(0%)';"
+                            onmouseout="this.style.filter='grayscale(100%);'"
+                        >
+                    </div>
+
+                    <div class="p-4 flex justify-center items-center h-24" data-aos="zoom-in" data-aos-delay="200">
+                        <img 
+                            src="https://via.placeholder.com/200x80/D3D3D3/000000?text=BRAND+B" 
+                            alt="Logo Brand B" 
+                            class="logo-brand transition-all duration-500 ease-in-out w-full max-h-full" 
+                            style="filter: grayscale(100%);"
+                            onmouseover="this.style.filter='grayscale(0%)';"
+                            onmouseout="this.style.filter='grayscale(100%);'"
+                        >
+                    </div>
+
+                    <div class="p-4 flex justify-center items-center h-24" data-aos="zoom-in" data-aos-delay="300">
+                        <img 
+                            src="https://via.placeholder.com/200x80/D3D3D3/000000?text=BRAND+C" 
+                            alt="Logo Brand C" 
+                            class="logo-brand transition-all duration-500 ease-in-out w-full max-h-full" 
+                            style="filter: grayscale(100%);"
+                            onmouseover="this.style.filter='grayscale(0%)';"
+                            onmouseout="this.style.filter='grayscale(100%);'"
+                        >
+                    </div>
+
+                    <div class="p-4 flex justify-center items-center h-24" data-aos="zoom-in" data-aos-delay="400">
+                        <img 
+                            src="https://via.placeholder.com/200x80/D3D3D3/000000?text=BRAND+D" 
+                            alt="Logo Brand D" 
+                            class="logo-brand transition-all duration-500 ease-in-out w-full max-h-full" 
+                            style="filter: grayscale(100%);"
+                            onmouseover="this.style.filter='grayscale(0%)';"
+                            onmouseout="this.style.filter='grayscale(100%);'"
+                        >
+                    </div>
+
+                </div>
+
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-8" data-aos="fade-up" data-aos-delay="500">
+                    <span class="font-bold">Catatan:</span> Silakan ganti URL *placeholder* (https://via.placeholder.com/...) dengan link file logo asli (berwarna) dari setiap brand yang Anda gunakan.
+                </p>
+            </div>
+        </section>
+        
         <section id="faq" class="py-20 lg:py-32 bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800">
             <div class="max-w-7xl mx-auto px-4 md:px-12">
                 <div class="text-center mb-16">
@@ -610,3 +655,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
