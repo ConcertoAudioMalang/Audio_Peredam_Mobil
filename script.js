@@ -16,10 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIcon = document.getElementById('menu-icon');
-    
-    // VARIABEL INI HARUS DI DEKLARASIKAN SETELAH 'navbar' DITETAPKAN
-    const allNavbarIconWrappers = navbar.querySelectorAll('#theme-toggle, #mobile-menu-button'); 
-    // const allNavbarIcons = navbar.querySelectorAll('button i'); // Variabel ini tidak digunakan, bisa dihapus.
 
     let lastScrollY = window.scrollY;
     const scrollThreshold = 50;
@@ -229,3 +225,4 @@ AOS.init({
     once: true,
     duration: 1000,
 });
+
