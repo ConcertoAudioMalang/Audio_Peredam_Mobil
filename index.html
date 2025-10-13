@@ -60,14 +60,14 @@
 </head>
 <body class="bg-primary-light dark:bg-primary-dark text-text-dark dark:text-text-light font-sans">
 
-    <header class="sticky top-0 z-50 bg-secondary-light/95 dark:bg-secondary-dark/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-    <nav class="max-w-7xl mx-auto px-4 md:px-12 py-4 flex justify-between items-center">
+<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out bg-transparent border-transparent">
+    <nav class="max-w-7xl mx-auto px-4 md:px-12 py-4 flex justify-between items-center transition-all duration-300">
         
         <a href="#hero" class="flex items-center space-x-2 font-black text-xl tracking-widest text-accent-red font-heading">
             <img src="logo-concerto.png" alt="Concerto Audio Logo" class="h-8 dark:invert transition duration-300">
         </a>
         
-        <div class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-gray-700 dark:text-gray-300">
+        <div class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-text-light dark:text-text-light">
             <a href="#nilai" class="hover:text-accent-red transition duration-200">Nilai Kami</a>
             <a href="#layanan" class="hover:text-accent-red transition duration-200">Layanan</a>
             <a href="#proses" class="hover:text-accent-red transition duration-200">Alur Kerja</a>
@@ -79,34 +79,34 @@
             <a href="#lokasi" class="hover:text-accent-red transition duration-200">Lokasi</a>
         </div>
 
-        <div class="flex items-center space-x-3">
-            <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-200" aria-label="Toggle Dark Mode">
+        <div class="flex items-center space-x-3 text-text-light dark:text-text-light">
+            <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition duration-200" aria-label="Toggle Dark Mode">
                 <i class="fa-solid fa-moon dark:hidden text-lg"></i>
                 <i class="fa-solid fa-sun hidden dark:inline text-lg"></i>
             </button>
             
-            <button id="mobile-menu-button" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-200 lg:hidden" aria-label="Toggle Mobile Menu">
-                <i class="fa-solid fa-bars text-xl"></i>
+            <button id="mobile-menu-button" class="p-2 rounded-full hover:bg-white/10 transition duration-200 lg:hidden" aria-label="Toggle Mobile Menu">
+                <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
             </button>
         </div>
-        
-        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 shadow-xl py-4 transition-all duration-300 ease-in-out">
-            <div class="flex flex-col space-y-3 px-4 text-center font-medium">
-                <a href="#nilai" class="hover:text-accent-red transition duration-200 p-2 block">Nilai Kami</a>
-                <a href="#layanan" class="hover:text-accent-red transition duration-200 p-2 block">Layanan</a>
-                <a href="#proses" class="hover:text-accent-red transition duration-200 p-2 block">Alur Kerja</a>
-                <a href="#produk" class="hover:text-accent-red transition duration-200 p-2 block">Paket Instalasi</a>
-                <a href="#testimoni" class="hover:text-accent-red transition duration-200 p-2 block">Testimoni</a>
-                <a href="#galeri" class="hover:text-accent-red transition duration-200 p-2 block">Galeri</a>
-                <a href="#merk" class="hover:text-accent-red transition duration-200 p-2 block">Brand Kami</a> 
-                <a href="#faq" class="hover:text-accent-red transition duration-200 p-2 block">FAQ</a>
-                <a href="#lokasi" class="hover:text-accent-red transition duration-200 p-2 block">Lokasi</a>
-                <a href="#" class="cta-whatsapp-link bg-accent-red text-white px-4 py-2 mt-4 rounded-lg shadow-md hover:bg-red-700 transition duration-300 mx-auto w-4/5" data-product="Navigasi Mobile Konsultasi">
-                    Konsultasi Gratis <i class="fa-brands fa-whatsapp ml-1"></i>
-                </a>
-            </div>
-        </div>
     </nav>
+
+    <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 shadow-xl py-4 transition-all duration-300 ease-in-out">
+        <div class="flex flex-col space-y-3 px-4 text-center font-medium text-text-dark dark:text-text-light">
+            <a href="#nilai" class="hover:text-accent-red transition duration-200 p-2 block">Nilai Kami</a>
+            <a href="#layanan" class="hover:text-accent-red transition duration-200 p-2 block">Layanan</a>
+            <a href="#proses" class="hover:text-accent-red transition duration-200 p-2 block">Alur Kerja</a>
+            <a href="#produk" class="hover:text-accent-red transition duration-200 p-2 block">Paket Instalasi</a>
+            <a href="#testimoni" class="hover:text-accent-red transition duration-200 p-2 block">Testimoni</a>
+            <a href="#galeri" class="hover:text-accent-red transition duration-200 p-2 block">Galeri</a>
+            <a href="#merk" class="hover:text-accent-red transition duration-200 p-2 block">Brand Kami</a> 
+            <a href="#faq" class="hover:text-accent-red transition duration-200 p-2 block">FAQ</a>
+            <a href="#lokasi" class="hover:text-accent-red transition duration-200 p-2 block">Lokasi</a>
+            <a href="#" class="cta-whatsapp-link bg-accent-red text-white px-4 py-2 mt-4 rounded-lg shadow-md hover:bg-red-700 transition duration-300 mx-auto w-4/5" data-product="Navigasi Mobile Konsultasi">
+                Konsultasi Gratis <i class="fa-brands fa-whatsapp ml-1"></i>
+            </a>
+        </div>
+    </div>
 </header>
     
     <main>
@@ -790,6 +790,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
