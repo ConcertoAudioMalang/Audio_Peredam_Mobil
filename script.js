@@ -1,28 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
-const allNavbarIconWrappers = navbar.querySelectorAll('#theme-toggle, #mobile-menu-button');    
-    
+
     // ==========================================
-    // DEKLARASI VARIABEL UTAMA
+    // DEKLARASI VARIABEL UTAMA (DIPERBAIKI)
     // ==========================================
     const html = document.documentElement;
-    const navbar = document.getElementById('navbar');
+    const navbar = document.getElementById('navbar'); // Harus dideklarasikan duluan
+
+    // LAKUKAN PENGECEKAN KEBERADAAN NAVBAR, KARENA SELEKTOR LAIN MENGGUNAKAN INI
+    if (!navbar) {
+        console.error("Elemen #navbar tidak ditemukan. Pastikan ID sudah benar di index.html.");
+        return; // Hentikan eksekusi jika navbar tidak ada
+    }
+
     const themeToggles = document.querySelectorAll('#theme-toggle');
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon'); // Tambahkan ID ini di HTML mobile button
+    const menuIcon = document.getElementById('menu-icon');
     
+    // VARIABEL INI HARUS DI DEKLARASIKAN SETELAH 'navbar' DITETAPKAN
+    const allNavbarIconWrappers = navbar.querySelectorAll('#theme-toggle, #mobile-menu-button'); 
+    // const allNavbarIcons = navbar.querySelectorAll('button i'); // Variabel ini tidak digunakan, bisa dihapus.
+
     let lastScrollY = window.scrollY;
-    const scrollThreshold = 50; // Jarak scroll untuk ganti warna navbar
+    const scrollThreshold = 50;
     
-    // Ambil elemen navigasi desktop dan ikon untuk manipulasi warna dinamis
+    // Ambil elemen navigasi desktop (Menggunakan selector yang aman)
     const desktopLinks = document.querySelector('.hidden.lg\\:flex');
-    const allNavbarIcons = navbar.querySelectorAll('button i');
 
 
     // ==========================================
     // 1. DARK MODE TOGGLE & PERSISTENCE
     // ==========================================
-    // Load saved preference
+    // Load saved preference (Logika sudah benar)
     if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         html.classList.add('dark');
     } else {
@@ -42,18 +51,17 @@ const allNavbarIconWrappers = navbar.querySelectorAll('#theme-toggle, #mobile-me
         handleScroll();
     }
 
-    // Attach event listener to all toggle buttons
+    // Attach event listener
     themeToggles.forEach(toggle => {
         toggle.addEventListener('click', toggleTheme);
     });
 
     // ==========================================
-    // 2. MOBILE MENU TOGGLE
+    // 2. MOBILE MENU TOGGLE (Logika sudah benar)
     // ==========================================
     if (mobileMenuButton && mobileMenu && menuIcon) {
         mobileMenuButton.addEventListener('click', () => {
             const isHidden = mobileMenu.classList.toggle('hidden');
-            // Mengganti ikon
             if (isHidden) {
                 menuIcon.classList.replace('fa-xmark', 'fa-bars');
             } else {
@@ -61,7 +69,6 @@ const allNavbarIconWrappers = navbar.querySelectorAll('#theme-toggle, #mobile-me
             }
         });
 
-        // Close menu on link click
         const mobileLinks = mobileMenu.querySelectorAll('a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -78,14 +85,15 @@ const allNavbarIconWrappers = navbar.querySelectorAll('#theme-toggle, #mobile-me
     function handleScroll() {
         const currentScrollY = window.scrollY;
         
-        // ... (kelas activeClasses dan TextColorClasses tetap) ...
+        // Kelas untuk perubahan visual navbar
         const activeClasses = ['bg-secondary-light/95', 'dark:bg-secondary-dark/95', 'backdrop-blur-md', 'border-b', 'border-gray-200', 'dark:border-gray-800'];
+        
+        // Kelas untuk teks navigasi desktop
         const desktopActiveTextColorClasses = ['text-gray-700', 'dark:text-gray-300'];
         const desktopTransparentTextColorClasses = ['text-text-light', 'dark:text-text-light'];
         
-        // Kelas untuk warna ikon saat navbar aktif/buram
+        // Kelas untuk ikon (Tombol Mode & Mobile Menu)
         const iconActiveTextColorClasses = ['text-text-dark', 'dark:text-text-light', 'hover:bg-gray-200', 'dark:hover:bg-gray-700'];
-        // Kelas untuk warna ikon saat navbar transparan
         const iconTransparentTextColorClasses = ['text-text-light', 'dark:text-text-light', 'hover:bg-white/10']; 
 
         // --- 3.1 Transparansi dan Perubahan Warna ---
@@ -94,39 +102,39 @@ const allNavbarIconWrappers = navbar.querySelectorAll('#theme-toggle, #mobile-me
             navbar.classList.add(...activeClasses);
             navbar.classList.remove('bg-transparent', 'border-transparent');
             
-            // Teks Navigasi menjadi gelap
+            // Teks Navigasi dan Ikon menjadi warna gelap/default
             if (desktopLinks) {
                 desktopLinks.classList.remove(...desktopTransparentTextColorClasses);
                 desktopLinks.classList.add(...desktopActiveTextColorClasses);
             }
             
-            // Ikon menjadi warna gelap (dan ubah hover background)
             allNavbarIconWrappers.forEach(button => {
+                // Hapus kelas warna transparan pada wrapper tombol
                 button.classList.remove(...iconTransparentTextColorClasses);
+                // Tambahkan kelas warna aktif pada wrapper tombol
                 button.classList.add(...iconActiveTextColorClasses);
             });
-
 
         } else {
             // Navbar transparan
             navbar.classList.remove(...activeClasses);
             navbar.classList.add('bg-transparent', 'border-transparent');
             
-            // Teks Navigasi menjadi terang
+            // Teks Navigasi dan Ikon menjadi warna terang
             if (desktopLinks) {
                 desktopLinks.classList.remove(...desktopActiveTextColorClasses);
                 desktopLinks.classList.add(...desktopTransparentTextColorClasses);
             }
             
-            // Ikon menjadi warna terang (dan ubah hover background)
             allNavbarIconWrappers.forEach(button => {
+                // Hapus kelas warna aktif pada wrapper tombol
                 button.classList.remove(...iconActiveTextColorClasses);
+                // Tambahkan kelas warna transparan pada wrapper tombol
                 button.classList.add(...iconTransparentTextColorClasses);
             });
         }
         
-        // ... (Logika Sembunyi Saat Scroll ke Bawah tetap) ...
-
+        // --- 3.2 Sembunyi Saat Scroll ke Bawah ---
         if (currentScrollY > lastScrollY && currentScrollY > 200) { 
             navbar.classList.add('-translate-y-full'); 
         } else if (currentScrollY < lastScrollY) {
@@ -136,16 +144,17 @@ const allNavbarIconWrappers = navbar.querySelectorAll('#theme-toggle, #mobile-me
         lastScrollY = currentScrollY;
     }
 
-    // Setel status awal dan tambahkan listener
-    handleScroll();
+    // PENTING: Panggil handleScroll di awal untuk menetapkan status transparan
+    handleScroll(); 
     window.addEventListener('scroll', handleScroll);
 
+
     // ==========================================
-    // 4. FAQ ACCORDION (Logika Dibiarkan Sama)
+    // 4. FAQ ACCORDION
     // ==========================================
     const faqToggles = document.querySelectorAll('.faq-toggle');
-    // ... (Logika FAQ Anda tetap di sini) ...
     faqToggles.forEach(toggle => {
+        // ... (Logika FAQ Anda, tidak perlu diubah) ...
         toggle.addEventListener('click', () => {
             const content = toggle.nextElementSibling;
             const icon = toggle.querySelector('i');
@@ -172,7 +181,7 @@ const allNavbarIconWrappers = navbar.querySelectorAll('#theme-toggle, #mobile-me
     });
 
     // ==========================================
-    // 5. SCROLL-TO-TOP BUTTON (Logika Dibiarkan Sama)
+    // 5. SCROLL-TO-TOP BUTTON
     // ==========================================
     const scrollToTopBtn = document.getElementById('scroll-to-top');
 
@@ -197,7 +206,7 @@ const allNavbarIconWrappers = navbar.querySelectorAll('#theme-toggle, #mobile-me
 
 
     // ==========================================
-    // 6. WHATSAPP DYNAMIC LINK GENERATOR (Logika Dibiarkan Sama)
+    // 6. WHATSAPP DYNAMIC LINK GENERATOR
     // ==========================================
     const whatsappLinks = document.querySelectorAll('.cta-whatsapp-link');
     const whatsappNumber = '6281234567890'; 
@@ -220,4 +229,3 @@ AOS.init({
     once: true,
     duration: 1000,
 });
-
