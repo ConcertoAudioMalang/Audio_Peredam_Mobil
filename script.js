@@ -150,17 +150,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. FAQ ACCORDION
     // ... (Logika FAQ tetap) ...
 
-    // ==========================================
-    // 5. SCROLL-TO-TOP BUTTON
+   // ==========================================
+    // 5. SCROLL-TO-TOP BUTTON (LOGIKA DIPERBAIKI)
     // ==========================================
     const scrollToTopBtn = document.getElementById('scroll-to-top');
 
     if (scrollToTopBtn) {
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
+            // Logika diperbaiki: Tampilkan tombol HANYA jika scroll Y melebihi 300px (scroll ke bawah)
+            if (window.scrollY > 300) { 
+                // Saat scroll ke bawah, tampilkan tombol
                 scrollToTopBtn.classList.remove('invisible', 'opacity-0');
                 scrollToTopBtn.classList.add('visible', 'opacity-100');
             } else {
+                // Saat kembali ke atas (di dekat bagian atas halaman), sembunyikan tombol
                 scrollToTopBtn.classList.remove('visible', 'opacity-100');
                 scrollToTopBtn.classList.add('invisible', 'opacity-0');
             }
@@ -185,3 +188,4 @@ AOS.init({
     once: true,
     duration: 1000,
 });
+
