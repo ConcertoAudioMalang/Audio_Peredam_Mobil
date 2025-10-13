@@ -176,17 +176,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // ... di dalam document.addEventListener('DOMContentLoaded', () => { ...
+
     // ==========================================
     // 5. SCROLL-TO-TOP BUTTON
     // ==========================================
     const scrollToTopBtn = document.getElementById('scroll-to-top');
 
-    if (scrollToTopBtn) {
+    if (scrollToTopBtn) { // Pastikan elemen ada sebelum mencoba menggunakannya
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
+                // Saat scroll ke bawah, tampilkan tombol
                 scrollToTopBtn.classList.remove('invisible', 'opacity-0');
                 scrollToTopBtn.classList.add('visible', 'opacity-100');
             } else {
+                // Saat kembali ke atas, sembunyikan tombol
                 scrollToTopBtn.classList.remove('visible', 'opacity-100');
                 scrollToTopBtn.classList.add('invisible', 'opacity-0');
             }
@@ -225,4 +229,5 @@ AOS.init({
     once: true,
     duration: 1000,
 });
+
 
