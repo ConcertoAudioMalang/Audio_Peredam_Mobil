@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+const allNavbarIconWrappers = navbar.querySelectorAll('#theme-toggle, #mobile-menu-button');    
     
     // ==========================================
     // DEKLARASI VARIABEL UTAMA
@@ -77,13 +78,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleScroll() {
         const currentScrollY = window.scrollY;
         
-        // Kelas untuk latar belakang navbar buram/aktif
+        // ... (kelas activeClasses dan TextColorClasses tetap) ...
         const activeClasses = ['bg-secondary-light/95', 'dark:bg-secondary-dark/95', 'backdrop-blur-md', 'border-b', 'border-gray-200', 'dark:border-gray-800'];
-        
-        // Kelas untuk warna teks link desktop saat navbar aktif
         const desktopActiveTextColorClasses = ['text-gray-700', 'dark:text-gray-300'];
-        // Kelas untuk warna teks link desktop saat navbar transparan (di atas Hero)
         const desktopTransparentTextColorClasses = ['text-text-light', 'dark:text-text-light'];
+        
+        // Kelas untuk warna ikon saat navbar aktif/buram
+        const iconActiveTextColorClasses = ['text-text-dark', 'dark:text-text-light', 'hover:bg-gray-200', 'dark:hover:bg-gray-700'];
+        // Kelas untuk warna ikon saat navbar transparan
+        const iconTransparentTextColorClasses = ['text-text-light', 'dark:text-text-light', 'hover:bg-white/10']; 
 
         // --- 3.1 Transparansi dan Perubahan Warna ---
         if (currentScrollY > scrollThreshold) {
@@ -91,38 +94,42 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.classList.add(...activeClasses);
             navbar.classList.remove('bg-transparent', 'border-transparent');
             
-            // Teks dan Ikon menjadi warna gelap/default
+            // Teks Navigasi menjadi gelap
             if (desktopLinks) {
                 desktopLinks.classList.remove(...desktopTransparentTextColorClasses);
                 desktopLinks.classList.add(...desktopActiveTextColorClasses);
             }
-            if (mobileMenuButton) {
-                mobileMenuButton.classList.remove('text-text-light', 'dark:text-text-light');
-                mobileMenuButton.classList.add('text-text-dark', 'dark:text-text-light');
-            }
+            
+            // Ikon menjadi warna gelap (dan ubah hover background)
+            allNavbarIconWrappers.forEach(button => {
+                button.classList.remove(...iconTransparentTextColorClasses);
+                button.classList.add(...iconActiveTextColorClasses);
+            });
+
 
         } else {
             // Navbar transparan
             navbar.classList.remove(...activeClasses);
             navbar.classList.add('bg-transparent', 'border-transparent');
             
-            // Teks dan Ikon menjadi warna terang (untuk kontras dengan Hero)
+            // Teks Navigasi menjadi terang
             if (desktopLinks) {
                 desktopLinks.classList.remove(...desktopActiveTextColorClasses);
                 desktopLinks.classList.add(...desktopTransparentTextColorClasses);
             }
-            if (mobileMenuButton) {
-                mobileMenuButton.classList.remove('text-text-dark', 'dark:text-text-light');
-                mobileMenuButton.classList.add('text-text-light', 'dark:text-text-light');
-            }
+            
+            // Ikon menjadi warna terang (dan ubah hover background)
+            allNavbarIconWrappers.forEach(button => {
+                button.classList.remove(...iconActiveTextColorClasses);
+                button.classList.add(...iconTransparentTextColorClasses);
+            });
         }
         
-        // --- 3.2 Sembunyi Saat Scroll ke Bawah ---
+        // ... (Logika Sembunyi Saat Scroll ke Bawah tetap) ...
+
         if (currentScrollY > lastScrollY && currentScrollY > 200) { 
-            // Scroll ke bawah (dan sudah melewati 200px)
             navbar.classList.add('-translate-y-full'); 
         } else if (currentScrollY < lastScrollY) {
-            // Scroll ke atas
             navbar.classList.remove('-translate-y-full'); 
         }
         
@@ -132,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Setel status awal dan tambahkan listener
     handleScroll();
     window.addEventListener('scroll', handleScroll);
-
 
     // ==========================================
     // 4. FAQ ACCORDION (Logika Dibiarkan Sama)
@@ -214,3 +220,4 @@ AOS.init({
     once: true,
     duration: 1000,
 });
+
