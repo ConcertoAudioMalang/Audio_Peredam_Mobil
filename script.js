@@ -132,3 +132,9 @@ themeToggles.forEach(toggle => {
 
 });
 
+// Inisialisasi AOS (Animate On Scroll)
+AOS.init({
+    once: true, // Animasi hanya berjalan sekali
+    duration: 1000,
+});
+
