@@ -10,6 +10,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <script>
         // TAILWIND CONFIGURATION
@@ -360,13 +361,12 @@
     </div>
 </section>
 
-      <section id="testimoni" class="relative py-20 lg:py-32 section-scroll-margin overflow-hidden bg-white dark:bg-black">
-       
+<section id="testimoni" class="relative py-20 lg:py-32 section-scroll-margin overflow-hidden bg-white dark:bg-black">
     <video autoplay loop muted playsinline class="absolute inset-0 object-cover w-full h-full opacity-30 brightness-50">
         <source src="asset/video1.mp4" type="video/mp4">
         Browser Anda tidak mendukung tag video.
     </video>
-       
+    
     <div class="max-w-7xl mx-auto px-4 md:px-12 text-center relative z-10">
                
         <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
@@ -375,77 +375,94 @@
         <h2 class="section-title text-3xl lg:text-5xl font-black font-heading mb-12 text-white" data-aos="fade-up" data-aos-delay="100">
             Apa Kata Klien Kami?
         </h2>
-               
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                       
-            <div class="p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
-                               
-                <div class="text-yellow-500 mb-3 text-xl">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                
+                <div class="swiper-slide p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-yellow-500 mb-3 text-xl">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-800 dark:text-gray-200 text-base leading-relaxed mb-6">
+                        "Akurasi suara yang dihasilkan setelah tuning DSP di Concerto benar-benar luar biasa. Staging-nya presisi, seperti nonton konser di dalam mobil. Sangat direkomendasikan!"
+                    </p>
+                    <div class="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <div class="w-10 h-10 rounded-full mr-3 flex-shrink-0 bg-red-600 flex items-center justify-center text-white font-bold text-sm">WA</div>
+                        <div class="font-bold text-gray-900 dark:text-white text-left">Wira A.</div>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-yellow-500 mb-3 text-xl">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-800 dark:text-gray-200 text-base leading-relaxed mb-6">
+                        "Instalasi kabelnya sangat rapi dan detail, tidak terlihat berantakan sama sekali. Pelayanan ramah, proses cepat, dan hasilnya memuaskan. Nilai plus untuk kerapihan!"
+                    </p>
+                    <div class="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <div class="w-10 h-10 rounded-full mr-3 flex-shrink-0 bg-gray-800 flex items-center justify-center text-white font-bold text-sm">RD</div>
+                        <div class="font-bold text-gray-900 dark:text-white text-left">Risa D.</div>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-yellow-500 mb-3 text-xl">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="text-gray-800 dark:text-gray-200 text-base leading-relaxed mb-6">
+                        "Peredamannya total! Dulu suara bising dari luar mengganggu, sekarang kabin jadi senyap. Audio jadi lebih fokus dan bass lebih solid. Benar-benar profesional."
+                    </p>
+                    <div class="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <div class="w-10 h-10 rounded-full mr-3 flex-shrink-0 bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">DS</div>
+                        <div class="font-bold text-gray-900 dark:text-white text-left">Dito S.</div>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-yellow-500 mb-3 text-xl">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-800 dark:text-gray-200 text-base leading-relaxed mb-6">
+                        "Upgrade speaker di sini benar-benar mengubah pengalaman mendengarkan. Bass lebih punchy dan treble sangat jernih. Pelayanan sangat detail dan teliti."
+                    </p>
+                    <div class="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <div class="w-10 h-10 rounded-full mr-3 flex-shrink-0 bg-teal-600 flex items-center justify-center text-white font-bold text-sm">FA</div>
+                        <div class="font-bold text-gray-900 dark:text-white text-left">Fajar A.</div>
+                    </div>
                 </div>
 
-                <p class="text-gray-800 dark:text-gray-200 text-base leading-relaxed mb-6">
-                    "Akurasi suara yang dihasilkan setelah tuning DSP di Concerto benar-benar luar biasa. Staging-nya presisi, seperti nonton konser di dalam mobil. Sangat direkomendasikan!"
-                </p>
-                               
-                <div class="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700">
-                    <div class="w-10 h-10 rounded-full mr-3 object-cover flex-shrink-0 bg-red-600 flex items-center justify-center text-white font-bold text-sm">
-                        WA
+                <div class="swiper-slide p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-yellow-500 mb-3 text-xl">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <div>
-                        <div class="font-bold text-gray-900 dark:text-white">
-                            Wira A.
-                        </div>
+                    <p class="text-gray-800 dark:text-gray-200 text-base leading-relaxed mb-6">
+                        "Teknisi Concerto sangat berpengetahuan. Mereka memberikan solusi terbaik, bukan yang termahal. Hasil instalasi unit head baru sangat memuaskan dan rapi!"
+                    </p>
+                    <div class="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <div class="w-10 h-10 rounded-full mr-3 flex-shrink-0 bg-pink-600 flex items-center justify-center text-white font-bold text-sm">LB</div>
+                        <div class="font-bold text-gray-900 dark:text-white text-left">Laura B.</div>
                     </div>
-                </div>
-            </div>
-                       
-            <div class="p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="300">
-                               
-                <div class="text-yellow-500 mb-3 text-xl">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
 
-                <p class="text-gray-800 dark:text-gray-200 text-base leading-relaxed mb-6">
-                    "Instalasi kabelnya sangat rapi dan detail, tidak terlihat berantakan sama sekali. Pelayanan ramah, proses cepat, dan hasilnya memuaskan. Nilai plus untuk kerapihan!"
-                </p>
-                               
-                <div class="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700">
-                    <div class="w-10 h-10 rounded-full mr-3 object-cover flex-shrink-0 bg-gray-800 flex items-center justify-center text-white font-bold text-sm">
-                        RD
+                <div class="swiper-slide p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-yellow-500 mb-3 text-xl">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <div>
-                        <div class="font-bold text-gray-900 dark:text-white">
-                            Risa D.
-                        </div>
+                    <p class="text-gray-800 dark:text-gray-200 text-base leading-relaxed mb-6">
+                        "Layanan pelanggan sangat cepat tanggap. Proses *booking* mudah dan pengerjaan tepat waktu. Kualitas suara mobil sekarang jauh di atas ekspektasi."
+                    </p>
+                    <div class="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <div class="w-10 h-10 rounded-full mr-3 flex-shrink-0 bg-amber-600 flex items-center justify-center text-white font-bold text-sm">SK</div>
+                        <div class="font-bold text-gray-900 dark:text-white text-left">Santi K.</div>
                     </div>
                 </div>
+                
             </div>
-                       
-            <div class="p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="400">
-                               
-                <div class="text-yellow-500 mb-3 text-xl">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-                </div>
-
-                <p class="text-gray-800 dark:text-gray-200 text-base leading-relaxed mb-6">
-                    "Peredamannya total! Dulu suara bising dari luar mengganggu, sekarang kabin jadi senyap. Audio jadi lebih fokus dan bass lebih solid. Benar-benar profesional."
-                </p>
-                               
-                <div class="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700">
-                    <div class="w-10 h-10 rounded-full mr-3 object-cover flex-shrink-0 bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">
-                        DS
-                    </div>
-                    <div>
-                        <div class="font-bold text-gray-900 dark:text-white">
-                            Dito S.
-                        </div>
-                    </div>
-                </div>
-            </div>
-                       
+            <div class="swiper-pagination mt-8"></div>
+            <div class="swiper-button-next text-white hover:text-accent-red transition-colors duration-200 hidden md:block"></div>
+            <div class="swiper-button-prev text-white hover:text-accent-red transition-colors duration-200 hidden md:block"></div>
         </div>
-    </div>
+        </div>
 </section>
         
         <section id="galeri" class="py-20 lg:py-32 bg-primary-light dark:bg-primary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
@@ -879,9 +896,40 @@
             });
         }
     });
-</script>        
+</script>
+         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        // Tampilkan 1 kolom di HP, 2 di tablet, 3 di desktop
+        slidesPerView: 1,
+        spaceBetween: 24, // Sama dengan gap-6 di Tailwind (24px)
+        loop: true,
+        autoplay: {
+            delay: 4500, // Otomatis geser setiap 4.5 detik
+            disableOnInteraction: false,
+        },
+        breakpoints: {
+            768: { // Untuk layar md dan ke atas
+                slidesPerView: 2,
+            },
+            1024: { // Untuk layar lg dan ke atas
+                slidesPerView: 3,
+            },
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
 </body>
 </html>
+
 
 
 
