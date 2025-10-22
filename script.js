@@ -1,37 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
-    // DEKLARASI VARIABEL UTAMA (DIPERBAIKI)
+    // DEKLARASI VARIABEL UTAMA (DIRAPIKAN)
     // ==========================================
     const html = document.documentElement;
     const navbar = document.getElementById('navbar');
-
-    // LAKUKAN PENGECEKAN KEBERADAAN NAVBAR
+    
+    // --- Pengecekan Kritis ---
     if (!navbar) {
-        console.error("Elemen #navbar tidak ditemukan. Pastikan ID sudah benar di index.html.");
+        console.error("Elemen #navbar tidak ditemukan. Pastikan ID sudah benar.");
         return; 
     }
-
-    // Variabel ini harus dideklarasikan di sini, SETELAH 'navbar' dipastikan ada.
-    const allNavbarIconWrappers = navbar.querySelectorAll('#theme-toggle, #mobile-menu-button'); 
     
-    // Variabel lain
-    const themeToggles = document.querySelectorAll('#theme-toggle');
+    // --- Deklarasi Variabel yang Digunakan ---
+    const themeToggles = document.querySelectorAll('#theme-toggle'); // Menggunakan querySelectorAll agar berfungsi di desktop/mobile
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIcon = document.getElementById('menu-icon');
-
+    const desktopLinks = navbar.querySelector('.hidden.lg\\:flex'); // Mengambil dari dalam navbar
+    const allNavbarIconWrappers = navbar.querySelectorAll('#theme-toggle, #mobile-menu-button');
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    
     let lastScrollY = window.scrollY;
     const scrollThreshold = 50;
-    
-    // Ambil elemen navigasi desktop (Menggunakan selector yang aman)
-    const desktopLinks = document.querySelector('.hidden.lg\\:flex');
-
+    const hideThreshold = 200; // Menggunakan variabel untuk batas sembunyikan/tampilkan navbar
 
     // ==========================================
     // 1. DARK MODE TOGGLE & PERSISTENCE
     // ==========================================
-    // ... (Logika Dark Mode tetap) ...
+    
+    // Initial check (sudah benar dan rapi)
     if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         html.classList.add('dark');
     } else {
@@ -46,7 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
             html.classList.add('dark');
             localStorage.setItem('theme', 'dark');
         }
-        handleScroll();
+        // Panggil handleScroll agar tampilan navbar/icon segera menyesuaikan tema baru
+        handleScroll(); 
     }
 
     themeToggles.forEach(toggle => {
@@ -55,13 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
     // 2. MOBILE MENU TOGGLE
-    // ... (Logika Mobile Menu tetap) ...
+    // ==========================================
     if (mobileMenuButton && mobileMenu && menuIcon) {
         mobileMenuButton.addEventListener('click', () => {
             const isHidden = mobileMenu.classList.toggle('hidden');
             if (isHidden) {
+                // Menu disembunyikan
                 menuIcon.classList.replace('fa-xmark', 'fa-bars');
             } else {
+                // Menu ditampilkan
                 menuIcon.classList.replace('fa-bars', 'fa-xmark');
             }
         });
@@ -69,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const mobileLinks = mobileMenu.querySelectorAll('a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
+                // Tutup menu setelah link diklik
                 mobileMenu.classList.add('hidden');
                 menuIcon.classList.replace('fa-xmark', 'fa-bars');
             });
@@ -79,94 +81,92 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. NAVBAR SCROLL LOGIC
     // ==========================================
 
-    function handleScroll() {
-        const currentScrollY = window.scrollY;
-        
-        // Kelas untuk perubahan visual navbar
+    function updateNavbarAppearance(isScrolled) {
+        // Kelas untuk latar belakang dan border
         const activeClasses = ['bg-secondary-light/95', 'dark:bg-secondary-dark/95', 'backdrop-blur-md', 'border-b', 'border-gray-200', 'dark:border-gray-800'];
         
         // Kelas untuk teks navigasi desktop
-        const desktopActiveTextColorClasses = ['text-gray-700', 'dark:text-gray-300'];
-        const desktopTransparentTextColorClasses = ['text-text-light', 'dark:text-text-light'];
+        const textNormal = ['text-gray-700', 'dark:text-gray-300'];
+        const textTransparent = ['text-text-light', 'dark:text-text-light'];
         
-        // Kelas untuk ikon (Tombol Mode & Mobile Menu)
-        const iconActiveTextColorClasses = ['text-text-dark', 'dark:text-text-light', 'hover:bg-gray-200', 'dark:hover:bg-gray-700'];
-        const iconTransparentTextColorClasses = ['text-text-light', 'dark:text-text-light', 'hover:bg-white/10']; 
+        // Kelas untuk ikon (Theme Toggle & Mobile Menu)
+        const iconNormal = ['text-text-dark', 'dark:text-text-light', 'hover:bg-gray-200', 'dark:hover:bg-gray-700'];
+        const iconTransparent = ['text-text-light', 'dark:text-text-light', 'hover:bg-white/10'];
 
-        // --- 3.1 Transparansi dan Perubahan Warna ---
-        if (currentScrollY > scrollThreshold) {
-            // Navbar muncul latar belakang buram
+        if (isScrolled) {
+            // Navbar: Aktif (Buram, Warna)
             navbar.classList.add(...activeClasses);
             navbar.classList.remove('bg-transparent', 'border-transparent');
             
-            // Teks Navigasi dan Ikon menjadi warna gelap/default
+            // Teks Navigasi: Warna Normal
             if (desktopLinks) {
-                desktopLinks.classList.remove(...desktopTransparentTextColorClasses);
-                desktopLinks.classList.add(...desktopActiveTextColorClasses);
+                desktopLinks.classList.remove(...textTransparent);
+                desktopLinks.classList.add(...textNormal);
             }
             
-            // Perlu dicek, karena jika navbar tidak ditemukan, allNavbarIconWrappers juga tidak akan ada
-            if (allNavbarIconWrappers) {
-                allNavbarIconWrappers.forEach(button => {
-                    button.classList.remove(...iconTransparentTextColorClasses);
-                    button.classList.add(...iconActiveTextColorClasses);
-                });
-            }
-
+            // Ikon: Warna Normal
+            allNavbarIconWrappers.forEach(button => {
+                button.classList.remove(...iconTransparent);
+                button.classList.add(...iconNormal);
+            });
         } else {
-            // Navbar transparan
+            // Navbar: Transparan
             navbar.classList.remove(...activeClasses);
             navbar.classList.add('bg-transparent', 'border-transparent');
             
-            // Teks Navigasi dan Ikon menjadi warna terang
+            // Teks Navigasi: Warna Transparan (Terang)
             if (desktopLinks) {
-                desktopLinks.classList.remove(...desktopActiveTextColorClasses);
-                desktopLinks.classList.add(...desktopTransparentTextColorClasses);
+                desktopLinks.classList.remove(...textNormal);
+                desktopLinks.classList.add(...textTransparent);
             }
             
-            if (allNavbarIconWrappers) {
-                allNavbarIconWrappers.forEach(button => {
-                    button.classList.remove(...iconActiveTextColorClasses);
-                    button.classList.add(...iconTransparentTextColorClasses);
-                });
-            }
+            // Ikon: Warna Transparan (Terang)
+            allNavbarIconWrappers.forEach(button => {
+                button.classList.remove(...iconNormal);
+                button.classList.add(...iconTransparent);
+            });
         }
+    }
+
+
+    function handleScroll() {
+        const currentScrollY = window.scrollY;
+        const isScrolled = currentScrollY > scrollThreshold;
+        
+        // --- 3.1 Transparansi dan Perubahan Warna ---
+        updateNavbarAppearance(isScrolled);
         
         // --- 3.2 Sembunyi Saat Scroll ke Bawah ---
-        if (currentScrollY > lastScrollY && currentScrollY > 200) { 
+        if (currentScrollY > lastScrollY && currentScrollY > hideThreshold) { 
+            // Scroll ke Bawah, Sembunyikan Navbar
             navbar.classList.add('-translate-y-full'); 
-        } else if (currentScrollY < lastScrollY) {
+        } else if (currentScrollY < lastScrollY || currentScrollY < hideThreshold) {
+            // Scroll ke Atas atau Sudah Dekat Puncak, Tampilkan Navbar
             navbar.classList.remove('-translate-y-full'); 
         }
         
         lastScrollY = currentScrollY;
     }
 
+    // Panggil sekali untuk memastikan tampilan navbar sesuai saat halaman dimuat
     handleScroll(); 
     window.addEventListener('scroll', handleScroll);
 
 
     // ==========================================
-    // 4. FAQ ACCORDION
-    // ... (Logika FAQ tetap) ...
-
-   // ==========================================
-    // 5. SCROLL-TO-TOP BUTTON (LOGIKA DIPERBAIKI)
+    // 4. FAQ ACCORDION (Logika tidak ditampilkan, diasumsikan sudah benar)
     // ==========================================
-    const scrollToTopBtn = document.getElementById('scroll-to-top');
 
+    // ==========================================
+    // 5. SCROLL-TO-TOP BUTTON
+    // ==========================================
     if (scrollToTopBtn) {
         window.addEventListener('scroll', () => {
-            // Logika diperbaiki: Tampilkan tombol HANYA jika scroll Y melebihi 300px (scroll ke bawah)
-            if (window.scrollY > 300) { 
-                // Saat scroll ke bawah, tampilkan tombol
-                scrollToTopBtn.classList.remove('invisible', 'opacity-0');
-                scrollToTopBtn.classList.add('visible', 'opacity-100');
-            } else {
-                // Saat kembali ke atas (di dekat bagian atas halaman), sembunyikan tombol
-                scrollToTopBtn.classList.remove('visible', 'opacity-100');
-                scrollToTopBtn.classList.add('invisible', 'opacity-0');
-            }
+            const isVisible = window.scrollY > 300;
+            scrollToTopBtn.classList.toggle('invisible', !isVisible);
+            scrollToTopBtn.classList.toggle('opacity-0', !isVisible);
+            scrollToTopBtn.classList.toggle('visible', isVisible);
+            scrollToTopBtn.classList.toggle('opacity-100', isVisible);
         });
 
         scrollToTopBtn.addEventListener('click', () => {
@@ -178,55 +178,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 6. WHATSAPP DYNAMIC LINK GENERATOR
-    // ... (Logika WhatsApp tetap) ...
+    // 6. WHATSAPP DYNAMIC LINK GENERATOR (Logika tidak ditampilkan, diasumsikan sudah benar)
+    // ==========================================
 
 });
 
-// Inisialisasi AOS (Di luar DOMContentLoaded)
+// ==========================================
+// INISIALISASI DI LUAR DOMContentLoaded
+// ==========================================
+
+// Inisialisasi AOS (Sudah benar di luar DOMContentLoaded)
 AOS.init({
     once: true,
     duration: 1000,
 });
 
-// PASTIKAN ANDA MENGGANTI INI DENGAN KODE INISIALISASI SWIPER YANG SUDAH ADA
+// ==========================================
+// INI ADALAH KONFIGURASI SWIPER JS (WAJIB DIBIARKAN DI LUAR DOMContentLoaded JIKA MEMANG BEGITU CARA ANDA MENULISNYA)
+// ==========================================
 var swiper = new Swiper(".mySwiper", {
     // ------------------------------------
-    // PENGATURAN TINGGI AGAR SEMUA SAMA
+    // PENGATURAN TINGGI AGAR SEMUA SAMA (Sudah benar)
     // ------------------------------------
-    
-    // Matikan autoHeight agar Swiper tidak menyesuaikan tinggi slide 
-    // berdasarkan konten terpendek (ini penyebab utama kolom beda tinggi).
     autoHeight: false, 
-
-    // Opsi ini sangat membantu memastikan tinggi wrapper menyesuaikan slide tertinggi.
     setWrapperSize: true, 
 
     // ------------------------------------
-    // PENGATURAN RESPONSIVE (SLIDES PER VIEW)
+    // PENGATURAN RESPONSIVE (Sudah benar)
     // ------------------------------------
-    
-    // Default untuk mobile
     slidesPerView: 1, 
     spaceBetween: 24,
 
     breakpoints: {
-        // Tablet (>= 768px)
         768: {
             slidesPerView: 2,
             spaceBetween: 30
         },
-        // Desktop (>= 1024px)
         1024: {
-            slidesPerView: 3, // Tampilkan 3 kolom untuk tampilan besar
+            slidesPerView: 3, 
             spaceBetween: 30
         }
     },
     
     // ------------------------------------
-    // NAVIGASI DAN PAGINASI
+    // NAVIGASI DAN PAGINASI (Sudah benar)
     // ------------------------------------
-    
     pagination: {
         el: ".swiper-pagination",
         clickable: true,
@@ -235,7 +231,4 @@ var swiper = new Swiper(".mySwiper", {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
     },
-    
-    // Tambahkan opsi lain jika ada, misalnya loop, effect, dll.
 });
-
