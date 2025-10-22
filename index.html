@@ -3,729 +3,747 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONCERTO Audio Malang | Spesialis Audio Mobil Sound Quality & Peredam</title>
-    <meta name="description" content="Upgrade audio mobil Anda dengan Sound Quality (SQ) terbaik di Malang. Layanan DSP tuning profesional, instalasi peredam, dan paket audio premium.">
-    <meta name="keywords" content="audio mobil malang, sound quality malang, SQ car audio, instalasi peredam mobil, DSP tuning malang, concerto audio">
-    <meta name="author" content="Concerto Media Team">
+    <title>Concerto Audio - Spesialis Sound Quality Mobil & Peredam Mobil | Malang</title>
+    <meta name="description" content="Upgrade audio mobil Anda ke level Sound Quality (SQ) terbaik di Malang. Layanan tuning DSP, instalasi speaker, dan peredam profesional.">
+    <link rel="icon" href="https://via.placeholder.com/32x32/DC2626/FFFFFF?text=C">
 
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJdQ8q0gV56K1YF/yXF80eN+X/Wp/K/fC8X7A/e6FqG3zD1pM9G0nB/K/fG4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    
+
+    <script>
+        // TAILWIND CONFIGURATION
+        tailwind.config = {
+            darkMode: 'class', 
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-light': '#F9FAFB', // Gray-50
+                        'secondary-light': '#FFFFFF', // White
+                        'primary-dark': '#111827', // Gray-900
+                        'secondary-dark': '#1F2937', // Gray-800
+                        'accent-red': '#DC2626', // Red-600 (Warna utama)
+                        'text-dark': '#111827',
+                        'text-light': '#F9FAFB',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'heading': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
     <style>
-        /* Definisi Warna dan Font Kustom (Sesuai dengan skema dark/light mode dari Tailwind) */
-        :root {
-            /* Light Mode */
-            --color-primary-light: #f9fafb; /* gray-50 */
-            --color-secondary-light: #ffffff; /* white */
-            --color-text-dark: #1f2937; /* gray-800 */
-            /* Dark Mode */
-            --color-primary-dark: #111827; /* gray-900 */
-            --color-secondary-dark: #1f2937; /* gray-800 */
-            --color-text-light: #f3f4f6; /* gray-100 */
-            /* Accent */
-            --color-accent-red: #ef4444; /* red-500 */
-        }
-        
-        .bg-primary-light { background-color: var(--color-primary-light); }
-        .dark\:bg-primary-dark { background-color: var(--color-primary-dark); }
-        .bg-secondary-light { background-color: var(--color-secondary-light); }
-        .dark\:bg-secondary-dark { background-color: var(--color-secondary-dark); }
-        .text-text-dark { color: var(--color-text-dark); }
-        .dark\:text-text-light { color: var(--color-text-light); }
-        .text-accent-red { color: var(--color-accent-red); }
-        .bg-accent-red { background-color: var(--color-accent-red); }
-        .hover\:bg-red-700:hover { background-color: #b91c1c; } /* darker red */
-
-        /* Font-Family kustom (jika diperlukan) */
-        .font-heading { font-family: 'Poppins', sans-serif; }
-        
-        /* Utility untuk Scroll Margin agar header fixed tidak menutupi section */
+        /* Mengatasi header sticky menutupi section title */
         .section-scroll-margin {
-            scroll-margin-top: 5rem; /* Sesuaikan dengan tinggi header/navbar Anda */
+            scroll-margin-top: 100px; /* Sesuaikan dengan tinggi header Anda */
         }
 
-        /* Ikon Rotasi untuk FAQ */
-        .rotate-45 {
-            transform: rotate(45deg);
+        /* Filter Grayscale untuk logo merk saat Dark Mode */
+        .dark .logo-brand {
+            filter: invert(100%) grayscale(100%);
+        }
+        .dark .logo-brand:hover {
+            filter: invert(0%) grayscale(0%);
+        }
+        /* Mengganti inline JS brand section dengan CSS */
+        .logo-brand {
+            filter: grayscale(100%);
+            transition: all 500ms ease-in-out;
+        }
+        .logo-brand:hover {
+            filter: grayscale(0%);
         }
     </style>
 </head>
-
 <body class="bg-primary-light dark:bg-primary-dark text-text-dark dark:text-text-light font-sans">
 
-    <header id="header" class="fixed top-0 left-0 w-full z-40 bg-white/90 dark:bg-gray-900/90 shadow-md backdrop-blur-sm transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 md:px-12">
-            <nav class="flex justify-between items-center h-20" aria-label="Main Navigation">
-                
-                <a href="#hero" class="flex items-center space-x-2 font-black text-xl tracking-widest text-accent-red font-heading" aria-label="Concerto Audio Home">
-                    <i class="fa-solid fa-microphone-lines text-2xl" aria-hidden="true"></i>
-                    <span>CONCERTO</span>
-                </a>
-
-                <ul class="hidden lg:flex space-x-8 font-semibold">
-                    <li><a href="#layanan" class="nav-link hover:text-accent-red transition duration-300" aria-label="Layanan">Layanan</a></li>
-                    <li><a href="#produk" class="nav-link hover:text-accent-red transition duration-300" aria-label="Produk">Produk</a></li>
-                    <li><a href="#galeri" class="nav-link hover:text-accent-red transition duration-300" aria-label="Galeri">Galeri</a></li>
-                    <li><a href="#proses" class="nav-link hover:text-accent-red transition duration-300" aria-label="Proses Kerja">Proses Kerja</a></li>
-                    <li><a href="#testimoni" class="nav-link hover:text-accent-red transition duration-300" aria-label="Testimoni">Testimoni</a></li>
-                    <li><a href="#faq" class="nav-link hover:text-accent-red transition duration-300" aria-label="FAQ">FAQ</a></li>
-                </ul>
-
-                <div class="flex items-center space-x-4">
-                    <button id="theme-toggle" type="button" aria-label="Toggle Dark Mode"
-                        class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition duration-300">
-                        <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-xl hidden"></i>
-                        <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-xl hidden"></i>
-                    </button>
-
-                    <a href="https://wa.me/6281217398558?text=Halo,%20saya%20ingin%20konsultasi%20mengenai%20upgrade%20audio%20mobil."
-                        target="_blank" rel="noopener noreferrer"
-                        class="hidden md:inline-flex items-center bg-accent-red text-white px-4 py-2 font-bold rounded-lg hover:bg-red-700 transition duration-300 shadow-md">
-                        <i class="fa-brands fa-whatsapp mr-2" aria-hidden="true"></i> Konsultasi
-                    </a>
-
-                    <button id="mobile-menu-button" class="lg:hidden p-2 text-text-dark dark:text-text-light" aria-label="Open Menu" aria-expanded="false">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </nav>
+<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out bg-transparent border-transparent">
+    <nav class="max-w-7xl mx-auto px-4 md:px-12 py-4 flex justify-between items-center transition-all duration-300">
+        
+       <a href="#hero" class="flex items-center space-x-2">
+    <img src="asset/concerto-audio-logo-dark.png" alt="Concerto Audio Logo" class="h-8 dark:invert transition duration-300">
+</a>
+        
+        <div class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-text-light dark:text-text-light">
+            <a href="#nilai" class="hover:text-accent-red transition duration-200">Tentang Kami</a>
+            <a href="#layanan" class="hover:text-accent-red transition duration-200">Layanan</a>
+            <a href="#proses" class="hover:text-accent-red transition duration-200">Alur Kerja</a>
+            <a href="#produk" class="hover:text-accent-red transition duration-200">Paket Instalasi</a>
+            <a href="#testimoni" class="hover:text-accent-red transition duration-200">Testimoni</a>
+            <a href="#galeri" class="hover:text-accent-red transition duration-200">Galeri</a>
+            <a href="#merk" class="hover:text-accent-red transition duration-200">Brand Kami</a> 
+            <a href="#faq" class="hover:text-accent-red transition duration-200">FAQ</a>
+            <a href="#lokasi" class="hover:text-accent-red transition duration-200">Lokasi</a>
         </div>
 
-        <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-gray-800 shadow-xl transition-all duration-300 ease-in-out">
-            <ul class="py-4 px-4 space-y-3 font-semibold text-text-dark dark:text-text-light">
-                <li><a href="#layanan" class="mobile-nav-link block p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition duration-300">Layanan</a></li>
-                <li><a href="#produk" class="mobile-nav-link block p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition duration-300">Produk</a></li>
-                <li><a href="#galeri" class="mobile-nav-link block p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition duration-300">Galeri</a></li>
-                <li><a href="#proses" class="mobile-nav-link block p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition duration-300">Proses Kerja</a></li>
-                <li><a href="#testimoni" class="mobile-nav-link block p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition duration-300">Testimoni</a></li>
-                <li><a href="#faq" class="mobile-nav-link block p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition duration-300">FAQ</a></li>
-                <li class="pt-2">
-                    <a href="https://wa.me/6281217398558?text=Halo,%20saya%20ingin%20konsultasi%20mengenai%20upgrade%20audio%20mobil."
-                        target="_blank" rel="noopener noreferrer"
-                        class="block w-full text-center bg-accent-red text-white px-4 py-3 font-bold rounded-lg hover:bg-red-700 transition duration-300 shadow-lg">
-                        <i class="fa-brands fa-whatsapp mr-2" aria-hidden="true"></i> Mulai Konsultasi
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </header>
+        <div class="flex items-center space-x-3 text-text-light dark:text-text-light">
+    <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition duration-200" aria-label="Toggle Dark Mode">
+        <i class="fa-solid fa-moon dark:hidden text-lg"></i>
+        <i class="fa-solid fa-sun hidden dark:inline text-lg"></i>
+    </button>
+    
+    <button id="mobile-menu-button" class="p-2 rounded-full hover:bg-white/10 transition duration-200 lg:hidden" aria-label="Toggle Mobile Menu">
+        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+    </button>
+            
+</button>
+</div>
+    </nav>
 
+    <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 shadow-xl py-4 transition-all duration-300 ease-in-out">
+        <div class="flex flex-col space-y-3 px-4 text-center font-medium text-text-dark dark:text-text-light">
+            <a href="#nilai" class="hover:text-accent-red transition duration-200 p-2 block">Tentang Kami</a>
+            <a href="#layanan" class="hover:text-accent-red transition duration-200 p-2 block">Layanan</a>
+            <a href="#proses" class="hover:text-accent-red transition duration-200 p-2 block">Alur Kerja</a>
+            <a href="#produk" class="hover:text-accent-red transition duration-200 p-2 block">Paket Instalasi</a>
+            <a href="#testimoni" class="hover:text-accent-red transition duration-200 p-2 block">Testimoni</a>
+            <a href="#galeri" class="hover:text-accent-red transition duration-200 p-2 block">Galeri</a>
+            <a href="#merk" class="hover:text-accent-red transition duration-200 p-2 block">Brand Kami</a> 
+            <a href="#faq" class="hover:text-accent-red transition duration-200 p-2 block">FAQ</a>
+            <a href="#lokasi" class="hover:text-accent-red transition duration-200 p-2 block">Lokasi</a>
+            <a href="#" class="cta-whatsapp-link bg-accent-red text-white px-4 py-2 mt-4 rounded-lg shadow-md hover:bg-red-700 transition duration-300 mx-auto w-4/5" data-product="Navigasi Mobile Konsultasi">
+                Konsultasi Gratis <i class="fa-brands fa-whatsapp ml-1"></i>
+            </a>
+        </div>
+    </div>
+</header>
+    
     <main>
-        <section id="hero" class="pt-32 pb-20 lg:pt-48 lg:pb-32 bg-secondary-light dark:bg-secondary-dark relative overflow-hidden">
-            <div class="max-w-7xl mx-auto px-4 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                
-                <div class="text-center lg:text-left">
-                    <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
-                        SPESIALIS AUDIO MOBIL MALANG
-                    </p>
-                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-black font-heading leading-tight mb-6" data-aos="fade-up" data-aos-delay="100">
-                        Upgrade Audio Mobil Anda dengan <span class="text-accent-red">Sound Quality</span> Terbaik
-                    </h1>
-                    <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0" data-aos="fade-up" data-aos-delay="200">
-                        Rasakan detail musik yang presisi dan panggung suara yang sempurna. Kami melayani instalasi audio SQ dan peredam mobil.
-                    </p>
-                    
-                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4" data-aos="fade-up" data-aos-delay="300">
-                        <a href="#produk" class="btn bg-accent-red text-white px-8 py-3 text-lg font-bold hover:bg-red-700 transition duration-300 rounded-lg shadow-xl">
-                            Lihat Paket Audio
-                        </a>
-                        <a href="#testimoni" class="btn border border-gray-300 dark:border-gray-600 px-8 py-3 text-lg font-bold rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300">
-                            Baca Testimoni
-                        </a>
-                    </div>
-                </div>
+       <section id="hero" class="relative w-full h-screen section-scroll-margin">
+    
+    <div class="absolute inset-0">
+        <img src="asset/background-concerto.jpg" 
+             alt="Mobil mewah dengan sound system" 
+             class="w-full h-full object-cover" loading="eager">
+    </div>
 
-                <div class="relative mt-8 lg:mt-0" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="http://googleusercontent.com/images/1" alt="Ilustrasi sistem audio mobil Sound Quality" width="600" height="400" loading="eager" class="w-full h-auto object-cover rounded-xl shadow-2xl border-4 border-accent-red/50">
-                    <i class="fa-solid fa-sliders text-5xl text-accent-red absolute -top-4 -left-4 p-3 bg-white dark:bg-gray-900 rounded-full shadow-lg border-2 border-accent-red/50" aria-hidden="true"></i>
-                    <i class="fa-solid fa-volume-high text-5xl text-accent-red absolute bottom-0 -right-4 p-3 bg-white dark:bg-gray-900 rounded-full shadow-lg border-2 border-accent-red/50" aria-hidden="true"></i>
-                </div>
-            </div>
-
-            </section>
-
-        <section id="partners" class="py-12 lg:py-16 bg-primary-light dark:bg-primary-dark border-t border-b border-gray-200 dark:border-gray-800">
-            <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
-                <p class="text-sm text-gray-500 dark:text-gray-400 mb-6 uppercase font-semibold" data-aos="fade-up">
-                    Didukung oleh merek audio mobil terkemuka di dunia
-                </p>
-                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70">
-                    <img src="asset/1Copy.png" alt="Audio Circle" width="120" height="40" loading="lazy" class="h-8 md:h-10 object-contain grayscale hover:grayscale-0 transition duration-300" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="asset/2.png" alt="STEG" width="120" height="40" loading="lazy" class="h-8 md:h-10 object-contain grayscale hover:grayscale-0 transition duration-300" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="asset/3.png" alt="Dios Dela Musica" width="120" height="40" loading="lazy" class="h-8 md:h-10 object-contain grayscale hover:grayscale-0 transition duration-300" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="asset/4.png" alt="Zelos" width="120" height="40" loading="lazy" class="h-8 md:h-10 object-contain grayscale hover:grayscale-0 transition duration-300" data-aos="zoom-in" data-aos-delay="400">
-                </div>
-            </div>
-        </section>
+    <div class="absolute inset-0 bg-primary-dark/60 dark:bg-primary-dark/70"></div>
+    
+    <div class="relative max-w-7xl mx-auto h-full flex flex-col justify-center items-center text-center px-4 md:px-12 text-text-light" 
+         data-aos="fade-up" 
+         data-aos-duration="1000">
         
-        <section id="layanan" class="py-20 lg:py-32 bg-primary-light dark:bg-primary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
-            <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
-
-                <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
-                    LAYANAN UNGGULAN
-                </p>
-                <h2 class="section-title text-3xl lg:text-5xl font-black font-heading mb-12" data-aos="fade-up" data-aos-delay="100">
-                    Keahlian Kami dalam Audio Mobil
-                </h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    
-                    <div class="p-8 bg-secondary-light dark:bg-secondary-dark rounded-xl shadow-lg hover:shadow-2xl transition duration-500 transform hover:-translate-y-1 group" data-aos="fade-up" data-aos-delay="200">
-                        <div class="mb-6 inline-block p-4 bg-accent-red/10 rounded-full text-accent-red">
-                            <i class="fa-solid fa-gear text-4xl group-hover:rotate-12 transition duration-500" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="text-xl font-black text-text-dark dark:text-text-light mb-3 font-heading">DSP Tuning Profesional</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Kami memastikan setiap speaker bekerja optimal. Tuning akustik yang detail untuk panggung suara yang presisi.</p>
-                        <a href="https://wa.me/6281217398558?text=Halo,%20saya%20ingin%20jadwal%20tuning%20DSP." target="_blank" rel="noopener noreferrer" class="text-accent-red font-semibold mt-4 inline-block hover:underline">Jadwalkan Tuning <i class="fa-solid fa-arrow-right text-sm ml-1" aria-hidden="true"></i></a>
-                    </div>
-
-                    <div class="p-8 bg-secondary-light dark:bg-secondary-dark rounded-xl shadow-lg hover:shadow-2xl transition duration-500 transform hover:-translate-y-1 group" data-aos="fade-up" data-aos-delay="300">
-                        <div class="mb-6 inline-block p-4 bg-accent-red/10 rounded-full text-accent-red">
-                            <i class="fa-solid fa-shield-halved text-4xl group-hover:scale-110 transition duration-500" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="text-xl font-black text-text-dark dark:text-text-light mb-3 font-heading">Instalasi Peredam (Sound Dampening)</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Meminimalkan kebisingan jalan dan getaran panel untuk fondasi audio yang hening dan solid.</p>
-                        <a href="https://wa.me/6281217398558?text=Halo,%20saya%20tertarik%20dengan%20paket%20peredam%20mobil." target="_blank" rel="noopener noreferrer" class="text-accent-red font-semibold mt-4 inline-block hover:underline">Pilih Paket Peredam <i class="fa-solid fa-arrow-right text-sm ml-1" aria-hidden="true"></i></a>
-                    </div>
-
-                    <div class="p-8 bg-secondary-light dark:bg-secondary-dark rounded-xl shadow-lg hover:shadow-2xl transition duration-500 transform hover:-translate-y-1 group" data-aos="fade-up" data-aos-delay="400">
-                        <div class="mb-6 inline-block p-4 bg-accent-red/10 rounded-full text-accent-red">
-                            <i class="fa-solid fa-speaker-deck text-4xl group-hover:pulse transition duration-500" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="text-xl font-black text-text-dark dark:text-text-light mb-3 font-heading">Instalasi Audio Sound Quality</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Pemasangan komponen audio (speaker, ampli, subwoofer) dengan standar kompetisi dan kerapian OE (Original Equipment).</p>
-                        <a href="#produk" class="text-accent-red font-semibold mt-4 inline-block hover:underline">Lihat Paket Instalasi <i class="fa-solid fa-arrow-right text-sm ml-1" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-
-                <div class="mt-12" data-aos="fade-up" data-aos-delay="500">
-                    <a href="https://wa.me/6281217398558?text=Halo,%20saya%20ingin%20konsultasi%20semua%20layanan%20Concerto." target="_blank" rel="noopener noreferrer" class="btn border-2 border-accent-red text-accent-red px-6 py-3 font-bold rounded-lg hover:bg-accent-red hover:text-white transition duration-300">
-                        <i class="fa-solid fa-headset mr-2" aria-hidden="true"></i> Konsultasi Langsung dengan Teknisi
-                    </a>
-                </div>
-            </div>
-        </section>
+        <p class="text-lg md:text-xl font-medium tracking-wider mb-4 uppercase text-accent-red">
+            CONCERTO AUDIO MALANG
+        </p>
         
-        <section id="produk" class="py-20 lg:py-32 bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
-            <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
+        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold font-heading leading-tight mb-6">
+            WORK WITH PASSION OR <span class="text-accent-red"> NOT </span> AT ALL
+        </h1>
+        
+        <p class="text-base md:text-xl max-w-3xl mb-10 opacity-90">
+            Bengkel Audio Mobil Malang Raya | Peredam Mobil Malang Raya
+        </p>
 
+        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <a href="https://wa.me/081217398558?text=Halo%2C%20saya%20tertarik%20untuk%20konsultasi%20mengenai%20audio%20mobil." 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="cta-whatsapp-link bg-accent-red text-white px-8 py-3 rounded-xl shadow-2xl shadow-accent-red/50 hover:bg-red-700 transition duration-300 transform hover:scale-105 font-semibold text-lg" 
+                data-product="Hero Section Konsultasi">
+                Konsultasi Gratis <i class="fa-brands fa-whatsapp ml-2"></i>
+            </a>
+            
+            <a href="#layanan" class="border border-text-light text-text-light px-8 py-3 rounded-xl shadow-lg hover:bg-text-light hover:text-text-dark transition duration-300 transform hover:scale-105 font-semibold text-lg">
+                Lihat Layanan Kami <i class="fa-solid fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+        <section id="nilai" class="py-20 lg:py-32 bg-primary-light dark:bg-primary-dark section-scroll-margin">
+    <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
+        
+        <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
+            TENTANG KAMI
+        </p>
+        <h2 class="section-title text-3xl lg:text-5xl font-black font-heading mb-12" data-aos="fade-up" data-aos-delay="100">
+            Komitmen Kami: <span class="text-accent-red">5 Pilar Kualitas</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+            
+            <div class="flex flex-col items-center p-4" data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-gauge-simple-high text-accent-red text-5xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2 font-heading">Presisi Akustik</h3>
+                <p class="text-sm text-gray-700 dark:text-gray-400">Setiap Instalasi diukur dengan alat profesional untuk suara yang presisi dan seimbang.</p>
+            </div>
+
+            <div class="flex flex-col items-center p-4" data-aos="fade-up" data-aos-delay="300">
+                <i class="fa-solid fa-plug text-accent-red text-5xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2 font-heading">Instalasi Rapi</h3>
+                <p class="text-sm text-gray-700 dark:text-gray-400">Kabel dan peramgkat audio dan komponen diatur secara terstruktur dan tersembunyi untuk estetika mobil Anda.</p>
+            </div>
+
+            <div class="flex flex-col items-center p-4" data-aos="fade-up" data-aos-delay="400">
+                <i class="fa-solid fa-handshake text-accent-red text-5xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2 font-heading">Integritas Material</h3>
+                <p class="text-sm text-gray-700 dark:text-gray-400">Kami hanya menggunakan produk Premium dan bergaransi resmi dengan kualitas terbaik dunia.</p>
+            </div>
+
+            <div class="flex flex-col items-center p-4" data-aos="fade-up" data-aos-delay="500">
+                <i class="fa-solid fa-brain text-accent-red text-5xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2 font-heading">Keahlian Tim</h3>
+                <p class="text-sm text-gray-700 dark:text-gray-400">Tim kami adalah spesialis Audio dan Peredam yang Berpengalaman menangani berbagai type dan jenis mobil.</p>
+            </div>
+
+            <div class="flex flex-col items-center p-4" data-aos="fade-up" data-aos-delay="600">
+                <i class="fa-solid fa-headset text-accent-red text-5xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2 font-heading">Pelayanan Total</h3>
+                <p class="text-sm text-gray-700 dark:text-gray-400">Kami menawarkan konsultasi gratis dan after-sales service yang responsif.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+        <section id="layanan" class="py-20 lg:py-32 bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
+            <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
                 <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
-                    PAKET PREMIUM
+                    KEUNGGULAN KAMI
                 </p>
                 <h2 class="section-title text-3xl lg:text-5xl font-black font-heading mb-12" data-aos="fade-up" data-aos-delay="100">
-                    Solusi Upgrade Audio Terlengkap
+                    Pengerjaan audio kami.<span class="text-accent-red">Lebih dari Sekedar Instalasi.</span>
                 </h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
                     
-                    <div class="p-8 bg-primary-light dark:bg-primary-dark rounded-xl shadow-xl border-t-4 border-accent-red/80 flex flex-col h-full" data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="text-2xl font-black text-accent-red mb-2 font-heading">Paket SQ Basic</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Peningkatan suara yang signifikan untuk pemula.</p>
-                        <p class="text-5xl font-extrabold text-text-dark dark:text-text-light mb-6">
-                            Tanyakan Langsung <span class="text-lg font-normal text-gray-500">/ Kontak Kami</span>
-                        </p>
-                        
-                        <ul class="space-y-3 text-left text-gray-700 dark:text-gray-400 flex-grow mb-8">
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1" aria-hidden="true"></i>
-                                <span>Upgrade Speaker Coaxial Depan</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1" aria-hidden="true"></i>
-                                <span>Subwoofer Aktif Slim (kolong jok)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1" aria-hidden="true"></i>
-                                <span>Peredam Pintu Depan (2 lapis)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1" aria-hidden="true"></i>
-                                <span>Instalasi & Setting Basic</span>
-                            </li>
-                        </ul>
-
-                        <a href="https://wa.me/6281217398558?text=Halo,%20saya%20tertarik%20dengan%20Paket%20SQ%20Basic%205jt." target="_blank" rel="noopener noreferrer" class="btn w-full bg-accent-red text-white px-6 py-3 font-bold rounded-lg hover:bg-red-700 transition duration-300 shadow-md">
-                            Ambil Paket Ini
-                        </a>
+                    <div class="p-6 rounded-xl shadow-xl bg-primary-light dark:bg-primary-dark transition duration-300 hover:shadow-2xl hover:border-l-4 hover:border-accent-red" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fa-solid fa-screwdriver-wrench text-accent-red text-4xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3 font-heading">Clarity Audio Presisi</h3>
+                        <p class="text-gray-700 dark:text-gray-400">Kami menggunakan alat ukur profesional dan pengalaman bertahun-tahun untuk menghasilkan staging dan suara yang paling akurat.</p>
                     </div>
 
-                    <div class="p-8 bg-primary-light dark:bg-primary-dark rounded-xl shadow-2xl border-t-4 border-blue-500 flex flex-col h-full relative" data-aos="fade-up" data-aos-delay="300">
-                        <span class="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold py-1 px-3 rounded-tr-xl rounded-bl-lg uppercase">Populer</span>
-                        <h3 class="text-2xl font-black text-blue-500 mb-2 font-heading">Paket SQ Advanced + DSP</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Fokus pada Sound Staging dan detail audio yang akurat.</p>
-                        <p class="text-5xl font-extrabold text-text-dark dark:text-text-light mb-6">
-                             Tanyakan Langsung <span class="text-lg font-normal text-gray-500">/ Kontak Kami</span>
-                        </p>
-                        
-                        <ul class="space-y-3 text-left text-gray-700 dark:text-gray-400 flex-grow mb-8">
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1" aria-hidden="true"></i>
-                                <span>Upgrade Speaker Component 2-way Premium</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1" aria-hidden="true"></i>
-                                <span class="font-bold">DSP 4-Channel Built-in Amplifier</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1" aria-hidden="true"></i>
-                                <span>Subwoofer Aktif Slim (kolong jok)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1" aria-hidden="true"></i>
-                                <span>Peredam Pintu Depan & Belakang</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1" aria-hidden="true"></i>
-                                <span class="font-bold text-blue-500">DSP Tuning Profesional (RTA)</span>
-                            </li>
-                        </ul>
-
-                        <a href="https://wa.me/6281217398558?text=Halo,%20saya%20tertarik%20dengan%20Paket%20SQ%20Advanced%2012jt." target="_blank" rel="noopener noreferrer" class="btn w-full bg-blue-500 text-white px-6 py-3 font-bold rounded-lg hover:bg-blue-700 transition duration-300 shadow-lg">
-                            Pesan Paket Populer
-                        </a>
+                    <div class="p-6 rounded-xl shadow-xl bg-primary-light dark:bg-primary-dark transition duration-300 hover:shadow-2xl hover:border-l-4 hover:border-accent-red" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fa-solid fa-shield-halved text-accent-red text-4xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3 font-heading">Instalasi Rapi & Aman</h3>
+                        <p class="text-gray-700 dark:text-gray-400">Kerapihan kabel dan instalasi komponen dilakukan dengan standar tertinggi dari Concerto Audio, memastikan keamanan kelistrikan mobil dan estetika kabin.</p>
                     </div>
 
-                    <div class="p-8 bg-primary-light dark:bg-primary-dark rounded-xl shadow-xl border-t-4 border-yellow-500 flex flex-col h-full" data-aos="fade-up" data-aos-delay="400">
-                        <h3 class="text-2xl font-black text-yellow-500 mb-2 font-heading">Paket SQ Ultimate</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Pengalaman Audio Hi-End tanpa kompromi.</p>
-                        <p class="text-5xl font-extrabold text-text-dark dark:text-text-light mb-6">
-                            Tanyakan Langsung <span class="text-lg font-normal text-gray-500">/ Kontak Kami</span>
-                        </p>
-                        
-                        <ul class="space-y-3 text-left text-gray-700 dark:text-gray-400 flex-grow mb-8">
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1" aria-hidden="true"></i>
-                                <span>Speaker 3-way High End</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1" aria-hidden="true"></i>
-                                <span>DSP Processor Standalone 8-Channel</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1" aria-hidden="true"></i>
-                                <span>Amplifier Monoblock & 4-Channel Terpisah</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1" aria-hidden="true"></i>
-                                <span>Peredam Total (Pintu, Lantai, Bagasi)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1" aria-hidden="true"></i>
-                                <span>Custom Box & Pemasangan Rapi</span>
-                            </li>
-                        </ul>
-
-                        <a href="https://wa.me/6281217398558?text=Halo,%20saya%20ingin%20konsultasi%20Paket%20SQ%20Ultimate%20Custom." target="_blank" rel="noopener noreferrer" class="btn w-full bg-yellow-500 text-white px-6 py-3 font-bold rounded-lg hover:bg-yellow-700 transition duration-300 shadow-md">
-                            Hubungi untuk Detail
-                        </a>
+                    <div class="p-6 rounded-xl shadow-xl bg-primary-light dark:bg-primary-dark transition duration-300 hover:shadow-2xl hover:border-l-4 hover:border-accent-red" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fa-solid fa-volume-high text-accent-red text-4xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3 font-heading">Fokus Kualitas Suara</h3>
+                        <p class="text-gray-700 dark:text-gray-400">Prioritas kami adalah kualitas suara (SQ), bukan hanya keras. Kami menciptakan pengalaman mendengarkan yang detail dan seimbang.</p>
                     </div>
-                </div>
-
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-8" data-aos="fade-up" data-aos-delay="500">
-                    *Harga adalah estimasi dan dapat disesuaikan berdasarkan merek/tipe mobil serta komponen yang dipilih.
-                </p>
-            </div>
-        </section>
-
-        <section id="galeri" class="py-20 lg:py-32 bg-primary-light dark:bg-primary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
-            <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
-
-                <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
-                    HASIL KERJA KAMI
-                </p>
-                <h2 class="section-title text-3xl lg:text-5xl font-black font-heading mb-12" data-aos="fade-up" data-aos-delay="100">
-                    Portofolio Instalasi Audio & Peredam
-                </h2>
-                
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
-                        <img src="http://googleusercontent.com/images/2" alt="Instalasi Speaker 3-Way Mobil Mewah" width="400" height="400" loading="lazy" class="w-full h-full object-cover aspect-square transition duration-500 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <p class="text-white text-lg font-bold">Speaker 3-Way</p>
-                        </div>
-                    </div>
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="300">
-                        <img src="http://googleusercontent.com/images/3" alt="Pemasangan DSP Processor di bawah jok" width="400" height="400" loading="lazy" class="w-full h-full object-cover aspect-square transition duration-500 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <p class="text-white text-lg font-bold">DSP & Wiring Rapi</p>
-                        </div>
-                    </div>
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="400">
-                        <img src="http://googleusercontent.com/images/4" alt="Peredam mobil total (lantai dan pintu)" width="400" height="400" loading="lazy" class="w-full h-full object-cover aspect-square transition duration-500 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <p class="text-white text-lg font-bold">Pemasangan Peredam</p>
-                        </div>
-                    </div>
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="500">
-                        <img src="http://googleusercontent.com/images/5" alt="Custom Box Subwoofer Rapi" width="400" height="400" loading="lazy" class="w-full h-full object-cover aspect-square transition duration-500 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <p class="text-white text-lg font-bold">Custom Box Subwoofer</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-12" data-aos="fade-up" data-aos-delay="600">
-                    <a href="https://www.instagram.com/concerto_malang/" target="_blank" rel="noopener noreferrer" class="btn bg-accent-red text-white px-6 py-3 font-bold rounded-lg hover:bg-red-700 transition duration-300 shadow-md">
-                        <i class="fa-brands fa-instagram mr-2" aria-hidden="true"></i> Lihat Lebih Banyak di Instagram
-                    </a>
                 </div>
             </div>
         </section>
 
-        <section id="proses" class="py-20 lg:py-32 bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
-            <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
+       <section id="proses" class="py-20 lg:py-32 bg-primary-light dark:bg-primary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
+    <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
 
-                <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
-                    KENAPA MEMILIH KAMI?
-                </p>
-                <h2 class="section-title text-3xl lg:text-5xl font-black font-heading mb-12" data-aos="fade-up" data-aos-delay="100">
-                    Proses Kerja Kami yang Transparan dan Teruji
-                </h2>
+        <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
+            PROSES 4 LANGKAH
+        </p>
+        <h2 class="section-title text-3xl lg:text-5xl font-black font-heading mb-16" data-aos="fade-up" data-aos-delay="100">
+            Alur Kerja Kami yang <span class="text-accent-red">Transparan</span>
+        </h2>
+
+        <div class="relative max-w-6xl mx-auto">
+            
+            <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-200 dark:bg-gray-700 transform -translate-y-1/2"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-center">
                 
-                <div class="relative max-w-5xl mx-auto">
-                    <div class="hidden lg:block absolute inset-y-0 left-1/2 w-0.5 bg-gray-300 dark:bg-gray-700 transform -translate-x-1/2"></div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 text-left">
-
-                        <div class="lg:col-start-1 lg:text-right relative mb-8 lg:mb-0" data-aos="fade-right" data-aos-delay="200">
-                            <div class="lg:absolute lg:top-0 lg:right-0 lg:transform lg:translate-x-1/2 lg:-translate-y-1/2 p-3 bg-accent-red text-white rounded-full font-bold shadow-lg">
-                                1
-                            </div>
-                            <div class="p-6 bg-primary-light dark:bg-primary-dark rounded-xl shadow-xl border-l-4 lg:border-l-0 lg:border-r-4 border-accent-red/80">
-                                <h3 class="text-xl font-black text-text-dark dark:text-text-light mb-2 font-heading">Konsultasi & Diagnosa Audio Gratis</h3>
-                                <p class="text-gray-600 dark:text-gray-400">Kami mendengarkan kebutuhan dan menganalisis sistem audio mobil Anda saat ini untuk memberikan solusi yang paling sesuai budget dan tujuan Anda.</p>
-                            </div>
-                        </div>
-
-                        <div class="lg:col-start-2 relative mb-8 lg:mb-0" data-aos="fade-left" data-aos-delay="300">
-                            <div class="lg:absolute lg:top-0 lg:left-0 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 p-3 bg-accent-red text-white rounded-full font-bold shadow-lg">
-                                2
-                            </div>
-                            <div class="p-6 bg-primary-light dark:bg-primary-dark rounded-xl shadow-xl border-l-4 border-accent-red/80">
-                                <h3 class="text-xl font-black text-text-dark dark:text-text-light mb-2 font-heading">Instalasi Sesuai Standar OE</h3>
-                                <p class="text-gray-600 dark:text-gray-400">Pemasangan dilakukan oleh teknisi bersertifikat, menggunakan material terbaik, dengan kerapian wiring, dan tanpa merusak interior mobil Anda.</p>
-                            </div>
-                        </div>
-
-                        <div class="lg:col-start-1 lg:text-right relative mb-8 lg:mb-0" data-aos="fade-right" data-aos-delay="400">
-                            <div class="lg:absolute lg:top-0 lg:right-0 lg:transform lg:translate-x-1/2 lg:-translate-y-1/2 p-3 bg-accent-red text-white rounded-full font-bold shadow-lg">
-                                3
-                            </div>
-                            <div class="p-6 bg-primary-light dark:bg-primary-dark rounded-xl shadow-xl border-l-4 lg:border-l-0 lg:border-r-4 border-accent-red/80">
-                                <h3 class="text-xl font-black text-text-dark dark:text-text-light mb-2 font-heading">DSP Tuning & Uji Akustik RTA</h3>
-                                <p class="text-gray-600 dark:text-gray-400">Tahap krusial: Penyetelan DSP menggunakan alat Real-Time Analyzer (RTA) untuk mencapai respons frekuensi yang datar dan panggung suara (sound stage) yang sempurna.</p>
-                            </div>
-                        </div>
-
-                        <div class="lg:col-start-2 relative mb-8 lg:mb-0" data-aos="fade-left" data-aos-delay="500">
-                            <div class="lg:absolute lg:top-0 lg:left-0 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 p-3 bg-accent-red text-white rounded-full font-bold shadow-lg">
-                                4
-                            </div>
-                            <div class="p-6 bg-primary-light dark:bg-primary-dark rounded-xl shadow-xl border-l-4 border-accent-red/80">
-                                <h3 class="text-xl font-black text-text-dark dark:text-text-light mb-2 font-heading">Serah Terima & Garansi Purna Jual</h3>
-                                <p class="text-gray-600 dark:text-gray-400">Kami memberikan demonstrasi hasil, tips penggunaan, dan garansi instalasi untuk memastikan kepuasan jangka panjang Anda.</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="mt-12" data-aos="fade-up" data-aos-delay="600">
-                    <a href="https://wa.me/6281217398558?text=Halo,%20saya%20siap%20memulai%20proyek%20audio%20mobil%20saya%20dengan%20Concerto." target="_blank" rel="noopener noreferrer" class="btn bg-blue-500 text-white px-8 py-3 font-bold rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">
-                        <i class="fa-solid fa-list-check mr-2" aria-hidden="true"></i> Mulai Proyek Anda Hari Ini
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="testimoni" class="py-20 lg:py-32 bg-primary-light dark:bg-primary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
-            <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
-
-                <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
-                    REKOMENDASI PELANGGAN
-                </p>
-                <h2 class="section-title text-3xl lg:text-5xl font-black font-heading mb-12" data-aos="fade-up" data-aos-delay="100">
-                    Apa Kata Mereka Tentang Concerto
-                </h2>
-                
-                <div class="swiper mySwiper relative pb-12" data-aos="fade-up" data-aos-delay="200">
-                    <div class="swiper-wrapper">
-                        
-                        <div class="swiper-slide h-auto">
-                            <div class="bg-secondary-light dark:bg-secondary-dark p-8 rounded-xl shadow-lg flex flex-col h-full">
-                                <div class="flex items-center mb-4">
-                                    <img src="http://googleusercontent.com/images/6" alt="Foto Pelanggan 1" width="56" height="56" loading="lazy" class="w-14 h-14 rounded-full object-cover mr-4 border-2 border-accent-red">
-                                    <div>
-                                        <p class="font-bold text-text-dark dark:text-text-light">Bima A.</p>
-                                        <p class="text-sm text-gray-500 dark:text-gray-400">Pemilik Honda HR-V</p>
-                                    </div>
-                                </div>
-                                <p class="text-lg italic text-gray-700 dark:text-gray-300 flex-grow mb-4">
-                                    "Kualitas pengerjaan rapi banget, terutama instalasi peredamnya. Setelah di-tuning, suara jadi lebih detail dan panggung suaranya dapet banget. Puas!"
-                                </p>
-                                <div class="text-yellow-400">
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide h-auto">
-                            <div class="bg-secondary-light dark:bg-secondary-dark p-8 rounded-xl shadow-lg flex flex-col h-full">
-                                <div class="flex items-center mb-4">
-                                    <img src="http://googleusercontent.com/images/7" alt="Foto Pelanggan 2" width="56" height="56" loading="lazy" class="w-14 h-14 rounded-full object-cover mr-4 border-2 border-accent-red">
-                                    <div>
-                                        <p class="font-bold text-text-dark dark:text-text-light">Rizky S.</p>
-                                        <p class="text-sm text-gray-500 dark:text-gray-400">Penggemar Audiophile</p>
-                                    </div>
-                                </div>
-                                <p class="text-lg italic text-gray-700 dark:text-gray-300 flex-grow mb-4">
-                                    "Tuning DSP-nya mantap! Teknisi sangat sabar dan mau menjelaskan prosesnya. Benar-benar mengubah pengalaman mendengarkan musik di mobil."
-                                </p>
-                                <div class="text-yellow-400">
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide h-auto">
-                            <div class="bg-secondary-light dark:bg-secondary-dark p-8 rounded-xl shadow-lg flex flex-col h-full">
-                                <div class="flex items-center mb-4">
-                                    <img src="http://googleusercontent.com/images/8" alt="Foto Pelanggan 3" width="56" height="56" loading="lazy" class="w-14 h-14 rounded-full object-cover mr-4 border-2 border-accent-red">
-                                    <div>
-                                        <p class="font-bold text-text-dark dark:text-text-light">Citra W.</p>
-                                        <p class="text-sm text-gray-500 dark:text-gray-400">Pemilik Toyota Yaris</p>
-                                    </div>
-                                </div>
-                                <p class="text-lg italic text-gray-700 dark:text-gray-300 flex-grow mb-4">
-                                    "Pelayanannya ramah dari awal sampai akhir. Saya ambil paket SQ basic dan hasilnya jauh melebihi ekspektasi. Mobil jadi kedap dan suara jernih."
-                                </p>
-                                <div class="text-yellow-400">
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star-half-stroke" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="swiper-slide h-auto">
-                            <div class="bg-secondary-light dark:bg-secondary-dark p-8 rounded-xl shadow-lg flex flex-col h-full">
-                                <div class="flex items-center mb-4">
-                                    <img src="http://googleusercontent.com/images/9" alt="Foto Pelanggan 4" width="56" height="56" loading="lazy" class="w-14 h-14 rounded-full object-cover mr-4 border-2 border-accent-red">
-                                    <div>
-                                        <p class="font-bold text-text-dark dark:text-text-light">Dani P.</p>
-                                        <p class="text-sm text-gray-500 dark:text-gray-400">Pengemudi Harian</p>
-                                    </div>
-                                </div>
-                                <p class="text-lg italic text-gray-700 dark:text-gray-300 flex-grow mb-4">
-                                    "Awalnya ragu, tapi setelah konsultasi, saya yakin. Instalasi rapi dan tidak ada kabel yang terlihat. Sangat profesional, recommended!"
-                                </p>
-                                <div class="text-yellow-400">
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="swiper-pagination mt-6"></div>
+                <div class="relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-full bg-accent-red text-white text-xl font-black mx-auto mb-4 relative z-10 shadow-lg">1</div>
+                    <i class="fa-solid fa-headset text-accent-red text-4xl mb-3"></i>
+                    <h3 class="text-xl font-bold mb-2 font-heading">Konsultasi & Diagnosa</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Kami menganalisis kebutuhan, preferensi musik, dan akustik mobil Anda.</p>
                 </div>
                 
-                <div class="mt-8" data-aos="fade-up" data-aos-delay="300">
-                    <a href="http://googleusercontent.com/maps.google.com/4" target="_blank" rel="noopener noreferrer" class="btn border-2 border-accent-red text-accent-red px-6 py-3 font-bold rounded-lg hover:bg-accent-red hover:text-white transition duration-300">
-                        <i class="fa-solid fa-location-arrow mr-2" aria-hidden="true"></i> Lihat Ulasan di Google Maps
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq" class="py-20 lg:py-32 bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
-            <div class="max-w-4xl mx-auto px-4 md:px-12 text-center">
-
-                <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
-                    TANYA JAWAB
-                </p>
-                <h2 class="section-title text-3xl lg:text-5xl font-black font-heading mb-12" data-aos="fade-up" data-aos-delay="100">
-                    Pertanyaan Umum Seputar Audio Mobil SQ
-                </h2>
-
-                <div class="space-y-4 text-left">
-                    <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
-                        <button class="accordion-header flex justify-between items-center w-full p-5 text-lg font-semibold text-text-dark dark:text-text-light hover:bg-gray-50 dark:hover:bg-gray-700 rounded-t-xl transition duration-300" aria-expanded="false" aria-controls="faq-content-1">
-                            <span>Apa perbedaan Sound Quality (SQ) dengan Sound Pressure Level (SPL)?</span>
-                            <i class="accordion-icon fa-solid fa-plus text-accent-red ml-4 transition-transform duration-300" aria-hidden="true"></i>
-                        </button>
-                        <div id="faq-content-1" class="faq-content hidden p-5 pt-0 text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700">
-                            <p><strong>SQ (Sound Quality)</strong> fokus pada kualitas suara yang natural, detail, dan staging panggung suara yang akurat (seolah-olah musisi berada di depan Anda). Sementara itu, **SPL (Sound Pressure Level)** fokus pada volume suara yang sangat keras (bass menggelegar), biasanya untuk kompetisi. Kami adalah spesialis SQ.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="300">
-                        <button class="accordion-header flex justify-between items-center w-full p-5 text-lg font-semibold text-text-dark dark:text-text-light hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-300" aria-expanded="false" aria-controls="faq-content-2">
-                            <span>Apakah upgrade audio akan merusak garansi mobil baru saya?</span>
-                            <i class="accordion-icon fa-solid fa-plus text-accent-red ml-4 transition-transform duration-300" aria-hidden="true"></i>
-                        </button>
-                        <div id="faq-content-2" class="faq-content hidden p-5 pt-0 text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700">
-                            <p>Kami menerapkan instalasi <strong>Plug and Play (PnP)</strong> dan standar Original Equipment (OE) untuk sebagian besar komponen. Kami berusaha meminimalisir pemotongan kabel asli mobil Anda. Selalu konsultasikan dengan kami tipe mobil Anda, dan kami akan menjelaskan detail instalasi agar tidak membatalkan garansi utama kendaraan.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="400">
-                        <button class="accordion-header flex justify-between items-center w-full p-5 text-lg font-semibold text-text-dark dark:text-text-light hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-300" aria-expanded="false" aria-controls="faq-content-3">
-                            <span>Berapa lama proses instalasi audio dan peredam?</span>
-                            <i class="accordion-icon fa-solid fa-plus text-accent-red ml-4 transition-transform duration-300" aria-hidden="true"></i>
-                        </button>
-                        <div id="faq-content-3" class="faq-content hidden p-5 pt-0 text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700">
-                            <p>Waktu pengerjaan bervariasi tergantung paket:
-                                <ul>
-                                    <li>**Paket Basic/DSP Tuning:** 4-6 jam</li>
-                                    <li>**Paket Advanced (dengan peredam pintu):** 1-2 hari kerja</li>
-                                    <li>**Paket Ultimate (peredam total & custom box):** 3-5 hari kerja</li>
-                                </ul>
-                                Pastikan Anda melakukan **booking jadwal** terlebih dahulu.</p>
-                        </div>
-                    </div>
+                <div class="relative" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-full bg-accent-red text-white text-xl font-black mx-auto mb-4 relative z-10 shadow-lg">2</div>
+                    <i class="fa-solid fa-screwdriver-wrench text-accent-red text-4xl mb-3"></i>
+                    <h3 class="text-xl font-bold mb-2 font-heading">Instalasi Profesional</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Pemasangan komponen, custom box, dan peredam dengan standar kerapihan tertinggi.</p>
                 </div>
 
-                <div class="mt-12" data-aos="fade-up" data-aos-delay="500">
-                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-4">
-                        Punya pertanyaan lain?
-                    </p>
-                    <a href="https://wa.me/6281217398558?text=Halo,%20saya%20punya%20pertanyaan%20lain%20mengenai%20layanan%20Concerto%20Audio." target="_blank" rel="noopener noreferrer" class="btn bg-accent-red text-white px-8 py-3 font-bold rounded-lg hover:bg-red-700 transition duration-300 shadow-md">
-                        <i class="fa-brands fa-whatsapp mr-2" aria-hidden="true"></i> Tanyakan Langsung via WhatsApp
-                    </a>
+                <div class="relative" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-full bg-accent-red text-white text-xl font-black mx-auto mb-4 relative z-10 shadow-lg">3</div>
+                    <i class="fa-solid fa-sliders text-accent-red text-4xl mb-3"></i>
+                    <h3 class="text-xl font-bold mb-2 font-heading">Tuning Procesor Dengan Tepat Dan Presisi</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Pengaturan Time Alignment, EQ, dan tuning untuk staging sempurna.</p>
                 </div>
-            </div>
-        </section>
-
-        <section id="lokasi" class="py-20 lg:py-32 bg-primary-light dark:bg-primary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
-            <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
-
-                <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
-                    KUNJUNGI KAMI
-                </p>
-                <h2 class="section-title text-3xl lg:text-5xl font-black font-heading mb-10" data-aos="fade-up" data-aos-delay="100">
-                    Lokasi & Jam Operasional Bengkel
-                </h2>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 text-left mt-12">
-                    
-                    <div class="p-8 bg-secondary-light dark:bg-secondary-dark rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="text-2xl font-black text-text-dark dark:text-text-light mb-4 font-heading flex items-center">
-                            <i class="fa-regular fa-clock text-accent-red mr-3 text-3xl" aria-hidden="true"></i> Jam Buka
-                        </h3>
-                        
-                        <ul class="space-y-3 text-lg text-gray-700 dark:text-gray-400 mb-8">
-                            <li class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
-                                <span>Senin - Jumat</span>
-                                <span class="font-bold text-text-dark dark:text-text-light">08.00 - 17.00 WIB</span>
-                            </li>
-                            <li class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
-                                <span>Sabtu</span>
-                                <span class="font-bold text-text-dark dark:text-text-light">08.00 - 12.00 WIB</span>
-                            </li>
-                            <li class="flex justify-between pb-2 text-accent-red font-bold">
-                                <span>Minggu</span>
-                                <span>Tutup</span>
-                            </li>
-                        </ul>
-                        
-                        <a href="tel:+6281217398558"
-                           class="btn w-full bg-accent-red text-white px-6 py-3 text-lg font-bold hover:bg-red-700 transition duration-300 rounded-lg shadow-lg inline-flex items-center justify-center">
-                            <i class="fa-solid fa-phone-volume mr-2" aria-hidden="true"></i> Hubungi Kami Sekarang
-                        </a>
-                        <p class="text-sm text-center text-gray-500 dark:text-gray-400 mt-2">
-                            Telp/SMS: 081217398558
-                        </p>
-                    </div>
-
-                    <div class="p-8 bg-secondary-light dark:bg-secondary-dark rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="300">
-                        <h3 class="text-2xl font-black text-text-dark dark:text-text-light mb-4 font-heading flex items-center">
-                            <i class="fa-solid fa-location-dot text-accent-red mr-3 text-3xl" aria-hidden="true"></i> Alamat Bengkel
-                        </h3>
-                        
-                        <p class="text-gray-700 dark:text-gray-400 mb-4">
-                            Jl. Ciliwung No. 57A, Purwantoro, Kota Malang, Jawa Timur 65126
-                        </p>
-
-                        <div class="w-full h-64 rounded-lg overflow-hidden shadow-inner border border-gray-200 dark:border-gray-700">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15805.514339304997!2d112.6375375!3d-7.9620525!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629471f45095d%3A0x892a061c28c83a1b!2sConcerto%20Audio%20Malang!5e0!3m2!1sid!2sid!4v1680186989431!5m2!1sid!2sid" 
-                                width="100%" 
-                                height="100%" 
-                                style="border:0;" 
-                                allowfullscreen="" 
-                                loading="lazy" 
-                                referrerpolicy="no-referrer-when-downgrade"
-                                title="Google Maps lokasi Concerto Audio Malang"
-                            ></iframe>
-                        </div>
-                        
-                        <a href="https://maps.app.goo.gl/G8V7Q9BqE8ZgRzYt8" target="_blank" class="btn text-text-dark dark:text-text-light px-6 py-3 mt-4 text-lg font-bold inline-flex items-center hover:text-accent-red transition duration-300" rel="noopener noreferrer">
-                            Buka di Google Maps <i class="fa-solid fa-up-right-from-square ml-2" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                
+                <div class="relative" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-full bg-accent-red text-white text-xl font-black mx-auto mb-4 relative z-10 shadow-lg">4</div>
+                    <i class="fa-solid fa-car-on text-accent-red text-4xl mb-3"></i>
+                    <h3 class="text-xl font-bold mb-2 font-heading">Fine Tuning & Garansi</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Fine tuning bersama klien dan penjelasan setting, diikuti garansi re-tuning.</p>
                 </div>
-            </div>
-        </section>
 
-        <section id="kontak" class="py-20 lg:py-32 bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 relative overflow-hidden section-scroll-margin">
-            <div class="max-w-7xl mx-auto px-4 md:px-12 text-center relative z-10">
-
-                <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
-                    READY FOR THE NEXT LEVEL?
-                </p>
-                <h2 class="section-title text-5xl sm:text-6xl lg:text-7xl font-black font-heading mb-6 text-text-dark dark:text-text-light" data-aos="fade-up" data-aos-delay="100">
-                    DAPATKAN <span class="text-accent-red">KONSULTASI AUDIO</span> GRATIS
-                </h2>
-                <p class="text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-3xl mx-auto font-light" data-aos="fade-up" data-aos-delay="200">
-                    Kami akan menganalisis sistem audio mobil Anda dan memberikan rekomendasi upgrade yang paling efisien dan efektif.
-                </p>
-                
-                <a href="https://wa.me/6281217398558?text=Halo,%20saya%20ingin%20mengajukan%20jadwal%20Diagnosa%20Audio%20di%20Concerto%20Malang." 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    class="cta-whatsapp-link btn bg-accent-red text-white px-12 py-4 text-xl font-extrabold hover:bg-red-700 transition duration-300 rounded-lg shadow-2xl" 
-                    data-product="CTA Footer jadwal diagnosa Audio" 
-                    data-aos="fade-up" 
-                    data-aos-delay="300">
-                    <i class="fa-brands fa-whatsapp mr-2" aria-hidden="true"></i> Konsultasi Kebutuhan Audiomu Sekarang
-                </a>
             </div>
             
-            <div class="absolute inset-0 z-0 opacity-5 pointer-events-none" aria-hidden="true">
-                <i class="fa-solid fa-car text-[300px] text-accent-red absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 rotate-12"></i>
-                <i class="fa-solid fa-music text-[200px] text-text-dark dark:text-accent-red absolute bottom-1/4 right-1/4 transform translate-x-1/2 translate-y-1/2 -rotate-45"></i>
+        </div>
+    </div>
+</section>
+
+
+<section id="produk" class="py-20 lg:py-32 bg-primary-light dark:bg-primary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
+    <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
+        <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
+            PILIHAN UPGRADE
+        </p>
+        <h2 class="section-title text-3xl lg:text-5xl font-black font-heading mb-12" data-aos="fade-up" data-aos-delay="100">
+            Paket Instalasi Audio Terbaik
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="paket-card p-8 bg-secondary-light dark:bg-secondary-dark rounded-xl shadow-2xl border-t-8 border-accent-red transform hover:scale-[1.02] transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-2 font-heading">Level 1</p>
+                <h3 class="text-3xl font-black mb-4 text-text-dark dark:text-text-light font-heading">Base Stage (SQ.01)</h3>
+                <p class="text-gray-700 dark:text-gray-400 mb-6">Peningkatan suara yang signifikan dengan DSP entry level.</p>
+                
+                <div class="flex flex-col items-start space-y-3 mb-8 text-left text-gray-700 dark:text-gray-300">
+                    <span class="flex items-center"><i class="fa-solid fa-circle-check text-accent-red mr-2"></i> Upgrade Speaker 2-Way</span>
+                    <span class="flex items-center"><i class="fa-solid fa-circle-check text-accent-red mr-2"></i> DSP 4-Channel Built-in Amp</span>
+                    <span class="flex items-center"><i class="fa-solid fa-circle-check text-accent-red mr-2"></i> Instalasi Peredam Pintu Depan</span>
+                    <span class="flex items-center"><i class="fa-solid fa-circle-check text-accent-red mr-2"></i> Tuning Akustik 8-Channel</span>
+                </div>
+                
+                <a href="https://wa.me/081217398558?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Base%20Stage%20(SQ.01)." 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="cta-whatsapp-link btn w-full bg-accent-red text-white px-6 py-3 text-lg font-bold hover:bg-red-700 transition duration-300 rounded-lg shadow-lg" 
+                   data-product="Paket Base Stage (SQ.01)">
+                    Mulai Upgrade
+                </a>
+            </div>
+
+            <div class="paket-card p-8 bg-secondary-light dark:bg-secondary-dark rounded-xl shadow-2xl border-t-8 border-yellow-500 transform hover:scale-[1.02] transition duration-300 relative ring-4 ring-yellow-500" data-aos="fade-up" data-aos-delay="300">
+                <span class="absolute top-0 right-0 -mt-3 -mr-3 bg-yellow-500 text-text-dark text-xs font-bold px-3 py-1 rounded-full shadow-lg">POPULER</span>
+                <p class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-2 font-heading">Level 2</p>
+                <h3 class="text-3xl font-black mb-4 text-text-dark dark:text-text-light font-heading">Premium Stage (SQ.02)</h3>
+                <p class="text-gray-700 dark:text-gray-400 mb-6">Definisi suara konser dengan *staging* 3-dimensi.</p>
+
+                <div class="flex flex-col items-start space-y-3 mb-8 text-left text-gray-700 dark:text-gray-300">
+                    <span class="flex items-center"><i class="fa-solid fa-circle-check text-yellow-500 mr-2"></i> Upgrade Speaker **3-Way**</span>
+                    <span class="flex items-center"><i class="fa-solid fa-circle-check text-yellow-500 mr-2"></i> **DSP Profesional** & Amplifier Terpisah</span>
+                    <span class="flex items-center"><i class="fa-solid fa-circle-check text-yellow-500 mr-2"></i> **Custom Pilar A** (Instalasi Rapi)</span>
+                    <span class="flex items-center"><i class="fa-solid fa-circle-check text-yellow-500 mr-2"></i> Instalasi Peredam Komprehensif</span>
+                </div>
+                
+                <a href="https://wa.me/081217398558?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Premium%20Stage%20(SQ.02)%20yang%20Populer." 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="cta-whatsapp-link btn w-full bg-yellow-500 text-text-dark px-6 py-3 text-lg font-bold hover:bg-yellow-600 transition duration-300 rounded-lg shadow-lg" 
+                   data-product="Paket Premium Stage (SQ.02)">
+                    Konsultasi Paket Premium
+                </a>
+            </div>
+
+            <div class="paket-card p-8 bg-secondary-light dark:bg-secondary-dark rounded-xl shadow-2xl border-t-8 border-accent-red transform hover:scale-[1.02] transition duration-300" data-aos="fade-up" data-aos-delay="400">
+                <p class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-2 font-heading">Level 3</p>
+                <h3 class="text-3xl font-black mb-4 text-text-dark dark:text-text-light font-heading">Full Treatment (SQ.03)</h3>
+                <p class="text-gray-700 dark:text-gray-400 mb-6">Pengalaman Hi-End audio dengan komponen terbaik.</p>
+
+                <div class="flex flex-col items-start space-y-3 mb-8 text-left text-gray-700 dark:text-gray-300">
+                    <span class="flex items-center"><i class="fa-solid fa-circle-check text-accent-red mr-2"></i> Komponen Speaker Hi-End</span>
+                    <span class="flex items-center"><i class="fa-solid fa-circle-check text-accent-red mr-2"></i> DSP 12-Channel Terbaik</span>
+                    <span class="flex items-center"><i class="fa-solid fa-circle-check text-accent-red mr-2"></i> **Sound Dampening** Total Cabin</span>
+                    <span class="flex items-center"><i class="fa-solid fa-circle-check text-accent-red mr-2"></i> Instalasi **Kabel Audiophile** Penuh</span>
+                </div>
+                
+                <a href="https://wa.me/081217398558?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Full%20Treatment%20(SQ.03)%20Hi-End." 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="cta-whatsapp-link btn w-full bg-accent-red text-white px-6 py-3 text-lg font-bold hover:bg-red-700 transition duration-300 rounded-lg shadow-lg" 
+                   data-product="Paket Full Treatment (SQ.03)">
+                    Pesan Paket Hi-End
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="testimoni" class="relative py-20 lg:py-32 section-scroll-margin overflow-hidden bg-white dark:bg-black">
+    <video autoplay loop muted playsinline class="absolute inset-0 object-cover w-full h-full opacity-30 brightness-50">
+        <source src="asset/video1.mp4" type="video/mp4">
+        Browser Anda tidak mendukung tag video.
+    </video>
+    
+    <div class="max-w-7xl mx-auto px-4 md:px-12 text-center relative z-10">
+                
+        <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
+            TRUSTED BY CONCERTO AUDIO
+        </p>
+        <h2 class="section-title text-3xl lg:text-5xl font-black font-heading mb-12 text-white" data-aos="fade-up" data-aos-delay="100">
+            Apa Kata Klien Kami?
+        </h2>
+        
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                
+                <div class="swiper-slide p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl transition duration-300 transform hover:-translate-y-1 flex flex-col min-h-72 h-full">
+                    <div class="text-yellow-500 mb-3 text-xl">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-800 dark:text-gray-200 text-base leading-relaxed mb-6 flex-grow text-left">
+                        "Tempat terbaik untuk hobi audio mobil! **Owner sangat bersahabat dan berpengalaman.** Mereka profesional di bidang sound system, memberikan banyak pilihan sesuai budget Anda untuk hi-res audio. Karyawan bekerja dengan SOP Concerto yang terjamin. Ruang tunggu nyaman, **free coffee & tea**. Referensi terbaik untuk pemasangan audio mobil."
+                    </p>
+                    <div class="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700 mt-auto">
+                        <div class="w-10 h-10 rounded-full mr-3 flex-shrink-0 bg-red-600 flex items-center justify-center text-white font-bold text-sm">TG</div>
+                        <div class="font-bold text-gray-900 dark:text-white text-left">The Glow</div>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl transition duration-300 transform hover:-translate-y-1 flex flex-col min-h-72 h-full">
+                    <div class="text-yellow-500 mb-3 text-xl">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-800 dark:text-gray-200 text-base leading-relaxed mb-6 flex-grow text-left">
+                        "Datang untuk perbaikan audio. **Langsung beres dalam sekejap!** Ternyata hanya kabel yang lepas, langsung diatasi dengan cekatan. Respon telepon dari owner sangat baik. Semua staff yang melayani juga ramah. Tidak salah pilih tempat ini, padahal saya hanya sedang lewat Malang. **Terima kasih, Concerto!**"
+                    </p>
+                    <div class="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700 mt-auto">
+                        <div class="w-10 h-10 rounded-full mr-3 flex-shrink-0 bg-gray-800 flex items-center justify-center text-white font-bold text-sm">AC</div>
+                        <div class="font-bold text-gray-900 dark:text-white text-left">Agatha Corintias</div>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl transition duration-300 transform hover:-translate-y-1 flex flex-col min-h-72 h-full">
+                    <div class="text-yellow-500 mb-3 text-xl">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="text-gray-800 dark:text-gray-200 text-base leading-relaxed mb-6 flex-grow text-left">
+                        "Toko Audio yang sangat **Profesional**. Cara kerja mereka cekatan. Saat saya minta diperiksa kondisi Audio yang rusak, pengerjaan dilakukan dengan cepat dan sistematis. Sayangnya *head unit* saya sudah tidak bisa diperbaiki, namun pihak Concerto **tidak menarik biaya** atas pemeriksaan unit tersebut. Semoga Concerto makin maju & hebat. **Sangat Recommended!** 👍"
+                    </p>
+                    <div class="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700 mt-auto">
+                        <div class="w-10 h-10 rounded-full mr-3 flex-shrink-0 bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">SM</div>
+                        <div class="font-bold text-gray-900 dark:text-white text-left">Sakti Mattoangin</div>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl transition duration-300 transform hover:-translate-y-1 flex flex-col min-h-72 h-full">
+                    <div class="text-yellow-500 mb-3 text-xl">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-800 dark:text-gray-200 text-base leading-relaxed mb-6 flex-grow text-left">
+                        "**Desainer Audio Mobil PALING Profesional.** Layanan yang benar-benar memuaskan dan ahli di bidangnya."
+                    </p>
+                    <div class="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700 mt-auto">
+                        <div class="w-10 h-10 rounded-full mr-3 flex-shrink-0 bg-teal-600 flex items-center justify-center text-white font-bold text-sm">MD</div>
+                        <div class="font-bold text-gray-900 dark:text-white text-left">Michael DDS</div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl transition duration-300 transform hover:-translate-y-1 flex flex-col min-h-72 h-full">
+                    <div class="text-yellow-500 mb-3 text-xl">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-800 dark:text-gray-200 text-base leading-relaxed mb-6 flex-grow text-left">
+                        "**Terbaik!** Layanan yang cepat dan hasil yang memuaskan."
+                    </p>
+                    <div class="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700 mt-auto">
+                        <div class="w-10 h-10 rounded-full mr-3 flex-shrink-0 bg-pink-600 flex items-center justify-center text-white font-bold text-sm">YP</div>
+                        <div class="font-bold text-gray-900 dark:text-white text-left">Yanitra Putra Pratama</div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl transition duration-300 transform hover:-translate-y-1 flex flex-col min-h-72 h-full">
+                    <div class="text-yellow-500 mb-3 text-xl">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-800 dark:text-gray-200 text-base leading-relaxed mb-6 flex-grow text-left">
+                        "**Pengerjaan memuaskan** dengan hasil yang sangat rapi dan detail."
+                    </p>
+                    <div class="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700 mt-auto">
+                        <div class="w-10 h-10 rounded-full mr-3 flex-shrink-0 bg-amber-600 flex items-center justify-center text-white font-bold text-sm">VK</div>
+                        <div class="font-bold text-gray-900 dark:text-white text-left">Vicky Lazuardi Kautsar</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="swiper-pagination mt-8"></div>
+            <div class="swiper-button-next text-white hover:text-accent-red transition-colors duration-200 hidden md:block"></div>
+            <div class="swiper-button-prev text-white hover:text-accent-red transition-colors duration-200 hidden md:block"></div>
+        </div>
+        </div>
+</section>
+        
+        <section id="galeri" class="py-20 lg:py-32 bg-primary-light dark:bg-primary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
+            <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
+                <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
+                    OUR LATEST WORK
+                </p>
+                <h2 class="section-title text-3xl lg:text-5xl font-black font-heading mb-12" data-aos="fade-up" data-aos-delay="100">
+                    Hasil Instalasi Audio Kami
+                </h2>
+
+               <div class="grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="200">
+                
+                <div class="galeri-item h-64 overflow-hidden rounded-xl shadow-lg relative group">
+                    <img src="https://via.placeholder.com/600x600/111827/C8102E?text=Install+Pillar+A" alt="Instalasi Custom Pillar A" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="overlay absolute inset-0 bg-accent-red/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                        <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+                    </div>
+                </div>
+
+                <div class="galeri-item h-96 overflow-hidden rounded-xl shadow-lg relative group">
+                    <img src="https://via.placeholder.com/600x960/111827/F9FAFB?text=Wiring+Rapi+Detail" alt="Detail Wiring Rapi" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="overlay absolute inset-0 bg-accent-red/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                        <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+                    </div>
+                </div>
+
+                <div class="galeri-item h-64 overflow-hidden rounded-xl shadow-lg relative group">
+                    <img src="https://via.placeholder.com/600x600/C8102E/111827?text=Subwoofer+Box" alt="Custom Subwoofer Box" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="overlay absolute inset-0 bg-accent-red/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                        <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+                    </div>
+                </div>
+
+                <div class="galeri-item h-80 overflow-hidden rounded-xl shadow-lg relative group hidden md:block">
+                    <img src="https://via.placeholder.com/600x800/111827/C8102E?text=Tuning+DSP" alt="Proses Tuning DSP" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="overlay absolute inset-0 bg-accent-red/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                        <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+                    </div>
+                </div>
+
+                <div class="galeri-item h-72 overflow-hidden rounded-xl shadow-lg relative group hidden md:block">
+                    <img src="https://via.placeholder.com/600x720/111827/C8102E?text=Install+Peredam" alt="Instalasi Peredam" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="overlay absolute inset-0 bg-accent-red/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                        <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+                    </div>
+                </div>
+            
+                <div class="galeri-item h-60 overflow-hidden rounded-xl shadow-lg relative group hidden md:block">
+                    <img src="https://via.placeholder.com/600x600/C8102E/111827?text=Component+Speaker" alt="Component Speaker" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="overlay absolute inset-0 bg-accent-red/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                        <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+                    </div>
+                </div>
+
+                <div class="galeri-item h-60 overflow-hidden rounded-xl shadow-lg relative group hidden md:block">
+                    <img src="https://via.placeholder.com/600x600/111827/F9FAFB?text=Proses+Tuning" alt="Proses Tuning" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="overlay absolute inset-0 bg-accent-red/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                        <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+                    </div>
+                </div>
+
+                <div class="galeri-item h-72 overflow-hidden rounded-xl shadow-lg relative group hidden md:block">
+                    <img src="https://via.placeholder.com/600x720/C8102E/111827?text=Final+Check" alt="Final Check" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="overlay absolute inset-0 bg-accent-red/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                        <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+                    </div>
+                </div>
+            </div>
+
+                <a href="https://www.tiktok.com/@concertomlg" target="_blank" class="btn bg-accent-red text-white px-8 py-3 mt-12 text-lg hover:bg-red-700 transition duration-300 rounded-lg shadow-lg font-bold" data-aos="fade-up" data-aos-delay="300" rel="noopener noreferrer">
+                    Lihat Hasil Instalasi Kami Lebih Lengkap <i class="fa-brands fa-tiktok ml-2"></i>
+                </a>
             </div>
         </section>
-    </main>
 
-    <footer class="bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 py-12 lg:py-16" aria-label="Informasi Footer">
+       <section id="merk" class="py-16 lg:py-24 bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
+    <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
+        <h2 class="section-title text-3xl lg:text-4xl font-black font-heading mb-12" data-aos="fade-up">
+            Didukung Penuh oleh <span class="text-accent-red">Brand Audio Terbaik</span>
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center max-w-5xl mx-auto">
+            
+            <div class="p-4 flex justify-center items-center h-24 md:h-32 lg:h-40" data-aos="zoom-in" data-aos-delay="100">
+                <img 
+                    src="asset/1Copy.png" 
+                    alt="Audio Circle" 
+                    class="logo-brand max-w-full max-h-full object-contain" 
+                >
+            </div>
+
+            <div class="p-4 flex justify-center items-center h-24 md:h-32 lg:h-40" data-aos="zoom-in" data-aos-delay="200">
+                <img 
+                    src="asset/2.png" 
+                    alt="STEG" 
+                    class="logo-brand max-w-full max-h-full object-contain" 
+                >
+            </div>
+
+            <div class="p-4 flex justify-center items-center h-24 md:h-32 lg:h-40" data-aos="zoom-in" data-aos-delay="300">
+                <img 
+                    src="asset/3.png" 
+                    alt="Dios Dela Musica" 
+                    class="logo-brand max-w-full max-h-full object-contain" 
+                >
+            </div>
+
+            <div class="p-4 flex justify-center items-center h-24 md:h-32 lg:h-40" data-aos="zoom-in" data-aos-delay="400">
+                <img 
+                    src="asset/4.png" 
+                    alt="Zelos Audio" 
+                    class="logo-brand max-w-full max-h-full object-contain" 
+                >
+            </div>
+
+        </div>
+    </div>
+</section>
+        
+        <section id="faq" class="py-20 lg:py-32 bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
+    <div class="max-w-7xl mx-auto px-4 md:px-12">
+        <div class="text-center mb-16">
+            <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
+                QUICK ANSWERS
+            </p>
+            <h2 class="section-title text-3xl lg:text-5xl font-black font-heading" data-aos="fade-up" data-aos-delay="100">
+                Pertanyaan yang Sering Diajukan (FAQ)
+            </h2>
+        </div>
+
+        <div class="max-w-4xl mx-auto space-y-4">
+            
+            <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="200">
+                <button class="accordion-header w-full flex justify-between items-center p-5 font-semibold text-lg bg-primary-light dark:bg-primary-dark hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300 text-left" aria-expanded="false">
+                    Apakah tuning MDSP bisa dilakukan pada audio mobil standar?
+                    <i class="fa-solid fa-plus text-accent-red transition-transform duration-300 transform accordion-icon"></i>
+                </button>
+                <div class="faq-content p-5 pt-0 text-gray-600 dark:text-gray-400 hidden">
+                    <p class="mt-4">
+                        Ya, kami dapat melakukan diagnosa dan tuning pada sistem audio standar mobil Anda (jika memiliki MDSP eksternal) untuk memaksimalkan kinerja speaker bawaan. Namun, disarankan agar hasil optimal dicapai baiknya untuk upgrade speaker dan power amplifier yang tepat.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="300">
+                <button class="accordion-header w-full flex justify-between items-center p-5 font-semibold text-lg bg-primary-light dark:bg-primary-dark hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300 text-left" aria-expanded="false">
+                    Berapa lama waktu yang dibutuhkan untuk instalasi paket premium?
+                    <i class="fa-solid fa-plus text-accent-red transition-transform duration-300 transform accordion-icon"></i>
+                </button>
+                <div class="faq-content p-5 pt-0 text-gray-600 dark:text-gray-400 hidden">
+                    <p class="mt-4">
+                        Untuk Paket Premium Stage (SQ.02) yang melibatkan instalasi 3-way, peredaman, dan tuning komprehensif, umumnya membutuhkan waktu 1-2 hari kerja. Kami selalu memprioritaskan kualitas dan kerapihan instalasi.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="400">
+                <button class="accordion-header w-full flex justify-between items-center p-5 font-semibold text-lg bg-primary-light dark:bg-primary-dark hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300 text-left" aria-expanded="false">
+                    Apakah saya mendapatkan garansi untuk hasil tuning?
+                    <i class="fa-solid fa-plus text-accent-red transition-transform duration-300 transform accordion-icon"></i>
+                </button>
+                <div class="faq-content p-5 pt-0 text-gray-600 dark:text-gray-400 hidden">
+                    <p class="mt-4">
+                        Ya, kami memberikan garansi tuning revisi selama 1 bulan setelah instalasi. Kepuasan audio Anda adalah prioritas kami. Kami siap melakukan penyesuaian hingga suara yang dihasilkan benar-benar sesuai dengan preferensi telinga Anda.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        
+      <section id="lokasi" class="py-20 lg:py-32 bg-primary-light dark:bg-primary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
+    <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
+
+        <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
+            KUNJUNGI KAMI
+        </p>
+        <h2 class="section-title text-3xl lg:text-5xl font-black font-heading mb-10" data-aos="fade-up" data-aos-delay="100">
+            Lokasi & Jam Operasional Bengkel
+        </h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 text-left mt-12">
+            
+            <div class="p-8 bg-secondary-light dark:bg-secondary-dark rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-2xl font-black text-text-dark dark:text-text-light mb-4 font-heading flex items-center">
+                    <i class="fa-regular fa-clock text-accent-red mr-3 text-3xl"></i> Jam Buka
+                </h3>
+                
+                <ul class="space-y-3 text-lg text-gray-700 dark:text-gray-400 mb-8">
+                    <li class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+                        <span>Senin - Jumat</span>
+                        <span class="font-bold text-text-dark dark:text-text-light">08.00 - 17.00 WIB</span>
+                    </li>
+                    <li class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+                        <span>Sabtu</span>
+                        <span class="font-bold text-text-dark dark:text-text-light">08.00 - 12.00 WIB</span>
+                    </li>
+                    <li class="flex justify-between pb-2 text-accent-red font-bold">
+                        <span>Minggu</span>
+                        <span>Tutup</span>
+                    </li>
+                </ul>
+                
+                <a href="tel:+081217398558"
+                   class="btn w-full bg-accent-red text-white px-6 py-3 text-lg font-bold hover:bg-red-700 transition duration-300 rounded-lg shadow-lg inline-flex items-center justify-center">
+                    <i class="fa-solid fa-phone-volume mr-2"></i> Hubungi Kami Sekarang
+                </a>
+                <p class="text-sm text-center text-gray-500 dark:text-gray-400 mt-2">
+                    Telp/SMS: 081217398558
+                </p>
+            </div>
+
+            <div class="p-8 bg-secondary-light dark:bg-secondary-dark rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-2xl font-black text-text-dark dark:text-text-light mb-4 font-heading flex items-center">
+                    <i class="fa-solid fa-location-dot text-accent-red mr-3 text-3xl"></i> Alamat Bengkel
+                </h3>
+                
+                <p class="text-gray-700 dark:text-gray-400 mb-4">
+                    Jl. Ciliwung No. 57A, Purwantoro, Kota Malang, Jawa Timur 65126
+                </p>
+
+                <div class="w-full h-64 rounded-lg overflow-hidden shadow-inner border border-gray-200 dark:border-gray-700">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.4325179819684!2d112.6440062!3d-7.954175900000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629b6215718c1%3A0x141cdb0f044d67d5!2sConcerto%20Audio%20dan%20Peredam%20Mobil%20Malang%20Raya!5e0!3m2!1sen!2sid!4v1760935123006!5m2!1sen!2sid" 
+                        width="600" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        ></iframe>" 
+                </div>
+                
+                <a href="https://www.google.com/maps/place/Concerto+Audio+dan+Peredam+Mobil+Malang+Raya/@-7.9540135,112.6415129,17z/data=!3m1!4b1!4m6!3m5!1s0x2dd629b6215718c1:0x141cdb0f044d67d5!8m2!3d-7.9540135!4d112.6440878!16s%2Fg%2F11h0v627w_!5m1!1e1?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3Do" target="_blank" class="btn text-text-dark dark:text-text-light px-6 py-3 mt-4 text-lg font-bold inline-flex items-center hover:text-accent-red transition duration-300" rel="noopener noreferrer">
+                    Buka di Google Maps <i class="fa-solid fa-up-right-from-square ml-2"></i>
+                </a>
+            </div>
+        
+        </div>
+    </div>
+</section>
+
+        <section id="kontak" class="py-20 lg:py-32 bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 relative overflow-hidden section-scroll-margin">
+    <div class="max-w-7xl mx-auto px-4 md:px-12 text-center relative z-10">
+
+        <p class="text-accent-red font-bold mb-3 uppercase tracking-widest font-heading" data-aos="fade-up">
+            READY FOR THE NEXT LEVEL?
+        </p>
+        <h2 class="section-title text-5xl sm:text-6xl lg:text-7xl font-black font-heading mb-6 text-text-dark dark:text-text-light" data-aos="fade-up" data-aos-delay="100">
+            DAPATKAN <span class="text-accent-red">DIAGNOSA AUDIO</span> GRATIS
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-3xl mx-auto font-light" data-aos="fade-up" data-aos-delay="200">
+            Kami akan menganalisis sistem audio mobil Anda dan memberikan rekomendasi upgrade yang paling efisien dan efektif.
+        </p>
+        
+        <a href="https://wa.me/081217398558?text=Halo,%20saya%20ingin%20mengajukan%20jadwal%20Diagnosa%20Audio%20di Concerto Malang." 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="cta-whatsapp-link btn bg-accent-red text-white px-12 py-4 text-xl font-extrabold hover:bg-red-700 transition duration-300 rounded-lg shadow-2xl" 
+           data-product="CTA Footer jadwal diagnosa Audio" 
+           data-aos="fade-up" 
+           data-aos-delay="300">
+            <i class="fa-brands fa-whatsapp mr-2"></i> Konsultasi Kebutubahn Audiomu Sekarang
+        </a>
+    </div>
+    
+    <div class="absolute inset-0 z-0 opacity-5 pointer-events-none">
+        <i class="fa-solid fa-car text-[300px] text-accent-red absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 rotate-12"></i>
+        <i class="fa-solid fa-music text-[200px] text-text-dark dark:text-accent-red absolute bottom-1/4 right-1/4 transform translate-x-1/2 translate-y-1/2 -rotate-45"></i>
+    </div>
+</section>
+
+    <footer class="bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 py-12 lg:py-16" aria-label="Footer Information">
         <div class="max-w-7xl mx-auto px-4 md:px-12">
             
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-10 text-text-dark dark:text-text-light">
 
                 <div class="col-span-2 lg:col-span-1">
                     <a href="#hero" class="flex items-center space-x-2 font-black text-2xl tracking-widest text-accent-red font-heading mb-4">
-                        <i class="fa-solid fa-microphone-lines text-2xl" aria-hidden="true"></i>
+                        <i class="fa-solid fa-microphone-lines text-2xl"></i>
                         <span>CONCERTO AUDIO</span>
                     </a>
                     <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 max-w-xs">
@@ -733,10 +751,10 @@
                     </p>
                     
                     <p class="text-sm font-semibold text-text-dark dark:text-text-light">
-                        <i class="fa-solid fa-phone mr-2 text-accent-red" aria-hidden="true"></i> Telepon: <span class="text-gray-600 dark:text-gray-400">081217398558</span>
+                        <i class="fa-solid fa-phone mr-2 text-accent-red"></i> Telepon: <span class="text-gray-600 dark:text-gray-400">081217398558</span>
                     </p>
                     <p class="text-sm font-semibold text-text-dark dark:text-text-light">
-                        <i class="fa-solid fa-location-dot mr-2 text-accent-red" aria-hidden="true"></i> Malang, Jawa Timur
+                        <i class="fa-solid fa-location-dot mr-2 text-accent-red"></i> Malang, Jawa Timur
                     </p>
 
                 </div>
@@ -757,13 +775,7 @@
                         <li><a href="#galeri" class="hover:text-accent-red transition duration-300">Lihat Portofolio</a></li>
                         <li><a href="#testimoni" class="hover:text-accent-red transition duration-300">Ulasan Pelanggan</a></li>
                         <li><a href="#faq" class="hover:text-accent-red transition duration-300">FAQ (Tanya Jawab)</a></li>
-                        <li>
-                            <a href="https://wa.me/6281217398558?text=Halo,%20saya%20ingin%20konsultasi%20mengenai%20audio%20mobil%20saya." 
-                               target="_blank" 
-                               rel="noopener noreferrer" 
-                               class="cta-whatsapp-link hover:text-accent-red transition duration-300" 
-                               data-product="Footer Permintaan Konsultasi">Konsultasi Gratis</a>
-                        </li>
+                        <li><a href="#" class="cta-whatsapp-link hover:text-accent-red transition duration-300" data-product="Footer Permintaan Konsultasi">Konsultasi Gratis</a></li>
                     </ul>
                 </div>
 
@@ -773,19 +785,19 @@
                         
                         <a href="https://www.instagram.com/concerto_malang/" target="_blank" aria-label="Instagram Concerto" 
                             class="footer-social-icon text-2xl text-gray-500 dark:text-gray-600 hover:text-accent-red transition duration-300" rel="noopener noreferrer">
-                            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                            <i class="fa-brands fa-instagram"></i>
                         </a>
                         <a href="https://www.facebook.com/concerto.malang.2025" target="_blank" aria-label="Facebook Concerto" 
                             class="footer-social-icon text-2xl text-gray-500 dark:text-gray-600 hover:text-accent-red transition duration-300" rel="noopener noreferrer">
-                            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+                            <i class="fa-brands fa-facebook-f"></i>
                         </a>
                         <a href="https://www.tiktok.com/@concertomlg" target="_blank" aria-label="TikTok Concerto" 
                             class="footer-social-icon text-2xl text-gray-500 dark:text-gray-600 hover:text-accent-red transition duration-300" rel="noopener noreferrer">
-                            <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+                            <i class="fa-brands fa-tiktok"></i>
                         </a>
                         <a href="https://www.youtube.com/@Concerto_Malang" target="_blank" aria-label="YouTube Concerto" 
                             class="footer-social-icon text-2xl text-gray-500 dark:text-gray-600 hover:text-accent-red transition duration-300" rel="noopener noreferrer">
-                            <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                            <i class="fa-brands fa-youtube"></i>
                         </a>
                     </div>
                     
@@ -814,185 +826,106 @@
         id="scroll-to-top" 
         class="fixed bottom-6 right-6 z-50 p-4 bg-accent-red text-white rounded-full shadow-2xl transition-all duration-300 opacity-0 invisible hover:bg-red-700" 
         aria-label="Kembali ke atas">
-        <i class="fa-solid fa-arrow-up text-xl" aria-hidden="true"></i>
+        <i class="fa-solid fa-arrow-up text-xl"></i>
     </button>
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // INISIALISASI AOS
-            AOS.init({
-                duration: 800, 
-                once: true,
-                easing: 'ease-in-out',
-            });
-            
-            // INISIALISASI SWIPER (TESTIMONI SLIDER)
-            var swiper = new Swiper(".mySwiper", {
-                slidesPerView: 1,
-                spaceBetween: 24, // Sama dengan gap-6 di Tailwind (24px)
-                loop: true,
-                autoplay: {
-                    delay: 4500, // Otomatis geser setiap 4.5 detik
-                    disableOnInteraction: false,
-                },
-                breakpoints: {
-                    768: { // Untuk layar md dan ke atas
-                        slidesPerView: 2,
-                    },
-                    1024: { // Untuk layar lg dan ke atas
-                        slidesPerView: 3,
-                    },
-                },
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                },
-                // Navigation dihilangkan agar desain lebih bersih
-            });
-
-            // 1. FUNGSI DARK/LIGHT MODE TOGGLE (dari Tahap 1)
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const sunIcon = document.getElementById('theme-toggle-light-icon');
-            const moonIcon = document.getElementById('theme-toggle-dark-icon');
-
-            // Cek preferensi sistem atau local storage
-            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                sunIcon.classList.remove('hidden');
-            } else {
-                document.documentElement.classList.remove('dark');
-                moonIcon.classList.remove('hidden');
-            }
-
-            // Handler untuk mengganti tema
-            themeToggleBtn.addEventListener('click', function() {
-                // toggle icons
-                sunIcon.classList.toggle('hidden');
-                moonIcon.classList.toggle('hidden');
-
-                // toggle theme
-                if (localStorage.getItem('color-theme')) {
-                    if (localStorage.getItem('color-theme') === 'light') {
-                        document.documentElement.classList.add('dark');
-                        localStorage.setItem('color-theme', 'dark');
-                    } else {
-                        document.documentElement.classList.remove('dark');
-                        localStorage.setItem('color-theme', 'light');
-                    }
-                } else {
-                    if (document.documentElement.classList.contains('dark')) {
-                        document.documentElement.classList.remove('dark');
-                        localStorage.setItem('color-theme', 'light');
-                    } else {
-                        document.documentElement.classList.add('dark');
-                        localStorage.setItem('color-theme', 'dark');
-                    }
-                }
-            });
-
-            // 2. FUNGSI MOBILE MENU (dari Tahap 1)
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-            const toggleMobileMenu = () => {
-                const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-                mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-                
-                // Toggle ikon
-                const menuIcon = mobileMenuButton.querySelector('.fa-bars');
-                const closeIcon = mobileMenuButton.querySelector('.fa-xmark') || document.createElement('i');
-                
-                if (isExpanded) {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuButton.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
-                } else {
-                    mobileMenu.classList.remove('hidden');
-                    mobileMenuButton.innerHTML = '<i class="fa-solid fa-xmark text-2xl"></i>';
-                }
-            };
-
-            mobileMenuButton.addEventListener('click', toggleMobileMenu);
-
-            // Tutup menu saat link diklik (untuk navigasi)
-            mobileNavLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        toggleMobileMenu();
-                    }
-                });
-            });
-
-
-            // 3. FUNGSI ACCORDION FAQ (dari Tahap 3)
-            const faqButtons = document.querySelectorAll('.accordion-header');
-
-            faqButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const faqItem = button.closest('.faq-item');
-                    if (!faqItem) return;
-
-                    const content = faqItem.querySelector('.faq-content');
-                    // Ganti .faq-toggle-icon dengan .accordion-icon jika ikon menggunakan class tersebut
-                    const icon = button.querySelector('.accordion-icon'); 
-                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
-
-                    if (isExpanded) {
-                        content.classList.add('hidden');
-                        button.setAttribute('aria-expanded', 'false');
-                        icon.classList.remove('rotate-45'); 
-                    } else {
-                        // Tutup item lain saat item ini dibuka (Accordion Style)
-                        closeOtherItems(faqItem); 
-                        
-                        content.classList.remove('hidden');
-                        button.setAttribute('aria-expanded', 'true');
-                        icon.classList.add('rotate-45'); 
-                    }
-                });
-            });
-            
-            // Fungsi untuk menutup item lain (Gaya Accordion)
-            function closeOtherItems(currentItem) {
-                faqButtons.forEach(otherButton => {
-                    const otherItem = otherButton.closest('.faq-item');
-                    if (otherItem !== currentItem) {
-                        const otherContent = otherItem.querySelector('.faq-content');
-                        const otherIcon = otherButton.querySelector('.accordion-icon');
-                        
-                        otherContent.classList.add('hidden');
-                        otherButton.setAttribute('aria-expanded', 'false');
-                        otherIcon.classList.remove('rotate-45');
-                    }
-                });
-            }
-
-            // 4. FUNGSI SCROLL TO TOP (dari Tahap 3)
-            const scrollToTopBtn = document.getElementById('scroll-to-top');
-            
-            // Tampilkan tombol saat di-scroll ke bawah
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) { // Tampilkan setelah 300px
-                    scrollToTopBtn.classList.remove('invisible', 'opacity-0');
-                    scrollToTopBtn.classList.add('visible', 'opacity-100');
-                } else {
-                    scrollToTopBtn.classList.remove('visible', 'opacity-100');
-                    scrollToTopBtn.classList.add('invisible', 'opacity-0');
-                }
-            });
-            
-            // Scroll ke atas saat tombol diklik
-            scrollToTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
+        AOS.init({
+            duration: 800, 
+            once: true,
+            easing: 'ease-in-out',
         });
     </script>
+    
+    <script src="script.js"></script>
+     <button id="scroll-to-top" 
+    class="fixed **bottom-6 right-6** p-4 rounded-full bg-accent-red text-white shadow-lg transition-all duration-300 z-50 
+           invisible opacity-0 hover:bg-red-700" 
+    aria-label="Scroll ke atas">
+    
+    <i class="fa-solid fa-arrow-up text-xl"></i>
+         
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Ambil semua tombol dengan class 'faq-toggle'
+        const buttons = document.querySelectorAll('.faq-toggle');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // 1. Temukan elemen faq-item terdekat (parent)
+                const faqItem = button.closest('.faq-item');
+                if (!faqItem) return;
+
+                // 2. Temukan konten (jawaban) dan ikon di dalam faq-item ini
+                const content = faqItem.querySelector('.faq-content');
+                const icon = button.querySelector('i');
+
+                // 3. Toggle (periksa dan ubah) status visibilitas
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+                if (isExpanded) {
+                    // Jika sedang terbuka: Tutup
+                    content.classList.add('hidden');
+                    button.setAttribute('aria-expanded', 'false');
+                    icon.classList.remove('rotate-45'); // Kembalikan ikon ke +
+                } else {
+                    // Jika sedang tertutup: Buka
+                    content.classList.remove('hidden');
+                    button.setAttribute('aria-expanded', 'true');
+                    icon.classList.add('rotate-45'); // Putar ikon untuk menjadi x atau - (jika menggunakan fa-plus/minus)
+                }
+
+                // Opsional: Tutup semua item lain saat salah satu item dibuka
+                // closeOtherItems(faqItem); 
+            });
+        });
+        
+        // Fungsi opsional untuk menutup item lain (Accordion Style)
+        function closeOtherItems(currentItem) {
+            buttons.forEach(otherButton => {
+                const otherItem = otherButton.closest('.faq-item');
+                if (otherItem !== currentItem) {
+                    const otherContent = otherItem.querySelector('.faq-content');
+                    const otherIcon = otherButton.querySelector('i');
+                    
+                    otherContent.classList.add('hidden');
+                    otherButton.setAttribute('aria-expanded', 'false');
+                    otherIcon.classList.remove('rotate-45');
+                }
+            });
+        }
+    });
+</script>
+         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        // Tampilkan 1 kolom di HP, 2 di tablet, 3 di desktop
+        slidesPerView: 1,
+        spaceBetween: 24, // Sama dengan gap-6 di Tailwind (24px)
+        loop: true,
+        autoplay: {
+            delay: 4500, // Otomatis geser setiap 4.5 detik
+            disableOnInteraction: false,
+        },
+        breakpoints: {
+            768: { // Untuk layar md dan ke atas
+                slidesPerView: 2,
+            },
+            1024: { // Untuk layar lg dan ke atas
+                slidesPerView: 3,
+            },
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
 </body>
 </html>
