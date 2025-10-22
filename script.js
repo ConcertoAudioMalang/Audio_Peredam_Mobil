@@ -189,3 +189,53 @@ AOS.init({
     duration: 1000,
 });
 
+// PASTIKAN ANDA MENGGANTI INI DENGAN KODE INISIALISASI SWIPER YANG SUDAH ADA
+var swiper = new Swiper(".mySwiper", {
+    // ------------------------------------
+    // PENGATURAN TINGGI AGAR SEMUA SAMA
+    // ------------------------------------
+    
+    // Matikan autoHeight agar Swiper tidak menyesuaikan tinggi slide 
+    // berdasarkan konten terpendek (ini penyebab utama kolom beda tinggi).
+    autoHeight: false, 
+
+    // Opsi ini sangat membantu memastikan tinggi wrapper menyesuaikan slide tertinggi.
+    setWrapperSize: true, 
+
+    // ------------------------------------
+    // PENGATURAN RESPONSIVE (SLIDES PER VIEW)
+    // ------------------------------------
+    
+    // Default untuk mobile
+    slidesPerView: 1, 
+    spaceBetween: 24,
+
+    breakpoints: {
+        // Tablet (>= 768px)
+        768: {
+            slidesPerView: 2,
+            spaceBetween: 30
+        },
+        // Desktop (>= 1024px)
+        1024: {
+            slidesPerView: 3, // Tampilkan 3 kolom untuk tampilan besar
+            spaceBetween: 30
+        }
+    },
+    
+    // ------------------------------------
+    // NAVIGASI DAN PAGINASI
+    // ------------------------------------
+    
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    
+    // Tambahkan opsi lain jika ada, misalnya loop, effect, dll.
+});
+
