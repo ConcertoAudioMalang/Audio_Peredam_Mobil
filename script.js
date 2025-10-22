@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 6. WHATSAPP DYNAMIC LINK GENERATOR (Ditambahkan Kembali) ✅
     // ==========================================
     // HARAP GANTI NOMOR TELEPON INI DENGAN NOMOR ANDA YANG VALID!
-    const phoneNumber = '6281234567890'; 
+    const phoneNumber = '081217398558'; 
     const defaultMessage = encodeURIComponent("Halo, saya tertarik dengan layanan audio mobil Anda. Bisakah saya mendapatkan informasi lebih lanjut?");
 
     if (whatsappBtn) {
@@ -235,3 +235,4 @@ var swiper = new Swiper(".mySwiper", {
         prevEl: ".swiper-button-prev",
     },
 });
+
