@@ -851,7 +851,7 @@
             <p>© 2025 CONCERTO Audio Malang. All rights reserved. | Engineered by <span class="text-accent-red font-semibold">Concerto Media Team</span></p>
         </div>
     </div>
-</footer>
+</footer >
     
     <button 
         id="scroll-to-top" 
@@ -861,104 +861,122 @@
     </button>
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     <script>
+        // --- 4.1. AOS INIT ---
         AOS.init({
             duration: 800, 
             once: true,
             easing: 'ease-in-out',
         });
-    </script>
-    
-    <script src="script.js"></script>
-     <button id="scroll-to-top" 
-    class="fixed **bottom-6 right-6** p-4 rounded-full bg-accent-red text-white shadow-lg transition-all duration-300 z-50 
-           invisible opacity-0 hover:bg-red-700" 
-    aria-label="Scroll ke atas">
-    
-    <i class="fa-solid fa-arrow-up text-xl"></i>
-         
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Ambil semua tombol dengan class 'faq-toggle'
-        const buttons = document.querySelectorAll('.faq-toggle');
 
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                // 1. Temukan elemen faq-item terdekat (parent)
-                const faqItem = button.closest('.faq-item');
-                if (!faqItem) return;
+        document.addEventListener('DOMContentLoaded', () => {
 
-                // 2. Temukan konten (jawaban) dan ikon di dalam faq-item ini
-                const content = faqItem.querySelector('.faq-content');
-                const icon = button.querySelector('i');
+            // --- 4.2. SCROLL TO TOP LOGIC ---
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
 
-                // 3. Toggle (periksa dan ubah) status visibilitas
-                const isExpanded = button.getAttribute('aria-expanded') === 'true';
-
-                if (isExpanded) {
-                    // Jika sedang terbuka: Tutup
-                    content.classList.add('hidden');
-                    button.setAttribute('aria-expanded', 'false');
-                    icon.classList.remove('rotate-45'); // Kembalikan ikon ke +
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    // Tampilkan tombol setelah scroll 300px
+                    scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+                    scrollToTopBtn.classList.add('opacity-100', 'visible');
                 } else {
-                    // Jika sedang tertutup: Buka
-                    content.classList.remove('hidden');
-                    button.setAttribute('aria-expanded', 'true');
-                    icon.classList.add('rotate-45'); // Putar ikon untuk menjadi x atau - (jika menggunakan fa-plus/minus)
+                    // Sembunyikan tombol
+                    scrollToTopBtn.classList.remove('opacity-100', 'visible');
+                    scrollToTopBtn.classList.add('opacity-0', 'invisible');
                 }
+            });
 
-                // Opsional: Tutup semua item lain saat salah satu item dibuka
-                // closeOtherItems(faqItem); 
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+
+            // --- 4.3. FAQ TOGGLE LOGIC ---
+            const faqButtons = document.querySelectorAll('.faq-toggle');
+
+            faqButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const faqItem = button.closest('.faq-item');
+                    if (!faqItem) return;
+
+                    const content = faqItem.querySelector('.faq-content');
+                    const icon = button.querySelector('i');
+                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+                    if (isExpanded) {
+                        // Tutup
+                        content.classList.add('hidden');
+                        button.setAttribute('aria-expanded', 'false');
+                        icon.classList.remove('rotate-45'); 
+                    } else {
+                        // Buka
+                        content.classList.remove('hidden');
+                        button.setAttribute('aria-expanded', 'true');
+                        icon.classList.add('rotate-45'); 
+                    }
+                });
             });
         });
-        
-        // Fungsi opsional untuk menutup item lain (Accordion Style)
-        function closeOtherItems(currentItem) {
-            buttons.forEach(otherButton => {
-                const otherItem = otherButton.closest('.faq-item');
-                if (otherItem !== currentItem) {
-                    const otherContent = otherItem.querySelector('.faq-content');
-                    const otherIcon = otherButton.querySelector('i');
-                    
-                    otherContent.classList.add('hidden');
-                    otherButton.setAttribute('aria-expanded', 'false');
-                    otherIcon.classList.remove('rotate-45');
-                }
-            });
-        }
-    });
-</script>
-         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<script>
-    var swiper = new Swiper(".mySwiper", {
-        // Tampilkan 1 kolom di HP, 2 di tablet, 3 di desktop
-        slidesPerView: 1,
-        spaceBetween: 24, // Sama dengan gap-6 di Tailwind (24px)
-        loop: true,
-        autoplay: {
-            delay: 4500, // Otomatis geser setiap 4.5 detik
-            disableOnInteraction: false,
-        },
-        breakpoints: {
-            768: { // Untuk layar md dan ke atas
-                slidesPerView: 2,
+        // --- 4.4. SWIPER JS INIT ---
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 24, 
+            loop: true,
+            autoplay: {
+                delay: 4500, 
+                disableOnInteraction: false,
             },
-            1024: { // Untuk layar lg dan ke atas
-                slidesPerView: 3,
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
             },
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-    });
-</script>
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+        
+        // --- 4.5. GALLERY ZOOM MODAL LOGIC (dari sesi sebelumnya) ---
+        function zoomImage(imageElement) {
+            const modal = document.getElementById('simple-zoom-modal');
+            const modalImage = document.getElementById('zoom-modal-image');
+            
+            modalImage.src = imageElement.src;
+            modalImage.alt = imageElement.alt + ' - Zoom';
+
+            modal.classList.add('opacity-100', 'pointer-events-auto');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeZoomModal() {
+            const modal = document.getElementById('simple-zoom-modal');
+            
+            modal.classList.remove('opacity-100', 'pointer-events-auto');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeZoomModal();
+            }
+        });
+    </script>
+
 </body>
 </html>
-
-
