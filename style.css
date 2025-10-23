@@ -90,6 +90,45 @@ body {
     transition: all 0.3s ease;
 }
 
+/* ========================================= */
+/* 4. Swiper Navigation Fix (Testimonials) */
+/* ========================================= */
+
+/* Panah Swiper: Mengatasi masalah 'tidak terlihat' di Light Mode */
+/* Menggunakan warna aksen untuk terlihat jelas di atas video gelap */
+.swiper-button-next,
+.swiper-button-prev {
+    /* Ganti dengan nilai hex accent-red Anda (Misal: #ef4444) */
+    color: var(--accent-red, #ef4444) !important; 
+}
+
+/* Panah Swiper di Dark Mode: Mengubah warna default */
+.dark .swiper-button-next,
+.dark .swiper-button-prev {
+    /* Menggunakan gray-400 agar terlihat kalem di atas latar belakang gelap */
+    color: #9ca3af !important; 
+}
+
+/* Panah Swiper Hover di Dark Mode: Mengubah warna saat di hover */
+.dark .swiper-button-next:hover,
+.dark .swiper-button-prev:hover {
+    /* Kembali ke warna aksen saat di hover di Dark Mode */
+    color: var(--accent-red, #ef4444) !important;
+}
+
+/* Catatan: Properti `!important` diperlukan di sini untuk mengalahkan
+   CSS default dari library Swiper, yang sering memiliki spesifisitas tinggi. */
+
+/* ========================================= */
+/* 5. Section Title Dark Mode Fix */
+/* ========================================= */
+
+/* Pastikan judul berubah di Dark Mode */
+.dark .section-title {
+    /* Nilai yang sama dengan dark:text-gray-100 di HTML Anda */
+    color: #f3f4f6 !important; 
+}
+
 
 
 
