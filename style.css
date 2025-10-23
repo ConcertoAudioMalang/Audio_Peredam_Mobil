@@ -120,14 +120,16 @@ body {
    CSS default dari library Swiper, yang sering memiliki spesifisitas tinggi. */
 
 /* ========================================= */
-/* 5. Section Title Dark Mode Fix */
+/* 5. Section Title Dark Mode Fix (Override Kuat) */
 /* ========================================= */
 
-/* Pastikan judul berubah di Dark Mode */
+/* Memaksa Judul Testimoni menjadi warna terang (misal: Gray-100) saat Mode Gelap aktif. */
+/* Kita menggunakan selector kuat (.dark .section-title) dan !important. */
 .dark .section-title {
-    /* Nilai yang sama dengan dark:text-gray-100 di HTML Anda */
+    /* Nilai Hex untuk gray-100 (sesuai dark:text-gray-100 di HTML Anda) */
     color: #f3f4f6 !important; 
 }
+
 
 
 
