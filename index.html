@@ -63,12 +63,12 @@
 
 <header id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 h-24 bg-transparent">
     <nav class="max-w-7xl mx-auto px-4 md:px-12 py-4 flex justify-between items-center transition-all duration-300">
-        <a href="#home" class="text-white dark:text-white hover:text-accent-red transition duration-300">Home</a>
-       <a href="#hero" class="flex items-center space-x-2">
-    <img src="asset/concerto-audio-logo-dark.png" alt="Concerto Audio Logo" class="h-8 dark:invert transition duration-300">
-</a>
         
-        <div class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-text-light dark:text-text-light">
+        <a href="#hero" class="flex items-center space-x-2">
+            <img src="asset/concerto-audio-logo-dark.png" alt="Concerto Audio Logo" class="h-8 dark:invert transition duration-300">
+        </a>
+        
+        <div class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-white dark:text-white">
             <a href="#nilai" class="hover:text-accent-red transition duration-200">Tentang Kami</a>
             <a href="#layanan" class="hover:text-accent-red transition duration-200">Layanan</a>
             <a href="#proses" class="hover:text-accent-red transition duration-200">Alur Kerja</a>
@@ -80,18 +80,16 @@
             <a href="#lokasi" class="hover:text-accent-red transition duration-200">Lokasi</a>
         </div>
 
-        <div class="flex items-center space-x-3 text-text-light dark:text-text-light">
-    <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition duration-200" aria-label="Toggle Dark Mode">
-        <i class="fa-solid fa-moon dark:hidden text-lg"></i>
-        <i class="fa-solid fa-sun hidden dark:inline text-lg"></i>
-    </button>
-    
-    <button id="mobile-menu-button" class="p-2 rounded-full hover:bg-white/10 transition duration-200 lg:hidden" aria-label="Toggle Mobile Menu">
-        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
-    </button>
+        <div class="flex items-center space-x-3 text-white dark:text-white">
+            <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition duration-200" aria-label="Toggle Dark Mode">
+                <i class="fa-solid fa-moon dark:hidden text-lg"></i>
+                <i class="fa-solid fa-sun hidden dark:inline text-lg"></i>
+            </button>
             
-</button>
-</div>
+            <button id="mobile-menu-button" class="p-2 rounded-full hover:bg-white/10 transition duration-200 lg:hidden" aria-label="Toggle Mobile Menu">
+                <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+            </button>
+        </div>
     </nav>
 
     <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-secondary-light dark:bg-secondary-dark border-t border-gray-200 dark:border-gray-800 shadow-xl py-4 transition-all duration-300 ease-in-out">
@@ -860,144 +858,9 @@
         <i class="fa-solid fa-arrow-up text-xl"></i>
     </button>
     
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
-   <script>
-    // Inisiasi AOS (Animation on Scroll)
-    AOS.init({
-        duration: 800, 
-        once: true,
-        easing: 'ease-in-out',
-    });
+   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    document.addEventListener('DOMContentLoaded', () => {
-
-        // --- 1. SETUP NAVIGASI & SCROLL ---
-        const scrollToTopBtn = document.getElementById('scroll-to-top');
-        const navBar = document.getElementById('navbar'); // <--- PASTIKAN ID HEADER/NAV ANDA ADALAH 'navbar'
-        const scrollThreshold = 80; // Jarak scroll untuk mengaktifkan perubahan
-
-        window.addEventListener('scroll', () => {
-            const scrolled = window.scrollY;
-
-            // SCROLL TO TOP LOGIC (Tombol Panah)
-            if (scrolled > 300) {
-                scrollToTopBtn.classList.remove('opacity-0', 'invisible');
-                scrollToTopBtn.classList.add('opacity-100', 'visible');
-            } else {
-                scrollToTopBtn.classList.remove('opacity-100', 'visible');
-                scrollToTopBtn.classList.add('opacity-0', 'invisible');
-            }
-
-            // STICKY NAVBAR LOGIC (Perbaikan Warna Teks)
-            if (navBar) {
-                const navLinks = navBar.querySelectorAll('a:not(.btn), button:not(.btn)'); // Pilih semua link kecuali tombol CTA
-
-                if (scrolled > scrollThreshold) {
-                    // Tambahkan kelas untuk LATAR BELAKANG dan HAPUS kelas teks PUTIH
-                    navBar.classList.add('bg-white', 'dark:bg-gray-900', 'shadow-md', 'h-20'); 
-                    navBar.classList.remove('bg-transparent', 'h-24'); 
-                    
-                    // UBAH WARNA TEKS menjadi gelap (hitam/default)
-                    navLinks.forEach(link => {
-                        link.classList.remove('text-white', 'dark:text-white');
-                        link.classList.add('text-text-dark', 'dark:text-text-light');
-                    });
-
-                } else {
-                    // Hapus kelas saat berada di bagian atas halaman (Navbar kembali ke transparan, teks putih)
-                    navBar.classList.remove('bg-white', 'dark:bg-gray-900', 'shadow-md', 'h-20');
-                    navBar.classList.add('bg-transparent', 'h-24'); 
-                    
-                    // KEMBALIKAN WARNA TEKS menjadi putih
-                    navLinks.forEach(link => {
-                        link.classList.remove('text-text-dark', 'dark:text-text-light');
-                        link.classList.add('text-white', 'dark:text-white');
-                    });
-                }
-            }
-        });
-
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // --- 2. FAQ TOGGLE LOGIC (Perbaikan Fungsi Klik) ---
-        const faqButtons = document.querySelectorAll('.faq-toggle');
-
-        faqButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const faqItem = button.closest('.faq-item');
-                if (!faqItem) return;
-
-                const content = faqItem.querySelector('.faq-content');
-                const icon = button.querySelector('i');
-                const isExpanded = button.getAttribute('aria-expanded') === 'true';
-
-                if (isExpanded) {
-                    // Tutup
-                    content.classList.add('hidden');
-                    button.setAttribute('aria-expanded', 'false');
-                    icon.classList.remove('rotate-45'); 
-                } else {
-                    // Buka
-                    content.classList.remove('hidden');
-                    button.setAttribute('aria-expanded', 'true');
-                    icon.classList.add('rotate-45'); 
-                }
-            });
-        });
-
-        // --- 3. SWIPER JS INIT ---
-        var swiper = new Swiper(".mySwiper", {
-            // ... (Parameter Swiper Anda) ...
-            slidesPerView: 1,
-            spaceBetween: 24,
-            loop: true,
-            autoplay: {
-                delay: 4500,
-                disableOnInteraction: false,
-            },
-            breakpoints: {
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-            },
-            pagination: { el: ".swiper-pagination", clickable: true },
-            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-        });
-
-        // --- 4. GALLERY ZOOM MODAL LOGIC ---
-        // (Tetap sama, memastikan tidak ada konflik dengan kode lain)
-        window.zoomImage = function(imageElement) {
-            const modal = document.getElementById('simple-zoom-modal');
-            const modalImage = document.getElementById('zoom-modal-image');
-            
-            modalImage.src = imageElement.src;
-            modalImage.alt = imageElement.alt + ' - Zoom';
-
-            modal.classList.add('opacity-100', 'pointer-events-auto');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            document.body.style.overflow = 'hidden';
-        }
-
-        window.closeZoomModal = function() {
-            const modal = document.getElementById('simple-zoom-modal');
-            
-            modal.classList.remove('opacity-100', 'pointer-events-auto');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            document.body.style.overflow = '';
-        }
-
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeZoomModal();
-            }
-        });
-    });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
-
-
