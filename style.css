@@ -130,6 +130,35 @@ body {
     color: #f3f4f6 !important; 
 }
 
+/* Pastikan CSS ini ditambahkan ke stylesheet Anda */
+.masonry-gallery {
+    /* Mengaktifkan tata letak kolom: 2 Kolom untuk ponsel */
+    column-count: 2; 
+    column-gap: 0.75rem; /* Jarak antar kolom (setara dengan gap-3 Tailwind) */
+}
+
+/* Tata Letak untuk Desktop (Layar Besar) */
+@media (min-width: 1024px) {
+    .masonry-gallery {
+        column-count: 4; /* Ganti ke 4 kolom untuk kerapian maksimal di desktop */
+    }
+}
+
+/* Aturan untuk Setiap Item Gambar */
+.masonry-gallery .galeri-item {
+    /* SANGAT PENTING: Mencegah gambar terpotong di batas kolom */
+    break-inside: avoid;
+    /* Memberi jarak di Bawah setiap item (bukan di antara kolom) */
+    margin-bottom: 0.75rem; 
+    width: 100% !important; 
+}
+
+/* Aturan untuk Gambar */
+.masonry-gallery img {
+    width: 100%;
+    height: auto; /* Membiarkan tinggi mengikuti rasio asli */
+}
+
 
 
 
