@@ -236,3 +236,38 @@ var swiper = new Swiper(".mySwiper", {
     },
 });
 
+// **PASTIKAN KODE JAVASCRIPT INI DITAMBAHKAN**
+function zoomImage(imageElement) {
+    const modal = document.getElementById('simple-zoom-modal');
+    const modalImage = document.getElementById('zoom-modal-image');
+    
+    // Set sumber gambar ke modal
+    modalImage.src = imageElement.src;
+    modalImage.alt = imageElement.alt + ' - Zoom';
+
+    // Tampilkan modal
+    modal.classList.add('opacity-100', 'pointer-events-auto');
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+
+    // Mencegah scrolling saat modal terbuka
+    document.body.style.overflow = 'hidden';
+}
+
+function closeZoomModal() {
+    const modal = document.getElementById('simple-zoom-modal');
+    
+    // Sembunyikan modal
+    modal.classList.remove('opacity-100', 'pointer-events-auto');
+    modal.classList.add('opacity-0', 'pointer-events-none');
+    
+    // Mengaktifkan scrolling kembali
+    document.body.style.overflow = '';
+}
+
+// Opsional: Tutup modal saat tombol ESC ditekan
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeZoomModal();
+    }
+});
+
