@@ -25,9 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const whatsappBtn = document.getElementById('whatsapp-button');
     
     let lastScrollY = window.scrollY;
-    // Threshold di mana navbar berubah tampilan (dari transparan ke solid/blur)
     const scrollThreshold = 50; 
-    // Threshold di mana navbar mulai sembunyi saat scroll ke bawah
     const hideThreshold = 200; 
 
     // ==========================================
@@ -48,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             html.classList.add('dark');
             localStorage.setItem('theme', 'dark');
         }
-        handleScroll(); // Panggil agar tampilan navbar langsung menyesuaikan
+        handleScroll(); // Panggil agar tampilan navbar langsung menyesuaikan tema baru
     }
 
     themeToggles.forEach(toggle => {
@@ -68,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Tutup menu mobile saat link diklik
         const mobileLinks = mobileMenu.querySelectorAll('a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -79,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 3. NAVBAR SCROLL LOGIC - PERBAIKAN FINAL
+    // 3. NAVBAR SCROLL LOGIC - PERBAIKAN RESPONSIVITAS WARNA
     // ==========================================
 
     /**
@@ -87,17 +84,21 @@ document.addEventListener('DOMContentLoaded', () => {
      * berdasarkan posisi scroll (di Top atau sudah di-scroll)
      */
     function updateNavbarAppearance(isScrolled) {
+        // Kelas untuk latar belakang dan border saat di-scroll
         const activeClasses = ['bg-secondary-light/95', 'dark:bg-secondary-dark/95', 'backdrop-blur-md', 'border-b', 'border-gray-200', 'dark:border-gray-800'];
         
+        // WARNA DEFAULT (White/Light Mode)
+        // Kita berasumsi warna default link di HTML Anda adalah warna terang (putih)
+        // Jika Anda menggunakan Tailwind untuk warna teks default, ganti 'text-white' jika itu yang menyebabkan masalah.
+        const textDefaultLight = ['text-white', 'text-text-light']; // Gunakan kelas-kelas yang menyebabkan teks menjadi putih saat di top
+        
         // Warna Teks saat di-scroll (Normal: gelap di light, terang di dark)
-        const textNormal = ['text-gray-700', 'dark:text-gray-300']; 
-        // Warna Teks saat di Top (Transparent: terang/putih di light & dark)
-        const textTransparent = ['text-text-light', 'dark:text-text-light']; 
+        const textScrolled = ['text-gray-700', 'dark:text-gray-300']; 
         
         // Kelas Icon saat di-scroll
-        const iconNormal = ['text-text-dark', 'dark:text-text-light', 'hover:bg-gray-200', 'dark:hover:bg-gray-700'];
-        // Kelas Icon saat di Top (Transparent: terang/putih)
-        const iconTransparent = ['text-text-light', 'dark:text-text-light', 'hover:bg-white/10'];
+        const iconScrolled = ['text-text-dark', 'dark:text-text-light', 'hover:bg-gray-200', 'dark:hover:bg-gray-700'];
+        // Kelas Icon saat di Top
+        const iconDefaultLight = ['text-text-light', 'dark:text-text-light', 'hover:bg-white/10'];
 
         if (isScrolled) {
             // KONDISI Di-scroll (background solid/blur, teks kontras)
@@ -108,14 +109,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // 2. Desktop Links (Teks)
             if (desktopLinksContainer) {
-                desktopLinksContainer.classList.remove(...textTransparent);
-                desktopLinksContainer.classList.add(...textNormal);
+                // HAPUS SEMUA KELAS WARNA TERANG DEFAULT
+                desktopLinksContainer.classList.remove(...textDefaultLight);
+                // Tambahkan kelas warna scroll (gelap di Light, terang di Dark)
+                desktopLinksContainer.classList.add(...textScrolled);
             }
             
             // 3. Icons
             allNavbarIconWrappers.forEach(button => {
-                button.classList.remove(...iconTransparent);
-                button.classList.add(...iconNormal);
+                button.classList.remove(...iconDefaultLight);
+                button.classList.add(...iconScrolled);
             });
 
         } else { 
@@ -127,14 +130,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // 2. Desktop Links (Teks)
             if (desktopLinksContainer) {
-                desktopLinksContainer.classList.remove(...textNormal);
-                desktopLinksContainer.classList.add(...textTransparent);
+                // HAPUS SEMUA KELAS WARNA SCROLLED
+                desktopLinksContainer.classList.remove(...textScrolled);
+                // Tambahkan kelas warna default terang
+                desktopLinksContainer.classList.add(...textDefaultLight);
             }
             
             // 3. Icons
             allNavbarIconWrappers.forEach(button => {
-                button.classList.remove(...iconNormal);
-                button.classList.add(...iconTransparent);
+                button.classList.remove(...iconScrolled);
+                button.classList.add(...iconDefaultLight);
             });
         }
     }
@@ -144,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function handleScroll() {
         const currentScrollY = window.scrollY;
-        const isScrolled = currentScrollY > scrollThreshold;
         
         // Logika Sembunyikan/Tampilkan Navbar saat Scroll
         if (currentScrollY > lastScrollY && currentScrollY > hideThreshold) { 
@@ -171,26 +175,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 4. FAQ ACCORDION
     // ==========================================
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
     accordionHeaders.forEach(header => {
         header.addEventListener('click', () => {
             const content = header.nextElementSibling;
             const icon = header.querySelector('.accordion-icon');
 
-            // Tutup semua accordion yang sedang terbuka kecuali yang sedang diklik
             document.querySelectorAll('.accordion-content').forEach(c => {
                 if (c !== content && !c.classList.contains('hidden')) {
                     c.classList.add('hidden');
                     const otherIcon = c.previousElementSibling.querySelector('.accordion-icon');
-                    // Cegah error jika icon tidak ada
                     if (otherIcon) {
                          otherIcon.classList.remove('rotate-180');
                     }
                 }
             });
 
-            // Toggle konten yang diklik
             content.classList.toggle('hidden');
-            // Toggle rotasi ikon (jika ada)
             if (icon) {
                  icon.classList.toggle('rotate-180');
             }
@@ -221,14 +222,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 6. WHATSAPP DYNAMIC LINK GENERATOR
     // ==========================================
-    // HARAP GANTI NOMOR TELEPON INI DENGAN NOMOR ANDA YANG VALID!
-    const phoneNumber = '081217398558'; 
-    const defaultMessage = encodeURIComponent("Halo, saya tertarik dengan layanan audio mobil Anda. Bisakah saya mendapatkan informasi lebih lanjut?");
+    const phoneNumber = '081217398558'; // Ganti dengan nomor Anda!
+    const defaultMessage = encodeURIComponent("Halo, saya tertarik dengan layanan Anda.");
 
     if (whatsappBtn) {
         whatsappBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${defaultMessage}`;
             window.open(whatsappUrl, '_blank');
         });
@@ -240,8 +239,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // INISIALISASI DI LUAR DOMContentLoaded (AOS, SWIPER, ZOOM)
 // ==========================================
 
-// Inisialisasi AOS 
-// Pastikan library AOS sudah terpasang
 try {
     if (typeof AOS !== 'undefined') {
         AOS.init({
@@ -253,9 +250,6 @@ try {
     console.warn("AOS library not loaded. Skip initialization.");
 }
 
-
-// KONFIGURASI SWIPER JS 
-// Pastikan library Swiper sudah terpasang
 try {
     if (typeof Swiper !== 'undefined') {
         var swiper = new Swiper(".mySwiper", {
@@ -264,49 +258,27 @@ try {
             slidesPerView: 1, 
             spaceBetween: 24,
             breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 30
-                },
-                1024: {
-                    slidesPerView: 3, 
-                    spaceBetween: 30
-                }
+                768: { slidesPerView: 2, spaceBetween: 30 },
+                1024: { slidesPerView: 3, spaceBetween: 30 }
             },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
+            pagination: { el: ".swiper-pagination", clickable: true },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
         });
     }
 } catch (e) {
     console.warn("Swiper library not loaded. Skip initialization.");
 }
 
-
 // FUNGSI ZOOM IMAGE
 function zoomImage(imageElement) {
     const modal = document.getElementById('simple-zoom-modal');
     const modalImage = document.getElementById('zoom-modal-image');
-
-    if (!modal || !modalImage) {
-        console.error("Modal zoom atau modal image tidak ditemukan.");
-        return;
-    }
+    if (!modal || !modalImage) return;
     
-    // Set sumber gambar ke modal
     modalImage.src = imageElement.src;
     modalImage.alt = imageElement.alt + ' - Zoom';
-
-    // Tampilkan modal
     modal.classList.add('opacity-100', 'pointer-events-auto');
     modal.classList.remove('opacity-0', 'pointer-events-none');
-
-    // Mencegah scrolling saat modal terbuka
     document.body.style.overflow = 'hidden';
 }
 
@@ -314,15 +286,11 @@ function closeZoomModal() {
     const modal = document.getElementById('simple-zoom-modal');
     if (!modal) return;
     
-    // Sembunyikan modal
     modal.classList.remove('opacity-100', 'pointer-events-auto');
     modal.classList.add('opacity-0', 'pointer-events-none');
-    
-    // Mengaktifkan scrolling kembali
     document.body.style.overflow = '';
 }
 
-// Tutup modal saat tombol ESC ditekan
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         closeZoomModal();
