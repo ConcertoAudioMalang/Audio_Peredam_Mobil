@@ -873,29 +873,43 @@
 
         document.addEventListener('DOMContentLoaded', () => {
 
-            // --- 4.2. SCROLL TO TOP LOGIC ---
-            const scrollToTopBtn = document.getElementById('scroll-to-top');
+         // --- 4.2. SCROLL TO TOP LOGIC + NAV FIX ---
+const scrollToTopBtn = document.getElementById('scroll-to-top');
+const navBar = document.getElementById('navbar'); // <--- PASTIKAN ID 'navbar' SESUAI
+const scrollThreshold = 80; // Jarak scroll minimal untuk mengaktifkan efek
 
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    // Tampilkan tombol setelah scroll 300px
-                    scrollToTopBtn.classList.remove('opacity-0', 'invisible');
-                    scrollToTopBtn.classList.add('opacity-100', 'visible');
-                } else {
-                    // Sembunyikan tombol
-                    scrollToTopBtn.classList.remove('opacity-100', 'visible');
-                    scrollToTopBtn.classList.add('opacity-0', 'invisible');
-                }
-            });
+window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
 
-            scrollToTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
+    // 1. Logic SCROLL TO TOP (Tombol Panah)
+    if (scrolled > 300) {
+        scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+        scrollToTopBtn.classList.add('opacity-100', 'visible');
+    } else {
+        scrollToTopBtn.classList.remove('opacity-100', 'visible');
+        scrollToTopBtn.classList.add('opacity-0', 'invisible');
+    }
 
+    // 2. Logic STICKY NAVBAR (Perbaikan Visibilitas Navbar)
+    if (navBar) {
+        if (scrolled > scrollThreshold) {
+            // Tambahkan kelas saat discroll (Navbar jadi sticky, shadow, dan mungkin lebih pendek)
+            navBar.classList.add('bg-white', 'dark:bg-gray-900', 'shadow-md', 'h-20'); 
+            navBar.classList.remove('h-24'); 
+        } else {
+            // Hapus kelas saat berada di bagian atas halaman (Navbar kembali ke normal)
+            navBar.classList.remove('bg-white', 'dark:bg-gray-900', 'shadow-md', 'h-20');
+            navBar.classList.add('h-24'); 
+        }
+    }
+});
 
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
             // --- 4.3. FAQ TOGGLE LOGIC ---
             const faqButtons = document.querySelectorAll('.faq-toggle');
 
@@ -980,3 +994,4 @@
 
 </body>
 </html>
+
