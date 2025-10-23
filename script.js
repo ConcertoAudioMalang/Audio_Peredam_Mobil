@@ -17,11 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIcon = document.getElementById('menu-icon');
-    const desktopLinks = navbar.querySelector('.hidden.lg\\:flex');
+    // Selector ini menargetkan container desktop links (misalnya: <ul>)
+    const desktopLinksContainer = navbar.querySelector('.hidden.lg\\:flex'); 
     const allNavbarIconWrappers = navbar.querySelectorAll('#theme-toggle, #mobile-menu-button');
     const scrollToTopBtn = document.getElementById('scroll-to-top');
-    const accordionHeaders = document.querySelectorAll('.accordion-header'); // Selector untuk FAQ
-    const whatsappBtn = document.getElementById('whatsapp-button'); // ID untuk Tombol WA
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    const whatsappBtn = document.getElementById('whatsapp-button');
     
     let lastScrollY = window.scrollY;
     const scrollThreshold = 50;
@@ -44,12 +45,103 @@ document.addEventListener('DOMContentLoaded', () => {
             html.classList.add('dark');
             localStorage.setItem('theme', 'dark');
         }
+        // Panggil handleScroll setelah ganti tema agar tampilan navbar langsung menyesuaikan
         handleScroll(); 
     }
 
     themeToggles.forEach(toggle => {
         toggle.addEventListener('click', toggleTheme);
     });
+
+    // (Bagian 2. MOBILE MENU TOGGLE tidak berubah)
+
+    // ==========================================
+    // 3. NAVBAR SCROLL LOGIC - PERBAIKAN UTAMA DI SINI 🚀
+    // ==========================================
+
+    function updateNavbarAppearance(isScrolled) {
+        // Cek apakah saat ini mode gelap aktif
+        const isDarkMode = html.classList.contains('dark');
+
+        // Kelas untuk latar belakang dan border saat di-scroll
+        const activeClasses = ['bg-secondary-light/95', 'dark:bg-secondary-dark/95', 'backdrop-blur-md', 'border-b', 'border-gray-200', 'dark:border-gray-800'];
+        
+        // Warna Teks saat di-scroll (Normal)
+        const textNormal = ['text-gray-700', 'dark:text-gray-300']; 
+        // Warna Teks saat di Top & Dark Mode (Transparent/Putih)
+        const textTransparent = ['text-text-light', 'dark:text-text-light']; 
+        
+        // Kelas Icon saat di-scroll
+        const iconNormal = ['text-text-dark', 'dark:text-text-light', 'hover:bg-gray-200', 'dark:hover:bg-gray-700'];
+        // Kelas Icon saat di Top (Transparent/Putih)
+        const iconTransparent = ['text-text-light', 'dark:text-text-light', 'hover:bg-white/10'];
+
+        if (isScrolled) {
+            // 1. Navbar Container
+            navbar.classList.add(...activeClasses);
+            navbar.classList.remove('bg-transparent', 'border-transparent');
+            
+            // 2. Desktop Links (Teks)
+            if (desktopLinksContainer) {
+                // Saat di-scroll, selalu gunakan warna normal (gelap di light, terang di dark)
+                desktopLinksContainer.classList.remove('invisible', ...textTransparent);
+                desktopLinksContainer.classList.add(...textNormal);
+            }
+            
+            // 3. Icons (Toggles, Menu Button)
+            allNavbarIconWrappers.forEach(button => {
+                button.classList.remove(...iconTransparent);
+                button.classList.add(...iconNormal);
+            });
+        } else { // Kondisi di Top (window.scrollY < scrollThreshold)
+            // 1. Navbar Container
+            navbar.classList.remove(...activeClasses);
+            navbar.classList.add('bg-transparent', 'border-transparent');
+            
+            // 2. Desktop Links (Teks) - LOGIKA PERBAIKAN UTAMA
+            if (desktopLinksContainer) {
+                if (!isDarkMode) {
+                    // LIGHT MODE, DI TOP -> HILANGKAN Teks (Invisible)
+                    // Tujuannya: Teks putih tidak terlihat di atas konten putih
+                    desktopLinksContainer.classList.remove(...textNormal, ...textTransparent);
+                    desktopLinksContainer.classList.add('invisible'); 
+                } else {
+                    // DARK MODE, DI TOP -> Teks Tetap Terlihat (Putih/Terang)
+                    desktopLinksContainer.classList.remove('invisible', ...textNormal);
+                    desktopLinksContainer.classList.add(...textTransparent);
+                }
+            }
+            
+            // 3. Icons (Toggles, Menu Button)
+            allNavbarIconWrappers.forEach(button => {
+                // Icons tetap terang (putih) di Top (baik light maupun dark mode)
+                button.classList.remove(...iconNormal);
+                button.classList.add(...iconTransparent);
+            });
+        }
+    }
+
+    function handleScroll() {
+        const currentScrollY = window.scrollY;
+        const isScrolled = currentScrollY > scrollThreshold;
+        
+        updateNavbarAppearance(isScrolled);
+        
+        // Logic Sembunyikan/Tampilkan Navbar saat Scroll ke Bawah/Atas
+        if (currentScrollY > lastScrollY && currentScrollY > hideThreshold) { 
+            // Scrolling ke bawah
+            navbar.classList.add('-translate-y-full'); 
+        } else if (currentScrollY < lastScrollY || currentScrollY < hideThreshold) {
+            // Scrolling ke atas atau sudah di atas hideThreshold
+            navbar.classList.remove('-translate-y-full'); 
+        }
+        
+        lastScrollY = currentScrollY;
+    }
+
+    handleScroll(); 
+    window.addEventListener('scroll', handleScroll);
+
 
     // ==========================================
     // 2. MOBILE MENU TOGGLE
@@ -73,86 +165,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ==========================================
-    // 3. NAVBAR SCROLL LOGIC
-    // ==========================================
-
-    function updateNavbarAppearance(isScrolled) {
-        const activeClasses = ['bg-secondary-light/95', 'dark:bg-secondary-dark/95', 'backdrop-blur-md', 'border-b', 'border-gray-200', 'dark:border-gray-800'];
-        const textNormal = ['text-gray-700', 'dark:text-gray-300'];
-        const textTransparent = ['text-text-light', 'dark:text-text-light'];
-        const iconNormal = ['text-text-dark', 'dark:text-text-light', 'hover:bg-gray-200', 'dark:hover:bg-gray-700'];
-        const iconTransparent = ['text-text-light', 'dark:text-text-light', 'hover:bg-white/10'];
-
-        if (isScrolled) {
-            navbar.classList.add(...activeClasses);
-            navbar.classList.remove('bg-transparent', 'border-transparent');
-            
-            if (desktopLinks) {
-                desktopLinks.classList.remove(...textTransparent);
-                desktopLinks.classList.add(...textNormal);
-            }
-            
-            allNavbarIconWrappers.forEach(button => {
-                button.classList.remove(...iconTransparent);
-                button.classList.add(...iconNormal);
-            });
-        } else {
-            navbar.classList.remove(...activeClasses);
-            navbar.classList.add('bg-transparent', 'border-transparent');
-            
-            if (desktopLinks) {
-                desktopLinks.classList.remove(...textNormal);
-                desktopLinks.classList.add(...textTransparent);
-            }
-            
-            allNavbarIconWrappers.forEach(button => {
-                button.classList.remove(...iconNormal);
-                button.classList.add(...iconTransparent);
-            });
-        }
-    }
-
-    function handleScroll() {
-        const currentScrollY = window.scrollY;
-        const isScrolled = currentScrollY > scrollThreshold;
-        
-        updateNavbarAppearance(isScrolled);
-        
-        if (currentScrollY > lastScrollY && currentScrollY > hideThreshold) { 
-            navbar.classList.add('-translate-y-full'); 
-        } else if (currentScrollY < lastScrollY || currentScrollY < hideThreshold) {
-            navbar.classList.remove('-translate-y-full'); 
-        }
-        
-        lastScrollY = currentScrollY;
-    }
-
-    handleScroll(); 
-    window.addEventListener('scroll', handleScroll);
-
+    // (Bagian 4, 5, dan 6 lainnya tidak berubah)
 
     // ==========================================
-    // 4. FAQ ACCORDION (Logika Ditambahkan) ✅
+    // 4. FAQ ACCORDION
     // ==========================================
     accordionHeaders.forEach(header => {
         header.addEventListener('click', () => {
             const content = header.nextElementSibling;
             const icon = header.querySelector('.accordion-icon');
 
-            // Tutup semua accordion yang sedang terbuka kecuali yang sedang diklik
             document.querySelectorAll('.accordion-content').forEach(c => {
                 if (c !== content && !c.classList.contains('hidden')) {
                     c.classList.add('hidden');
-                    // Reset ikon
                     const otherIcon = c.previousElementSibling.querySelector('.accordion-icon');
                     otherIcon.classList.remove('rotate-180');
                 }
             });
 
-            // Toggle konten yang diklik
             content.classList.toggle('hidden');
-            // Toggle rotasi ikon
             icon.classList.toggle('rotate-180');
         });
     });
@@ -179,9 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 6. WHATSAPP DYNAMIC LINK GENERATOR (Ditambahkan Kembali) ✅
+    // 6. WHATSAPP DYNAMIC LINK GENERATOR
     // ==========================================
-    // HARAP GANTI NOMOR TELEPON INI DENGAN NOMOR ANDA YANG VALID!
     const phoneNumber = '081217398558'; 
     const defaultMessage = encodeURIComponent("Halo, saya tertarik dengan layanan audio mobil Anda. Bisakah saya mendapatkan informasi lebih lanjut?");
 
@@ -196,25 +226,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 }); // Penutup DOMContentLoaded
 
+// (Kode AOS, Swiper, dan Zoom Image tetap di luar DOMContentLoaded)
 
 // ==========================================
 // INISIALISASI DI LUAR DOMContentLoaded
 // ==========================================
-
-// Inisialisasi AOS 
 AOS.init({
     once: true,
     duration: 1000,
 });
 
-// KONFIGURASI SWIPER JS (UNTUK MERATAKAN KOLOM TESTIMONI)
 var swiper = new Swiper(".mySwiper", {
     autoHeight: false, 
     setWrapperSize: true, 
-
     slidesPerView: 1, 
     spaceBetween: 24,
-
     breakpoints: {
         768: {
             slidesPerView: 2,
@@ -225,7 +251,6 @@ var swiper = new Swiper(".mySwiper", {
             spaceBetween: 30
         }
     },
-    
     pagination: {
         el: ".swiper-pagination",
         clickable: true,
@@ -236,38 +261,30 @@ var swiper = new Swiper(".mySwiper", {
     },
 });
 
-// **PASTIKAN KODE JAVASCRIPT INI DITAMBAHKAN**
 function zoomImage(imageElement) {
     const modal = document.getElementById('simple-zoom-modal');
     const modalImage = document.getElementById('zoom-modal-image');
     
-    // Set sumber gambar ke modal
     modalImage.src = imageElement.src;
     modalImage.alt = imageElement.alt + ' - Zoom';
 
-    // Tampilkan modal
     modal.classList.add('opacity-100', 'pointer-events-auto');
     modal.classList.remove('opacity-0', 'pointer-events-none');
 
-    // Mencegah scrolling saat modal terbuka
     document.body.style.overflow = 'hidden';
 }
 
 function closeZoomModal() {
     const modal = document.getElementById('simple-zoom-modal');
     
-    // Sembunyikan modal
     modal.classList.remove('opacity-100', 'pointer-events-auto');
     modal.classList.add('opacity-0', 'pointer-events-none');
     
-    // Mengaktifkan scrolling kembali
     document.body.style.overflow = '';
 }
 
-// Opsional: Tutup modal saat tombol ESC ditekan
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         closeZoomModal();
     }
 });
-
