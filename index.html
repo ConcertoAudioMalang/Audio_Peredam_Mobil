@@ -492,117 +492,65 @@
     </div>
 </section>
         
-    <section id="galeri" class="py-16 lg:py-24 bg-primary-light dark:bg-primary-dark border-t border-gray-200 dark:border-gray-800 section-scroll-margin">
+    <section id="galeri" class="py-20 bg-primary-light dark:bg-primary-dark overflow-hidden">
 
-    <div class="max-w-6xl mx-auto px-6 md:px-12">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 mb-12">
+        <p class="text-sm tracking-widest uppercase text-gray-500 mb-3">
+            Selected Work
+        </p>
+        <h2 class="text-3xl lg:text-5xl font-bold text-text-dark dark:text-text-light">
+            Instalasi Audio Terbaik Kami
+        </h2>
+    </div>
 
-        <!-- Header -->
-        <div class="mb-16">
-            <p class="text-sm tracking-widest uppercase text-gray-500 dark:text-gray-400 mb-3">
-                Selected Work
-            </p>
-            <h2 class="text-3xl lg:text-5xl font-bold text-text-dark dark:text-text-light leading-tight">
-                Instalasi Audio Terbaik Kami
-            </h2>
+    <!-- Horizontal Scroll Wrapper -->
+    <div id="horizontal-scroll" class="flex gap-6 px-6 md:px-12 overflow-x-auto scroll-smooth snap-x snap-mandatory cursor-grab">
+
+        <!-- Item -->
+        <div class="min-w-[300px] md:min-w-[500px] snap-start group">
+            <div class="overflow-hidden rounded-2xl relative">
+                <img src="asset/galeri1.jpeg" 
+                    class="w-full h-[400px] object-cover transition duration-700 group-hover:scale-105"
+                    onclick="zoomImage(this)">
+            </div>
+            <p class="mt-4 text-lg font-semibold">Custom Pillar A</p>
         </div>
 
-        <!-- Gallery -->
-        <div class="space-y-10">
-
-            <!-- Item -->
-            <div class="group cursor-pointer" onclick="zoomImage(this.querySelector('img'))">
-                <div class="overflow-hidden rounded-2xl">
-                    <img src="asset/galeri1.jpeg" 
-                        alt="Instalasi Custom Pillar A"
-                        class="w-full h-[320px] md:h-[420px] object-cover 
-                        transition duration-700 ease-in-out 
-                        grayscale group-hover:grayscale-0 
-                        scale-105 group-hover:scale-100">
-                </div>
-                <div class="mt-4 flex justify-between items-center">
-                    <p class="text-lg font-semibold text-text-dark dark:text-text-light">
-                        Custom Pillar A
-                    </p>
-                    <span class="text-sm text-gray-400 group-hover:text-accent-red transition">
-                        View →
-                    </span>
-                </div>
+        <div class="min-w-[300px] md:min-w-[500px] snap-start group">
+            <div class="overflow-hidden rounded-2xl">
+                <img src="asset/galeri2.jpeg" 
+                    class="w-full h-[400px] object-cover transition duration-700 group-hover:scale-105"
+                    onclick="zoomImage(this)">
             </div>
-
-            <!-- Item -->
-            <div class="group cursor-pointer" onclick="zoomImage(this.querySelector('img'))">
-                <div class="overflow-hidden rounded-2xl">
-                    <img src="asset/galeri2.jpeg" 
-                        alt="Detail Amplifier"
-                        class="w-full h-[320px] md:h-[420px] object-cover 
-                        transition duration-700 ease-in-out 
-                        grayscale group-hover:grayscale-0 
-                        scale-105 group-hover:scale-100">
-                </div>
-                <div class="mt-4 flex justify-between items-center">
-                    <p class="text-lg font-semibold">Detail Amplifier</p>
-                    <span class="text-sm text-gray-400 group-hover:text-accent-red transition">
-                        View →
-                    </span>
-                </div>
-            </div>
-
-            <!-- Item -->
-            <div class="group cursor-pointer" onclick="zoomImage(this.querySelector('img'))">
-                <div class="overflow-hidden rounded-2xl">
-                    <img src="asset/galeri3.jpeg" 
-                        alt="Proses Tuning DSP"
-                        class="w-full h-[320px] md:h-[420px] object-cover 
-                        transition duration-700 ease-in-out 
-                        grayscale group-hover:grayscale-0 
-                        scale-105 group-hover:scale-100">
-                </div>
-                <div class="mt-4 flex justify-between items-center">
-                    <p class="text-lg font-semibold">Tuning DSP</p>
-                    <span class="text-sm text-gray-400 group-hover:text-accent-red transition">
-                        View →
-                    </span>
-                </div>
-            </div>
-
-            <!-- Item -->
-            <div class="group cursor-pointer" onclick="zoomImage(this.querySelector('img'))">
-                <div class="overflow-hidden rounded-2xl">
-                    <img src="asset/galeri4.jpeg" 
-                        alt="Custom Subwoofer Box"
-                        class="w-full h-[320px] md:h-[420px] object-cover 
-                        transition duration-700 ease-in-out 
-                        grayscale group-hover:grayscale-0 
-                        scale-105 group-hover:scale-100">
-                </div>
-                <div class="mt-4 flex justify-between items-center">
-                    <p class="text-lg font-semibold">Subwoofer Custom</p>
-                    <span class="text-sm text-gray-400 group-hover:text-accent-red transition">
-                        View →
-                    </span>
-                </div>
-            </div>
-
+            <p class="mt-4 text-lg font-semibold">Detail Amplifier</p>
         </div>
 
-        <!-- CTA -->
-        <div class="mt-16 text-center">
-            <a href="https://www.tiktok.com/@concertomlg" target="_blank"
-                class="inline-block text-sm uppercase tracking-widest text-gray-500 hover:text-accent-red transition">
-                Lihat lebih banyak di TikTok →
-            </a>
+        <div class="min-w-[300px] md:min-w-[500px] snap-start group">
+            <div class="overflow-hidden rounded-2xl">
+                <img src="asset/galeri3.jpeg" 
+                    class="w-full h-[400px] object-cover transition duration-700 group-hover:scale-105"
+                    onclick="zoomImage(this)">
+            </div>
+            <p class="mt-4 text-lg font-semibold">Tuning DSP</p>
+        </div>
+
+        <div class="min-w-[300px] md:min-w-[500px] snap-start group">
+            <div class="overflow-hidden rounded-2xl">
+                <img src="asset/galeri4.jpeg" 
+                    class="w-full h-[400px] object-cover transition duration-700 group-hover:scale-105"
+                    onclick="zoomImage(this)">
+            </div>
+            <p class="mt-4 text-lg font-semibold">Subwoofer Custom</p>
         </div>
 
     </div>
 
-    <!-- Zoom Modal (tetap dipakai) -->
-    <div id="simple-zoom-modal" class="fixed inset-0 z-[9999] bg-black/90 opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4" onclick="closeZoomModal()">
-        <div class="relative max-w-5xl w-full max-h-[90vh] overflow-hidden">
-            <button onclick="closeZoomModal()" class="absolute top-4 right-4 text-white text-4xl z-20 hover:text-accent-red transition duration-200">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <img id="zoom-modal-image" src="" class="max-w-full max-h-full object-contain mx-auto rounded-lg shadow-2xl" onclick="event.stopPropagation()">
-        </div>
+    <!-- CTA -->
+    <div class="mt-16 text-center">
+        <a href="https://www.tiktok.com/@concertomlg" target="_blank"
+            class="inline-block text-sm uppercase tracking-widest text-gray-500 hover:text-accent-red transition">
+            Lihat lebih banyak →
+        </a>
     </div>
 
 </section>
@@ -914,5 +862,61 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script src="script.js"></script>
+    <script>
+const slider = document.getElementById('horizontal-scroll');
+
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.classList.add('cursor-grabbing');
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+});
+
+slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.classList.remove('cursor-grabbing');
+});
+
+slider.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.classList.remove('cursor-grabbing');
+});
+
+slider.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2;
+    slider.scrollLeft = scrollLeft - walk;
+});
+</script>
+    <style>
+.custom-cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid red;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+    z-index: 9999;
+}
+</style>
+
+<div class="custom-cursor" id="cursor"></div>
+
+<script>
+const cursor = document.getElementById('cursor');
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+</script>
 </body>
 </html>
