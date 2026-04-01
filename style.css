@@ -1,30 +1,83 @@
 /* ========================================= */
-/* 1. Global Tailwind Overrides */
+/* 1. GLOBAL RESET & BASE */
 /* ========================================= */
 
-/* Pastikan transisi warna halus saat berganti mode */
 body {
-    transition: background-color 0.5s, color 0.5s;
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    line-height: 1.6;
 }
 
-/* Penyesuaian font untuk heading/judul */
+/* ========================================= */
+/* 2. FONT SYSTEM (INI YANG PALING PENTING) */
+/* ========================================= */
+
+/* Heading utama (H1 / H2 besar) */
+.heading-xl {
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+@media (min-width: 1024px) {
+    .heading-xl {
+        font-size: 3rem;
+    }
+}
+
+/* Sub heading */
+.heading-md {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+/* Label kecil (atas section) */
+.label {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6b7280;
+}
+
+/* Body text */
+.text-body {
+    font-size: 0.95rem;
+    color: #6b7280;
+}
+
+.dark .text-body,
+.dark .label {
+    color: #9ca3af;
+}
+
+/* OPTIONAL: tetap support font lama */
 .font-heading {
     font-family: 'Poppins', 'Inter', sans-serif;
 }
 
+
 /* ========================================= */
-/* NAVBAR FIX: HAPUS HARDCODING BG/COLOR DARI ID */
+/* 3. LAYOUT CONSISTENCY */
 /* ========================================= */
-/* Blok ini DIBIARKAN KOSONG untuk #navbar agar kontrol diserahkan sepenuhnya ke JS/Tailwind. */
-/* #navbar * { opacity: 1; } adalah kelas yang bisa Anda tambahkan di HTML jika diperlukan. */
+
+.section-clean {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+.container-clean {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
 
 
 /* ========================================= */
-/* 2. Hero Section Styling (Dipertahankan) */
+/* 4. HERO (DIPERTAHANKAN, DIRAPIKAN) */
 /* ========================================= */
 
 .hero-bg {
-    /* LIGHT MODE DEFAULT: Overlay hitam 60% */
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('asset/background-concerto.jpg');
     background-size: cover;
     background-position: center;
@@ -32,39 +85,69 @@ body {
 }
 
 .dark .hero-bg {
-    /* DARK MODE: Overlay gelap (misal Gray-900 80%) */
     background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('asset/background-concerto.jpg');
 }
 
 
 /* ========================================= */
-/* 3. CTA & Buttons (Dipertahankan) */
+/* 5. BUTTON & CTA */
 /* ========================================= */
 
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    text-transform: uppercase;
+    font-weight: 600; /* diturunin biar lebih clean */
     letter-spacing: 0.05em;
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
 }
 
-.sleek-card:hover .service-icon {
-    transform: scale(1.1);
-    background-color: var(--accent-red);
-    color: white;
+.btn:hover {
+    transform: translateY(-2px);
 }
+
+
+/* ========================================= */
+/* 6. CARD STYLE (NEW - CLEAN PREMIUM) */
+/* ========================================= */
+
+.card-clean {
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.card-clean:hover {
+    border-color: var(--accent-red);
+    transform: translateY(-4px);
+}
+
+.dark .card-clean {
+    border-color: #374151;
+}
+
+
+/* ========================================= */
+/* 7. ICON ANIMATION (SOFTENED) */
+/* ========================================= */
 
 .service-icon {
     transition: all 0.3s ease;
 }
 
+.sleek-card:hover .service-icon {
+    transform: scale(1.05);
+    background-color: var(--accent-red);
+    color: white;
+}
+
+
 /* ========================================= */
-/* 4. Swiper Navigation Fix (Dipertahankan) */
+/* 8. SWIPER FIX (DIPERTAHANKAN) */
 /* ========================================= */
 
 .swiper-button-next,
@@ -82,13 +165,10 @@ body {
     color: var(--accent-red, #ef4444) !important;
 }
 
-/* ========================================= */
-/* 5. Section Title & Masonry Gallery (Dipertahankan) */
-/* ========================================= */
 
-.dark .section-title {
-    color: #f3f4f6 !important;
-}
+/* ========================================= */
+/* 9. GALLERY (DIPERTAHANKAN) */
+/* ========================================= */
 
 .masonry-gallery {
     column-count: 2;
@@ -110,4 +190,17 @@ body {
 .masonry-gallery img {
     width: 100%;
     height: auto;
+}
+
+
+/* ========================================= */
+/* 10. MICRO INTERACTION (BIAR TERASA MAHAL) */
+/* ========================================= */
+
+.hover-soft {
+    transition: all 0.3s ease;
+}
+
+.hover-soft:hover {
+    transform: translateY(-3px);
 }
