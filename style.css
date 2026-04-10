@@ -1,19 +1,51 @@
 /* ========================================= */
+/* 0. CUSTOM FONT REGISTRATION (.OTF)       */
+/* ========================================= */
+
+@font-face {
+    font-family: 'SK-Modernist';
+    /* Pastikan nama file di url() sama persis dengan yang kamu upload ke GitHub */
+    src: url('fonts/SK-Modernist-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SK-Modernist';
+    /* Jika kamu punya file terpisah untuk versi Bold */
+    src: url('fonts/SK-Modernist-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* CATATAN PENTING:
+   Jika file CSS kamu ada di dalam folder (misal: /css/style.css) 
+   dan font ada di folder lain (misal: /fonts/font.otf), 
+   maka gunakan: src: url('../fonts/SK-Modernist-Regular.otf') 
+*/
+
+/* ========================================= */
 /* 1. GLOBAL RESET & BASE */
 /* ========================================= */
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif; /* Tetap Inter untuk teks biasa agar mudah dibaca */
     transition: background-color 0.4s ease, color 0.4s ease;
     line-height: 1.6;
 }
 
 /* ========================================= */
-/* 2. FONT SYSTEM (INI YANG PALING PENTING) */
+/* 2. FONT SYSTEM (JUDUL MENGGUNAKAN SK-MODERNIST) */
 /* ========================================= */
+
+/* Targetkan semua tag heading standar */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'SK-Modernist', sans-serif;
+}
 
 /* Heading utama (H1 / H2 besar) */
 .heading-xl {
+    font-family: 'SK-Modernist', sans-serif;
     font-size: 2.25rem;
     font-weight: 700;
     line-height: 1.2;
@@ -27,19 +59,21 @@ body {
 
 /* Sub heading */
 .heading-md {
+    font-family: 'SK-Modernist', sans-serif;
     font-size: 1.4rem;
     font-weight: 600;
 }
 
 /* Label kecil (atas section) */
 .label {
+    font-family: 'SK-Modernist', sans-serif; /* Menggunakan SK-Modernist agar seragam dengan gaya judul */
     font-size: 0.75rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #6b7280;
 }
 
-/* Body text */
+/* Body text - Tetap menggunakan Inter sesuai permintaan (hanya judul yang diganti) */
 .text-body {
     font-size: 0.95rem;
     color: #6b7280;
@@ -50,9 +84,9 @@ body {
     color: #9ca3af;
 }
 
-/* OPTIONAL: tetap support font lama */
+/* Update font-heading agar menggunakan SK-Modernist */
 .font-heading {
-    font-family: 'Poppins', 'Inter', sans-serif;
+    font-family: 'SK-Modernist', sans-serif;
 }
 
 
@@ -97,7 +131,8 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-weight: 600; /* diturunin biar lebih clean */
+    font-family: 'SK-Modernist', sans-serif; /* Button biasanya mengikuti gaya judul/brand */
+    font-weight: 600; 
     letter-spacing: 0.05em;
     border: none;
     cursor: pointer;
