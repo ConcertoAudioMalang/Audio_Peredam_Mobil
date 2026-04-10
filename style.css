@@ -1,5 +1,5 @@
 /* ========================================= */
-/* 1. FONT & ROOT VARIABLES                 */
+/* 1. FONT & ROOT VARIABLES                  */
 /* ========================================= */
 @font-face {
     font-family: 'SK-Modernist';
@@ -17,7 +17,7 @@
 }
 
 /* ========================================= */
-/* 2. GLOBAL RESET & BASE                   */
+/* 2. GLOBAL RESET & BASE                    */
 /* ========================================= */
 * {
     margin: 0;
@@ -45,7 +45,7 @@ body.dark {
 }
 
 /* ========================================= */
-/* 3. TYPOGRAPHY SYSTEM                     */
+/* 3. TYPOGRAPHY SYSTEM                      */
 /* ========================================= */
 .font-heading, h1, h2, h3, h4, .btn {
     font-family: 'SK-Modernist', sans-serif !important;
@@ -68,9 +68,8 @@ h2.section-title {
 }
 
 /* ========================================= */
-/* 4. ANIMATION (AOS CUSTOM)                */
+/* 4. ANIMATION (AOS CUSTOM)                 */
 /* ========================================= */
-/* Reveal Up ala High-End Agency */
 [data-aos="reveal-up"] {
     opacity: 0;
     transform: translateY(60px);
@@ -87,11 +86,11 @@ h2.section-title {
     background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('asset/background-concerto.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Parallax effect */
+    background-attachment: fixed;
 }
 
 /* ========================================= */
-/* 5. CARD & INTERACTIVE                    */
+/* 5. CARD & INTERACTIVE                     */
 /* ========================================= */
 .card-studio {
     background: white;
@@ -118,12 +117,12 @@ h2.section-title {
 }
 
 /* ========================================= */
-/* 6. FAQ & ACCORDION FIX                   */
+/* 6. FAQ & ACCORDION FIX                    */
 /* ========================================= */
 .faq-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .accordion-icon {
@@ -131,7 +130,62 @@ h2.section-title {
 }
 
 /* ========================================= */
-/* 7. UTILITY CLASSES                       */
+/* 7. BRAND MARQUEE (INFINITE LOOP)          */
+/* ========================================= */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+    display: flex;
+    animation: marquee 30s linear infinite;
+}
+
+.marquee-track {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.brand-logo {
+    height: 2rem; /* Mobile height */
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.4;
+    transition: all 0.5s ease;
+}
+
+@media (min-width: 1024px) {
+    .brand-logo {
+        height: 3rem; /* Desktop height */
+    }
+}
+
+.brand-logo:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Pause marquee on hover area */
+.group:hover .animate-marquee {
+    animation-play-state: paused;
+}
+
+/* ========================================= */
+/* 8. BENTO GRID TESTIMONIALS                */
+/* ========================================= */
+.bg-white.dark\:bg-\[\#121212\].rounded-\[30px\] {
+    box-shadow: 0 4px 20px -10px rgba(0,0,0,0.05);
+}
+
+.dark .bg-white.dark\:bg-\[\#121212\].rounded-\[30px\] {
+    box-shadow: 0 20px 40px -20px rgba(0,0,0,0.5);
+}
+
+/* ========================================= */
+/* 9. UTILITY CLASSES                        */
 /* ========================================= */
 .section-margin {
     margin: 1.5rem 1rem;
@@ -149,6 +203,7 @@ h2.section-title {
     background: rgba(0,0,0,0.95);
     backdrop-filter: blur(10px);
     transition: opacity 0.4s ease;
+    z-index: 9999;
 }
 
 /* Swiper Navigation Custom */
@@ -158,44 +213,4 @@ h2.section-title {
 
 .swiper-pagination-bullet-active {
     background: var(--accent-red) !important;
-}
-
-/* Bento Grid Testimonial Shadow */
-.bg-white.dark\:bg-\[\#121212\].rounded-\[30px\] {
-    box-shadow: 0 4px 20px -10px rgba(0,0,0,0.05);
-}
-
-.dark .bg-white.dark\:bg-\[\#121212\].rounded-\[30px\] {
-    box-shadow: 0 20px 40px -20px rgba(0,0,0,0.5);
-}
-
-/* --- Brand Marquee Styles --- */
-.brand-logo {
-    @apply h-8 lg:h-12 w-auto object-contain grayscale opacity-40 transition-all duration-500;
-}
-
-/* Hover effect: Berubah warna dan terang */
-.brand-logo:hover {
-    @apply grayscale-0 opacity-100 scale-110;
-}
-
-/* Keyframe untuk jalan menyamping */
-@keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-}
-
-.animate-marquee {
-    animation: marquee 30s linear infinite;
-}
-
-/* Pause animasi saat kursor di area logo */
-.group:hover .animate-marquee {
-    animation-play-state: paused;
-}
-
-/* Agar track kedua sejajar secara instan */
-.marquee-track {
-    display: flex;
-    flex-shrink: 0;
 }
