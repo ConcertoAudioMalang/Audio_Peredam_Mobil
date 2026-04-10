@@ -117,34 +117,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. ACCORDION FAQ (OPTIMIZED) ---
-    document.querySelectorAll('.accordion-header').forEach(header => {
-        header.addEventListener('click', () => {
-            const content = header.nextElementSibling;
-            const icon = header.querySelector('.accordion-icon');
-            const isActive = header.classList.contains('active');
+   // --- FAQ ACCORDION ENGINE (RE-OPTIMIZED) ---
+document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', function() {
+        // Mencari elemen konten tepat di bawah header
+        const content = this.nextElementSibling;
+        const icon = this.querySelector('.accordion-icon');
+        
+        // Cek apakah item ini sudah terbuka
+        const isOpen = this.classList.contains('active');
 
-            // Tutup akordeon lain yang sedang terbuka
-            document.querySelectorAll('.accordion-header').forEach(otherHeader => {
-                if (otherHeader !== header) {
-                    otherHeader.classList.remove('active');
-                    otherHeader.nextElementSibling.style.maxHeight = null;
-                    const otherIcon = otherHeader.querySelector('.accordion-icon');
-                    if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
-                }
-            });
-
-            // Toggle Akordeon Klik
-            header.classList.toggle('active');
-            if (!isActive) {
-                content.style.maxHeight = content.scrollHeight + "px";
-                if (icon) icon.style.transform = 'rotate(180deg)';
-            } else {
-                content.style.maxHeight = null;
-                if (icon) icon.style.transform = 'rotate(0deg)';
+        // 1. TUTUP SEMUA FAQ LAIN (Efek Accordion Tunggal)
+        document.querySelectorAll('.accordion-header').forEach(otherHeader => {
+            otherHeader.classList.remove('active');
+            const otherContent = otherHeader.nextElementSibling;
+            if (otherContent) {
+                otherContent.style.maxHeight = null; // Menutup
+            }
+            const otherIcon = otherHeader.querySelector('.accordion-icon');
+            if (otherIcon) {
+                otherIcon.style.transform = 'rotate(0deg)';
             }
         });
+
+        // 2. BUKA ITEM YANG DIKLIK (Jika sebelumnya tertutup)
+        if (!isOpen) {
+            this.classList.add('active');
+            // Menghitung tinggi asli konten agar animasi meluncur mulus
+            content.style.maxHeight = content.scrollHeight + "px";
+            if (icon) {
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
     });
+});
 
     // --- 5. SCROLL TO TOP CLICK ---
     if (scrollToTopBtn) {
