@@ -1,240 +1,208 @@
 /* ========================================= */
-/* 0. CUSTOM FONT REGISTRATION (.OTF)       */
+/* 0. CONFIGURATION & VARIABLES              */
 /* ========================================= */
+:root {
+    --accent-red: #E63946;
+    --primary-dark: #0A0A0A;
+    --primary-light: #FFFFFF;
+    --text-muted: #888888;
+    --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
+/* ========================================= */
+/* 1. CUSTOM FONT REGISTRATION               */
+/* ========================================= */
 @font-face {
     font-family: 'SK-Modernist';
-    /* Mengarah langsung ke folder font sesuai struktur repo kamu */
     src: url('font/SK-Modernist.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
-/* Jika kamu punya file Bold, aktifkan bagian ini:
-@font-face {
-    font-family: 'SK-Modernist';
-    src: url('font/SK-Modernist-Bold.otf') format('opentype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-*/
-
 /* ========================================= */
-/* 1. GLOBAL RESET & BASE */
+/* 2. BASE & TYPOGRAPHY (STUDIO AESTHETIC)   */
 /* ========================================= */
-
 body {
-    font-family: 'Inter', sans-serif; /* Tetap Inter untuk teks paragraf agar enak dibaca */
-    transition: background-color 0.4s ease, color 0.4s ease;
-    line-height: 1.6;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
-/* ========================================= */
-/* 2. FONT SYSTEM (MODERNIST TRANSITION)     */
-/* ========================================= */
+.dark body {
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+}
 
-/* Targetkan SEMUA tag judul secara global */
-h1, h2, h3, h4, h5, h6 {
+/* Heading System */
+h1, h2, h3, h4, .font-heading {
     font-family: 'SK-Modernist', sans-serif !important;
-    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
 }
 
-/* Heading utama (H1 / H2 besar) */
-.heading-xl {
-    font-family: 'SK-Modernist', sans-serif !important;
-    font-size: 2.25rem;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.02em; /* Khas font Geometric Avant Garde */
+/* Oaksun Signature: Serif Italic Flavor */
+.font-serif {
+    font-family: 'Playfair Display', serif; /* Pastikan load Google Font ini */
 }
-
-@media (min-width: 1024px) {
-    .heading-xl {
-        font-size: 3rem;
-    }
-}
-
-/* Sub heading */
-.heading-md {
-    font-family: 'SK-Modernist', sans-serif !important;
-    font-size: 1.4rem;
-    font-weight: 600;
-}
-
-/* Label kecil (atas section) */
-.label {
-    font-family: 'SK-Modernist', sans-serif !important;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #6b7280;
-}
-
-/* Body text */
-.text-body {
-    font-size: 0.95rem;
-    color: #6b7280;
-}
-
-.dark .text-body,
-.dark .label {
-    color: #9ca3af;
-}
-
-/* Class khusus untuk font heading */
-.font-heading {
-    font-family: 'SK-Modernist', sans-serif !important;
-}
-
 
 /* ========================================= */
-/* 3. LAYOUT CONSISTENCY */
+/* 3. LAYOUT & SPACING                       */
 /* ========================================= */
-
-.section-clean {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+section {
+    position: relative;
 }
 
-.container-clean {
-    max-width: 72rem;
-    margin: 0 auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+.section-scroll-margin {
+    scroll-margin-top: 80px;
 }
 
+/* Padding konsisten ala Studio */
+.py-32 { padding-top: 8rem; padding-bottom: 8rem; }
 
 /* ========================================= */
-/* 4. HERO (DIPERTAHANKAN) */
+/* 4. COMPONENT: BENTO GALLERY               */
 /* ========================================= */
-
-.hero-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('asset/background-concerto.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+.galeri-item {
+    position: relative;
+    overflow: hidden;
+    background: #f0f0f0;
 }
 
-.dark .hero-bg {
-    background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('asset/background-concerto.jpg');
+.galeri-item img {
+    transition: var(--transition-smooth);
+    filter: grayscale(100%);
 }
 
+.galeri-item:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+.dark .galeri-item {
+    background: #1a1a1a;
+}
 
 /* ========================================= */
-/* 5. BUTTON & CTA */
+/* 5. COMPONENT: MINIMALIST FAQ              */
 /* ========================================= */
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'SK-Modernist', sans-serif; /* Button juga pakai font baru agar senada */
-    font-weight: 600;
-    letter-spacing: 0.05em;
+.faq-item .accordion-header {
+    background: transparent !important;
     border: none;
-    cursor: pointer;
-    transition: all 0.25s ease;
+    transition: var(--transition-smooth);
+}
+
+.faq-item .accordion-header:hover {
+    padding-left: 1rem;
+    color: var(--accent-red);
+}
+
+.faq-content {
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+}
+
+.faq-item.active .faq-content {
+    max-height: 1000px;
+    transition: max-height 1s ease-in-out;
+}
+
+/* ========================================= */
+/* 6. BUTTONS & INTERACTIVE                  */
+/* ========================================= */
+.btn {
+    font-family: 'SK-Modernist', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Button Hover Slide Effect */
+.btn-studio {
+    border: 1px solid var(--primary-dark);
+    padding: 1.25rem 2.5rem;
+}
+
+.dark .btn-studio {
+    border-color: var(--primary-light);
 }
 
 .btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-5px);
+    letter-spacing: 0.25em;
 }
-
 
 /* ========================================= */
-/* 6. CARD STYLE (CLEAN PREMIUM) */
+/* 7. HERO CUSTOMIZATION                     */
 /* ========================================= */
-
-.card-clean {
-    border: 1px solid #e5e7eb;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-    background: transparent;
+.hero-bg {
+    background-attachment: scroll; /* Lebih smooth di mobile */
+    filter: brightness(0.8);
 }
-
-.card-clean:hover {
-    border-color: var(--accent-red);
-    transform: translateY(-4px);
-}
-
-.dark .card-clean {
-    border-color: #374151;
-}
-
 
 /* ========================================= */
-/* 7. ICON ANIMATION */
+/* 8. DARK MODE OVERRIDES                    */
 /* ========================================= */
-
-.service-icon {
-    transition: all 0.3s ease;
+.dark .text-muted {
+    color: #666666;
 }
 
-.sleek-card:hover .service-icon {
-    transform: scale(1.05);
-    background-color: var(--accent-red);
-    color: white;
+.dark .border-gray-100 {
+    border-color: #1a1a1a;
 }
-
 
 /* ========================================= */
-/* 8. SWIPER FIX */
+/* 9. MICROMOVEMENTS                         */
 /* ========================================= */
-
-.swiper-button-next,
-.swiper-button-prev {
-    color: var(--accent-red, #ef4444) !important;
+[data-aos] {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.dark .swiper-button-next,
-.dark .swiper-button-prev {
-    color: #9ca3af !important;
+#scroll-to-top {
+    mix-blend-mode: difference; /* Keren di atas konten putih/hitam */
 }
 
-.dark .swiper-button-next:hover,
-.dark .swiper-button-prev:hover {
-    color: var(--accent-red, #ef4444) !important;
+/* Zoom Modal Styles */
+#simple-zoom-modal.active {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-
-/* ========================================= */
-/* 9. GALLERY (MASONRY) */
-/* ========================================= */
-
-.masonry-gallery {
-    column-count: 2;
-    column-gap: 0.75rem;
+/* Logo brand hover */
+.logo-brand {
+    transition: var(--transition-smooth);
+    opacity: 0.4;
 }
 
-@media (min-width: 1024px) {
-    .masonry-gallery {
-        column-count: 4;
-    }
+.logo-brand:hover {
+    opacity: 1;
+    transform: scale(1.1);
 }
-
-.masonry-gallery .galeri-item {
-    break-inside: avoid;
-    margin-bottom: 0.75rem;
-    width: 100% !important;
-}
-
-.masonry-gallery img {
-    width: 100%;
-    height: auto;
-}
-
 
 /* ========================================= */
-/* 10. MICRO INTERACTION */
+/* 10. CUSTOM SCROLLBAR                      */
 /* ========================================= */
-
-.hover-soft {
-    transition: all 0.3s ease;
+::-webkit-scrollbar {
+    width: 6px;
 }
 
-.hover-soft:hover {
-    transform: translateY(-3px);
+::-webkit-scrollbar-track {
+    background: var(--primary-light);
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: var(--primary-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-red);
 }
