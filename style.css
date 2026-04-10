@@ -89,9 +89,23 @@ section {
 /* ========================================= */
 /* 5. COMPONENT: MINIMALIST FAQ              */
 /* ========================================= */
+.faq-item {
+    border-bottom: 1px solid #e5e7eb; /* Garis tipis antar item ala studio */
+    transition: var(--transition-smooth);
+}
+
+.dark .faq-item {
+    border-color: #1a1a1a;
+}
+
 .faq-item .accordion-header {
     background: transparent !important;
     border: none;
+    padding: 1.5rem 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     transition: var(--transition-smooth);
 }
 
@@ -100,15 +114,26 @@ section {
     color: var(--accent-red);
 }
 
+/* Base state content: Tertutup */
 .faq-content {
-    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
 }
 
+/* Active state: Terbuka */
 .faq-item.active .faq-content {
-    max-height: 1000px;
-    transition: max-height 1s ease-in-out;
+    max-height: 1000px; /* Nilai besar agar konten tidak terpotong */
+    opacity: 1;
+    padding-bottom: 1.5rem;
 }
 
+/* Rotasi Icon Plus menjadi Silang/X saat aktif */
+.faq-item.active .accordion-icon {
+    transform: rotate(45deg);
+    color: var(--accent-red);
+}
 /* ========================================= */
 /* 6. BUTTONS & INTERACTIVE                  */
 /* ========================================= */
@@ -137,6 +162,28 @@ section {
     letter-spacing: 0.25em;
 }
 
+/* ========================================= */
+/* NAVBAR DYNAMIC STATE                      */
+/* ========================================= */
+#navbar {
+    transition: var(--transition-smooth);
+    background-color: transparent;
+}
+
+/* Saat di-scroll (dipicu oleh JS) */
+#navbar.navbar-active {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.dark #navbar.navbar-active {
+    background-color: rgba(10, 10, 10, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
 /* ========================================= */
 /* 7. HERO CUSTOMIZATION                     */
 /* ========================================= */
