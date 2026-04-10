@@ -159,3 +159,12 @@ h2.section-title {
 .swiper-pagination-bullet-active {
     background: var(--accent-red) !important;
 }
+
+/* Bento Grid Testimonial Shadow */
+.bg-white.dark\:bg-\[\#121212\].rounded-\[30px\] {
+    box-shadow: 0 4px 20px -10px rgba(0,0,0,0.05);
+}
+
+.dark .bg-white.dark\:bg-\[\#121212\].rounded-\[30px\] {
+    box-shadow: 0 20px 40px -20px rgba(0,0,0,0.5);
+}
