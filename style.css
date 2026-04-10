@@ -1,23 +1,80 @@
+/* ========================================= */
+/* 1. FONT & ROOT VARIABLES                 */
+/* ========================================= */
 @font-face {
     font-family: 'SK-Modernist';
     src: url('font/SK-Modernist.otf') format('opentype');
-    font-weight: 800; /* atau bold */
+    font-weight: 800;
     font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --accent-red: #E61E2A; /* Merah Concerto */
+    --dark-studio: #0A0A0A;
+    --bg-studio: #F8F8F8;
+    --text-main: #1A1A1A;
+}
+
+/* ========================================= */
+/* 2. GLOBAL RESET & BASE                   */
+/* ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    background-color: white;
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 0.5s ease;
 }
 
-.font-heading {
+/* Dark Mode Support */
+body.dark {
+    background-color: var(--dark-studio);
+    color: #F8F8F8;
+}
+
+/* ========================================= */
+/* 3. TYPOGRAPHY SYSTEM                     */
+/* ========================================= */
+.font-heading, h1, h2, h3, h4, .btn {
     font-family: 'SK-Modernist', sans-serif !important;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
 }
 
-/* Biar transisinya se-smooth Coached by Club */
+h2.section-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 0.9;
+    font-weight: 900;
+}
+
+.label-small {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--accent-red);
+}
+
+/* ========================================= */
+/* 4. ANIMATION (AOS CUSTOM)                */
+/* ========================================= */
+/* Reveal Up ala High-End Agency */
 [data-aos="reveal-up"] {
     opacity: 0;
-    transform: translateY(100px);
-    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(60px);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-aos="reveal-up"].aos-animate {
@@ -25,241 +82,80 @@ body {
     transform: translateY(0);
 }
 
-/* ========================================= */
-/* 1. GLOBAL RESET & BASE */
-/* ========================================= */
-
-body {
-    font-family: 'Inter', sans-serif; /* Tetap Inter untuk teks paragraf agar enak dibaca */
-    transition: background-color 0.4s ease, color 0.4s ease;
-    line-height: 1.6;
-}
-
-/* ========================================= */
-/* 2. FONT SYSTEM (MODERNIST TRANSITION)     */
-/* ========================================= */
-
-/* Targetkan SEMUA tag judul secara global */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'SK-Modernist', sans-serif !important;
-    font-weight: 700;
-}
-
-/* Heading utama (H1 / H2 besar) */
-.heading-xl {
-    font-family: 'SK-Modernist', sans-serif !important;
-    font-size: 2.25rem;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.02em; /* Khas font Geometric Avant Garde */
-}
-
-@media (min-width: 1024px) {
-    .heading-xl {
-        font-size: 3rem;
-    }
-}
-
-/* Sub heading */
-.heading-md {
-    font-family: 'SK-Modernist', sans-serif !important;
-    font-size: 1.4rem;
-    font-weight: 600;
-}
-
-/* Label kecil (atas section) */
-.label {
-    font-family: 'SK-Modernist', sans-serif !important;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #6b7280;
-}
-
-/* Body text */
-.text-body {
-    font-size: 0.95rem;
-    color: #6b7280;
-}
-
-.dark .text-body,
-.dark .label {
-    color: #9ca3af;
-}
-
-/* Class khusus untuk font heading */
-.font-heading {
-    font-family: 'SK-Modernist', sans-serif !important;
-}
-
-
-/* ========================================= */
-/* 3. LAYOUT CONSISTENCY */
-/* ========================================= */
-
-.section-clean {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-}
-
-.container-clean {
-    max-width: 72rem;
-    margin: 0 auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-}
-
-
-/* ========================================= */
-/* 4. HERO (DIPERTAHANKAN) */
-/* ========================================= */
-
+/* Hero Parallax Effect */
 .hero-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('asset/background-concerto.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('asset/background-concerto.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: fixed; /* Parallax effect */
 }
 
-.dark .hero-bg {
-    background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('asset/background-concerto.jpg');
+/* ========================================= */
+/* 5. CARD & INTERACTIVE                    */
+/* ========================================= */
+.card-studio {
+    background: white;
+    border-radius: 30px;
+    padding: 2.5rem;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.dark .card-studio {
+    background: #121212;
+    border: 1px solid rgba(255,255,255,0.05);
+}
 
-/* ========================================= */
-/* 5. BUTTON & CTA */
-/* ========================================= */
+.card-studio:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px -12px rgba(0,0,0,0.1);
+}
 
 .btn {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    font-family: 'SK-Modernist', sans-serif; /* Button juga pakai font baru agar senada */
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    border: none;
+    transition: all 0.3s ease;
     cursor: pointer;
-    transition: all 0.25s ease;
 }
-
-.btn:hover {
-    transform: translateY(-2px);
-}
-
 
 /* ========================================= */
-/* 6. CARD STYLE (CLEAN PREMIUM) */
+/* 6. FAQ & ACCORDION FIX                   */
 /* ========================================= */
-
-.card-clean {
-    border: 1px solid #e5e7eb;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-    background: transparent;
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.card-clean:hover {
-    border-color: var(--accent-red);
-    transform: translateY(-4px);
+.accordion-icon {
+    transition: transform 0.5s ease;
 }
-
-.dark .card-clean {
-    border-color: #374151;
-}
-
 
 /* ========================================= */
-/* 7. ICON ANIMATION */
+/* 7. UTILITY CLASSES                       */
 /* ========================================= */
-
-.service-icon {
-    transition: all 0.3s ease;
-}
-
-.sleek-card:hover .service-icon {
-    transform: scale(1.05);
-    background-color: var(--accent-red);
-    color: white;
-}
-
-
-/* ========================================= */
-/* 8. SWIPER FIX */
-/* ========================================= */
-
-.swiper-button-next,
-.swiper-button-prev {
-    color: var(--accent-red, #ef4444) !important;
-}
-
-.dark .swiper-button-next,
-.dark .swiper-button-prev {
-    color: #9ca3af !important;
-}
-
-.dark .swiper-button-next:hover,
-.dark .swiper-button-prev:hover {
-    color: var(--accent-red, #ef4444) !important;
-}
-
-
-/* ========================================= */
-/* 9. GALLERY (MASONRY) */
-/* ========================================= */
-
-.masonry-gallery {
-    column-count: 2;
-    column-gap: 0.75rem;
+.section-margin {
+    margin: 1.5rem 1rem;
+    border-radius: 40px;
 }
 
 @media (min-width: 1024px) {
-    .masonry-gallery {
-        column-count: 4;
+    .section-margin {
+        margin: 2rem 2rem;
     }
 }
 
-.masonry-gallery .galeri-item {
-    break-inside: avoid;
-    margin-bottom: 0.75rem;
-    width: 100% !important;
+/* Gallery Zoom Modal */
+#simple-zoom-modal {
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(10px);
+    transition: opacity 0.4s ease;
 }
 
-.masonry-gallery img {
-    width: 100%;
-    height: auto;
+/* Swiper Navigation Custom */
+.swiper-button-next, .swiper-button-prev {
+    color: var(--accent-red) !important;
 }
 
-
-/* ========================================= */
-/* 10. MICRO INTERACTION */
-/* ========================================= */
-
-.hover-soft {
-    transition: all 0.3s ease;
-}
-
-.hover-soft:hover {
-    transform: translateY(-3px);
-}
-
-/* Animasi Reveal ala CoachedByClub */
-[data-aos="reveal-up"] {
-    opacity: 0;
-    transform: translateY(80px);
-    transition-property: transform, opacity;
-}
-[data-aos="reveal-up"].aos-animate {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Efek Parallax Text */
-.parallax-text {
-    transform: translateY(calc(var(--scroll, 0) * -0.15px));
-    will-change: transform;
-}
-.parallax-text-reverse {
-    transform: translateY(calc(var(--scroll, 0) * 0.1px));
-    will-change: transform;
+.swiper-pagination-bullet-active {
+    background: var(--accent-red) !important;
 }
