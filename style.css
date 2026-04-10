@@ -253,3 +253,10 @@ section {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent-red);
 }
+
+/* HAPUS INI JIKA SUDAH MUNCUL: Paksa semua elemen muncul tanpa animasi */
+[data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}
