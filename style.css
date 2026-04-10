@@ -4,24 +4,21 @@
 
 @font-face {
     font-family: 'SK-Modernist';
-    /* Pastikan nama file di url() sama persis dengan yang kamu upload ke GitHub */
-    src: url('fonts/SK-Modernist-Regular.otf') format('opentype');
+    /* Mengarah langsung ke folder font sesuai struktur repo kamu */
+    src: url('font/SK-Modernist.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
+/* Jika kamu punya file Bold, aktifkan bagian ini:
 @font-face {
     font-family: 'SK-Modernist';
-    /* Jika kamu punya file terpisah untuk versi Bold */
-    src: url('fonts/SK-Modernist-Bold.otf') format('opentype');
+    src: url('font/SK-Modernist-Bold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
+    font-display: swap;
 }
-
-/* CATATAN PENTING:
-   Jika file CSS kamu ada di dalam folder (misal: /css/style.css) 
-   dan font ada di folder lain (misal: /fonts/font.otf), 
-   maka gunakan: src: url('../fonts/SK-Modernist-Regular.otf') 
 */
 
 /* ========================================= */
@@ -29,26 +26,28 @@
 /* ========================================= */
 
 body {
-    font-family: 'Inter', sans-serif; /* Tetap Inter untuk teks biasa agar mudah dibaca */
+    font-family: 'Inter', sans-serif; /* Tetap Inter untuk teks paragraf agar enak dibaca */
     transition: background-color 0.4s ease, color 0.4s ease;
     line-height: 1.6;
 }
 
 /* ========================================= */
-/* 2. FONT SYSTEM (JUDUL MENGGUNAKAN SK-MODERNIST) */
+/* 2. FONT SYSTEM (MODERNIST TRANSITION)     */
 /* ========================================= */
 
-/* Targetkan semua tag heading standar */
+/* Targetkan SEMUA tag judul secara global */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'SK-Modernist', sans-serif;
+    font-family: 'SK-Modernist', sans-serif !important;
+    font-weight: 700;
 }
 
 /* Heading utama (H1 / H2 besar) */
 .heading-xl {
-    font-family: 'SK-Modernist', sans-serif;
+    font-family: 'SK-Modernist', sans-serif !important;
     font-size: 2.25rem;
     font-weight: 700;
     line-height: 1.2;
+    letter-spacing: -0.02em; /* Khas font Geometric Avant Garde */
 }
 
 @media (min-width: 1024px) {
@@ -59,21 +58,21 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Sub heading */
 .heading-md {
-    font-family: 'SK-Modernist', sans-serif;
+    font-family: 'SK-Modernist', sans-serif !important;
     font-size: 1.4rem;
     font-weight: 600;
 }
 
 /* Label kecil (atas section) */
 .label {
-    font-family: 'SK-Modernist', sans-serif; /* Menggunakan SK-Modernist agar seragam dengan gaya judul */
+    font-family: 'SK-Modernist', sans-serif !important;
     font-size: 0.75rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #6b7280;
 }
 
-/* Body text - Tetap menggunakan Inter sesuai permintaan (hanya judul yang diganti) */
+/* Body text */
 .text-body {
     font-size: 0.95rem;
     color: #6b7280;
@@ -84,9 +83,9 @@ h1, h2, h3, h4, h5, h6 {
     color: #9ca3af;
 }
 
-/* Update font-heading agar menggunakan SK-Modernist */
+/* Class khusus untuk font heading */
 .font-heading {
-    font-family: 'SK-Modernist', sans-serif;
+    font-family: 'SK-Modernist', sans-serif !important;
 }
 
 
@@ -108,7 +107,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ========================================= */
-/* 4. HERO (DIPERTAHANKAN, DIRAPIKAN) */
+/* 4. HERO (DIPERTAHANKAN) */
 /* ========================================= */
 
 .hero-bg {
@@ -131,8 +130,8 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: 'SK-Modernist', sans-serif; /* Button biasanya mengikuti gaya judul/brand */
-    font-weight: 600; 
+    font-family: 'SK-Modernist', sans-serif; /* Button juga pakai font baru agar senada */
+    font-weight: 600;
     letter-spacing: 0.05em;
     border: none;
     cursor: pointer;
@@ -145,7 +144,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ========================================= */
-/* 6. CARD STYLE (NEW - CLEAN PREMIUM) */
+/* 6. CARD STYLE (CLEAN PREMIUM) */
 /* ========================================= */
 
 .card-clean {
@@ -167,7 +166,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ========================================= */
-/* 7. ICON ANIMATION (SOFTENED) */
+/* 7. ICON ANIMATION */
 /* ========================================= */
 
 .service-icon {
@@ -182,7 +181,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ========================================= */
-/* 8. SWIPER FIX (DIPERTAHANKAN) */
+/* 8. SWIPER FIX */
 /* ========================================= */
 
 .swiper-button-next,
@@ -202,7 +201,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ========================================= */
-/* 9. GALLERY (DIPERTAHANKAN) */
+/* 9. GALLERY (MASONRY) */
 /* ========================================= */
 
 .masonry-gallery {
@@ -229,7 +228,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ========================================= */
-/* 10. MICRO INTERACTION (BIAR TERASA MAHAL) */
+/* 10. MICRO INTERACTION */
 /* ========================================= */
 
 .hover-soft {
