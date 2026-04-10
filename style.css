@@ -238,3 +238,24 @@ h1, h2, h3, h4, h5, h6 {
 .hover-soft:hover {
     transform: translateY(-3px);
 }
+
+/* Animasi Reveal ala CoachedByClub */
+[data-aos="reveal-up"] {
+    opacity: 0;
+    transform: translateY(80px);
+    transition-property: transform, opacity;
+}
+[data-aos="reveal-up"].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efek Parallax Text */
+.parallax-text {
+    transform: translateY(calc(var(--scroll, 0) * -0.15px));
+    will-change: transform;
+}
+.parallax-text-reverse {
+    transform: translateY(calc(var(--scroll, 0) * 0.1px));
+    will-change: transform;
+}
