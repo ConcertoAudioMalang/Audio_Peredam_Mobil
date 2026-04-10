@@ -4,17 +4,16 @@
  */
 
 // 1. THIRD-PARTY INITIALIZATION
-const initThirdParty = () => {
-    // AOS (Animate On Scroll)
+document.addEventListener('DOMContentLoaded', () => {
+    // Inisialisasi AOS paling atas agar tidak terhalang error JS lain
     if (typeof AOS !== 'undefined') {
         AOS.init({
+            duration: 800,
             once: true,
-            duration: 1200,
-            easing: 'cubic-bezier(0.16, 1, 0.3, 1)', // Smooth ease-out
-            delay: 100
+            startEvent: 'DOMContentLoaded' // Memastikan AOS jalan segera setelah DOM siap
         });
     }
-
+    
     // SWIPER (Testimonials/Products)
     if (typeof Swiper !== 'undefined') {
         new Swiper(".mySwiper", {
