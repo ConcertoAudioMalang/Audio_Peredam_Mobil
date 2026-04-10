@@ -1,25 +1,29 @@
-/* ========================================= */
-/* 0. CUSTOM FONT REGISTRATION (.OTF)       */
-/* ========================================= */
-
 @font-face {
     font-family: 'SK-Modernist';
-    /* Mengarah langsung ke folder font sesuai struktur repo kamu */
     src: url('font/SK-Modernist.otf') format('opentype');
-    font-weight: normal;
+    font-weight: 800; /* atau bold */
     font-style: normal;
-    font-display: swap;
 }
 
-/* Jika kamu punya file Bold, aktifkan bagian ini:
-@font-face {
-    font-family: 'SK-Modernist';
-    src: url('font/SK-Modernist-Bold.otf') format('opentype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
-*/
+
+.font-heading {
+    font-family: 'SK-Modernist', sans-serif !important;
+}
+
+/* Biar transisinya se-smooth Coached by Club */
+[data-aos="reveal-up"] {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-aos="reveal-up"].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 /* ========================================= */
 /* 1. GLOBAL RESET & BASE */
