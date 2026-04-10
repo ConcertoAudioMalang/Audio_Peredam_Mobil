@@ -252,3 +252,19 @@ document.addEventListener('keydown', function(event) {
         closeZoomModal();
     }
 });
+
+document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        const icon = header.querySelector('.accordion-icon');
+
+        // Toggle Content
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            icon.style.transform = 'rotate(0deg)';
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            icon.style.transform = 'rotate(45deg)';
+        }
+    });
+});
