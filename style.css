@@ -66,83 +66,6 @@ h2.section-title {
     color: var(--accent-red);
 }
 
-/* ========================================= */
-/* 4. ANIMATION & COMPONENTS                 */
-/* ========================================= */
-[data-aos="reveal-up"] {
-    opacity: 0;
-    transform: translateY(60px);
-    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-[data-aos="reveal-up"].aos-animate {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.faq-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-}
-
-.animate-marquee {
-    display: flex;
-    animation: marquee 30s linear infinite;
-}
-
-.brand-logo {
-    height: 2rem;
-    filter: grayscale(100%);
-    opacity: 0.4;
-    transition: all 0.5s ease;
-}
-
-@media (min-width: 1024px) { .brand-logo { height: 3rem; } }
-
-.brand-logo:hover {
-    filter: grayscale(0%);
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-/* ========================================= */
-/* 5. MCLAREN NAVIGATION STYLE               */
-/* ========================================= */
-.nav-mclaren {
-    backdrop-filter: blur(20px) saturate(150%);
-    background-color: rgba(0, 0, 0, 0.3); /* Default gelap agar tembus pandang ke hero background */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 100px;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Efek saat di-scroll (Full Width Fix) */
-#navbar.scrolled .nav-mclaren {
-    margin-top: -16px; /* Menghilangkan jarak atas */
-    width: 100%;       /* Gunakan 100% bukan 100vw untuk menghindari potong scrollbar */
-    max-width: none;   /* Menghapus batasan lebar 7xl */
-    border-radius: 0;  /* Menghilangkan sudut tumpul */
-    background-color: #0A0A0A; /* Solid gelap */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    border-left: none;  /* Hilangkan border samping agar tidak terlihat sela */
-    border-right: none;
-}
-
-/* Pastikan header (pembungkus luar) tidak punya padding saat scrolled */
-#navbar.scrolled {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-/* ========================================= */
-/* 6. HERO SECTION & TYPOGRAPHY              */
-/* ========================================= */
 .hero-title {
     font-size: clamp(3rem, 9vw, 8rem);
     line-height: 0.85;
@@ -152,7 +75,64 @@ h2.section-title {
 }
 
 /* ========================================= */
-/* 7. BUTTONS SYSTEM                         */
+/* 4. MCLAREN NAVIGATION STYLE               */
+/* ========================================= */
+.nav-mclaren {
+    backdrop-filter: blur(20px) saturate(150%);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#navbar.scrolled .nav-mclaren {
+    margin-top: -16px;
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    background-color: #0A0A0A;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: none;
+    border-right: none;
+}
+
+#navbar.scrolled {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.nav-link {
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s;
+}
+
+/* Link warna putih saat di atas Hero */
+#navbar:not(.scrolled) .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+#navbar:not(.scrolled) .nav-link:hover {
+    color: white !important;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-red);
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ========================================= */
+/* 5. BUTTONS SYSTEM                         */
 /* ========================================= */
 .btn-mclaren-primary {
     background: var(--accent-red);
@@ -173,24 +153,32 @@ h2.section-title {
     box-shadow: 0 15px 30px rgba(230, 30, 42, 0.3);
 }
 
-.btn-mclaren-outline-white {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    font-size: 10px;
+.btn-mclaren-nav {
+    font-size: 9px;
     font-weight: 900;
-    letter-spacing: 0.3em;
-    padding: 18px 40px;
-    border-radius: 4px;
-    transition: all 0.4s;
-}
-
-.btn-mclaren-outline-white:hover {
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 10px 24px;
     background: white;
-    color: black;
-    border-color: white;
+    color: black !important;
+    border-radius: 100px;
+    transition: all 0.3s ease;
+    display: block;
+    border: 1px solid white;
 }
 
-/* Untuk section lain yang bukan di atas background gelap */
+.btn-mclaren-nav:hover {
+    background: transparent;
+    color: white !important;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+#navbar.scrolled .btn-mclaren-nav {
+    background: var(--dark-studio);
+    color: white !important;
+    border-color: var(--dark-studio);
+}
+
 .btn-mclaren-outline {
     border: 1px solid rgba(0,0,0,0.1);
     color: var(--dark-studio);
@@ -207,67 +195,59 @@ h2.section-title {
     color: white;
 }
 
-/* Utility */
-#simple-zoom-modal {
-    z-index: 9999;
-}
 /* ========================================= */
-/* FIX: NAVBAR BUTTON & CONCERTO TEXT        */
+/* 6. COMPONENTS & ANIMATION                 */
 /* ========================================= */
-
-/* Tombol di Navbar agar berwarna putih/kontras di atas background hero */
-.btn-mclaren-nav {
-    font-size: 9px;
-    font-weight: 900;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 10px 24px;
-    background: white; /* Latar belakang putih */
-    color: black !important; /* Teks hitam agar terbaca di atas putih */
-    border-radius: 100px;
-    transition: all 0.3s ease;
-    display: block;
-    border: 1px solid white;
+[data-aos="reveal-up"] {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.btn-mclaren-nav:hover {
-    background: transparent;
-    color: white !important;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+[data-aos="reveal-up"].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* Memastikan label atas judul Hero terlihat terang */
-#hero span[data-aos="fade-right"] {
-    position: relative;
-    z-index: 30;
-    display: inline-block;
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
 }
 
-/* Tambahan: Pastikan Navbar Links berwarna putih saat di atas Hero */
-#navbar:not(.scrolled) .nav-link {
-    color: rgba(255, 255, 255, 0.8) !important;
+.animate-marquee {
+    display: flex;
+    animation: marquee 30s linear infinite;
 }
 
-#navbar:not(.scrolled) .nav-link:hover {
-    color: white !important;
+/* Logo Partner / Marquee */
+.brand-logo {
+    height: 2.5rem; /* Mobile */
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.4;
+    padding: 0 15px;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Saat di-scroll, tombol balik jadi hitam/gelap (opsional) */
-#navbar.scrolled .btn-mclaren-nav {
-    background: var(--dark-studio);
-    color: white !important;
-    border-color: var(--dark-studio);
+@media (min-width: 1024px) {
+    .brand-logo {
+        height: 4.5rem; /* Desktop - Sesuai permintaan (lebih besar) */
+    }
 }
 
-.dark #navbar.scrolled .btn-mclaren-nav {
-    background: white;
-    color: black !important;
+.brand-logo:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.1);
 }
 
-/* Efek Grid Teknis untuk Section Tentang Kami */
+/* ========================================= */
+/* 7. SECTION STYLING                        */
+/* ========================================= */
 .section-margin {
     margin: 2rem;
-    border-radius: 4px; /* Sudut lebih tajam ala McLaren */
+    border-radius: 4px;
 }
 
 @media (max-width: 768px) {
@@ -276,29 +256,16 @@ h2.section-title {
     }
 }
 
-/* Hover Effect Khusus Pillar */
 #Tentangkami .group {
     border: 1px solid transparent;
 }
 
 #Tentangkami .group:hover {
     z-index: 10;
-    /* Memberikan sedikit efek glow saat hover */
     box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
-.brand-logo {
-    /* Pastikan lebar mengikuti proporsi tinggi otomatis */
-    width: auto; 
-    object-fit: contain;
-    /* Memberi sedikit ruang antar logo agar tidak berhimpitan saat ukurannya besar */
-    padding: 0 10px; 
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Jika ingin lebih besar lagi khusus layar ultra-wide */
-@media (min-width: 1536px) {
-    .brand-logo {
-        height: 5rem; /* Sekitar 80px */
-    }
+/* Utility */
+#simple-zoom-modal {
+    z-index: 9999;
 }
