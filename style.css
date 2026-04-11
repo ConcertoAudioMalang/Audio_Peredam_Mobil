@@ -122,34 +122,22 @@ h2.section-title {
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Efek saat di-scroll */
+/* Efek saat di-scroll (Full Width Fix) */
 #navbar.scrolled .nav-mclaren {
-    margin-top: -10px;
-    width: 100vw;
-    max-width: none;
-    border-radius: 0;
-    background-color: #0A0A0A; /* Solid gelap saat scroll */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: -16px; /* Menghilangkan jarak atas */
+    width: 100%;       /* Gunakan 100% bukan 100vw untuk menghindari potong scrollbar */
+    max-width: none;   /* Menghapus batasan lebar 7xl */
+    border-radius: 0;  /* Menghilangkan sudut tumpul */
+    background-color: #0A0A0A; /* Solid gelap */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: none;  /* Hilangkan border samping agar tidak terlihat sela */
+    border-right: none;
 }
 
-.nav-link {
-    position: relative;
-    display: inline-block;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-red);
-    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.nav-link:hover::after {
-    width: 100%;
+/* Pastikan header (pembungkus luar) tidak punya padding saat scrolled */
+#navbar.scrolled {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 /* ========================================= */
