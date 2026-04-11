@@ -149,41 +149,40 @@ body.dark {
 }
 
 /* ========================================= */
-/* 7. DARK MODE FIX (FORCE VISIBILITY)       */
+/* 7. DARK MODE FIX (THE FINAL POLISH)       */
 /* ========================================= */
 
-/* Target langsung ke class-class Tailwind yang sering bikin teks hilang */
+/* Hanya eksekusi jika mode gelap AKTIF */
+.dark body {
+    background-color: var(--dark-studio) !important;
+}
+
+/* 1. Perbaiki teks gelap yang hilang di background hitam */
 .dark .text-black,
 .dark .text-gray-900,
 .dark .text-gray-800,
-.dark .text-gray-700,
-.dark .text-gray-600 {
+.dark .text-gray-700 {
     color: #F8F8F8 !important;
 }
 
-/* Memastikan span dan p di dalam mode gelap terlihat */
-.dark span, 
-.dark p, 
-.dark h1, 
-.dark h2, 
-.dark h3, 
-.dark h4 {
+/* 2. Pastikan elemen heading & paragraf standar putih di mode gelap */
+.dark h1, .dark h2, .dark h3, .dark h4, .dark p, 
+.dark span:not([class*="text-accent-red"]):not([class*="text-white"]) {
     color: #F8F8F8 !important;
 }
 
-/* Memperbaiki list/link di footer agar tidak abu-abu gelap */
-.dark a {
-    color: rgba(255, 255, 255, 0.7) !important;
+/* 3. Perbaiki list/link di footer mode gelap */
+.dark footer a, .dark footer span {
+    color: rgba(255, 255, 255, 0.6) !important;
 }
 
-/* Tetap jaga warna merah aksen agar tidak berubah jadi putih */
-.dark .text-accent-red,
-.dark [class*="text-accent-red"] {
+.dark footer a:hover {
     color: var(--accent-red) !important;
 }
 
-/* Warna abu-abu halus untuk label deskripsi di mode gelap */
-.dark .text-gray-400,
-.dark .text-gray-500 {
-    color: rgba(255, 255, 255, 0.5) !important;
+/* 4. ANTI-CRASH UNTUK MODE TERANG */
+/* Jangan paksa :not(.dark) .text-white secara global karena akan merusak tombol */
+/* Kita hanya targetkan teks putih yang nempel di background putih (jika ada) */
+html:not(.dark) .fix-light-visibility {
+    color: var(--text-main) !important;
 }
