@@ -1,6 +1,6 @@
 /**
  * CONCERTO MALANG - OFFICIAL SCRIPT 2026
- * Clean, Optimized, and High-Performance
+ * Ultra-Minimalist & High-Performance (McLaren F1 Inspired)
  */
 
 // 1. INISIALISASI LIBRARY (AOS & SWIPER)
@@ -41,20 +41,19 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let lastScrollY = window.scrollY;
 
-    // --- 1. THEME ENGINE (DARK/LIGHT) ---
+    // --- 1. THEME ENGINE ---
     const updateTheme = () => {
         const isDark = localStorage.getItem('theme') === 'dark' || 
                       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
         html.classList.toggle('dark', isDark);
     };
 
-    window.toggleTheme = () => { // Fungsi ini bisa dipanggil dari HTML onclick="toggleTheme()"
+    window.toggleTheme = () => {
         const isCurrentlyDark = html.classList.contains('dark');
         const newTheme = isCurrentlyDark ? 'light' : 'dark';
         html.classList.toggle('dark');
         localStorage.setItem('theme', newTheme);
-        // Refresh appearance navbar jika diperlukan
-        handleNavbarScroll();
+        handleNavbarScroll(); // Update visual navbar saat ganti tema
     };
 
     document.querySelectorAll('#theme-toggle').forEach(btn => {
@@ -63,27 +62,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateTheme();
 
-    // --- 2. NAVBAR SCROLL ENGINE ---
+    // --- 2. NAVBAR SCROLL ENGINE (MCLAREN STYLE) ---
     const handleNavbarScroll = () => {
         const currentScrollY = window.scrollY;
         
-        // Efek Glassmorphism saat scroll
+        // Efek transisi Floating ke Solid
         if (currentScrollY > 50) {
-            navbar.classList.add('bg-white/80', 'dark:bg-black/80', 'backdrop-blur-xl', 'shadow-lg', 'py-4');
-            navbar.classList.remove('py-6', 'bg-transparent');
+            navbar.classList.add('scrolled');
+            navbar.classList.remove('py-4');
+            navbar.classList.add('py-0');
         } else {
-            navbar.classList.remove('bg-white/80', 'dark:bg-black/80', 'backdrop-blur-xl', 'shadow-lg', 'py-4');
-            navbar.classList.add('py-6', 'bg-transparent');
+            navbar.classList.remove('scrolled');
+            navbar.classList.remove('py-0');
+            navbar.classList.add('py-4');
         }
 
-        // Auto Hide/Show Navbar on Scroll Down/Up
+        // Auto Hide saat scroll ke bawah (untuk fokus konten)
         if (currentScrollY > lastScrollY && currentScrollY > 500) {
-            navbar.classList.add('-translate-y-full'); // Sembunyi
+            navbar.classList.add('-translate-y-full');
         } else {
-            navbar.classList.remove('-translate-y-full'); // Muncul
+            navbar.classList.remove('-translate-y-full');
         }
 
-        // Show/Hide Scroll To Top Button
+        // Tombol Scroll To Top
         if (scrollToTopBtn) {
             if (currentScrollY > 600) {
                 scrollToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-10');
@@ -104,53 +105,43 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenuBtn.addEventListener('click', () => {
             const isOpen = !mobileMenu.classList.contains('hidden');
             mobileMenu.classList.toggle('hidden');
-            menuIcon.classList.toggle('fa-bars', !isOpen);
-            menuIcon.classList.toggle('fa-xmark', isOpen);
+            if(menuIcon) {
+                menuIcon.classList.toggle('fa-bars', !isOpen);
+                menuIcon.classList.toggle('fa-xmark', isOpen);
+            }
         });
 
-        // Tutup menu jika link diklik
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
-                menuIcon.classList.replace('fa-xmark', 'fa-bars');
+                if(menuIcon) menuIcon.classList.replace('fa-xmark', 'fa-bars');
             });
         });
     }
 
-   // --- FAQ ACCORDION ENGINE (RE-OPTIMIZED) ---
-document.querySelectorAll('.accordion-header').forEach(header => {
-    header.addEventListener('click', function() {
-        // Mencari elemen konten tepat di bawah header
-        const content = this.nextElementSibling;
-        const icon = this.querySelector('.accordion-icon');
-        
-        // Cek apakah item ini sudah terbuka
-        const isOpen = this.classList.contains('active');
+    // --- 4. FAQ ACCORDION ---
+    document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', function() {
+            const content = this.nextElementSibling;
+            const icon = this.querySelector('.accordion-icon');
+            const isOpen = this.classList.contains('active');
 
-        // 1. TUTUP SEMUA FAQ LAIN (Efek Accordion Tunggal)
-        document.querySelectorAll('.accordion-header').forEach(otherHeader => {
-            otherHeader.classList.remove('active');
-            const otherContent = otherHeader.nextElementSibling;
-            if (otherContent) {
-                otherContent.style.maxHeight = null; // Menutup
-            }
-            const otherIcon = otherHeader.querySelector('.accordion-icon');
-            if (otherIcon) {
-                otherIcon.style.transform = 'rotate(0deg)';
+            // Tutup semua yang lain
+            document.querySelectorAll('.accordion-header').forEach(other => {
+                other.classList.remove('active');
+                if (other.nextElementSibling) other.nextElementSibling.style.maxHeight = null;
+                const otherIcon = other.querySelector('.accordion-icon');
+                if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+            });
+
+            // Buka yang diklik
+            if (!isOpen) {
+                this.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
+                if (icon) icon.style.transform = 'rotate(180deg)';
             }
         });
-
-        // 2. BUKA ITEM YANG DIKLIK (Jika sebelumnya tertutup)
-        if (!isOpen) {
-            this.classList.add('active');
-            // Menghitung tinggi asli konten agar animasi meluncur mulus
-            content.style.maxHeight = content.scrollHeight + "px";
-            if (icon) {
-                icon.style.transform = 'rotate(180deg)';
-            }
-        }
     });
-});
 
     // --- 5. SCROLL TO TOP CLICK ---
     if (scrollToTopBtn) {
@@ -160,7 +151,7 @@ document.querySelectorAll('.accordion-header').forEach(header => {
     }
 });
 
-// --- 6. GLOBAL ZOOM IMAGE (DI LUAR DOMContentLoaded AGAR BISA DIPANGGIL ONCLICK) ---
+// --- 6. GLOBAL ZOOM IMAGE ---
 window.zoomImage = (img) => {
     const modal = document.getElementById('simple-zoom-modal');
     const modalImg = document.getElementById('zoom-modal-image');
@@ -180,7 +171,6 @@ window.closeZoomModal = () => {
     document.body.style.overflow = '';
 };
 
-// Tutup Modal dengan ESC
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeZoomModal();
 });
