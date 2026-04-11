@@ -223,3 +223,55 @@ h2.section-title {
 #simple-zoom-modal {
     z-index: 9999;
 }
+/* ========================================= */
+/* FIX: NAVBAR BUTTON & CONCERTO TEXT        */
+/* ========================================= */
+
+/* Tombol di Navbar agar berwarna putih/kontras di atas background hero */
+.btn-mclaren-nav {
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    background: white; /* Latar belakang putih */
+    color: black !important; /* Teks hitam agar terbaca di atas putih */
+    border-radius: 100px;
+    transition: all 0.3s ease;
+    display: block;
+    border: 1px solid white;
+}
+
+.btn-mclaren-nav:hover {
+    background: transparent;
+    color: white !important;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+/* Memastikan label atas judul Hero terlihat terang */
+#hero span[data-aos="fade-right"] {
+    position: relative;
+    z-index: 30;
+    display: inline-block;
+}
+
+/* Tambahan: Pastikan Navbar Links berwarna putih saat di atas Hero */
+#navbar:not(.scrolled) .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+#navbar:not(.scrolled) .nav-link:hover {
+    color: white !important;
+}
+
+/* Saat di-scroll, tombol balik jadi hitam/gelap (opsional) */
+#navbar.scrolled .btn-mclaren-nav {
+    background: var(--dark-studio);
+    color: white !important;
+    border-color: var(--dark-studio);
+}
+
+.dark #navbar.scrolled .btn-mclaren-nav {
+    background: white;
+    color: black !important;
+}
