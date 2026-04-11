@@ -286,3 +286,19 @@ h2.section-title {
     /* Memberikan sedikit efek glow saat hover */
     box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
+
+.brand-logo {
+    /* Pastikan lebar mengikuti proporsi tinggi otomatis */
+    width: auto; 
+    object-fit: contain;
+    /* Memberi sedikit ruang antar logo agar tidak berhimpitan saat ukurannya besar */
+    padding: 0 10px; 
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Jika ingin lebih besar lagi khusus layar ultra-wide */
+@media (min-width: 1536px) {
+    .brand-logo {
+        height: 5rem; /* Sekitar 80px */
+    }
+}
