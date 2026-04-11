@@ -62,44 +62,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateTheme();
 
-    // --- 2. NAVBAR SCROLL ENGINE (MCLAREN STYLE) ---
-    const handleNavbarScroll = () => {
-        const currentScrollY = window.scrollY;
-        
-        // Efek transisi Floating ke Solid
-        if (currentScrollY > 50) {
-            navbar.classList.add('scrolled');
-            navbar.classList.remove('py-4');
-            navbar.classList.add('py-0');
+   // --- 2. NAVBAR SCROLL ENGINE (MCLAREN STYLE) ---
+const handleNavbarScroll = () => {
+    const currentScrollY = window.scrollY;
+    
+    // Efek transisi Floating (Melayang) ke Solid (Penuh)
+    if (currentScrollY > 50) {
+        navbar.classList.add('scrolled');
+        // PENTING: Hapus padding samping agar bar bisa melebar penuh (Full Width)
+        navbar.classList.remove('py-4', 'px-4', 'lg:px-8');
+        navbar.classList.add('py-0', 'px-0');
+    } else {
+        navbar.classList.remove('scrolled');
+        // PENTING: Kembalikan padding agar bar terlihat melayang (Floating) lagi
+        navbar.classList.remove('py-0', 'px-0');
+        navbar.classList.add('py-4', 'px-4', 'lg:px-8');
+    }
+
+    // Auto Hide saat scroll ke bawah (Fokus ke konten)
+    if (currentScrollY > lastScrollY && currentScrollY > 500) {
+        navbar.classList.add('-translate-y-full');
+    } else {
+        navbar.classList.remove('-translate-y-full');
+    }
+
+    // Tombol Scroll To Top
+    if (scrollToTopBtn) {
+        if (currentScrollY > 600) {
+            scrollToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-10');
+            scrollToTopBtn.classList.add('opacity-100', 'visible', 'translate-y-0');
         } else {
-            navbar.classList.remove('scrolled');
-            navbar.classList.remove('py-0');
-            navbar.classList.add('py-4');
+            scrollToTopBtn.classList.add('opacity-0', 'invisible', 'translate-y-10');
+            scrollToTopBtn.classList.remove('opacity-100', 'visible', 'translate-y-0');
         }
+    }
 
-        // Auto Hide saat scroll ke bawah (untuk fokus konten)
-        if (currentScrollY > lastScrollY && currentScrollY > 500) {
-            navbar.classList.add('-translate-y-full');
-        } else {
-            navbar.classList.remove('-translate-y-full');
-        }
+    lastScrollY = currentScrollY;
+};
 
-        // Tombol Scroll To Top
-        if (scrollToTopBtn) {
-            if (currentScrollY > 600) {
-                scrollToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-10');
-                scrollToTopBtn.classList.add('opacity-100', 'visible', 'translate-y-0');
-            } else {
-                scrollToTopBtn.classList.add('opacity-0', 'invisible', 'translate-y-10');
-                scrollToTopBtn.classList.remove('opacity-100', 'visible', 'translate-y-0');
-            }
-        }
-
-        lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener('scroll', handleNavbarScroll, { passive: true });
-
+window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+    
     // --- 3. MOBILE MENU ---
     if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', () => {
