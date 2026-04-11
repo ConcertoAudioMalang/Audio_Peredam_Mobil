@@ -147,3 +147,28 @@ body.dark {
 #simple-zoom-modal {
     z-index: 9999;
 }
+
+/* Tambahkan ini di bagian bawah CSS kamu */
+
+body.dark .text-gray-400, 
+body.dark .text-gray-500 {
+    color: #a1a1aa !important; /* Warna abu-abu terang agar kontras di BG hitam */
+}
+
+body.dark h2, 
+body.dark h3, 
+body.dark h4,
+body.dark p {
+    color: #F8F8F8; /* Memastikan semua heading & p berwarna putih tulang */
+}
+
+/* Khusus untuk tulisan list di footer atau navigasi */
+body.dark a, 
+body.dark span {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Hover agar tetap menyala merah */
+body.dark a:hover {
+    color: var(--accent-red);
+}
