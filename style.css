@@ -215,10 +215,13 @@ h2.section-title {
 }
 
 .animate-marquee {
-    display: flex;
     animation: marquee 30s linear infinite;
 }
 
+/* Berhenti saat kursor di atasnya */
+.group:hover .animate-marquee {
+    animation-play-state: paused;
+}
 /* Logo Partner / Marquee */
 .brand-logo {
     height: 2.5rem; /* Mobile */
