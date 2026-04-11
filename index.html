@@ -10,7 +10,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="icon" type="image/png" href="asset/favicon.png">
+    <link rel="icon" type="favicon.png" href="asset/favicon.png">
     
     <script>
         tailwind.config = {
@@ -369,61 +369,76 @@
     </div>
 </section>
         
- <section id="galeri" class="mx-4 lg:mx-8 my-6 bg-white dark:bg-[#121212] rounded-[40px] py-24 lg:py-32 overflow-hidden shadow-sm">
+<section id="galeri" class="section-margin bg-white dark:bg-[#0A0A0A] py-24 lg:py-32 overflow-hidden border border-black/5 dark:border-white/5">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
         <div class="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8">
             <div class="max-w-2xl">
-                <span class="text-accent-red font-black text-[10px] tracking-[0.5em] uppercase mb-4 block" data-aos="fade-up">Portfolio</span>
-                <h2 class="text-4xl lg:text-6xl font-black font-heading uppercase leading-[0.9] dark:text-white" data-aos="reveal-up">
-                    Instalasi <br> <span class="text-accent-red">Terbaik Kami.</span>
+                <span class="label-small mb-4 block" data-aos="fade-right">Masterpieces</span>
+                <h2 class="hero-title text-4xl lg:text-7xl dark:text-white" data-aos="reveal-up">
+                    Selected <br> <span class="text-accent-red italic">Installations.</span>
                 </h2>
             </div>
-            <a href="https://www.tiktok.com/@concertomlg" target="_blank" class="group flex items-center gap-4 text-[11px] font-black uppercase tracking-widest dark:text-white">
-                Lihat Semua Proyek <i class="fa-brands fa-tiktok text-lg group-hover:rotate-12 transition-transform"></i>
+            <a href="https://www.tiktok.com/@concertomlg" target="_blank" class="btn-mclaren-outline flex items-center gap-4">
+                Full Catalog <i class="fa-brands fa-tiktok text-sm"></i>
             </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 h-auto lg:h-[800px]">
-            <div class="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-[30px] group cursor-pointer" data-aos="zoom-in">
-                <img src="asset/galeri1.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" onclick="zoomImage(this)">
-                <div class="absolute inset-0 bg-dark-studio/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                    <span class="px-6 py-2 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-full">View Details</span>
+        <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto lg:h-[750px]">
+            <div class="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-sm group cursor-pointer" data-aos="zoom-in">
+                <img src="asset/galeri1.jpeg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105" onclick="zoomImage(this)">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8 pointer-events-none">
+                    <p class="text-[9px] font-black text-accent-red uppercase tracking-[0.5em] mb-2">Extreme Audio Build</p>
+                    <h4 class="text-white font-heading text-xl uppercase tracking-tighter">Precision Series 01</h4>
                 </div>
             </div>
             
-            <div class="md:col-span-1 relative overflow-hidden rounded-[30px] group cursor-pointer" data-aos="zoom-in" data-aos-delay="100">
-                <img src="asset/galeri2.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" onclick="zoomImage(this)">
+            <div class="md:col-span-1 relative overflow-hidden rounded-sm group cursor-pointer" data-aos="zoom-in" data-aos-delay="100">
+                <img src="asset/galeri2.jpeg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105" onclick="zoomImage(this)">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                    <i class="fa-solid fa-expand text-white opacity-50"></i>
+                </div>
             </div>
 
-            <div class="md:col-span-1 relative overflow-hidden rounded-[30px] group cursor-pointer" data-aos="zoom-in" data-aos-delay="200">
-                <img src="asset/galeri3.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" onclick="zoomImage(this)">
+            <div class="md:col-span-1 relative overflow-hidden rounded-sm group cursor-pointer" data-aos="zoom-in" data-aos-delay="200">
+                <img src="asset/galeri3.jpeg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105" onclick="zoomImage(this)">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                    <i class="fa-solid fa-expand text-white opacity-50"></i>
+                </div>
             </div>
 
-            <div class="md:col-span-2 relative overflow-hidden rounded-[30px] group cursor-pointer" data-aos="zoom-in" data-aos-delay="300">
-                <img src="asset/galeri4.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" onclick="zoomImage(this)">
+            <div class="md:col-span-2 relative overflow-hidden rounded-sm group cursor-pointer" data-aos="zoom-in" data-aos-delay="300">
+                <img src="asset/galeri4.jpeg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105" onclick="zoomImage(this)">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8 pointer-events-none">
+                    <p class="text-[9px] font-black text-accent-red uppercase tracking-[0.5em] mb-2">Exotic Soundstage</p>
+                    <h4 class="text-white font-heading text-xl uppercase tracking-tighter">Stealth Integration</h4>
+                </div>
             </div>
         </div>
     </div>
 </section>
     
-   <section id="merk" class="mx-4 lg:mx-8 my-6 bg-bg-studio dark:bg-dark-studio rounded-[40px] py-20 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 mb-12">
-        <h3 class="text-center text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Authorized International Partner</h3>
+   <section id="merk" class="py-16 bg-white dark:bg-[#0A0A0A] border-y border-black/5 dark:border-white/5 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 mb-10">
+        <div class="flex items-center gap-4">
+            <div class="h-px flex-1 bg-black/10 dark:bg-white/10"></div>
+            <h3 class="text-[9px] font-black uppercase tracking-[0.6em] text-gray-400">Authorized International Partner</h3>
+            <div class="h-px flex-1 bg-black/10 dark:bg-white/10"></div>
+        </div>
     </div>
     
     <div class="relative flex overflow-x-hidden group">
-        <div class="marquee-track flex items-center whitespace-nowrap gap-12 lg:gap-24 animate-marquee">
-            <img src="asset/1Copy.png" alt="Audio Circle" class="brand-logo">
-            <img src="asset/2.png" alt="STEG" class="brand-logo">
-            <img src="asset/3.png" alt="Dios Dela Musica" class="brand-logo">
-            <img src="asset/4.png" alt="Zelos Audio" class="brand-logo">
-            </div>
+        <div class="marquee-track flex items-center whitespace-nowrap gap-16 lg:gap-32 animate-marquee">
+            <img src="asset/1Copy.png" alt="Audio Circle" class="brand-logo opacity-30 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500 h-8 lg:h-12">
+            <img src="asset/2.png" alt="STEG" class="brand-logo opacity-30 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500 h-8 lg:h-12">
+            <img src="asset/3.png" alt="Dios Dela Musica" class="brand-logo opacity-30 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500 h-8 lg:h-12">
+            <img src="asset/4.png" alt="Zelos Audio" class="brand-logo opacity-30 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500 h-8 lg:h-12">
+        </div>
 
-        <div class="marquee-track flex items-center whitespace-nowrap gap-12 lg:gap-24 animate-marquee ml-12 lg:ml-24">
-            <img src="asset/1Copy.png" alt="Audio Circle" class="brand-logo">
-            <img src="asset/2.png" alt="STEG" class="brand-logo">
-            <img src="asset/3.png" alt="Dios Dela Musica" class="brand-logo">
-            <img src="asset/4.png" alt="Zelos Audio" class="brand-logo">
+        <div class="marquee-track flex items-center whitespace-nowrap gap-16 lg:gap-32 animate-marquee ml-16 lg:ml-32">
+            <img src="asset/1Copy.png" alt="Audio Circle" class="brand-logo opacity-30 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500 h-8 lg:h-12">
+            <img src="asset/2.png" alt="STEG" class="brand-logo opacity-30 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500 h-8 lg:h-12">
+            <img src="asset/3.png" alt="Dios Dela Musica" class="brand-logo opacity-30 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500 h-8 lg:h-12">
+            <img src="asset/4.png" alt="Zelos Audio" class="brand-logo opacity-30 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500 h-8 lg:h-12">
         </div>
     </div>
 </section>
