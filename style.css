@@ -263,3 +263,26 @@ h2.section-title {
     background: white;
     color: black !important;
 }
+
+/* Efek Grid Teknis untuk Section Tentang Kami */
+.section-margin {
+    margin: 2rem;
+    border-radius: 4px; /* Sudut lebih tajam ala McLaren */
+}
+
+@media (max-width: 768px) {
+    .section-margin {
+        margin: 1rem;
+    }
+}
+
+/* Hover Effect Khusus Pillar */
+#Tentangkami .group {
+    border: 1px solid transparent;
+}
+
+#Tentangkami .group:hover {
+    z-index: 10;
+    /* Memberikan sedikit efek glow saat hover */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
