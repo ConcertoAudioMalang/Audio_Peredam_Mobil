@@ -214,3 +214,113 @@ h2.section-title {
 .swiper-pagination-bullet-active {
     background: var(--accent-red) !important;
 }
+
+/* --- MCLAREN NAVIGATION --- */
+.nav-mclaren {
+    backdrop-filter: blur(15px);
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 100px;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .nav-mclaren {
+    background-color: rgba(10, 10, 10, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Navbar Scrolled Effect (Dipanggil via JS) */
+#navbar.scrolled .nav-mclaren {
+    margin-top: 0;
+    width: 100%;
+    border-radius: 0;
+    background-color: white;
+}
+
+.dark #navbar.scrolled .nav-mclaren {
+    background-color: var(--dark-studio);
+}
+
+/* Underline Animation */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-red);
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* --- HERO TYPOGRAPHY --- */
+.hero-title {
+    font-size: clamp(3.5rem, 10vw, 8.5rem);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: 'SK-Modernist', sans-serif;
+}
+
+/* --- BUTTONS --- */
+.btn-mclaren-nav {
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    background: var(--dark-studio);
+    color: white;
+    border-radius: 100px;
+    transition: all 0.3s ease;
+}
+
+.dark .btn-mclaren-nav {
+    background: white;
+    color: black;
+}
+
+.btn-mclaren-primary {
+    background: var(--accent-red);
+    color: white;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 18px 40px;
+    border-radius: 4px;
+    transition: all 0.4s;
+}
+
+.btn-mclaren-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(230, 30, 42, 0.3);
+}
+
+.btn-mclaren-outline {
+    border: 1px solid rgba(0,0,0,0.1);
+    color: var(--dark-studio);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 18px 40px;
+    border-radius: 4px;
+    transition: all 0.4s;
+}
+
+.dark .btn-mclaren-outline {
+    border-color: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.btn-mclaren-outline:hover {
+    background: white;
+    color: black;
+    border-color: white;
+}
