@@ -38,8 +38,7 @@ body {
     transition: background-color 0.5s ease;
 }
 
-/* Base Dark Mode */
-.dark body {
+body.dark {
     background-color: var(--dark-studio);
     color: #F8F8F8;
 }
@@ -77,6 +76,7 @@ body {
     max-width: none;
     border-radius: 0;
     background-color: #0A0A0A;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* ========================================= */
@@ -100,7 +100,9 @@ body {
 }
 
 @media (min-width: 1024px) {
-    .brand-logo-modern { height: 100px; }
+    .brand-logo-modern {
+        height: 100px;
+    }
 }
 
 .brand-logo-modern:hover {
@@ -114,7 +116,9 @@ body {
     100% { transform: translateX(-100%); }
 }
 
-.animate-marquee { animation: marquee 30s linear infinite; }
+.animate-marquee {
+    animation: marquee 30s linear infinite;
+}
 
 /* ========================================= */
 /* 6. UTILITIES & SECTIONS                   */
@@ -126,44 +130,25 @@ body {
 }
 
 @media (max-width: 768px) {
-    .section-margin { margin: 1rem; }
+    .section-margin {
+        margin: 1rem;
+    }
 }
 
 .btn-mclaren-primary {
     background: var(--accent-red);
-    color: white !important; /* Selalu Putih */
+    color: white;
     font-size: 10px;
     font-weight: 900;
     letter-spacing: 0.3em;
     padding: 18px 40px;
+    border-radius: 4px;
     transition: all 0.4s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#simple-zoom-modal { z-index: 9999; }
-
-/* ========================================= */
-/* 7. SMART DARK MODE SYSTEM                 */
-/* ========================================= */
-
-/* Hanya eksekusi jika .dark aktif */
-.dark .text-black,
-.dark .text-gray-900,
-.dark .text-gray-800 {
-    color: #F8F8F8 !important;
-}
-
-/* Jaga elemen yang memang harus putih agar tidak terpengaruh */
-.dark .text-white, 
-.dark .btn-mclaren-primary {
-    color: #FFFFFF !important;
-}
-
-/* Footer Visibility */
-.dark footer p, 
-.dark footer span:not(.text-accent-red) {
-    color: rgba(255, 255, 255, 0.5) !important;
-}
-
-.dark footer a {
-    color: rgba(255, 255, 255, 0.8) !important;
+#simple-zoom-modal {
+    z-index: 9999;
 }
