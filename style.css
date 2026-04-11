@@ -149,15 +149,18 @@ body.dark {
 }
 
 /* ========================================= */
-/* 7. DARK MODE FIX (THE FINAL POLISH)       */
+/* 7. SMART DARK MODE SYSTEM                 */
 /* ========================================= */
 
-/* Hanya eksekusi jika mode gelap AKTIF */
+/* --- 1. SETINGAN DASAR --- */
+/* Pastikan warna teks utama berubah saat mode gelap */
 .dark body {
     background-color: var(--dark-studio) !important;
+    color: #F8F8F8 !important;
 }
 
-/* 1. Perbaiki teks gelap yang hilang di background hitam */
+/* --- 2. PERBAIKAN TEKS GELAP (Jadi Terang di Mode Gelap) --- */
+/* Kita targetkan class Tailwind yang biasanya "Hitam" agar jadi "Putih" */
 .dark .text-black,
 .dark .text-gray-900,
 .dark .text-gray-800,
@@ -165,24 +168,30 @@ body.dark {
     color: #F8F8F8 !important;
 }
 
-/* 2. Pastikan elemen heading & paragraf standar putih di mode gelap */
-.dark h1, .dark h2, .dark h3, .dark h4, .dark p, 
-.dark span:not([class*="text-accent-red"]):not([class*="text-white"]) {
-    color: #F8F8F8 !important;
+/* --- 3. PERBAIKAN TEKS TERANG (Tetap Terang jika di Dark Mode) --- */
+/* Seringkali teks putih malah jadi hitam karena CSS global. Ini pencegahnya: */
+.dark .text-white,
+.dark .btn-mclaren-primary,
+.dark .bg-accent-red span {
+    color: #FFFFFF !important;
 }
 
-/* 3. Perbaiki list/link di footer mode gelap */
-.dark footer a, .dark footer span {
-    color: rgba(255, 255, 255, 0.6) !important;
+/* --- 4. FOOTER & LINK --- */
+.dark footer p, 
+.dark footer span:not(.text-accent-red) {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.dark footer a {
+    color: rgba(255, 255, 255, 0.8) !important;
 }
 
 .dark footer a:hover {
     color: var(--accent-red) !important;
 }
 
-/* 4. ANTI-CRASH UNTUK MODE TERANG */
-/* Jangan paksa :not(.dark) .text-white secara global karena akan merusak tombol */
-/* Kita hanya targetkan teks putih yang nempel di background putih (jika ada) */
-html:not(.dark) .fix-light-visibility {
-    color: var(--text-main) !important;
-}
+/* --- 5. MODE TERANG (KEMBALIKAN KE DEFAULT) --- */
+/* Bagian ini memastikan saat .dark DIHAPUS, semua kembali ke warna aslinya */
+html:not(.dark) .text-black { color: #000000 !important; }
+html:not(.dark) .text-gray-900 { color: #1A1A1A !important; }
+html:not(.dark) .text-white { color: #FFFFFF !important; }
