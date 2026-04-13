@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concerto Audio - Premium Sound Quality</title>
+    
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+    
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -42,11 +51,12 @@
             <div class="hidden lg:flex items-center bg-black/5 dark:bg-white/10 backdrop-blur-xl px-8 py-3 rounded-full border border-black/5 dark:border-white/10 text-[10px] font-bold uppercase tracking-[0.3em]">
                 <a href="#hero" class="mx-5 hover:text-accent-red transition-colors">Work</a>
                 <a href="#Tentangkami" class="mx-5 hover:text-accent-red transition-colors">About</a>
+                <a href="#layanan" class="mx-5 hover:text-accent-red transition-colors">Services</a>
                 <a href="#contact" class="mx-5 hover:text-accent-red transition-colors">Contact</a>
                 
-                <button id="theme-toggle" class="ml-4 pl-4 border-l border-black/10 dark:border-white/10 flex items-center gap-2">
-                    <span class="dark:hidden">LIGHT</span>
-                    <span class="hidden dark:inline">DARK</span>
+                <button id="theme-toggle" class="ml-4 pl-4 border-l border-black/10 dark:border-white/10 flex items-center gap-2 group">
+                    <span class="dark:hidden group-hover:text-accent-red transition-colors">LIGHT</span>
+                    <span class="hidden dark:inline group-hover:text-accent-red transition-colors">DARK</span>
                 </button>
             </div>
 
@@ -59,11 +69,23 @@
                     AVAILABLE FOR WORK
                 </div>
             </div>
-            <button class="lg:hidden text-[10px] font-black tracking-widest uppercase border-b-2 border-current">Menu</button>
+
+            <button id="mobile-menu-button" class="lg:hidden text-[10px] font-black tracking-widest uppercase border-b-2 border-current">
+                <i id="menu-icon" class="fa-solid fa-bars mr-2"></i>Menu
+            </button>
         </nav>
+        
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-white dark:bg-dark-studio border-b border-black/5 dark:border-white/5 p-6 flex flex-col gap-6 text-[10px] font-bold uppercase tracking-widest">
+            <a href="#hero">Work</a>
+            <a href="#Tentangkami">About</a>
+            <a href="#layanan">Services</a>
+            <a href="#contact">Contact</a>
+            <button class="theme-toggle text-left uppercase text-accent-red">Toggle Mode</button>
+        </div>
     </header>
 
     <main>
+        
         <section id="hero" class="relative min-h-screen flex flex-col justify-end lg:justify-center px-6 lg:px-12 pb-20 lg:pb-0 overflow-hidden">
             <div class="absolute inset-0 z-0">
                 <img src="asset/background-concerto.jpg" alt="Concerto Background" class="w-full h-full object-cover grayscale opacity-20 dark:opacity-30">
@@ -218,16 +240,16 @@
     </div>
 </section>
     
-<section id="produk" class="section-margin bg-white dark:bg-[#0A0A0A] py-24 lg:py-32 overflow-hidden border border-black/5 dark:border-white/5">
+<section id="produk" class="section-margin bg-white dark:bg-[#0A0A0A] py-24 lg:py-32 overflow-hidden border-t border-black/5 dark:border-white/5">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
         <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <div class="max-w-2xl">
-                <span class="label-small mb-6 block" data-aos="fade-right">Configuration</span>
-                <h2 class="hero-title text-4xl lg:text-7xl dark:text-white" data-aos="reveal-up">
+                <span class="text-[10px] font-black tracking-[0.3em] uppercase opacity-50 mb-6 block" data-aos="fade-right">Configuration</span>
+                <h2 class="font-heading text-4xl lg:text-7xl font-black uppercase leading-[0.9] dark:text-white" data-aos="reveal-up">
                     Audio <br> <span class="text-accent-red italic">Upgrade Kits.</span>
                 </h2>
             </div>
-            <p class="max-w-xs text-[10px] font-bold uppercase tracking-widest opacity-50 dark:text-white leading-relaxed" data-aos="fade-left">
+            <p class="max-w-xs text-[10px] font-bold uppercase tracking-widest opacity-50 dark:text-gray-400 leading-relaxed" data-aos="fade-left">
                 Tailored performance levels engineered for your specific acoustic environment.
             </p>
         </div>
@@ -236,21 +258,21 @@
             <div class="group p-12 bg-white dark:bg-[#0A0A0A] flex flex-col h-full transition-all duration-500 hover:bg-black dark:hover:bg-white" data-aos="fade-up">
                 <div class="flex justify-between items-start mb-12">
                     <span class="text-[10px] font-black text-accent-red tracking-tighter">SPEC-01 //</span>
-                    <span class="text-[9px] font-bold opacity-40 uppercase dark:text-gray-400 group-hover:text-white/40 dark:group-hover:text-black/40">Base Stage</span>
+                    <span class="text-[9px] font-bold opacity-40 uppercase dark:text-gray-400 group-hover:text-white dark:group-hover:text-black transition-all">Base Stage</span>
                 </div>
-                <h3 class="text-3xl font-black font-heading mb-8 group-hover:text-white dark:text-white dark:group-hover:text-black">CORE</h3>
+                <h3 class="text-3xl font-black font-heading mb-8 group-hover:text-white dark:text-white dark:group-hover:text-black transition-colors">CORE</h3>
                 <ul class="space-y-4 mb-12 flex-grow">
-                    <li class="flex items-center text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:text-white dark:text-gray-400 dark:group-hover:text-black">
+                    <li class="flex items-center text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:text-white/80 dark:text-gray-400 dark:group-hover:text-black">
                         <span class="w-1.5 h-1.5 bg-accent-red mr-3"></span> Upgrade 2-Way & Sub
                     </li>
-                    <li class="flex items-center text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:text-white dark:text-gray-400 dark:group-hover:text-black">
-                        <span class="w-1.5 h-1.5 bg-accent-red mr-3"></span> MSDP & Power
+                    <li class="flex items-center text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:text-white/80 dark:text-gray-400 dark:group-hover:text-black">
+                        <span class="w-1.5 h-1.5 bg-accent-red mr-3"></span> MDSP & Power
                     </li>
-                    <li class="flex items-center text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:text-white dark:text-gray-400 dark:group-hover:text-black">
+                    <li class="flex items-center text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:text-white/80 dark:text-gray-400 dark:group-hover:text-black">
                         <span class="w-1.5 h-1.5 bg-accent-red mr-3"></span> Standard Insulation
                     </li>
                 </ul>
-                <a href="https://wa.me/6281217398558" class="btn-mclaren-outline text-center group-hover:border-white group-hover:text-white dark:group-hover:border-black dark:group-hover:text-black">Inquire Now</a>
+                <a href="https://wa.me/6281217398558" class="inline-block py-4 border border-black/20 dark:border-white/20 text-[10px] font-black uppercase tracking-widest text-center transition-all group-hover:border-accent-red group-hover:bg-accent-red group-hover:text-white dark:text-white dark:group-hover:text-white">Inquire Now</a>
             </div>
 
             <div class="group p-12 bg-black dark:bg-white flex flex-col h-full relative overflow-hidden transition-all duration-500" data-aos="fade-up" data-aos-delay="100">
@@ -272,37 +294,31 @@
                     <li class="flex items-center text-[10px] font-black uppercase tracking-widest text-white/80 dark:text-black/80">
                         <span class="w-1.5 h-1.5 bg-accent-red mr-3"></span> Custom Pillar A
                     </li>
-                    <li class="flex items-center text-[10px] font-black uppercase tracking-widest text-white/80 dark:text-black/80">
-                        <span class="w-1.5 h-1.5 bg-accent-red mr-3"></span> Full Cabin Insulation
-                    </li>
                 </ul>
-                <a href="https://wa.me/6281217398558" class="btn-mclaren-primary text-center">Configure Specs</a>
+                <a href="https://wa.me/6281217398558" class="inline-block py-4 bg-accent-red text-white text-[10px] font-black uppercase tracking-widest text-center hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-all">Configure Specs</a>
             </div>
 
             <div class="group p-12 bg-white dark:bg-[#0A0A0A] flex flex-col h-full transition-all duration-500 hover:bg-black dark:hover:bg-white" data-aos="fade-up" data-aos-delay="200">
                 <div class="flex justify-between items-start mb-12">
                     <span class="text-[10px] font-black text-accent-red tracking-tighter">SPEC-03 //</span>
-                    <span class="text-[9px] font-bold opacity-40 uppercase dark:text-gray-400 group-hover:text-white/40 dark:group-hover:text-black/40">Ultimate Stage</span>
+                    <span class="text-[9px] font-bold opacity-40 uppercase dark:text-gray-400 group-hover:text-white dark:group-hover:text-black transition-all">Ultimate Stage</span>
                 </div>
-                <h3 class="text-3xl font-black font-heading mb-8 group-hover:text-white dark:text-white dark:group-hover:text-black">ULTIMATE</h3>
+                <h3 class="text-3xl font-black font-heading mb-8 group-hover:text-white dark:text-white dark:group-hover:text-black transition-colors">ULTIMATE</h3>
                 <ul class="space-y-4 mb-12 flex-grow">
-                    <li class="flex items-center text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:text-white dark:text-gray-400 dark:group-hover:text-black">
+                    <li class="flex items-center text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:text-white/80 dark:text-gray-400 dark:group-hover:text-black">
                         <span class="w-1.5 h-1.5 bg-accent-red mr-3"></span> Hi-End 4-Way System
                     </li>
-                    <li class="flex items-center text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:text-white dark:text-gray-400 dark:group-hover:text-black">
-                        <span class="w-1.5 h-1.5 bg-accent-red mr-3"></span> Custom Rear Integration
-                    </li>
-                    <li class="flex items-center text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:text-white dark:text-gray-400 dark:group-hover:text-black">
+                    <li class="flex items-center text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:text-white/80 dark:text-gray-400 dark:group-hover:text-black">
                         <span class="w-1.5 h-1.5 bg-accent-red mr-3"></span> Carbon Tech Cables
                     </li>
                 </ul>
-                <a href="https://wa.me/6281217398558" class="btn-mclaren-outline text-center group-hover:border-white group-hover:text-white dark:group-hover:border-black dark:group-hover:text-black">Full Customization</a>
+                <a href="https://wa.me/6281217398558" class="inline-block py-4 border border-black/20 dark:border-white/20 text-[10px] font-black uppercase tracking-widest text-center transition-all group-hover:border-accent-red group-hover:bg-accent-red group-hover:text-white dark:text-white dark:group-hover:text-white">Full Customization</a>
             </div>
         </div>
     </div>
 </section>
 
-<section id="testimoni" class="section-margin bg-bg-studio dark:bg-dark-studio py-24 lg:py-32 overflow-hidden border border-black/5 dark:border-white/5">
+<section id="testimoni" class="section-margin bg-gray-50 dark:bg-dark-studio py-24 lg:py-32 overflow-hidden border-t border-black/5 dark:border-white/5">
     <div class="max-w-7xl mx-auto px-6">
         <div class="flex items-center gap-4 mb-20">
             <h3 class="text-[9px] font-black uppercase tracking-[0.6em] text-accent-red whitespace-nowrap">The Client Verdict</h3>
@@ -310,7 +326,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="md:col-span-2 p-12 bg-white dark:bg-[#0A0A0A] rounded-sm flex flex-col justify-between min-h-[400px]" data-aos="reveal-up">
+            <div class="md:col-span-2 p-12 bg-white dark:bg-[#0A0A0A] border border-black/5 dark:border-white/5 flex flex-col justify-between min-h-[400px]" data-aos="reveal-up">
                 <div>
                     <div class="flex gap-1 text-accent-red mb-10">
                         <i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i>
@@ -320,7 +336,7 @@
                     </p>
                 </div>
                 <div class="flex items-center gap-6 border-t border-black/5 dark:border-white/5 pt-8">
-                    <div class="w-10 h-10 bg-accent-red rounded-sm flex items-center justify-center text-white font-black text-[10px]">TG</div>
+                    <div class="w-10 h-10 bg-accent-red flex items-center justify-center text-white font-black text-[10px]">TG</div>
                     <div>
                         <h4 class="text-[10px] font-black uppercase tracking-widest dark:text-white">The Glow</h4>
                         <span class="text-[8px] uppercase tracking-[0.3em] text-gray-400">Verified Operator</span>
@@ -328,7 +344,7 @@
                 </div>
             </div>
 
-            <div class="p-10 bg-accent-red rounded-sm text-white flex flex-col justify-between" data-aos="reveal-up" data-aos-delay="200">
+            <div class="p-10 bg-accent-red text-white flex flex-col justify-between" data-aos="reveal-up" data-aos-delay="200">
                 <i class="fa-solid fa-quote-left text-3xl opacity-20 mb-8"></i>
                 <p class="text-xl font-black font-heading leading-tight mb-10 uppercase italic">
                     "Desainer Audio Mobil PALING Profesional. Sangat Recommended!"
@@ -338,79 +354,51 @@
                     <span class="text-[8px] uppercase tracking-widest opacity-60">Verified Client</span>
                 </div>
             </div>
-
-            <div class="p-10 bg-white dark:bg-[#0A0A0A] rounded-sm flex flex-col justify-between" data-aos="reveal-up" data-aos-delay="300">
-                <div class="flex gap-1 text-accent-red mb-8">
-                     <i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i>
-                </div>
-                <p class="text-xs font-bold uppercase tracking-wide dark:text-gray-300 leading-loose mb-10 opacity-70">
-                    "Hasil tuning DSP sangat akurat. Soundstage lebar dan detail alat musik terasa nyata."
-                </p>
-                <div class="pt-6 border-t border-black/5 dark:border-white/5">
-                    <h4 class="text-[10px] font-black uppercase tracking-widest dark:text-white">Budi Santoso</h4>
-                    <span class="text-[8px] uppercase tracking-widest text-gray-400">Fortuner Owner</span>
-                </div>
+            
             </div>
-
-            <div class="md:col-span-2 p-10 bg-black dark:bg-white text-white dark:text-black rounded-sm flex flex-col md:flex-row gap-8 items-center" data-aos="reveal-up" data-aos-delay="400">
-                <div class="flex-1">
-                    <p class="text-lg font-black font-heading uppercase italic tracking-tighter">
-                        "Upgrade SQ di sini adalah investasi terbaik untuk kenyamanan kabin."
-                    </p>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="text-right">
-                        <h4 class="text-[10px] font-black uppercase tracking-widest text-accent-red">Andi Wijaya</h4>
-                        <span class="text-[8px] uppercase tracking-widest opacity-40">Client</span>
-                    </div>
-                    <div class="h-10 w-px bg-white/20 dark:bg-black/20 hidden md:block"></div>
-                    <span class="text-3xl font-black font-heading italic opacity-20">5.0</span>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
         
-<section id="galeri" class="section-margin bg-white dark:bg-[#0A0A0A] py-24 lg:py-32 overflow-hidden border border-black/5 dark:border-white/5">
+<section id="galeri" class="section-margin bg-white dark:bg-[#0A0A0A] py-24 lg:py-32 overflow-hidden border-t border-black/5 dark:border-white/5">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
         <div class="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8 border-b border-black/10 dark:border-white/10 pb-12">
             <div class="max-w-2xl">
-                <span class="label-small mb-4 block" data-aos="fade-right">Masterpieces</span>
-                <h2 class="hero-title text-4xl lg:text-7xl dark:text-white" data-aos="reveal-up">
+                <span class="text-[10px] font-black tracking-[0.3em] uppercase opacity-50 mb-4 block" data-aos="fade-right">Masterpieces</span>
+                <h2 class="font-heading text-4xl lg:text-7xl font-black uppercase leading-[0.9] dark:text-white" data-aos="reveal-up">
                     Selected <br> <span class="text-accent-red italic">Builds.</span>
                 </h2>
             </div>
-            <a href="https://www.tiktok.com/@concertomlg" target="_blank" class="btn-mclaren-outline flex items-center gap-4 group">
+            <a href="https://www.tiktok.com/@concertomlg" target="_blank" class="px-8 py-4 border border-black/10 dark:border-white/10 text-[10px] font-black uppercase tracking-widest flex items-center gap-4 group hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-500">
                 Full Catalog 
                 <i class="fa-brands fa-tiktok text-sm group-hover:rotate-12 transition-transform"></i>
             </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-2 h-auto lg:h-[750px]">
-            <div class="md:col-span-2 md:row-span-2 relative overflow-hidden group cursor-pointer border border-black/5" data-aos="zoom-in">
-                <img src="asset/galeri1.jpeg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" onclick="zoomImage(this)">
+        <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-none md:grid-rows-2 gap-4 h-auto md:h-[750px]">
+            <div class="md:col-span-2 md:row-span-2 relative overflow-hidden group cursor-pointer border border-black/5 dark:border-white/5" data-aos="zoom-in">
+                <img src="asset/galeri1.jpeg" alt="Featured Build" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" onclick="zoomImage(this)">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-10">
                     <span class="text-[9px] font-black text-accent-red uppercase tracking-[0.5em] mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Spec: Extreme Build</span>
                     <h4 class="text-white font-heading text-3xl uppercase tracking-tighter translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">Precision Series 01</h4>
                 </div>
             </div>
             
-            <div class="md:col-span-1 relative overflow-hidden group cursor-pointer border border-black/5" data-aos="zoom-in" data-aos-delay="100">
-                <img src="asset/galeri2.jpeg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" onclick="zoomImage(this)">
+            <div class="md:col-span-1 relative overflow-hidden group cursor-pointer border border-black/5 dark:border-white/5 h-[300px] md:h-auto" data-aos="zoom-in" data-aos-delay="100">
+                <img src="asset/galeri2.jpeg" alt="Build Detail" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" onclick="zoomImage(this)">
                 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <i class="fa-solid fa-expand text-white text-xl"></i>
                 </div>
             </div>
 
-            <div class="md:col-span-1 relative overflow-hidden group cursor-pointer border border-black/5" data-aos="zoom-in" data-aos-delay="200">
-                <img src="asset/galeri3.jpeg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" onclick="zoomImage(this)">
+            <div class="md:col-span-1 relative overflow-hidden group cursor-pointer border border-black/5 dark:border-white/5 h-[300px] md:h-auto" data-aos="zoom-in" data-aos-delay="200">
+                <img src="asset/galeri3.jpeg" alt="Build Detail" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" onclick="zoomImage(this)">
                 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <i class="fa-solid fa-expand text-white text-xl"></i>
                 </div>
             </div>
 
-            <div class="md:col-span-2 relative overflow-hidden group cursor-pointer border border-black/5" data-aos="zoom-in" data-aos-delay="300">
-                <img src="asset/galeri4.jpeg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" onclick="zoomImage(this)">
+            <div class="md:col-span-2 relative overflow-hidden group cursor-pointer border border-black/5 dark:border-white/5 h-[300px] md:h-auto" data-aos="zoom-in" data-aos-delay="300">
+                <img src="asset/galeri4.jpeg" alt="Build Detail" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" onclick="zoomImage(this)">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-10">
                     <span class="text-[9px] font-black text-accent-red uppercase tracking-[0.5em] mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Spec: Exotic Soundstage</span>
                     <h4 class="text-white font-heading text-3xl uppercase tracking-tighter translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">Stealth Integration</h4>
@@ -419,8 +407,8 @@
         </div>
     </div>
 </section>
-    
-   <section id="merk" class="py-20 bg-white dark:bg-[#0A0A0A] border-y border-black/5 dark:border-white/5 overflow-hidden">
+
+<section id="merk" class="py-20 bg-white dark:bg-[#0A0A0A] border-y border-black/5 dark:border-white/5 overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 mb-12">
         <div class="flex items-center gap-6">
             <span class="text-[10px] font-black uppercase tracking-[0.4em] text-accent-red whitespace-nowrap">Official Partners</span>
@@ -429,36 +417,36 @@
         </div>
     </div>
     
-    <div class="relative flex overflow-x-hidden group">
-        <div class="marquee-track flex items-center whitespace-nowrap gap-20 lg:gap-32 animate-marquee py-12">
-            <img src="asset/1Copy.png" alt="Audio Circle" class="brand-logo-modern">
-            <img src="asset/2.png" alt="STEG" class="brand-logo-modern">
-            <img src="asset/3.png" alt="Dios Dela Musica" class="brand-logo-modern">
-            <img src="asset/4.png" alt="Zelos Audio" class="brand-logo-modern">
+    <div class="relative flex overflow-x-hidden group select-none">
+        <div class="flex items-center whitespace-nowrap gap-20 lg:gap-32 animate-marquee py-8 px-10">
+            <img src="asset/1Copy.png" alt="Audio Circle" class="h-8 lg:h-12 w-auto opacity-40 grayscale dark:invert transition-all duration-500 hover:opacity-100 hover:grayscale-0">
+            <img src="asset/2.png" alt="STEG" class="h-8 lg:h-12 w-auto opacity-40 grayscale dark:invert transition-all duration-500 hover:opacity-100 hover:grayscale-0">
+            <img src="asset/3.png" alt="Dios Dela Musica" class="h-8 lg:h-12 w-auto opacity-40 grayscale dark:invert transition-all duration-500 hover:opacity-100 hover:grayscale-0">
+            <img src="asset/4.png" alt="Zelos Audio" class="h-8 lg:h-12 w-auto opacity-40 grayscale dark:invert transition-all duration-500 hover:opacity-100 hover:grayscale-0">
         </div>
 
-        <div class="marquee-track flex items-center whitespace-nowrap gap-20 lg:gap-40 animate-marquee ml-20 lg:ml-40 py-4" aria-hidden="true">
-            <img src="asset/1Copy.png" alt="Audio Circle" class="brand-logo opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500 h-8 lg:h-14">
-            <img src="asset/2.png" alt="STEG" class="brand-logo opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500 h-8 lg:h-14">
-            <img src="asset/3.png" alt="Dios Dela Musica" class="brand-logo opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500 h-8 lg:h-14">
-            <img src="asset/4.png" alt="Zelos Audio" class="brand-logo opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500 h-8 lg:h-14">
+        <div class="flex items-center whitespace-nowrap gap-20 lg:gap-32 animate-marquee py-8 px-10" aria-hidden="true">
+            <img src="asset/1Copy.png" alt="Audio Circle" class="h-8 lg:h-12 w-auto opacity-40 grayscale dark:invert transition-all duration-500 hover:opacity-100 hover:grayscale-0">
+            <img src="asset/2.png" alt="STEG" class="h-8 lg:h-12 w-auto opacity-40 grayscale dark:invert transition-all duration-500 hover:opacity-100 hover:grayscale-0">
+            <img src="asset/3.png" alt="Dios Dela Musica" class="h-8 lg:h-12 w-auto opacity-40 grayscale dark:invert transition-all duration-500 hover:opacity-100 hover:grayscale-0">
+            <img src="asset/4.png" alt="Zelos Audio" class="h-8 lg:h-12 w-auto opacity-40 grayscale dark:invert transition-all duration-500 hover:opacity-100 hover:grayscale-0">
         </div>
     </div>
 </section>
     
-    <section id="faq" class="section-margin bg-white dark:bg-[#0A0A0A] py-24 lg:py-32 overflow-hidden border border-black/5 dark:border-white/5">
+    <section id="faq" class="section-margin bg-white dark:bg-[#0A0A0A] py-24 lg:py-32 border-t border-black/5 dark:border-white/5">
     <div class="max-w-4xl mx-auto px-6">
         <div class="mb-20">
-            <span class="label-small mb-4 block" data-aos="fade-right">Customer Support</span>
+            <span class="text-[10px] font-black tracking-[0.3em] uppercase opacity-50 mb-4 block" data-aos="fade-right">Customer Support</span>
             <div class="flex items-end justify-between border-b-2 border-accent-red pb-6">
-                <h2 class="hero-title text-4xl lg:text-6xl dark:text-white" data-aos="reveal-up">
+                <h2 class="font-heading text-4xl lg:text-6xl font-black uppercase leading-none dark:text-white" data-aos="reveal-up">
                     Technical <span class="italic text-accent-red">FAQ.</span>
                 </h2>
                 <span class="text-[10px] font-black opacity-30 dark:text-white mb-2 uppercase tracking-widest hidden md:block">Concerto // Malang</span>
             </div>
         </div>
 
-        <div class="divide-y divide-black/5 dark:divide-white/5">
+        <div class="divide-y divide-black/5 dark:divide-white/5 border-b border-black/5 dark:border-white/5">
             <div class="faq-item group" data-aos="fade-up">
                 <button class="accordion-header w-full flex justify-between items-center py-10 text-left transition-all">
                     <div class="flex items-center gap-8">
@@ -472,7 +460,7 @@
                 </button>
                 <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                     <div class="pl-16 pr-8 pb-10">
-                        <p class="text-gray-500 dark:text-gray-400 font-bold uppercase text-[11px] leading-loose tracking-wider">
+                        <p class="text-gray-500 dark:text-gray-400 font-bold uppercase text-[11px] leading-loose tracking-wider max-w-2xl">
                             Ya, setiap proyek dimulai dengan diagnosa akustik mendalam. Kami menganalisis titik lemah sistem OEM untuk memastikan integrasi komponen baru berjalan presisi sesuai geometri kabin mobil Anda.
                         </p>
                     </div>
@@ -492,14 +480,14 @@
                 </button>
                 <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                     <div class="pl-16 pr-8 pb-10">
-                        <p class="text-gray-500 dark:text-gray-400 font-bold uppercase text-[11px] leading-loose tracking-wider">
+                        <p class="text-gray-500 dark:text-gray-400 font-bold uppercase text-[11px] leading-loose tracking-wider max-w-2xl">
                             Presisi membutuhkan waktu. Instalasi tingkat tinggi biasanya memakan 1-2 hari kerja untuk memastikan manajemen kabel (wire tucking) dan tuning DSP mencapai standar kompetisi.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div class="faq-item group border-b border-black/5 dark:border-white/5" data-aos="fade-up" data-aos-delay="200">
+            <div class="faq-item group" data-aos="fade-up" data-aos-delay="200">
                 <button class="accordion-header w-full flex justify-between items-center py-10 text-left transition-all">
                     <div class="flex items-center gap-8">
                         <span class="text-[10px] font-black text-accent-red font-heading">03 /</span>
@@ -512,7 +500,7 @@
                 </button>
                 <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                     <div class="pl-16 pr-8 pb-10">
-                        <p class="text-gray-500 dark:text-gray-400 font-bold uppercase text-[11px] leading-loose tracking-wider">
+                        <p class="text-gray-500 dark:text-gray-400 font-bold uppercase text-[11px] leading-loose tracking-wider max-w-2xl">
                             Mutlak. Kami memberikan layanan re-tuning gratis pasca masa "break-in" perangkat, memastikan staging dan tonal balance tetap optimal seiring waktu penggunaan.
                         </p>
                     </div>
@@ -522,19 +510,19 @@
         
         <div class="mt-16 text-center">
             <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-6">Masih memiliki pertanyaan teknis?</p>
-            <a href="https://wa.me/6281217398558" class="btn-mclaren-outline">WhatsApp Support</a>
+            <a href="https://wa.me/6281217398558" class="inline-block px-10 py-4 border border-accent-red text-accent-red text-[10px] font-black uppercase tracking-widest hover:bg-accent-red hover:text-white transition-all duration-500">WhatsApp Support</a>
         </div>
     </div>
 </section>
-        
- <section id="lokasi" class="section-margin bg-white dark:bg-[#0A0A0A] py-24 lg:py-32 overflow-hidden border border-black/5 dark:border-white/5">
+
+<section id="lokasi" class="bg-white dark:bg-[#0A0A0A] py-24 lg:py-32 overflow-hidden border-t border-black/5 dark:border-white/5">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-stretch">
             
             <div class="lg:col-span-5 flex flex-col justify-between" data-aos="fade-right">
                 <div>
-                    <span class="label-small mb-4 block">Base of Operations</span>
-                    <h2 class="hero-title text-4xl lg:text-7xl dark:text-white mb-12">
+                    <span class="text-[10px] font-black tracking-[0.3em] uppercase opacity-50 mb-4 block">Base of Operations</span>
+                    <h2 class="font-heading text-4xl lg:text-7xl font-black uppercase leading-[0.9] dark:text-white mb-12">
                         Workshop <br> <span class="text-accent-red italic">Experience.</span>
                     </h2>
 
@@ -545,8 +533,8 @@
                                 Jl. Ciliwung No. 57A, Purwantoro,<br>
                                 Kota Malang, Jawa Timur 65126
                             </p>
-                            <a href="https://maps.app.goo.gl/YourMapLink" target="_blank" class="inline-flex items-center mt-6 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-accent-red transition-all gap-3">
-                                <i class="fa-solid fa-location-dot"></i> Open Satellite View <i class="fa-solid fa-chevron-right text-[8px]"></i>
+                            <a href="https://maps.app.goo.gl/YourActualMapLink" target="_blank" class="inline-flex items-center mt-6 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-accent-red transition-all gap-3">
+                                <i class="fa-solid fa-location-dot"></i> Open Google Maps <i class="fa-solid fa-chevron-right text-[8px]"></i>
                             </a>
                         </div>
 
@@ -554,16 +542,16 @@
                             <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-accent-red mb-6 border-l-2 border-accent-red pl-4">Operational Hours</h3>
                             <div class="space-y-4 max-w-sm">
                                 <div class="flex justify-between items-center text-[11px] font-bold uppercase tracking-widest dark:text-gray-300 border-b border-black/5 dark:border-white/5 pb-3">
-                                    <span class="opacity-50 font-heading">Mon — Fri</span>
-                                    <span class="italic">08:00 — 17:00</span>
+                                    <span class="opacity-50">Mon — Fri</span>
+                                    <span class="italic font-black">08:00 — 17:00</span>
                                 </div>
                                 <div class="flex justify-between items-center text-[11px] font-bold uppercase tracking-widest dark:text-gray-300 border-b border-black/5 dark:border-white/5 pb-3">
-                                    <span class="opacity-50 font-heading">Saturday</span>
-                                    <span class="italic">08:00 — 12:00</span>
+                                    <span class="opacity-50">Saturday</span>
+                                    <span class="italic font-black">08:00 — 12:00</span>
                                 </div>
                                 <div class="flex justify-between items-center text-[11px] font-black uppercase tracking-widest text-accent-red pb-3">
-                                    <span class="font-heading">Sunday</span>
-                                    <span class="bg-accent-red text-white px-2 py-0.5">Offline</span>
+                                    <span>Sunday</span>
+                                    <span class="bg-accent-red text-white px-3 py-1 text-[9px]">Closed</span>
                                 </div>
                             </div>
                         </div>
@@ -573,14 +561,15 @@
 
             <div class="lg:col-span-7" data-aos="fade-left">
                 <div class="relative w-full h-full min-h-[500px] border border-black/10 dark:border-white/10 p-2 bg-gray-50 dark:bg-[#111]">
-                    <div class="absolute inset-0 pointer-events-none z-10 opacity-10 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%]"></div>
+                    <div class="absolute inset-0 pointer-events-none z-10 opacity-[0.03] dark:opacity-[0.07] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%]"></div>
                     
                     <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.346571520623!2d112.6375997!3d-7.9631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6290000000001%3A0x0!2zN8KwNTcnNDcuMiJTIDExMsKwMzgnMTUuNCJF!5e0!3m2!1sid!2sid!4v1710000000000" 
-                        class="w-full h-full min-h-[500px] grayscale contrast-125 invert dark:invert-0 transition-all duration-1000"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.45564483733!2d112.6393437!3d-7.9517441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629007f9c8f8d%3A0x6b49e0c1f6d90a5e!2sConcerto%20Malang!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                        class="w-full h-full min-h-[500px] grayscale contrast-125 dark:opacity-80 transition-all duration-1000"
                         style="border:0;" 
                         allowfullscreen="" 
-                        loading="lazy">
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
             </div>
@@ -588,30 +577,30 @@
     </div>
 </section>
     
-<section id="kontak" class="section-margin bg-accent-red py-24 lg:py-32 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+<section id="kontak" class="bg-accent-red py-24 lg:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 30px 30px;"></div>
 
     <div class="max-w-7xl mx-auto px-6 relative z-10">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
             <div class="text-left" data-aos="fade-right">
-                <h2 class="text-5xl md:text-8xl font-black font-heading text-white uppercase leading-[0.8] mb-8 tracking-tighter">
+                <h2 class="text-5xl md:text-8xl font-black font-heading text-white uppercase leading-[0.85] mb-8 tracking-tighter">
                     Free <br> <span class="text-black italic">Diagnosis.</span>
                 </h2>
-                <p class="text-white/90 text-sm md:text-base font-bold uppercase tracking-[0.2em] max-w-md leading-loose">
+                <p class="text-white/90 text-[11px] md:text-xs font-black uppercase tracking-[0.3em] max-w-md leading-relaxed">
                     Bawa sistem audio standar Anda. Biarkan kami melakukan kalibrasi frekuensi dan analisis akustik secara presisi tanpa biaya.
                 </p>
             </div>
 
-            <div class="flex flex-col items-start lg:items-end gap-8" data-aos="fade-left">
+            <div class="flex flex-col items-start lg:items-end gap-10" data-aos="fade-left">
                 <div class="w-full lg:w-auto">
-                    <a href="https://wa.me/6281217398558" class="inline-flex items-center justify-between w-full lg:w-[400px] px-8 py-8 bg-black text-white group hover:bg-white hover:text-accent-red transition-all duration-500 border border-black">
-                        <span class="text-sm font-black uppercase tracking-[0.4em]">Book Diagnosis</span>
+                    <a href="https://wa.me/6281217398558" target="_blank" class="inline-flex items-center justify-between w-full lg:w-[420px] px-10 py-9 bg-black text-white group hover:bg-white hover:text-accent-red transition-all duration-500 border border-black shadow-[20px_20px_60px_rgba(0,0,0,0.3)]">
+                        <span class="text-xs font-black uppercase tracking-[0.5em]">Book My Session</span>
                         <i class="fa-brands fa-whatsapp text-2xl group-hover:rotate-12 transition-transform"></i>
                     </a>
                 </div>
-                <div class="flex flex-col items-start lg:items-end gap-2">
-                    <span class="text-[10px] font-black uppercase tracking-widest text-black/50">Urgent Inquiries?</span>
-                    <a href="tel:+6281217398558" class="text-white text-xl font-black font-heading uppercase tracking-tighter hover:tracking-[0.1em] transition-all">
+                <div class="flex flex-col items-start lg:items-end gap-3">
+                    <span class="text-[10px] font-black uppercase tracking-widest text-black/40">Urgent Inquiries?</span>
+                    <a href="tel:+6281217398558" class="text-white text-2xl font-black font-heading uppercase tracking-tighter hover:text-black transition-colors">
                         +62 812-1739-8558
                     </a>
                 </div>
@@ -620,26 +609,26 @@
     </div>
 </section>
 
- <footer class="bg-white dark:bg-[#0A0A0A] pt-24 pb-12 overflow-hidden border-t border-black/5 dark:border-white/5">
+<footer class="bg-white dark:bg-[#0A0A0A] pt-24 pb-12 overflow-hidden border-t border-black/5 dark:border-white/5">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
             
             <div class="lg:col-span-1">
-                <a href="#hero" class="inline-block mb-10">
-                    <img src="asset/concerto-audio-logo-light.png" alt="Logo" class="w-44 h-auto dark:invert">
+                <a href="#hero" class="inline-block mb-10 group">
+                    <img src="asset/concerto-audio-logo-light.png" alt="Concerto Logo" class="w-44 h-auto dark:invert transition-transform duration-500 group-hover:skew-x-[-10deg]">
                 </a>
-                <p class="text-[11px] font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-10 leading-loose">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-10 leading-loose max-w-[240px]">
                     High-End Car Audio Specialist & Soundproofing. Redefining acoustic engineering in Malang, East Java.
                 </p>
                 <div class="space-y-4">
                     <div class="flex items-center gap-4 group">
                         <span class="text-[9px] font-black text-accent-red">TEL.</span>
-                        <span class="text-[11px] font-black uppercase tracking-widest dark:text-white hover:text-accent-red transition-colors cursor-pointer">0812 1739 8558</span>
+                        <span class="text-[11px] font-black uppercase tracking-widest dark:text-white hover:text-accent-red transition-colors cursor-pointer">+62 812 1739 8558</span>
                     </div>
                     <div class="flex items-center gap-4">
                         <span class="text-[9px] font-black text-accent-red">LOC.</span>
-                        <span class="text-[11px] font-black uppercase tracking-widest dark:text-white">Malang, IDN</span>
+                        <span class="text-[11px] font-black uppercase tracking-widest dark:text-white opacity-80">Malang, IDN</span>
                     </div>
                 </div>
             </div>
@@ -666,24 +655,23 @@
             <div>
                 <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-accent-red mb-10">Connect</h4>
                 <div class="flex gap-4 mb-12">
-                    <a href="https://www.instagram.com/concerto_malang/" class="w-12 h-12 border border-black/10 dark:border-white/10 flex items-center justify-center text-sm hover:bg-accent-red hover:text-white hover:border-accent-red transition-all duration-500"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@concertomlg" class="w-12 h-12 border border-black/10 dark:border-white/10 flex items-center justify-center text-sm hover:bg-accent-red hover:text-white hover:border-accent-red transition-all duration-500"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="https://www.youtube.com/@Concerto_Malang" class="w-12 h-12 border border-black/10 dark:border-white/10 flex items-center justify-center text-sm hover:bg-accent-red hover:text-white hover:border-accent-red transition-all duration-500"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/concerto_malang/" target="_blank" class="w-12 h-12 border border-black/10 dark:border-white/10 flex items-center justify-center text-sm hover:bg-accent-red hover:text-white hover:border-accent-red transition-all duration-500 group"><i class="fa-brands fa-instagram group-hover:scale-110"></i></a>
+                    <a href="https://www.tiktok.com/@concertomlg" target="_blank" class="w-12 h-12 border border-black/10 dark:border-white/10 flex items-center justify-center text-sm hover:bg-accent-red hover:text-white hover:border-accent-red transition-all duration-500 group"><i class="fa-brands fa-tiktok group-hover:scale-110"></i></a>
+                    <a href="https://www.youtube.com/@Concerto_Malang" target="_blank" class="w-12 h-12 border border-black/10 dark:border-white/10 flex items-center justify-center text-sm hover:bg-accent-red hover:text-white hover:border-accent-red transition-all duration-500 group"><i class="fa-brands fa-youtube group-hover:scale-110"></i></a>
                 </div>
                 
-                <form action="#" class="relative">
-                    <input type="email" placeholder="JOIN THE LIST" required class="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 text-[10px] font-black uppercase tracking-widest focus:border-accent-red outline-none transition-all dark:text-white">
-                    <button type="submit" class="absolute right-0 top-1/2 -translate-y-1/2 text-accent-red hover:text-black dark:hover:text-white transition-colors">
+                <form action="#" class="relative group">
+                    <input type="email" placeholder="JOIN THE LIST" required class="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 text-[10px] font-black uppercase tracking-widest focus:border-accent-red outline-none transition-all dark:text-white placeholder:text-gray-300">
+                    <button type="submit" class="absolute right-0 top-1/2 -translate-y-1/2 text-accent-red hover:translate-x-1 transition-all">
                         <i class="fa-solid fa-chevron-right text-xs"></i>
                     </button>
                 </form>
             </div>
-
         </div>
 
         <div class="pt-12 border-t border-black/5 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
             <p class="text-[9px] font-black uppercase tracking-[0.4em] text-gray-400">
-                Copyright © 2026 . CONCERTO AUDIO MALANG. All rights reserved.
+                Copyright © 2026 . CONCERTO AUDIO MALANG.
             </p>
             <div class="flex gap-8">
                 <p class="text-[9px] font-black uppercase tracking-[0.4em] text-gray-400">
@@ -697,12 +685,12 @@
     </div>
 </footer>
 
-<button id="scroll-to-top" class="fixed bottom-8 right-8 z-[99] w-14 h-14 bg-accent-red text-white shadow-2xl transition-all duration-500 opacity-0 invisible translate-y-10 hover:bg-black flex items-center justify-center group">
+<button id="scroll-to-top" aria-label="Scroll to top" class="fixed bottom-8 right-8 z-[99] w-14 h-14 bg-accent-red text-white shadow-[0_20px_40px_rgba(230,0,0,0.3)] transition-all duration-500 opacity-0 invisible translate-y-10 hover:bg-black flex items-center justify-center group">
     <i class="fa-solid fa-arrow-up text-lg transition-transform group-hover:-translate-y-1"></i>
 </button>
 
-<div id="simple-zoom-modal" class="fixed inset-0 z-[10000] bg-black/95 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500" onclick="closeZoomModal()">
-    <img id="zoom-modal-image" src="" alt="Zoomed View" class="max-w-[90%] max-h-[90%] object-contain">
+<div id="simple-zoom-modal" class="fixed inset-0 z-[10000] bg-black/95 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500 cursor-zoom-out" onclick="closeZoomModal()">
+    <img id="zoom-modal-image" src="" alt="Zoomed View" class="max-w-[90%] max-h-[90%] object-contain transition-transform duration-500 scale-95">
 </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
