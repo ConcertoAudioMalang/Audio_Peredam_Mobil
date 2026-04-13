@@ -15,7 +15,15 @@
     --bg-studio: #F8F8F8;
     --text-main: #1A1A1A;
 }
-
+.text-accent-red {
+    color: var(--accent-red);
+}
+.bg-accent-red {
+    background-color: var(--accent-red);
+}
+.border-accent-red {
+    border-color: var(--accent-red);
+}
 /* Custom Selection Color */
 ::selection {
     background-color: var(--accent-red);
@@ -106,6 +114,7 @@ body {
 @media (max-width: 1024px) {
     #custom-cursor { display: none; }
 }
+pointer-events: none;
 
 /* ========================================= */
 /* 5. BUTTONS & UTILITIES                    */
@@ -147,19 +156,20 @@ body {
 }
 
 /* Marquee Smoothness */
-.marquee-track {
+.animate-marquee {
     display: flex;
-    gap: 60px;
     width: max-content;
+    animation: marquee 30s linear infinite; /* 30s agar speed-nya mirip referensi */
 }
 
 @keyframes marquee {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    100% { transform: translateX(-50%); } /* Menggeser setengah dari total lebar (karena logo diduplikasi) */
 }
 
-.animate-marquee {
-    animation: marquee 40s linear infinite;
+/* Tambahkan ini agar saat di-hover, jalan lambat (opsional - fitur mewah) */
+.animate-marquee:hover {
+    animation-play-state: paused;
 }
 
 /* Scanline / Grid effect for Map & Sections */
