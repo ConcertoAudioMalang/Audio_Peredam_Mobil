@@ -16,19 +16,19 @@
     --text-main: #1A1A1A;
 }
 
+/* Custom Selection Color */
+::selection {
+    background-color: var(--accent-red);
+    color: white;
+}
+
 /* ========================================= */
 /* 2. GLOBAL RESET & BASE                    */
 /* ========================================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    /* Menghilangkan kursor default agar kursor custom lebih enak dilihat */
-    /* cursor: none; (Aktifkan hanya jika kamu sudah yakin kursor JS lancar) */
-}
-
 html {
     scroll-behavior: smooth;
+    /* Mencegah pergeseran layout saat scrollbar muncul */
+    scrollbar-gutter: stable; 
 }
 
 body {
@@ -37,10 +37,12 @@ body {
     color: var(--text-main);
     line-height: 1.6;
     overflow-x: hidden;
-    transition: background-color 0.5s ease;
+    /* Transisi halus untuk dark mode */
+    transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s ease;
 }
 
-body.dark {
+/* Target class dark yang dipicu oleh JS */
+.dark body {
     background-color: var(--dark-studio);
     color: #F8F8F8;
 }
@@ -48,88 +50,66 @@ body.dark {
 /* ========================================= */
 /* 3. TYPOGRAPHY SYSTEM                      */
 /* ========================================= */
-.font-heading, h1, h2, h3, h4, .btn {
+.font-heading, h1, h2, h3, h4, .btn-mclaren-primary, .btn-mclaren-outline {
     font-family: 'SK-Modernist', sans-serif !important;
     text-transform: uppercase;
     letter-spacing: -0.02em;
 }
 
 .hero-title {
-    /* Menggunakan Clamp yang lebih besar agar mirip dvdrod.com */
-    font-size: clamp(4rem, 15vw, 16rem);
+    font-size: clamp(3.5rem, 12vw, 12rem);
     line-height: 0.85;
     letter-spacing: -0.05em;
     font-weight: 900;
 }
 
-/* ========================================= */
-/* 4. NAVIGATION & CURSOR                     */
-/* ========================================= */
-.nav-mclaren {
-    backdrop-filter: blur(20px) saturate(150%);
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 100px;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+.label-small {
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: var(--accent-red);
 }
 
-#navbar.scrolled .nav-mclaren {
-    margin-top: -16px;
-    width: 100%;
-    max-width: none;
-    border-radius: 0;
-    background-color: #0A0A0A;
+/* ========================================= */
+/* 4. COMPONENTS & ANIMATIONS                */
+/* ========================================= */
+
+/* FAQ Accordion Logic */
+.faq-content {
+    max-height: 0;
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
 }
 
-/* Smoothness untuk kursor seperti di video inspirasi */
+.faq-item.active .faq-content {
+    max-height: 1000px; /* Nilai besar agar konten tidak terpotong */
+    transition: max-height 0.8s cubic-bezier(1, 0, 1, 0);
+}
+
+/* Custom Cursor */
 #custom-cursor {
     position: fixed;
     top: 0;
     left: 0;
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     background-color: var(--accent-red);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999;
-    /* Efek Lerp (smooth following) */
-    transition: transform 0.1s ease-out, width 0.3s, height 0.3s, opacity 0.3s;
-    will-change: transform;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, background-color 0.3s;
+    mix-blend-mode: normal;
+}
+
+/* Mobile Cursor Hide */
+@media (max-width: 1024px) {
+    #custom-cursor { display: none; }
 }
 
 /* ========================================= */
-/* 5. MARQUEE & UTILITIES                    */
+/* 5. BUTTONS & UTILITIES                    */
 /* ========================================= */
-.marquee-track {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-}
-
-.brand-logo-modern {
-    height: 60px;
-    width: auto;
-    object-fit: contain;
-    filter: grayscale(1) brightness(0.6);
-    opacity: 0.5;
-    transition: all 0.5s ease;
-    flex-shrink: 0; /* Penting agar logo tidak gepeng */
-    padding: 0 30px;
-}
-
-@media (min-width: 1024px) {
-    .brand-logo-modern { height: 100px; }
-}
-
-@keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Gunakan -50% jika item di-clone */
-}
-
-.animate-marquee {
-    animation: marquee 30s linear infinite;
-}
-
 .btn-mclaren-primary {
     background: var(--accent-red);
     color: white;
@@ -137,9 +117,57 @@ body.dark {
     font-weight: 900;
     letter-spacing: 0.3em;
     padding: 18px 40px;
-    border-radius: 4px;
-    transition: all 0.4s;
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    gap: 12px;
+}
+
+.btn-mclaren-primary:hover {
+    background: black;
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.btn-mclaren-outline {
+    border: 1px solid var(--accent-red);
+    color: var(--accent-red);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    padding: 16px 36px;
+    transition: all 0.4s;
+    text-transform: uppercase;
+}
+
+.btn-mclaren-outline:hover {
+    background: var(--accent-red);
+    color: white;
+}
+
+/* Marquee Smoothness */
+.marquee-track {
+    display: flex;
+    gap: 60px;
+    width: max-content;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+    animation: marquee 40s linear infinite;
+}
+
+/* Scanline / Grid effect for Map & Sections */
+.grid-overlay {
+    background-size: 40px 40px;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+}
+
+.dark .grid-overlay {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
 }
