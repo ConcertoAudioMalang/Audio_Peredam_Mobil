@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concerto Audio - Premium Sound Quality</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
-    
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -32,20 +28,20 @@
     </script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="bg-white dark:bg-dark-studio text-black dark:text-white font-sans transition-colors duration-500 overflow-x-hidden">
 
     <div id="custom-cursor" class="hidden lg:block fixed top-0 left-0 w-4 h-4 bg-accent-red rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-100 ease-out"></div>
 
     <header id="navbar" class="fixed top-0 w-full z-[100] py-6 px-6 lg:px-12 bg-transparent transition-all duration-500">
         <nav class="max-w-[1800px] mx-auto flex justify-between items-center">
-            
             <a href="#hero" class="flex items-center space-x-2">
                 <img src="asset/concerto-audio-logo-light.png" alt="Concerto Logo" class="h-5 lg:h-6 w-auto object-contain dark:invert">
             </a>
             
             <div class="hidden lg:flex items-center bg-black/5 dark:bg-white/10 backdrop-blur-xl px-8 py-3 rounded-full border border-black/5 dark:border-white/10 text-[10px] font-bold uppercase tracking-[0.3em]">
-                <a href="#about" class="mx-5 hover:text-accent-red transition-colors">Work</a>
-                <a href="#about" class="mx-5 hover:text-accent-red transition-colors">About</a>
+                <a href="#hero" class="mx-5 hover:text-accent-red transition-colors">Work</a>
+                <a href="#Tentangkami" class="mx-5 hover:text-accent-red transition-colors">About</a>
                 <a href="#contact" class="mx-5 hover:text-accent-red transition-colors">Contact</a>
                 <button id="theme-toggle" class="ml-4 pl-4 border-l border-black/10 dark:border-white/10">
                     <span class="dark:hidden">LIGHT</span>
@@ -62,14 +58,12 @@
                     AVAILABLE FOR WORK
                 </div>
             </div>
-
             <button class="lg:hidden text-[10px] font-black tracking-widest uppercase border-b-2 border-current">Menu</button>
         </nav>
     </header>
 
     <main>
         <section id="hero" class="relative min-h-screen flex flex-col justify-end lg:justify-center px-6 lg:px-12 pb-20 lg:pb-0 overflow-hidden">
-            
             <div class="absolute inset-0 z-0">
                 <img src="asset/background-concerto.jpg" alt="Concerto Background" class="w-full h-full object-cover grayscale opacity-20 dark:opacity-30">
                 <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-dark-studio via-transparent"></div>
@@ -77,19 +71,16 @@
 
             <div class="relative z-10 max-w-[1800px] mx-auto w-full">
                 <span class="block text-[10px] lg:text-xs font-black tracking-[0.5em] mb-4 opacity-50 uppercase">Senior Audio Engineer</span>
-                
                 <h1 class="hero-title leading-[0.85] tracking-[-0.05em] uppercase font-heading">
                     <span class="block text-black dark:text-white">CONCERTO</span>
                     <span class="block text-black dark:text-white ml-0 lg:ml-20">AUDIO</span>
                 </h1>
-
                 <div class="mt-12 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
                     <p class="max-w-md text-sm lg:text-base opacity-70 leading-relaxed font-medium">
                         Elevating automotive soundscapes through precision tuning and world-class components in Malang, Indonesia.
                     </p>
-                    
                     <div class="flex items-center gap-6">
-                        <a href="#projects" class="group flex items-center gap-4 text-[10px] font-black uppercase tracking-widest">
+                        <a href="#Tentangkami" class="group flex items-center gap-4 text-[10px] font-black uppercase tracking-widest">
                             Scroll to explore 
                             <span class="w-12 h-[1px] bg-current transition-all group-hover:w-20"></span>
                         </a>
@@ -97,11 +88,36 @@
                 </div>
             </div>
         </section>
+
+        <section id="Tentangkami" class="bg-white dark:bg-dark-studio py-24 lg:py-32 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+                    <div class="max-w-2xl">
+                        <span class="text-[10px] font-black tracking-[0.3em] uppercase opacity-50 mb-6 block" data-aos="fade-right">Our Foundation</span>
+                        <h2 class="font-heading text-4xl lg:text-7xl font-black uppercase leading-tight" data-aos="fade-up">
+                            Obsessive <br> <span class="text-accent-red italic">Performance</span>
+                        </h2>
+                    </div>
+                    <p class="max-w-xs text-[10px] font-bold uppercase tracking-widest opacity-50 leading-relaxed" data-aos="fade-left">
+                        Engineering the perfect soundstage within the cockpit of your vehicle.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-px bg-black/10 dark:bg-white/10 border border-black/10 dark:border-white/10">
+                    <div class="group p-10 bg-white dark:bg-dark-studio transition-all duration-500 hover:bg-black dark:hover:bg-white" data-aos="fade-up">
+                        <span class="text-[10px] font-black text-accent-red block mb-10 tracking-tighter">01 //</span>
+                        <i class="fa-solid fa-gauge-simple-high text-2xl mb-6 group-hover:text-accent-red transition-colors dark:text-white dark:group-hover:text-black"></i>
+                        <h3 class="text-sm font-black uppercase font-heading mb-4 group-hover:text-white dark:group-hover:text-black transition-colors">Acoustic Precision</h3>
+                        <p class="text-[10px] uppercase font-bold tracking-wide leading-relaxed opacity-50 group-hover:text-white/70 dark:group-hover:text-black/60 transition-all">Profesional tuning untuk keseimbangan frekuensi yang sempurna.</p>
+                    </div>
+                    </div>
+            </div>
+        </section>
     </main>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
+        AOS.init({ duration: 1000, once: true });
 
         // Custom Cursor Logic
         const cursor = document.getElementById('custom-cursor');
@@ -109,11 +125,16 @@
             cursor.style.transform = `translate3d(${e.clientX - 8}px, ${e.clientY - 8}px, 0)`;
         });
 
-        // Hover Effect for Cursor
         const links = document.querySelectorAll('a, button');
         links.forEach(link => {
-            link.addEventListener('mouseenter', () => cursor.classList.add('scale-[3]', 'bg-white'));
-            link.addEventListener('mouseleave', () => cursor.classList.remove('scale-[3]', 'bg-white'));
+            link.addEventListener('mouseenter', () => {
+                cursor.classList.add('scale-[4]');
+                cursor.style.backgroundColor = 'white';
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('scale-[4]');
+                cursor.style.backgroundColor = 'var(--accent-red)';
+            });
         });
 
         // Theme Toggle Logic
@@ -121,7 +142,19 @@
         themeToggle.addEventListener('click', () => {
             document.documentElement.classList.toggle('dark');
         });
-        
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-4', 'backdrop-blur-md');
+            } else {
+                nav.classList.remove('py-4', 'backdrop-blur-md');
+            }
+        });
+    </script>
+</body>
+</html>
         <section id="Tentangkami" class="section-margin bg-white dark:bg-[#0A0A0A] py-24 lg:py-32 overflow-hidden border border-black/5 dark:border-white/5">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
