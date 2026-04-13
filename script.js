@@ -3,132 +3,139 @@
  * Ultra-Minimalist & High-Performance (McLaren F1 Inspired)
  */
 
-// 1. INISIALISASI LIBRARY (AOS & SWIPER)
-const initLibraries = () => {
-    if (typeof AOS !== 'undefined') {
-        AOS.init({ 
-            once: true, 
-            duration: 1000,
-            easing: 'ease-in-out'
-        });
-    }
-
-    if (typeof Swiper !== 'undefined') {
-        new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 24,
-            loop: true,
-            pagination: { el: ".swiper-pagination", clickable: true },
-            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-            breakpoints: {
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 }
-            }
-        });
-    }
-};
-
 document.addEventListener('DOMContentLoaded', () => {
-    initLibraries();
-
-    // --- DEKLARASI ELEMEN ---
+    // --- 1. INISIALISASI ELEMEN ---
     const html = document.documentElement;
     const navbar = document.getElementById('navbar');
     const mobileMenuBtn = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIcon = document.getElementById('menu-icon');
     const scrollToTopBtn = document.getElementById('scroll-to-top');
+    const cursor = document.getElementById('custom-cursor');
     
     let lastScrollY = window.scrollY;
 
-    // --- 1. THEME ENGINE ---
+    // --- 2. THEME ENGINE (Dark/Light Mode) ---
     const updateTheme = () => {
         const isDark = localStorage.getItem('theme') === 'dark' || 
                       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
         html.classList.toggle('dark', isDark);
     };
 
-    window.toggleTheme = () => {
+    const toggleTheme = () => {
         const isCurrentlyDark = html.classList.contains('dark');
         const newTheme = isCurrentlyDark ? 'light' : 'dark';
         html.classList.toggle('dark');
         localStorage.setItem('theme', newTheme);
-        handleNavbarScroll(); // Update visual navbar saat ganti tema
     };
 
-    document.querySelectorAll('#theme-toggle').forEach(btn => {
+    // Support untuk banyak tombol theme-toggle (desktop & mobile)
+    document.querySelectorAll('#theme-toggle, .theme-toggle').forEach(btn => {
         btn.addEventListener('click', toggleTheme);
     });
 
     updateTheme();
 
-   // --- 2. NAVBAR SCROLL ENGINE (MCLAREN STYLE) ---
-const handleNavbarScroll = () => {
-    const currentScrollY = window.scrollY;
-    
-    // Efek transisi Floating (Melayang) ke Solid (Penuh)
-    if (currentScrollY > 50) {
-        navbar.classList.add('scrolled');
-        // PENTING: Hapus padding samping agar bar bisa melebar penuh (Full Width)
-        navbar.classList.remove('py-4', 'px-4', 'lg:px-8');
-        navbar.classList.add('py-0', 'px-0');
-    } else {
-        navbar.classList.remove('scrolled');
-        // PENTING: Kembalikan padding agar bar terlihat melayang (Floating) lagi
-        navbar.classList.remove('py-0', 'px-0');
-        navbar.classList.add('py-4', 'px-4', 'lg:px-8');
-    }
+    // --- 3. NAVBAR SCROLL ENGINE (McLaren Style) ---
+    const handleNavbarScroll = () => {
+        const currentScrollY = window.scrollY;
+        
+        if (!navbar) return;
 
-    // Auto Hide saat scroll ke bawah (Fokus ke konten)
-    if (currentScrollY > lastScrollY && currentScrollY > 500) {
-        navbar.classList.add('-translate-y-full');
-    } else {
-        navbar.classList.remove('-translate-y-full');
-    }
-
-    // Tombol Scroll To Top
-    if (scrollToTopBtn) {
-        if (currentScrollY > 600) {
-            scrollToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-10');
-            scrollToTopBtn.classList.add('opacity-100', 'visible', 'translate-y-0');
+        // Efek Transisi Navbar saat Scroll
+        if (currentScrollY > 50) {
+            navbar.classList.add('backdrop-blur-xl', 'bg-white/70', 'dark:bg-dark-studio/70', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
+            navbar.classList.remove('py-6', 'bg-transparent');
         } else {
-            scrollToTopBtn.classList.add('opacity-0', 'invisible', 'translate-y-10');
-            scrollToTopBtn.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            navbar.classList.remove('backdrop-blur-xl', 'bg-white/70', 'dark:bg-dark-studio/70', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
+            navbar.classList.add('py-6', 'bg-transparent');
         }
-    }
 
-    lastScrollY = currentScrollY;
-};
+        // Auto Hide Navbar saat scroll ke bawah, Show saat scroll ke atas
+        if (currentScrollY > lastScrollY && currentScrollY > 500) {
+            navbar.style.transform = 'translateY(-100%)';
+        } else {
+            navbar.style.transform = 'translateY(0)';
+        }
 
-window.addEventListener('scroll', handleNavbarScroll, { passive: true });
-    
-    // --- 3. MOBILE MENU ---
-    if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-            const isOpen = !mobileMenu.classList.contains('hidden');
-            mobileMenu.classList.toggle('hidden');
-            if(menuIcon) {
-                menuIcon.classList.toggle('fa-bars', !isOpen);
-                menuIcon.classList.toggle('fa-xmark', isOpen);
+        // Tombol Scroll To Top Visibility
+        if (scrollToTopBtn) {
+            if (currentScrollY > 600) {
+                scrollToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-10');
+                scrollToTopBtn.classList.add('opacity-100', 'visible', 'translate-y-0');
+            } else {
+                scrollToTopBtn.classList.add('opacity-0', 'invisible', 'translate-y-10');
+                scrollToTopBtn.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            }
+        }
+        lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+
+    // --- 4. SMOOTH INTERNAL NAVIGATION ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                const navHeight = navbar ? navbar.offsetHeight : 0;
+                const targetPosition = targetElement.offsetTop - navHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+
+                // Tutup mobile menu jika sedang terbuka
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    if(menuIcon) menuIcon.classList.replace('fa-xmark', 'fa-bars');
+                }
             }
         });
+    });
 
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                if(menuIcon) menuIcon.classList.replace('fa-xmark', 'fa-bars');
+    // --- 5. CUSTOM CURSOR & HOVER EFFECTS ---
+    if (cursor) {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate3d(${e.clientX - 8}px, ${e.clientY - 8}px, 0)`;
+        });
+
+        document.querySelectorAll('a, button, .zoom-trigger').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('scale-[4]', 'bg-white');
+                cursor.style.mixBlendMode = 'difference';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('scale-[4]', 'bg-white');
+                cursor.style.mixBlendMode = 'normal';
             });
         });
     }
 
-    // --- 4. FAQ ACCORDION ---
+    // --- 6. MOBILE MENU LOGIC ---
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden');
+            if(menuIcon) {
+                menuIcon.classList.toggle('fa-bars', !isHidden);
+                menuIcon.classList.toggle('fa-xmark', isHidden);
+            }
+        });
+    }
+
+    // --- 7. FAQ ACCORDION ---
     document.querySelectorAll('.accordion-header').forEach(header => {
         header.addEventListener('click', function() {
             const content = this.nextElementSibling;
             const icon = this.querySelector('.accordion-icon');
             const isOpen = this.classList.contains('active');
 
-            // Tutup semua yang lain
+            // Close all other accordions
             document.querySelectorAll('.accordion-header').forEach(other => {
                 other.classList.remove('active');
                 if (other.nextElementSibling) other.nextElementSibling.style.maxHeight = null;
@@ -136,7 +143,7 @@ window.addEventListener('scroll', handleNavbarScroll, { passive: true });
                 if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
             });
 
-            // Buka yang diklik
+            // Open clicked accordion
             if (!isOpen) {
                 this.classList.add('active');
                 content.style.maxHeight = content.scrollHeight + "px";
@@ -145,15 +152,17 @@ window.addEventListener('scroll', handleNavbarScroll, { passive: true });
         });
     });
 
-    // --- 5. SCROLL TO TOP CLICK ---
-    if (scrollToTopBtn) {
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+    // --- 8. INITIALIZE AOS ---
+    if (typeof AOS !== 'undefined') {
+        AOS.init({ 
+            once: true, 
+            duration: 1000,
+            offset: 100
         });
     }
 });
 
-// --- 6. GLOBAL ZOOM IMAGE ---
+// --- 9. GLOBAL UTILITIES (Zoom Image) ---
 window.zoomImage = (img) => {
     const modal = document.getElementById('simple-zoom-modal');
     const modalImg = document.getElementById('zoom-modal-image');
@@ -172,7 +181,3 @@ window.closeZoomModal = () => {
     modal.classList.remove('opacity-100', 'pointer-events-auto');
     document.body.style.overflow = '';
 };
-
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeZoomModal();
-});
