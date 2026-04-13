@@ -23,6 +23,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Menghilangkan kursor default agar kursor custom lebih enak dilihat */
+    /* cursor: none; (Aktifkan hanya jika kamu sudah yakin kursor JS lancar) */
 }
 
 html {
@@ -53,14 +55,15 @@ body.dark {
 }
 
 .hero-title {
-    font-size: clamp(3rem, 9vw, 8rem);
+    /* Menggunakan Clamp yang lebih besar agar mirip dvdrod.com */
+    font-size: clamp(4rem, 15vw, 16rem);
     line-height: 0.85;
     letter-spacing: -0.05em;
     font-weight: 900;
 }
 
 /* ========================================= */
-/* 4. NAVIGATION SYSTEM                      */
+/* 4. NAVIGATION & CURSOR                     */
 /* ========================================= */
 .nav-mclaren {
     backdrop-filter: blur(20px) saturate(150%);
@@ -76,11 +79,26 @@ body.dark {
     max-width: none;
     border-radius: 0;
     background-color: #0A0A0A;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Smoothness untuk kursor seperti di video inspirasi */
+#custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent-red);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    /* Efek Lerp (smooth following) */
+    transition: transform 0.1s ease-out, width 0.3s, height 0.3s, opacity 0.3s;
+    will-change: transform;
 }
 
 /* ========================================= */
-/* 5. MARQUEE & LOGOS                        */
+/* 5. MARQUEE & UTILITIES                    */
 /* ========================================= */
 .marquee-track {
     display: flex;
@@ -95,44 +113,21 @@ body.dark {
     filter: grayscale(1) brightness(0.6);
     opacity: 0.5;
     transition: all 0.5s ease;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Penting agar logo tidak gepeng */
     padding: 0 30px;
 }
 
 @media (min-width: 1024px) {
-    .brand-logo-modern {
-        height: 100px;
-    }
-}
-
-.brand-logo-modern:hover {
-    filter: grayscale(0) brightness(1);
-    opacity: 1;
-    transform: scale(1.1);
+    .brand-logo-modern { height: 100px; }
 }
 
 @keyframes marquee {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
+    100% { transform: translateX(-50%); } /* Gunakan -50% jika item di-clone */
 }
 
 .animate-marquee {
     animation: marquee 30s linear infinite;
-}
-
-/* ========================================= */
-/* 6. UTILITIES & SECTIONS                   */
-/* ========================================= */
-.section-margin {
-    margin: 2rem;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-@media (max-width: 768px) {
-    .section-margin {
-        margin: 1rem;
-    }
 }
 
 .btn-mclaren-primary {
@@ -147,8 +142,4 @@ body.dark {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-}
-
-#simple-zoom-modal {
-    z-index: 9999;
 }
