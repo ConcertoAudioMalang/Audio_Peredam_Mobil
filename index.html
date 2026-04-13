@@ -43,7 +43,8 @@
                 <a href="#hero" class="mx-5 hover:text-accent-red transition-colors">Work</a>
                 <a href="#Tentangkami" class="mx-5 hover:text-accent-red transition-colors">About</a>
                 <a href="#contact" class="mx-5 hover:text-accent-red transition-colors">Contact</a>
-                <button id="theme-toggle" class="ml-4 pl-4 border-l border-black/10 dark:border-white/10">
+                
+                <button id="theme-toggle" class="ml-4 pl-4 border-l border-black/10 dark:border-white/10 flex items-center gap-2">
                     <span class="dark:hidden">LIGHT</span>
                     <span class="hidden dark:inline">DARK</span>
                 </button>
@@ -94,11 +95,11 @@
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
                     <div class="max-w-2xl">
                         <span class="text-[10px] font-black tracking-[0.3em] uppercase opacity-50 mb-6 block" data-aos="fade-right">Our Foundation</span>
-                        <h2 class="font-heading text-4xl lg:text-7xl font-black uppercase leading-tight" data-aos="fade-up">
+                        <h2 class="font-heading text-4xl lg:text-7xl font-black uppercase leading-tight dark:text-white" data-aos="fade-up">
                             Obsessive <br> <span class="text-accent-red italic">Performance</span>
                         </h2>
                     </div>
-                    <p class="max-w-xs text-[10px] font-bold uppercase tracking-widest opacity-50 leading-relaxed" data-aos="fade-left">
+                    <p class="max-w-xs text-[10px] font-bold uppercase tracking-widest opacity-50 leading-relaxed dark:text-gray-400" data-aos="fade-left">
                         Engineering the perfect soundstage within the cockpit of your vehicle.
                     </p>
                 </div>
@@ -110,104 +111,16 @@
                         <h3 class="text-sm font-black uppercase font-heading mb-4 group-hover:text-white dark:group-hover:text-black transition-colors">Acoustic Precision</h3>
                         <p class="text-[10px] uppercase font-bold tracking-wide leading-relaxed opacity-50 group-hover:text-white/70 dark:group-hover:text-black/60 transition-all">Profesional tuning untuk keseimbangan frekuensi yang sempurna.</p>
                     </div>
+                    <div class="group p-10 bg-white dark:bg-dark-studio transition-all duration-500 hover:bg-black dark:hover:bg-white" data-aos="fade-up" data-aos-delay="100">
+                        <span class="text-[10px] font-black text-accent-red block mb-10 tracking-tighter">02 //</span>
+                        <i class="fa-solid fa-plug text-2xl mb-6 group-hover:text-accent-red transition-colors dark:text-white dark:group-hover:text-black"></i>
+                        <h3 class="text-sm font-black uppercase font-heading mb-4 group-hover:text-white dark:group-hover:text-black transition-colors">Clean Wiring</h3>
+                        <p class="text-[10px] uppercase font-bold tracking-wide leading-relaxed opacity-50 group-hover:text-white/70 dark:group-hover:text-black/60 transition-all">Manajemen kabel tingkat kompetisi demi estetika dan keamanan.</p>
+                    </div>
                     </div>
             </div>
         </section>
-    </main>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
-
-        // Custom Cursor Logic
-        const cursor = document.getElementById('custom-cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate3d(${e.clientX - 8}px, ${e.clientY - 8}px, 0)`;
-        });
-
-        const links = document.querySelectorAll('a, button');
-        links.forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                cursor.classList.add('scale-[4]');
-                cursor.style.backgroundColor = 'white';
-            });
-            link.addEventListener('mouseleave', () => {
-                cursor.classList.remove('scale-[4]');
-                cursor.style.backgroundColor = 'var(--accent-red)';
-            });
-        });
-
-        // Theme Toggle Logic
-        const themeToggle = document.getElementById('theme-toggle');
-        themeToggle.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-        });
-
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('py-4', 'backdrop-blur-md');
-            } else {
-                nav.classList.remove('py-4', 'backdrop-blur-md');
-            }
-        });
-    </script>
-</body>
-</html>
-        <section id="Tentangkami" class="section-margin bg-white dark:bg-[#0A0A0A] py-24 lg:py-32 overflow-hidden border border-black/5 dark:border-white/5">
-    <div class="max-w-7xl mx-auto px-6 md:px-12">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
-            <div class="max-w-2xl">
-                <span class="label-small mb-6 block" data-aos="fade-right">Our Foundation</span>
-                <h2 class="hero-title text-4xl lg:text-7xl dark:text-white" data-aos="reveal-up">
-                    Obsessive <br> <span class="text-accent-red italic">Performance</span>
-                </h2>
-            </div>
-            <p class="max-w-xs text-[10px] font-bold uppercase tracking-widest opacity-50 dark:text-white leading-relaxed" data-aos="fade-left">
-                Engineering the perfect soundstage within the cockpit of your vehicle.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-px bg-black/10 dark:bg-white/10 border border-black/10 dark:border-white/10">
-            <div class="group p-10 bg-white dark:bg-[#0A0A0A] transition-all duration-500 hover:bg-black dark:hover:bg-white" data-aos="fade-up">
-                <span class="text-[10px] font-black text-accent-red block mb-10 tracking-tighter">01 //</span>
-                <i class="fa-solid fa-gauge-simple-high text-2xl mb-6 group-hover:text-accent-red transition-colors dark:text-white dark:group-hover:text-black"></i>
-                <h3 class="text-sm font-black uppercase font-heading mb-4 group-hover:text-white dark:text-white dark:group-hover:text-black transition-colors">Acoustic Precision</h3>
-                <p class="text-[10px] uppercase font-bold tracking-wide leading-relaxed opacity-50 group-hover:text-white/70 dark:text-gray-400 dark:group-hover:text-black/60 transition-all">Profesional tuning untuk keseimbangan frekuensi yang sempurna.</p>
-            </div>
-
-            <div class="group p-10 bg-white dark:bg-[#0A0A0A] transition-all duration-500 hover:bg-black dark:hover:bg-white" data-aos="fade-up" data-aos-delay="100">
-                <span class="text-[10px] font-black text-accent-red block mb-10 tracking-tighter">02 //</span>
-                <i class="fa-solid fa-plug text-2xl mb-6 group-hover:text-accent-red transition-colors dark:text-white dark:group-hover:text-black"></i>
-                <h3 class="text-sm font-black uppercase font-heading mb-4 group-hover:text-white dark:text-white dark:group-hover:text-black transition-colors">Clean Wiring</h3>
-                <p class="text-[10px] uppercase font-bold tracking-wide leading-relaxed opacity-50 group-hover:text-white/70 dark:text-gray-400 dark:group-hover:text-black/60 transition-all">Manajemen kabel tingkat kompetisi demi estetika dan keamanan.</p>
-            </div>
-
-            <div class="group p-10 bg-white dark:bg-[#0A0A0A] transition-all duration-500 hover:bg-black dark:hover:bg-white" data-aos="fade-up" data-aos-delay="200">
-                <span class="text-[10px] font-black text-accent-red block mb-10 tracking-tighter">03 //</span>
-                <i class="fa-solid fa-shield-halved text-2xl mb-6 group-hover:text-accent-red transition-colors dark:text-white dark:group-hover:text-black"></i>
-                <h3 class="text-sm font-black uppercase font-heading mb-4 group-hover:text-white dark:text-white dark:group-hover:text-black transition-colors">Elite Materials</h3>
-                <p class="text-[10px] uppercase font-bold tracking-wide leading-relaxed opacity-50 group-hover:text-white/70 dark:text-gray-400 dark:group-hover:text-black/60 transition-all">Hanya komponen grade tertinggi dengan garansi internasional.</p>
-            </div>
-
-            <div class="group p-10 bg-white dark:bg-[#0A0A0A] transition-all duration-500 hover:bg-black dark:hover:bg-white" data-aos="fade-up" data-aos-delay="300">
-                <span class="text-[10px] font-black text-accent-red block mb-10 tracking-tighter">04 //</span>
-                <i class="fa-solid fa-microchip text-2xl mb-6 group-hover:text-accent-red transition-colors dark:text-white dark:group-hover:text-black"></i>
-                <h3 class="text-sm font-black uppercase font-heading mb-4 group-hover:text-white dark:text-white dark:group-hover:text-black transition-colors">Expertise</h3>
-                <p class="text-[10px] uppercase font-bold tracking-wide leading-relaxed opacity-50 group-hover:text-white/70 dark:text-gray-400 dark:group-hover:text-black/60 transition-all">Teknisi tersertifikasi untuk menangani mobil eksotis & luxury.</p>
-            </div>
-
-            <div class="group p-10 bg-white dark:bg-[#0A0A0A] transition-all duration-500 hover:bg-black dark:hover:bg-white" data-aos="fade-up" data-aos-delay="400">
-                <span class="text-[10px] font-black text-accent-red block mb-10 tracking-tighter">05 //</span>
-                <i class="fa-solid fa-handshake-angle text-2xl mb-6 group-hover:text-accent-red transition-colors dark:text-white dark:group-hover:text-black"></i>
-                <h3 class="text-sm font-black uppercase font-heading mb-4 group-hover:text-white dark:text-white dark:group-hover:text-black transition-colors">Life Support</h3>
-                <p class="text-[10px] uppercase font-bold tracking-wide leading-relaxed opacity-50 group-hover:text-white/70 dark:text-gray-400 dark:group-hover:text-black/60 transition-all">Layanan purna jual eksklusif dan konsultasi teknis seumur hidup.</p>
-            </div>
-        </div>
-    </div>
-</section>
-    
+   
         <section id="layanan" class="section-margin bg-black dark:bg-white py-24 lg:py-32 overflow-hidden text-white dark:text-black border border-white/10 dark:border-black/10">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
         <div class="grid lg:grid-cols-2 gap-20 items-center mb-32">
@@ -833,6 +746,46 @@
             });
         });
     });
+     </main>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // Smooth Cursor Follower
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate3d(${e.clientX - 8}px, ${e.clientY - 8}px, 0)`;
+        });
+
+        // Hover Effect on Links
+        const links = document.querySelectorAll('a, button');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.classList.add('scale-[4]');
+                cursor.style.backgroundColor = 'white';
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('scale-[4]');
+                cursor.style.backgroundColor = 'var(--accent-red)';
+            });
+        });
+
+        // Navbar Scroll Styling
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-4', 'backdrop-blur-md');
+            } else {
+                nav.classList.remove('py-4', 'backdrop-blur-md');
+            }
+        });
 </script>
 </body>
 </html>
