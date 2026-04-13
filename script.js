@@ -1,6 +1,6 @@
 /**
  * CONCERTO MALANG - OFFICIAL SCRIPT 2026
- * Ultra-Minimalist & High-Performance (McLaren F1 Inspired)
+ * High-Performance & Automotive Grade Logic
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -27,40 +27,46 @@ document.addEventListener('DOMContentLoaded', () => {
         const newTheme = isCurrentlyDark ? 'light' : 'dark';
         html.classList.toggle('dark');
         localStorage.setItem('theme', newTheme);
+        
+        // Tambahkan feedback visual kecil jika perlu
+        console.log(`System: Theme switched to ${newTheme}`);
     };
 
-    // Support untuk banyak tombol theme-toggle (desktop & mobile)
-    document.querySelectorAll('#theme-toggle, .theme-toggle').forEach(btn => {
-        btn.addEventListener('click', toggleTheme);
+    // Global selector untuk semua tombol toggle tema
+    document.querySelectorAll('[id="theme-toggle"], .theme-toggle').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleTheme();
+        });
     });
 
     updateTheme();
 
-    // --- 3. NAVBAR SCROLL ENGINE (McLaren Style) ---
+    // --- 3. NAVBAR & SCROLL ENGINE ---
     const handleNavbarScroll = () => {
         const currentScrollY = window.scrollY;
         
         if (!navbar) return;
 
-        // Efek Transisi Navbar saat Scroll
+        // Efek Visual Navbar (Blur & Border)
         if (currentScrollY > 50) {
-            navbar.classList.add('backdrop-blur-xl', 'bg-white/70', 'dark:bg-dark-studio/70', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
+            navbar.classList.add('backdrop-blur-xl', 'bg-white/80', 'dark:bg-[#0A0A0A]/80', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
             navbar.classList.remove('py-6', 'bg-transparent');
         } else {
-            navbar.classList.remove('backdrop-blur-xl', 'bg-white/70', 'dark:bg-dark-studio/70', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
+            navbar.classList.remove('backdrop-blur-xl', 'bg-white/80', 'dark:bg-[#0A0A0A]/80', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
             navbar.classList.add('py-6', 'bg-transparent');
         }
 
-        // Auto Hide Navbar saat scroll ke bawah, Show saat scroll ke atas
+        // Navbar Hide/Show Logic
         if (currentScrollY > lastScrollY && currentScrollY > 500) {
             navbar.style.transform = 'translateY(-100%)';
         } else {
             navbar.style.transform = 'translateY(0)';
         }
 
-        // Tombol Scroll To Top Visibility
+        // Scroll To Top Visibility
         if (scrollToTopBtn) {
-            if (currentScrollY > 600) {
+            if (currentScrollY > 800) {
                 scrollToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-10');
                 scrollToTopBtn.classList.add('opacity-100', 'visible', 'translate-y-0');
             } else {
@@ -73,96 +79,78 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', handleNavbarScroll, { passive: true });
 
-    // --- 4. SMOOTH INTERNAL NAVIGATION ---
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                const navHeight = navbar ? navbar.offsetHeight : 0;
-                const targetPosition = targetElement.offsetTop - navHeight;
+    if (scrollToTopBtn) {
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+    // --- 4. FAQ ACCORDION ENGINE (Automotive Standard) ---
+    document.querySelectorAll('.faq-item').forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        const content = item.querySelector('.faq-content');
+        const vLine = item.querySelector('.accordion-icon-vertical');
 
-                // Tutup mobile menu jika sedang terbuka
-                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                    if(menuIcon) menuIcon.classList.replace('fa-xmark', 'fa-bars');
-                }
+        header.addEventListener('click', () => {
+            const isOpen = content.style.maxHeight;
+
+            // Close all other items first (Optional: remove this if you want multi-open)
+            document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = null);
+            document.querySelectorAll('.accordion-icon-vertical').forEach(v => v.style.transform = 'rotate(0deg)');
+
+            if (!isOpen) {
+                content.style.maxHeight = content.scrollHeight + "px";
+                if (vLine) vLine.style.transform = 'rotate(90deg)'; // Ubah + jadi -
+            } else {
+                content.style.maxHeight = null;
+                if (vLine) vLine.style.transform = 'rotate(0deg)';
             }
         });
     });
 
-    // --- 5. CUSTOM CURSOR & HOVER EFFECTS ---
-    if (cursor) {
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate3d(${e.clientX - 8}px, ${e.clientY - 8}px, 0)`;
-        });
-
-        document.querySelectorAll('a, button, .zoom-trigger').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('scale-[4]', 'bg-white');
-                cursor.style.mixBlendMode = 'difference';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('scale-[4]', 'bg-white');
-                cursor.style.mixBlendMode = 'normal';
-            });
-        });
-    }
-
-    // --- 6. MOBILE MENU LOGIC ---
+    // --- 5. MOBILE MENU LOGIC ---
     if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', () => {
             const isHidden = mobileMenu.classList.contains('hidden');
             mobileMenu.classList.toggle('hidden');
-            if(menuIcon) {
-                menuIcon.classList.toggle('fa-bars', !isHidden);
-                menuIcon.classList.toggle('fa-xmark', isHidden);
+            
+            if (menuIcon) {
+                if (isHidden) {
+                    menuIcon.classList.replace('fa-bars', 'fa-xmark');
+                    document.body.style.overflow = 'hidden'; // Lock scroll saat menu buka
+                } else {
+                    menuIcon.classList.replace('fa-xmark', 'fa-bars');
+                    document.body.style.overflow = '';
+                }
             }
         });
     }
 
-    // --- 7. FAQ ACCORDION ---
-    document.querySelectorAll('.accordion-header').forEach(header => {
-        header.addEventListener('click', function() {
-            const content = this.nextElementSibling;
-            const icon = this.querySelector('.accordion-icon');
-            const isOpen = this.classList.contains('active');
-
-            // Close all other accordions
-            document.querySelectorAll('.accordion-header').forEach(other => {
-                other.classList.remove('active');
-                if (other.nextElementSibling) other.nextElementSibling.style.maxHeight = null;
-                const otherIcon = other.querySelector('.accordion-icon');
-                if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
-            });
-
-            // Open clicked accordion
-            if (!isOpen) {
-                this.classList.add('active');
-                content.style.maxHeight = content.scrollHeight + "px";
-                if (icon) icon.style.transform = 'rotate(180deg)';
-            }
+    // --- 6. CUSTOM CURSOR (Desktop Only) ---
+    if (cursor && window.innerWidth > 1024) {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
         });
-    });
 
-    // --- 8. INITIALIZE AOS ---
+        document.querySelectorAll('a, button, .cursor-pointer').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('scale-[3]', 'bg-accent-red/20'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('scale-[3]', 'bg-accent-red/20'));
+        });
+    }
+
+    // --- 7. INITIALIZE AOS ---
     if (typeof AOS !== 'undefined') {
         AOS.init({ 
             once: true, 
-            duration: 1000,
-            offset: 100
+            duration: 800,
+            offset: 50,
+            easing: 'ease-out-quart'
         });
     }
 });
 
-// --- 9. GLOBAL UTILITIES (Zoom Image) ---
+// --- 8. GLOBAL UTILITIES (Zoom Image) ---
 window.zoomImage = (img) => {
     const modal = document.getElementById('simple-zoom-modal');
     const modalImg = document.getElementById('zoom-modal-image');
@@ -171,13 +159,21 @@ window.zoomImage = (img) => {
     modalImg.src = img.src;
     modal.classList.remove('opacity-0', 'pointer-events-none');
     modal.classList.add('opacity-100', 'pointer-events-auto');
+    modalImg.classList.remove('scale-95');
+    modalImg.classList.add('scale-100');
     document.body.style.overflow = 'hidden';
 };
 
 window.closeZoomModal = () => {
     const modal = document.getElementById('simple-zoom-modal');
+    const modalImg = document.getElementById('zoom-modal-image');
     if (!modal) return;
+    
     modal.classList.add('opacity-0', 'pointer-events-none');
     modal.classList.remove('opacity-100', 'pointer-events-auto');
+    if (modalImg) {
+        modalImg.classList.add('scale-95');
+        modalImg.classList.remove('scale-100');
+    }
     document.body.style.overflow = '';
 };
