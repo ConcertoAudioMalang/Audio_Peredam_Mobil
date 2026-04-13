@@ -6,13 +6,12 @@
     <title>Concerto Audio - Premium Sound Quality</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
     <link rel="icon" type="image/png" href="favicon.png">
-
-<link rel="apple-touch-icon" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
     
     <script>
         tailwind.config = {
@@ -20,13 +19,10 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        // SK-Modernist kita pasang sebagai heading utama
                         'heading': ['SK-Modernist', 'Inter', 'sans-serif'],
-                        // Plus Jakarta Sans untuk teks isi
                         'sans': ['Plus Jakarta Sans', 'sans-serif'],
                     },
                     colors: {
-                        'bg-studio': '#F8F7F4',
                         'accent-red': '#E63946',
                         'dark-studio': '#0A0A0A',
                     }
@@ -36,72 +32,96 @@
     </script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-primary-light dark:bg-primary-dark text-text-dark dark:text-text-light font-sans">
+<body class="bg-white dark:bg-dark-studio text-black dark:text-white font-sans transition-colors duration-500 overflow-x-hidden">
 
-<header id="navbar" class="fixed top-0 w-full z-[100] transition-all duration-700 py-4 px-4 lg:px-8 bg-transparent">
-    <nav class="max-w-7xl mx-auto flex justify-between items-center nav-mclaren px-6 lg:px-10 py-3">
-        <a href="#hero" class="flex items-center group">
-            <img src="asset/concerto-audio-logo-light.png" alt="Concerto Logo" class="h-6 lg:h-8 w-auto object-contain transition-transform group-hover:scale-105">
-        </a>
-        
-        <div class="hidden lg:flex items-center gap-10 text-[9px] font-black uppercase tracking-[0.4em] font-sans">
-            <a href="#Tentangkami" class="nav-link text-white/70 hover:text-white transition-all relative py-2">About</a>
-            <a href="#layanan" class="nav-link text-white/70 hover:text-white transition-all relative py-2">Services</a>
-            <a href="#produk" class="nav-link text-white/70 hover:text-white transition-all relative py-2">Packages</a>
-            <a href="#galeri" class="nav-link text-white/70 hover:text-white transition-all relative py-2">Gallery</a>
-        </div>
+    <div id="custom-cursor" class="hidden lg:block fixed top-0 left-0 w-4 h-4 bg-accent-red rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-100 ease-out"></div>
 
-        <div class="flex items-center space-x-6">
-            <button id="theme-toggle" class="text-xs text-white/50 hover:text-white transition-all">
-                <i class="fa-solid fa-circle-half-stroke"></i>
-            </button>
+    <header id="navbar" class="fixed top-0 w-full z-[100] py-6 px-6 lg:px-12 bg-transparent transition-all duration-500">
+        <nav class="max-w-[1800px] mx-auto flex justify-between items-center">
             
-            <a href="https://wa.me/6281217398558" class="hidden md:block btn-mclaren-nav">
-                Book Appointment
+            <a href="#hero" class="flex items-center space-x-2">
+                <img src="asset/concerto-audio-logo-light.png" alt="Concerto Logo" class="h-5 lg:h-6 w-auto object-contain dark:invert">
             </a>
+            
+            <div class="hidden lg:flex items-center bg-black/5 dark:bg-white/10 backdrop-blur-xl px-8 py-3 rounded-full border border-black/5 dark:border-white/10 text-[10px] font-bold uppercase tracking-[0.3em]">
+                <a href="#about" class="mx-5 hover:text-accent-red transition-colors">Work</a>
+                <a href="#about" class="mx-5 hover:text-accent-red transition-colors">About</a>
+                <a href="#contact" class="mx-5 hover:text-accent-red transition-colors">Contact</a>
+                <button id="theme-toggle" class="ml-4 pl-4 border-l border-black/10 dark:border-white/10">
+                    <span class="dark:hidden">LIGHT</span>
+                    <span class="hidden dark:inline">DARK</span>
+                </button>
+            </div>
 
-            <button id="mobile-menu-button" class="lg:hidden font-black text-[9px] uppercase tracking-widest text-white">
-                <span class="border-b border-white/50 pb-1">Menu</span>
-            </button>
-        </div>
-    </nav>
-</header>
-
-<main>
-    <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden bg-black">
-        
-        <div class="absolute inset-0 z-0">
-            <img src="asset/background-concerto.jpg" alt="Concerto Background" class="w-full h-full object-cover opacity-60 dark:opacity-40">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80"></div>
-        </div>
-
-        <div class="absolute inset-0 opacity-[0.1] pointer-events-none z-1" 
-             style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 50px 50px;"></div>
-
-    
-            <h1 class="hero-title text-white">
-                <span class="block" data-aos="reveal-up" data-aos-delay="100">WORK WITH PASSION</span>
-                <span class="block text-accent-red italic" data-aos="reveal-up" data-aos-delay="300">OR NOT AT ALL</span>
-            </h1>
-
-            <div class="mt-10 flex flex-col items-center">
-                <p class="max-w-xl text-[10px] md:text-xs font-bold text-white/60 font-sans leading-relaxed uppercase tracking-[0.3em]" 
-                   data-aos="fade-up" data-aos-delay="600">
-                    Transforming car audio into a world-class <br class="hidden md:block"> listening room through precision engineering.
-                </p>
-                
-                <div class="mt-12 flex flex-row gap-4 md:gap-8" data-aos="fade-up" data-aos-delay="800">
-                    <a href="#produk" class="btn-mclaren-primary">View Collection</a>
-                    <a href="#galeri" class="btn-mclaren-outline-white">Experience</a>
-                </div>
-
-                <div class="mt-20 flex flex-col items-center gap-3 opacity-40" data-aos="fade-in" data-aos-delay="1200">
-                    <div class="w-[1px] h-16 bg-gradient-to-b from-white to-transparent"></div>
+            <div class="hidden lg:flex items-center">
+                <div class="bg-green-500/10 text-green-500 px-4 py-2 rounded-full text-[9px] font-black tracking-widest flex items-center gap-2 border border-green-500/20">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    AVAILABLE FOR WORK
                 </div>
             </div>
-        </div>
-    </section>
-    
+
+            <button class="lg:hidden text-[10px] font-black tracking-widest uppercase border-b-2 border-current">Menu</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="relative min-h-screen flex flex-col justify-end lg:justify-center px-6 lg:px-12 pb-20 lg:pb-0 overflow-hidden">
+            
+            <div class="absolute inset-0 z-0">
+                <img src="asset/background-concerto.jpg" alt="Concerto Background" class="w-full h-full object-cover grayscale opacity-20 dark:opacity-30">
+                <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-dark-studio via-transparent"></div>
+            </div>
+
+            <div class="relative z-10 max-w-[1800px] mx-auto w-full">
+                <span class="block text-[10px] lg:text-xs font-black tracking-[0.5em] mb-4 opacity-50 uppercase">Senior Audio Engineer</span>
+                
+                <h1 class="hero-title leading-[0.85] tracking-[-0.05em] uppercase font-heading">
+                    <span class="block text-black dark:text-white">CONCERTO</span>
+                    <span class="block text-black dark:text-white ml-0 lg:ml-20">AUDIO</span>
+                </h1>
+
+                <div class="mt-12 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+                    <p class="max-w-md text-sm lg:text-base opacity-70 leading-relaxed font-medium">
+                        Elevating automotive soundscapes through precision tuning and world-class components in Malang, Indonesia.
+                    </p>
+                    
+                    <div class="flex items-center gap-6">
+                        <a href="#projects" class="group flex items-center gap-4 text-[10px] font-black uppercase tracking-widest">
+                            Scroll to explore 
+                            <span class="w-12 h-[1px] bg-current transition-all group-hover:w-20"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // Custom Cursor Logic
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate3d(${e.clientX - 8}px, ${e.clientY - 8}px, 0)`;
+        });
+
+        // Hover Effect for Cursor
+        const links = document.querySelectorAll('a, button');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => cursor.classList.add('scale-[3]', 'bg-white'));
+            link.addEventListener('mouseleave', () => cursor.classList.remove('scale-[3]', 'bg-white'));
+        });
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+        
         <section id="Tentangkami" class="section-margin bg-white dark:bg-[#0A0A0A] py-24 lg:py-32 overflow-hidden border border-black/5 dark:border-white/5">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
