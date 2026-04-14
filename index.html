@@ -9,6 +9,7 @@
 
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="asset/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -358,44 +359,128 @@
     </div>
 </section>
 
-<section id="testimoni" class="section-margin bg-gray-50 dark:bg-dark-studio py-24 lg:py-32 overflow-hidden border-t border-black/5 dark:border-white/5">
+<section id="testimoni" class="bg-gray-50 dark:bg-[#0A0A0A] py-24 lg:py-32 overflow-hidden border-t border-black/5 dark:border-white/5">
     <div class="max-w-7xl mx-auto px-6">
-        <div class="flex items-center gap-4 mb-20">
-            <h3 class="text-[9px] font-black uppercase tracking-[0.6em] text-accent-red whitespace-nowrap">The Client Verdict</h3>
-            <div class="h-px w-full bg-black/10 dark:bg-white/10"></div>
+        <div class="flex items-center justify-between mb-20 gap-8">
+            <div class="flex items-center gap-4 flex-1">
+                <h3 class="text-[9px] font-black uppercase tracking-[0.6em] text-accent-red whitespace-nowrap">The Client Verdict</h3>
+                <div class="h-px w-full bg-black/10 dark:bg-white/10"></div>
+            </div>
+            <div class="flex gap-2">
+                <button class="swiper-prev w-12 h-12 border border-black/10 dark:border-white/10 flex items-center justify-center hover:bg-accent-red hover:text-white transition-all">
+                    <i class="fa-solid fa-chevron-left text-xs"></i>
+                </button>
+                <button class="swiper-next w-12 h-12 border border-black/10 dark:border-white/10 flex items-center justify-center hover:bg-accent-red hover:text-white transition-all">
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                </button>
+            </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="md:col-span-2 p-12 bg-white dark:bg-[#0A0A0A] border border-black/5 dark:border-white/5 flex flex-col justify-between min-h-[400px]" data-aos="reveal-up">
-                <div>
-                    <div class="flex gap-1 text-accent-red mb-10">
-                        <i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i>
+        <div class="swiper testimoni-slider overflow-visible">
+            <div class="swiper-wrapper">
+                
+                <div class="swiper-slide h-auto">
+                    <div class="p-12 bg-white dark:bg-[#111] border border-black/5 dark:border-white/5 flex flex-col justify-between h-full min-h-[400px]">
+                        <div>
+                            <div class="flex gap-1 text-accent-red mb-10">
+                                <i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i>
+                            </div>
+                            <p class="text-2xl md:text-4xl font-black leading-[1.1] dark:text-white mb-12 font-heading tracking-tighter uppercase italic">
+                                "Engineering the perfect soundstage. Professionalism at its peak."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-6 border-t border-black/5 dark:border-white/5 pt-8">
+                            <div class="w-10 h-10 bg-accent-red flex items-center justify-center text-white font-black text-[10px]">TG</div>
+                            <div>
+                                <h4 class="text-[10px] font-black uppercase tracking-widest dark:text-white">The Glow</h4>
+                                <span class="text-[8px] uppercase tracking-[0.3em] text-gray-400">Verified Operator</span>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-2xl md:text-5xl font-black leading-[1.1] dark:text-white mb-12 font-heading tracking-tighter uppercase italic">
-                        "Engineering the perfect soundstage. Professionalism at its peak."
-                    </p>
                 </div>
-                <div class="flex items-center gap-6 border-t border-black/5 dark:border-white/5 pt-8">
-                    <div class="w-10 h-10 bg-accent-red flex items-center justify-center text-white font-black text-[10px]">TG</div>
-                    <div>
-                        <h4 class="text-[10px] font-black uppercase tracking-widest dark:text-white">The Glow</h4>
-                        <span class="text-[8px] uppercase tracking-[0.3em] text-gray-400">Verified Operator</span>
-                    </div>
-                </div>
-            </div>
 
-            <div class="p-10 bg-accent-red text-white flex flex-col justify-between" data-aos="reveal-up" data-aos-delay="200">
-                <i class="fa-solid fa-quote-left text-3xl opacity-20 mb-8"></i>
-                <p class="text-xl font-black font-heading leading-tight mb-10 uppercase italic">
-                    "Desainer Audio Mobil PALING Profesional. Sangat Recommended!"
-                </p>
-                <div class="pt-6 border-t border-white/20">
-                    <h4 class="text-[10px] font-black uppercase tracking-widest">Michael DDS</h4>
-                    <span class="text-[8px] uppercase tracking-widest opacity-60">Verified Client</span>
+                <div class="swiper-slide h-auto">
+                    <div class="p-12 bg-accent-red text-white flex flex-col justify-between h-full min-h-[400px]">
+                        <i class="fa-solid fa-quote-left text-3xl opacity-20 mb-8"></i>
+                        <p class="text-2xl font-black font-heading leading-tight mb-10 uppercase italic tracking-tighter">
+                            "Desainer Audio Mobil PALING Profesional di Malang. Sangat Recommended!"
+                        </p>
+                        <div class="pt-8 border-t border-white/20 flex items-center gap-4">
+                            <div class="w-10 h-10 border border-white/30 flex items-center justify-center font-black text-[10px]">MS</div>
+                            <div>
+                                <h4 class="text-[10px] font-black uppercase tracking-widest">Michael DDS</h4>
+                                <span class="text-[8px] uppercase tracking-widest opacity-60">Verified Client</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="swiper-slide h-auto">
+                    <div class="p-12 bg-white dark:bg-[#111] border border-black/5 dark:border-white/5 flex flex-col justify-between h-full min-h-[400px]">
+                        <div>
+                            <div class="flex gap-1 text-accent-red mb-10">
+                                <i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i>
+                            </div>
+                            <p class="text-2xl md:text-4xl font-black leading-[1.1] dark:text-white mb-12 font-heading tracking-tighter uppercase italic">
+                                "Detail pengerjaannya sangat presisi. Kualitas suara melebihi ekspektasi."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-6 border-t border-black/5 dark:border-white/5 pt-8">
+                            <div class="w-10 h-10 bg-black dark:bg-white dark:text-black flex items-center justify-center text-white font-black text-[10px]">BN</div>
+                            <div>
+                                <h4 class="text-[10px] font-black uppercase tracking-widest dark:text-white">Bimo N.</h4>
+                                <span class="text-[8px] uppercase tracking-[0.3em] text-gray-400">Verified Client</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide h-auto">
+                    <div class="p-12 bg-white dark:bg-[#111] border border-black/5 dark:border-white/5 flex flex-col justify-between h-full min-h-[400px]">
+                        <div class="flex items-center gap-2 mb-8">
+                            <i class="fa-brands fa-google text-blue-500"></i>
+                            <span class="text-[9px] font-black uppercase tracking-widest opacity-40">Review</span>
+                        </div>
+                        <p class="text-2xl font-black font-heading leading-tight mb-10 uppercase italic dark:text-white">
+                            "Workshop audio terbaik. Instalasi rapi dan tuning-nya benar-benar akurat."
+                        </p>
+                        <div class="flex items-center gap-6 border-t border-black/5 dark:border-white/5 pt-8">
+                            <div class="w-10 h-10 bg-gray-200 dark:bg-gray-800 rounded-full flex items-center justify-center font-black text-[10px]">AS</div>
+                            <div>
+                                <h4 class="text-[10px] font-black uppercase tracking-widest dark:text-white">Andreas S.</h4>
+                                <span class="text-[8px] uppercase tracking-[0.3em] text-gray-400">Google Reviewer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide h-auto">
+                    <div class="p-12 bg-[#111] text-white border border-white/5 flex flex-col justify-between h-full min-h-[400px]">
+                        <div>
+                            <div class="flex gap-1 text-accent-red mb-10">
+                                <i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i><i class="fa-solid fa-star text-[8px]"></i>
+                            </div>
+                            <p class="text-2xl font-black font-heading leading-tight mb-10 uppercase italic">
+                                "Full catalog audio mereka sangat lengkap. Trusted partner!"
+                            </p>
+                        </div>
+                        <div class="pt-8 border-t border-white/10">
+                            <h4 class="text-[10px] font-black uppercase tracking-widest">Rian Putra</h4>
+                            <span class="text-[8px] uppercase tracking-widest opacity-40">Verified Client</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            
-            </div>
+        </div>
+
+        <div class="mt-20 flex justify-center">
+            <a href="https://www.google.com/maps/place/Concerto+Malang" target="_blank" 
+               class="inline-flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.3em] dark:text-white hover:text-accent-red transition-all group">
+                See All 50+ Google Reviews 
+                <i class="fa-solid fa-arrow-right-long group-hover:translate-x-2 transition-transform"></i>
+            </a>
+        </div>
     </div>
 </section>
         
@@ -730,6 +815,32 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="script.js"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    const swiper = new Swiper('.testimoni-slider', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        centeredSlides: false,
+        grabCursor: true,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: '.swiper-next',
+            prevEl: '.swiper-prev',
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 2.5, // Menampilkan 2 kartu penuh dan setengah kartu berikutnya (estetika mahal)
+                spaceBetween: 30,
+            }
+        }
+    });
+</script>
 </body>
 </html>
