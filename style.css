@@ -133,6 +133,25 @@ body {
 #tentang .group:hover span {
     color: white !important;
 }
+/* Efek latar belakang section menjadi hitam saat di-hover */
+#tentang {
+    transition: background-color 0.7s ease; /* Transisi halus */
+}
+
+#tentang:hover {
+    background-color: #000000 !important;
+}
+
+/* Pastikan saat section hitam, teks judul utama (Engineering Excellence) jadi putih */
+#tentang:hover .hero-title {
+    color: white !important;
+}
+
+/* Pastikan teks deskripsi di samping judul juga jadi terang */
+#tentang:hover p.text-gray-400, 
+#tentang:hover p.text-gray-500 {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
 
 /* ========================================= */
 /* 6. BUTTONS & UTILITIES                    */
