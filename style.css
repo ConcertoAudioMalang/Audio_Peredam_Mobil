@@ -76,33 +76,7 @@ body {
 /* 4. COMPONENTS & ANIMATIONS                */
 /* ========================================= */
 
-/* FAQ Accordion */
-.faq-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Custom Cursor (Optimized for JS Lerp) */
-#custom-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 12px;
-    height: 12px;
-    background-color: var(--accent-red);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 10000;
-    /* Transform dihandle oleh JS untuk smoothness */
-    transition: width 0.3s, height 0.3s, background-color 0.3s, opacity 0.3s;
-}
-
-@media (max-width: 1024px) {
-    #custom-cursor { display: none; }
-}
-
-/* Marquee Logic */
+/* Marquee Logic (Disederhanakan agar tidak double) */
 .animate-marquee {
     display: flex;
     width: max-content;
@@ -111,99 +85,56 @@ body {
 
 @keyframes marquee {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    100% { transform: translateX(-100%); } /* Gunakan -100% untuk loop sempurna */
 }
 
-.animate-marquee:hover {
+/* Pause saat di hover */
+#merk:hover .animate-marquee {
     animation-play-state: paused;
 }
 
 /* ========================================= */
 /* 5. SPECIFIC FIX: SECTION TENTANG          */
 /* ========================================= */
-/* Mencegah tulisan hilang saat hover di Light Mode */
-#tentang .group:hover h3 {
-    color: white !important;
-}
 
-#tentang .group:hover p {
-    color: rgba(255, 255, 255, 0.8) !important;
-}
-
-#tentang .group:hover span {
-    color: white !important;
-}
-/* Efek latar belakang section menjadi hitam saat di-hover */
 #tentang {
-    transition: background-color 0.7s ease; /* Transisi halus */
+    transition: background-color 0.7s ease;
 }
 
-#tentang:hover {
+/* Menggunakan 'group' agar sinkron dengan Tailwind di HTML */
+#tentang.group:hover {
     background-color: #000000 !important;
 }
 
-/* Pastikan saat section hitam, teks judul utama (Engineering Excellence) jadi putih */
-#tentang:hover .hero-title {
+/* Saat Section di hover, ubah warna teks di dalamnya */
+#tentang.group:hover .hero-title,
+#tentang.group:hover h3,
+#tentang.group:hover span:not(.text-accent-red) {
     color: white !important;
 }
 
-/* Pastikan teks deskripsi di samping judul juga jadi terang */
-#tentang:hover p.text-gray-400, 
-#tentang:hover p.text-gray-500 {
+#tentang.group:hover p {
     color: rgba(255, 255, 255, 0.7) !important;
 }
 
 /* ========================================= */
-/* 6. BUTTONS & UTILITIES                    */
+/* 6. BRAND LOGO UTILITY                     */
 /* ========================================= */
-.btn-mclaren-primary {
-    background: var(--accent-red);
-    color: white;
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 0.3em;
-    padding: 18px 40px;
-    border-radius: 2px;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
+.brand-logo {
+    /* Gunakan @apply jika kamu pakai Tailwind CLI, 
+       jika tidak, gunakan property CSS biasa seperti di bawah: */
+    height: 2.75rem; /* setara lg:h-11 */
+    width: auto;
+    filter: grayscale(1) opacity(0.3);
+    transition: all 0.7s ease;
+    cursor: pointer;
 }
 
-.btn-mclaren-primary:hover {
-    background: black;
-    transform: translateY(-2px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+.dark .brand-logo {
+    filter: grayscale(1) opacity(0.3) invert(1);
 }
 
-.btn-mclaren-outline {
-    border: 1px solid var(--accent-red);
-    color: var(--accent-red);
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 0.3em;
-    padding: 16px 36px;
-    transition: all 0.4s;
-    text-transform: uppercase;
-}
-
-.btn-mclaren-outline:hover {
-    background: var(--accent-red);
-    color: white;
-}
-
-/* Scanline / Grid Effect */
-.grid-overlay {
-    background-size: 40px 40px;
-    background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
-}
-
-.dark .grid-overlay {
-    background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-}
-
-/* Swiper Pagination/Nav Custom */
-.swiper-button-disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
+.brand-logo:hover {
+    filter: grayscale(0) opacity(1) !important;
+    transform: scale(1.1);
 }
