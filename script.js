@@ -1,6 +1,6 @@
 /**
  * CONCERTO MALANG - OFFICIAL SCRIPT 2026
- * High-Performance & Automotive Grade Logic
+ * Gabungan Logika Stabil + Support Fitur Baru
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let lastScrollY = window.scrollY;
 
-    // --- 2. THEME ENGINE (Dark/Light Mode) ---
+    // --- 2. THEME ENGINE ---
     const updateTheme = () => {
         const isDark = localStorage.getItem('theme') === 'dark' || 
                       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -27,12 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const newTheme = isCurrentlyDark ? 'light' : 'dark';
         html.classList.toggle('dark');
         localStorage.setItem('theme', newTheme);
-        
-        // Tambahkan feedback visual kecil jika perlu
-        console.log(`System: Theme switched to ${newTheme}`);
     };
 
-    // Global selector untuk semua tombol toggle tema
     document.querySelectorAll('[id="theme-toggle"], .theme-toggle').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -42,29 +38,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateTheme();
 
-    // --- 3. NAVBAR & SCROLL ENGINE ---
+    // --- 3. NAVBAR & SCROLL ENGINE (Termasuk Button Up) ---
     const handleNavbarScroll = () => {
         const currentScrollY = window.scrollY;
         
-        if (!navbar) return;
+        if (navbar) {
+            if (currentScrollY > 50) {
+                navbar.classList.add('backdrop-blur-xl', 'bg-white/80', 'dark:bg-[#0A0A0A]/80', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
+                navbar.classList.remove('py-6', 'bg-transparent');
+            } else {
+                navbar.classList.remove('backdrop-blur-xl', 'bg-white/80', 'dark:bg-[#0A0A0A]/80', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
+                navbar.classList.add('py-6', 'bg-transparent');
+            }
 
-        // Efek Visual Navbar (Blur & Border)
-        if (currentScrollY > 50) {
-            navbar.classList.add('backdrop-blur-xl', 'bg-white/80', 'dark:bg-[#0A0A0A]/80', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
-            navbar.classList.remove('py-6', 'bg-transparent');
-        } else {
-            navbar.classList.remove('backdrop-blur-xl', 'bg-white/80', 'dark:bg-[#0A0A0A]/80', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
-            navbar.classList.add('py-6', 'bg-transparent');
+            if (currentScrollY > lastScrollY && currentScrollY > 500) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
         }
 
-        // Navbar Hide/Show Logic
-        if (currentScrollY > lastScrollY && currentScrollY > 500) {
-            navbar.style.transform = 'translateY(-100%)';
-        } else {
-            navbar.style.transform = 'translateY(0)';
-        }
-
-        // Scroll To Top Visibility
+        // Button Up Visibility
         if (scrollToTopBtn) {
             if (currentScrollY > 800) {
                 scrollToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-10');
@@ -85,7 +79,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. FAQ ACCORDION ENGINE (Automotive Standard) ---
+    // --- 4. SWIPER TESTIMONI (Fitur Baru) ---
+    if (typeof Swiper !== 'undefined') {
+        new Swiper('.testimoni-slider', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            grabCursor: true,
+            autoplay: { delay: 5000 },
+            navigation: {
+                nextEl: '.swiper-next',
+                prevEl: '.swiper-prev',
+            },
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 2.5, spaceBetween: 30 }
+            }
+        });
+    }
+
+    // --- 5. FAQ ACCORDION ---
     document.querySelectorAll('.faq-item').forEach(item => {
         const header = item.querySelector('.accordion-header');
         const content = item.querySelector('.faq-content');
@@ -93,31 +106,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         header.addEventListener('click', () => {
             const isOpen = content.style.maxHeight;
-
-            // Close all other items first (Optional: remove this if you want multi-open)
             document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = null);
             document.querySelectorAll('.accordion-icon-vertical').forEach(v => v.style.transform = 'rotate(0deg)');
 
             if (!isOpen) {
                 content.style.maxHeight = content.scrollHeight + "px";
-                if (vLine) vLine.style.transform = 'rotate(90deg)'; // Ubah + jadi -
-            } else {
-                content.style.maxHeight = null;
-                if (vLine) vLine.style.transform = 'rotate(0deg)';
+                if (vLine) vLine.style.transform = 'rotate(90deg)';
             }
         });
     });
 
-    // --- 5. MOBILE MENU LOGIC ---
+    // --- 6. MOBILE MENU ---
     if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', () => {
             const isHidden = mobileMenu.classList.contains('hidden');
             mobileMenu.classList.toggle('hidden');
-            
             if (menuIcon) {
                 if (isHidden) {
                     menuIcon.classList.replace('fa-bars', 'fa-xmark');
-                    document.body.style.overflow = 'hidden'; // Lock scroll saat menu buka
+                    document.body.style.overflow = 'hidden';
                 } else {
                     menuIcon.classList.replace('fa-xmark', 'fa-bars');
                     document.body.style.overflow = '';
@@ -126,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 6. CUSTOM CURSOR (Desktop Only) ---
+    // --- 7. CUSTOM CURSOR ---
     if (cursor && window.innerWidth > 1024) {
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
@@ -139,23 +146,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 7. INITIALIZE AOS ---
+    // --- 8. INITIALIZE AOS ---
     if (typeof AOS !== 'undefined') {
-        AOS.init({ 
-            once: true, 
-            duration: 800,
-            offset: 50,
-            easing: 'ease-out-quart'
-        });
+        AOS.init({ once: true, duration: 800, offset: 50, easing: 'ease-out-quart' });
     }
 });
 
-// --- 8. GLOBAL UTILITIES (Zoom Image) ---
+// --- 9. GLOBAL UTILITIES ---
 window.zoomImage = (img) => {
     const modal = document.getElementById('simple-zoom-modal');
     const modalImg = document.getElementById('zoom-modal-image');
     if (!modal || !modalImg) return;
-
     modalImg.src = img.src;
     modal.classList.remove('opacity-0', 'pointer-events-none');
     modal.classList.add('opacity-100', 'pointer-events-auto');
@@ -168,7 +169,6 @@ window.closeZoomModal = () => {
     const modal = document.getElementById('simple-zoom-modal');
     const modalImg = document.getElementById('zoom-modal-image');
     if (!modal) return;
-    
     modal.classList.add('opacity-0', 'pointer-events-none');
     modal.classList.remove('opacity-100', 'pointer-events-auto');
     if (modalImg) {
