@@ -126,7 +126,7 @@ body {
 /* Media Query untuk Desktop */
 @media (min-width: 1024px) {
     .brand-logo {
-        height: 5rem !important; 
+        height: 6rem !important; 
     }
 }
 
