@@ -121,13 +121,18 @@ body {
 /* 6. BRAND LOGO UTILITY                     */
 /* ========================================= */
 .brand-logo {
-    /* Gunakan @apply jika kamu pakai Tailwind CLI, 
-       jika tidak, gunakan property CSS biasa seperti di bawah: */
-    height: 2.75rem; /* setara lg:h-11 */
+    height: 2.5rem; /* Ukuran default (Mobile) */
     width: auto;
     filter: grayscale(1) opacity(0.3);
-    transition: all 0.7s ease;
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
+}
+
+/* KHUSUS DESKTOP (Tambahkan ini) */
+@media (min-width: 1024px) {
+    .brand-logo {
+        height: 5rem !important; /* Gunakan !important jika masih membandel */
+    }
 }
 
 .dark .brand-logo {
