@@ -2,7 +2,7 @@ const container = document.getElementById('speaker-container');
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
-camera.position.set(0, 4, 8); // Kamera agak menjauh agar distorsi berkurang
+camera.position.set(0, 5, 10); 
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
@@ -12,78 +12,89 @@ container.appendChild(renderer.domElement);
 const speakerGroup = new THREE.Group();
 scene.add(speakerGroup);
 
-// --- PERBAIKAN A: PELEK LUAR (Lebih Tipis & Elegan) ---
-const basketGeo = new THREE.TorusGeometry(3, 0.08, 16, 100); // Tube dikurangi dari 0.2 ke 0.08
-const basketMat = new THREE.MeshStandardMaterial({ 
-    color: 0x050505, 
-    roughness: 0.5,
-    metalness: 0.5
-});
-const basket = new THREE.Mesh(basketGeo, basketMat);
-basket.rotation.x = Math.PI / 2;
-speakerGroup.add(basket);
+// 1. OUTER RING / CHASSIS (Pelek Luar yang tebal dan datar)
+const ringGeo = new THREE.CylinderGeometry(3.2, 3.2, 0.15, 64);
+const ringMat = new THREE.MeshStandardMaterial({ color: 0x0a0a0a, metalness: 0.8, roughness: 0.2 });
+const ring = new THREE.Mesh(ringGeo, ringMat);
+ring.position.y = 0.8;
+speakerGroup.add(ring);
 
-// --- PERBAIKAN B: CONE (Dibuat Lebih Dalam & Mengerucut) ---
-// CylinderGeometry(atas, bawah, tinggi, segmen, open-ended)
-const coneGeo = new THREE.CylinderGeometry(2.9, 0.8, 2, 64, 1, true); 
-const coneMat = new THREE.MeshStandardMaterial({ 
-    color: 0x111111, 
-    roughness: 1, 
-    side: THREE.DoubleSide 
-});
+// 2. SURROUND (Karet melengkung di pinggir cone)
+const surroundGeo = new THREE.TorusGeometry(2.8, 0.15, 16, 100);
+const surroundMat = new THREE.MeshStandardMaterial({ color: 0x111111, roughness: 1 });
+const surround = new THREE.Mesh(surroundGeo, surroundMat);
+surround.rotation.x = Math.PI / 2;
+surround.position.y = 0.7;
+speakerGroup.add(surround);
+
+// 3. MAIN CONE (Lebih curam ke bawah)
+const coneGeo = new THREE.CylinderGeometry(2.7, 1.2, 1.5, 64, 1, true);
+const coneMat = new THREE.MeshStandardMaterial({ color: 0x151515, roughness: 1, side: THREE.DoubleSide });
 const cone = new THREE.Mesh(coneGeo, coneMat);
-cone.position.y = -0.5; // Diturunkan agar terlihat "masuk" ke dalam
+cone.position.y = 0;
 speakerGroup.add(cone);
 
-// --- PERBAIKAN C: DIAMOND DUST CAP (Lebih Kecil & Tajam) ---
-const dustCapGeo = new THREE.IcosahedronGeometry(1.1, 1); // Ukuran dikecilkan agar proporsional
+// 4. DIAMOND DUST CAP (Dust cap ikonik Audio Circle)
+const dustCapGeo = new THREE.IcosahedronGeometry(1.2, 1); 
 const dustCapMat = new THREE.MeshStandardMaterial({ 
     color: 0xcccccc, 
     metalness: 0.9, 
     roughness: 0.1, 
-    flatShading: true // Ini kunci efek diamond-nya
+    flatShading: true 
 });
 const dustCap = new THREE.Mesh(dustCapGeo, dustCapMat);
-dustCap.position.y = -0.3; // Diletakkan di dasar cone
+dustCap.position.y = -0.5;
 speakerGroup.add(dustCap);
 
-// --- PERBAIKAN D: MAGNET (Dibuat Lebih Lebar & Berkilau) ---
-const magnetGeo = new THREE.CylinderGeometry(1.8, 1.8, 1.2, 32);
-const magnetMat = new THREE.MeshStandardMaterial({ 
-    color: 0x666666,
-    metalness: 1,
-    roughness: 0.2
-});
+// 5. THE BASKET (Tiang Penyangga agar TIDAK terlihat seperti UFO)
+for (let i = 0; i < 4; i++) {
+    const barGeo = new THREE.BoxGeometry(0.2, 2.5, 0.4);
+    const barMat = new THREE.MeshStandardMaterial({ color: 0x0a0a0a });
+    const bar = new THREE.Mesh(barGeo, barMat);
+    
+    // Atur posisi tiang melingkar
+    const angle = (i / 4) * Math.PI * 2;
+    bar.position.x = Math.cos(angle) * 1.8;
+    bar.position.z = Math.sin(angle) * 1.8;
+    bar.position.y = -0.5;
+    bar.rotation.y = -angle;
+    bar.rotation.z = Math.PI / 6 * (bar.position.x > 0 ? 1 : -1); // Miringkan tiang ke arah magnet
+    speakerGroup.add(bar);
+}
+
+// 6. BOTTOM MAGNET (Bagian bawah yang berat)
+const magnetGeo = new THREE.CylinderGeometry(2, 2, 1.2, 32);
+const magnetMat = new THREE.MeshStandardMaterial({ color: 0x444444, metalness: 0.9, roughness: 0.3 });
 const magnet = new THREE.Mesh(magnetGeo, magnetMat);
-magnet.position.y = -2;
+magnet.position.y = -1.8;
 speakerGroup.add(magnet);
 
-// --- PERBAIKAN E: LIGHTING (Lebih Studio-ish) ---
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+// --- LIGHTING ---
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
 scene.add(ambientLight);
 
-// Lampu utama dari atas (fokus ke Diamond)
-const topLight = new THREE.DirectionalLight(0xffffff, 1.5);
-topLight.position.set(0, 10, 5);
-scene.add(topLight);
+const spotLight = new THREE.SpotLight(0xffffff, 2);
+spotLight.position.set(5, 10, 5);
+scene.add(spotLight);
 
-// Lampu samping (agar metalik Magnet terlihat)
-const sideLight = new THREE.PointLight(0xe61e2a, 0.5); // Aksen merah dikit di pantulan
-sideLight.position.set(-10, 0, 5);
-scene.add(sideLight);
+const redLight = new THREE.PointLight(0xe61e2a, 1);
+redLight.position.set(-5, 2, 5);
+scene.add(redLight);
 
-// --- CONTROLS ---
+// --- CONTROLS & ANIMATION ---
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enableZoom = false;
 controls.autoRotate = true;
-controls.autoRotateSpeed = 2.0;
 
 function animate() {
     requestAnimationFrame(animate);
-    // Tambahkan sedikit efek getaran halus (Pulse) seperti speaker lagi bunyi
-    const time = Date.now() * 0.005;
-    dustCap.scale.set(1 + Math.sin(time) * 0.02, 1 + Math.sin(time) * 0.02, 1 + Math.sin(time) * 0.02);
+    
+    // Animasi Getar (Vibrating)
+    const time = Date.now() * 0.01;
+    const shake = Math.sin(time) * 0.03;
+    cone.position.y = shake;
+    dustCap.position.y = -0.5 + shake;
     
     controls.update();
     renderer.render(scene, camera);
