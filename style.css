@@ -73,16 +73,15 @@ body {
 }
 
 /* ========================================= */
-/* 4. COMPONENTS & ANIMATIONS                */
+/* 4. ANIMATIONS (MARQUEE)                   */
 /* ========================================= */
-
 .animate-marquee {
     display: flex;
     min-width: 100%; 
     flex-shrink: 0;
     align-items: center;
-    justify-content: space-around;
-    animation: marquee 25s linear infinite;
+    justify-content: space-around; 
+    animation: marquee 30s linear infinite;
 }
 
 @keyframes marquee {
@@ -91,9 +90,8 @@ body {
 }
 
 /* ========================================= */
-/* 5. SPECIFIC FIX: SECTION TENTANG          */
+/* 5. SECTION TENTANG (HOVER EFFECT)         */
 /* ========================================= */
-
 #tentang {
     transition: background-color 0.7s ease;
 }
@@ -116,26 +114,29 @@ body {
 /* 6. BRAND LOGO UTILITY                     */
 /* ========================================= */
 .brand-logo {
-    height: 2.5rem; 
+    height: 2.5rem; /* Mobile */
     width: auto;
     filter: grayscale(1) opacity(0.3);
-    transition: transform 0.4s ease, filter 0.7s ease; 
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease; 
     cursor: pointer;
+    position: relative;
 }
 
-/* Media Query untuk Desktop */
+/* Desktop & Laptop Optimization */
 @media (min-width: 1024px) {
     .brand-logo {
-        height: 6rem !important; 
+        /* 5.5rem adalah sweet spot antara megah dan rapi di laptop */
+        height: 5.5rem !important; 
     }
 }
 
-/* Dark Mode Support agar logo putih di background gelap */
+/* Dark Mode Logo Support */
 .dark .brand-logo {
     filter: grayscale(1) opacity(0.3) invert(1);
 }
 
 .brand-logo:hover {
     filter: grayscale(0) opacity(1) !important;
-    transform: scale(1.05); 
+    transform: scale(1.1); 
+    z-index: 50;
 }
