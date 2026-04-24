@@ -1,103 +1,98 @@
 const container = document.getElementById('speaker-container');
 
-// 1. SCENE & CAMERA
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
-camera.position.set(0, 2, 7); // Posisi kamera agak tinggi agar terlihat geometrinya
+const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
+camera.position.set(0, 4, 8); // Kamera agak menjauh agar distorsi berkurang
 
-// 2. RENDERER (Antialias agar mulus, Alpha agar background transparan)
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
-renderer.setPixelRatio(window.devicePixelRatio); // Penting untuk layar Retina laptop
+renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// --- MEMBUAT MODEL SPEAKER AUDIO CIRCLE ---
 const speakerGroup = new THREE.Group();
 scene.add(speakerGroup);
 
-// A. BASKET / FRAME (Lingkaran Luar Hitam) - Ref: image_1.png
-const basketGeo = new THREE.TorusGeometry(3, 0.2, 16, 64);
+// --- PERBAIKAN A: PELEK LUAR (Lebih Tipis & Elegan) ---
+const basketGeo = new THREE.TorusGeometry(3, 0.08, 16, 100); // Tube dikurangi dari 0.2 ke 0.08
 const basketMat = new THREE.MeshStandardMaterial({ 
-    color: 0x111111, 
-    roughness: 0.8,
-    metalness: 0.2
+    color: 0x050505, 
+    roughness: 0.5,
+    metalness: 0.5
 });
 const basket = new THREE.Mesh(basketGeo, basketMat);
-basket.rotation.x = Math.PI / 2; // Berdirikan
+basket.rotation.x = Math.PI / 2;
 speakerGroup.add(basket);
 
-// B. MAGNET BOTTOM (Chrome Mengkilap) - Ref: image_3.png
-const magnetGeo = new THREE.CylinderGeometry(2, 2, 1.5, 32);
-const magnetMat = new THREE.MeshStandardMaterial({ 
-    color: 0xaaaaaa, // Warna Chrome/Silver
-    metalness: 1, // Full metal
-    roughness: 0.1 // Sangat mengkilap
-});
-const magnet = new THREE.Mesh(magnetGeo, magnetMat);
-magnet.position.y = -1; // Taruh di bawah
-speakerGroup.add(magnet);
-
-// C. CONE / DIAPHRAGM (Karet Hitam di sekeliling Cone)
-const coneGeo = new THREE.CylinderGeometry(2.8, 1.8, 1, 32, 1, true); // Terbuka di tengah
+// --- PERBAIKAN B: CONE (Dibuat Lebih Dalam & Mengerucut) ---
+// CylinderGeometry(atas, bawah, tinggi, segmen, open-ended)
+const coneGeo = new THREE.CylinderGeometry(2.9, 0.8, 2, 64, 1, true); 
 const coneMat = new THREE.MeshStandardMaterial({ 
-    color: 0x151515, 
-    roughness: 0.9, 
+    color: 0x111111, 
+    roughness: 1, 
     side: THREE.DoubleSide 
 });
-const coneInner = new THREE.Mesh(coneGeo, coneMat);
-coneInner.position.y = 0.4;
-coneInner.rotation.x = Math.PI; // Balik agar mengerucut ke dalam
-speakerGroup.add(coneInner);
+const cone = new THREE.Mesh(coneGeo, coneMat);
+cone.position.y = -0.5; // Diturunkan agar terlihat "masuk" ke dalam
+speakerGroup.add(cone);
 
-// D. DUST CAP - THE GEOMETRIC DIAMOND (INSPIRASI UTAMA) - Ref: image_2.png
-// Kita pakai IcosahedronGeometry (Rendah Detail) untuk efek Geometric "Diamond"
-const dustCapGeo = new THREE.IcosahedronGeometry(1.6, 1); 
+// --- PERBAIKAN C: DIAMOND DUST CAP (Lebih Kecil & Tajam) ---
+const dustCapGeo = new THREE.IcosahedronGeometry(1.1, 1); // Ukuran dikecilkan agar proporsional
 const dustCapMat = new THREE.MeshStandardMaterial({ 
-    color: 0xffffff, // Putih/Silver Terang
-    metalness: 0.8, 
-    roughness: 0.2, 
-    flatShading: true // PENTING: Membuat pola geometric/diamond terlihat jelas
+    color: 0xcccccc, 
+    metalness: 0.9, 
+    roughness: 0.1, 
+    flatShading: true // Ini kunci efek diamond-nya
 });
 const dustCap = new THREE.Mesh(dustCapGeo, dustCapMat);
-dustCap.position.y = 0.6; // Taruh di tengah cone
+dustCap.position.y = -0.3; // Diletakkan di dasar cone
 speakerGroup.add(dustCap);
 
-// 3. LIGHTING (Pencahayaan agar Chrome & Geometric terlihat)
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.4); // Cahaya dasar
+// --- PERBAIKAN D: MAGNET (Dibuat Lebih Lebar & Berkilau) ---
+const magnetGeo = new THREE.CylinderGeometry(1.8, 1.8, 1.2, 32);
+const magnetMat = new THREE.MeshStandardMaterial({ 
+    color: 0x666666,
+    metalness: 1,
+    roughness: 0.2
+});
+const magnet = new THREE.Mesh(magnetGeo, magnetMat);
+magnet.position.y = -2;
+speakerGroup.add(magnet);
+
+// --- PERBAIKAN E: LIGHTING (Lebih Studio-ish) ---
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
 scene.add(ambientLight);
 
-// Point Light dari Depan Atas (Refleksi Diamond)
-const frontLight = new THREE.PointLight(0xffffff, 1.2);
-frontLight.position.set(5, 5, 10);
-scene.add(frontLight);
+// Lampu utama dari atas (fokus ke Diamond)
+const topLight = new THREE.DirectionalLight(0xffffff, 1.5);
+topLight.position.set(0, 10, 5);
+scene.add(topLight);
 
-// Point Light dari Belakang (Untuk kilau Magnet Chrome)
-const backLight = new THREE.PointLight(0xffffff, 0.8);
-backLight.position.set(-5, -5, -10);
-scene.add(backLight);
+// Lampu samping (agar metalik Magnet terlihat)
+const sideLight = new THREE.PointLight(0xe61e2a, 0.5); // Aksen merah dikit di pantulan
+sideLight.position.set(-10, 0, 5);
+scene.add(sideLight);
 
-// 4. INTERAKSI (OrbitControls)
+// --- CONTROLS ---
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true; // Gerakan mulus
-controls.dampingFactor = 0.05;
-controls.enableZoom = false; // Supaya tidak mengganggu scroll
-controls.autoRotate = true; // Berputar sendiri pelan-pelan
-controls.autoRotateSpeed = 1.0; // Kecepatan putar
+controls.enableDamping = true;
+controls.enableZoom = false;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 2.0;
 
-// 5. ANIMATION LOOP
 function animate() {
     requestAnimationFrame(animate);
-    controls.update(); // Wajib untuk damping
+    // Tambahkan sedikit efek getaran halus (Pulse) seperti speaker lagi bunyi
+    const time = Date.now() * 0.005;
+    dustCap.scale.set(1 + Math.sin(time) * 0.02, 1 + Math.sin(time) * 0.02, 1 + Math.sin(time) * 0.02);
+    
+    controls.update();
     renderer.render(scene, camera);
 }
 
-// 6. RESPONSIVE RESIZE
-window.addEventListener('resize', onWindowResize, false);
-function onWindowResize() {
+window.addEventListener('resize', () => {
     camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(container.clientWidth, container.clientHeight);
-}
+});
 
-// Jalankan animasi
 animate();
