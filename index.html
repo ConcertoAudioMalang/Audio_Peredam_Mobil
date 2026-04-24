@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Concerto Audio Malang - Audio & Peredam Mobil</title>
-    <head>
-    <title>CONCERTO MALANG | High-End Car Audio And Soundproofing </title>
+    <title>CONCERTO MALANG | High-End Car Audio And Soundproofing</title>
 
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="asset/apple-touch-icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="style.css">
-</head>
-    
+
     <script>
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
@@ -22,11 +25,6 @@
         }
     </script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -44,9 +42,7 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="bg-white dark:bg-dark-studio text-black dark:text-white font-sans transition-colors duration-500 overflow-x-hidden">
 
     <div id="custom-cursor" class="hidden lg:block fixed top-0 left-0 w-4 h-4 bg-accent-red rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-100 ease-out"></div>
@@ -94,32 +90,33 @@
     </header>
 
     <main>
-        
-        <section id="hero" class="relative min-h-screen flex flex-col justify-end lg:justify-center px-6 lg:px-12 pb-20 lg:pb-0 overflow-hidden">
-            <div class="absolute inset-0 z-0">
-                <img src="asset/background-concerto.jpg" alt="Concerto Background" class="w-full h-full object-cover grayscale opacity-20 dark:opacity-30">
-                <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-dark-studio via-transparent"></div>
-            </div>
+        <section id="hero" class="relative min-h-screen flex items-center bg-white dark:bg-dark-studio overflow-hidden px-6 lg:px-12">
+        <div class="absolute inset-0 z-0 opacity-10 dark:opacity-20 pointer-events-none">
+            <img src="asset/background-concerto.jpg" class="w-full h-full object-cover grayscale">
+        </div>
 
-            <div class="relative z-10 max-w-[1800px] mx-auto w-full">
-                <span class="block text-[10px] lg:text-xs font-black tracking-[0.5em] mb-4 opacity-50 uppercase">WORK WITH PASSSION OR NOT AT ALL</span>
-                <h1 class="hero-title leading-[0.85] tracking-[-0.05em] uppercase font-heading">
-                    <span class="block text-black dark:text-white">CONCERTO</span>
-                    <span class="block text-black dark:text-white ml-0 lg:ml-20">MALANG</span>
+        <div class="relative z-10 max-w-[1800px] mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
+            
+            <div data-aos="fade-right">
+                <span class="block text-[10px] font-black tracking-[0.5em] mb-4 opacity-50 uppercase">WORK WITH PASSION OR NOT AT ALL</span>
+                <h1 class="hero-title leading-[0.85] tracking-[-0.05em] uppercase font-heading text-6xl lg:text-9xl">
+                    CONCERTO <br> <span class="text-accent-red">MALANG</span>
                 </h1>
-                <div class="mt-12 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-                    <p class="max-w-md text-sm lg:text-base opacity-70 leading-relaxed font-medium">
-                        Elevating automotive soundscapes through precision tuning and world-class components in Malang, Indonesia.
-                    </p>
-                    <div class="flex items-center gap-6">
-                        <a href="#Tentang" class="group flex items-center gap-4 text-[10px] font-black uppercase tracking-widest">
-                            Scroll to explore 
-                            <span class="w-12 h-[1px] bg-current transition-all group-hover:w-20"></span>
-                        </a>
-                    </div>
+                <p class="mt-8 max-w-md text-sm lg:text-base opacity-70 leading-relaxed font-medium">
+                    Elevating automotive soundscapes through precision tuning and world-class components in Malang, Indonesia.
+                </p>
+                <div class="mt-10 flex items-center gap-6">
+                    <a href="#tentang" class="group flex items-center gap-4 text-[10px] font-black uppercase tracking-widest">
+                        Scroll to explore 
+                        <span class="w-12 h-[1px] bg-current transition-all group-hover:w-20"></span>
+                    </a>
                 </div>
             </div>
-        </section>
+
+            <div id="speaker-container" class="h-[500px] lg:h-[700px] relative w-full" data-aos="zoom-in">
+                </div>
+        </div>
+    </section>
 
         <section id="tentang" class="relative py-24 lg:py-40 overflow-hidden transition-all duration-700 group">
     
@@ -814,41 +811,44 @@
 </footer>
 
 <button id="scroll-to-top" aria-label="Scroll to top" class="fixed bottom-8 right-8 z-[99] w-14 h-14 bg-accent-red text-white shadow-[0_20px_40px_rgba(230,0,0,0.3)] transition-all duration-500 opacity-0 invisible translate-y-10 hover:bg-black flex items-center justify-center group">
-    <i class="fa-solid fa-arrow-up text-lg transition-transform group-hover:-translate-y-1"></i>
-</button>
+        <i class="fa-solid fa-arrow-up text-lg transition-transform group-hover:-translate-y-1"></i>
+    </button>
 
-<div id="simple-zoom-modal" class="fixed inset-0 z-[10000] bg-black/95 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500 cursor-zoom-out" onclick="closeZoomModal()">
-    <img id="zoom-modal-image" src="" alt="Zoomed View" class="max-w-[90%] max-h-[90%] object-contain transition-transform duration-500 scale-95">
-</div>
+    <div id="simple-zoom-modal" class="fixed inset-0 z-[10000] bg-black/95 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500 cursor-zoom-out" onclick="closeZoomModal()">
+        <img id="zoom-modal-image" src="" alt="Zoomed View" class="max-w-[90%] max-h-[90%] object-contain transition-transform duration-500 scale-95">
+    </div>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-    const swiper = new Swiper('.testimoni-slider', {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: true,
-        centeredSlides: false,
-        grabCursor: true,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-        },
-        navigation: {
-            nextEl: '.swiper-next',
-            prevEl: '.swiper-prev',
-        },
-        breakpoints: {
-            768: {
-                slidesPerView: 2,
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="script.js"></script>
+
+    <script>
+        const swiper = new Swiper('.testimoni-slider', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            grabCursor: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
             },
-            1024: {
-                slidesPerView: 2.5, // Menampilkan 2 kartu penuh dan setengah kartu berikutnya (estetika mahal)
-                spaceBetween: 30,
+            navigation: {
+                nextEl: '.swiper-next',
+                prevEl: '.swiper-prev',
+            },
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 2.5, spaceBetween: 30 }
             }
-        }
-    });
-</script>
+        });
+    </script>
+
+    <script>
+        AOS.init({ duration: 1000, once: true });
+    </script>
+
+    <script src="3d-speaker.js"></script>
+
 </body>
 </html>
