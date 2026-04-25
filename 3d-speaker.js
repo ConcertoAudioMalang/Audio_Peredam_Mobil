@@ -14,7 +14,7 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// 2. LIGHTING
+// 2. LIGHTING (Aksen Merah Concerto)
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
 scene.add(ambientLight);
 
@@ -34,14 +34,14 @@ const loader = new GLTFLoader();
 loader.load('asset/innova-v1.glb', (gltf) => {
     model = gltf.scene;
 
-    // Centering & Auto-Scaling (Agar mobil pas di container)
+    // Centering & Auto-Scaling
     const box = new THREE.Box3().setFromObject(model);
     const center = box.getCenter(new THREE.Vector3());
     const size = box.getSize(new THREE.Vector3());
     
-    model.position.sub(center); // Pindah ke titik pusat
+    model.position.sub(center); 
     
-    // Sesuaikan skala mobil agar tidak terlalu besar/kecil (asumsi target lebar 8 unit)
+    // Sesuaikan skala agar pas di container (Target lebar 8 unit)
     const maxDim = Math.max(size.x, size.y, size.z);
     const scale = 8 / maxDim;
     model.scale.set(scale, scale, scale);
@@ -61,7 +61,7 @@ loader.load('asset/innova-v1.glb', (gltf) => {
 
     scene.add(model);
 
-    // 5. TAMBAHKAN AUDIO NODES
+    // 5. TAMBAHKAN AUDIO NODES (Titik cahaya merah)
     const addSpeakerNode = (x, y, z) => {
         const geo = new THREE.SphereGeometry(0.2, 16, 16);
         const mat = new THREE.MeshBasicMaterial({ color: 0xe61e2a });
@@ -70,7 +70,7 @@ loader.load('asset/innova-v1.glb', (gltf) => {
         model.add(node); 
     };
 
-    // Koordinat ini relatif terhadap model mobil
+    // Sesuaikan koordinat speaker di pintu/dashboard
     addSpeakerNode(1.5, 0.5, 1);  
     addSpeakerNode(-1.5, 0.5, 1); 
     addSpeakerNode(0, 1.2, 1.5);  
@@ -81,18 +81,18 @@ loader.load('asset/innova-v1.glb', (gltf) => {
     console.error("Gagal load model mobil:", error);
 });
 
-// 6. ANIMATION LOOP (Di luar loader agar render berjalan terus)
+// 6. ANIMATION LOOP
 function animate() {
     requestAnimationFrame(animate);
     
     if (model) {
-        model.rotation.y += 0.003; // Putar mobil
+        model.rotation.y += 0.003; // Putar mobil secara otomatis
         
         // Animasi denyut Speaker Nodes
-        const scaleNode = 1 + Math.sin(Date.now() * 0.005) * 0.2;
+        const scalePulse = 1 + Math.sin(Date.now() * 0.005) * 0.2;
         model.children.forEach(child => {
             if (child.geometry && child.geometry.type === "SphereGeometry") {
-                child.scale.set(scaleNode, scaleNode, scaleNode);
+                child.scale.set(scalePulse, scalePulse, scalePulse);
             }
         });
     }
@@ -101,7 +101,7 @@ function animate() {
     renderer.render(scene, camera);
 }
 
-animate();
+animate(); // Menjalankan render loop sejak awal
 
 // 7. RESIZE HANDLER
 window.addEventListener('resize', () => {
