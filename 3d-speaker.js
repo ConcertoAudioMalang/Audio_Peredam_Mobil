@@ -1,82 +1,72 @@
-// --- SCRIPT 3D: SONIC WIREFRAME ---
+// --- SCRIPT 3D: QUANTUM DOTS ---
 const container = document.getElementById('speaker-container');
 
-// SCENE & CAMERA
+// 1. SCENE & CAMERA
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
-camera.position.set(0, 0, 8); // Fokus jarak dekat
+const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
+camera.position.set(0, 5, 20); // Kamera agak jauh agar awan partikel terlihat penuh
 
+// 2. RENDERER (Antialias, Alpha transparan)
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// --- MEMBUAT SONIC WIREFRAME (Objek Geometris) ---
-// Kita pakai IcosahedronGeometry dengan subdivisi tinggi agar pola diamond banyak
-const geometry = new THREE.IcosahedronGeometry(2.5, 4); 
+// --- 3. MEMBUAT QUANTUM DOTS (Ribuan Partikel) ---
+const geometry = new THREE.BufferGeometry();
+const vertices = [];
+const particlesCount = 5000; // Jumlah partikel (kurangi jika lemot)
 
-// Material Wireframe (Garis-garis neon transparan)
-const material = new THREE.MeshStandardMaterial({ 
-    color: 0x111111, 
-    emissive: 0xffffff, // Glow putih
-    emissiveIntensity: 0.5,
-    wireframe: true, // HANYA MENAMPILKAN GARIS
+for (let i = 0; i < particlesCount; i++) {
+    // Sebarkan partikel secara acak dalam bentuk lingkaran/bola
+    const x = (Math.random() - 0.5) * 30;
+    const y = (Math.random() - 0.5) * 10;
+    const z = (Math.random() - 0.5) * 30;
+    vertices.push(x, y, z);
+}
+
+geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+
+// Material Partikel (Glow neon yang jernih)
+const material = new THREE.PointsMaterial({
+    color: 0xffffff,
+    size: 0.1, // Titik sangat kecil
     transparent: true,
-    opacity: 0.4
+    opacity: 0.8,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending // Efek glow saat bertumpuk
 });
-const sphere = new THREE.Mesh(geometry, material);
-scene.add(sphere);
 
-// Tambahkan "Inti" di tengah
-const coreGeo = new THREE.IcosahedronGeometry(1.2, 1);
-const coreMat = new THREE.MeshStandardMaterial({ color: 0xe61e2a, emissive: 0xe61e2a });
-const core = new THREE.Mesh(coreGeo, coreMat);
-scene.add(core);
+const points = new THREE.Points(geometry, material);
+scene.add(points);
 
-// --- LIGHTING ---
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-scene.add(ambientLight);
+// --- 4. LIGHTING ---
+// Tidak butuh lampu eksternal karena partikel sudah bersinar sendiri
 
-const frontLight = new THREE.PointLight(0xffffff, 1);
-frontLight.position.set(5, 5, 5);
-scene.add(frontLight);
-
-// --- CONTROLS ---
+// --- 5. CONTROLS ---
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enableZoom = false;
 controls.autoRotate = true;
-controls.autoRotateSpeed = 1.0;
+controls.autoRotateSpeed = 0.5; // Berputar pelan seperti ambiance
 
-// Simpan posisi asli vertices untuk reset
-geometry.userData.originalPositions = geometry.attributes.position.array.slice();
-
-// --- ANIMASI DENYUT SONIC ---
+// --- 6. ANIMASI GELOMBANG QUANTUM ---
 function animate() {
     requestAnimationFrame(animate);
-    const time = Date.now() * 0.002;
+    const time = Date.now() * 0.001;
     
-    // Akses Vertices untuk efek denut (Pulse)
-    const positions = geometry.attributes.position.array;
-    const originalPositions = geometry.userData.originalPositions;
-    
-    for (let i = 0; i < positions.length; i += 3) {
-        const x = originalPositions[i];
-        const y = originalPositions[i + 1];
-        const z = originalPositions[i + 2];
+    // Akses posisi setiap partikel untuk membuat gelombang
+    const positions = points.geometry.attributes.position.array;
+    for (let i = 0; i < particlesCount; i++) {
+        const i3 = i * 3;
+        const x = positions[i3];
+        const z = positions[i3 + 2];
         
-        // Buat efek denjut acak (seperti Noise)
-        const pulse = Math.sin(time + x * 0.5 + y * 0.3) * 0.15;
-        
-        positions[i] = x * (1 + pulse);
-        positions[i + 1] = y * (1 + pulse);
-        positions[i + 2] = z * (1 + pulse);
+        // Gelombang Sinus murni (Smooth Ambiance)
+        positions[i3 + 1] = Math.sin(time + x * 0.5) * Math.cos(time + z * 0.5) * 2;
     }
-    geometry.attributes.position.needsUpdate = true;
-    
-    // Animasi Core (Berdenyut sinkron)
-    core.scale.set(1 + Math.sin(time) * 0.1, 1 + Math.sin(time) * 0.1, 1 + Math.sin(time) * 0.1);
-    
+    points.geometry.attributes.position.needsUpdate = true; // Beritahu Three.js posisi berubah
+
     controls.update();
     renderer.render(scene, camera);
 }
