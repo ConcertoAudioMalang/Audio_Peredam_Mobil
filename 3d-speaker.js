@@ -53,21 +53,22 @@ loader.load('./asset/innova-v1.glb', (gltf) => {
     const scale = 8 / maxDim;
     model.scale.set(scale, scale, scale);
 
-    model.traverse((node) => {
-        if (node.isMesh) {
-            node.material = new THREE.MeshStandardMaterial({
-                color: 0xffffff,
-                transparent: true,
-                opacity: 0.15, 
-                wireframe: true, 
-                emissive: 0xffffff,
-                emissiveIntensity: 0.1
-            });
-        }
-    });
-
-    scene.add(model);
-
+   model.traverse((node) => {
+    if (node.isMesh) {
+        // Cek apakah website sedang mode Dark atau Light
+        const isDark = document.documentElement.classList.contains('dark');
+        
+        node.material = new THREE.MeshStandardMaterial({
+            // Jika Gelap pakai Putih, Jika Terang pakai Abu-abu Gelap/Hitam
+            color: isDark ? 0xffffff : 0x333333, 
+            transparent: true,
+            opacity: isDark ? 0.15 : 0.25, // Sedikit lebih tebal di mode terang
+            wireframe: true,
+            emissive: isDark ? 0xffffff : 0x000000,
+            emissiveIntensity: isDark ? 0.1 : 0
+        });
+    }
+});
     // Audio Nodes
     const addSpeakerNode = (x, y, z) => {
         const geo = new THREE.SphereGeometry(0.2, 16, 16);
@@ -111,3 +112,19 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
     renderer.setSize(container.clientWidth, container.clientHeight);
 });
+
+// Listener untuk mendeteksi perubahan tema (Light/Dark) secara real-time
+const observer = new MutationObserver(() => {
+    if (model) {
+        const isDark = document.documentElement.classList.contains('dark');
+        model.traverse((node) => {
+            if (node.isMesh) {
+                node.material.color.setHex(isDark ? 0xffffff : 0x333333);
+                node.material.opacity = isDark ? 0.15 : 0.25;
+                node.material.emissive.setHex(isDark ? 0xffffff : 0x000000);
+            }
+        });
+    }
+});
+
+observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
