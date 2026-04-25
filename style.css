@@ -3,7 +3,8 @@
 /* ========================================= */
 @font-face {
     font-family: 'SK-Modernist';
-    src: url('font/Sk-Modernist-Regular.otf') format('opentype');
+    /* Sesuaikan path ke folder asset jika font ada di sana */
+    src: url('asset/Sk-Modernist-Regular.otf') format('opentype');
     font-weight: 800;
     font-style: normal;
     font-display: swap;
@@ -40,9 +41,11 @@ body {
     color: var(--text-main);
     line-height: 1.6;
     overflow-x: hidden;
+    /* Transisi halus saat ganti tema */
     transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s ease;
 }
 
+/* Fix Dark Mode Selector */
 .dark body {
     background-color: var(--dark-studio);
     color: #F8F8F8;
@@ -51,14 +54,14 @@ body {
 /* ========================================= */
 /* 3. TYPOGRAPHY SYSTEM                      */
 /* ========================================= */
-.font-heading, h1, h2, h3, h4, .btn-mclaren-primary, .btn-mclaren-outline {
+.font-heading, h1, h2, h3, h4 {
     font-family: 'SK-Modernist', sans-serif !important;
     text-transform: uppercase;
     letter-spacing: -0.02em;
 }
 
 .hero-title {
-    font-size: clamp(3.5rem, 12vw, 12rem);
+    font-size: clamp(3rem, 10vw, 10rem);
     line-height: 0.85;
     letter-spacing: -0.05em;
     font-weight: 900;
@@ -73,14 +76,41 @@ body {
 }
 
 /* ========================================= */
-/* 4. ANIMATIONS (MARQUEE)                   */
+/* 4. 3D CONTAINER FIX                       */
 /* ========================================= */
+#speaker-container {
+    width: 100%;
+    min-height: 450px;
+    position: relative;
+    z-index: 10;
+    /* Mencegah seleksi teks saat memutar model 3D */
+    user-select: none;
+    cursor: grab;
+}
+
+#speaker-container:active {
+    cursor: grabbing;
+}
+
+canvas {
+    display: block;
+    outline: none;
+}
+
+/* ========================================= */
+/* 5. ANIMATIONS (MARQUEE)                   */
+/* ========================================= */
+.marquee-container {
+    overflow: hidden;
+    display: flex;
+    white-space: nowrap;
+}
+
 .animate-marquee {
     display: flex;
     min-width: 100%; 
     flex-shrink: 0;
     align-items: center;
-    justify-content: space-around; 
     animation: marquee 30s linear infinite;
 }
 
@@ -89,54 +119,53 @@ body {
     to { transform: translateX(-100%); }
 }
 
-/* ========================================= */
-/* 5. SECTION TENTANG (HOVER EFFECT)         */
-/* ========================================= */
-#tentang {
-    transition: background-color 0.7s ease;
+/* Pause animation on hover */
+.marquee-container:hover .animate-marquee {
+    animation-play-state: paused;
 }
 
-#tentang.group:hover {
+/* ========================================= */
+/* 6. SECTION TENTANG (HOVER EFFECT)         */
+/* ========================================= */
+.tentang-group {
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Darker effect on hover */
+.tentang-group:hover {
     background-color: #000000 !important;
 }
 
-#tentang.group:hover .hero-title,
-#tentang.group:hover h3,
-#tentang.group:hover span:not(.text-accent-red) {
+.tentang-group:hover .hero-title,
+.tentang-group:hover h3,
+.tentang-group:hover p {
     color: white !important;
 }
 
-#tentang.group:hover p {
-    color: rgba(255, 255, 255, 0.7) !important;
-}
-
 /* ========================================= */
-/* 6. BRAND LOGO UTILITY                     */
+/* 7. BRAND LOGO UTILITY                     */
 /* ========================================= */
 .brand-logo {
-    height: 2.5rem; /* Mobile */
+    height: 3rem; /* Mobile */
     width: auto;
-    filter: grayscale(1) opacity(0.3);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease; 
+    filter: grayscale(1) opacity(0.4);
+    transition: all 0.5s ease;
     cursor: pointer;
-    position: relative;
 }
 
-/* Desktop & Laptop Optimization */
+/* Desktop Optimization */
 @media (min-width: 1024px) {
     .brand-logo {
-        /* 5.5rem adalah sweet spot antara megah dan rapi di laptop */
-        height: 5.5rem !important; 
+        height: 5rem !important; 
     }
 }
 
 /* Dark Mode Logo Support */
 .dark .brand-logo {
-    filter: grayscale(1) opacity(0.3) invert(1);
+    filter: grayscale(1) opacity(0.4) invert(1);
 }
 
 .brand-logo:hover {
     filter: grayscale(0) opacity(1) !important;
-    transform: scale(1.1); 
-    z-index: 50;
+    transform: translateY(-5px);
 }
