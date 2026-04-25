@@ -1,98 +1,72 @@
+// --- SCRIPT 3D: QUANTUM DOTS ---
 const container = document.getElementById('speaker-container');
 
+// 1. SCENE & CAMERA
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
-camera.position.set(0, 10, 15); // Sudut pandang agak dari atas agar gelombang terlihat jelas
+const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
+camera.position.set(0, 5, 20); // Kamera agak jauh agar awan partikel terlihat penuh
 
+// 2. RENDERER (Antialias, Alpha transparan)
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-const spectrumGroup = new THREE.Group();
-scene.add(spectrumGroup);
+// --- 3. MEMBUAT QUANTUM DOTS (Ribuan Partikel) ---
+const geometry = new THREE.BufferGeometry();
+const vertices = [];
+const particlesCount = 5000; // Jumlah partikel (kurangi jika lemot)
 
-// --- 1. MEMBUAT SPEKTRUM 3D (Circular Visualizer) ---
-const count = 128; // Jumlah batang spektrum
-const radius = 4;
-const bars = [];
-
-for (let i = 0; i < count; i++) {
-    // Geometri batang yang tipis dan tajam (Clean look)
-    const geometry = new THREE.BoxGeometry(0.05, 1, 0.05); 
-    const material = new THREE.MeshStandardMaterial({ 
-        color: 0xffffff, 
-        emissive: 0xe61e2a, // Glow warna merah khas Concerto
-        emissiveIntensity: 0.5
-    });
-    
-    const bar = new THREE.Mesh(geometry, material);
-    
-    // Atur posisi melingkar
-    const angle = (i / count) * Math.PI * 2;
-    bar.position.x = Math.cos(angle) * radius;
-    bar.position.z = Math.sin(angle) * radius;
-    bar.rotation.y = -angle;
-    
-    spectrumGroup.add(bar);
-    bars.push(bar);
+for (let i = 0; i < particlesCount; i++) {
+    // Sebarkan partikel secara acak dalam bentuk lingkaran/bola
+    const x = (Math.random() - 0.5) * 30;
+    const y = (Math.random() - 0.5) * 10;
+    const z = (Math.random() - 0.5) * 30;
+    vertices.push(x, y, z);
 }
 
-// --- 2. CENTER PIECE (Core yang berdenyut) ---
-const coreGeo = new THREE.IcosahedronGeometry(1.5, 2); // Sphere abstrak
-const coreMat = new THREE.MeshStandardMaterial({ 
-    color: 0x111111, 
-    wireframe: true, // Bentuk garis-garis transparan yang jernih
+geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+
+// Material Partikel (Glow neon yang jernih)
+const material = new THREE.PointsMaterial({
+    color: 0xffffff,
+    size: 0.1, // Titik sangat kecil
     transparent: true,
-    opacity: 0.3
+    opacity: 0.8,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending // Efek glow saat bertumpuk
 });
-const core = new THREE.Mesh(coreGeo, coreMat);
-scene.add(core);
 
-// --- 3. LIGHTING ---
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-scene.add(ambientLight);
+const points = new THREE.Points(geometry, material);
+scene.add(points);
 
-const pointLight = new THREE.PointLight(0xe61e2a, 2, 20);
-pointLight.position.set(0, 5, 0);
-scene.add(pointLight);
+// --- 4. LIGHTING ---
+// Tidak butuh lampu eksternal karena partikel sudah bersinar sendiri
 
-// --- 4. CONTROLS ---
+// --- 5. CONTROLS ---
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enableZoom = false;
 controls.autoRotate = true;
-controls.autoRotateSpeed = 0.5;
+controls.autoRotateSpeed = 0.5; // Berputar pelan seperti ambiance
 
-// --- 5. ANIMASI GELOMBANG (Ambiance Sound Logic) ---
+// --- 6. ANIMASI GELOMBANG QUANTUM ---
 function animate() {
     requestAnimationFrame(animate);
-    const time = Date.now() * 0.002;
+    const time = Date.now() * 0.001;
     
-    bars.forEach((bar, i) => {
-        // Membuat efek gelombang sinus yang jernih (Smooth Ambiance)
-        const wave = Math.sin(time + i * 0.1) * 1.5; 
-        const wave2 = Math.sin(time * 0.5 + i * 0.05) * 1.5;
+    // Akses posisi setiap partikel untuk membuat gelombang
+    const positions = points.geometry.attributes.position.array;
+    for (let i = 0; i < particlesCount; i++) {
+        const i3 = i * 3;
+        const x = positions[i3];
+        const z = positions[i3 + 2];
         
-        // Skala tinggi batang berubah sesuai "suara"
-        const scale = Math.abs(wave + wave2) + 0.1;
-        bar.scale.y = scale;
-        
-        // Posisi Y disesuaikan agar batang tumbuh ke atas (seperti equalizer)
-        bar.position.y = scale / 2;
-        
-        // Warna berubah intensitasnya sesuai tinggi (Glow effect)
-        bar.material.emissiveIntensity = scale * 0.5;
-    });
-    
-    // Animasi Core di tengah
-    core.rotation.y += 0.01;
-    core.scale.set(
-        1 + Math.sin(time) * 0.1, 
-        1 + Math.sin(time) * 0.1, 
-        1 + Math.sin(time) * 0.1
-    );
-    
+        // Gelombang Sinus murni (Smooth Ambiance)
+        positions[i3 + 1] = Math.sin(time + x * 0.5) * Math.cos(time + z * 0.5) * 2;
+    }
+    points.geometry.attributes.position.needsUpdate = true; // Beritahu Three.js posisi berubah
+
     controls.update();
     renderer.render(scene, camera);
 }
