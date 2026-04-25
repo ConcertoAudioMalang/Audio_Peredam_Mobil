@@ -1,72 +1,73 @@
-// --- SCRIPT 3D: QUANTUM DOTS ---
+// --- SCRIPT 3D: NEON SILK ---
 const container = document.getElementById('speaker-container');
 
-// 1. SCENE & CAMERA
+// SCENE & CAMERA (Fokus jarak dekat agar anyaman sutra terlihat detail)
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
-camera.position.set(0, 5, 20); // Kamera agak jauh agar awan partikel terlihat penuh
+const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
+camera.position.set(0, 2, 10); 
 
-// 2. RENDERER (Antialias, Alpha transparan)
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
 
-// --- 3. MEMBUAT QUANTUM DOTS (Ribuan Partikel) ---
-const geometry = new THREE.BufferGeometry();
-const vertices = [];
-const particlesCount = 5000; // Jumlah partikel (kurangi jika lemot)
+const ribbonGroup = new THREE.Group();
+scene.add(ribbonGroup);
 
-for (let i = 0; i < particlesCount; i++) {
-    // Sebarkan partikel secara acak dalam bentuk lingkaran/bola
-    const x = (Math.random() - 0.5) * 30;
-    const y = (Math.random() - 0.5) * 10;
-    const z = (Math.random() - 0.5) * 30;
-    vertices.push(x, y, z);
+// --- MEMBUAT NEON SILK (Pita Bergelombang) ---
+const count = 5; // Jumlah pita sutra
+const curves = [];
+
+for (let i = 0; i < count; i++) {
+    // Membuat jalan kurva acak
+    const points = [];
+    for (let j = 0; j < 20; j++) {
+        points.push(new THREE.Vector3(j - 10, Math.sin(j * 0.5) * 2, (Math.random() - 0.5) * 2));
+    }
+    const curve = new THREE.CatmullRomCurve3(points);
+    curves.push(curve);
+    
+    // Geometri Tube (Tabung tipis seperti benang neon)
+    const geometry = new THREE.TubeGeometry(curve, 100, 0.05, 8, false);
+    
+    // Material Neon (Glow Gradasi)
+    const material = new THREE.MeshStandardMaterial({ 
+        color: i % 2 === 0 ? 0xffffff : 0xe61e2a, // Putih & Merah Concerto
+        emissive: i % 2 === 0 ? 0xffffff : 0xe61e2a,
+        emissiveIntensity: 0.8,
+        transparent: true,
+        opacity: 0.7
+    });
+    
+    const tube = new THREE.Mesh(geometry, material);
+    ribbonGroup.add(tube);
 }
 
-geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+// --- LIGHTING ---
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
 
-// Material Partikel (Glow neon yang jernih)
-const material = new THREE.PointsMaterial({
-    color: 0xffffff,
-    size: 0.1, // Titik sangat kecil
-    transparent: true,
-    opacity: 0.8,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending // Efek glow saat bertumpuk
-});
+const pointLight = new THREE.PointLight(0xffffff, 1, 10);
+pointLight.position.set(0, 5, 5);
+scene.add(pointLight);
 
-const points = new THREE.Points(geometry, material);
-scene.add(points);
-
-// --- 4. LIGHTING ---
-// Tidak butuh lampu eksternal karena partikel sudah bersinar sendiri
-
-// --- 5. CONTROLS ---
+// --- CONTROLS & ANIMATION ---
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enableZoom = false;
 controls.autoRotate = true;
-controls.autoRotateSpeed = 0.5; // Berputar pelan seperti ambiance
+controls.autoRotateSpeed = 1.0; // Berputar perlahan
 
-// --- 6. ANIMASI GELOMBANG QUANTUM ---
 function animate() {
     requestAnimationFrame(animate);
     const time = Date.now() * 0.001;
     
-    // Akses posisi setiap partikel untuk membuat gelombang
-    const positions = points.geometry.attributes.position.array;
-    for (let i = 0; i < particlesCount; i++) {
-        const i3 = i * 3;
-        const x = positions[i3];
-        const z = positions[i3 + 2];
-        
-        // Gelombang Sinus murni (Smooth Ambiance)
-        positions[i3 + 1] = Math.sin(time + x * 0.5) * Math.cos(time + z * 0.5) * 2;
-    }
-    points.geometry.attributes.position.needsUpdate = true; // Beritahu Three.js posisi berubah
-
+    // Animasi Sutra (Meliuk-liuk pelan)
+    ribbonGroup.children.forEach((tube, i) => {
+        tube.rotation.y = Math.sin(time + i) * 0.1;
+        tube.position.y = Math.sin(time * 0.5 + i) * 0.5;
+    });
+    
     controls.update();
     renderer.render(scene, camera);
 }
