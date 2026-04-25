@@ -62,7 +62,7 @@ loader.load('./asset/innova-v1.glb', (gltf) => {
             // Jika Gelap pakai Putih, Jika Terang pakai Abu-abu Gelap/Hitam
             color: isDark ? 0xffffff : 0x333333, 
             transparent: true,
-            opacity: isDark ? 0.15 : 0.25, // Sedikit lebih tebal di mode terang
+            opacity: isDark ? 0.15 : 0.35; // Sedikit lebih tebal di mode terang
             wireframe: true,
             emissive: isDark ? 0xffffff : 0x000000,
             emissiveIntensity: isDark ? 0.1 : 0
