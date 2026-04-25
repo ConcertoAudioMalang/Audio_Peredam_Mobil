@@ -11,20 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="stylesheet" href="style.css">
-
-    <script>
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
-
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -42,6 +29,16 @@
             }
         }
     </script>
+
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-white dark:bg-dark-studio text-black dark:text-white font-sans transition-colors duration-500 overflow-x-hidden">
 
@@ -79,44 +76,35 @@
                 <i id="menu-icon" class="fa-solid fa-bars mr-2"></i>Menu
             </button>
         </nav>
-        
-        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-white dark:bg-dark-studio border-b border-black/5 dark:border-white/5 p-6 flex flex-col gap-6 text-[10px] font-bold uppercase tracking-widest">
-            <a href="#proses">Work</a>
-            <a href="#tentang">About</a>
-            <a href="#layanan">Services</a>
-            <a href="#kontak">Contact</a>
-            <button class="theme-toggle text-left uppercase text-accent-red">Toggle Mode</button>
-        </div>
     </header>
 
     <main>
         <section id="hero" class="relative min-h-screen flex items-center bg-white dark:bg-dark-studio overflow-hidden px-6 lg:px-12">
-        <div class="absolute inset-0 z-0 opacity-10 dark:opacity-20 pointer-events-none">
-            <img src="asset/background-concerto.jpg" class="w-full h-full object-cover grayscale">
-        </div>
-
-        <div class="relative z-10 max-w-[1800px] mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
-            
-            <div data-aos="fade-right">
-                <span class="block text-[10px] font-black tracking-[0.5em] mb-4 opacity-50 uppercase">WORK WITH PASSION OR NOT AT ALL</span>
-                <h1 class="hero-title leading-[0.85] tracking-[-0.05em] uppercase font-heading text-6xl lg:text-9xl">
-                    CONCERTO <br> <span class="text-accent-red">MALANG</span>
-                </h1>
-                <p class="mt-8 max-w-md text-sm lg:text-base opacity-70 leading-relaxed font-medium">
-                    Elevating automotive soundscapes through precision tuning and world-class components in Malang, Indonesia.
-                </p>
-                <div class="mt-10 flex items-center gap-6">
-                    <a href="#tentang" class="group flex items-center gap-4 text-[10px] font-black uppercase tracking-widest">
-                        Scroll to explore 
-                        <span class="w-12 h-[1px] bg-current transition-all group-hover:w-20"></span>
-                    </a>
-                </div>
+            <div class="absolute inset-0 z-0 opacity-10 dark:opacity-20 pointer-events-none">
+                <img src="asset/background-concerto.jpg" class="w-full h-full object-cover grayscale" alt="BG">
             </div>
 
-            <div id="speaker-container" class="h-[500px] lg:h-[700px] relative w-full" data-aos="zoom-in">
+            <div class="relative z-10 max-w-[1800px] mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <span class="block text-[10px] font-black tracking-[0.5em] mb-4 opacity-50 uppercase">WORK WITH PASSION OR NOT AT ALL</span>
+                    <h1 class="hero-title leading-[0.85] tracking-[-0.05em] uppercase font-heading text-6xl lg:text-9xl">
+                        CONCERTO <br> <span class="text-accent-red">MALANG</span>
+                    </h1>
+                    <p class="mt-8 max-w-md text-sm lg:text-base opacity-70 leading-relaxed font-medium">
+                        Elevating automotive soundscapes through precision tuning and world-class components in Malang, Indonesia.
+                    </p>
+                    <div class="mt-10 flex items-center gap-6">
+                        <a href="#tentang" class="group flex items-center gap-4 text-[10px] font-black uppercase tracking-widest">
+                            Scroll to explore 
+                            <span class="w-12 h-[1px] bg-current transition-all group-hover:w-20"></span>
+                        </a>
+                    </div>
                 </div>
-        </div>
-    </section>
+
+                <div id="speaker-container" class="h-[500px] lg:h-[700px] relative w-full" data-aos="zoom-in">
+                    </div>
+            </div>
+        </section>
 
         <section id="tentang" class="relative py-24 lg:py-40 overflow-hidden transition-all duration-700 group">
     
@@ -818,13 +806,14 @@
         <img id="zoom-modal-image" src="" alt="Zoomed View" class="max-w-[90%] max-h-[90%] object-contain transition-transform duration-500 scale-95">
     </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
     <script src="script.js"></script>
-
+    
     <script>
-        // Inisialisasi Swiper
+        AOS.init({ duration: 1000, once: true });
+        
+        // Inisialisasi Swiper (Testimoni slider)
         const swiper = new Swiper('.testimoni-slider', {
             slidesPerView: 1,
             spaceBetween: 20,
@@ -837,12 +826,8 @@
                 1024: { slidesPerView: 2.5, spaceBetween: 30 }
             }
         });
-
-        // Inisialisasi AOS
-        AOS.init({ duration: 1000, once: true });
     </script>
 
     <script type="module" src="3d-speaker.js"></script>
-
 </body>
 </html>
