@@ -4,8 +4,8 @@ import { OrbitControls } from 'https://unpkg.com/three@0.128.0/examples/jsm/cont
 
 const container = document.getElementById('speaker-container');
 
-// Pastikan container punya dimensi sebelum render
-if (container.clientHeight === 0) {
+// Safety check dimensi container
+if (container && container.clientHeight === 0) {
     container.style.height = "500px";
 }
 
@@ -38,7 +38,6 @@ const loader = new GLTFLoader();
 
 console.log("Memulai load mobil...");
 
-// Tambahkan titik (./) sebelum asset untuk memastikan path relatif benar di GitHub
 loader.load('./asset/innova-v1.glb', (gltf) => {
     console.log("File GLB berhasil terbaca!");
     model = gltf.scene;
@@ -53,23 +52,25 @@ loader.load('./asset/innova-v1.glb', (gltf) => {
     const scale = 8 / maxDim;
     model.scale.set(scale, scale, scale);
 
-   model.traverse((node) => {
-    if (node.isMesh) {
-        // Cek apakah website sedang mode Dark atau Light
-        const isDark = document.documentElement.classList.contains('dark');
-        
-        node.material = new THREE.MeshStandardMaterial({
-            // Jika Gelap pakai Putih, Jika Terang pakai Abu-abu Gelap/Hitam
-            color: isDark ? 0xffffff : 0x333333, 
-            transparent: true,
-            opacity: isDark ? 0.15 : 0.35; // Sedikit lebih tebal di mode terang
-            wireframe: true,
-            emissive: isDark ? 0xffffff : 0x000000,
-            emissiveIntensity: isDark ? 0.1 : 0
-        });
-    }
-});
-    // Audio Nodes
+    // Perbaikan Material: Menggunakan KOMA (,) bukan TITIK KOMA (;)
+    model.traverse((node) => {
+        if (node.isMesh) {
+            const isDark = document.documentElement.classList.contains('dark');
+            
+            node.material = new THREE.MeshStandardMaterial({
+                color: isDark ? 0xffffff : 0x333333, 
+                transparent: true,
+                opacity: isDark ? 0.15 : 0.35, // SELESAI: Titik koma sudah diganti koma
+                wireframe: true,
+                emissive: isDark ? 0xffffff : 0x000000,
+                emissiveIntensity: isDark ? 0.1 : 0
+            });
+        }
+    });
+
+    scene.add(model);
+
+    // Audio Nodes (Speaker Points)
     const addSpeakerNode = (x, y, z) => {
         const geo = new THREE.SphereGeometry(0.2, 16, 16);
         const mat = new THREE.MeshBasicMaterial({ color: 0xe61e2a });
@@ -107,20 +108,20 @@ function animate() {
 }
 animate();
 
+// 6. LISTENERS & THEME ADAPTATION
 window.addEventListener('resize', () => {
     camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
-// Listener untuk mendeteksi perubahan tema (Light/Dark) secara real-time
 const observer = new MutationObserver(() => {
     if (model) {
         const isDark = document.documentElement.classList.contains('dark');
         model.traverse((node) => {
-            if (node.isMesh) {
+            if (node.isMesh && node.material) {
                 node.material.color.setHex(isDark ? 0xffffff : 0x333333);
-                node.material.opacity = isDark ? 0.15 : 0.25;
+                node.material.opacity = isDark ? 0.15 : 0.35;
                 node.material.emissive.setHex(isDark ? 0xffffff : 0x000000);
             }
         });
