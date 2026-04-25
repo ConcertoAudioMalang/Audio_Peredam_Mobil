@@ -810,7 +810,7 @@
     </div>
 </footer>
 
-<button id="scroll-to-top" aria-label="Scroll to top" class="fixed bottom-8 right-8 z-[99] w-14 h-14 bg-accent-red text-white shadow-[0_20px_40px_rgba(230,0,0,0.3)] transition-all duration-500 opacity-0 invisible translate-y-10 hover:bg-black flex items-center justify-center group">
+    <button id="scroll-to-top" aria-label="Scroll to top" class="fixed bottom-8 right-8 z-[99] w-14 h-14 bg-accent-red text-white shadow-[0_20px_40px_rgba(230,0,0,0.3)] transition-all duration-500 opacity-0 invisible translate-y-10 hover:bg-black flex items-center justify-center group">
         <i class="fa-solid fa-arrow-up text-lg transition-transform group-hover:-translate-y-1"></i>
     </button>
 
@@ -824,31 +824,25 @@
     <script src="script.js"></script>
 
     <script>
+        // Inisialisasi Swiper
         const swiper = new Swiper('.testimoni-slider', {
             slidesPerView: 1,
             spaceBetween: 20,
             loop: true,
             grabCursor: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            navigation: {
-                nextEl: '.swiper-next',
-                prevEl: '.swiper-prev',
-            },
+            autoplay: { delay: 5000, disableOnInteraction: false },
+            navigation: { nextEl: '.swiper-next', prevEl: '.swiper-prev' },
             breakpoints: {
                 768: { slidesPerView: 2 },
                 1024: { slidesPerView: 2.5, spaceBetween: 30 }
             }
         });
-    </script>
 
-    <script>
+        // Inisialisasi AOS
         AOS.init({ duration: 1000, once: true });
     </script>
 
-    <script src="3d-speaker.js"></script>
+    <script type="module" src="3d-speaker.js"></script>
 
 </body>
 </html>
