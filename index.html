@@ -37,7 +37,15 @@
             document.documentElement.classList.remove('dark');
         }
     </script>
-    
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+        }
+    }
+    </script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-white dark:bg-dark-studio text-black dark:text-white font-sans transition-colors duration-500 overflow-x-hidden">
@@ -77,11 +85,10 @@
             </button>
         </nav>
     </header>
-
     <main>
-        <section id="hero" class="relative min-h-screen flex items-center bg-white dark:bg-dark-studio overflow-hidden px-6 lg:px-12">
+       <section id="hero" class="relative min-h-screen flex items-center bg-white dark:bg-dark-studio overflow-hidden px-6 lg:px-12">
             <div class="absolute inset-0 z-0 opacity-10 dark:opacity-20 pointer-events-none">
-                <img src="asset/background-concerto.jpg" class="w-full h-full object-cover grayscale" alt="BG">
+                <img src="asset/background-concerto.jpg" class="w-full h-full object-cover grayscale" alt="Background">
             </div>
 
             <div class="relative z-10 max-w-[1800px] mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
@@ -93,12 +100,6 @@
                     <p class="mt-8 max-w-md text-sm lg:text-base opacity-70 leading-relaxed font-medium">
                         Elevating automotive soundscapes through precision tuning and world-class components in Malang, Indonesia.
                     </p>
-                    <div class="mt-10 flex items-center gap-6">
-                        <a href="#tentang" class="group flex items-center gap-4 text-[10px] font-black uppercase tracking-widest">
-                            Scroll to explore 
-                            <span class="w-12 h-[1px] bg-current transition-all group-hover:w-20"></span>
-                        </a>
-                    </div>
                 </div>
 
                 <div id="speaker-container" class="h-[500px] lg:h-[700px] relative w-full" data-aos="zoom-in">
@@ -806,28 +807,15 @@
         <img id="zoom-modal-image" src="" alt="Zoomed View" class="max-w-[90%] max-h-[90%] object-contain transition-transform duration-500 scale-95">
     </div>
 
-   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
-    
+
     <script>
         AOS.init({ duration: 1000, once: true });
-        
-        // Inisialisasi Swiper (Testimoni slider)
-        const swiper = new Swiper('.testimoni-slider', {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: true,
-            grabCursor: true,
-            autoplay: { delay: 5000, disableOnInteraction: false },
-            navigation: { nextEl: '.swiper-next', prevEl: '.swiper-prev' },
-            breakpoints: {
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 2.5, spaceBetween: 30 }
-            }
-        });
     </script>
 
     <script type="module" src="3d-speaker.js"></script>
+
 </body>
 </html>
