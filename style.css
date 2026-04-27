@@ -179,48 +179,47 @@ canvas {
 }
 
 /* ========================================= */
-/* 8. NAVBAR FIX (PRESISI & RAPAT)           */
+/* 8. NAVBAR FIX (CENTERED & CONSTRAINED)    */
 /* ========================================= */
 nav, header {
     position: fixed !important;
     top: 0;
     left: 0;
     width: 100%;
-    /* Gunakan height auto agar mengikuti besar konten menu kamu */
-    height: auto; 
-    min-height: 60px; /* Tinggi minimal agar tetap elegan */
-    z-index: 9999 !important; 
-    
-    /* Center positioning */
+    height: auto;
+    min-height: 60px;
+    z-index: 9999 !important;
     display: flex;
     align-items: center;
-    justify-content: center; /* Memastikan menu capsule ada di tengah */
-    
-    /* Padding atas bawah agar tidak menempel ke layar */
-    padding: 10px 0; 
-    
     background-color: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 }
 
-/* Mode Dark */
+/* Container tambahan di dalam Nav untuk menjaga jarak pinggir */
+nav .nav-content, header .nav-content {
+    width: 100%;
+    max-width: 1400px; /* Atur angka ini (misal 1200px atau 1400px) agar tidak terlalu ke pinggir */
+    margin: 0 auto;    /* Mengetengahkan kontainer */
+    padding: 0 5%;    /* Jarak aman di HP agar tidak nempel layar */
+    display: flex;
+    justify-content: space-between; /* Logo kiri, Menu kanan */
+    align-items: center;
+}
+
 .dark nav, .dark header {
     background-color: rgba(10, 10, 10, 0.7);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Ruang aman konten di bawahnya */
 body {
-    padding-top: 80px; 
+    padding-top: 80px;
 }
 
 @media (max-width: 768px) {
-    body {
-        padding-top: 70px;
-    }
-    nav, header {
-        padding: 8px 0;
+    body { padding-top: 70px; }
+    nav .nav-content, header .nav-content {
+        padding: 10px 20px; /* Jarak lebih rapat di HP */
     }
 }
