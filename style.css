@@ -147,50 +147,58 @@ body {
 }
 
 /* ========================================= */
-/* 6. MOBILE MENU FIX (CRITICAL)             */
+/* 6. MOBILE MENU FIX (PRECISE VERSION)      */
 /* ========================================= */
+
+/* State awal: Menu sembunyi total */
 #mobile-menu {
     position: fixed;
     inset: 0;
     z-index: 99999;
-    /* Tambahkan dua baris ini agar tidak menutupi desktop */
-    visibility: hidden; 
-    pointer-events: none;
-    transition: all 0.5s ease-in-out;
+    background-color: white; /* Pastikan background terisi */
+    display: none; /* Kita pakai display: none agar benar-benar hilang dari desktop */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease-in-out;
 }
 
-/* Saat menu aktif */
-#mobile-menu:not(.translate-y-full) {
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateY(0);
+/* Fix untuk Dark Mode di mobile menu */
+.dark #mobile-menu {
+    background-color: var(--dark-studio);
 }
 
-.translate-y-full {
-    transform: translateY(100%);
+/* Class pembantu untuk JavaScript .toggle('hidden') */
+/* Di Tailwind, .hidden itu display: none. Kita buat agar di Mobile terlihat sebagai Flex */
+#mobile-menu:not(.hidden) {
+    display: flex !important;
 }
-/* 1. Custom Cursor TIDAK BOLEH menangkap klik */
+
+/* ========================================= */
+/* 7. INTERACTION SAFETY (POINTER EVENTS)    */
+/* ========================================= */
+
+/* Kunci utama agar klik tembus ke tombol */
 #custom-cursor {
     pointer-events: none !important;
-    z-index: 99999;
+    z-index: 100000; /* Harus di atas mobile menu */
 }
 
-/* 2. Pastikan Mobile Menu tidak menutupi desktop saat sembunyi */
-#mobile-menu.hidden {
-    display: none !important; /* Gunakan display none agar benar-benar hilang dari layar */
-}
-
-/* 3. Beri kepastian pada tombol navbar */
+/* Strategi Navbar: Hanya tombol/link yang menangkap klik */
 #navbar {
-    pointer-events: none; /* Navbar transparan terhadap klik... */
+    pointer-events: none; 
 }
 
-#navbar nav, #navbar button, #navbar a {
-    pointer-events: auto; /* ...KECUALI isi di dalamnya (tombol & link) */
-}
-
+#navbar nav, 
+#navbar button, 
+#navbar a,
 #theme-toggle {
+    pointer-events: auto !important;
     cursor: pointer !important;
+}
+
+/* Paksa Theme Toggle Desktop punya posisi jelas */
+#theme-toggle {
     position: relative;
-    z-index: 110;
+    z-index: 150;
 }
