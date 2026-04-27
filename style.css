@@ -1,5 +1,5 @@
 /* ========================================= */
-/* 1. FONT & ROOT VARIABLES                  */
+/* 1. FONT & ROOT VARIABLES                   */
 /* ========================================= */
 @font-face {
     font-family: 'SK-Modernist';
@@ -15,6 +15,8 @@
     --dark-studio: #0A0A0A;
     --bg-studio: #F8F8F8;
     --text-main: #1A1A1A;
+    /* Tambahan variabel untuk jarak aman navbar */
+    --nav-height: 80px; 
 }
 
 /* Utilities for Tailwind Bridge */
@@ -43,6 +45,8 @@ body {
     overflow-x: hidden;
     /* Transisi halus saat ganti tema */
     transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s ease;
+    /* PENTING: Memberi ruang agar hero tidak tertutup navbar fixed */
+    padding-top: var(--nav-height); 
 }
 
 /* Fix Dark Mode Selector */
@@ -80,12 +84,16 @@ body {
 /* ========================================= */
 #speaker-container {
     width: 100%;
-    min-height: 450px;
+    /* Gunakan clamp agar tinggi adaptif di mobile (min 350px) */
+    min-height: clamp(350px, 50vh, 450px);
     position: relative;
+    /* Z-index diturunkan agar kalah dengan Navbar (9999) */
     z-index: 10;
     /* Mencegah seleksi teks saat memutar model 3D */
     user-select: none;
     cursor: grab;
+    /* Memastikan scroll jari di HP tetap jalan */
+    touch-action: pan-y; 
 }
 
 #speaker-container:active {
@@ -168,4 +176,32 @@ canvas {
 .brand-logo:hover {
     filter: grayscale(0) opacity(1) !important;
     transform: translateY(-5px);
+}
+
+/* ========================================= */
+/* 8. NAVBAR FIX (TAMBAHAN KRITIS)           */
+/* ========================================= */
+nav, header {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    /* Z-index mutlak di atas area 3D */
+    z-index: 9999 !important; 
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.dark nav, .dark header {
+    background-color: rgba(10, 10, 10, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+    :root { --nav-height: 70px; }
 }
