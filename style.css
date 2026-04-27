@@ -78,22 +78,20 @@ body {
 /* ========================================= */
 #speaker-container {
     width: 100%;
-    /* Tinggi dinamis berdasarkan jenis perangkat */
-    height: 60vh; 
+    height: 400px; /* Tinggi default yang stabil */
     min-height: 300px;
-    max-height: 600px;
     position: relative;
-    z-index: 10;
+    /* Pastikan z-index 3D lebih rendah dari Navbar (biasanya navbar itu 50-100) */
+    z-index: 5; 
     user-select: none;
     cursor: grab;
-    /* Sentuhan halus untuk mobile agar tidak mengganggu scroll */
     touch-action: pan-y; 
 }
 
+/* Di Desktop, buat lebih besar lagi agar tidak terlihat kecil */
 @media (min-width: 1024px) {
     #speaker-container {
-        height: 500px;
-        max-height: none;
+        height: 550px;
     }
 }
 
