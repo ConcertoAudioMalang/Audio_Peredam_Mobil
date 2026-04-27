@@ -97,23 +97,22 @@ loader.load('./asset/innova-v1.glb', (gltf) => {
     console.error("Gagal load mobil:", error);
 }); // <-- Penutup loader yang tadi kurang
 
-// 5. ANIMATION LOOP
+// 5. ANIMATION LOOP (BALIK KE NORMAL)
 function animate() {
     requestAnimationFrame(animate);
+    
+    // Jika model sudah di-load, jalankan animasi
     if (model) {
-        model.rotation.y += 0.003;
-        const scalePulse = 1 + Math.sin(Date.now() * 0.005) * 0.2;
-        model.children.forEach(child => {
-            // Animasi denyut hanya untuk marker
-            if (child.type === "Group") {
-                child.scale.set(scalePulse, scalePulse, scalePulse);
-            }
-        });
+        // HANYA PUTAR MOBILNYA (Elegan & Mewah)
+        model.rotation.y += 0.003; 
+        
+        // --- BAGIAN DENYUT (PULSING) SUDAH DIHAPUS ---
+        // model.children.forEach(child => { ... }) <- Bagian ini dibuang
     }
+
     controls.update();
     renderer.render(scene, camera);
 }
-animate();
 
 // 6. LISTENERS
 window.addEventListener('resize', () => {
