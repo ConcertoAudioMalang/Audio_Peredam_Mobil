@@ -6,23 +6,21 @@ const container = document.getElementById('speaker-container');
 
 // 1. SCENE & CAMERA
 const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
 
-// Camera setup dengan FOV dinamis
-const isMobile = window.innerWidth < 768;
-const initialFOV = isMobile ? 55 : 45; // FOV lebih lebar di mobile
-const camera = new THREE.PerspectiveCamera(initialFOV, container.clientWidth / container.clientHeight, 0.1, 1000);
-
-// Atur posisi kamera awal berdasarkan perangkat
-if (isMobile) {
-    camera.position.set(16, 8, 16); // Lebih jauh di HP
-} else {
-    camera.position.set(12, 6, 12); // Standar Desktop
+// Kita pakai satu koordinat yang aman untuk semua, tapi FOV yang bermain
+function updateCameraPosition() {
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+        camera.position.set(14, 7, 14); // Sedikit lebih dekat dari yang tadi biar gak kekecilan
+        camera.fov = 50; 
+    } else {
+        camera.position.set(10, 5, 10); // Lebih dekat di desktop biar mobilnya BESAR
+        camera.fov = 40;
+    }
+    camera.updateProjectionMatrix();
 }
-
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-renderer.setSize(container.clientWidth, container.clientHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Batasi pixel ratio untuk performa mobile
-container.appendChild(renderer.domElement);
+updateCameraPosition();
 
 // 2. LIGHTING
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
@@ -91,27 +89,15 @@ function animate() {
 }
 animate();
 
-// 6. RESPONSIVE LISTENER (Kunci Utama)
+// 6. RESPONSIVE LISTENER
 window.addEventListener('resize', () => {
     if (!container) return;
-
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-
-    // Update aspect ratio
-    camera.aspect = width / height;
-
-    // Penyesuaian FOV & Posisi saat Resize
-    if (window.innerWidth < 768) {
-        camera.fov = 55;
-        camera.position.set(16, 8, 16);
-    } else {
-        camera.fov = 45;
-        camera.position.set(12, 6, 12);
-    }
-
-    camera.updateProjectionMatrix();
-    renderer.setSize(width, height);
+    
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    camera.aspect = container.clientWidth / container.clientHeight;
+    
+    // Panggil fungsi penyesuaian posisi
+    updateCameraPosition();
 });
 
 // 7. THEME OBSERVER
