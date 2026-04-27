@@ -179,29 +179,48 @@ canvas {
 }
 
 /* ========================================= */
-/* 8. NAVBAR FIX (TAMBAHAN KRITIS)           */
+/* 8. NAVBAR FIX (PRESISI & RAPAT)           */
 /* ========================================= */
 nav, header {
     position: fixed !important;
     top: 0;
     left: 0;
     width: 100%;
-    height: var(--nav-height);
-    /* Z-index mutlak di atas area 3D */
+    /* Gunakan height auto agar mengikuti besar konten menu kamu */
+    height: auto; 
+    min-height: 60px; /* Tinggi minimal agar tetap elegan */
     z-index: 9999 !important; 
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    
+    /* Center positioning */
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    justify-content: center; /* Memastikan menu capsule ada di tengah */
+    
+    /* Padding atas bawah agar tidak menempel ke layar */
+    padding: 10px 0; 
+    
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 }
 
+/* Mode Dark */
 .dark nav, .dark header {
-    background-color: rgba(10, 10, 10, 0.8);
+    background-color: rgba(10, 10, 10, 0.7);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Ruang aman konten di bawahnya */
+body {
+    padding-top: 80px; 
+}
+
 @media (max-width: 768px) {
-    :root { --nav-height: 70px; }
+    body {
+        padding-top: 70px;
+    }
+    nav, header {
+        padding: 8px 0;
+    }
 }
