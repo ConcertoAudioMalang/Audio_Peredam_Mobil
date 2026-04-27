@@ -194,7 +194,7 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 9998 !important;
+    z-index: 999 !important;
     /* Opsional: Tambahkan backdrop-blur jika ingin efek transparan mewah */
     backdrop-filter: blur(10px); 
 }
