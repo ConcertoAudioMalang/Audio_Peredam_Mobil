@@ -4,25 +4,30 @@ import { OrbitControls } from 'https://unpkg.com/three@0.128.0/examples/jsm/cont
 
 const container = document.getElementById('speaker-container');
 
-// 1. SCENE & CAMERA
+// 1. SCENE & RENDERER (Renderer harus dibuat duluan sebelum OrbitControls)
 const scene = new THREE.Scene();
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+container.appendChild(renderer.domElement);
+
+// 2. CAMERA
 const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
 
-// Kita pakai satu koordinat yang aman untuk semua, tapi FOV yang bermain
 function updateCameraPosition() {
     const isMobile = window.innerWidth < 768;
     if (isMobile) {
-        camera.position.set(14, 7, 14); // Sedikit lebih dekat dari yang tadi biar gak kekecilan
+        camera.position.set(14, 7, 14); 
         camera.fov = 50; 
     } else {
-        camera.position.set(10, 5, 10); // Lebih dekat di desktop biar mobilnya BESAR
+        camera.position.set(10, 5, 10); 
         camera.fov = 40;
     }
     camera.updateProjectionMatrix();
 }
 updateCameraPosition();
 
-// 2. LIGHTING
+// 3. LIGHTING
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
 scene.add(ambientLight);
 
@@ -30,14 +35,14 @@ const spotLight = new THREE.SpotLight(0xe61e2a, 5);
 spotLight.position.set(10, 10, 10);
 scene.add(spotLight);
 
-// 3. GLOBAL VARIABLES
+// 4. GLOBAL VARIABLES & CONTROLS
 let model;
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enableZoom = false;
 controls.autoRotate = false;
 
-// 4. LOAD MODEL INNOVA ZENIX
+// 5. LOAD MODEL INNOVA ZENIX
 const loader = new GLTFLoader();
 
 loader.load('./asset/innova-v1.glb', (gltf) => {
@@ -76,7 +81,7 @@ loader.load('./asset/innova-v1.glb', (gltf) => {
     console.error("Gagal load mobil:", error);
 });
 
-// 5. ANIMATION LOOP
+// 6. ANIMATION LOOP
 function animate() {
     requestAnimationFrame(animate);
     
@@ -89,18 +94,16 @@ function animate() {
 }
 animate();
 
-// 6. RESPONSIVE LISTENER
+// 7. RESPONSIVE LISTENER
 window.addEventListener('resize', () => {
     if (!container) return;
     
     renderer.setSize(container.clientWidth, container.clientHeight);
     camera.aspect = container.clientWidth / container.clientHeight;
-    
-    // Panggil fungsi penyesuaian posisi
     updateCameraPosition();
 });
 
-// 7. THEME OBSERVER
+// 8. THEME OBSERVER
 const observer = new MutationObserver(() => {
     if (model) {
         const isDark = document.documentElement.classList.contains('dark');
