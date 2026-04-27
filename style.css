@@ -169,3 +169,28 @@ body {
 .translate-y-full {
     transform: translateY(100%);
 }
+/* 1. Custom Cursor TIDAK BOLEH menangkap klik */
+#custom-cursor {
+    pointer-events: none !important;
+    z-index: 99999;
+}
+
+/* 2. Pastikan Mobile Menu tidak menutupi desktop saat sembunyi */
+#mobile-menu.hidden {
+    display: none !important; /* Gunakan display none agar benar-benar hilang dari layar */
+}
+
+/* 3. Beri kepastian pada tombol navbar */
+#navbar {
+    pointer-events: none; /* Navbar transparan terhadap klik... */
+}
+
+#navbar nav, #navbar button, #navbar a {
+    pointer-events: auto; /* ...KECUALI isi di dalamnya (tombol & link) */
+}
+
+#theme-toggle {
+    cursor: pointer !important;
+    position: relative;
+    z-index: 110;
+}
