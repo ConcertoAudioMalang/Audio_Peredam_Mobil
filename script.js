@@ -15,28 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let lastScrollY = window.scrollY;
 
-    // --- 2. THEME ENGINE ---
-    const updateTheme = () => {
-        const isDark = localStorage.getItem('theme') === 'dark' || 
-                      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        html.classList.toggle('dark', isDark);
-    };
+   // --- 2. THEME ENGINE ---
+const toggleTheme = () => {
+    html.classList.toggle('dark');
+    const isDark = html.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    console.log("Theme toggled to:", isDark ? 'dark' : 'light');
+};
 
-    const toggleTheme = () => {
-        const isCurrentlyDark = html.classList.contains('dark');
-        const newTheme = isCurrentlyDark ? 'light' : 'dark';
-        html.classList.toggle('dark');
-        localStorage.setItem('theme', newTheme);
-    };
-
-    document.querySelectorAll('[id="theme-toggle"], .theme-toggle').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleTheme();
-        });
-    });
-
-    updateTheme();
+// Gunakan selektor yang lebih aman (mencakup ID maupun Class)
+document.addEventListener('click', (e) => {
+    // Jika yang diklik adalah tombol theme-toggle atau elemen di dalamnya (span)
+    if (e.target.closest('#theme-toggle') || e.target.closest('#theme-toggle-mobile') || e.target.closest('.theme-toggle')) {
+        e.preventDefault();
+        toggleTheme();
+    }
+});
 
     // --- 3. NAVBAR & SCROLL ENGINE (Termasuk Button Up) ---
     const handleNavbarScroll = () => {
