@@ -4,10 +4,6 @@ import { OrbitControls } from 'https://unpkg.com/three@0.128.0/examples/jsm/cont
 
 const container = document.getElementById('speaker-container');
 
-if (container && container.clientHeight === 0) {
-    container.style.height = "500px";
-}
-
 // 1. SCENE & CAMERA
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
@@ -64,58 +60,44 @@ loader.load('./asset/innova-v1.glb', (gltf) => {
 
     scene.add(model);
 
-    // FUNGSI MARKER MINIMALIS (Glow Dots)
+    // FUNGSI MARKER (Jika ingin dipakai nanti)
     const addSpeakerNode = (x, y, z) => {
-        const nodeGroup = new THREE.Group(); // Bungkus biar rapi
-        
+        const nodeGroup = new THREE.Group();
         const geo = new THREE.SphereGeometry(0.05, 16, 16); 
         const mat = new THREE.MeshBasicMaterial({ color: 0xe61e2a });
         const node = new THREE.Mesh(geo, mat);
-        
         const glowGeo = new THREE.SphereGeometry(0.12, 16, 16);
-        const glowMat = new THREE.MeshBasicMaterial({ 
-            color: 0xe61e2a, 
-            transparent: true, 
-            opacity: 0.2 
-        });
+        const glowMat = new THREE.MeshBasicMaterial({ color: 0xe61e2a, transparent: true, opacity: 0.2 });
         const glow = new THREE.Mesh(glowGeo, glowMat);
-        
         nodeGroup.add(node);
         nodeGroup.add(glow);
         nodeGroup.position.set(x, y, z);
         model.add(nodeGroup); 
     };
 
-    // PANGGIL DISINI (Jika ingin benar-benar bersih, komentari 3 baris di bawah ini)
-    // addSpeakerNode(1.5, 0.5, 1);  
-    // addSpeakerNode(-1.5, 0.5, 1); 
-    // addSpeakerNode(0, 1.2, 1.5);  
-
-}, (xhr) => {
-    // Progress loader
-}, (error) => {
+    // Saat ini dikosongkan agar mobil bersih
+}, undefined, (error) => {
     console.error("Gagal load mobil:", error);
-}); // <-- Penutup loader yang tadi kurang
+});
 
-// 5. ANIMATION LOOP (BALIK KE NORMAL)
+// 5. ANIMATION LOOP
 function animate() {
     requestAnimationFrame(animate);
     
-    // Jika model sudah di-load, jalankan animasi
     if (model) {
-        // HANYA PUTAR MOBILNYA (Elegan & Mewah)
-        model.rotation.y += 0.003; 
-        
-        // --- BAGIAN DENYUT (PULSING) SUDAH DIHAPUS ---
-        // model.children.forEach(child => { ... }) <- Bagian ini dibuang
+        model.rotation.y += 0.003; // Hanya rotasi tenang
     }
 
     controls.update();
     renderer.render(scene, camera);
 }
 
+// JALANKAN ANIMASI (Ini yang tadi lupa dipanggil)
+animate();
+
 // 6. LISTENERS
 window.addEventListener('resize', () => {
+    if (!container) return;
     camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(container.clientWidth, container.clientHeight);
