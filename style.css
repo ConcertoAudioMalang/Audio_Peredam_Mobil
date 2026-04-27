@@ -14,7 +14,7 @@
     --dark-studio: #0A0A0A;
     --bg-studio: #F8F8F8;
     --text-main: #1A1A1A;
-    --nav-height: 80px; 
+    --nav-height: 80px;
 }
 
 html {
@@ -28,7 +28,8 @@ body {
     color: var(--text-main);
     overflow-x: hidden;
     transition: background-color 0.4s ease;
-    padding-top: var(--nav-height); /* Jarak aman agar konten tidak tertutup Navbar */
+    /* Memberi ruang agar hero tidak tertutup navbar */
+    padding-top: var(--nav-height); 
 }
 
 .dark body {
@@ -37,7 +38,7 @@ body {
 }
 
 /* ========================================= */
-/* 2. TYPOGRAPHY (RESPONSIVE)                */
+/* 2. TYPOGRAPHY SYSTEM                      */
 /* ========================================= */
 .font-heading, h1, h2, h3, h4 {
     font-family: 'SK-Modernist', sans-serif !important;
@@ -61,47 +62,47 @@ body {
 }
 
 /* ========================================= */
-/* 3. NAVIGATION (FIXED & GLASSMORPHISM)     */
+/* 3. NAVIGATION (FIXED & HIGH PRIORITY)     */
 /* ========================================= */
-nav, header {
-    position: fixed;
+nav, header, .main-nav {
+    position: fixed !important;
     top: 0;
     left: 0;
     width: 100%;
     height: var(--nav-height);
+    /* Z-index tertinggi agar menu HP tidak tertutup model 3D */
     z-index: 9999 !important; 
     display: flex;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
 }
 
 .dark nav, .dark header {
-    background-color: rgba(10, 10, 10, 0.7);
+    background-color: rgba(10, 10, 10, 0.75);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Penyesuaian tinggi di HP */
 @media (max-width: 768px) {
     :root { --nav-height: 70px; }
-    body { padding-top: var(--nav-height); }
 }
 
 /* ========================================= */
-/* 4. 3D VISUALIZER CONTAINER                */
+/* 4. 3D VISUALIZER (ZENIX CONTAINER)        */
 /* ========================================= */
 #speaker-container {
     width: 100%;
-    height: clamp(350px, 50vh, 500px); 
+    /* Tinggi dinamis agar mobil tidak hilang */
+    height: clamp(350px, 60vh, 550px); 
     position: relative;
-    z-index: 10; 
+    /* Z-index di bawah Nav tapi di atas elemen lain */
+    z-index: 50; 
     cursor: grab;
     touch-action: pan-y;
     user-select: none;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
 }
 
 @media (min-width: 1024px) {
@@ -113,56 +114,75 @@ nav, header {
 
 #speaker-container:active { cursor: grabbing; }
 
+canvas {
+    display: block;
+    outline: none;
+}
+
 /* ========================================= */
-/* 5. MARQUEE & LOGOS                        */
+/* 5. ANIMATIONS (MARQUEE SYSTEM)            */
 /* ========================================= */
 .marquee-container {
     overflow: hidden;
     display: flex;
-    padding: 2.5rem 0;
+    padding: 3rem 0;
+    white-space: nowrap;
 }
 
 .animate-marquee {
     display: flex;
-    gap: 4rem; 
+    gap: 5rem;
     animation: marquee 35s linear infinite;
 }
 
 @keyframes marquee {
     from { transform: translateX(0); }
-    to { transform: translateX(-50%); } 
+    to { transform: translateX(-50%); }
 }
 
+.marquee-container:hover .animate-marquee {
+    animation-play-state: paused;
+}
+
+/* ========================================= */
+/* 6. BRAND LOGO UTILITY                     */
+/* ========================================= */
 .brand-logo {
-    height: clamp(2rem, 5vw, 4.5rem);
+    height: clamp(2.2rem, 5vw, 4.8rem);
     width: auto;
-    filter: grayscale(1) opacity(0.5);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: grayscale(1) opacity(0.4);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
 }
 
-.dark .brand-logo { filter: grayscale(1) opacity(0.5) invert(1); }
+.dark .brand-logo { 
+    filter: grayscale(1) opacity(0.4) invert(1); 
+}
 
 .brand-logo:hover {
     filter: grayscale(0) opacity(1) !important;
-    transform: scale(1.1);
+    transform: translateY(-8px) scale(1.05);
 }
 
 /* ========================================= */
-/* 6. COMPONENTS & UTILITIES                 */
+/* 7. SECTION TENTANG & HELPERS              */
 /* ========================================= */
 .tentang-group {
-    transition: background-color 0.5s ease, transform 0.5s ease;
-    border-radius: 20px;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 24px;
+    padding: 2rem;
 }
 
 .tentang-group:hover {
     background-color: var(--dark-studio) !important;
+    transform: translateY(-5px);
 }
 
 .tentang-group:hover :is(.hero-title, h3, p) {
     color: white !important;
 }
 
+/* Tailwind-style Utilities */
 .text-accent-red { color: var(--accent-red); }
 .bg-accent-red { background-color: var(--accent-red); }
 
