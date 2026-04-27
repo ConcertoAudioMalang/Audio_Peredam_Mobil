@@ -169,3 +169,19 @@ canvas {
     filter: grayscale(0) opacity(1) !important;
     transform: translateY(-5px);
 }
+
+#mobile-menu {
+    /* Mencegah scroll saat menu terbuka */
+    overflow: hidden;
+    /* Pastikan z-index lebih tinggi dari apapun */
+    z-index: 99999;
+}
+
+/* Animasi agar menu meluncur mulus */
+.translate-y-full {
+    transform: translateY(100%);
+}
+
+#mobile-menu:not(.translate-y-full) {
+    transform: translateY(0);
+}
