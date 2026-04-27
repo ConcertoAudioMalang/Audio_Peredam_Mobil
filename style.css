@@ -1,8 +1,9 @@
 /* ========================================= */
-/* 1. CORE CONFIGURATION                     */
+/* 1. FONT & ROOT VARIABLES                  */
 /* ========================================= */
 @font-face {
     font-family: 'SK-Modernist';
+    /* Sesuaikan path ke folder asset jika font ada di sana */
     src: url('asset/Sk-Modernist-Regular.otf') format('opentype');
     font-weight: 800;
     font-style: normal;
@@ -14,31 +15,44 @@
     --dark-studio: #0A0A0A;
     --bg-studio: #F8F8F8;
     --text-main: #1A1A1A;
-    --nav-height: 80px;
 }
 
-html {
-    scroll-behavior: smooth;
-    scrollbar-gutter: stable;
-}
+/* Utilities for Tailwind Bridge */
+.text-accent-red { color: var(--accent-red); }
+.bg-accent-red { background-color: var(--accent-red); }
+.border-accent-red { border-color: var(--accent-red); }
 
-body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: white;
-    color: var(--text-main);
-    overflow-x: hidden;
-    transition: background-color 0.4s ease;
-    /* Memberi ruang agar hero tidak tertutup navbar */
-    padding-top: var(--nav-height); 
-}
-
-.dark body {
-    background-color: var(--dark-studio);
-    color: var(--bg-studio);
+::selection {
+    background-color: var(--accent-red);
+    color: white;
 }
 
 /* ========================================= */
-/* 2. TYPOGRAPHY SYSTEM                      */
+/* 2. GLOBAL RESET & BASE                    */
+/* ========================================= */
+html {
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable; 
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    background-color: white;
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Transisi halus saat ganti tema */
+    transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s ease;
+}
+
+/* Fix Dark Mode Selector */
+.dark body {
+    background-color: var(--dark-studio);
+    color: #F8F8F8;
+}
+
+/* ========================================= */
+/* 3. TYPOGRAPHY SYSTEM                      */
 /* ========================================= */
 .font-heading, h1, h2, h3, h4 {
     font-family: 'SK-Modernist', sans-serif !important;
@@ -47,72 +61,36 @@ body {
 }
 
 .hero-title {
-    font-size: clamp(2.8rem, 12vw, 9rem);
+    font-size: clamp(3rem, 10vw, 10rem);
     line-height: 0.85;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.05em;
     font-weight: 900;
 }
 
 .label-small {
-    font-size: clamp(9px, 1.5vw, 11px);
+    font-size: 10px;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 0.35em;
+    letter-spacing: 0.4em;
     color: var(--accent-red);
 }
 
 /* ========================================= */
-/* 3. NAVIGATION (FIXED & HIGH PRIORITY)     */
-/* ========================================= */
-nav, header, .main-nav {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: var(--nav-height);
-    /* Z-index tertinggi agar menu HP tidak tertutup model 3D */
-    z-index: 9999 !important; 
-    display: flex;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.dark nav, .dark header {
-    background-color: rgba(10, 10, 10, 0.75);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-@media (max-width: 768px) {
-    :root { --nav-height: 70px; }
-}
-
-/* ========================================= */
-/* 4. 3D VISUALIZER (ZENIX CONTAINER)        */
+/* 4. 3D CONTAINER FIX                       */
 /* ========================================= */
 #speaker-container {
     width: 100%;
-    /* Tinggi dinamis agar mobil tidak hilang */
-    height: clamp(350px, 60vh, 550px); 
+    min-height: 450px;
     position: relative;
-    /* Z-index di bawah Nav tapi di atas elemen lain */
-    z-index: 50; 
-    cursor: grab;
-    touch-action: pan-y;
+    z-index: 10;
+    /* Mencegah seleksi teks saat memutar model 3D */
     user-select: none;
-    margin: 1.5rem 0;
+    cursor: grab;
 }
 
-@media (min-width: 1024px) {
-    #speaker-container {
-        height: 650px;
-        margin: 0;
-    }
+#speaker-container:active {
+    cursor: grabbing;
 }
-
-#speaker-container:active { cursor: grabbing; }
 
 canvas {
     display: block;
@@ -120,73 +98,74 @@ canvas {
 }
 
 /* ========================================= */
-/* 5. ANIMATIONS (MARQUEE SYSTEM)            */
+/* 5. ANIMATIONS (MARQUEE)                   */
 /* ========================================= */
 .marquee-container {
     overflow: hidden;
     display: flex;
-    padding: 3rem 0;
     white-space: nowrap;
 }
 
 .animate-marquee {
     display: flex;
-    gap: 5rem;
-    animation: marquee 35s linear infinite;
+    min-width: 100%; 
+    flex-shrink: 0;
+    align-items: center;
+    animation: marquee 30s linear infinite;
 }
 
 @keyframes marquee {
     from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    to { transform: translateX(-100%); }
 }
 
+/* Pause animation on hover */
 .marquee-container:hover .animate-marquee {
     animation-play-state: paused;
 }
 
 /* ========================================= */
-/* 6. BRAND LOGO UTILITY                     */
+/* 6. SECTION TENTANG (HOVER EFFECT)         */
+/* ========================================= */
+.tentang-group {
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Darker effect on hover */
+.tentang-group:hover {
+    background-color: #000000 !important;
+}
+
+.tentang-group:hover .hero-title,
+.tentang-group:hover h3,
+.tentang-group:hover p {
+    color: white !important;
+}
+
+/* ========================================= */
+/* 7. BRAND LOGO UTILITY                     */
 /* ========================================= */
 .brand-logo {
-    height: clamp(2.2rem, 5vw, 4.8rem);
+    height: 3rem; /* Mobile */
     width: auto;
     filter: grayscale(1) opacity(0.4);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.5s ease;
     cursor: pointer;
 }
 
-.dark .brand-logo { 
-    filter: grayscale(1) opacity(0.4) invert(1); 
+/* Desktop Optimization */
+@media (min-width: 1024px) {
+    .brand-logo {
+        height: 5rem !important; 
+    }
+}
+
+/* Dark Mode Logo Support */
+.dark .brand-logo {
+    filter: grayscale(1) opacity(0.4) invert(1);
 }
 
 .brand-logo:hover {
     filter: grayscale(0) opacity(1) !important;
-    transform: translateY(-8px) scale(1.05);
-}
-
-/* ========================================= */
-/* 7. SECTION TENTANG & HELPERS              */
-/* ========================================= */
-.tentang-group {
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    border-radius: 24px;
-    padding: 2rem;
-}
-
-.tentang-group:hover {
-    background-color: var(--dark-studio) !important;
     transform: translateY(-5px);
-}
-
-.tentang-group:hover :is(.hero-title, h3, p) {
-    color: white !important;
-}
-
-/* Tailwind-style Utilities */
-.text-accent-red { color: var(--accent-red); }
-.bg-accent-red { background-color: var(--accent-red); }
-
-::selection {
-    background-color: var(--accent-red);
-    color: white;
 }
