@@ -74,34 +74,26 @@ body {
 }
 
 /* ========================================= */
-/* 4. 3D CONTAINER (RESPONSIVE HEIGHT)       */
+/* 4. 3D CONTAINER (FIX FINAL)               */
 /* ========================================= */
 #speaker-container {
     width: 100%;
-    height: 400px; /* Tinggi default yang stabil */
-    min-height: 300px;
+    height: 350px; 
     position: relative;
-    /* Pastikan z-index 3D lebih rendah dari Navbar (biasanya navbar itu 50-100) */
-    z-index: 5; 
+    /* Kita turunkan z-index ke -1 agar dia benar-benar di belakang Navbar */
+    z-index: 1;  
     user-select: none;
     cursor: grab;
+    /* Mencegah konflik scroll di HP */
     touch-action: pan-y; 
+    /* Mengizinkan klik "tembus" ke elemen di bawahnya jika tidak sedang menyentuh mobil */
+    pointer-events: auto; 
 }
 
-/* Di Desktop, buat lebih besar lagi agar tidak terlihat kecil */
 @media (min-width: 1024px) {
     #speaker-container {
-        height: 550px;
+        height: 600px; 
     }
-}
-
-#speaker-container:active {
-    cursor: grabbing;
-}
-
-canvas {
-    display: block;
-    outline: none;
 }
 
 /* ========================================= */
