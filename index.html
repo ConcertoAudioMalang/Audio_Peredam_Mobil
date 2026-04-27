@@ -6,9 +6,11 @@
     <title>CONCERTO MALANG | Audio Mobil & Peredam Mobil</title>
 
     <link rel="icon" type="image/png" href="favicon.png">
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,11 +20,11 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'heading': ['SK-Modernist', 'Inter', 'sans-serif'],
+                        'heading': ['SK-Modernist', 'Plus Jakarta Sans', 'sans-serif'],
                         'sans': ['Plus Jakarta Sans', 'sans-serif'],
                     },
                     colors: {
-                        'accent-red': '#E63946',
+                        'accent-red': '#E61E2A', /* Sesuaikan dengan variabel CSS kamu */
                         'dark-studio': '#0A0A0A',
                     }
                 }
@@ -48,14 +50,15 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="bg-white dark:bg-dark-studio text-black dark:text-white font-sans transition-colors duration-500 overflow-x-hidden">
 
     <div id="custom-cursor" class="hidden lg:block fixed top-0 left-0 w-4 h-4 bg-accent-red rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-100 ease-out"></div>
 
     <header id="navbar" class="fixed top-0 w-full z-[100] py-6 px-6 lg:px-12 bg-transparent transition-all duration-500">
         <nav class="max-w-[1800px] mx-auto flex justify-between items-center">
-            <a href="#hero" class="flex items-center space-x-2">
-                <img src="asset/concerto-audio-logo-light.png" alt="Concerto Logo" class="h-5 lg:h-6 w-auto object-contain dark:invert">
+            <a href="#hero" class="flex items-center">
+                <img src="asset/concerto-audio-logo-light.png" alt="Concerto Logo" class="h-5 lg:h-6 w-auto object-contain dark:invert transition-all">
             </a>
             
             <div class="hidden lg:flex items-center bg-black/5 dark:bg-white/10 backdrop-blur-xl px-8 py-3 rounded-full border border-black/5 dark:border-white/10 text-[10px] font-bold uppercase tracking-[0.3em]">
@@ -80,28 +83,31 @@
                 </div>
             </div>
 
-            <button id="mobile-menu-button" class="lg:hidden text-[10px] font-black tracking-widest uppercase border-b-2 border-current">
+            <button id="mobile-menu-button" class="lg:hidden text-[10px] font-black tracking-widest uppercase border-b-2 border-current hover:text-accent-red transition-colors">
                 <i id="menu-icon" class="fa-solid fa-bars mr-2"></i>Menu
             </button>
         </nav>
     </header>
+
     <div id="mobile-menu" class="fixed inset-0 bg-white dark:bg-dark-studio z-[150] flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-in-out lg:hidden">
-    <button id="close-menu" class="absolute top-8 right-8 text-[10px] font-black tracking-widest uppercase border-b-2 border-current">
-        <i class="fa-solid fa-xmark mr-2"></i>Close
-    </button>
-    
-    <div class="flex flex-col items-center space-y-8 text-3xl font-heading font-black uppercase italic">
-        <a href="#proses" class="mobile-link hover:text-accent-red transition-colors">Work</a>
-        <a href="#tentang" class="mobile-link hover:text-accent-red transition-colors">About</a>
-        <a href="#layanan" class="mobile-link hover:text-accent-red transition-colors">Services</a>
-        <a href="#kontak" class="mobile-link hover:text-accent-red transition-colors">Contact</a>
+        <button id="close-menu" class="absolute top-8 right-8 text-[10px] font-black tracking-widest uppercase border-b-2 border-current">
+            <i class="fa-solid fa-xmark mr-2"></i>Close
+        </button>
+        
+        <div class="flex flex-col items-center space-y-8 text-3xl font-heading font-black uppercase italic">
+            <a href="#proses" class="mobile-link hover:text-accent-red transition-colors">Work</a>
+            <a href="#tentang" class="mobile-link hover:text-accent-red transition-colors">About</a>
+            <a href="#layanan" class="mobile-link hover:text-accent-red transition-colors">Services</a>
+            <a href="#kontak" class="mobile-link hover:text-accent-red transition-colors">Contact</a>
+        </div>
+
+        <button id="theme-toggle-mobile" class="mt-12 px-6 py-2 bg-black/5 dark:bg-white/5 rounded-full text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-accent-red hover:text-white transition-all">
+            Switch Theme
+        </button>
     </div>
 
-    <button id="theme-toggle-mobile" class="mt-12 px-6 py-2 bg-black/5 dark:bg-white/5 rounded-full text-[10px] font-bold tracking-[0.3em] uppercase">
-        Switch Theme
-    </button>
-</div>
     <main>
+        </main>
        <section id="hero" class="relative min-h-screen flex items-center bg-white dark:bg-dark-studio overflow-hidden px-6 lg:px-12">
             <div class="absolute inset-0 z-0 opacity-10 dark:opacity-20 pointer-events-none">
                 <img src="asset/background-concerto.jpg" class="w-full h-full object-cover grayscale" alt="Background">
