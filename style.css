@@ -1,10 +1,9 @@
 /* ========================================= */
-/* 1. FONT & ROOT VARIABLES                   */
+/* 1. FONT & ROOT VARIABLES                  */
 /* ========================================= */
 @font-face {
     font-family: 'SK-Modernist';
-    /* Sesuaikan path ke folder asset jika font ada di sana */
-    src: url('asset/Sk-Modernist-Regular.otf') format('opentype');
+    src: url('font/Sk-Modernist-Regular.otf') format('opentype');
     font-weight: 800;
     font-style: normal;
     font-display: swap;
@@ -15,8 +14,6 @@
     --dark-studio: #0A0A0A;
     --bg-studio: #F8F8F8;
     --text-main: #1A1A1A;
-    /* Tambahan variabel untuk jarak aman navbar */
-    --nav-height: 80px; 
 }
 
 /* Utilities for Tailwind Bridge */
@@ -43,13 +40,9 @@ body {
     color: var(--text-main);
     line-height: 1.6;
     overflow-x: hidden;
-    /* Transisi halus saat ganti tema */
     transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s ease;
-    /* PENTING: Memberi ruang agar hero tidak tertutup navbar fixed */
-    padding-top: var(--nav-height); 
 }
 
-/* Fix Dark Mode Selector */
 .dark body {
     background-color: var(--dark-studio);
     color: #F8F8F8;
@@ -58,14 +51,14 @@ body {
 /* ========================================= */
 /* 3. TYPOGRAPHY SYSTEM                      */
 /* ========================================= */
-.font-heading, h1, h2, h3, h4 {
+.font-heading, h1, h2, h3, h4, .btn-mclaren-primary, .btn-mclaren-outline {
     font-family: 'SK-Modernist', sans-serif !important;
     text-transform: uppercase;
     letter-spacing: -0.02em;
 }
 
 .hero-title {
-    font-size: clamp(3rem, 10vw, 10rem);
+    font-size: clamp(3.5rem, 12vw, 12rem);
     line-height: 0.85;
     letter-spacing: -0.05em;
     font-weight: 900;
@@ -80,45 +73,14 @@ body {
 }
 
 /* ========================================= */
-/* 4. 3D CONTAINER FIX                       */
+/* 4. ANIMATIONS (MARQUEE)                   */
 /* ========================================= */
-#speaker-container {
-    width: 100%;
-    /* Gunakan clamp agar tinggi adaptif di mobile (min 350px) */
-    min-height: clamp(350px, 50vh, 450px);
-    position: relative;
-    /* Z-index diturunkan agar kalah dengan Navbar (9999) */
-    z-index: 10;
-    /* Mencegah seleksi teks saat memutar model 3D */
-    user-select: none;
-    cursor: grab;
-    /* Memastikan scroll jari di HP tetap jalan */
-    touch-action: pan-y; 
-}
-
-#speaker-container:active {
-    cursor: grabbing;
-}
-
-canvas {
-    display: block;
-    outline: none;
-}
-
-/* ========================================= */
-/* 5. ANIMATIONS (MARQUEE)                   */
-/* ========================================= */
-.marquee-container {
-    overflow: hidden;
-    display: flex;
-    white-space: nowrap;
-}
-
 .animate-marquee {
     display: flex;
     min-width: 100%; 
     flex-shrink: 0;
     align-items: center;
+    justify-content: space-around; 
     animation: marquee 30s linear infinite;
 }
 
@@ -127,99 +89,54 @@ canvas {
     to { transform: translateX(-100%); }
 }
 
-/* Pause animation on hover */
-.marquee-container:hover .animate-marquee {
-    animation-play-state: paused;
+/* ========================================= */
+/* 5. SECTION TENTANG (HOVER EFFECT)         */
+/* ========================================= */
+#tentang {
+    transition: background-color 0.7s ease;
 }
 
-/* ========================================= */
-/* 6. SECTION TENTANG (HOVER EFFECT)         */
-/* ========================================= */
-.tentang-group {
-    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Darker effect on hover */
-.tentang-group:hover {
+#tentang.group:hover {
     background-color: #000000 !important;
 }
 
-.tentang-group:hover .hero-title,
-.tentang-group:hover h3,
-.tentang-group:hover p {
+#tentang.group:hover .hero-title,
+#tentang.group:hover h3,
+#tentang.group:hover span:not(.text-accent-red) {
     color: white !important;
 }
 
-/* ========================================= */
-/* 7. BRAND LOGO UTILITY                     */
-/* ========================================= */
-.brand-logo {
-    height: 3rem; /* Mobile */
-    width: auto;
-    filter: grayscale(1) opacity(0.4);
-    transition: all 0.5s ease;
-    cursor: pointer;
+#tentang.group:hover p {
+    color: rgba(255, 255, 255, 0.7) !important;
 }
 
-/* Desktop Optimization */
+/* ========================================= */
+/* 6. BRAND LOGO UTILITY                     */
+/* ========================================= */
+.brand-logo {
+    height: 2.5rem; /* Mobile */
+    width: auto;
+    filter: grayscale(1) opacity(0.3);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease; 
+    cursor: pointer;
+    position: relative;
+}
+
+/* Desktop & Laptop Optimization */
 @media (min-width: 1024px) {
     .brand-logo {
-        height: 5rem !important; 
+        /* 5.5rem adalah sweet spot antara megah dan rapi di laptop */
+        height: 5.5rem !important; 
     }
 }
 
 /* Dark Mode Logo Support */
 .dark .brand-logo {
-    filter: grayscale(1) opacity(0.4) invert(1);
+    filter: grayscale(1) opacity(0.3) invert(1);
 }
 
 .brand-logo:hover {
     filter: grayscale(0) opacity(1) !important;
-    transform: translateY(-5px);
-}
-
-/* ========================================= */
-/* 8. NAVBAR FIX (CENTERED & CONSTRAINED)    */
-/* ========================================= */
-nav, header {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-    min-height: 60px;
-    z-index: 9999 !important;
-    display: flex;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-}
-
-/* Container tambahan di dalam Nav untuk menjaga jarak pinggir */
-nav .nav-content, header .nav-content {
-    width: 100%;
-    max-width: 1400px; /* Atur angka ini (misal 1200px atau 1400px) agar tidak terlalu ke pinggir */
-    margin: 0 auto;    /* Mengetengahkan kontainer */
-    padding: 0 5%;    /* Jarak aman di HP agar tidak nempel layar */
-    display: flex;
-    justify-content: space-between; /* Logo kiri, Menu kanan */
-    align-items: center;
-}
-
-.dark nav, .dark header {
-    background-color: rgba(10, 10, 10, 0.7);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-body {
-    padding-top: 80px;
-}
-
-@media (max-width: 768px) {
-    body { padding-top: 70px; }
-    nav .nav-content, header .nav-content {
-        padding: 10px 20px; /* Jarak lebih rapat di HP */
-    }
+    transform: scale(1.1); 
+    z-index: 50;
 }
