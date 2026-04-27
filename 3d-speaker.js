@@ -17,11 +17,12 @@ const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container
 function updateCameraPosition() {
     const isMobile = window.innerWidth < 768;
     if (isMobile) {
-        camera.position.set(14, 7, 14); 
-        camera.fov = 50; 
+        // Angka 10 membuat kamera lebih dekat (mobil jadi lebih besar)
+        camera.position.set(10, 5, 10); 
+        camera.fov = 60; // FOV lebih lebar agar tidak terpotong meski dekat
     } else {
         camera.position.set(10, 5, 10); 
-        camera.fov = 40;
+        camera.fov = 40; // Desktop tetap elegan
     }
     camera.updateProjectionMatrix();
 }
