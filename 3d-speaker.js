@@ -6,12 +6,22 @@ const container = document.getElementById('speaker-container');
 
 // 1. SCENE & CAMERA
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-camera.position.set(12, 6, 12); 
+
+// Camera setup dengan FOV dinamis
+const isMobile = window.innerWidth < 768;
+const initialFOV = isMobile ? 55 : 45; // FOV lebih lebar di mobile
+const camera = new THREE.PerspectiveCamera(initialFOV, container.clientWidth / container.clientHeight, 0.1, 1000);
+
+// Atur posisi kamera awal berdasarkan perangkat
+if (isMobile) {
+    camera.position.set(16, 8, 16); // Lebih jauh di HP
+} else {
+    camera.position.set(12, 6, 12); // Standar Desktop
+}
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Batasi pixel ratio untuk performa mobile
 container.appendChild(renderer.domElement);
 
 // 2. LIGHTING
@@ -27,6 +37,7 @@ let model;
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enableZoom = false;
+controls.autoRotate = false;
 
 // 4. LOAD MODEL INNOVA ZENIX
 const loader = new GLTFLoader();
@@ -44,38 +55,25 @@ loader.load('./asset/innova-v1.glb', (gltf) => {
     const scale = 8 / maxDim;
     model.scale.set(scale, scale, scale);
 
-    model.traverse((node) => {
-        if (node.isMesh) {
-            const isDark = document.documentElement.classList.contains('dark');
-            node.material = new THREE.MeshStandardMaterial({
-                color: isDark ? 0xffffff : 0x333333, 
-                transparent: true,
-                opacity: isDark ? 0.15 : 0.35,
-                wireframe: true,
-                emissive: isDark ? 0xffffff : 0x000000,
-                emissiveIntensity: isDark ? 0.1 : 0
-            });
-        }
-    });
-
-    scene.add(model);
-
-    // FUNGSI MARKER (Jika ingin dipakai nanti)
-    const addSpeakerNode = (x, y, z) => {
-        const nodeGroup = new THREE.Group();
-        const geo = new THREE.SphereGeometry(0.05, 16, 16); 
-        const mat = new THREE.MeshBasicMaterial({ color: 0xe61e2a });
-        const node = new THREE.Mesh(geo, mat);
-        const glowGeo = new THREE.SphereGeometry(0.12, 16, 16);
-        const glowMat = new THREE.MeshBasicMaterial({ color: 0xe61e2a, transparent: true, opacity: 0.2 });
-        const glow = new THREE.Mesh(glowGeo, glowMat);
-        nodeGroup.add(node);
-        nodeGroup.add(glow);
-        nodeGroup.position.set(x, y, z);
-        model.add(nodeGroup); 
+    const applyMaterial = () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        model.traverse((node) => {
+            if (node.isMesh) {
+                node.material = new THREE.MeshStandardMaterial({
+                    color: isDark ? 0xffffff : 0x333333, 
+                    transparent: true,
+                    opacity: isDark ? 0.15 : 0.35,
+                    wireframe: true,
+                    emissive: isDark ? 0xffffff : 0x000000,
+                    emissiveIntensity: isDark ? 0.1 : 0
+                });
+            }
+        });
     };
 
-    // Saat ini dikosongkan agar mobil bersih
+    applyMaterial();
+    scene.add(model);
+
 }, undefined, (error) => {
     console.error("Gagal load mobil:", error);
 });
@@ -85,24 +83,38 @@ function animate() {
     requestAnimationFrame(animate);
     
     if (model) {
-        model.rotation.y += 0.003; // Hanya rotasi tenang
+        model.rotation.y += 0.003; 
     }
 
     controls.update();
     renderer.render(scene, camera);
 }
-
-// JALANKAN ANIMASI (Ini yang tadi lupa dipanggil)
 animate();
 
-// 6. LISTENERS
+// 6. RESPONSIVE LISTENER (Kunci Utama)
 window.addEventListener('resize', () => {
     if (!container) return;
-    camera.aspect = container.clientWidth / container.clientHeight;
+
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    // Update aspect ratio
+    camera.aspect = width / height;
+
+    // Penyesuaian FOV & Posisi saat Resize
+    if (window.innerWidth < 768) {
+        camera.fov = 55;
+        camera.position.set(16, 8, 16);
+    } else {
+        camera.fov = 45;
+        camera.position.set(12, 6, 12);
+    }
+
     camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setSize(width, height);
 });
 
+// 7. THEME OBSERVER
 const observer = new MutationObserver(() => {
     if (model) {
         const isDark = document.documentElement.classList.contains('dark');
