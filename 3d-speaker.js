@@ -4,7 +4,6 @@ import { OrbitControls } from 'https://unpkg.com/three@0.128.0/examples/jsm/cont
 
 const container = document.getElementById('speaker-container');
 
-// Safety check dimensi container
 if (container && container.clientHeight === 0) {
     container.style.height = "500px";
 }
@@ -36,10 +35,7 @@ controls.enableZoom = false;
 // 4. LOAD MODEL INNOVA ZENIX
 const loader = new GLTFLoader();
 
-console.log("Memulai load mobil...");
-
 loader.load('./asset/innova-v1.glb', (gltf) => {
-    console.log("File GLB berhasil terbaca!");
     model = gltf.scene;
 
     const box = new THREE.Box3().setFromObject(model);
@@ -52,15 +48,13 @@ loader.load('./asset/innova-v1.glb', (gltf) => {
     const scale = 8 / maxDim;
     model.scale.set(scale, scale, scale);
 
-    // Perbaikan Material: Menggunakan KOMA (,) bukan TITIK KOMA (;)
     model.traverse((node) => {
         if (node.isMesh) {
             const isDark = document.documentElement.classList.contains('dark');
-            
             node.material = new THREE.MeshStandardMaterial({
                 color: isDark ? 0xffffff : 0x333333, 
                 transparent: true,
-                opacity: isDark ? 0.15 : 0.35, // SELESAI: Titik koma sudah diganti koma
+                opacity: isDark ? 0.15 : 0.35,
                 wireframe: true,
                 emissive: isDark ? 0xffffff : 0x000000,
                 emissiveIntensity: isDark ? 0.1 : 0
@@ -70,26 +64,38 @@ loader.load('./asset/innova-v1.glb', (gltf) => {
 
     scene.add(model);
 
-    // Audio Nodes (Speaker Points)
+    // FUNGSI MARKER MINIMALIS (Glow Dots)
     const addSpeakerNode = (x, y, z) => {
-        const geo = new THREE.SphereGeometry(0.2, 16, 16);
+        const nodeGroup = new THREE.Group(); // Bungkus biar rapi
+        
+        const geo = new THREE.SphereGeometry(0.05, 16, 16); 
         const mat = new THREE.MeshBasicMaterial({ color: 0xe61e2a });
         const node = new THREE.Mesh(geo, mat);
-        node.position.set(x, y, z);
-        model.add(node); 
+        
+        const glowGeo = new THREE.SphereGeometry(0.12, 16, 16);
+        const glowMat = new THREE.MeshBasicMaterial({ 
+            color: 0xe61e2a, 
+            transparent: true, 
+            opacity: 0.2 
+        });
+        const glow = new THREE.Mesh(glowGeo, glowMat);
+        
+        nodeGroup.add(node);
+        nodeGroup.add(glow);
+        nodeGroup.position.set(x, y, z);
+        model.add(nodeGroup); 
     };
 
-    addSpeakerNode(1.5, 0.5, 1);  
-    addSpeakerNode(-1.5, 0.5, 1); 
-    addSpeakerNode(0, 1.2, 1.5);  
+    // PANGGIL DISINI (Jika ingin benar-benar bersih, komentari 3 baris di bawah ini)
+    // addSpeakerNode(1.5, 0.5, 1);  
+    // addSpeakerNode(-1.5, 0.5, 1); 
+    // addSpeakerNode(0, 1.2, 1.5);  
 
 }, (xhr) => {
-    if (xhr.lengthComputable) {
-        console.log(Math.round((xhr.loaded / xhr.total) * 100) + '% loaded');
-    }
+    // Progress loader
 }, (error) => {
     console.error("Gagal load mobil:", error);
-});
+}); // <-- Penutup loader yang tadi kurang
 
 // 5. ANIMATION LOOP
 function animate() {
@@ -98,7 +104,8 @@ function animate() {
         model.rotation.y += 0.003;
         const scalePulse = 1 + Math.sin(Date.now() * 0.005) * 0.2;
         model.children.forEach(child => {
-            if (child.geometry && child.geometry.type === "SphereGeometry") {
+            // Animasi denyut hanya untuk marker
+            if (child.type === "Group") {
                 child.scale.set(scalePulse, scalePulse, scalePulse);
             }
         });
@@ -108,7 +115,7 @@ function animate() {
 }
 animate();
 
-// 6. LISTENERS & THEME ADAPTATION
+// 6. LISTENERS
 window.addEventListener('resize', () => {
     camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
@@ -127,5 +134,4 @@ const observer = new MutationObserver(() => {
         });
     }
 });
-
 observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
