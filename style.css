@@ -27,7 +27,7 @@
 }
 
 /* ========================================= */
-/* 2. GLOBAL RESET & BASE                    */
+/* 2. GLOBAL RESET & BASE (OPTIMIZED)        */
 /* ========================================= */
 html {
     scroll-behavior: smooth;
@@ -36,17 +36,26 @@ html {
 
 body {
     font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-    background-color: white;
-    color: var(--text-main);
+    background-color: #ffffff;
+    color: #1a1a1a;
     line-height: 1.6;
     overflow-x: hidden;
-    transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s ease;
+    /* Transisi halus saat ganti tema */
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* Fix Dark Mode Selector */
-.dark body {
-    background-color: var(--dark-studio);
-    color: #F8F8F8;
+/* Hard Override untuk Dark Mode agar menang lawan Tailwind */
+html.dark body {
+    background-color: #0A0A0A !important;
+    color: #F8F8F8 !important;
+}
+
+html.dark .bg-white {
+    background-color: #0A0A0A !important;
+}
+
+html.dark .text-black {
+    color: #ffffff !important;
 }
 
 /* ========================================= */
@@ -147,44 +156,33 @@ body {
 }
 
 /* ========================================= */
-/* 6. MOBILE MENU FIX (PRECISE VERSION)      */
+/* 6. MOBILE MENU & INTERACTION SAFETY       */
 /* ========================================= */
-
-/* State awal: Menu sembunyi total */
 #mobile-menu {
     position: fixed;
     inset: 0;
     z-index: 99999;
-    background-color: white; /* Pastikan background terisi */
-    display: none; /* Kita pakai display: none agar benar-benar hilang dari desktop */
+    background-color: white;
+    display: none; 
     flex-direction: column;
     justify-content: center;
     align-items: center;
     transition: transform 0.5s ease-in-out;
 }
 
-/* Fix untuk Dark Mode di mobile menu */
 .dark #mobile-menu {
     background-color: var(--dark-studio);
 }
 
-/* Class pembantu untuk JavaScript .toggle('hidden') */
-/* Di Tailwind, .hidden itu display: none. Kita buat agar di Mobile terlihat sebagai Flex */
 #mobile-menu:not(.hidden) {
     display: flex !important;
 }
 
-/* ========================================= */
-/* 7. INTERACTION SAFETY (POINTER EVENTS)    */
-/* ========================================= */
-
-/* Kunci utama agar klik tembus ke tombol */
 #custom-cursor {
     pointer-events: none !important;
-    z-index: 100000; /* Harus di atas mobile menu */
+    z-index: 100000;
 }
 
-/* Strategi Navbar: Hanya tombol/link yang menangkap klik */
 #navbar {
     pointer-events: none; 
 }
@@ -197,7 +195,6 @@ body {
     cursor: pointer !important;
 }
 
-/* Paksa Theme Toggle Desktop punya posisi jelas */
 #theme-toggle {
     position: relative;
     z-index: 150;
