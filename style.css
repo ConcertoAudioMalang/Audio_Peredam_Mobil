@@ -3,6 +3,7 @@
 /* ========================================= */
 @font-face {
     font-family: 'SK-Modernist';
+    /* Sesuaikan path ke folder asset jika font ada di sana */
     src: url('asset/Sk-Modernist-Regular.otf') format('opentype');
     font-weight: 800;
     font-style: normal;
@@ -17,9 +18,9 @@
 }
 
 /* Utilities for Tailwind Bridge */
-.text-accent-red { color: var(--accent-red) !important; }
-.bg-accent-red { background-color: var(--accent-red) !important; }
-.border-accent-red { border-color: var(--accent-red) !important; }
+.text-accent-red { color: var(--accent-red); }
+.bg-accent-red { background-color: var(--accent-red); }
+.border-accent-red { border-color: var(--accent-red); }
 
 ::selection {
     background-color: var(--accent-red);
@@ -27,7 +28,7 @@
 }
 
 /* ========================================= */
-/* 2. GLOBAL RESET & BASE (OPTIMIZED)        */
+/* 2. GLOBAL RESET & BASE                    */
 /* ========================================= */
 html {
     scroll-behavior: smooth;
@@ -36,26 +37,18 @@ html {
 
 body {
     font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-    background-color: #ffffff;
-    color: #1a1a1a;
+    background-color: white;
+    color: var(--text-main);
     line-height: 1.6;
     overflow-x: hidden;
     /* Transisi halus saat ganti tema */
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s ease;
 }
 
-/* Hard Override untuk Dark Mode agar menang lawan Tailwind */
-html.dark body {
-    background-color: #0A0A0A !important;
-    color: #F8F8F8 !important;
-}
-
-html.dark .bg-white {
-    background-color: #0A0A0A !important;
-}
-
-html.dark .text-black {
-    color: #ffffff !important;
+/* Fix Dark Mode Selector */
+.dark body {
+    background-color: var(--dark-studio);
+    color: #F8F8F8;
 }
 
 /* ========================================= */
@@ -83,19 +76,30 @@ html.dark .text-black {
 }
 
 /* ========================================= */
-/* 4. 3D CONTAINER & MARQUEE                 */
+/* 4. 3D CONTAINER FIX                       */
 /* ========================================= */
 #speaker-container {
     width: 100%;
     min-height: 450px;
     position: relative;
     z-index: 10;
+    /* Mencegah seleksi teks saat memutar model 3D */
     user-select: none;
     cursor: grab;
 }
 
-#speaker-container:active { cursor: grabbing; }
+#speaker-container:active {
+    cursor: grabbing;
+}
 
+canvas {
+    display: block;
+    outline: none;
+}
+
+/* ========================================= */
+/* 5. ANIMATIONS (MARQUEE)                   */
+/* ========================================= */
 .marquee-container {
     overflow: hidden;
     display: flex;
@@ -115,15 +119,19 @@ html.dark .text-black {
     to { transform: translateX(-100%); }
 }
 
-.marquee-container:hover .animate-marquee { animation-play-state: paused; }
+/* Pause animation on hover */
+.marquee-container:hover .animate-marquee {
+    animation-play-state: paused;
+}
 
 /* ========================================= */
-/* 5. COMPONENTS & LOGOS                     */
+/* 6. SECTION TENTANG (HOVER EFFECT)         */
 /* ========================================= */
 .tentang-group {
     transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Darker effect on hover */
 .tentang-group:hover {
     background-color: #000000 !important;
 }
@@ -134,18 +142,25 @@ html.dark .text-black {
     color: white !important;
 }
 
+/* ========================================= */
+/* 7. BRAND LOGO UTILITY                     */
+/* ========================================= */
 .brand-logo {
-    height: 3rem;
+    height: 3rem; /* Mobile */
     width: auto;
     filter: grayscale(1) opacity(0.4);
     transition: all 0.5s ease;
     cursor: pointer;
 }
 
+/* Desktop Optimization */
 @media (min-width: 1024px) {
-    .brand-logo { height: 5rem !important; }
+    .brand-logo {
+        height: 5rem !important; 
+    }
 }
 
+/* Dark Mode Logo Support */
 .dark .brand-logo {
     filter: grayscale(1) opacity(0.4) invert(1);
 }
@@ -155,47 +170,18 @@ html.dark .text-black {
     transform: translateY(-5px);
 }
 
-/* ========================================= */
-/* 6. MOBILE MENU & INTERACTION SAFETY       */
-/* ========================================= */
 #mobile-menu {
-    position: fixed;
-    inset: 0;
+    /* Mencegah scroll saat menu terbuka */
+    overflow: hidden;
+    /* Pastikan z-index lebih tinggi dari apapun */
     z-index: 99999;
-    background-color: white;
-    display: none; 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.5s ease-in-out;
 }
 
-.dark #mobile-menu {
-    background-color: var(--dark-studio);
+/* Animasi agar menu meluncur mulus */
+.translate-y-full {
+    transform: translateY(100%);
 }
 
-#mobile-menu:not(.hidden) {
-    display: flex !important;
-}
-
-#custom-cursor {
-    pointer-events: none !important;
-    z-index: 100000;
-}
-
-#navbar {
-    pointer-events: none; 
-}
-
-#navbar nav, 
-#navbar button, 
-#navbar a,
-#theme-toggle {
-    pointer-events: auto !important;
-    cursor: pointer !important;
-}
-
-#theme-toggle {
-    position: relative;
-    z-index: 150;
+#mobile-menu:not(.translate-y-full) {
+    transform: translateY(0);
 }
