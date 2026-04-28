@@ -3,7 +3,6 @@
 /* ========================================= */
 @font-face {
     font-family: 'SK-Modernist';
-    /* Sesuaikan path ke folder asset jika font ada di sana */
     src: url('asset/Sk-Modernist-Regular.otf') format('opentype');
     font-weight: 800;
     font-style: normal;
@@ -17,84 +16,94 @@
     --text-main: #1A1A1A;
 }
 
-/* Utilities for Tailwind Bridge */
-.text-accent-red { color: var(--accent-red); }
-.bg-accent-red { background-color: var(--accent-red); }
-.border-accent-red { border-color: var(--accent-red); }
+/* ========================================= */
+/* 2. NAVBAR & CHRIS MACARI LOOK             */
+/* ========================================= */
+/* Navbar awal: Transparan & Padding Luas */
+#navbar {
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-::selection {
-    background-color: var(--accent-red);
-    color: white;
+/* State saat Scroll: Muncul Glassmorphism */
+#navbar.nav-scrolled {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dark #navbar.nav-scrolled {
+    background-color: rgba(10, 10, 10, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Nav Link Hover Animation */
+.nav-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--accent-red);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 /* ========================================= */
-/* 2. GLOBAL RESET & BASE                    */
+/* 3. HERO & TYPOGRAPHY SYSTEM               */
 /* ========================================= */
-html {
-    scroll-behavior: smooth;
-    scrollbar-gutter: stable; 
-}
-
-body {
-    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-    background-color: white;
-    color: var(--text-main);
-    line-height: 1.6;
-    overflow-x: hidden;
-    /* Transisi halus saat ganti tema */
-    transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s ease;
-}
-
-/* Fix Dark Mode Selector */
-.dark body {
-    background-color: var(--dark-studio);
-    color: #F8F8F8;
-}
-
-/* ========================================= */
-/* 3. TYPOGRAPHY SYSTEM                      */
-/* ========================================= */
-.font-heading, h1, h2, h3, h4 {
+.font-heading {
     font-family: 'SK-Modernist', sans-serif !important;
     text-transform: uppercase;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.04em; /* Lebih rapat ala Chris Macari */
 }
 
 .hero-title {
-    font-size: clamp(3rem, 10vw, 10rem);
-    line-height: 0.85;
-    letter-spacing: -0.05em;
+    font-size: clamp(3.5rem, 12vw, 12rem); /* Skala lebih besar */
+    line-height: 0.8;
+    letter-spacing: -0.06em;
     font-weight: 900;
+    font-family: 'SK-Modernist', sans-serif;
 }
 
-.label-small {
-    font-size: 10px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.4em;
-    color: var(--accent-red);
+/* Custom Animation untuk Text Hero */
+@keyframes revealUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-reveal-up {
+    animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* ========================================= */
-/* 4. 3D CONTAINER FIX                       */
+/* 4. UTILITIES & 3D FIX                     */
 /* ========================================= */
 #speaker-container {
     width: 100%;
-    min-height: 450px;
-    position: relative;
+    height: 100%;
+    min-height: 400px;
     z-index: 10;
-    /* Mencegah seleksi teks saat memutar model 3D */
     user-select: none;
-    cursor: grab;
 }
 
-#speaker-container:active {
-    cursor: grabbing;
-}
-
-canvas {
-    display: block;
-    outline: none;
+/* Mencegah seleksi pada image background hero */
+#hero img {
+    pointer-events: none;
 }
 
 /* ========================================= */
