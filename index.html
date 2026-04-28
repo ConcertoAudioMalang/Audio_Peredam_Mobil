@@ -843,8 +843,7 @@
         </div>
     </div>
 </footer>
-
-    <button id="scroll-to-top" aria-label="Scroll to top" class="fixed bottom-8 right-8 z-[99] w-14 h-14 bg-accent-red text-white shadow-[0_20px_40px_rgba(230,0,0,0.3)] transition-all duration-500 opacity-0 invisible translate-y-10 hover:bg-black flex items-center justify-center group">
+<button id="scroll-to-top" aria-label="Scroll to top" class="fixed bottom-8 right-8 z-[99] w-14 h-14 bg-accent-red text-white shadow-[0_20px_40px_rgba(230,0,0,0.3)] transition-all duration-500 opacity-0 invisible translate-y-10 hover:bg-black flex items-center justify-center group">
         <i class="fa-solid fa-arrow-up text-lg transition-transform group-hover:-translate-y-1"></i>
     </button>
 
@@ -852,63 +851,63 @@
         <img id="zoom-modal-image" src="" alt="Zoomed View" class="max-w-[90%] max-h-[90%] object-contain transition-transform duration-500 scale-95">
     </div>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <script type="module" src="3d-speaker.js"></script>
+
     <script src="script.js"></script>
 
     <script>
+        // 1. Initialize AOS
         AOS.init({ duration: 1000, once: true });
+
+        // 2. Navbar Scroll Logic (Chris Macari Look)
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 30) {
+                // Menambahkan glassmorphism & class custom
+                navbar.classList.add('nav-scrolled', 'bg-white/80', 'dark:bg-dark-studio/80', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
+                navbar.classList.remove('py-8');
+            } else {
+                // Kembali ke transparan sempurna
+                navbar.classList.remove('nav-scrolled', 'bg-white/80', 'dark:bg-dark-studio/80', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
+                navbar.classList.add('py-8');
+            }
+        });
+
+        // 3. Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-button');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        const openMenu = () => {
+            mobileMenu.classList.remove('translate-y-full');
+            document.body.style.overflow = 'hidden'; // Kunci scroll agar tidak tembus
+        };
+
+        const closeMenu = () => {
+            mobileMenu.classList.add('translate-y-full');
+            document.body.style.overflow = ''; // Buka kembali scroll
+        };
+
+        mobileMenuBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // 4. Theme Toggle Logic
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeBtnMobile = document.getElementById('theme-toggle-mobile');
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        if(themeBtn) themeBtn.addEventListener('click', toggleTheme);
+        if(themeBtnMobile) themeBtnMobile.addEventListener('click', toggleTheme);
     </script>
-
-    <script type="module" src="3d-speaker.js"></script>
-        <script>
-    const mobileMenuBtn = document.getElementById('mobile-menu-button');
-    const closeMenuBtn = document.getElementById('close-menu');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-
-    // Fungsi Buka Menu
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.remove('translate-y-full');
-    });
-
-    // Fungsi Tutup Menu
-    const closeFunc = () => {
-        mobileMenu.classList.add('translate-y-full');
-    };
-
-    closeMenuBtn.addEventListener('click', closeFunc);
-
-    // Otomatis tutup jika link diklik
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', closeFunc);
-    });
-
-    // Theme Toggle Logic (Global & Mobile)
-    const themeBtn = document.getElementById('theme-toggle');
-    const themeBtnMobile = document.getElementById('theme-toggle-mobile');
-
-    function toggleTheme() {
-        document.documentElement.classList.toggle('dark');
-        const isDark = document.documentElement.classList.contains('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    }
-
-    themeBtn.addEventListener('click', toggleTheme);
-    themeBtnMobile.addEventListener('click', toggleTheme);
-            window.addEventListener('scroll', function() {
-    const nav = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-        // Saat di-scroll: Muncul background blur pekat
-        nav.classList.add('bg-white/80', 'dark:bg-dark-studio/80', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
-        nav.classList.remove('py-8');
-    } else {
-        // Saat di atas: Benar-benar transparan
-        nav.classList.remove('bg-white/80', 'dark:bg-dark-studio/80', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
-        nav.classList.add('py-8');
-    }
-});
-</script>
-
 </body>
 </html>
