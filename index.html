@@ -203,8 +203,17 @@
     </div> 
         </section>
    
-        <section id="layanan" class="section-margin bg-black dark:bg-white py-24 lg:py-32 overflow-hidden text-white dark:text-black border border-white/10 dark:border-black/10">
-    <div class="max-w-7xl mx-auto px-6 md:px-12">
+       <section id="layanan" class="relative section-margin bg-black dark:bg-white py-24 lg:py-32 overflow-hidden border border-white/10 dark:border-black/10">
+    
+    <div class="absolute inset-0 z-0">
+        <video autoplay loop muted playsinline class="w-full h-full object-cover grayscale opacity-40 dark:opacity-20">
+            <source src="asset/123.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-b from-black via-black/40 to-black dark:from-white dark:via-white/40 dark:to-white"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 text-white dark:text-black">
         <div class="grid lg:grid-cols-2 gap-20 items-center mb-32">
             <h2 class="text-5xl lg:text-8xl font-black font-heading uppercase leading-[0.8] tracking-tighter" data-aos="reveal-up">
                 Standar <br> <span class="text-accent-red italic">Akurasi Tinggi.</span>
@@ -236,28 +245,32 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-px bg-white/10 dark:bg-black/10">
-            <div class="p-10 bg-black dark:bg-white group transition-all duration-500" data-aos="fade-up">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-px bg-white/10 dark:bg-black/10 backdrop-blur-md">
+            <div class="p-10 bg-black/60 dark:bg-white/60 group transition-all duration-500 hover:bg-black dark:hover:bg-white" data-aos="fade-up">
                 <span class="text-[9px] font-black text-accent-red mb-4 block tracking-[0.3em]">COMPONENT 01</span>
                 <h3 class="text-2xl font-black font-heading uppercase mb-4 italic group-hover:text-accent-red transition-colors">Speakers</h3>
                 <p class="text-gray-400 dark:text-gray-500 text-[9px] font-bold uppercase tracking-widest leading-loose">perangkat buatan Italia & Jerman untuk kejernihan vokal yang murni.</p>
             </div>
-            <div class="p-10 bg-black dark:bg-white group transition-all duration-500" data-aos="fade-up" data-aos-delay="100">
+            
+            <div class="p-10 bg-black/60 dark:bg-white/60 group transition-all duration-500 hover:bg-black dark:hover:bg-white" data-aos="fade-up" data-aos-delay="100">
                 <span class="text-[9px] font-black text-accent-red mb-4 block tracking-[0.3em]">COMPONENT 02</span>
                 <h3 class="text-2xl font-black font-heading uppercase mb-4 italic group-hover:text-accent-red transition-colors">Processor</h3>
                 <p class="text-gray-400 dark:text-gray-500 text-[9px] font-bold uppercase tracking-widest leading-loose">Teknologi MDSP mutakhir untuk penataan soundstage yang akurat dan detail.</p>
             </div>
-            <div class="p-10 bg-black dark:bg-white group transition-all duration-500" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="p-10 bg-black/60 dark:bg-white/60 group transition-all duration-500 hover:bg-black dark:hover:bg-white" data-aos="fade-up" data-aos-delay="200">
                 <span class="text-[9px] font-black text-accent-red mb-4 block tracking-[0.3em]">COMPONENT 03</span>
                 <h3 class="text-2xl font-black font-heading uppercase mb-4 italic group-hover:text-accent-red transition-colors">Subwoofers</h3>
                 <p class="text-gray-400 dark:text-gray-500 text-[9px] font-bold uppercase tracking-widest leading-loose">Frekuensi rendah yang dalam dan terkontrol untuk dampak suara yang megah.</p>
             </div>
-            <div class="p-10 bg-black dark:bg-white group transition-all duration-500" data-aos="fade-up" data-aos-delay="300">
+
+            <div class="p-10 bg-black/60 dark:bg-white/60 group transition-all duration-500 hover:bg-black dark:hover:bg-white" data-aos="fade-up" data-aos-delay="300">
                 <span class="text-[9px] font-black text-accent-red mb-4 block tracking-[0.3em]">COMPONENT 04</span>
                 <h3 class="text-2xl font-black font-heading uppercase mb-4 italic group-hover:text-accent-red transition-colors">Amplifiers</h3>
                 <p class="text-gray-400 dark:text-gray-500 text-[9px] font-bold uppercase tracking-widest leading-loose">Suplai daya arus tinggi (high-current) dengan standar engineering terbaik.</p>
             </div>
-             <div class="p-10 bg-black dark:bg-white group transition-all duration-500" data-aos="fade-up" data-aos-delay="300">
+
+             <div class="p-10 bg-black/60 dark:bg-white/60 group transition-all duration-500 hover:bg-black dark:hover:bg-white" data-aos="fade-up" data-aos-delay="400">
                 <span class="text-[9px] font-black text-accent-red mb-4 block tracking-[0.3em]">COMPONENT 05</span>
                 <h3 class="text-2xl font-black font-heading uppercase mb-4 italic group-hover:text-accent-red transition-colors">Peredam</h3>
                 <p class="text-gray-400 dark:text-gray-500 text-[9px] font-bold uppercase tracking-widest leading-loose">Material peredam suara performa tinggi untuk kekedapan kabin yang maksimal.</p>
@@ -265,7 +278,6 @@
         </div>
     </div>
 </section>
-
        <section id="proses" class="section-margin bg-white dark:bg-[#0A0A0A] py-24 lg:py-32 overflow-hidden border border-black/5 dark:border-white/5">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
         <div class="flex flex-col md:flex-row justify-between items-center mb-24 gap-6">
