@@ -1,5 +1,5 @@
 /* ========================================= */
-/* 1. FONT & ROOT VARIABLES                  */
+/* 1. CORE & VARIABLES                       */
 /* ========================================= */
 @font-face {
     font-family: 'SK-Modernist';
@@ -12,185 +12,176 @@
 :root {
     --accent-red: #E61E2A;
     --dark-studio: #0A0A0A;
-    --bg-studio: #F8F8F8;
-    --text-main: #1A1A1A;
+    --white-studio: #FFFFFF;
+    --transition-smooth: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
 }
 
 /* ========================================= */
-/* 2. NAVBAR & CHRIS MACARI LOOK             */
+/* 2. NAVIGATION (CHRIS MACARI LOOK)         */
 /* ========================================= */
-/* Navbar awal: Transparan & Padding Luas */
 #navbar {
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: var(--transition-smooth);
 }
 
-/* State saat Scroll: Muncul Glassmorphism */
+/* State saat Scroll (Glassmorphism) */
 #navbar.nav-scrolled {
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
 }
 
 .dark #navbar.nav-scrolled {
     background-color: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Nav Link Hover Animation */
-.nav-link {
-    position: relative;
-    overflow: hidden;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: var(--accent-red);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.4s ease;
-}
-
-.nav-link:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
+#navbar:not(.nav-scrolled) {
+    background-color: transparent;
 }
 
 /* ========================================= */
-/* 3. HERO & TYPOGRAPHY SYSTEM               */
+/* 3. CUSTOM CURSOR (DESKTOP ONLY)           */
 /* ========================================= */
-.font-heading {
-    font-family: 'SK-Modernist', sans-serif !important;
-    text-transform: uppercase;
-    letter-spacing: -0.04em; /* Lebih rapat ala Chris Macari */
+#custom-cursor {
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
 }
 
-.hero-title {
-    font-size: clamp(3.5rem, 12vw, 12rem); /* Skala lebih besar */
-    line-height: 0.8;
-    letter-spacing: -0.06em;
-    font-weight: 900;
-    font-family: 'SK-Modernist', sans-serif;
-}
-
-/* Custom Animation untuk Text Hero */
-@keyframes revealUp {
-    from { transform: translateY(100%); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-.animate-reveal-up {
-    animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+#custom-cursor.cursor-hover {
+    transform: scale(4);
+    background-color: var(--accent-red);
+    mix-blend-difference: normal;
 }
 
 /* ========================================= */
-/* 4. UTILITIES & 3D FIX                     */
+/* 4. MARQUEE ANIMATION (BRANDS)             */
 /* ========================================= */
-#speaker-container {
-    width: 100%;
-    height: 100%;
-    min-height: 400px;
-    z-index: 10;
-    user-select: none;
-}
-
-/* Mencegah seleksi pada image background hero */
-#hero img {
-    pointer-events: none;
-}
-
-/* ========================================= */
-/* 5. ANIMATIONS (MARQUEE)                   */
-/* ========================================= */
-.marquee-container {
-    overflow: hidden;
-    display: flex;
-    white-space: nowrap;
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 .animate-marquee {
     display: flex;
-    min-width: 100%; 
-    flex-shrink: 0;
-    align-items: center;
+    width: max-content;
     animation: marquee 30s linear infinite;
 }
 
-@keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
-}
-
-/* Pause animation on hover */
-.marquee-container:hover .animate-marquee {
+.animate-marquee:hover {
     animation-play-state: paused;
 }
 
 /* ========================================= */
-/* 6. SECTION TENTANG (HOVER EFFECT)         */
+/* 5. ACCORDION (FAQ)                        */
 /* ========================================= */
-.tentang-group {
-    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+.faq-item.active .faq-content {
+    max-height: 500px;
+    margin-top: 1rem;
 }
 
-/* Darker effect on hover */
-.tentang-group:hover {
-    background-color: #000000 !important;
+.faq-item.active .accordion-icon-vertical {
+    transform: rotate(90deg);
 }
 
-.tentang-group:hover .hero-title,
-.tentang-group:hover h3,
-.tentang-group:hover p {
-    color: white !important;
+.faq-item.active .accordion-icon-horizontal {
+    opacity: 0;
 }
 
 /* ========================================= */
-/* 7. BRAND LOGO UTILITY                     */
+/* 6. TYPOGRAPHY & EFFECTS                   */
 /* ========================================= */
-.brand-logo {
-    height: 3rem; /* Mobile */
-    width: auto;
-    filter: grayscale(1) opacity(0.4);
-    transition: all 0.5s ease;
-    cursor: pointer;
+.font-heading {
+    font-family: 'SK-Modernist', sans-serif;
+    letter-spacing: -0.05em;
 }
 
-/* Desktop Optimization */
-@media (min-width: 1024px) {
-    .brand-logo {
-        height: 5rem !important; 
+/* Split Text Reveal Style */
+.reveal-up {
+    overflow: hidden;
+}
+
+.reveal-up span {
+    display: block;
+    transform: translateY(100%);
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.aos-animate .reveal-up span {
+    transform: translateY(0);
+}
+
+/* ========================================= */
+/* 7. RESPONSIVE UTILITIES                   */
+/* ========================================= */
+
+/* Mobile Optimization (HP) */
+@media (max-width: 768px) {
+    .font-heading {
+        letter-spacing: -0.02em;
+    }
+    
+    #speaker-container {
+        height: 300px !important;
+        margin-top: 2rem;
+    }
+
+    .section-padding {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
     }
 }
 
-/* Dark Mode Logo Support */
-.dark .brand-logo {
-    filter: grayscale(1) opacity(0.4) invert(1);
+/* Tablet & Desktop Optimization */
+@media (min-width: 1024px) {
+    .brand-logo {
+        height: 4rem !important;
+        filter: grayscale(1) opacity(0.5);
+    }
+
+    .brand-logo:hover {
+        filter: grayscale(0) opacity(1);
+    }
 }
 
-.brand-logo:hover {
-    filter: grayscale(0) opacity(1) !important;
-    transform: translateY(-5px);
+/* ========================================= */
+/* 8. DARK MODE ADJUSTMENTS                  */
+/* ========================================= */
+.dark .text-gray-custom {
+    color: #A1A1AA;
 }
 
-#mobile-menu {
-    /* Mencegah scroll saat menu terbuka */
-    overflow: hidden;
-    /* Pastikan z-index lebih tinggi dari apapun */
-    z-index: 99999;
+.dark .bg-studio-custom {
+    background-color: var(--dark-studio);
 }
 
-/* Animasi agar menu meluncur mulus */
-.translate-y-full {
-    transform: translateY(100%);
+/* Smooth Swiper Transition */
+.testimoni-slider {
+    cursor: grab;
 }
 
-#mobile-menu:not(.translate-y-full) {
-    transform: translateY(0);
+.testimoni-slider:active {
+    cursor: grabbing;
+}
+
+/* ========================================= */
+/* 9. IMAGE ZOOM MODAL                       */
+/* ========================================= */
+#simple-zoom-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#simple-zoom-modal.active #zoom-modal-image {
+    transform: scale(1);
 }
