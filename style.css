@@ -26,6 +26,12 @@ body {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+    background-color: var(--white-studio);
+    transition: background-color 0.5s ease;
+}
+
+body.dark {
+    background-color: var(--dark-studio);
 }
 
 /* ========================================= */
@@ -33,35 +39,37 @@ body {
 /* ========================================= */
 #navbar {
     transition: var(--transition-smooth);
+    z-index: 100;
 }
 
-/* State saat Scroll (Glassmorphism) */
+/* State saat Scroll - Light Mode */
 #navbar.nav-scrolled {
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
+/* State saat Scroll - Dark Mode */
 .dark #navbar.nav-scrolled {
     background-color: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-#navbar:not(.nav-scrolled) {
-    background-color: transparent;
 }
 
 /* ========================================= */
 /* 3. CUSTOM CURSOR (DESKTOP ONLY)           */
 /* ========================================= */
 #custom-cursor {
-    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    transition: width 0.3s, height 0.3s, background-color 0.3s, transform 0.15s ease-out;
+    z-index: 9999;
 }
 
-#custom-cursor.cursor-hover {
-    transform: scale(4);
-    background-color: var(--accent-red);
-    mix-blend-difference: normal;
+.cursor-hover {
+    transform: scale(4) !important;
+    background-color: var(--accent-red) !important;
+    mix-blend-difference: normal !important;
 }
 
 /* ========================================= */
@@ -75,7 +83,7 @@ body {
 .animate-marquee {
     display: flex;
     width: max-content;
-    animation: marquee 30s linear infinite;
+    animation: marquee 40s linear infinite; /* Diperlambat sedikit agar elegan */
 }
 
 .animate-marquee:hover {
@@ -85,28 +93,31 @@ body {
 /* ========================================= */
 /* 5. ACCORDION (FAQ)                        */
 /* ========================================= */
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), margin 0.5s ease;
+}
+
 .faq-item.active .faq-content {
     max-height: 500px;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 }
 
 .faq-item.active .accordion-icon-vertical {
     transform: rotate(90deg);
-}
-
-.faq-item.active .accordion-icon-horizontal {
     opacity: 0;
 }
 
 /* ========================================= */
-/* 6. TYPOGRAPHY & EFFECTS                   */
+/* 6. TYPOGRAPHY & REVEAL EFFECTS            */
 /* ========================================= */
 .font-heading {
     font-family: 'SK-Modernist', sans-serif;
     letter-spacing: -0.05em;
+    line-height: 0.9;
 }
 
-/* Split Text Reveal Style */
 .reveal-up {
     overflow: hidden;
 }
@@ -114,7 +125,7 @@ body {
 .reveal-up span {
     display: block;
     transform: translateY(100%);
-    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .aos-animate .reveal-up span {
@@ -122,106 +133,89 @@ body {
 }
 
 /* ========================================= */
-/* 7. RESPONSIVE UTILITIES                   */
+/* 7. GENERAL UTILITIES                      */
 /* ========================================= */
-
-/* Mobile Optimization (HP) */
-@media (max-width: 768px) {
-    .font-heading {
-        letter-spacing: -0.02em;
-    }
-    
-    #speaker-container {
-        height: 300px !important;
-        margin-top: 2rem;
-    }
-
-    .section-padding {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
-    }
+.brand-logo {
+    transition: var(--transition-smooth);
+    filter: grayscale(1) opacity(0.5);
 }
 
-/* Tablet & Desktop Optimization */
-@media (min-width: 1024px) {
-    .brand-logo {
-        height: 4rem !important;
-        filter: grayscale(1) opacity(0.5);
-    }
+.brand-logo:hover {
+    filter: grayscale(0) opacity(1);
+    transform: scale(1.05);
+}
 
-    .brand-logo:hover {
-        filter: grayscale(0) opacity(1);
-    }
+.dark .brand-logo {
+    filter: grayscale(1) opacity(0.5) invert(1);
 }
 
 /* ========================================= */
-/* 8. DARK MODE ADJUSTMENTS                  */
+/* 8. IMAGE ZOOM MODAL                       */
 /* ========================================= */
-.dark .text-gray-custom {
-    color: #A1A1AA;
+#simple-zoom-modal {
+    z-index: 10000;
 }
 
-.dark .bg-studio-custom {
-    background-color: var(--dark-studio);
-}
-
-/* Smooth Swiper Transition */
-.testimoni-slider {
-    cursor: grab;
-}
-
-.testimoni-slider:active {
-    cursor: grabbing;
-}
-
-/* ========================================= */
-/* 9. IMAGE ZOOM MODAL                       */
-/* ========================================= */
 #simple-zoom-modal.active {
-    opacity: 1;
-    pointer-events: auto;
+    opacity: 1 !important;
+    pointer-events: auto !important;
 }
 
 #simple-zoom-modal.active #zoom-modal-image {
-    transform: scale(1);
+    transform: scale(1) !important;
 }
 
-/* PAKSA PERBEDAAN MOBILE (Max-width 768px) */
+/* ========================================= */
+/* 9. MEDIA QUERIES (RESPONSIVE)             */
+/* ========================================= */
+
+/* TABLET & MOBILE */
+@media (max-width: 1024px) {
+    .animate-marquee {
+        animation: marquee 25s linear infinite; /* Lebih cepat di mobile agar tidak bosan */
+    }
+}
+
+/* KHUSUS MOBILE (HP) */
 @media (max-width: 768px) {
-    /* Judul di HP dibuat lebih rapat dan tegas */
     .font-heading {
-        letter-spacing: -0.04em !important;
-        line-height: 0.9 !important;
+        letter-spacing: -0.03em !important;
+        line-height: 0.85 !important;
     }
 
-    /* Hilangkan elemen yang bikin penuh di HP */
-    .hidden-mobile {
-        display: none !important;
+    #speaker-container {
+        height: 350px !important;
+        margin-top: 1rem;
     }
 
-    /* Buat Grid Layanan jadi 1 kolom saja di HP agar tidak numpuk */
+    /* Perbaikan Grid Layanan (CSS Murni) */
     #layanan .grid {
-        grid-template-cols: 1fr !important;
-        gap: 10px !important;
+        grid-template-columns: 1fr !important; 
+        gap: 1.5rem !important;
     }
 
-    /* Padding Section di HP diperkecil agar konten lebih padat */
-    section {
-        padding-top: 60px !important;
-        padding-bottom: 60px !important;
-    }
-
-    /* Card Produk di HP dibuat memanjang (Full Width) */
     #produk .grid {
         display: flex !important;
         flex-direction: column !important;
-        gap: 20px !important;
+        gap: 1.5rem !important;
+    }
+
+    section {
+        padding-top: 80px !important;
+        padding-bottom: 80px !important;
+    }
+
+    .hidden-mobile {
+        display: none !important;
+    }
+    
+    #custom-cursor {
+        display: none !important; /* Nonaktifkan cursor di HP */
     }
 }
 
-/* KHUSUS DESKTOP (Min-width 1024px) */
-@media (min-width: 1024px) {
-    /* Berikan efek hover yang hanya ada di Desktop */
+/* KHUSUS DESKTOP */
+@media (min-width: 1025px) {
     .group:hover .group-hover\:scale-110 {
         transform: scale(1.1);
     }
