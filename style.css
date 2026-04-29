@@ -185,3 +185,44 @@ body {
 #simple-zoom-modal.active #zoom-modal-image {
     transform: scale(1);
 }
+
+/* PAKSA PERBEDAAN MOBILE (Max-width 768px) */
+@media (max-width: 768px) {
+    /* Judul di HP dibuat lebih rapat dan tegas */
+    .font-heading {
+        letter-spacing: -0.04em !important;
+        line-height: 0.9 !important;
+    }
+
+    /* Hilangkan elemen yang bikin penuh di HP */
+    .hidden-mobile {
+        display: none !important;
+    }
+
+    /* Buat Grid Layanan jadi 1 kolom saja di HP agar tidak numpuk */
+    #layanan .grid {
+        grid-template-cols: 1fr !important;
+        gap: 10px !important;
+    }
+
+    /* Padding Section di HP diperkecil agar konten lebih padat */
+    section {
+        padding-top: 60px !important;
+        padding-bottom: 60px !important;
+    }
+
+    /* Card Produk di HP dibuat memanjang (Full Width) */
+    #produk .grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+}
+
+/* KHUSUS DESKTOP (Min-width 1024px) */
+@media (min-width: 1024px) {
+    /* Berikan efek hover yang hanya ada di Desktop */
+    .group:hover .group-hover\:scale-110 {
+        transform: scale(1.1);
+    }
+}
