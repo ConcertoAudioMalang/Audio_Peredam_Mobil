@@ -1,6 +1,6 @@
 /**
  * CONCERTO MALANG - OFFICIAL SCRIPT 2026
- * Gabungan Logika Stabil + Support Fitur Baru
+ * Pembaruan: Sinkronisasi CSS Global + Efisiensi Performa
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,36 +15,45 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let lastScrollY = window.scrollY;
 
-   // --- 2. THEME ENGINE ---
-const toggleTheme = () => {
-    html.classList.toggle('dark');
-    const isDark = html.classList.contains('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    console.log("Theme toggled to:", isDark ? 'dark' : 'light');
-};
+    // --- 2. THEME ENGINE (Dark Mode) ---
+    const applyTheme = () => {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+    };
 
-// Gunakan selektor yang lebih aman (mencakup ID maupun Class)
-document.addEventListener('click', (e) => {
-    // Jika yang diklik adalah tombol theme-toggle atau elemen di dalamnya (span)
-    if (e.target.closest('#theme-toggle') || e.target.closest('#theme-toggle-mobile') || e.target.closest('.theme-toggle')) {
-        e.preventDefault();
-        toggleTheme();
-    }
-});
+    const toggleTheme = () => {
+        html.classList.toggle('dark');
+        const isDark = html.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    };
 
-    // --- 3. NAVBAR & SCROLL ENGINE (Termasuk Button Up) ---
+    // Handler klik universal untuk toggle theme
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('#theme-toggle') || e.target.closest('#theme-toggle-mobile')) {
+            e.preventDefault();
+            toggleTheme();
+        }
+    });
+
+    applyTheme(); // Jalankan saat load
+
+    // --- 3. NAVBAR & SCROLL ENGINE ---
     const handleNavbarScroll = () => {
         const currentScrollY = window.scrollY;
         
         if (navbar) {
+            // Efek Scrolled (Sinkron dengan style_3.css)
             if (currentScrollY > 50) {
-                navbar.classList.add('backdrop-blur-xl', 'bg-white/80', 'dark:bg-[#0A0A0A]/80', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
-                navbar.classList.remove('py-6', 'bg-transparent');
+                navbar.classList.add('nav-scrolled');
             } else {
-                navbar.classList.remove('backdrop-blur-xl', 'bg-white/80', 'dark:bg-[#0A0A0A]/80', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
-                navbar.classList.add('py-6', 'bg-transparent');
+                navbar.classList.remove('nav-scrolled');
             }
 
+            // Hide/Show Navbar saat Scroll (Smart Navbar)
             if (currentScrollY > lastScrollY && currentScrollY > 500) {
                 navbar.style.transform = 'translateY(-100%)';
             } else {
@@ -52,7 +61,7 @@ document.addEventListener('click', (e) => {
             }
         }
 
-        // Button Up Visibility
+        // Button Scroll Up Visibility
         if (scrollToTopBtn) {
             if (currentScrollY > 800) {
                 scrollToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-10');
@@ -65,6 +74,7 @@ document.addEventListener('click', (e) => {
         lastScrollY = currentScrollY;
     };
 
+    // Gunakan throttle/passive untuk performa scroll yang lebih ringan
     window.addEventListener('scroll', handleNavbarScroll, { passive: true });
 
     if (scrollToTopBtn) {
@@ -73,101 +83,116 @@ document.addEventListener('click', (e) => {
         });
     }
 
-    // --- 4. SWIPER TESTIMONI (Fitur Baru) ---
-    if (typeof Swiper !== 'undefined') {
+    // --- 4. SWIPER TESTIMONI ---
+    if (typeof Swiper !== 'undefined' && document.querySelector('.testimoni-slider')) {
         new Swiper('.testimoni-slider', {
             slidesPerView: 1,
-            spaceBetween: 20,
+            spaceBetween: 24,
             loop: true,
             grabCursor: true,
-            autoplay: { delay: 5000 },
+            autoplay: { delay: 5000, disableOnInteraction: false },
             navigation: {
                 nextEl: '.swiper-next',
                 prevEl: '.swiper-prev',
             },
             breakpoints: {
                 768: { slidesPerView: 2 },
-                1024: { slidesPerView: 2.5, spaceBetween: 30 }
+                1024: { slidesPerView: 2.5, spaceBetween: 32 }
             }
         });
     }
 
-    // --- 5. FAQ ACCORDION ---
+    // --- 5. FAQ ACCORDION (Sinkron dengan FAQ Item Class) ---
     document.querySelectorAll('.faq-item').forEach(item => {
         const header = item.querySelector('.accordion-header');
-        const content = item.querySelector('.faq-content');
-        const vLine = item.querySelector('.accordion-icon-vertical');
-
         header.addEventListener('click', () => {
-            const isOpen = content.style.maxHeight;
-            document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = null);
-            document.querySelectorAll('.accordion-icon-vertical').forEach(v => v.style.transform = 'rotate(0deg)');
+            const isActive = item.classList.contains('active');
+            
+            // Tutup semua FAQ lainnya (Mode Exclusive)
+            document.querySelectorAll('.faq-item').forEach(otherItem => {
+                otherItem.classList.remove('active');
+                const content = otherItem.querySelector('.faq-content');
+                if (content) content.style.maxHeight = null;
+            });
 
-            if (!isOpen) {
-                content.style.maxHeight = content.scrollHeight + "px";
-                if (vLine) vLine.style.transform = 'rotate(90deg)';
+            // Toggle item yang diklik
+            if (!isActive) {
+                item.classList.add('active');
+                const content = item.querySelector('.faq-content');
+                if (content) content.style.maxHeight = content.scrollHeight + "px";
             }
         });
     });
 
-    // --- 6. MOBILE MENU ---
+    // --- 6. MOBILE MENU (Enhanced) ---
     if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', () => {
-            const isHidden = mobileMenu.classList.contains('hidden');
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            
             mobileMenu.classList.toggle('hidden');
+            document.body.style.overflow = isOpen ? '' : 'hidden'; // Lock scroll saat menu buka
+
             if (menuIcon) {
-                if (isHidden) {
-                    menuIcon.classList.replace('fa-bars', 'fa-xmark');
-                    document.body.style.overflow = 'hidden';
-                } else {
+                if (isOpen) {
                     menuIcon.classList.replace('fa-xmark', 'fa-bars');
-                    document.body.style.overflow = '';
+                } else {
+                    menuIcon.classList.replace('fa-bars', 'fa-xmark');
                 }
             }
         });
+
+        // Tutup menu otomatis saat link diklik
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+                if (menuIcon) menuIcon.classList.replace('fa-xmark', 'fa-bars');
+            });
+        });
     }
 
-    // --- 7. CUSTOM CURSOR ---
+    // --- 7. CUSTOM CURSOR (Desktop Only) ---
     if (cursor && window.innerWidth > 1024) {
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            // Menggunakan requestAnimationFrame untuk pergerakan lebih halus
+            requestAnimationFrame(() => {
+                cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+            });
         });
 
-        document.querySelectorAll('a, button, .cursor-pointer').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('scale-[3]', 'bg-accent-red/20'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('scale-[3]', 'bg-accent-red/20'));
+        document.querySelectorAll('a, button, .cursor-pointer, .swiper-button').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
         });
     }
 
     // --- 8. INITIALIZE AOS ---
     if (typeof AOS !== 'undefined') {
-        AOS.init({ once: true, duration: 800, offset: 50, easing: 'ease-out-quart' });
+        AOS.init({ 
+            once: true, 
+            duration: 1000, 
+            offset: 100, 
+            easing: 'ease-out-expo',
+            disable: 'mobile' // Opsional: matikan AOS di HP untuk hemat baterai
+        });
     }
 });
 
-// --- 9. GLOBAL UTILITIES ---
+// --- 9. GLOBAL UTILITIES (Image Zoom) ---
 window.zoomImage = (img) => {
     const modal = document.getElementById('simple-zoom-modal');
     const modalImg = document.getElementById('zoom-modal-image');
     if (!modal || !modalImg) return;
+
     modalImg.src = img.src;
-    modal.classList.remove('opacity-0', 'pointer-events-none');
-    modal.classList.add('opacity-100', 'pointer-events-auto');
-    modalImg.classList.remove('scale-95');
-    modalImg.classList.add('scale-100');
+    modal.classList.add('active'); // Menggunakan class 'active' dari style_3.css
     document.body.style.overflow = 'hidden';
 };
 
 window.closeZoomModal = () => {
     const modal = document.getElementById('simple-zoom-modal');
-    const modalImg = document.getElementById('zoom-modal-image');
-    if (!modal) return;
-    modal.classList.add('opacity-0', 'pointer-events-none');
-    modal.classList.remove('opacity-100', 'pointer-events-auto');
-    if (modalImg) {
-        modalImg.classList.add('scale-95');
-        modalImg.classList.remove('scale-100');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
     }
-    document.body.style.overflow = '';
 };
