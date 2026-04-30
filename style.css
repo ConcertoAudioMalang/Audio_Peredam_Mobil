@@ -1,5 +1,5 @@
 /* ========================================= */
-/* 1. CORE, FONT & VARIABLES                 */
+/* 1. CORE & TYPOGRAPHY SYSTEM               */
 /* ========================================= */
 @font-face {
     font-family: 'SK-Modernist';
@@ -12,251 +12,144 @@
 :root {
     --accent-red: #E61E2A;
     --dark-studio: #0A0A0A;
-    --bg-studio: #F8F8F8;
-    --text-main: #1A1A1A;
     --transition-grande: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.font-heading {
+    font-family: 'SK-Modernist', 'Plus Jakarta Sans', sans-serif !important;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
+/* Base Body Fix */
 body {
-    font-family: 'Inter', sans-serif; /* Fallback font */
-    background-color: var(--bg-studio);
-    color: var(--text-main);
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    transition: background-color 0.5s ease;
-}
-
-body.dark {
-    background-color: var(--dark-studio);
-    color: #FFFFFF;
+    text-rendering: optimizeLegibility;
 }
 
 /* ========================================= */
-/* 2. NAVBAR & NAVIGATION                    */
+/* 2. NAVBAR (Chris Macari Style)            */
 /* ========================================= */
 #navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 9999;
-    padding: 1.5rem 0; /* py-6 awal */
     transition: var(--transition-grande);
 }
 
-/* State saat Scroll (Triggered by JS) */
+/* State Aktif saat Scroll (Sinkron dengan JS) */
 #navbar.nav-scrolled {
-    padding: 1rem 0; /* py-4 saat scroll */
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .dark #navbar.nav-scrolled {
-    background-color: rgba(10, 10, 10, 0.8);
+    background-color: rgba(10, 10, 10, 0.85);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Nav Link Hover */
-.nav-link {
-    position: relative;
-    padding: 0.5rem 0;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: var(--accent-red);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.nav-link:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-}
-
 /* ========================================= */
-/* 3. MOBILE MENU SYSTEM                     */
+/* 3. MOBILE MENU FIX (HP Ready)             */
 /* ========================================= */
+/* Pastikan ID ini ada di HTML atau dikontrol JS */
 #mobile-menu {
     position: fixed;
     inset: 0;
-    background-color: #FFFFFF;
     z-index: 10000;
+    background: white;
+    transition: var(--transition-grande);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 2rem;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    justify-content: center;
 }
 
 .dark #mobile-menu {
-    background-color: var(--dark-studio);
+    background: var(--dark-studio);
 }
 
-/* Animasi Slide */
-.translate-x-full { transform: translateX(100%); }
-.translate-x-0 { transform: translateX(0); }
+/* Utility classes untuk toggle menu */
+.menu-hidden { transform: translateY(100%); }
+.menu-visible { transform: translateY(0); }
 
 /* ========================================= */
-/* 4. TYPOGRAPHY SYSTEM (GRANDE)             */
+/* 4. FAQ ACCORDION SYSTEM                   */
 /* ========================================= */
-.font-heading {
-    font-family: 'SK-Modernist', sans-serif !important;
-    text-transform: uppercase;
-    letter-spacing: -0.04em;
-    line-height: 0.9;
-}
-
-.hero-title {
-    font-size: clamp(3rem, 10vw, 10rem);
-    font-weight: 900;
-    letter-spacing: -0.06em;
-}
-
-/* Reveal Text Animation */
-.reveal-up {
-    overflow: hidden;
-    display: block;
-}
-
-.reveal-up span {
-    display: block;
-    transform: translateY(100%);
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.aos-animate .reveal-up span {
-    transform: translateY(0);
-}
-
-/* ========================================= */
-/* 5. COMPONENTS & ANIMATIONS                */
-/* ========================================= */
-/* FAQ Accordion Sync */
 .faq-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), margin 0.4s ease;
+    transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease;
 }
 
+/* Triggered by JS class 'active' */
 .faq-item.active .faq-content {
-    max-height: 600px;
-    margin-top: 1.5rem;
+    max-height: 500px; /* Sesuai konten */
+    padding-bottom: 2rem;
 }
 
 .faq-item.active .accordion-icon-vertical {
-    opacity: 0;
     transform: rotate(90deg);
+    opacity: 0;
 }
 
-/* Marquee Smooth */
-.marquee-container {
-    overflow: hidden;
-    display: flex;
-    white-space: nowrap;
+.faq-item.active .accordion-icon-horizontal {
+    transform: rotate(180deg);
 }
 
+/* ========================================= */
+/* 5. MARQUEE & ANIMATIONS                   */
+/* ========================================= */
 .animate-marquee {
     display: flex;
     width: max-content;
-    animation: marquee 40s linear infinite;
+    animation: marquee-scroll 30s linear infinite;
 }
 
-@keyframes marquee {
+@keyframes marquee-scroll {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
 }
 
-/* Custom Cursor (Desktop Only) */
-#custom-cursor {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    background-color: var(--accent-red);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 10001;
-    mix-blend-difference: normal;
-    transition: width 0.3s, height 0.3s, background-color 0.3s;
-}
-
-.cursor-hover {
-    transform: scale(4) !important;
-    background-color: rgba(230, 30, 42, 0.3) !important;
-}
-
-/* ========================================= */
-/* 6. BRAND LOGO UTILITY                     */
-/* ========================================= */
 .brand-logo {
-    height: 2.5rem;
+    height: 3rem;
     width: auto;
-    filter: grayscale(1) opacity(0.5);
+    filter: grayscale(1) opacity(0.4);
     transition: var(--transition-grande);
 }
 
-.dark .brand-logo { filter: grayscale(1) opacity(0.5) invert(1); }
+.dark .brand-logo { filter: grayscale(1) opacity(0.4) invert(1); }
 
 .brand-logo:hover {
     filter: grayscale(0) opacity(1) !important;
-    transform: translateY(-5px) scale(1.1);
+    transform: scale(1.1);
 }
 
 /* ========================================= */
-/* 7. RESPONSIVE UTILITIES (DEEP UPGRADE)    */
+/* 6. UTILITIES (Grande Effects)             */
 /* ========================================= */
-
-/* Mobile (HP) */
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 15vw !important;
-        line-height: 0.85;
-    }
-
-    #speaker-container {
-        min-height: 300px !important;
-        height: 40vh;
-    }
-
-    #custom-cursor { display: none !important; }
-
-    section {
-        padding-top: 4rem !important;
-        padding-bottom: 4rem !important;
-    }
-
-    /* Grid Layouts to Single Column */
-    #produk .grid, #layanan .grid {
-        grid-template-columns: 1fr !important;
-        gap: 2rem !important;
-    }
-}
-
-/* Desktop Fixes */
-@media (min-width: 1024px) {
-    .brand-logo { height: 4rem !important; }
+.hero-title {
+    font-size: clamp(3rem, 10vw, 10rem);
+    line-height: 0.8;
 }
 
 /* Zoom Modal */
+#simple-zoom-modal {
+    background-color: rgba(0, 0, 0, 0.95);
+    transition: opacity 0.5s ease;
+}
+
 #simple-zoom-modal.active {
     opacity: 1 !important;
     pointer-events: auto !important;
+}
+
+/* Custom Cursor Fix */
+#custom-cursor {
+    transition: transform 0.1s ease-out, width 0.3s ease, height 0.3s ease;
+}
+
+/* HP/Tablet Optimizations */
+@media (max-width: 1024px) {
+    #custom-cursor { display: none !important; }
+    #navbar { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+    .hero-title { font-size: 14vw; }
 }
