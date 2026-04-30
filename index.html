@@ -546,27 +546,58 @@
     <script type="module" src="3d-speaker.js"></script>
     <script src="script.js"></script>
 
-    <script>
-        AOS.init({ duration: 1000, once: true });
+   <script>
+    // 1. Initialize AOS & Swiper
+    AOS.init({ duration: 1000, once: true, disable: 'mobile' });
 
-        // Navbar Scroll Effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('bg-white/80', 'dark:bg-dark-studio/80', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-black/5');
-                navbar.classList.remove('py-8');
-            } else {
-                navbar.classList.remove('bg-white/80', 'dark:bg-dark-studio/80', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-black/5');
-                navbar.classList.add('py-8');
-            }
-        });
+    const swiper = new Swiper('.testimoni-slider', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: { delay: 5000 },
+        navigation: { nextEl: '.swiper-next', prevEl: '.swiper-prev' },
+        breakpoints: {
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 2.5 }
+        }
+    });
 
-        // Theme Toggle
-        const themeBtn = document.getElementById('theme-toggle');
-        themeBtn.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    // 2. Navbar & Scroll Logic (Sinkron dengan CSS)
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('nav-scrolled');
+        } else {
+            navbar.classList.remove('nav-scrolled');
+        }
+    });
+
+    // 3. FAQ Accordion Logic
+    document.querySelectorAll('.faq-item').forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        header.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            // Tutup semua FAQ lain
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            // Buka yang diklik jika sebelumnya tidak aktif
+            if (!isActive) item.classList.add('active');
         });
-    </script>
+    });
+
+    // 4. Zoom Modal Logic
+    window.zoomImage = (img) => {
+        const modal = document.getElementById('simple-zoom-modal');
+        const modalImg = document.getElementById('zoom-modal-image');
+        modalImg.src = img.src;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    window.closeZoomModal = () => {
+        const modal = document.getElementById('simple-zoom-modal');
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+</script>
 </body>
 </html>
