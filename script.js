@@ -1,6 +1,6 @@
 /**
  * CONCERTO MALANG - OFFICIAL SCRIPT 2026
- * Pembaruan: Sinkronisasi CSS Global + Efisiensi Performa
+ * Perbaikan: Efisiensi Event Listener & Pencegahan Layout Shift
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,24 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursor = document.getElementById('custom-cursor');
     
     let lastScrollY = window.scrollY;
+    let ticking = false; // Untuk throttle scroll
 
-    // --- 2. THEME ENGINE (Dark Mode) ---
+    // --- 2. THEME ENGINE ---
     const applyTheme = () => {
         const savedTheme = localStorage.getItem('theme') || 'light';
-        if (savedTheme === 'dark') {
-            html.classList.add('dark');
-        } else {
-            html.classList.remove('dark');
-        }
+        html.classList.toggle('dark', savedTheme === 'dark');
     };
 
     const toggleTheme = () => {
-        html.classList.toggle('dark');
-        const isDark = html.classList.contains('dark');
+        const isDark = html.classList.toggle('dark');
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
     };
 
-    // Handler klik universal untuk toggle theme
     document.addEventListener('click', (e) => {
         if (e.target.closest('#theme-toggle') || e.target.closest('#theme-toggle-mobile')) {
             e.preventDefault();
@@ -39,21 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    applyTheme(); // Jalankan saat load
+    applyTheme();
 
-    // --- 3. NAVBAR & SCROLL ENGINE ---
-    const handleNavbarScroll = () => {
+    // --- 3. NAVBAR & SCROLL ENGINE (Throttled) ---
+    const updateScrollLogic = () => {
         const currentScrollY = window.scrollY;
         
         if (navbar) {
-            // Efek Scrolled (Sinkron dengan style_3.css)
-            if (currentScrollY > 50) {
-                navbar.classList.add('nav-scrolled');
-            } else {
-                navbar.classList.remove('nav-scrolled');
-            }
+            // State: Ter-scroll
+            navbar.classList.toggle('nav-scrolled', currentScrollY > 50);
 
-            // Hide/Show Navbar saat Scroll (Smart Navbar)
+            // Smart Navbar (Hide on Scroll Down, Show on Scroll Up)
             if (currentScrollY > lastScrollY && currentScrollY > 500) {
                 navbar.style.transform = 'translateY(-100%)';
             } else {
@@ -61,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Button Scroll Up Visibility
+        // Back to Top Button
         if (scrollToTopBtn) {
             if (currentScrollY > 800) {
                 scrollToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-10');
@@ -71,11 +62,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 scrollToTopBtn.classList.remove('opacity-100', 'visible', 'translate-y-0');
             }
         }
+        
         lastScrollY = currentScrollY;
+        ticking = false;
     };
 
-    // Gunakan throttle/passive untuk performa scroll yang lebih ringan
-    window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(updateScrollLogic);
+            ticking = true;
+        }
+    }, { passive: true });
 
     if (scrollToTopBtn) {
         scrollToTopBtn.addEventListener('click', () => {
@@ -91,10 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loop: true,
             grabCursor: true,
             autoplay: { delay: 5000, disableOnInteraction: false },
-            navigation: {
-                nextEl: '.swiper-next',
-                prevEl: '.swiper-prev',
-            },
+            navigation: { nextEl: '.swiper-next', prevEl: '.swiper-prev' },
             breakpoints: {
                 768: { slidesPerView: 2 },
                 1024: { slidesPerView: 2.5, spaceBetween: 32 }
@@ -102,20 +96,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 5. FAQ ACCORDION (Sinkron dengan FAQ Item Class) ---
+    // --- 5. FAQ ACCORDION ---
     document.querySelectorAll('.faq-item').forEach(item => {
         const header = item.querySelector('.accordion-header');
-        header.addEventListener('click', () => {
+        header?.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
             
-            // Tutup semua FAQ lainnya (Mode Exclusive)
-            document.querySelectorAll('.faq-item').forEach(otherItem => {
-                otherItem.classList.remove('active');
-                const content = otherItem.querySelector('.faq-content');
+            // Tutup yang lain
+            document.querySelectorAll('.faq-item').forEach(other => {
+                other.classList.remove('active');
+                const content = other.querySelector('.faq-content');
                 if (content) content.style.maxHeight = null;
             });
 
-            // Toggle item yang diklik
             if (!isActive) {
                 item.classList.add('active');
                 const content = item.querySelector('.faq-content');
@@ -124,39 +117,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 6. MOBILE MENU (Enhanced) ---
+    // --- 6. MOBILE MENU ---
     if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-            const isOpen = !mobileMenu.classList.contains('hidden');
-            
-            mobileMenu.classList.toggle('hidden');
-            document.body.style.overflow = isOpen ? '' : 'hidden'; // Lock scroll saat menu buka
-
+        const toggleMenu = (open) => {
+            mobileMenu.classList.toggle('hidden', !open);
+            document.body.style.overflow = open ? 'hidden' : '';
             if (menuIcon) {
-                if (isOpen) {
-                    menuIcon.classList.replace('fa-xmark', 'fa-bars');
-                } else {
-                    menuIcon.classList.replace('fa-bars', 'fa-xmark');
-                }
+                menuIcon.classList.toggle('fa-bars', !open);
+                menuIcon.classList.toggle('fa-xmark', open);
             }
+        };
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isClosing = !mobileMenu.classList.contains('hidden');
+            toggleMenu(!isClosing);
         });
 
-        // Tutup menu otomatis saat link diklik
         mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = '';
-                if (menuIcon) menuIcon.classList.replace('fa-xmark', 'fa-bars');
-            });
+            link.addEventListener('click', () => toggleMenu(false));
         });
     }
 
-    // --- 7. CUSTOM CURSOR (Desktop Only) ---
+    // --- 7. CUSTOM CURSOR (Smoother) ---
     if (cursor && window.innerWidth > 1024) {
         document.addEventListener('mousemove', (e) => {
-            // Menggunakan requestAnimationFrame untuk pergerakan lebih halus
             requestAnimationFrame(() => {
-                cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+                cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
             });
         });
 
@@ -166,26 +152,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 8. INITIALIZE AOS ---
+    // --- 8. AOS ---
     if (typeof AOS !== 'undefined') {
-        AOS.init({ 
-            once: true, 
-            duration: 1000, 
-            offset: 100, 
-            easing: 'ease-out-expo',
-            disable: 'mobile' // Opsional: matikan AOS di HP untuk hemat baterai
-        });
+        AOS.init({ once: true, duration: 1000, offset: 100, easing: 'ease-out-expo' });
     }
 });
 
-// --- 9. GLOBAL UTILITIES (Image Zoom) ---
+// --- 9. GLOBAL UTILITIES ---
 window.zoomImage = (img) => {
     const modal = document.getElementById('simple-zoom-modal');
     const modalImg = document.getElementById('zoom-modal-image');
     if (!modal || !modalImg) return;
-
     modalImg.src = img.src;
-    modal.classList.add('active'); // Menggunakan class 'active' dari style_3.css
+    modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 };
 
