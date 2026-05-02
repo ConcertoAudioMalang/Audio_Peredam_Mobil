@@ -48,33 +48,39 @@ body.dark {
 /* 2. PENYESUAIAN MERK (BRANDS SECTION)      */
 /* ========================================= */
 .brand-logo {
-    height: 45px; /* Ukuran default desktop */
+    height: 48px; /* Ukuran optimal Desktop sesuai referensi cloud design */
     width: auto;
     object-fit: contain;
     transition: var(--transition-smooth);
     filter: grayscale(1) opacity(0.5);
+    cursor: pointer;
 }
 
 .brand-logo:hover {
     filter: grayscale(0) opacity(1);
-    transform: scale(1.1);
+    transform: scale(1.08);
 }
 
 .dark .brand-logo {
     filter: grayscale(1) opacity(0.5) invert(1);
 }
 
-/* Penyesuaian Marquee */
+/* Penyesuaian Infinite Marquee */
 .animate-marquee {
     display: flex;
     width: max-content;
-    gap: 4rem; /* Jarak antar merk lebih lebar */
-    animation: marquee 40s linear infinite;
+    flex-shrink: 0;
+    animation: marquee 25s linear infinite;
+}
+
+/* Pause animasi saat di-hover oleh kursor (Opsional, ala Web Modern) */
+.animate-marquee:hover {
+    animation-play-state: paused;
 }
 
 @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
 }
 
 /* ========================================= */
@@ -84,11 +90,10 @@ body.dark {
 /* TABLET (Kurang dari 1024px) */
 @media (max-width: 1024px) {
     .brand-logo {
-        height: 35px; /* Logo sedikit lebih kecil di tablet */
+        height: 38px; /* Logo sedikit lebih kecil di tablet */
     }
     .animate-marquee {
-        gap: 2.5rem;
-        animation-duration: 25s;
+        animation-duration: 20s;
     }
 }
 
@@ -104,13 +109,9 @@ body.dark {
         font-size: 2.5rem !important;
     }
 
-    /* Penyesuaian Ukuran Merk di HP */
+    /* Penyesuaian Ukuran Merk di HP agar presisi */
     .brand-logo {
-        height: 30px; /* Ukuran logo di HP yang ideal */
-    }
-    
-    .animate-marquee {
-        gap: 2rem;
+        height: 32px; 
     }
 
     /* Perbaikan Section Spacing */
