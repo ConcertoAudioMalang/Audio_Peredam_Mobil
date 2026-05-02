@@ -57,7 +57,7 @@ body.dark {
 .brand-logo-final {
     flex: 0 0 25%;
     width: 25%;
-    height: 40px; 
+    height: 45px; 
     object-fit: contain;
     padding: 0 50px; 
     filter: grayscale(1) opacity(0.3);
@@ -70,7 +70,7 @@ body.dark {
 
 .brand-logo-final:hover {
     filter: grayscale(0) opacity(1);
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 @keyframes marquee-fix {
@@ -79,7 +79,7 @@ body.dark {
 }
 
 /* ========================================= */
-/* 3. NAVBAR & UI (DESKTOP ONLY)             */
+/* 3. NAVBAR & UI                            */
 /* ========================================= */
 #navbar {
     transition: var(--transition-smooth);
@@ -99,7 +99,7 @@ body.dark {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Custom Cursor hanya jalan di Desktop */
+/* Custom Cursor Desktop */
 #custom-cursor {
     position: fixed;
     width: 20px;
@@ -109,5 +109,4 @@ body.dark {
     pointer-events: none;
     z-index: 9999;
     mix-blend-mode: difference;
-    transition: transform 0.2s ease;
 }
