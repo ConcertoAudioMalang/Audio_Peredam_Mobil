@@ -42,7 +42,7 @@ body.dark {
 }
 
 /* ========================================= */
-/* 2. MARQUEE SYSTEM (REVENUEBASE LOOK)      */
+/* 2. MARQUEE SYSTEM (DESKTOP)               */
 /* ========================================= */
 .animate-marquee {
     display: flex;
@@ -79,48 +79,7 @@ body.dark {
 }
 
 /* ========================================= */
-/* 3. RESPONSIVE ENGINE                      */
-/* ========================================= */
-
-/* TABLET (Kurang dari 1024px) */
-@media (max-width: 1024px) {
-    .brand-logo-final {
-        height: 35px;
-        padding: 0 20px;
-    }
-}
-
-/* MOBILE (HP - Kurang dari 768px) */
-@media (max-width: 768px) {
-    h1, .hero-title {
-        font-size: 3.5rem !important;
-        line-height: 0.85 !important;
-    }
-    
-    h2 { font-size: 2.3rem !important; }
-
-    .brand-logo-final {
-        /* Penyesuaian lebar di HP agar 3 logo terlihat sekaligus */
-        flex: 0 0 33.33%; 
-        width: 33.33%;
-        height: 30px;
-        padding: 0 20px;
-    }
-
-    section {
-        padding: 60px 0 !important;
-    }
-
-    #produk .grid, #layanan .grid {
-        grid-template-columns: 1fr !important;
-        gap: 1.5rem !important;
-    }
-
-    #custom-cursor { display: none !important; }
-}
-
-/* ========================================= */
-/* 4. NAVBAR & UI                            */
+/* 3. NAVBAR & UI (DESKTOP ONLY)             */
 /* ========================================= */
 #navbar {
     transition: var(--transition-smooth);
@@ -138,4 +97,17 @@ body.dark {
 .dark #navbar.nav-scrolled {
     background-color: rgba(10, 10, 10, 0.85);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Custom Cursor hanya jalan di Desktop */
+#custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-red);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.2s ease;
 }
