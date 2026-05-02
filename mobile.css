@@ -1,0 +1,65 @@
+/* ========================================= */
+/* KHUSUS TAMPILAN MOBILE (< 768px)          */
+/* Berdasarkan Inspirasi: DVDROD             */
+/* ========================================= */
+
+/* 1. Reset Spacing & Body */
+section {
+    padding: 60px 24px !important; /* Spasi samping lebih lega khas web modern */
+}
+
+/* 2. Section Merk (Gaya DVDROD: Bersih & Teratur) */
+.animate-marquee {
+    animation-duration: 20s !important; /* Sedikit lebih cepat untuk layar kecil */
+}
+
+.brand-logo-final {
+    flex: 0 0 45% !important; /* Menampilkan 2 logo lebih jelas */
+    width: 45% !important;
+    height: 35px !important;
+    padding: 0 25px !important;
+    filter: grayscale(1) opacity(0.5) !important; /* Lebih tegas pudar-nya */
+}
+
+/* 3. Tipografi Hero (Bold & Compact) */
+h1, .hero-title {
+    font-size: 2.75rem !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.03em !important;
+    margin-bottom: 1.5rem !important;
+}
+
+h2 {
+    font-size: 1.85rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
+}
+
+/* 4. Grid & Layout (Stacking) */
+#produk .grid, #layanan .grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+}
+
+/* 5. Navbar & Mobile Menu Fix */
+#navbar {
+    padding: 12px 0 !important;
+    background-color: rgba(255, 255, 255, 0.98) !important;
+}
+
+.dark #navbar {
+    background-color: rgba(10, 10, 10, 0.98) !important;
+}
+
+/* Sembunyikan elemen dekoratif desktop agar bersih */
+#custom-cursor, .desktop-decoration {
+    display: none !important;
+}
+
+/* Button Full Width di HP */
+.btn-primary, .btn-secondary {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 16px !important;
+}
