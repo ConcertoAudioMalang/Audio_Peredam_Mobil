@@ -6,6 +6,10 @@
     <title>CONCERTO MALANG | Audio Mobil & Peredam Mobil</title>
 
     <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4C520KN23"></script>
     <script>
@@ -51,13 +55,12 @@
     </script>
 
     <link rel="stylesheet" href="style.css">
-
     <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)">
 </head>
 
-<body class="bg-white dark:bg-dark-studio text-black dark:text-white font-sans transition-colors duration-500 overflow-x-hidden">
+<body class="bg-white dark:bg-[#0A0A0A] text-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-    <div id="custom-cursor" class="hidden lg:block fixed top-0 left-0 w-4 h-4 bg-accent-red rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-100 ease-out"></div>
+    <div id="custom-cursor" class="hidden lg:block"></div>
 
    <header id="navbar" class="fixed top-0 w-full z-[100] py-8 px-6 lg:px-12 transition-all duration-700 ease-in-out">
     <nav class="max-w-[1800px] mx-auto flex justify-between items-center">
@@ -862,64 +865,8 @@
     <div id="simple-zoom-modal" class="fixed inset-0 z-[10000] bg-black/95 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500 cursor-zoom-out" onclick="closeZoomModal()">
         <img id="zoom-modal-image" src="" alt="Zoomed View" class="max-w-[90%] max-h-[90%] object-contain transition-transform duration-500 scale-95">
     </div>
-
+   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
-    <script type="module" src="3d-speaker.js"></script>
-
     <script src="script.js"></script>
-
-    <script>
-        // 1. Initialize AOS
-        AOS.init({ duration: 1000, once: true });
-
-        // 2. Navbar Scroll Logic (Chris Macari Look)
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 30) {
-                // Menambahkan glassmorphism & class custom
-                navbar.classList.add('nav-scrolled', 'bg-white/80', 'dark:bg-dark-studio/80', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
-                navbar.classList.remove('py-8');
-            } else {
-                // Kembali ke transparan sempurna
-                navbar.classList.remove('nav-scrolled', 'bg-white/80', 'dark:bg-dark-studio/80', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5');
-                navbar.classList.add('py-8');
-            }
-        });
-
-        // 3. Mobile Menu Logic
-        const mobileMenuBtn = document.getElementById('mobile-menu-button');
-        const closeMenuBtn = document.getElementById('close-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        const openMenu = () => {
-            mobileMenu.classList.remove('translate-y-full');
-            document.body.style.overflow = 'hidden'; // Kunci scroll agar tidak tembus
-        };
-
-        const closeMenu = () => {
-            mobileMenu.classList.add('translate-y-full');
-            document.body.style.overflow = ''; // Buka kembali scroll
-        };
-
-        mobileMenuBtn.addEventListener('click', openMenu);
-        closeMenuBtn.addEventListener('click', closeMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
-
-        // 4. Theme Toggle Logic
-        const themeBtn = document.getElementById('theme-toggle');
-        const themeBtnMobile = document.getElementById('theme-toggle-mobile');
-
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-            const isDark = document.documentElement.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        }
-
-        if(themeBtn) themeBtn.addEventListener('click', toggleTheme);
-        if(themeBtnMobile) themeBtnMobile.addEventListener('click', toggleTheme);
-    </script>
 </body>
 </html>
