@@ -100,3 +100,31 @@ button[type="submit"],
 .animate-ping, .absolute.inset-0.bg-accent-red\/5.blur-\[120px\] {
     display: none !important; /* Hilangkan efek blur berat di HP agar tidak lag */
 }
+
+/* Update Tambahan untuk Hero Section */
+#hero {
+    height: auto !important; /* Biar tidak kepotong di HP yang layarnya pendek */
+    min-height: 100vh;
+    padding-top: 100px !important; /* Ruang untuk navbar */
+    padding-bottom: 60px !important;
+}
+
+#hero .flex-col {
+    align-items: center !important; /* Teks jadi rata tengah di mobile */
+    text-align: center !important;
+}
+
+#hero .flex-col p {
+    margin: 0 auto !important; /* Paragraf rata tengah */
+}
+
+/* Mengatur agar tombol Explore Studio tidak terlalu lebar di layar super kecil */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.1rem !important; /* Sedikit lebih kecil untuk iPhone jadul/kecil */
+    }
+    
+    #speaker-container {
+        height: 280px !important;
+    }
+}
