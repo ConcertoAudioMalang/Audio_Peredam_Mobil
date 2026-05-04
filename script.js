@@ -136,14 +136,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 7. INITIALIZE AOS ---
-    if (typeof AOS !== 'undefined') {
-        AOS.init({ 
-            once: true, 
-            duration: 1000, 
-            easing: 'ease-out-expo',
-            disable: 'mobile' 
-        });
-    }
+if (typeof AOS !== 'undefined') {
+    AOS.init({ 
+        once: true, 
+        duration: 800, // Sedikit lebih cepat agar terasa snappy di HP
+        easing: 'ease-out-expo',
+        // Ubah 'disable: mobile' menjadi pengecekan yang lebih cerdas
+        // Kita tetap ingin animasi aktif, tapi hanya yang ringan saja
+        offset: 50, // Animasi muncul lebih awal saat di-scroll
+        delay: 0
+    });
+}
 
     // --- 8. SWIPER (Hanya jika ada elemennya) ---
     if (typeof Swiper !== 'undefined' && document.querySelector('.testimoni-slider')) {
