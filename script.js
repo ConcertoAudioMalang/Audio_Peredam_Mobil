@@ -9,13 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.getElementById('navbar');
     const scrollToTopBtn = document.getElementById('scroll-to-top');
     const cursor = document.getElementById('custom-cursor');
-    const isMobile = window.innerWidth < 1024; // Cek status perangkat sekali di awal
+    const mobileMenuBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const isMobile = window.innerWidth < 1024; 
     
     let lastScrollY = window.scrollY;
 
     // --- 2. THEME ENGINE ---
     const applyTheme = () => {
-        const savedTheme = localStorage.getItem('theme') || 'dark'; // Default Dark agar mewah
+        const savedTheme = localStorage.getItem('theme') || 'dark'; 
         html.classList.toggle('dark', savedTheme === 'dark');
     };
 
@@ -32,15 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     applyTheme();
 
-    // --- 3. SMART SCROLL & BUTTON ANIMATIONS ---
+    // --- 3. SMART SCROLL & NAVBAR ---
     const handleScroll = () => {
         const currentScrollY = window.scrollY;
         
         if (navbar) {
-            // Efek background blur & border saat scroll
             navbar.classList.toggle('nav-scrolled', currentScrollY > 20);
 
-            // Hide/Show Navbar (Logic: Sembunyikan saat scroll ke bawah, Munculkan saat scroll ke atas)
             if (currentScrollY > lastScrollY && currentScrollY > 400) {
                 navbar.style.transform = 'translateY(-100%)';
             } else {
@@ -48,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Scroll to Top Button (Smooth Fade)
         if (scrollToTopBtn) {
             const isVisible = currentScrollY > 600;
             scrollToTopBtn.style.opacity = isVisible ? '1' : '0';
@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScrollY = currentScrollY;
     };
 
-    // Gunakan throttle atau requestAnimationFrame untuk performa scroll
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     if (scrollToTopBtn) {
@@ -67,14 +66,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. ACCORDION (Enhanced Transitions) ---
+    // --- 4. MOBILE MENU LOGIC ---
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden');
+            document.body.style.overflow = isOpen ? '' : 'hidden';
+
+            if (menuIcon) {
+                menuIcon.classList.toggle('fa-bars', isOpen);
+                menuIcon.classList.toggle('fa-xmark', !isOpen);
+            }
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+                if (menuIcon) {
+                    menuIcon.classList.add('fa-bars');
+                    menuIcon.classList.remove('fa-xmark');
+                }
+            });
+        });
+    }
+
+    // --- 5. ACCORDION ---
     document.querySelectorAll('.faq-item').forEach(item => {
         const header = item.querySelector('.accordion-header');
         if (header) {
             header.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
-                
-                // Close others (Exclusive Mode)
                 document.querySelectorAll('.faq-item').forEach(other => {
                     other.classList.remove('active');
                     const content = other.querySelector('.faq-content');
@@ -84,61 +106,59 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!isActive) {
                     item.classList.add('active');
                     const content = item.querySelector('.faq-content');
-                    // Memberikan transisi tinggi yang mulus
                     if (content) content.style.maxHeight = content.scrollHeight + "px";
                 }
             });
         }
     });
 
-    // --- 5. CUSTOM CURSOR (Desktop Only - Performance Optimized) ---
+    // --- 6. CUSTOM CURSOR ---
     if (cursor && !isMobile) {
         document.addEventListener('mousemove', (e) => {
-            // Gunakan transform agar lebih enteng bagi GPU
             cursor.style.left = `${e.clientX}px`;
             cursor.style.top = `${e.clientY}px`;
         });
 
-        // Hover effect untuk elemen interaktif
         const interactives = 'a, button, .cursor-pointer, .brand-card, .faq-item';
         document.querySelectorAll(interactives).forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
         });
     } else if (cursor) {
-        cursor.style.display = 'none'; // Pastikan benar-benar hilang di mobile
+        cursor.style.display = 'none';
     }
 
-    // --- 6. INITIALIZE AOS (Mobile Optimized) ---
+    // --- 7. INITIALIZE AOS ---
     if (typeof AOS !== 'undefined') {
         AOS.init({ 
             once: true, 
             duration: 900, 
             easing: 'ease-out-quart',
-            offset: 40,
-            // Animasi tetap jalan di mobile tapi lebih simpel
-            disableMutationObserver: false 
+            offset: 40
         });
     }
 
-    // --- 7. SWIPER (Testimonial & Projects) ---
+    // --- 8. SWIPER (FINAL - NO BUTTONS) ---
     if (typeof Swiper !== 'undefined' && document.querySelector('.testimoni-slider')) {
         new Swiper('.testimoni-slider', {
             slidesPerView: 1,
-            spaceBetween: 30,
+            spaceBetween: 24,
             loop: true,
             grabCursor: true,
-            autoplay: { delay: 4000, disableOnInteraction: false },
-            pagination: { el: '.swiper-pagination', clickable: true },
+            speed: 800,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
             breakpoints: {
                 768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 }
+                1024: { slidesPerView: 2.5 }
             }
         });
     }
 });
 
-// --- 8. GLOBAL UTILITIES (Zoom & Modals) ---
+// --- 9. GLOBAL UTILITIES ---
 window.zoomImage = (img) => {
     const modal = document.getElementById('simple-zoom-modal');
     const modalImg = document.getElementById('zoom-modal-image');
