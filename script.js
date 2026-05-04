@@ -1,6 +1,6 @@
 /**
  * CONCERTO MALANG - OFFICIAL SCRIPT 2026
- * Pembaruan: Final Cleanup & Sinkronisasi Fitur
+ * Final Update: Premium Transitions & Performance Optimization
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,61 +9,56 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.getElementById('navbar');
     const scrollToTopBtn = document.getElementById('scroll-to-top');
     const cursor = document.getElementById('custom-cursor');
-    const mobileMenuBtn = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon');
+    const isMobile = window.innerWidth < 1024; // Cek status perangkat sekali di awal
     
     let lastScrollY = window.scrollY;
 
-    // --- 2. THEME ENGINE (Dark Mode) ---
+    // --- 2. THEME ENGINE ---
     const applyTheme = () => {
-        const savedTheme = localStorage.getItem('theme') || 'light';
+        const savedTheme = localStorage.getItem('theme') || 'dark'; // Default Dark agar mewah
         html.classList.toggle('dark', savedTheme === 'dark');
     };
 
-    const toggleTheme = () => {
+    const toggleTheme = (e) => {
+        e.preventDefault();
         html.classList.toggle('dark');
         localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
     };
 
-    // Handler klik universal untuk semua tombol tema
     document.addEventListener('click', (e) => {
         if (e.target.closest('#theme-toggle') || e.target.closest('#theme-toggle-mobile')) {
-            e.preventDefault();
-            toggleTheme();
+            toggleTheme(e);
         }
     });
     applyTheme();
 
-    // --- 3. SMART NAVBAR & SCROLL ENGINE ---
+    // --- 3. SMART SCROLL & BUTTON ANIMATIONS ---
     const handleScroll = () => {
         const currentScrollY = window.scrollY;
         
         if (navbar) {
-            // Efek Scrolled background
-            navbar.classList.toggle('nav-scrolled', currentScrollY > 50);
+            // Efek background blur & border saat scroll
+            navbar.classList.toggle('nav-scrolled', currentScrollY > 20);
 
-            // Hide/Show Navbar (Smart Hide)
-            if (currentScrollY > lastScrollY && currentScrollY > 500) {
+            // Hide/Show Navbar (Logic: Sembunyikan saat scroll ke bawah, Munculkan saat scroll ke atas)
+            if (currentScrollY > lastScrollY && currentScrollY > 400) {
                 navbar.style.transform = 'translateY(-100%)';
             } else {
                 navbar.style.transform = 'translateY(0)';
             }
         }
 
-        // Scroll to Top Button Visibility
+        // Scroll to Top Button (Smooth Fade)
         if (scrollToTopBtn) {
-            const isVisible = currentScrollY > 800;
-            scrollToTopBtn.classList.toggle('opacity-100', isVisible);
-            scrollToTopBtn.classList.toggle('visible', isVisible);
-            scrollToTopBtn.classList.toggle('translate-y-0', isVisible);
-            scrollToTopBtn.classList.toggle('opacity-0', !isVisible);
-            scrollToTopBtn.classList.toggle('invisible', !isVisible);
-            scrollToTopBtn.classList.toggle('translate-y-10', !isVisible);
+            const isVisible = currentScrollY > 600;
+            scrollToTopBtn.style.opacity = isVisible ? '1' : '0';
+            scrollToTopBtn.style.visibility = isVisible ? 'visible' : 'hidden';
+            scrollToTopBtn.style.transform = isVisible ? 'translateY(0)' : 'translateY(20px)';
         }
         lastScrollY = currentScrollY;
     };
 
+    // Gunakan throttle atau requestAnimationFrame untuk performa scroll
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     if (scrollToTopBtn) {
@@ -72,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. FAQ ACCORDION ---
+    // --- 4. ACCORDION (Enhanced Transitions) ---
     document.querySelectorAll('.faq-item').forEach(item => {
         const header = item.querySelector('.accordion-header');
         if (header) {
@@ -89,81 +84,61 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!isActive) {
                     item.classList.add('active');
                     const content = item.querySelector('.faq-content');
+                    // Memberikan transisi tinggi yang mulus
                     if (content) content.style.maxHeight = content.scrollHeight + "px";
                 }
             });
         }
     });
 
-    // --- 5. MOBILE MENU LOGIC (Hanya jika pakai hamburger) ---
-    if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-            const isOpen = !mobileMenu.classList.contains('hidden');
-            mobileMenu.classList.toggle('hidden');
-            document.body.style.overflow = isOpen ? '' : 'hidden';
-
-            if (menuIcon) {
-                menuIcon.classList.toggle('fa-bars', isOpen);
-                menuIcon.classList.toggle('fa-xmark', !isOpen);
-            }
-        });
-
-        // Close menu saat link diklik
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = '';
-                if (menuIcon) {
-                    menuIcon.classList.add('fa-bars');
-                    menuIcon.classList.remove('fa-xmark');
-                }
-            });
-        });
-    }
-
-    // --- 6. CUSTOM CURSOR (Desktop Only) ---
-    if (cursor && window.innerWidth > 1024) {
+    // --- 5. CUSTOM CURSOR (Desktop Only - Performance Optimized) ---
+    if (cursor && !isMobile) {
         document.addEventListener('mousemove', (e) => {
-            requestAnimationFrame(() => {
-                cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-            });
+            // Gunakan transform agar lebih enteng bagi GPU
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
         });
 
-        document.querySelectorAll('a, button, .cursor-pointer, .brand-card').forEach(el => {
+        // Hover effect untuk elemen interaktif
+        const interactives = 'a, button, .cursor-pointer, .brand-card, .faq-item';
+        document.querySelectorAll(interactives).forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
         });
+    } else if (cursor) {
+        cursor.style.display = 'none'; // Pastikan benar-benar hilang di mobile
     }
 
-    // --- 7. INITIALIZE AOS ---
-if (typeof AOS !== 'undefined') {
-    AOS.init({ 
-        once: true, 
-        duration: 800, // Sedikit lebih cepat agar terasa snappy di HP
-        easing: 'ease-out-expo',
-        // Ubah 'disable: mobile' menjadi pengecekan yang lebih cerdas
-        // Kita tetap ingin animasi aktif, tapi hanya yang ringan saja
-        offset: 50, // Animasi muncul lebih awal saat di-scroll
-        delay: 0
-    });
-}
+    // --- 6. INITIALIZE AOS (Mobile Optimized) ---
+    if (typeof AOS !== 'undefined') {
+        AOS.init({ 
+            once: true, 
+            duration: 900, 
+            easing: 'ease-out-quart',
+            offset: 40,
+            // Animasi tetap jalan di mobile tapi lebih simpel
+            disableMutationObserver: false 
+        });
+    }
 
-    // --- 8. SWIPER (Hanya jika ada elemennya) ---
+    // --- 7. SWIPER (Testimonial & Projects) ---
     if (typeof Swiper !== 'undefined' && document.querySelector('.testimoni-slider')) {
         new Swiper('.testimoni-slider', {
             slidesPerView: 1,
-            spaceBetween: 24,
+            spaceBetween: 30,
             loop: true,
-            autoplay: { delay: 5000 },
+            grabCursor: true,
+            autoplay: { delay: 4000, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
             breakpoints: {
                 768: { slidesPerView: 2 },
-                1024: { slidesPerView: 2.5 }
+                1024: { slidesPerView: 3 }
             }
         });
     }
 });
 
-// --- 9. GLOBAL UTILITIES (Image Zoom) ---
+// --- 8. GLOBAL UTILITIES (Zoom & Modals) ---
 window.zoomImage = (img) => {
     const modal = document.getElementById('simple-zoom-modal');
     const modalImg = document.getElementById('zoom-modal-image');
