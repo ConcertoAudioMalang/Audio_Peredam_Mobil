@@ -49,22 +49,26 @@ h2 {
 
 /* 4. Navbar Fix (Navigasi Langsung Tanpa Hamburger) */
 #navbar {
-    padding: 12px 15px !important; /* Lebih ramping */
-    background: rgba(10, 10, 10, 0.8) !important; /* Transparansi gelap */
+    padding: 12px 15px !important;
+    background: rgba(10, 10, 10, 0.8) !important;
     backdrop-filter: blur(10px);
 }
 
 #navbar img {
-    height: 14px !important; /* Logo lebih kecil agar tidak makan tempat */
+    height: 14px !important;
 }
 
-/* Mengatur jarak menu teks langsung di mobile */
+/* Mengatur jarak container menu */
 #navbar .flex.lg\:hidden {
-    gap: 15px !important;
+    gap: 15px !important; /* Jarak antar link menu */
 }
 
-#custom-cursor {
-    display: none !important; /* Matikan cursor di touch screen */
+/* Mengatur style teks link menu agar pas di layar kecil */
+#navbar .flex.lg\:hidden a {
+    font-size: 9px !important; 
+    letter-spacing: 0.15em !important;
+    font-weight: 800 !important;
+    text-transform: uppercase;
 }
 
 /* 5. Grid Auto-Stack */
