@@ -1,134 +1,98 @@
 /* ========================================= */
 /* KHUSUS TAMPILAN MOBILE (< 768px)          */
-/* Inspirasi: DVDROD (Minimalis & Bold)      */
+/* Final Clean & Performance Optimized       */
 /* ========================================= */
 
-/* 1. Reset Spacing & Global */
+/* 1. Global Reset & Spacing */
 section {
-    padding: 50px 20px !important; /* Spasi sedikit lebih rapat agar ringkas */
+    padding: 60px 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* Rata tengah semua section */
+    text-align: center !important;
 }
 
 body {
     font-size: 14px;
-    overflow-x: hidden; /* Mencegah layar goyang ke samping */
+    overflow-x: hidden;
+    /* Optimasi: Mematikan efek smooth scroll bawaan browser jika lag parah */
+    scroll-behavior: auto !important; 
 }
 
-/* 2. Brand Card & Marquee (Grid Box Mode) */
-.animate-marquee {
-    animation-duration: 25s !important; /* Lebih lambat sedikit agar logo mudah dibaca */
-    gap: 12px !important;
+/* 2. Typography Universal (Centered) */
+h1, h2, h3, .hero-title, .section-title {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
-.brand-card {
-    flex: 0 0 130px !important; /* Sedikit dikecilkan agar proporsional */
-    width: 130px !important;
-    height: 85px !important;
-    padding: 12px !important;
-    border-radius: 8px !important;
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
-}
+h1 { font-size: 2.4rem !important; line-height: 1.0 !important; }
+h2 { font-size: 1.8rem !important; line-height: 1.1 !important; margin-bottom: 1.5rem !important; }
 
-.brand-logo-img {
-    max-width: 75% !important;
-    filter: grayscale(1) opacity(0.6) !important;
-}
-
-/* 3. Hero Typography (Bold & Impactful) */
-h1, .hero-title {
-    font-size: 2.4rem !important; /* Ukuran aman untuk layar ramping seperti iPhone SE */
-    line-height: 1.0 !important;
-    letter-spacing: -0.04em !important;
-    margin-bottom: 1rem !important;
-}
-
-h2 {
-    font-size: 1.7rem !important;
-    line-height: 1.1 !important;
-}
-
-/* 4. Navbar Fix (Navigasi Langsung Tanpa Hamburger) */
+/* 3. Navbar (Direct Nav) */
 #navbar {
-    padding: 12px 15px !important;
-    background: rgba(10, 10, 10, 0.8) !important;
-    backdrop-filter: blur(10px);
+    padding: 10px 15px !important;
+    backdrop-filter: none !important; /* Matikan blur jika scroll lag */
+    background: rgba(10, 10, 10, 0.95) !important;
 }
 
-#navbar img {
-    height: 14px !important;
-}
-
-/* Mengatur jarak container menu */
-#navbar .flex.lg\:hidden {
-    gap: 15px !important; /* Jarak antar link menu */
-}
-
-/* Mengatur style teks link menu agar pas di layar kecil */
+#navbar .flex.lg\:hidden { gap: 12px !important; }
 #navbar .flex.lg\:hidden a {
-    font-size: 9px !important; 
-    letter-spacing: 0.15em !important;
-    font-weight: 800 !important;
-    text-transform: uppercase;
+    font-size: 8.5px !important;
+    letter-spacing: 0.1em !important;
 }
 
-/* 5. Grid Auto-Stack */
-#produk .grid, 
-#layanan .grid, 
-#proses .grid,
-.grid-container {
+/* 4. Grid Stack & Content Alignment */
+.grid, .grid-container, #produk .grid, #layanan .grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 1.2rem !important;
-}
-
-/* 6. Button UX (Full Width) */
-.btn-primary, 
-.btn-secondary,
-button[type="submit"],
-.inline-flex.items-center.gap-6.group { /* Tombol Explore Studio di Hero */
+    align-items: center !important;
     width: 100% !important;
-    justify-content: center !important;
-    padding: 14px !important;
-    font-size: 11px !important;
-    letter-spacing: 0.2em !important;
 }
 
-/* 7. 3D Speaker Container */
-#speaker-container {
-    height: 320px !important; /* Area mobil sedikit lebih kecil agar user bisa cepat scroll ke bawah */
-    margin-top: -10px;
-    margin-bottom: 20px;
+/* Menyelaraskan teks di dalam card (Produk/Layanan) */
+.card, .service-item, .faq-item {
+    text-align: center !important;
+    align-items: center !important;
 }
 
-/* 8. Utility: Menghilangkan elemen yang terlalu ramai di HP */
-.animate-ping, .absolute.inset-0.bg-accent-red\/5.blur-\[120px\] {
-    display: none !important; /* Hilangkan efek blur berat di HP agar tidak lag */
-}
-
-/* Update Tambahan untuk Hero Section */
+/* 5. Hero & 3D Fix */
 #hero {
-    height: auto !important; /* Biar tidak kepotong di HP yang layarnya pendek */
     min-height: 100vh;
-    padding-top: 100px !important; /* Ruang untuk navbar */
-    padding-bottom: 60px !important;
+    padding-top: 120px !important;
 }
 
-#hero .flex-col {
-    align-items: center !important; /* Teks jadi rata tengah di mobile */
+#speaker-container {
+    height: 300px !important; /* Sedikit lebih kecil untuk kestabilan */
+    margin: 0 auto 20px auto !important;
+    /* Nonaktifkan sentuhan pointer saat scroll agar tidak "nyangkut" di 3D */
+    touch-action: pan-y; 
+}
+
+/* 6. Footer Centering */
+footer .grid {
     text-align: center !important;
 }
 
-#hero .flex-col p {
-    margin: 0 auto !important; /* Paragraf rata tengah */
+footer .flex {
+    justify-content: center !important;
+    align-items: center !important;
 }
 
-/* Mengatur agar tombol Explore Studio tidak terlalu lebar di layar super kecil */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 2.1rem !important; /* Sedikit lebih kecil untuk iPhone jadul/kecil */
-    }
-    
-    #speaker-container {
-        height: 280px !important;
-    }
+/* 7. Performance Boosts */
+* {
+    /* Mencegah lag saat animasi */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.animate-ping, .blur-\[120px\], #custom-cursor {
+    display: none !important;
+}
+
+/* 8. Tombol Full Width */
+.btn-primary, .btn-secondary, .inline-flex.items-center.gap-6.group {
+    width: 100% !important;
+    max-width: 300px; /* Biar tidak terlalu lebar di tablet */
+    margin: 0 auto;
 }
