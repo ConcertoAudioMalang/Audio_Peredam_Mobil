@@ -3,26 +3,28 @@ import { GLTFLoader } from 'https://unpkg.com/three@0.128.0/examples/jsm/loaders
 import { OrbitControls } from 'https://unpkg.com/three@0.128.0/examples/jsm/controls/OrbitControls.js';
 
 const container = document.getElementById('speaker-container');
+const isMobile = window.innerWidth < 768; // Definisikan variabel ini di awal
 
-// 1. SCENE & RENDERER (Renderer harus dibuat duluan sebelum OrbitControls)
+// 1. SCENE & RENDERER
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+// Optimasi Pixel Ratio: Mobile dibatasi ke 1 agar enteng
+renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
 container.appendChild(renderer.domElement);
 
 // 2. CAMERA
 const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
 
 function updateCameraPosition() {
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) {
-        // Angka 10 membuat kamera lebih dekat (mobil jadi lebih besar)
+    const mobileCheck = window.innerWidth < 768;
+    if (mobileCheck) {
         camera.position.set(10, 5, 10); 
-        camera.fov = 60; // FOV lebih lebar agar tidak terpotong meski dekat
+        camera.fov = 60; 
     } else {
         camera.position.set(10, 5, 10); 
-        camera.fov = 40; // Desktop tetap elegan
+        camera.fov = 40; 
     }
     camera.updateProjectionMatrix();
 }
@@ -43,9 +45,8 @@ controls.enableDamping = true;
 controls.enableZoom = false;
 controls.autoRotate = false;
 
-// 5. LOAD MODEL INNOVA ZENIX
+// 5. LOAD MODEL
 const loader = new GLTFLoader();
-
 loader.load('./asset/innova-v1.glb', (gltf) => {
     model = gltf.scene;
 
@@ -77,28 +78,36 @@ loader.load('./asset/innova-v1.glb', (gltf) => {
 
     applyMaterial();
     scene.add(model);
-
 }, undefined, (error) => {
     console.error("Gagal load mobil:", error);
 });
 
-// 6. ANIMATION LOOP
+// 6. ANIMATION LOOP DENGAN OPTIMASI (INTERSECTION OBSERVER)
+let isVisible = true;
+
+const io = new IntersectionObserver((entries) => {
+    isVisible = entries[0].isIntersecting;
+}, { threshold: 0.1 });
+
+if (container) io.observe(container);
+
 function animate() {
     requestAnimationFrame(animate);
     
-    if (model) {
-        model.rotation.y += 0.003; 
+    // Hanya render jika section terlihat
+    if (isVisible) {
+        if (model) {
+            model.rotation.y += 0.003; 
+        }
+        controls.update();
+        renderer.render(scene, camera);
     }
-
-    controls.update();
-    renderer.render(scene, camera);
 }
 animate();
 
 // 7. RESPONSIVE LISTENER
 window.addEventListener('resize', () => {
     if (!container) return;
-    
     renderer.setSize(container.clientWidth, container.clientHeight);
     camera.aspect = container.clientWidth / container.clientHeight;
     updateCameraPosition();
