@@ -3,92 +3,100 @@
 /* Inspirasi: DVDROD (Minimalis & Bold)      */
 /* ========================================= */
 
-/* 1. Reset Spacing & Body */
+/* 1. Reset Spacing & Global */
 section {
-    padding: 60px 20px !important; /* Spasi antar section lebih lega */
+    padding: 50px 20px !important; /* Spasi sedikit lebih rapat agar ringkas */
 }
 
 body {
-    font-size: 14px; /* Ukuran font dasar lebih kecil untuk mobile */
+    font-size: 14px;
+    overflow-x: hidden; /* Mencegah layar goyang ke samping */
 }
 
-/* 2. Marquee & Brand Grid Box (Update Terbaru) */
+/* 2. Brand Card & Marquee (Grid Box Mode) */
 .animate-marquee {
-    animation-duration: 20s !important; /* Kecepatan pas untuk layar kecil */
-    gap: 12px !important; /* Jarak antar kotak di HP */
+    animation-duration: 25s !important; /* Lebih lambat sedikit agar logo mudah dibaca */
+    gap: 12px !important;
 }
 
 .brand-card {
-    flex: 0 0 140px !important; /* Ukuran kotak lebih kecil di HP */
-    width: 140px !important;
-    height: 90px !important;
-    padding: 15px !important;
-    border-radius: 6px !important;
+    flex: 0 0 130px !important; /* Sedikit dikecilkan agar proporsional */
+    width: 130px !important;
+    height: 85px !important;
+    padding: 12px !important;
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
 
 .brand-logo-img {
-    max-width: 80% !important; /* Logo tidak memenuhi kotak agar manis */
+    max-width: 75% !important;
     filter: grayscale(1) opacity(0.6) !important;
 }
 
-/* 3. Tipografi Hero & Heading */
+/* 3. Hero Typography (Bold & Impactful) */
 h1, .hero-title {
-    font-size: 2.6rem !important; /* Ukuran pas agar tidak terpotong (overflow) */
-    line-height: 1.05 !important;
-    letter-spacing: -0.03em !important;
-    margin-bottom: 1.2rem !important;
+    font-size: 2.4rem !important; /* Ukuran aman untuk layar ramping seperti iPhone SE */
+    line-height: 1.0 !important;
+    letter-spacing: -0.04em !important;
+    margin-bottom: 1rem !important;
 }
 
 h2 {
-    font-size: 1.8rem !important;
+    font-size: 1.7rem !important;
     line-height: 1.1 !important;
-    letter-spacing: -0.02em !important;
 }
 
-h3 {
-    font-size: 1.4rem !important;
+/* 4. Navbar Fix (Navigasi Langsung Tanpa Hamburger) */
+#navbar {
+    padding: 12px 15px !important; /* Lebih ramping */
+    background: rgba(10, 10, 10, 0.8) !important; /* Transparansi gelap */
+    backdrop-filter: blur(10px);
 }
 
-/* 4. Grid Stack (Produk & Layanan) */
-/* Memastikan semua layout grid berubah menjadi satu kolom (tumpuk) */
+#navbar img {
+    height: 14px !important; /* Logo lebih kecil agar tidak makan tempat */
+}
+
+/* Mengatur jarak menu teks langsung di mobile */
+#navbar .flex.lg\:hidden {
+    gap: 15px !important;
+}
+
+#custom-cursor {
+    display: none !important; /* Matikan cursor di touch screen */
+}
+
+/* 5. Grid Auto-Stack */
 #produk .grid, 
 #layanan .grid, 
 #proses .grid,
 .grid-container {
     display: flex !important;
     flex-direction: column !important;
-    gap: 1.5rem !important;
+    gap: 1.2rem !important;
 }
 
-/* 5. Mobile Navbar & Menu */
-#navbar {
-    padding: 15px 0 !important; /* Navbar lebih ringkas */
-}
-
-#navbar img {
-    height: 18px !important; /* Logo sedikit dikecilkan di HP */
-}
-
-#custom-cursor {
-    display: none !important; /* Matikan cursor custom di layar sentuh */
-}
-
-/* 6. Button & Action */
+/* 6. Button UX (Full Width) */
 .btn-primary, 
 .btn-secondary,
-button[type="submit"] {
+button[type="submit"],
+.inline-flex.items-center.gap-6.group { /* Tombol Explore Studio di Hero */
     width: 100% !important;
-    padding: 16px !important;
-    display: flex !important;
     justify-content: center !important;
-    align-items: center !important;
-    text-align: center !important;
-    font-size: 12px !important;
-    letter-spacing: 0.1em !important;
+    padding: 14px !important;
+    font-size: 11px !important;
+    letter-spacing: 0.2em !important;
 }
 
-/* 7. 3D Container Adjustment */
+/* 7. 3D Speaker Container */
 #speaker-container {
-    height: 350px !important; /* Tinggi area 3D dikurangi agar tidak makan tempat */
-    margin-top: -20px;
+    height: 320px !important; /* Area mobil sedikit lebih kecil agar user bisa cepat scroll ke bawah */
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+/* 8. Utility: Menghilangkan elemen yang terlalu ramai di HP */
+.animate-ping, .absolute.inset-0.bg-accent-red\/5.blur-\[120px\] {
+    display: none !important; /* Hilangkan efek blur berat di HP agar tidak lag */
 }
