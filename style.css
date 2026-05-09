@@ -190,3 +190,14 @@ git push origin CTM
     position: absolute;
     bottom: 20px; /* Jarak dari batas atas footer */
 }
+/* Footer harus relative agar tombol absolute bisa menempel */
+footer {
+    position: relative !important;
+}
+
+/* Transisi halus untuk tombol up */
+#scroll-to-top {
+    transition: opacity 0.5s, transform 0.5s, bottom 0.3s ease, background-color 0.3s ease;
+    will-change: transform, opacity, bottom;
+}
+
