@@ -180,3 +180,13 @@ body.dark {
 git add .
 git commit -m "Fix: test sync automation"
 git push origin CTM
+/* Pastikan tombol punya transisi smooth saat berhenti */
+#scroll-to-top {
+    transition: opacity 0.5s, transform 0.5s, bottom 0.3s ease;
+}
+
+/* Class tambahan saat tombol mencapai footer */
+#scroll-to-top.at-footer {
+    position: absolute;
+    bottom: 20px; /* Jarak dari batas atas footer */
+}
