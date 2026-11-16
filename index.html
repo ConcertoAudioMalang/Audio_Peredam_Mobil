@@ -62,42 +62,48 @@
 
     <div id="custom-cursor" class="hidden lg:block fixed top-0 left-0 w-4 h-4 bg-accent-red rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-100 ease-out"></div>
 
-   <header id="navbar" class="fixed top-0 w-full z-[100] py-8 px-6 lg:px-12 transition-all duration-700 ease-in-out">
-    <nav class="max-w-[1800px] mx-auto flex justify-between items-center">
-        <a href="#hero" class="flex items-center group">
+   <header id="navbar" class="fixed top-0 w-full z-[100] py-6 px-6 lg:px-12 transition-all duration-700 ease-in-out">
+    <nav class="max-w-[1800px] mx-auto flex justify-between items-center relative z-50">
+        
+        <!-- Logo -->
+        <a href="#hero" class="flex items-center group cursor-pointer">
             <img src="asset/concerto-audio-logo-light.png" alt="Concerto Logo" class="h-5 lg:h-6 w-auto object-contain dark:invert transition-transform duration-500 group-hover:scale-105">
         </a>
         
-        <div class="hidden lg:flex items-center bg-black/10 dark:bg-white/5 backdrop-blur-2xl px-10 py-4 rounded-full border border-white/10 text-[9px] font-black uppercase tracking-[0.4em] shadow-2xl">
+        <!-- Menu Tengah (Desktop) - Ditambahkan text-black dark:text-white & pointer-events-auto -->
+        <div class="hidden lg:flex items-center bg-white/80 dark:bg-black/60 backdrop-blur-2xl px-10 py-4 rounded-full border border-black/10 dark:border-white/10 text-[9px] font-black uppercase tracking-[0.4em] shadow-2xl text-black dark:text-white pointer-events-auto">
             <a href="#proses" class="mx-6 hover:text-accent-red transition-all duration-300">Work</a>
             <a href="#tentang" class="mx-6 hover:text-accent-red transition-all duration-300">About</a>
             <a href="#layanan" class="mx-6 hover:text-accent-red transition-all duration-300">Services</a>
-            <a href="#kontak" class="mx-6 hover:text-accent-red transition-all duration-300">Contact</a>
+            <a href="#simulator" class="mx-6 hover:text-accent-red transition-all duration-300">Simulator</a>
             
-            <button id="theme-toggle" class="ml-6 pl-6 border-l border-white/10 flex items-center gap-2 group">
-                <span class="dark:hidden opacity-50 group-hover:opacity-100 transition-opacity">LIGHT</span>
-                <span class="hidden dark:inline opacity-50 group-hover:opacity-100 transition-opacity">DARK</span>
+            <button id="theme-toggle" class="ml-6 pl-6 border-l border-black/10 dark:border-white/10 flex items-center gap-2 group cursor-pointer pointer-events-auto">
+                <span class="dark:hidden opacity-60 group-hover:opacity-100 transition-opacity">LIGHT</span>
+                <span class="hidden dark:inline opacity-60 group-hover:opacity-100 transition-opacity">DARK</span>
             </button>
         </div>
 
-        <div class="hidden lg:flex items-center">
-            <div class="flex items-center gap-3 bg-black/10 dark:bg-white/5 px-5 py-2.5 rounded-full border border-white/10">
+        <!-- Status Badge Kanan (Desktop) -->
+        <div class="hidden lg:flex items-center pointer-events-auto">
+            <div class="flex items-center gap-3 bg-white/80 dark:bg-white/5 px-5 py-2.5 rounded-full border border-black/10 dark:border-white/10">
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                <span class="text-[9px] font-black tracking-widest text-white/80 dark:text-white uppercase">Active</span>
+                <span class="text-[9px] font-black tracking-widest text-black/80 dark:text-white uppercase">Active</span>
             </div>
         </div>
 
-        <div class="flex lg:hidden items-center gap-6">
-    <a href="#proses" class="text-[9px] font-black uppercase tracking-[0.2em] opacity-70 hover:text-accent-red transition-all">Work</a>
-    <a href="#kontak" class="text-[9px] font-black uppercase tracking-[0.2em] opacity-70 hover:text-accent-red transition-all">Contact</a>
-    
-    <button id="theme-toggle-mobile" class="text-[9px] font-black opacity-50">
-        <i class="fa-solid fa-circle-half-stroke"></i>
-    </button>
-    </div>
+        <!-- Mobile Menu Header -->
+        <div class="flex lg:hidden items-center gap-6 pointer-events-auto">
+            <a href="#proses" class="text-[9px] font-black uppercase tracking-[0.2em] text-black dark:text-white opacity-70 hover:text-accent-red transition-all">Work</a>
+            <a href="#simulator" class="text-[9px] font-black uppercase tracking-[0.2em] text-black dark:text-white opacity-70 hover:text-accent-red transition-all">Simulator</a>
+            
+            <button id="theme-toggle-mobile" class="text-[9px] font-black text-black dark:text-white opacity-70 cursor-pointer">
+                <i class="fa-solid fa-circle-half-stroke text-base"></i>
+            </button>
+        </div>
+
     </nav>
 </header>
 
