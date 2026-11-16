@@ -16,19 +16,16 @@
         transition: opacity 0.3s ease, visibility 0.3s ease;
     }
 
-    /* Pengaturan Khusus Print/PDF agar pas 1 lembar dan full */
+    /* Pengaturan Khusus Print/PDF agar pas 1 lembar penuh */
     @media print {
-        /* Sembunyikan seluruh elemen web di background */
         body * {
             visibility: hidden !important;
         }
         
-        /* Hanya tampilkan area modal invoice dan isinya */
         #printable-invoice, #printable-invoice * {
             visibility: visible !important;
         }
 
-        /* Posisikan invoice di pojok kiri atas kertas dengan lebar penuh */
         #printable-invoice {
             position: absolute !important;
             left: 0 !important;
@@ -42,13 +39,11 @@
             box-shadow: none !important;
         }
 
-        /* Hilangkan elemen tombol aksi (Tutup & Download) dari hasil cetak */
         #invoice-modal button,
         #invoice-modal .mt-8 {
             display: none !important;
         }
 
-        /* Paksa ukuran halaman kertas cetak portrait standar */
         @page {
             size: A4 portrait;
             margin: 15mm;
@@ -1074,6 +1069,18 @@
 
     </div>
 </div>
+        <!-- Tombol Aksi di dalam Modal -->
+        <div class="mt-8 flex gap-4 pt-4 border-t border-black/10 dark:border-white/10">
+            <button onclick="triggerPrintToPDF()" class="flex-1 py-4 bg-accent-red text-white font-black uppercase text-xs tracking-[0.2em] hover:bg-black transition-all rounded-lg cursor-pointer shadow-lg">
+                <i class="fa-solid fa-download mr-2"></i> Simpan / Cetak PDF
+            </button>
+            <button onclick="closeInvoiceModal()" class="px-6 py-4 bg-gray-200 dark:bg-white/10 text-black dark:text-white font-black uppercase text-xs tracking-[0.2em] hover:bg-gray-300 transition-all rounded-lg cursor-pointer">
+                Tutup
+            </button>
+        </div>
+
+    </div>
+</div>
 
 <!-- External Scripts -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -1081,7 +1088,7 @@
 <script type="module" src="3d-speaker.js"></script>
 <script src="script.js"></script>
 
-<!-- Combined Application Scripts -->
+<!-- Combined Application Scripts (Clean, No Duplication) -->
 <script>
     // 1. Initialize AOS
     AOS.init({ duration: 1000, once: true });
@@ -1142,7 +1149,7 @@
 
     window.addEventListener('DOMContentLoaded', calculateBuild);
 
-    // Fungsi Kirim ke WhatsApp
+    // 3. Fungsi Kirim ke WhatsApp
     function sendSimulation() {
         const car = document.getElementById('sim-car').value;
         const tier = document.getElementById('sim-tier').value;
@@ -1154,17 +1161,18 @@
         window.open(`https://wa.me/6281217398558?text=${encoded}`, '_blank');
     }
 
-    // 3. Invoice & PDF Quotation Logic
+    // 4. Invoice & PDF Quotation Logic (Data Aktual Masuk ke Modal)
     function downloadQuote() {
-        const car = document.getElementById('sim-car').value;
+        const carSelect = document.getElementById('sim-car');
         const tierSelect = document.getElementById('sim-tier');
         const dampSelect = document.getElementById('sim-damp');
         
+        const carText = carSelect.value;
         const tierText = tierSelect.options[tierSelect.selectedIndex].text.split('—')[0].trim();
         const dampText = dampSelect.options[dampSelect.selectedIndex].text.split('—')[0].trim();
         const price = document.getElementById('price-output').innerText;
 
-        document.getElementById('inv-car').innerText = car;
+        document.getElementById('inv-car').innerText = carText;
         document.getElementById('inv-tier').innerText = tierText;
         document.getElementById('inv-damp').innerText = dampText;
         document.getElementById('inv-total').innerText = price;
@@ -1189,7 +1197,7 @@
         window.print();
     }
 
-    // 4. Navbar Scroll Logic
+    // 5. Navbar Scroll Logic
     const navbar = document.getElementById('navbar');
     if (navbar) {
         window.addEventListener('scroll', () => {
@@ -1203,7 +1211,7 @@
         });
     }
 
-    // 5. Mobile Menu Logic
+    // 6. Mobile Menu Logic
     const mobileMenuBtn = document.getElementById('mobile-menu-button');
     const closeMenuBtn = document.getElementById('close-menu');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -1225,7 +1233,7 @@
         mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
     }
 
-    // 6. Theme Toggle Logic
+    // 7. Theme Toggle Logic
     const themeBtn = document.getElementById('theme-toggle');
     const themeBtnMobile = document.getElementById('theme-toggle-mobile');
 
