@@ -16,7 +16,6 @@
     --transition-smooth: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* DIPERBAIKI: Menggunakan * agar reset universal aktif */
 * {
     margin: 0;
     padding: 0;
@@ -70,26 +69,26 @@ body.dark {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Gambar Logo di dalam Kotak (LIGHT MODE DEFAULT: Hitam/Abu) */
+/* LIGHT MODE DEFAULT: File asli putih dibalik (invert 1) jadi hitam/abu */
 .brand-logo-img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    filter: grayscale(1) opacity(0.5) invert(0); /* Invert 0 artinya warna asli file/hitam */
+    filter: grayscale(1) opacity(0.6) invert(1);
     transition: all 0.5s ease;
 }
 
-/* DARK MODE DEFAULT: Putih */
+/* DARK MODE DEFAULT: File asli dibiarkan (invert 0) agar tetap putih */
 .dark .brand-logo-img {
-    filter: grayscale(1) opacity(0.4) invert(1); /* Invert 1 membalikkan warna jadi putih */
+    filter: grayscale(1) opacity(0.5) invert(0);
 }
 
-/* Hover Effect Light Mode */
+/* Hover Effect Kotak */
 .brand-card:hover {
     background: #ffffff;
     border-color: var(--accent-red);
     transform: translateY(-5px);
-    box-init: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .dark .brand-card:hover {
@@ -98,14 +97,14 @@ body.dark {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Saat di-hover di Light Mode: Berwarna asli, TIDAK JADI PUTIH */
+/* LIGHT MODE HOVER: Tetap invert(1) agar hitam pekat & tidak balik putih */
 .brand-card:hover .brand-logo-img {
-    filter: grayscale(0) opacity(1) invert(0);
+    filter: grayscale(0) opacity(1) invert(1);
 }
 
-/* Saat di-hover di Dark Mode: Berwarna asli, TETAP TERANG/PUTIH jika logonya putih */
+/* DARK MODE HOVER: Tetap invert(0) agar putih terang maksimal */
 .dark .brand-card:hover .brand-logo-img {
-    filter: grayscale(0) opacity(1) invert(0); /* Ubah ke invert(1) jika ingin logonya tetap bernuansa putih/terang saat di-hover di dark mode */
+    filter: grayscale(0) opacity(1) invert(0);
 }
 
 @keyframes marquee-fix {
@@ -113,15 +112,6 @@ body.dark {
     100% { transform: translateX(-100%); }
 }
 
-/* Responsif untuk Marquee Kotak */
-@media (max-width: 768px) {
-    .brand-card {
-        flex: 0 0 140px;
-        width: 140px;
-        height: 90px;
-        padding: 15px;
-    }
-}
 /* ========================================= */
 /* 3. RESPONSIVE ENGINE                      */
 /* ========================================= */
@@ -141,17 +131,24 @@ body.dark {
         line-height: 0.85 !important;
     }
     
-    h2 { font-size: 2.3rem !important; }
+    h2 { 
+        font-size: 2.3rem !important; 
+    }
 
-    @media (max-width: 768px) {
+    .brand-card {
+        flex: 0 0 140px;
+        width: 140px;
+        height: 90px;
+        padding: 15px;
+    }
+
     .brand-logo-final {
-        /* Di HP logo lebih rapat */
         flex: 0 0 33.33%; 
         width: 33.33%;
         height: 30px;
         padding: 0 25px;
     }
-}
+
     section {
         padding: 60px 0 !important;
     }
@@ -161,7 +158,9 @@ body.dark {
         gap: 1.5rem !important;
     }
 
-    #custom-cursor { display: none !important; }
+    #custom-cursor { 
+        display: none !important; 
+    }
 }
 
 /* ========================================= */
@@ -184,19 +183,7 @@ body.dark {
     background-color: rgba(10, 10, 10, 0.85);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-git add .
-git commit -m "Fix: test sync automation"
-git push origin CTM
-/* Pastikan tombol punya transisi smooth saat berhenti */
-#scroll-to-top {
-    transition: opacity 0.5s, transform 0.5s, bottom 0.3s ease;
-}
 
-/* Class tambahan saat tombol mencapai footer */
-#scroll-to-top.at-footer {
-    position: absolute;
-    bottom: 20px; /* Jarak dari batas atas footer */
-}
 /* Footer harus relative agar tombol absolute bisa menempel */
 footer {
     position: relative !important;
@@ -208,3 +195,8 @@ footer {
     will-change: transform, opacity, bottom;
 }
 
+/* Class tambahan saat tombol mencapai footer */
+#scroll-to-top.at-footer {
+    position: absolute;
+    bottom: 20px;
+}
