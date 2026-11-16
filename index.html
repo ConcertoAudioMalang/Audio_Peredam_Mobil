@@ -10,6 +10,28 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+    /* Styling khusus modal pratinjau invoice */
+    #invoice-modal {
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        #printable-invoice, #printable-invoice * {
+            visibility: visible;
+        }
+        #printable-invoice {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            background: white !important;
+            color: black !important;
+        }
+    }
+</style>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4C520KN23"></script>
 <script>
@@ -759,7 +781,7 @@
         </div>
     </div>
 </section>
-
+    
 <section id="simulator" class="bg-accent-red py-24 lg:py-32 relative overflow-hidden">
     <!-- Background Dot Pattern -->
     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 30px 30px;"></div>
@@ -890,11 +912,10 @@
     </div>
 </section>
 
+<!-- Footer -->
 <footer class="relative bg-white dark:bg-[#0A0A0A] pt-24 pb-12 overflow-hidden border-t border-black/5 dark:border-white/5">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
-        
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
-            
             <div class="lg:col-span-1">
                 <a href="#hero" class="inline-block mb-10 group">
                     <img src="asset/concerto-audio-logo-light.png" alt="Concerto Logo" class="w-44 h-auto dark:invert transition-transform duration-500 group-hover:skew-x-[-10deg]">
@@ -966,6 +987,7 @@
     </div>
 </footer>
 
+<!-- Scroll to Top & Global Zoom Modal -->
 <button id="scroll-to-top" aria-label="Scroll to top" class="fixed bottom-8 right-8 z-[99] w-14 h-14 bg-accent-red text-white shadow-[0_20px_40px_rgba(230,0,0,0.3)] transition-all duration-500 opacity-0 invisible translate-y-10 hover:bg-black flex items-center justify-center group">
     <i class="fa-solid fa-arrow-up text-lg transition-transform group-hover:-translate-y-1"></i>
 </button>
@@ -974,11 +996,69 @@
     <img id="zoom-modal-image" src="" alt="Zoomed View" class="max-w-[90%] max-h-[90%] object-contain transition-transform duration-500 scale-95">
 </div>
 
+<!-- Modal Pratinjau Invoice / Quotation PDF -->
+<div id="invoice-modal" class="fixed inset-0 z-[99999] bg-black/80 backdrop-blur-md flex items-center justify-center opacity-0 pointer-events-none p-4">
+    <div class="bg-white dark:bg-[#121212] text-black dark:text-white w-full max-w-2xl rounded-2xl p-8 shadow-2xl border border-black/10 dark:border-white/10 relative overflow-y-auto max-h-[90vh]">
+        
+        <!-- Tombol Tutup Modal -->
+        <button onclick="closeInvoiceModal()" class="absolute top-6 right-6 text-gray-400 hover:text-accent-red text-xl cursor-pointer">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- Area yang akan diprint / di-generate jadi PDF -->
+        <div id="printable-invoice" class="space-y-6 pt-4">
+            <div class="flex justify-between items-start border-b border-black/10 dark:border-white/10 pb-6">
+                <div>
+                    <h3 class="font-heading text-2xl font-black uppercase tracking-tighter text-black dark:text-white">CONCERTO MALANG</h3>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400">High-End Car Audio Specialist & Soundproofing</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-[10px] font-black uppercase tracking-widest bg-accent-red text-white px-3 py-1 rounded">Official Quotation</span>
+                    <p id="inv-date" class="text-[10px] font-bold text-gray-400 mt-2">Date: --/--/----</p>
+                </div>
+            </div>
+
+            <div class="space-y-2 text-xs uppercase font-bold">
+                <p class="text-gray-400 text-[9px] tracking-widest">Selected Configuration:</p>
+                <div class="p-4 bg-black/5 dark:bg-white/5 rounded-lg space-y-2">
+                    <p><strong>Kelas Kendaraan:</strong> <span id="inv-car" class="text-accent-red font-normal">--</span></p>
+                    <p><strong>Tier Perangkat:</strong> <span id="inv-tier" class="text-accent-red font-normal">--</span></p>
+                    <p><strong>Paket Peredam:</strong> <span id="inv-damp" class="text-accent-red font-normal">--</span></p>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-t border-black/10 dark:border-white/10 pt-6">
+                <div>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Total Estimated Investment</p>
+                    <p id="inv-total" class="text-xl font-black font-heading text-black dark:text-white">Rp 0</p>
+                </div>
+                <div class="text-right text-[9px] text-gray-400 uppercase tracking-widest">
+                    <p>Jl. Ciliwung No. 57A, Malang</p>
+                    <p>Authorized Workshop</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tombol Aksi di dalam Modal -->
+        <div class="mt-8 flex gap-4 pt-4 border-t border-black/10 dark:border-white/10">
+            <button onclick="triggerPrintToPDF()" class="flex-1 py-4 bg-accent-red text-white font-black uppercase text-xs tracking-[0.2em] hover:bg-black transition-all rounded-lg cursor-pointer shadow-lg">
+                <i class="fa-solid fa-download mr-2"></i> Simpan / Cetak PDF
+            </button>
+            <button onclick="closeInvoiceModal()" class="px-6 py-4 bg-gray-200 dark:bg-white/10 text-black dark:text-white font-black uppercase text-xs tracking-[0.2em] hover:bg-gray-300 transition-all rounded-lg cursor-pointer">
+                Tutup
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- External Scripts -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script type="module" src="3d-speaker.js"></script>
 <script src="script.js"></script>
 
+<!-- Combined Application Scripts -->
 <script>
     // 1. Initialize AOS
     AOS.init({ duration: 1000, once: true });
@@ -995,33 +1075,29 @@
         const tierText = tierSelect.options[tierSelect.selectedIndex].text.split('—')[0].trim();
         const dampText = dampSelect.options[dampSelect.selectedIndex].text.split('—')[0].trim();
 
-        // Ambil nilai harga dari atribut data
         const carCost = parseInt(carSelect.options[carSelect.selectedIndex].getAttribute('data-cost')) || 0;
         const tierPrice = parseInt(tierSelect.options[tierSelect.selectedIndex].getAttribute('data-price')) || 0;
         const dampCost = parseInt(dampSelect.options[dampSelect.selectedIndex].getAttribute('data-dampcost')) || 0;
 
         const totalPrice = carCost + tierPrice + dampCost;
 
-        // Format ke Rupiah
         const formattedPrice = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(totalPrice);
         const priceOutput = document.getElementById('price-output');
         if (priceOutput) {
             priceOutput.innerText = formattedPrice;
         }
 
-        // Update Ringkasan Teks
         const summary = document.getElementById('summary-text');
         if (summary) {
             summary.innerHTML = `Kendaraan: <span class="text-white">${carText}</span><br>Perangkat: <span class="text-white">${tierText}</span><br>Peredam: <span class="text-white">${dampText}</span>`;
         }
 
-        // Update Dinamis Grafik Profil Akustik Berdasarkan Tier
         if (tierPrice > 30000000) {
-            updateStats(98, 95, 96); // High-End Reference
+            updateStats(98, 95, 96);
         } else if (tierPrice > 20000000) {
-            updateStats(90, 92, 88); // SQL Loud
+            updateStats(90, 92, 88);
         } else {
-            updateStats(88, 82, 85); // SQ Daily Pro
+            updateStats(88, 82, 85);
         }
     }
 
@@ -1041,7 +1117,6 @@
         if (biEl) biEl.style.width = isolation + '%';
     }
 
-    // Jalankan kalkulator saat halaman dimuat
     window.addEventListener('DOMContentLoaded', calculateBuild);
 
     // Fungsi Kirim ke WhatsApp
@@ -1056,13 +1131,42 @@
         window.open(`https://wa.me/6281217398558?text=${encoded}`, '_blank');
     }
 
-    // Fungsi Simulasi Download Quotation / Proposal PDF
+    // 3. Invoice & PDF Quotation Logic
     function downloadQuote() {
-        const price = document.getElementById('price-output') ? document.getElementById('price-output').innerText : 'Rp 0';
-        alert(`[Simulasi Download PDF]\nProposal spesifikasi akustik dan estimasi investasi sebesar ${price} berhasil disiapkan. Tim Concerto Malang juga dapat mengirimkan file resmi via WhatsApp.`);
+        const car = document.getElementById('sim-car').value;
+        const tierSelect = document.getElementById('sim-tier');
+        const dampSelect = document.getElementById('sim-damp');
+        
+        const tierText = tierSelect.options[tierSelect.selectedIndex].text.split('—')[0].trim();
+        const dampText = dampSelect.options[dampSelect.selectedIndex].text.split('—')[0].trim();
+        const price = document.getElementById('price-output').innerText;
+
+        document.getElementById('inv-car').innerText = car;
+        document.getElementById('inv-tier').innerText = tierText;
+        document.getElementById('inv-damp').innerText = dampText;
+        document.getElementById('inv-total').innerText = price;
+        
+        const today = new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' });
+        document.getElementById('inv-date').innerText = `Date: ${today}`;
+
+        const modal = document.getElementById('invoice-modal');
+        if (modal) {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        }
     }
 
-    // 3. Navbar Scroll Logic
+    function closeInvoiceModal() {
+        const modal = document.getElementById('invoice-modal');
+        if (modal) {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+    }
+
+    function triggerPrintToPDF() {
+        window.print();
+    }
+
+    // 4. Navbar Scroll Logic
     const navbar = document.getElementById('navbar');
     if (navbar) {
         window.addEventListener('scroll', () => {
@@ -1076,7 +1180,7 @@
         });
     }
 
-    // 4. Mobile Menu Logic
+    // 5. Mobile Menu Logic
     const mobileMenuBtn = document.getElementById('mobile-menu-button');
     const closeMenuBtn = document.getElementById('close-menu');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -1098,7 +1202,7 @@
         mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
     }
 
-    // 5. Theme Toggle Logic (Sinkron html & body)
+    // 6. Theme Toggle Logic
     const themeBtn = document.getElementById('theme-toggle');
     const themeBtnMobile = document.getElementById('theme-toggle-mobile');
 
