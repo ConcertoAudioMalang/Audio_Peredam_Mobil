@@ -172,7 +172,8 @@ body.dark {
 }
 
 #navbar.nav-scrolled {
-    padding: 0.8rem 0 !important;
+    padding-top: 0.8rem !important;
+    padding-bottom: 0.8rem !important;
     background-color: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -199,4 +200,28 @@ footer {
 #scroll-to-top.at-footer {
     position: absolute;
     bottom: 20px;
+}
+
+/* ========================================= */
+/* 5. STATE CLASS YANG DIPAKAI script.js     */
+/* ========================================= */
+
+/* Modal zoom galeri (script.js menambah class .active) */
+#simple-zoom-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#simple-zoom-modal.active #zoom-modal-image {
+    transform: scale(1);
+}
+
+/* Ikon accordion FAQ: plus -> minus saat item aktif */
+.faq-item.active .accordion-icon-vertical {
+    transform: rotate(90deg);
+}
+
+/* Kursor kustom membesar saat hover elemen interaktif */
+#custom-cursor.cursor-hover {
+    transform: scale(2.5);
 }
