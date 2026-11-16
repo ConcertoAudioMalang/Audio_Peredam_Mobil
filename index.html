@@ -10,46 +10,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
-    /* Styling khusus modal pratinjau invoice */
-    #invoice-modal {
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    /* Pengaturan Khusus Print/PDF agar pas 1 lembar penuh */
-    @media print {
-        body * {
-            visibility: hidden !important;
-        }
-        
-        #printable-invoice, #printable-invoice * {
-            visibility: visible !important;
-        }
-
-        #printable-invoice {
-            position: absolute !important;
-            left: 0 !important;
-            top: 0 !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            background: #ffffff !important;
-            color: #000000 !important;
-            padding: 20px !important;
-            margin: 0 !important;
-            box-shadow: none !important;
-        }
-
-        #invoice-modal button,
-        #invoice-modal .mt-8 {
-            display: none !important;
-        }
-
-        @page {
-            size: A4 portrait;
-            margin: 15mm;
-        }
-    }
-</style>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4C520KN23"></script>
 <script>
@@ -96,6 +56,67 @@
     </script>
 
     <link rel="stylesheet" href="style.css">
+    <style>
+    /* Styling khusus modal pratinjau invoice */
+    #invoice-modal {
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    /* PENGATURAN CETAK PDF: Jaminan Pas 1 Lembar & Bersih */
+    @media print {
+        /* Sembunyikan seluruh isi body web secara mutlak */
+        body * {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        
+        /* Hanya tampilkan modal dan area printable invoice */
+        #invoice-modal, #invoice-modal * {
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        #printable-invoice, #printable-invoice * {
+            visibility: visible !important;
+        }
+
+        /* Paksa modal menutupi halaman penuh dengan background putih bersih */
+        #invoice-modal {
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: #ffffff !important;
+            z-index: 999999 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        #printable-invoice {
+            position: relative !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            background: #ffffff !important;
+            color: #000000 !important;
+            padding: 30px !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+        }
+
+        /* Sembunyikan tombol aksi (Download & Tutup) saat dicetak */
+        #invoice-modal button,
+        #invoice-modal .mt-8 {
+            display: none !important;
+        }
+
+        /* Set ukuran kertas A4 Portrait standar */
+        @page {
+            size: A4 portrait;
+            margin: 10mm;
+        }
+    }
+</style>
 </head>
 
 <body class="bg-white dark:bg-dark-studio text-black dark:text-white font-sans transition-colors duration-500 overflow-x-hidden">
@@ -1014,17 +1035,17 @@
     <img id="zoom-modal-image" src="" alt="Zoomed View" class="max-w-[90%] max-h-[90%] object-contain transition-transform duration-500 scale-95">
 </div>
 
-<!-- Modal Pratinjau Invoice / Quotation PDF -->
+<!-- Modal Pratinjau Invoice / Quotation PDF (Wajib ada ID yang sinkron dengan JS) -->
 <div id="invoice-modal" class="fixed inset-0 z-[99999] bg-black/80 backdrop-blur-md flex items-center justify-center opacity-0 pointer-events-none p-4">
     <div class="bg-white dark:bg-[#121212] text-black dark:text-white w-full max-w-2xl rounded-2xl p-8 shadow-2xl border border-black/10 dark:border-white/10 relative overflow-y-auto max-h-[90vh]">
         
         <!-- Tombol Tutup Modal -->
-        <button onclick="closeInvoiceModal()" class="absolute top-6 right-6 text-gray-400 hover:text-accent-red text-xl cursor-pointer">
+        <button type="button" onclick="closeInvoiceModal()" class="absolute top-6 right-6 text-gray-400 hover:text-accent-red text-xl cursor-pointer">
             <i class="fa-solid fa-xmark"></i>
         </button>
 
-        <!-- Area yang akan diprint / di-generate jadi PDF -->
-        <div id="printable-invoice" class="space-y-6 pt-4">
+        <!-- Area Printable Invoice -->
+        <div id="printable-invoice" class="space-y-6 pt-4 bg-white dark:bg-[#121212]">
             <div class="flex justify-between items-start border-b border-black/10 dark:border-white/10 pb-6">
                 <div>
                     <h3 class="font-heading text-2xl font-black uppercase tracking-tighter text-black dark:text-white">CONCERTO MALANG</h3>
@@ -1039,16 +1060,16 @@
             <div class="space-y-2 text-xs uppercase font-bold">
                 <p class="text-gray-400 text-[9px] tracking-widest">Selected Configuration:</p>
                 <div class="p-4 bg-black/5 dark:bg-white/5 rounded-lg space-y-2">
-                    <p><strong>Kelas Kendaraan:</strong> <span id="inv-car" class="text-accent-red font-normal">--</span></p>
-                    <p><strong>Tier Perangkat:</strong> <span id="inv-tier" class="text-accent-red font-normal">--</span></p>
-                    <p><strong>Paket Peredam:</strong> <span id="inv-damp" class="text-accent-red font-normal">--</span></p>
+                    <p class="text-black dark:text-white"><strong>Kelas Kendaraan:</strong> <br><span id="inv-car" class="text-accent-red font-bold text-sm">--</span></p>
+                    <p class="text-black dark:text-white"><strong>Tier Perangkat:</strong> <br><span id="inv-tier" class="text-accent-red font-bold text-sm">--</span></p>
+                    <p class="text-black dark:text-white"><strong>Paket Peredam:</strong> <br><span id="inv-damp" class="text-accent-red font-bold text-sm">--</span></p>
                 </div>
             </div>
 
             <div class="flex justify-between items-center border-t border-black/10 dark:border-white/10 pt-6">
                 <div>
                     <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Total Estimated Investment</p>
-                    <p id="inv-total" class="text-xl font-black font-heading text-black dark:text-white">Rp 0</p>
+                    <p id="inv-total" class="text-2xl font-black font-heading text-accent-red">Rp 0</p>
                 </div>
                 <div class="text-right text-[9px] text-gray-400 uppercase tracking-widest">
                     <p>Jl. Ciliwung No. 57A, Malang</p>
@@ -1059,10 +1080,10 @@
 
         <!-- Tombol Aksi di dalam Modal -->
         <div class="mt-8 flex gap-4 pt-4 border-t border-black/10 dark:border-white/10">
-            <button onclick="triggerPrintToPDF()" class="flex-1 py-4 bg-accent-red text-white font-black uppercase text-xs tracking-[0.2em] hover:bg-black transition-all rounded-lg cursor-pointer shadow-lg">
+            <button type="button" onclick="triggerPrintToPDF()" class="flex-1 py-4 bg-accent-red text-white font-black uppercase text-xs tracking-[0.2em] hover:bg-black transition-all rounded-lg cursor-pointer shadow-lg">
                 <i class="fa-solid fa-download mr-2"></i> Simpan / Cetak PDF
             </button>
-            <button onclick="closeInvoiceModal()" class="px-6 py-4 bg-gray-200 dark:bg-white/10 text-black dark:text-white font-black uppercase text-xs tracking-[0.2em] hover:bg-gray-300 transition-all rounded-lg cursor-pointer">
+            <button type="button" onclick="closeInvoiceModal()" class="px-6 py-4 bg-gray-200 dark:bg-white/10 text-black dark:text-white font-black uppercase text-xs tracking-[0.2em] hover:bg-gray-300 transition-all rounded-lg cursor-pointer">
                 Tutup
             </button>
         </div>
@@ -1246,6 +1267,111 @@
 
     if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
     if (themeBtnMobile) themeBtnMobile.addEventListener('click', toggleTheme);
+    <script>
+    // 1. Kalkulator & Estimasi Harga Otomatis
+    function calculateBuild() {
+        const carSelect = document.getElementById('sim-car');
+        const tierSelect = document.getElementById('sim-tier');
+        const dampSelect = document.getElementById('sim-damp');
+
+        if (!carSelect || !tierSelect || !dampSelect) return;
+
+        const carText = carSelect.value;
+        const tierText = tierSelect.options[tierSelect.selectedIndex].text.split('—')[0].trim();
+        const dampText = dampSelect.options[dampSelect.selectedIndex].text.split('—')[0].trim();
+
+        const carCost = parseInt(carSelect.options[carSelect.selectedIndex].getAttribute('data-cost')) || 0;
+        const tierPrice = parseInt(tierSelect.options[tierSelect.selectedIndex].getAttribute('data-price')) || 0;
+        const dampCost = parseInt(dampSelect.options[dampSelect.selectedIndex].getAttribute('data-dampcost')) || 0;
+
+        const totalPrice = carCost + tierPrice + dampCost;
+
+        const formattedPrice = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(totalPrice);
+        const priceOutput = document.getElementById('price-output');
+        if (priceOutput) {
+            priceOutput.innerText = formattedPrice;
+        }
+
+        const summary = document.getElementById('summary-text');
+        if (summary) {
+            summary.innerHTML = `Kendaraan: <span class="text-white">${carText}</span><br>Perangkat: <span class="text-white">${tierText}</span><br>Peredam: <span class="text-white">${dampText}</span>`;
+        }
+
+        if (tierPrice > 30000000) {
+            updateStats(98, 95, 96);
+        } else if (tierPrice > 20000000) {
+            updateStats(90, 92, 88);
+        } else {
+            updateStats(88, 82, 85);
+        }
+    }
+
+    function updateStats(vocal, bass, isolation) {
+        const vEl = document.getElementById('stat-vocal');
+        const bEl = document.getElementById('stat-bass');
+        const iEl = document.getElementById('stat-isolation');
+        const bvEl = document.getElementById('bar-vocal');
+        const bbEl = document.getElementById('bar-bass');
+        const biEl = document.getElementById('bar-isolation');
+
+        if (vEl) vEl.innerText = vocal + '%';
+        if (bvEl) bvEl.style.width = vocal + '%';
+        if (bEl) bEl.innerText = bass + '%';
+        if (bbEl) bbEl.style.width = bass + '%';
+        if (iEl) iEl.innerText = isolation + '%';
+        if (biEl) biEl.style.width = isolation + '%';
+    }
+
+    window.addEventListener('DOMContentLoaded', calculateBuild);
+
+    // 2. Kirim Pesan ke WhatsApp
+    function sendSimulation() {
+        const car = document.getElementById('sim-car').value;
+        const tier = document.getElementById('sim-tier').value;
+        const damp = document.getElementById('sim-damp').value;
+        const price = document.getElementById('price-output') ? document.getElementById('price-output').innerText : 'Rp 0';
+
+        const message = `Halo Concerto Malang, saya merancang spesifikasi audio mandiri via web:\n\n- Kendaraan: ${car}\n- Perangkat: ${tier}\n- Peredam: ${damp}\n- Estimasi Investasi: ${price}\n\nMohon info ketersediaan dan penjadwalan di workshop. Terima kasih!`;
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/6281217398558?text=${encoded}`, '_blank');
+    }
+
+    // 3. Tampilkan Data Aktual ke Invoice Modal
+    function downloadQuote() {
+        const carSelect = document.getElementById('sim-car');
+        const tierSelect = document.getElementById('sim-tier');
+        const dampSelect = document.getElementById('sim-damp');
+        
+        const carText = carSelect.value;
+        const tierText = tierSelect.options[tierSelect.selectedIndex].text.split('—')[0].trim();
+        const dampText = dampSelect.options[dampSelect.selectedIndex].text.split('—')[0].trim();
+        const price = document.getElementById('price-output').innerText;
+
+        // Memasukkan teks secara persis ke elemen ID modal
+        document.getElementById('inv-car').innerText = carText;
+        document.getElementById('inv-tier').innerText = tierText;
+        document.getElementById('inv-damp').innerText = dampText;
+        document.getElementById('inv-total').innerText = price;
+        
+        const today = new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' });
+        document.getElementById('inv-date').innerText = `Date: ${today}`;
+
+        const modal = document.getElementById('invoice-modal');
+        if (modal) {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+    }
+
+    function closeInvoiceModal() {
+        const modal = document.getElementById('invoice-modal');
+        if (modal) {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+    }
+
+    function triggerPrintToPDF() {
+        window.print();
+    }
 </script>
 </body>
 </html>
