@@ -773,43 +773,64 @@
                     Interactive Tool
                 </span>
                 <h2 class="text-5xl md:text-7xl font-black font-heading text-white uppercase leading-[0.85] mb-8 tracking-tighter">
-                    Audio System <br> <span class="text-white lg:text-black italic">Simulator.</span>
+                    Audio System <br> <span class="text-white lg:text-black italic">Estimator.</span>
                 </h2>
                 <p class="text-white/90 text-[11px] md:text-xs font-black uppercase tracking-[0.3em] max-w-md leading-relaxed">
-                    Simulasikan preferensi karakter suara kabin mobil Anda sebelum melakukan kalibrasi dan instalasi akustik profesional.
+                    Rancang sendiri spesifikasi perangkat audio, kelas kendaraan, dan paket peredam Anda. Kalkulasi instan untuk hasil akustik presisi.
                 </p>
             </div>
 
-            <!-- Sisi Kanan: Panel Simulasi Interaktif -->
-            <div class="bg-black/40 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-[20px_20px_60px_rgba(0,0,0,0.3)]" data-aos="fade-left">
+            <!-- Sisi Kanan: Panel Kalkulator & Pilihan Perangkat Interaktif -->
+            <div class="bg-black/60 backdrop-blur-xl p-8 rounded-2xl border border-white/10 shadow-[20px_20px_60px_rgba(0,0,0,0.4)]" data-aos="fade-left">
                 <div class="space-y-6">
-                    <!-- Pilihan Genre / Karakter -->
+                    
+                    <!-- 1. Pilihan Jenis / Merk Kendaraan -->
                     <div>
-                        <label for="sim-genre" class="block text-white text-[10px] font-black uppercase tracking-[0.2em] mb-2">1. Pilih Preferensi Suara</label>
-                        <select id="sim-genre" class="w-full bg-black text-white border border-white/20 p-4 rounded-lg text-xs font-bold uppercase tracking-wider focus:outline-none focus:border-white transition-colors cursor-pointer">
-                            <option value="sq" class="bg-black text-white">Audiophile / SQ (Vokal Natural & Staging Luas)</option>
-                            <option value="sql" class="bg-black text-white">SQL / Loud (Bertenaga & Detail Tinggi)</option>
-                            <option value="spl" class="bg-black text-white">Deep Bass / Sub-Woofer Dominant</option>
+                        <label for="sim-car" class="block text-white text-[10px] font-black uppercase tracking-[0.2em] mb-2">1. Jenis / Kelas Kendaraan</label>
+                        <select id="sim-car" onchange="calculateBuild()" class="w-full bg-black text-white border border-white/20 p-4 rounded-lg text-xs font-bold uppercase tracking-wider focus:outline-none focus:border-white transition-colors cursor-pointer">
+                            <option value="City Car / Hatchback (Compact Space)">City Car / Hatchback (Compact Space)</option>
+                            <option value="Sedan / Luxury Car (Acoustic Precision)">Sedan / Luxury Car (Acoustic Precision)</option>
+                            <option value="SUV / Medium Car (Medium Airspace)">SUV / Medium Car (Medium Airspace)</option>
+                            <option value="MPV / Family Car (Custom Baffle)">MPV / Family Car (Custom Baffle)</option>
                         </select>
                     </div>
 
-                    <!-- Pilihan Kategori Mobil -->
+                    <!-- 2. Pilihan Tier Perangkat Utama -->
                     <div>
-                        <label for="sim-car" class="block text-white text-[10px] font-black uppercase tracking-[0.2em] mb-2">2. Kategori Kabin Kendaraan</label>
-                        <select id="sim-car" class="w-full bg-black text-white border border-white/20 p-4 rounded-lg text-xs font-bold uppercase tracking-wider focus:outline-none focus:border-white transition-colors cursor-pointer">
-                            <option value="sedan" class="bg-black text-white">Compact / Sedan (Akustik Presisi)</option>
-                            <option value="suv" class="bg-black text-white">SUV / Medium Car (Wide Volume Airspace)</option>
-                            <option value="mpv" class="bg-black text-white">MPV / Family Car (Custom Baffle Required)</option>
+                        <label for="sim-tier" class="block text-white text-[10px] font-black uppercase tracking-[0.2em] mb-2">2. Pilihan Tier Perangkat & Speaker</label>
+                        <select id="sim-tier" onchange="calculateBuild()" class="w-full bg-black text-white border border-white/20 p-4 rounded-lg text-xs font-bold uppercase tracking-wider focus:outline-none focus:border-white transition-colors cursor-pointer">
+                            <option value="SQ Daily Pro (2-Way + MDSP Entry)">SQ Daily Pro (2-Way Speaker + MDSP Entry)</option>
+                            <option value="High-End Reference (3-Way Audiocircle/Steg + High-End DSP)">High-End Reference (3-Way Pro + High-End DSP)</option>
+                            <option value="SQL Loud & Clear (Power Sub-Woofer Dominant)">SQL Loud & Clear (Power & Sub-Woofer Dominant)</option>
                         </select>
                     </div>
 
-                    <!-- Tombol Eksekusi ke WhatsApp -->
-                    <div class="pt-4">
+                    <!-- 3. Pilihan Paket Peredam (Soundproofing) -->
+                    <div>
+                        <label for="sim-damp" class="block text-white text-[10px] font-black uppercase tracking-[0.2em] mb-2">3. Paket Peredam Kabin (Soundproofing)</label>
+                        <select id="sim-damp" onchange="calculateBuild()" class="w-full bg-black text-white border border-white/20 p-4 rounded-lg text-xs font-bold uppercase tracking-wider focus:outline-none focus:border-white transition-colors cursor-pointer">
+                            <option value="Peredam 2 Pintu Depan (Standard Acoustic)">Peredam 2 Pintu Depan (Standard Acoustic)</option>
+                            <option value="Full 4 Pintu + Bagasi (Quiet Cabin Package)">Full 4 Pintu + Bagasi (Quiet Cabin Package)</option>
+                            <option value="Full Chassis + Doors + Roof (Master Silent Build)">Full Chassis + Doors + Roof (Master Silent Build)</option>
+                        </select>
+                    </div>
+
+                    <!-- Kotak Ringkasan Hasil Kalkulasi Mandiri -->
+                    <div class="p-4 bg-white/5 rounded-xl border border-white/10">
+                        <span class="block text-[9px] font-black uppercase tracking-[0.3em] text-accent-red mb-1">Live Specification Summary:</span>
+                        <p id="summary-text" class="text-white text-xs font-bold uppercase tracking-wider leading-relaxed">
+                            Memuat kalkulasi sistem...
+                        </p>
+                    </div>
+
+                    <!-- Tombol Kirim Hasil ke WhatsApp -->
+                    <div class="pt-2">
                         <button type="button" onclick="sendSimulation()" class="inline-flex items-center justify-between w-full px-8 py-5 bg-white text-accent-red font-black uppercase text-xs tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-300 rounded-lg shadow-lg cursor-pointer">
-                            <span>Konsultasikan Hasil Simulasi</span>
+                            <span>Kirim Detail Build ke WhatsApp</span>
                             <i class="fa-brands fa-whatsapp text-xl"></i>
                         </button>
                     </div>
+
                 </div>
             </div>
 
@@ -910,11 +931,27 @@
     // 1. Initialize AOS
     AOS.init({ duration: 1000, once: true });
 
-    // 2. Audio System Simulator Logic
-    function sendSimulation() {
-        const genre = document.getElementById('sim-genre').value;
+    // 2. Audio System Estimator & WhatsApp Logic (DIPERBAIKI: Menggunakan sim-tier sesuai HTML)
+    function calculateBuild() {
         const car = document.getElementById('sim-car').value;
-        const message = `Halo Concerto Malang, saya tertarik konsultasi audio mobil dengan hasil simulasi: Preferensi (${genre.toUpperCase()}), Jenis Kendaraan (${car.toUpperCase()}). Mohon info jadwal tuning/kalibrasinya.`;
+        const tier = document.getElementById('sim-tier').value;
+        const damp = document.getElementById('sim-damp').value;
+
+        const summary = document.getElementById('summary-text');
+        if (summary) {
+            summary.innerHTML = `Kendaraan: <span class="text-accent-red">${car}</span><br>Perangkat: <span class="text-accent-red">${tier}</span><br>Peredam: <span class="text-accent-red">${damp}</span>`;
+        }
+    }
+
+    // Jalankan kalkulator saat halaman selesai dimuat agar ringkasan langsung tampil
+    window.addEventListener('DOMContentLoaded', calculateBuild);
+
+    function sendSimulation() {
+        const car = document.getElementById('sim-car').value;
+        const tier = document.getElementById('sim-tier').value;
+        const damp = document.getElementById('sim-damp').value;
+
+        const message = `Halo Concerto Malang, saya telah merancang spesifikasi audio mandiri melalui web:\n\n- Kendaraan: ${car}\n- Perangkat: ${tier}\n- Peredam: ${damp}\n\nMohon informasi ketersediaan perangkat, estimasi waktu pengerjaan, dan penjadwalan tuning di workshop. Terima kasih!`;
         const encoded = encodeURIComponent(message);
         window.open(`https://wa.me/6281217398558?text=${encoded}`, '_blank');
     }
