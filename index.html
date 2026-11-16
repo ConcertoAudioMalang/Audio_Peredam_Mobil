@@ -815,134 +815,199 @@
         </section>
 
         <section id="simulator" class="bg-accent-red py-24 lg:py-32 relative overflow-hidden">
-            <!-- Background Dot Pattern -->
-            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 30px 30px;"></div>
+    <!-- Background Dot Pattern -->
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 30px 30px;"></div>
 
-            <div class="max-w-7xl mx-auto px-6 relative z-10">
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="grid lg:grid-cols-12 gap-12 items-start">
 
-                    <!-- Sisi Kiri: Judul, Deskripsi & Grafik Akustik Visual -->
-                    <div class="text-left space-y-8" data-aos="fade-right">
-                        <div>
-                            <span class="text-[9px] font-black uppercase tracking-[0.5em] text-white/70 mb-4 block">
-                                Interactive Laboratory Tool
-                            </span>
-                            <h2 class="text-5xl md:text-7xl font-black font-heading text-white uppercase leading-[0.85] mb-6 tracking-tighter">
-                                Acoustic Build <br> <span class="text-white lg:text-black italic">Simulator.</span>
-                            </h2>
-                            <p class="text-white/90 text-[11px] md:text-xs font-black uppercase tracking-[0.3em] max-w-md leading-relaxed">
-                                Simulasikan spesifikasi perangkat, estimasi investasi biaya, profil karakter suara, dan unduh proposal resmi secara instan.
-                            </p>
+            <!-- Sisi Kiri (5 Kolom): Judul, Deskripsi & Grafik Akustik Visual -->
+            <div class="lg:col-span-5 text-left space-y-8 lg:sticky lg:top-28" data-aos="fade-right">
+                <div>
+                    <span class="text-[9px] font-black uppercase tracking-[0.5em] text-white/70 mb-4 block">
+                        Custom A La Carte Builder
+                    </span>
+                    <h2 class="text-5xl md:text-6xl font-black font-heading text-white uppercase leading-[0.85] mb-6 tracking-tighter">
+                        Acoustic Build <br> <span class="text-white lg:text-black italic">Simulator.</span>
+                    </h2>
+                    <p class="text-white/90 text-[11px] md:text-xs font-black uppercase tracking-[0.25em] leading-relaxed">
+                        Rancang kebutuhan audio dan peredam mobil Anda secara spesifik item demi item sesuai budget dan target suara.
+                    </p>
+                </div>
+
+                <!-- Visual Acoustic Profile (Otomatis menyesuaikan komponen yang dipilih) -->
+                <div class="bg-black/30 backdrop-blur-md p-6 rounded-2xl border border-white/10 space-y-4">
+                    <span class="text-[9px] font-black uppercase tracking-[0.3em] text-white/80 block">Estimated Acoustic Performance:</span>
+
+                    <div>
+                        <div class="flex justify-between text-[9px] font-black uppercase text-white mb-1">
+                            <span>Vocal Clarity & Staging</span>
+                            <span id="stat-vocal">40%</span>
                         </div>
+                        <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div id="bar-vocal" class="h-full bg-white transition-all duration-500" style="width: 40%"></div>
+                        </div>
+                    </div>
 
-                        <!-- Fitur: Visual Acoustic Profile (Indikator Grafik Performa) -->
-                        <div class="bg-black/30 backdrop-blur-md p-6 rounded-2xl border border-white/10 max-w-md space-y-4">
-                            <span class="text-[9px] font-black uppercase tracking-[0.3em] text-white/80 block">Simulated Acoustic Profile:</span>
+                    <div>
+                        <div class="flex justify-between text-[9px] font-black uppercase text-white mb-1">
+                            <span>Sub-Bass Impact & Dynamic</span>
+                            <span id="stat-bass">35%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div id="bar-bass" class="h-full bg-white transition-all duration-500" style="width: 35%"></div>
+                        </div>
+                    </div>
 
-                            <div>
-                                <div class="flex justify-between text-[9px] font-black uppercase text-white mb-1">
-                                    <span>Vocal Clarity & Staging</span>
-                                    <span id="stat-vocal">92%</span>
-                                </div>
-                                <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                                    <div id="bar-vocal" class="h-full bg-white transition-all duration-500" style="width: 92%"></div>
-                                </div>
-                            </div>
+                    <div>
+                        <div class="flex justify-between text-[9px] font-black uppercase text-white mb-1">
+                            <span>Cabin Noise Isolation</span>
+                            <span id="stat-isolation">30%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div id="bar-isolation" class="h-full bg-white transition-all duration-500" style="width: 30%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                            <div>
-                                <div class="flex justify-between text-[9px] font-black uppercase text-white mb-1">
-                                    <span>Sub-Bass Impact & Dynamic</span>
-                                    <span id="stat-bass">85%</span>
-                                </div>
-                                <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                                    <div id="bar-bass" class="h-full bg-white transition-all duration-500" style="width: 85%"></div>
-                                </div>
-                            </div>
+            <!-- Sisi Kanan (7 Kolom): Panel Pemilihan Item Satu per Satu -->
+            <div class="lg:col-span-7 bg-black/80 backdrop-blur-2xl p-6 md:p-8 rounded-2xl border border-white/15 shadow-[20px_20px_60px_rgba(0,0,0,0.5)]" data-aos="fade-left">
+                <div class="space-y-5">
 
-                            <div>
-                                <div class="flex justify-between text-[9px] font-black uppercase text-white mb-1">
-                                    <span>Cabin Noise Isolation</span>
-                                    <span id="stat-isolation">90%</span>
-                                </div>
-                                <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                                    <div id="bar-isolation" class="h-full bg-white transition-all duration-500" style="width: 90%"></div>
-                                </div>
+                    <!-- 0. Input Jenis / Nama Mobil -->
+                    <div>
+                        <label for="sim-car-name" class="block text-white text-[10px] font-black uppercase tracking-[0.2em] mb-2">
+                            0. Jenis / Tipe Kendaraan Anda
+                        </label>
+                        <input type="text" id="sim-car-name" oninput="calculateCustomBuild()" placeholder="Contoh: Toyota Innova Zenix / Honda HR-V..." value="SUV / MPV (Innova Zenix)" class="w-full bg-black text-white border border-white/20 p-3.5 rounded-lg text-xs font-bold tracking-wider focus:outline-none focus:border-white transition-colors placeholder:text-white/30">
+                    </div>
+
+                    <!-- 1. Peredam Kabin (Bisa diatur jumlah lembarnya) -->
+                    <div class="p-4 bg-white/5 rounded-xl border border-white/10 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <label for="item-damping" class="text-white text-[10px] font-black uppercase tracking-[0.2em]">1. Peredam Kabin (Soundproofing)</label>
+                            <span id="sub-damping" class="text-[10px] font-black text-accent-red">Rp 0</span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+                            <select id="item-damping" onchange="calculateCustomBuild()" class="sm:col-span-8 bg-black text-white border border-white/20 p-3 rounded-lg text-xs font-bold focus:outline-none focus:border-white cursor-pointer">
+                                <option value="none" data-price="0" data-iso="0">— Tanpa Peredam —</option>
+                                <option value="Peredam DIOS DELA" data-price="250000" data-iso="12" selected>DIOS DELA Acoustic Sheet (Rp 250.000 / lbr)</option>
+                                <option value="Peredam StP Black Silver" data-price="350000" data-iso="15">StP Black Silver Damping (Rp 350.000 / lbr)</option>
+                                <option value="Peredam Vibrofiltr Pro" data-price="300000" data-iso="14">Vibrofiltr Pro Sheet (Rp 300.000 / lbr)</option>
+                            </select>
+                            <div class="sm:col-span-4 flex items-center bg-black border border-white/20 rounded-lg px-3">
+                                <span class="text-[9px] font-black uppercase text-white/50 mr-2">Qty:</span>
+                                <input type="number" id="qty-damping" min="0" max="40" value="2" oninput="calculateCustomBuild()" class="w-full bg-transparent text-white text-xs font-black text-center py-3 focus:outline-none">
+                                <span class="text-[9px] font-black uppercase text-white/50 ml-1">Lbr</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Sisi Kanan: Panel Kalkulator & Estimasi Harga -->
-                    <div class="bg-black/70 backdrop-blur-2xl p-8 rounded-2xl border border-white/15 shadow-[20px_20px_60px_rgba(0,0,0,0.5)]" data-aos="fade-left">
-                        <div class="space-y-6">
+                    <!-- 2. Processor / DSP (Per Item) -->
+                    <div class="p-4 bg-white/5 rounded-xl border border-white/10 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <label for="item-dsp" class="text-white text-[10px] font-black uppercase tracking-[0.2em]">2. Processor / MDSP (Per Unit)</label>
+                            <span id="sub-dsp" class="text-[10px] font-black text-accent-red">Rp 0</span>
+                        </div>
+                        <select id="item-dsp" onchange="calculateCustomBuild()" class="w-full bg-black text-white border border-white/20 p-3 rounded-lg text-xs font-bold focus:outline-none focus:border-white cursor-pointer">
+                            <option value="none" data-price="0" data-vocal="0">— Tanpa Processor / DSP —</option>
+                            <option value="Processor MDSP8 STEG" data-price="6500000" data-vocal="28" selected>Processor MDSP8 STEG (1 Unit) — Rp 6.500.000</option>
+                            <option value="Processor STEG SDSP 68" data-price="8500000" data-vocal="32">Processor STEG SDSP 68 (1 Unit) — Rp 8.500.000</option>
+                            <option value="Processor Helix DSP.3S" data-price="14500000" data-vocal="40">Processor Helix DSP.3S (1 Unit) — Rp 14.500.000</option>
+                        </select>
+                    </div>
 
-                            <!-- 1. Pilihan Jenis Kendaraan -->
-                            <div>
-                                <label for="sim-car" class="block text-white text-[10px] font-black uppercase tracking-[0.2em] mb-2">1. Kelas Kendaraan</label>
-                                <select id="sim-car" onchange="calculateBuild()" class="w-full bg-black text-white border border-white/20 p-4 rounded-lg text-xs font-bold uppercase tracking-wider focus:outline-none focus:border-white transition-colors cursor-pointer">
-                                    <option value="City Car / Hatchback (Compact Space)" data-cost="0">City Car / Hatchback (Compact Space)</option>
-                                    <option value="Sedan / Luxury Car (Acoustic Precision)" data-cost="1500000">Sedan / Luxury Car (+ Custom Cabling)</option>
-                                    <option value="SUV / Medium Car (Medium Airspace)" data-cost="2500000">SUV / Medium Car (+ Extended Run)</option>
-                                    <option value="MPV / Family Car (Custom Baffle)" data-cost="2000000">MPV / Family Car (+ Custom Baffle)</option>
-                                </select>
-                            </div>
+                    <!-- 3. Speaker System (Per Set) -->
+                    <div class="p-4 bg-white/5 rounded-xl border border-white/10 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <label for="item-speaker" class="text-white text-[10px] font-black uppercase tracking-[0.2em]">3. Speaker Set (Per Set)</label>
+                            <span id="sub-speaker" class="text-[10px] font-black text-accent-red">Rp 0</span>
+                        </div>
+                        <select id="item-speaker" onchange="calculateCustomBuild()" class="w-full bg-black text-white border border-white/20 p-3 rounded-lg text-xs font-bold focus:outline-none focus:border-white cursor-pointer">
+                            <option value="none" data-price="0" data-vocal="0">— Tanpa Ganti Speaker —</option>
+                            <option value="Speaker 2-Way AUDIOCIRCLE PROLINE" data-price="5500000" data-vocal="25" selected>2-Way AUDIOCIRCLE PROLINE (1 Set) — Rp 5.500.000</option>
+                            <option value="Speaker 2-Way AUDIOCIRCLE STUTTGART" data-price="8500000" data-vocal="30">2-Way AUDIOCIRCLE STUTTGART (1 Set) — Rp 8.500.000</option>
+                            <option value="Speaker 3-Way AUDIOCIRCLE BERLIN" data-price="16500000" data-vocal="38">3-Way AUDIOCIRCLE BERLIN (1 Set) — Rp 16.500.000</option>
+                        </select>
+                    </div>
 
-                            <!-- 2. Pilihan Tier Perangkat -->
-                            <div>
-                                <label for="sim-tier" class="block text-white text-[10px] font-black uppercase tracking-[0.2em] mb-2">2. Tier Perangkat & Speaker</label>
-                                <select id="sim-tier" onchange="calculateBuild()" class="w-full bg-black text-white border border-white/20 p-4 rounded-lg text-xs font-bold uppercase tracking-wider focus:outline-none focus:border-white transition-colors cursor-pointer">
-                                    <option value="SQ Daily Pro (2-Way + MDSP Entry)" data-price="12500000">SQ Daily Pro (2-Way + MDSP Entry) — Est. Rp 12.5 Juta</option>
-                                    <option value="High-End Reference (3-Way Audiocircle/Steg + Zelos)" data-price="35000000">High-End Reference (3-Way Pro + MDSP) — Est. Rp 35 Juta</option>
-                                    <option value="4way (Power Sub-Woofer Dominant)" data-price="40000000">4way (Power & Sub) — Est. Rp 40 Juta</option>
-                                </select>
-                            </div>
+                    <!-- 4. Power Amplifier (Opsional / Bisa Tanpa Power) -->
+                    <div class="p-4 bg-white/5 rounded-xl border border-white/10 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <label for="item-power" class="text-white text-[10px] font-black uppercase tracking-[0.2em]">4. Power Amplifier (Opsional)</label>
+                            <span id="sub-power" class="text-[10px] font-black text-accent-red">Rp 0</span>
+                        </div>
+                        <select id="item-power" onchange="calculateCustomBuild()" class="w-full bg-black text-white border border-white/20 p-3 rounded-lg text-xs font-bold focus:outline-none focus:border-white cursor-pointer">
+                            <option value="none" data-price="0" data-bass="0" selected>— Tanpa Power Amplifier —</option>
+                            <option value="Power 4-Channel STEG K4.01" data-price="7500000" data-bass="15">Power 4-Channel STEG K4.01 (1 Unit) — Rp 7.500.000</option>
+                            <option value="Power Monoblock STEG" data-price="6000000" data-bass="25">Power Monoblock STEG (1 Unit) — Rp 6.000.000</option>
+                        </select>
+                    </div>
 
-                            <!-- 3. Pilihan Paket Peredam -->
-                            <div>
-                                <label for="sim-damp" class="block text-white text-[10px] font-black uppercase tracking-[0.2em] mb-2">3. Paket Peredam Kabin</label>
-                                <select id="sim-damp" onchange="calculateBuild()" class="w-full bg-black text-white border border-white/20 p-4 rounded-lg text-xs font-bold uppercase tracking-wider focus:outline-none focus:border-white transition-colors cursor-pointer">
-                                    <option value="Peredam 4 Pintu Depan (Standard)" data-dampcost="4500000">Peredam 4 Pintu Depan + Tengah — Est. Rp 4.5 Juta</option>
-                                    <option value="Full 4 Pintu + Bagasi (Quiet Cabin)" data-dampcost="1000000">Full 4 Pintu + Spakbor — Est. Rp 10 Juta</option>
-                                    <option value="Full Chassis + Doors + Roof (Master Silent)" data-dampcost="17000000">Full Chassis + Doortrims + Roof — Est. Rp 17 Juta</option>
-                                </select>
-                            </div>
+                    <!-- 5. Subwoofer (Opsional) -->
+                    <div class="p-4 bg-white/5 rounded-xl border border-white/10 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <label for="item-sub" class="text-white text-[10px] font-black uppercase tracking-[0.2em]">5. Subwoofer (Opsional)</label>
+                            <span id="sub-sub" class="text-[10px] font-black text-accent-red">Rp 0</span>
+                        </div>
+                        <select id="item-sub" onchange="calculateCustomBuild()" class="w-full bg-black text-white border border-white/20 p-3 rounded-lg text-xs font-bold focus:outline-none focus:border-white cursor-pointer">
+                            <option value="none" data-price="0" data-bass="0" selected>— Tanpa Subwoofer —</option>
+                            <option value="Subwoofer Active Kolong (Underseat)" data-price="3200000" data-bass="20">Subwoofer Active Kolong (1 Unit) — Rp 3.200.000</option>
+                            <option value="Subwoofer Passive STEG Italy ST10" data-price="4800000" data-bass="35">Subwoofer STEG Italy ST10 (1 Unit) — Rp 4.800.000</option>
+                        </select>
+                    </div>
 
-                            <!-- Kotak Ringkasan & Estimasi Investasi Harga -->
-                            <div class="p-5 bg-white/5 rounded-xl border border-white/10 space-y-3">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-3">
-                                    <span class="text-[9px] font-black uppercase tracking-[0.3em] text-white/70">Estimated Investment:</span>
-                                    <span id="price-output" class="text-white text-base font-black font-heading tracking-tight">Rp 0</span>
-                                </div>
-                                <div>
-                                    <span class="block text-[8px] font-black uppercase tracking-[0.3em] text-accent-red mb-1">Configuration Summary:</span>
-                                    <p id="summary-text" class="text-white text-[11px] font-bold uppercase tracking-wider leading-relaxed">
-                                        Memuat kalkulasi sistem...
-                                    </p>
-                                </div>
-                            </div>
+                    <!-- 6. Jasa Instalasi, Kabel & Tuning -->
+                    <div class="p-4 bg-white/5 rounded-xl border border-white/10 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <label for="item-install" class="text-white text-[10px] font-black uppercase tracking-[0.2em]">6. Instalasi, Kabel & Tuning</label>
+                            <span id="sub-install" class="text-[10px] font-black text-accent-red">Rp 0</span>
+                        </div>
+                        <select id="item-install" onchange="calculateCustomBuild()" class="w-full bg-black text-white border border-white/20 p-3 rounded-lg text-xs font-bold focus:outline-none focus:border-white cursor-pointer">
+                            <option value="none" data-price="0">— Hanya Beli Unit (Tanpa Pasang) —</option>
+                            <option value="Jasa Instalasi + Kabel + RTA Tuning" data-price="1500000" selected>Jasa Instalasi + Kabel + RTA Tuning — Rp 1.500.000</option>
+                            <option value="Custom Pillar 3-Way + Instalasi + Tuning" data-price="3500000">Custom Pillar + Instalasi + Tuning — Rp 3.500.000</option>
+                        </select>
+                    </div>
 
-                            <!-- Tombol Aksi Interaktif -->
-                            <div class="space-y-3 pt-2">
-                                <button type="button" onclick="sendSimulation()" class="inline-flex items-center justify-between w-full px-8 py-4 bg-white text-accent-red font-black uppercase text-xs tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-300 rounded-lg shadow-lg cursor-pointer">
-                                    <span>Konsultasi Detail ke WhatsApp</span>
-                                    <i class="fa-brands fa-whatsapp text-xl"></i>
-                                </button>
+                    <!-- Kotak Ringkasan & Total Investasi -->
+                    <div class="p-5 bg-white/10 rounded-xl border border-white/20 space-y-3">
+                        <div class="flex justify-between items-center border-b border-white/15 pb-3">
+                            <span class="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">Total Estimated Investment:</span>
+                            <span id="price-output" class="text-white text-xl font-black font-heading tracking-tight">Rp 0</span>
+                        </div>
+                        <div>
+                            <span class="block text-[8px] font-black uppercase tracking-[0.3em] text-accent-red mb-1.5">Selected Item List:</span>
+                            <ul id="summary-list" class="text-white text-[11px] font-bold tracking-wider space-y-1">
+                                <li>Memuat daftar item...</li>
+                            </ul>
+                        </div>
+                    </div>
 
-                                <div class="grid grid-cols-2 gap-3">
-                                    <button type="button" onclick="downloadQuote()" class="px-4 py-3 bg-black/40 border border-white/20 text-white font-black uppercase text-[10px] tracking-[0.2em] hover:bg-white hover:text-black transition-all rounded-lg cursor-pointer text-center">
-                                        <i class="fa-solid fa-file-pdf mr-2"></i> Download Quote
-                                    </button>
-                                    <a href="https://hub.concerto.id/" target="_blank" rel="noopener noreferrer" class="px-4 py-3 bg-black/40 border border-white/20 text-white font-black uppercase text-[10px] tracking-[0.2em] hover:bg-white hover:text-black transition-all rounded-lg cursor-pointer text-center flex items-center justify-center">
-                                        <i class="fa-solid fa-globe mr-2"></i> Concerto Audio Indonesia portal Hub
-                                    </a>
-                                </div>
-                            </div>
+                    <!-- Tombol Aksi Interaktif -->
+                    <div class="space-y-3 pt-2">
+                        <button type="button" onclick="sendCustomSimulation()" class="inline-flex items-center justify-between w-full px-8 py-4 bg-white text-accent-red font-black uppercase text-xs tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-300 rounded-lg shadow-lg cursor-pointer">
+                            <span>Kirim Rincian Item ke WhatsApp</span>
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                        </button>
 
+                        <div class="grid grid-cols-2 gap-3">
+                            <button type="button" onclick="downloadCustomQuote()" class="px-4 py-3 bg-black/40 border border-white/20 text-white font-black uppercase text-[10px] tracking-[0.2em] hover:bg-white hover:text-black transition-all rounded-lg cursor-pointer text-center">
+                                <i class="fa-solid fa-file-pdf mr-2"></i> Preview & Download Quote
+                            </button>
+                            <a href="https://hub.concerto.id/" target="_blank" rel="noopener noreferrer" class="px-4 py-3 bg-black/40 border border-white/20 text-white font-black uppercase text-[10px] tracking-[0.2em] hover:bg-white hover:text-black transition-all rounded-lg cursor-pointer text-center flex items-center justify-center">
+                                <i class="fa-solid fa-globe mr-2"></i> Concerto Portal Hub
+                            </a>
                         </div>
                     </div>
 
                 </div>
             </div>
-        </section>
+
+        </div>
+    </div>
+</section>
 
     </main>
 
@@ -1030,61 +1095,72 @@
         <img id="zoom-modal-image" src="" alt="Zoomed View" class="max-w-[90%] max-h-[90%] object-contain transition-transform duration-500 scale-95">
     </div>
 
-    <!-- Modal Pratinjau Invoice / Quotation PDF (ID harus sinkron dengan JS) -->
-    <div id="invoice-modal" class="fixed inset-0 z-[99999] bg-black/80 backdrop-blur-md flex items-center justify-center opacity-0 pointer-events-none p-4">
-        <div class="bg-white dark:bg-[#121212] text-black dark:text-white w-full max-w-2xl rounded-2xl p-8 shadow-2xl border border-black/10 dark:border-white/10 relative overflow-y-auto max-h-[90vh]">
+    <!-- Modal Pratinjau Invoice / Quotation PDF (Per Baris Item) -->
+<div id="invoice-modal" class="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md flex items-center justify-center opacity-0 pointer-events-none p-4">
+    <div class="bg-white dark:bg-[#121212] text-black dark:text-white w-full max-w-2xl rounded-2xl p-8 shadow-2xl border border-black/10 dark:border-white/10 relative overflow-y-auto max-h-[90vh]">
+        
+        <button type="button" onclick="closeInvoiceModal()" class="absolute top-6 right-6 text-gray-400 hover:text-accent-red text-xl cursor-pointer">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
 
-            <!-- Tombol Tutup Modal -->
-            <button type="button" onclick="closeInvoiceModal()" class="absolute top-6 right-6 text-gray-400 hover:text-accent-red text-xl cursor-pointer">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <!-- Area Printable Invoice -->
-            <div id="printable-invoice" class="space-y-6 pt-4 bg-white dark:bg-[#121212]">
-                <div class="flex justify-between items-start border-b border-black/10 dark:border-white/10 pb-6">
-                    <div>
-                        <h3 class="font-heading text-2xl font-black uppercase tracking-tighter text-black dark:text-white">CONCERTO MALANG</h3>
-                        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400">High-End Car Audio Specialist & Soundproofing</p>
-                    </div>
-                    <div class="text-right">
-                        <span class="text-[10px] font-black uppercase tracking-widest bg-accent-red text-white px-3 py-1 rounded">Official Quotation</span>
-                        <p id="inv-date" class="text-[10px] font-bold text-gray-400 mt-2">Date: --/--/----</p>
-                    </div>
+        <!-- Area Printable Invoice -->
+        <div id="printable-invoice" class="space-y-6 pt-2 bg-white dark:bg-[#121212]">
+            <div class="flex justify-between items-start border-b border-black/15 dark:border-white/15 pb-5">
+                <div>
+                    <h3 class="font-heading text-2xl font-black uppercase tracking-tighter text-black dark:text-white">CONCERTO MALANG</h3>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400">High-End Car Audio Specialist & Soundproofing</p>
                 </div>
-
-                <div class="space-y-2 text-xs uppercase font-bold">
-                    <p class="text-gray-400 text-[9px] tracking-widest">Selected Configuration:</p>
-                    <div class="p-4 bg-black/5 dark:bg-white/5 rounded-lg space-y-2">
-                        <p class="text-black dark:text-white"><strong>Kelas Kendaraan:</strong> <br><span id="inv-car" class="text-accent-red font-bold text-sm">--</span></p>
-                        <p class="text-black dark:text-white"><strong>Tier Perangkat:</strong> <br><span id="inv-tier" class="text-accent-red font-bold text-sm">--</span></p>
-                        <p class="text-black dark:text-white"><strong>Paket Peredam:</strong> <br><span id="inv-damp" class="text-accent-red font-bold text-sm">--</span></p>
-                    </div>
-                </div>
-
-                <div class="flex justify-between items-center border-t border-black/10 dark:border-white/10 pt-6">
-                    <div>
-                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Total Estimated Investment</p>
-                        <p id="inv-total" class="text-2xl font-black font-heading text-accent-red">Rp 0</p>
-                    </div>
-                    <div class="text-right text-[9px] text-gray-400 uppercase tracking-widest">
-                        <p>Jl. Ciliwung No. 57A, Malang</p>
-                        <p>Authorized Workshop</p>
-                    </div>
+                <div class="text-right">
+                    <span class="text-[10px] font-black uppercase tracking-widest bg-accent-red text-white px-3 py-1 rounded">Custom Quotation</span>
+                    <p id="inv-date" class="text-[10px] font-bold text-gray-400 mt-2">Date: --/--/----</p>
                 </div>
             </div>
 
-            <!-- Tombol Aksi di dalam Modal -->
-            <div class="mt-8 flex gap-4 pt-4 border-t border-black/10 dark:border-white/10">
-                <button type="button" onclick="triggerPrintToPDF()" class="flex-1 py-4 bg-accent-red text-white font-black uppercase text-xs tracking-[0.2em] hover:bg-black transition-all rounded-lg cursor-pointer shadow-lg">
-                    <i class="fa-solid fa-download mr-2"></i> Simpan / Cetak PDF
-                </button>
-                <button type="button" onclick="closeInvoiceModal()" class="px-6 py-4 bg-gray-200 dark:bg-white/10 text-black dark:text-white font-black uppercase text-xs tracking-[0.2em] hover:bg-gray-300 transition-all rounded-lg cursor-pointer">
-                    Tutup
-                </button>
+            <div class="text-xs uppercase font-bold">
+                <span class="text-gray-400 text-[9px] tracking-widest block">Vehicle / Kendaraan:</span>
+                <p id="inv-car-display" class="text-sm font-black text-accent-red mt-0.5">--</p>
             </div>
 
+            <!-- Tabel Rincian Item yang Dipilih -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="border-b border-black/15 dark:border-white/15 text-[9px] uppercase tracking-widest text-gray-400">
+                            <th class="py-2.5">Item / Komponen</th>
+                            <th class="py-2.5 text-center">Qty</th>
+                            <th class="py-2.5 text-right">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inv-items-body" class="divide-y divide-black/10 dark:divide-white/10 font-bold">
+                        <!-- Diisi otomatis oleh JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="flex justify-between items-center border-t border-black/15 dark:border-white/15 pt-5">
+                <div>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Total Estimated Investment</p>
+                    <p id="inv-total" class="text-2xl font-black font-heading text-accent-red">Rp 0</p>
+                </div>
+                <div class="text-right text-[9px] text-gray-400 uppercase tracking-widest">
+                    <p>Jl. Ciliwung No. 57A, Malang</p>
+                    <p>Authorized Workshop</p>
+                </div>
+            </div>
         </div>
+
+        <!-- Tombol Aksi Modal -->
+        <div class="mt-8 flex gap-4 pt-4 border-t border-black/10 dark:border-white/10">
+            <button type="button" onclick="triggerPrintToPDF()" class="flex-1 py-4 bg-accent-red text-white font-black uppercase text-xs tracking-[0.2em] hover:bg-black transition-all rounded-lg cursor-pointer shadow-lg">
+                <i class="fa-solid fa-download mr-2"></i> Simpan / Cetak PDF
+            </button>
+            <button type="button" onclick="closeInvoiceModal()" class="px-6 py-4 bg-gray-200 dark:bg-white/10 text-black dark:text-white font-black uppercase text-xs tracking-[0.2em] hover:bg-gray-300 transition-all rounded-lg cursor-pointer">
+                Tutup
+            </button>
+        </div>
+
     </div>
+</div>
 
 <!-- External Scripts -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -1094,128 +1170,167 @@
 
 <!-- Application Scripts -->
 <script>
-    // 1. Estimator harga & profil akustik
-    function calculateBuild() {
-        const carSelect = document.getElementById('sim-car');
-        const tierSelect = document.getElementById('sim-tier');
-        const dampSelect = document.getElementById('sim-damp');
+   // Helper Format Rupiah
+    function formatIDR(amount) {
+        return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(amount);
+    }
 
-        if (!carSelect || !tierSelect || !dampSelect) return;
+    // Variabel Global Penampung Daftar Item Terpilih
+    let selectedBuildItems = [];
+    let currentGrandTotal = 0;
 
-        const carText = carSelect.value;
-        const tierText = tierSelect.options[tierSelect.selectedIndex].text.split('—')[0].trim();
-        const dampText = dampSelect.options[dampSelect.selectedIndex].text.split('—')[0].trim();
+    // 2. Kalkulator Custom Build Item-by-Item
+    function calculateCustomBuild() {
+        selectedBuildItems = [];
+        currentGrandTotal = 0;
 
-        const carCost = parseInt(carSelect.options[carSelect.selectedIndex].getAttribute('data-cost')) || 0;
-        const tierPrice = parseInt(tierSelect.options[tierSelect.selectedIndex].getAttribute('data-price')) || 0;
-        const dampCost = parseInt(dampSelect.options[dampSelect.selectedIndex].getAttribute('data-dampcost')) || 0;
+        let vocalScore = 40;
+        let bassScore = 35;
+        let isoScore = 30;
 
-        const totalPrice = carCost + tierPrice + dampCost;
+        // 1. Cek Peredam + Qty Lembar
+        const dampSel = document.getElementById('item-damping');
+        const dampQty = Math.max(0, parseInt(document.getElementById('qty-damping').value) || 0);
+        const dampUnitPrice = parseInt(dampSel.options[dampSel.selectedIndex].getAttribute('data-price')) || 0;
+        const dampIso = parseInt(dampSel.options[dampSel.selectedIndex].getAttribute('data-iso')) || 0;
+        const dampSubtotal = (dampSel.value !== 'none') ? (dampUnitPrice * dampQty) : 0;
 
-        const formattedPrice = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(totalPrice);
-        const priceOutput = document.getElementById('price-output');
-        if (priceOutput) {
-            priceOutput.innerText = formattedPrice;
+        document.getElementById('sub-damping').innerText = formatIDR(dampSubtotal);
+        if (dampSubtotal > 0) {
+            selectedBuildItems.push({ name: dampSel.value, qty: `${dampQty} Lembar`, subtotal: dampSubtotal });
+            currentGrandTotal += dampSubtotal;
+            isoScore += Math.min(65, dampIso * Math.ceil(dampQty / 2));
         }
 
-        const summary = document.getElementById('summary-text');
-        if (summary) {
-            summary.innerHTML = `Kendaraan: <span class="text-white">${carText}</span><br>Perangkat: <span class="text-white">${tierText}</span><br>Peredam: <span class="text-white">${dampText}</span>`;
+        // 2. Cek Processor / DSP
+        const dspSel = document.getElementById('item-dsp');
+        const dspPrice = parseInt(dspSel.options[dspSel.selectedIndex].getAttribute('data-price')) || 0;
+        const dspVocal = parseInt(dspSel.options[dspSel.selectedIndex].getAttribute('data-vocal')) || 0;
+        document.getElementById('sub-dsp').innerText = formatIDR(dspPrice);
+        if (dspSel.value !== 'none' && dspPrice > 0) {
+            selectedBuildItems.push({ name: dspSel.value, qty: '1 Unit', subtotal: dspPrice });
+            currentGrandTotal += dspPrice;
+            vocalScore += dspVocal;
         }
 
-        if (tierPrice > 30000000) {
-            updateStats(98, 95, 96);
-        } else if (tierPrice > 20000000) {
-            updateStats(90, 92, 88);
+        // 3. Cek Speaker Set
+        const spkSel = document.getElementById('item-speaker');
+        const spkPrice = parseInt(spkSel.options[spkSel.selectedIndex].getAttribute('data-price')) || 0;
+        const spkVocal = parseInt(spkSel.options[spkSel.selectedIndex].getAttribute('data-vocal')) || 0;
+        document.getElementById('sub-speaker').innerText = formatIDR(spkPrice);
+        if (spkSel.value !== 'none' && spkPrice > 0) {
+            selectedBuildItems.push({ name: spkSel.value, qty: '1 Set', subtotal: spkPrice });
+            currentGrandTotal += spkPrice;
+            vocalScore += spkVocal;
+        }
+
+        // 4. Cek Power Amplifier (Opsional)
+        const pwrSel = document.getElementById('item-power');
+        const pwrPrice = parseInt(pwrSel.options[pwrSel.selectedIndex].getAttribute('data-price')) || 0;
+        const pwrBass = parseInt(pwrSel.options[pwrSel.selectedIndex].getAttribute('data-bass')) || 0;
+        document.getElementById('sub-power').innerText = formatIDR(pwrPrice);
+        if (pwrSel.value !== 'none' && pwrPrice > 0) {
+            selectedBuildItems.push({ name: pwrSel.value, qty: '1 Unit', subtotal: pwrPrice });
+            currentGrandTotal += pwrPrice;
+            bassScore += pwrBass;
+        }
+
+        // 5. Cek Subwoofer (Opsional)
+        const subSel = document.getElementById('item-sub');
+        const subPrice = parseInt(subSel.options[subSel.selectedIndex].getAttribute('data-price')) || 0;
+        const subBass = parseInt(subSel.options[subSel.selectedIndex].getAttribute('data-bass')) || 0;
+        document.getElementById('sub-sub').innerText = formatIDR(subPrice);
+        if (subSel.value !== 'none' && subPrice > 0) {
+            selectedBuildItems.push({ name: subSel.value, qty: '1 Unit', subtotal: subPrice });
+            currentGrandTotal += subPrice;
+            bassScore += subBass;
+        }
+
+        // 6. Cek Jasa Instalasi & Tuning
+        const instSel = document.getElementById('item-install');
+        const instPrice = parseInt(instSel.options[instSel.selectedIndex].getAttribute('data-price')) || 0;
+        document.getElementById('sub-install').innerText = formatIDR(instPrice);
+        if (instSel.value !== 'none' && instPrice > 0) {
+            selectedBuildItems.push({ name: instSel.value, qty: '1 Paket', subtotal: instPrice });
+            currentGrandTotal += instPrice;
+        }
+
+        // Update Total Harga
+        document.getElementById('price-output').innerText = formatIDR(currentGrandTotal);
+
+        // Update Daftar Ringkasan Item di Kotak Bawah
+        const summaryList = document.getElementById('summary-list');
+        if (selectedBuildItems.length === 0) {
+            summaryList.innerHTML = `<li class="text-white/50 italic">Belum ada item yang dipilih. Silakan pilih komponen di atas.</li>`;
         } else {
-            updateStats(88, 82, 85);
+            summaryList.innerHTML = selectedBuildItems.map(item => 
+                `<li class="flex justify-between border-b border-white/5 pb-1">
+                    <span>• ${item.name} <span class="text-accent-red">(${item.qty})</span></span>
+                    <span>${formatIDR(item.subtotal)}</span>
+                </li>`
+            ).join('');
         }
+
+        // Update Visual Grafik (Maksimal 99%)
+        updateStats(Math.min(99, vocalScore), Math.min(99, bassScore), Math.min(99, isoScore));
     }
 
     function updateStats(vocal, bass, isolation) {
-        const vEl = document.getElementById('stat-vocal');
-        const bEl = document.getElementById('stat-bass');
-        const iEl = document.getElementById('stat-isolation');
-        const bvEl = document.getElementById('bar-vocal');
-        const bbEl = document.getElementById('bar-bass');
-        const biEl = document.getElementById('bar-isolation');
-
-        if (vEl) vEl.innerText = vocal + '%';
-        if (bvEl) bvEl.style.width = vocal + '%';
-        if (bEl) bEl.innerText = bass + '%';
-        if (bbEl) bbEl.style.width = bass + '%';
-        if (iEl) iEl.innerText = isolation + '%';
-        if (biEl) biEl.style.width = isolation + '%';
+        document.getElementById('stat-vocal').innerText = vocal + '%';
+        document.getElementById('bar-vocal').style.width = vocal + '%';
+        document.getElementById('stat-bass').innerText = bass + '%';
+        document.getElementById('bar-bass').style.width = bass + '%';
+        document.getElementById('stat-isolation').innerText = isolation + '%';
+        document.getElementById('bar-isolation').style.width = isolation + '%';
     }
 
-    window.addEventListener('DOMContentLoaded', calculateBuild);
+    window.addEventListener('DOMContentLoaded', calculateCustomBuild);
 
-    // 2. Kirim simulasi ke WhatsApp
-    function sendSimulation() {
-        const car = document.getElementById('sim-car').value;
-        const tier = document.getElementById('sim-tier').value;
-        const damp = document.getElementById('sim-damp').value;
-        const priceEl = document.getElementById('price-output');
-        const price = priceEl ? priceEl.innerText : 'Rp 0';
+    // 3. Kirim Rincian Item ke WhatsApp
+    function sendCustomSimulation() {
+        const carName = document.getElementById('sim-car-name').value.trim() || 'Belum diisi';
+        if (selectedBuildItems.length === 0) {
+            alert('Silakan pilih minimal 1 item komponen terlebih dahulu.');
+            return;
+        }
 
-        const message = `Halo Concerto Malang, saya merancang spesifikasi audio mandiri via web:\n\n- Kendaraan: ${car}\n- Perangkat: ${tier}\n- Peredam: ${damp}\n- Estimasi Investasi: ${price}\n\nMohon info ketersediaan dan penjadwalan di workshop. Terima kasih!`;
-        window.open(`https://wa.me/6281217398558?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+        const itemLines = selectedBuildItems.map((item, idx) => `${idx + 1}. ${item.name} (${item.qty}) = ${formatIDR(item.subtotal)}`).join('\n');
+        const message = `Halo Concerto Malang, saya ingin konsultasi custom build audio dengan rincian berikut:\n\n*Kendaraan:* ${carName}\n\n*Rincian Item:*\n${itemLines}\n\n*Total Estimasi:* ${formatIDR(currentGrandTotal)}\n\nMohon info ketersediaan stok dan jadwal pengerjaan di workshop. Terima kasih!`;
+        
+        window.open(`https://wa.me/6281217398558?text=${encodeURIComponent(message)}`, '_blank');
     }
 
-    // 3. Invoice & PDF quotation
-    function downloadQuote() {
-        const carSelect = document.getElementById('sim-car');
-        const tierSelect = document.getElementById('sim-tier');
-        const dampSelect = document.getElementById('sim-damp');
-
-        if (!carSelect || !tierSelect || !dampSelect) return;
-
-        const carText = carSelect.value;
-        const tierText = tierSelect.options[tierSelect.selectedIndex].text.split('—')[0].trim();
-        const dampText = dampSelect.options[dampSelect.selectedIndex].text.split('—')[0].trim();
-        const priceEl = document.getElementById('price-output');
-        const price = priceEl ? priceEl.innerText : 'Rp 0';
-
-        const invCar = document.getElementById('inv-car');
-        const invTier = document.getElementById('inv-tier');
-        const invDamp = document.getElementById('inv-damp');
-        const invTotal = document.getElementById('inv-total');
-        const invDate = document.getElementById('inv-date');
-
-        if (invCar) invCar.innerText = carText;
-        if (invTier) invTier.innerText = tierText;
-        if (invDamp) invDamp.innerText = dampText;
-        if (invTotal) invTotal.innerText = price;
+    // 4. Tampilkan Modal Invoice Per Baris Item
+    function downloadCustomQuote() {
+        const carName = document.getElementById('sim-car-name').value.trim() || 'Custom Vehicle';
+        document.getElementById('inv-car-display').innerText = carName;
+        document.getElementById('inv-total').innerText = formatIDR(currentGrandTotal);
 
         const today = new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' });
-        if (invDate) invDate.innerText = `Date: ${today}`;
+        document.getElementById('inv-date').innerText = `Date: ${today}`;
+
+        const tbody = document.getElementById('inv-items-body');
+        if (selectedBuildItems.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="3" class="py-4 text-center text-gray-400">Tidak ada item dipilih</td></tr>`;
+        } else {
+            tbody.innerHTML = selectedBuildItems.map(item => `
+                <tr>
+                    <td class="py-3 text-black dark:text-white">${item.name}</td>
+                    <td class="py-3 text-center text-gray-500">${item.qty}</td>
+                    <td class="py-3 text-right text-black dark:text-white">${formatIDR(item.subtotal)}</td>
+                </tr>
+            `).join('');
+        }
 
         const modal = document.getElementById('invoice-modal');
-        if (modal) {
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-        }
+        if (modal) modal.classList.remove('opacity-0', 'pointer-events-none');
     }
 
     function closeInvoiceModal() {
         const modal = document.getElementById('invoice-modal');
-        if (modal) {
-            modal.classList.add('opacity-0', 'pointer-events-none');
-        }
+        if (modal) modal.classList.add('opacity-0', 'pointer-events-none');
     }
 
     function triggerPrintToPDF() {
         window.print();
     }
-
-    // Invoice selalu dicetak dengan tema terang (teks gelap di kertas putih)
-    let wasDarkBeforePrint = false;
-    window.addEventListener('beforeprint', () => {
-        wasDarkBeforePrint = document.documentElement.classList.contains('dark');
-        document.documentElement.classList.remove('dark');
-    });
-    window.addEventListener('afterprint', () => {
-        if (wasDarkBeforePrint) document.documentElement.classList.add('dark');
-    });
-</script>
-</body>
-</html>
