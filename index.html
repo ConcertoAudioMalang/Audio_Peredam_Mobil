@@ -41,17 +41,12 @@
         }
     </script>
 
-    <!-- Terapkan tema tersimpan sebelum render (cegah flicker) -->
+    <!-- Terapkan tema tersimpan sebelum render (default gelap, sama dengan script.js) -->
     <script>
         (function () {
             var saved = null;
             try { saved = localStorage.getItem('theme'); } catch (e) {}
-            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (saved === 'dark' || (saved === null && prefersDark)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
+            document.documentElement.classList.toggle('dark', saved !== 'light');
         })();
     </script>
 
@@ -248,7 +243,7 @@
                 <div class="grid lg:grid-cols-12 gap-12 mb-24 items-end">
                     <div class="lg:col-span-8">
                         <span class="label-small mb-4 block" data-aos="fade-right">Tentang Kami</span>
-                        <h2 class="hero-title text-5xl lg:text-8xl text-[#1A1A1A] dark:text-white group-hover:text-white transition-colors duration-500" data-aos="reveal-up">
+                        <h2 class="hero-title text-5xl lg:text-8xl text-[#1A1A1A] dark:text-white group-hover:text-white transition-colors duration-500" data-aos="fade-up">
                             Engineering <br> <span class="italic text-accent-red">Excellence.</span>
                         </h2>
                     </div>
@@ -308,7 +303,7 @@
 
             <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 text-white dark:text-black">
                 <div class="grid lg:grid-cols-2 gap-20 items-center mb-32">
-                    <h2 class="text-5xl lg:text-8xl font-black font-heading uppercase leading-[0.8] tracking-tighter" data-aos="reveal-up">
+                    <h2 class="text-5xl lg:text-8xl font-black font-heading uppercase leading-[0.8] tracking-tighter" data-aos="fade-up">
                         Standar <br> <span class="text-accent-red italic">Akurasi Tinggi.</span>
                     </h2>
                     <div class="space-y-8 lg:border-l lg:border-white/20 dark:lg:border-black/20 lg:pl-12">
@@ -421,7 +416,7 @@
                 <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
                     <div class="max-w-2xl">
                         <span class="text-[10px] font-black tracking-[0.3em] uppercase opacity-50 mb-6 block" data-aos="fade-right">Pilihan Konfigurasi</span>
-                        <h2 class="font-heading text-4xl lg:text-7xl font-black uppercase leading-[0.9] dark:text-white" data-aos="reveal-up">
+                        <h2 class="font-heading text-4xl lg:text-7xl font-black uppercase leading-[0.9] dark:text-white" data-aos="fade-up">
                             Paket <br> <span class="text-accent-red italic">Audio Upgrade.</span>
                         </h2>
                     </div>
@@ -688,7 +683,7 @@
                 <div class="mb-20">
                     <span class="text-[10px] font-black tracking-[0.3em] uppercase text-gray-400 dark:text-gray-400 mb-4 block" data-aos="fade-right">Customer Support</span>
                     <div class="flex items-end justify-between border-b-2 border-accent-red pb-6">
-                        <h2 class="font-heading text-4xl lg:text-6xl font-black uppercase leading-none text-black dark:text-white" data-aos="reveal-up">
+                        <h2 class="font-heading text-4xl lg:text-6xl font-black uppercase leading-none text-black dark:text-white" data-aos="fade-up">
                             Technical <span class="italic text-accent-red">FAQ.</span>
                         </h2>
                         <span class="text-[10px] font-black text-gray-400 dark:text-gray-400 mb-2 uppercase tracking-widest hidden md:block">Concerto // Malang</span>
@@ -1099,12 +1094,7 @@
 
 <!-- Application Scripts -->
 <script>
-    // 1. Inisialisasi animasi AOS
-    if (window.AOS) {
-        AOS.init({ duration: 1000, once: true });
-    }
-
-    // 2. Estimator harga & profil akustik
+    // 1. Estimator harga & profil akustik
     function calculateBuild() {
         const carSelect = document.getElementById('sim-car');
         const tierSelect = document.getElementById('sim-tier');
@@ -1160,7 +1150,7 @@
 
     window.addEventListener('DOMContentLoaded', calculateBuild);
 
-    // 3. Kirim simulasi ke WhatsApp
+    // 2. Kirim simulasi ke WhatsApp
     function sendSimulation() {
         const car = document.getElementById('sim-car').value;
         const tier = document.getElementById('sim-tier').value;
@@ -1172,7 +1162,7 @@
         window.open(`https://wa.me/6281217398558?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
     }
 
-    // 4. Invoice & PDF quotation
+    // 3. Invoice & PDF quotation
     function downloadQuote() {
         const carSelect = document.getElementById('sim-car');
         const tierSelect = document.getElementById('sim-tier');
@@ -1226,61 +1216,6 @@
     window.addEventListener('afterprint', () => {
         if (wasDarkBeforePrint) document.documentElement.classList.add('dark');
     });
-
-    // 5. Navbar saat scroll
-    const navbar = document.getElementById('navbar');
-    if (navbar) {
-        const scrolledClasses = ['nav-scrolled', 'bg-white/80', 'dark:bg-dark-studio/80', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-black/5', 'dark:border-white/5'];
-
-        const updateNavbar = () => {
-            if (window.scrollY > 30) {
-                navbar.classList.remove('py-6');
-                navbar.classList.add(...scrolledClasses);
-            } else {
-                navbar.classList.remove(...scrolledClasses);
-                navbar.classList.add('py-6');
-            }
-        };
-
-        window.addEventListener('scroll', updateNavbar, { passive: true });
-        updateNavbar();
-    }
-
-    // 6. Menu mobile (aktif hanya jika elemen #mobile-menu-button, #close-menu & #mobile-menu ada)
-    const mobileMenuBtn = document.getElementById('mobile-menu-button');
-    const closeMenuBtn = document.getElementById('close-menu');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-
-    if (mobileMenuBtn && closeMenuBtn && mobileMenu) {
-        const openMenu = () => {
-            mobileMenu.classList.remove('translate-y-full');
-            document.body.style.overflow = 'hidden';
-        };
-
-        const closeMenu = () => {
-            mobileMenu.classList.add('translate-y-full');
-            document.body.style.overflow = '';
-        };
-
-        mobileMenuBtn.addEventListener('click', openMenu);
-        closeMenuBtn.addEventListener('click', closeMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
-    }
-
-    // 7. Toggle tema terang/gelap
-    const themeBtn = document.getElementById('theme-toggle');
-    const themeBtnMobile = document.getElementById('theme-toggle-mobile');
-
-    function toggleTheme() {
-        document.documentElement.classList.toggle('dark');
-        document.body.classList.toggle('dark');
-        const isDark = document.documentElement.classList.contains('dark');
-        try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
-    }
-
-    if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
-    if (themeBtnMobile) themeBtnMobile.addEventListener('click', toggleTheme);
 </script>
 </body>
 </html>
