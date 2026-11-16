@@ -102,61 +102,62 @@
 </header>
 
 <main>
-    <section id="hero" class="relative h-screen w-full flex items-center justify-center bg-white dark:bg-dark-studio overflow-hidden">
+    <section id="hero" class="relative h-screen w-full flex items-center justify-center bg-white dark:bg-dark-studio overflow-hidden transition-colors duration-500">
         
+        <!-- Background Image & Gradient Overlay -->
         <div class="absolute inset-0 z-0 overflow-hidden">
-            <img src="asset/background-concerto.jpg" class="w-full h-full object-cover grayscale opacity-20 scale-110" alt="Background">
-            <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white dark:from-dark-studio dark:via-transparent dark:to-dark-studio"></div>
+            <img src="asset/background-concerto.jpg" class="w-full h-full object-cover grayscale opacity-15 dark:opacity-25 scale-110" alt="Background">
+            <!-- Gradien transparan agar menyatu mulus di light maupun dark mode -->
+            <div class="absolute inset-0 bg-gradient-to-t from-white via-white/50 to-white dark:from-dark-studio dark:via-dark-studio/50 dark:to-dark-studio"></div>
         </div>
 
+        <!-- Content Container -->
         <div class="relative z-10 max-w-[1800px] mx-auto w-full px-6 lg:px-12 flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-center justify-center">
-    
-    <div class="lg:col-span-5 h-[350px] md:h-[450px] lg:h-[80vh] w-full relative flex items-center justify-center order-first lg:order-last" data-aos="zoom-out" data-aos-delay="400">
-        <div id="speaker-container" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
-        <div class="absolute inset-0 bg-accent-red/5 blur-[120px] rounded-full -z-10 animate-pulse"></div>
-    </div>
-
-    <div class="lg:col-span-7 text-center lg:text-left" data-aos="fade-up" data-aos-delay="200">
-        <div class="overflow-hidden mb-4">
-            <span class="block text-[8px] lg:text-[10px] font-black tracking-[0.5em] lg:tracking-[0.8em] opacity-40 uppercase animate-reveal-up">
-                Work with passion or not at all
-            </span>
-        </div>
-        
-        <h1 class="font-heading text-[15vw] lg:text-[9vw] leading-[0.85] lg:leading-[0.8] font-black uppercase italic tracking-tighter mb-6 lg:mb-8">
-            CONCERTO <br> 
-            <span class="text-accent-red not-italic relative inline-block">
-                MALANG
-                <span class="absolute -bottom-2 left-0 w-full h-[2px] bg-accent-red/20"></span>
-            </span>
-        </h1>
-
-        <div class="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-8 mt-8 lg:mt-12 items-center lg:items-start">
-            <p class="max-w-[280px] lg:max-w-[320px] text-[10px] lg:text-xs font-bold uppercase tracking-widest opacity-60 leading-relaxed lg:leading-loose">
-                High-End Car Audio Specialist. Redefining acoustic engineering with World-Class Tuning standards.
-            </p>
             
-            <a href="#kontak" class="inline-flex items-center gap-4 lg:gap-6 group">
-                <span class="w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-current flex items-center justify-center group-hover:bg-accent-red group-hover:border-accent-red group-hover:text-white transition-all duration-500">
-                    <i class="fa-solid fa-play text-[8px] lg:text-[10px] translate-x-0.5"></i>
-                </span>
-                <span class="text-[9px] lg:text-[10px] font-black uppercase tracking-[0.3em] lg:tracking-[0.4em]">Explore Studio</span>
-            </a>
-        </div>
-    </div>
-</div>
+            <!-- Sisi Kiri: Teks Utama -->
+            <div class="lg:col-span-7 text-center lg:text-left order-2 lg:order-1" data-aos="fade-up" data-aos-delay="200">
+                <div class="overflow-hidden mb-4">
+                    <span class="block text-[8px] lg:text-[10px] font-black tracking-[0.5em] lg:tracking-[0.8em] text-gray-500 dark:text-gray-400 uppercase">
+                        Work with passion or not at all
+                    </span>
+                </div>
+                
+                <h1 class="font-heading text-[15vw] lg:text-[9vw] leading-[0.85] lg:leading-[0.8] font-black uppercase italic tracking-tighter mb-6 lg:mb-8 text-black dark:text-white">
+                    CONCERTO <br> 
+                    <span class="text-accent-red not-italic relative inline-block">
+                        MALANG
+                        <span class="absolute -bottom-2 left-0 w-full h-[2px] bg-accent-red/20"></span>
+                    </span>
+                </h1>
 
-            <div class="lg:col-span-5 h-[400px] lg:h-[80vh] relative flex items-center justify-center" data-aos="zoom-out" data-aos-delay="400">
-                <div id="speaker-container" class="w-full h-full cursor-grab active:cursor-grabbing">
-                    </div>
-                <div class="absolute inset-0 bg-accent-red/5 blur-[120px] rounded-full -z-10 animate-pulse"></div>
+                <div class="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-8 mt-8 lg:mt-12 items-center lg:items-start">
+                    <p class="max-w-[280px] lg:max-w-[320px] text-[10px] lg:text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300 leading-relaxed lg:leading-loose">
+                        High-End Car Audio Specialist. Redefining acoustic engineering with World-Class Tuning standards.
+                    </p>
+                    
+                    <a href="#kontak" class="inline-flex items-center gap-4 lg:gap-6 group text-black dark:text-white hover:text-accent-red dark:hover:text-accent-red transition-colors">
+                        <span class="w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-current flex items-center justify-center group-hover:bg-accent-red group-hover:border-accent-red group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-play text-[8px] lg:text-[10px] translate-x-0.5"></i>
+                        </span>
+                        <span class="text-[9px] lg:text-[10px] font-black uppercase tracking-[0.3em] lg:tracking-[0.4em]">Explore Studio</span>
+                    </a>
+                </div>
             </div>
+
+            <!-- Sisi Kanan: 3D Speaker Container (Hanya 1 yang aktif & bersih) -->
+            <div class="lg:col-span-5 h-[350px] md:h-[450px] lg:h-[80vh] w-full relative flex items-center justify-center order-1 lg:order-2" data-aos="zoom-out" data-aos-delay="400">
+                <div id="speaker-container" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
+                <div class="absolute inset-0 bg-accent-red/10 blur-[120px] rounded-full -z-10 animate-pulse"></div>
+            </div>
+
         </div>
 
-        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-4 opacity-30">
+        <!-- Scroll Indicator Bawah -->
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-4 text-black/40 dark:text-white/40">
             <span class="text-[8px] font-black uppercase tracking-[0.5em] rotate-90 mb-8">Scroll</span>
             <div class="w-[1px] h-20 bg-gradient-to-b from-current to-transparent"></div>
         </div>
+
     </section>
 </main>
 
