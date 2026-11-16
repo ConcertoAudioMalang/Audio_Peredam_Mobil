@@ -44,6 +44,9 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enableZoom = false;
 controls.autoRotate = false;
+// OrbitControls mengunci touch-action: none sehingga halaman tak bisa di-scroll saat jari di atas 3D.
+// pan-y: swipe vertikal = scroll halaman, swipe horizontal = putar model.
+renderer.domElement.style.touchAction = 'pan-y';
 
 // 5. LOAD MODEL
 const loader = new GLTFLoader();
