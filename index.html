@@ -759,7 +759,7 @@
         </div>
     </div>
 </section>
-    
+
 <section id="simulator" class="bg-accent-red py-24 lg:py-32 relative overflow-hidden">
     <!-- Background Dot Pattern -->
     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 30px 30px;"></div>
@@ -767,68 +767,120 @@
     <div class="max-w-7xl mx-auto px-6 relative z-10">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
             
-            <!-- Sisi Kiri: Judul & Deskripsi -->
-            <div class="text-left" data-aos="fade-right">
-                <span class="text-[9px] font-black uppercase tracking-[0.5em] text-white/70 mb-4 block">
-                    Interactive Tool
-                </span>
-                <h2 class="text-5xl md:text-7xl font-black font-heading text-white uppercase leading-[0.85] mb-8 tracking-tighter">
-                    Audio System <br> <span class="text-white lg:text-black italic">Estimator.</span>
-                </h2>
-                <p class="text-white/90 text-[11px] md:text-xs font-black uppercase tracking-[0.3em] max-w-md leading-relaxed">
-                    Rancang sendiri spesifikasi perangkat audio, kelas kendaraan, dan paket peredam Anda. Kalkulasi instan untuk hasil akustik presisi.
-                </p>
+            <!-- Sisi Kiri: Judul, Deskripsi & Grafik Akustik Visual -->
+            <div class="text-left space-y-8" data-aos="fade-right">
+                <div>
+                    <span class="text-[9px] font-black uppercase tracking-[0.5em] text-white/70 mb-4 block">
+                        Interactive Laboratory Tool
+                    </span>
+                    <h2 class="text-5xl md:text-7xl font-black font-heading text-white uppercase leading-[0.85] mb-6 tracking-tighter">
+                        Acoustic Build <br> <span class="text-white lg:text-black italic">Simulator.</span>
+                    </h2>
+                    <p class="text-white/90 text-[11px] md:text-xs font-black uppercase tracking-[0.3em] max-w-md leading-relaxed">
+                        Simulasikan spesifikasi perangkat, estimasi investasi biaya, profil karakter suara, dan unduh proposal resmi secara instan.
+                    </p>
+                </div>
+
+                <!-- Fitur: Visual Acoustic Profile (Indikator Grafik Performa) -->
+                <div class="bg-black/30 backdrop-blur-md p-6 rounded-2xl border border-white/10 max-w-md space-y-4">
+                    <span class="text-[9px] font-black uppercase tracking-[0.3em] text-white/80 block">Simulated Acoustic Profile:</span>
+                    
+                    <div>
+                        <div class="flex justify-between text-[9px] font-black uppercase text-white mb-1">
+                            <span>Vocal Clarity & Staging</span>
+                            <span id="stat-vocal">92%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div id="bar-vocal" class="h-full bg-white transition-all duration-500" style="width: 92%"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-[9px] font-black uppercase text-white mb-1">
+                            <span>Sub-Bass Impact & Dynamic</span>
+                            <span id="stat-bass">85%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div id="bar-bass" class="h-full bg-white transition-all duration-500" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-[9px] font-black uppercase text-white mb-1">
+                            <span>Cabin Noise Isolation</span>
+                            <span id="stat-isolation">90%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div id="bar-isolation" class="h-full bg-white transition-all duration-500" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Sisi Kanan: Panel Kalkulator & Pilihan Perangkat Interaktif -->
-            <div class="bg-black/60 backdrop-blur-xl p-8 rounded-2xl border border-white/10 shadow-[20px_20px_60px_rgba(0,0,0,0.4)]" data-aos="fade-left">
+            <!-- Sisi Kanan: Panel Kalkulator & Estimasi Harga -->
+            <div class="bg-black/70 backdrop-blur-2xl p-8 rounded-2xl border border-white/15 shadow-[20px_20px_60px_rgba(0,0,0,0.5)]" data-aos="fade-left">
                 <div class="space-y-6">
                     
-                    <!-- 1. Pilihan Jenis / Merk Kendaraan -->
+                    <!-- 1. Pilihan Jenis Kendaraan -->
                     <div>
-                        <label for="sim-car" class="block text-white text-[10px] font-black uppercase tracking-[0.2em] mb-2">1. Jenis / Kelas Kendaraan</label>
+                        <label for="sim-car" class="block text-white text-[10px] font-black uppercase tracking-[0.2em] mb-2">1. Kelas Kendaraan</label>
                         <select id="sim-car" onchange="calculateBuild()" class="w-full bg-black text-white border border-white/20 p-4 rounded-lg text-xs font-bold uppercase tracking-wider focus:outline-none focus:border-white transition-colors cursor-pointer">
-                            <option value="City Car / Hatchback (Compact Space)">City Car / Hatchback (Compact Space)</option>
-                            <option value="Sedan / Luxury Car (Acoustic Precision)">Sedan / Luxury Car (Acoustic Precision)</option>
-                            <option value="SUV / Medium Car (Medium Airspace)">SUV / Medium Car (Medium Airspace)</option>
-                            <option value="MPV / Family Car (Custom Baffle)">MPV / Family Car (Custom Baffle)</option>
+                            <option value="City Car / Hatchback (Compact Space)" data-cost="0">City Car / Hatchback (Compact Space)</option>
+                            <option value="Sedan / Luxury Car (Acoustic Precision)" data-cost="1500000">Sedan / Luxury Car (+ Custom Cabling)</option>
+                            <option value="SUV / Medium Car (Medium Airspace)" data-cost="2500000">SUV / Medium Car (+ Extended Run)</option>
+                            <option value="MPV / Family Car (Custom Baffle)" data-cost="2000000">MPV / Family Car (+ Custom Baffle)</option>
                         </select>
                     </div>
 
-                    <!-- 2. Pilihan Tier Perangkat Utama -->
+                    <!-- 2. Pilihan Tier Perangkat -->
                     <div>
-                        <label for="sim-tier" class="block text-white text-[10px] font-black uppercase tracking-[0.2em] mb-2">2. Pilihan Tier Perangkat & Speaker</label>
+                        <label for="sim-tier" class="block text-white text-[10px] font-black uppercase tracking-[0.2em] mb-2">2. Tier Perangkat & Speaker</label>
                         <select id="sim-tier" onchange="calculateBuild()" class="w-full bg-black text-white border border-white/20 p-4 rounded-lg text-xs font-bold uppercase tracking-wider focus:outline-none focus:border-white transition-colors cursor-pointer">
-                            <option value="SQ Daily Pro (2-Way + MDSP Entry)">SQ Daily Pro (2-Way Speaker + MDSP Entry)</option>
-                            <option value="High-End Reference (3-Way Audiocircle/Steg + High-End DSP)">High-End Reference (3-Way Pro + High-End DSP)</option>
-                            <option value="SQL Loud & Clear (Power Sub-Woofer Dominant)">SQL Loud & Clear (Power & Sub-Woofer Dominant)</option>
+                            <option value="SQ Daily Pro (2-Way + MDSP Entry)" data-price="12500000">SQ Daily Pro (2-Way + MDSP Entry) — Est. Rp 12.5 Juta</option>
+                            <option value="High-End Reference (3-Way Audiocircle/Steg + DSP)" data-price="35000000">High-End Reference (3-Way Pro + DSP) — Est. Rp 35 Juta</option>
+                            <option value="SQL Loud & Clear (Power Sub-Woofer Dominant)" data-price="22000000">SQL Loud & Clear (Power & Sub) — Est. Rp 22 Juta</option>
                         </select>
                     </div>
 
-                    <!-- 3. Pilihan Paket Peredam (Soundproofing) -->
+                    <!-- 3. Pilihan Paket Peredam -->
                     <div>
-                        <label for="sim-damp" class="block text-white text-[10px] font-black uppercase tracking-[0.2em] mb-2">3. Paket Peredam Kabin (Soundproofing)</label>
+                        <label for="sim-damp" class="block text-white text-[10px] font-black uppercase tracking-[0.2em] mb-2">3. Paket Peredam Kabin</label>
                         <select id="sim-damp" onchange="calculateBuild()" class="w-full bg-black text-white border border-white/20 p-4 rounded-lg text-xs font-bold uppercase tracking-wider focus:outline-none focus:border-white transition-colors cursor-pointer">
-                            <option value="Peredam 2 Pintu Depan (Standard Acoustic)">Peredam 2 Pintu Depan (Standard Acoustic)</option>
-                            <option value="Full 4 Pintu + Bagasi (Quiet Cabin Package)">Full 4 Pintu + Bagasi (Quiet Cabin Package)</option>
-                            <option value="Full Chassis + Doors + Roof (Master Silent Build)">Full Chassis + Doors + Roof (Master Silent Build)</option>
+                            <option value="Peredam 2 Pintu Depan (Standard)" data-dampcost="2500000">Peredam 2 Pintu Depan — Est. Rp 2.5 Juta</option>
+                            <option value="Full 4 Pintu + Bagasi (Quiet Cabin)" data-dampcost="6500000">Full 4 Pintu + Bagasi — Est. Rp 6.5 Juta</option>
+                            <option value="Full Chassis + Doors + Roof (Master Silent)" data-dampcost="14000000">Full Chassis + Doors + Roof — Est. Rp 14 Juta</option>
                         </select>
                     </div>
 
-                    <!-- Kotak Ringkasan Hasil Kalkulasi Mandiri -->
-                    <div class="p-4 bg-white/5 rounded-xl border border-white/10">
-                        <span class="block text-[9px] font-black uppercase tracking-[0.3em] text-accent-red mb-1">Live Specification Summary:</span>
-                        <p id="summary-text" class="text-white text-xs font-bold uppercase tracking-wider leading-relaxed">
-                            Memuat kalkulasi sistem...
-                        </p>
+                    <!-- Kotak Ringkasan & Estimasi Investasi Harga -->
+                    <div class="p-5 bg-white/5 rounded-xl border border-white/10 space-y-3">
+                        <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                            <span class="text-[9px] font-black uppercase tracking-[0.3em] text-white/70">Estimated Investment:</span>
+                            <span id="price-output" class="text-white text-base font-black font-heading tracking-tight">Rp 0</span>
+                        </div>
+                        <div>
+                            <span class="block text-[8px] font-black uppercase tracking-[0.3em] text-accent-red mb-1">Configuration Summary:</span>
+                            <p id="summary-text" class="text-white text-[11px] font-bold uppercase tracking-wider leading-relaxed">
+                                Memuat kalkulasi sistem...
+                            </p>
+                        </div>
                     </div>
 
-                    <!-- Tombol Kirim Hasil ke WhatsApp -->
-                    <div class="pt-2">
-                        <button type="button" onclick="sendSimulation()" class="inline-flex items-center justify-between w-full px-8 py-5 bg-white text-accent-red font-black uppercase text-xs tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-300 rounded-lg shadow-lg cursor-pointer">
-                            <span>Kirim Detail Build ke WhatsApp</span>
+                    <!-- Tombol Aksi Interaktif -->
+                    <div class="space-y-3 pt-2">
+                        <button type="button" onclick="sendSimulation()" class="inline-flex items-center justify-between w-full px-8 py-4 bg-white text-accent-red font-black uppercase text-xs tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-300 rounded-lg shadow-lg cursor-pointer">
+                            <span>Konsultasi Detail ke WhatsApp</span>
                             <i class="fa-brands fa-whatsapp text-xl"></i>
                         </button>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <button type="button" onclick="downloadQuote()" class="px-4 py-3 bg-black/40 border border-white/20 text-white font-black uppercase text-[10px] tracking-[0.2em] hover:bg-white hover:text-black transition-all rounded-lg cursor-pointer text-center">
+                                <i class="fa-solid fa-file-pdf mr-2"></i> Download Quote
+                            </button>
+                            <a href="https://www.stegitaly.com" target="_blank" rel="noopener noreferrer" class="px-4 py-3 bg-black/40 border border-white/20 text-white font-black uppercase text-[10px] tracking-[0.2em] hover:bg-white hover:text-black transition-all rounded-lg cursor-pointer text-center flex items-center justify-center">
+                                <i class="fa-solid fa-globe mr-2"></i> Official Catalog
+                            </a>
+                        </div>
                     </div>
 
                 </div>
@@ -931,29 +983,83 @@
     // 1. Initialize AOS
     AOS.init({ duration: 1000, once: true });
 
-    // 2. Audio System Estimator & WhatsApp Logic (DIPERBAIKI: Menggunakan sim-tier sesuai HTML)
+    // 2. Audio System Estimator, Harga & Profil Akustik Logic
     function calculateBuild() {
-        const car = document.getElementById('sim-car').value;
-        const tier = document.getElementById('sim-tier').value;
-        const damp = document.getElementById('sim-damp').value;
+        const carSelect = document.getElementById('sim-car');
+        const tierSelect = document.getElementById('sim-tier');
+        const dampSelect = document.getElementById('sim-damp');
 
+        if (!carSelect || !tierSelect || !dampSelect) return;
+
+        const carText = carSelect.value;
+        const tierText = tierSelect.options[tierSelect.selectedIndex].text.split('—')[0].trim();
+        const dampText = dampSelect.options[dampSelect.selectedIndex].text.split('—')[0].trim();
+
+        // Ambil nilai harga dari atribut data
+        const carCost = parseInt(carSelect.options[carSelect.selectedIndex].getAttribute('data-cost')) || 0;
+        const tierPrice = parseInt(tierSelect.options[tierSelect.selectedIndex].getAttribute('data-price')) || 0;
+        const dampCost = parseInt(dampSelect.options[dampSelect.selectedIndex].getAttribute('data-dampcost')) || 0;
+
+        const totalPrice = carCost + tierPrice + dampCost;
+
+        // Format ke Rupiah
+        const formattedPrice = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(totalPrice);
+        const priceOutput = document.getElementById('price-output');
+        if (priceOutput) {
+            priceOutput.innerText = formattedPrice;
+        }
+
+        // Update Ringkasan Teks
         const summary = document.getElementById('summary-text');
         if (summary) {
-            summary.innerHTML = `Kendaraan: <span class="text-accent-red">${car}</span><br>Perangkat: <span class="text-accent-red">${tier}</span><br>Peredam: <span class="text-accent-red">${damp}</span>`;
+            summary.innerHTML = `Kendaraan: <span class="text-white">${carText}</span><br>Perangkat: <span class="text-white">${tierText}</span><br>Peredam: <span class="text-white">${dampText}</span>`;
+        }
+
+        // Update Dinamis Grafik Profil Akustik Berdasarkan Tier
+        if (tierPrice > 30000000) {
+            updateStats(98, 95, 96); // High-End Reference
+        } else if (tierPrice > 20000000) {
+            updateStats(90, 92, 88); // SQL Loud
+        } else {
+            updateStats(88, 82, 85); // SQ Daily Pro
         }
     }
 
-    // Jalankan kalkulator saat halaman selesai dimuat agar ringkasan langsung tampil
+    function updateStats(vocal, bass, isolation) {
+        const vEl = document.getElementById('stat-vocal');
+        const bEl = document.getElementById('stat-bass');
+        const iEl = document.getElementById('stat-isolation');
+        const bvEl = document.getElementById('bar-vocal');
+        const bbEl = document.getElementById('bar-bass');
+        const biEl = document.getElementById('bar-isolation');
+
+        if (vEl) vEl.innerText = vocal + '%';
+        if (bvEl) bvEl.style.width = vocal + '%';
+        if (bEl) bEl.innerText = bass + '%';
+        if (bbEl) bbEl.style.width = bass + '%';
+        if (iEl) iEl.innerText = isolation + '%';
+        if (biEl) biEl.style.width = isolation + '%';
+    }
+
+    // Jalankan kalkulator saat halaman dimuat
     window.addEventListener('DOMContentLoaded', calculateBuild);
 
+    // Fungsi Kirim ke WhatsApp
     function sendSimulation() {
         const car = document.getElementById('sim-car').value;
         const tier = document.getElementById('sim-tier').value;
         const damp = document.getElementById('sim-damp').value;
+        const price = document.getElementById('price-output') ? document.getElementById('price-output').innerText : 'Rp 0';
 
-        const message = `Halo Concerto Malang, saya telah merancang spesifikasi audio mandiri melalui web:\n\n- Kendaraan: ${car}\n- Perangkat: ${tier}\n- Peredam: ${damp}\n\nMohon informasi ketersediaan perangkat, estimasi waktu pengerjaan, dan penjadwalan tuning di workshop. Terima kasih!`;
+        const message = `Halo Concerto Malang, saya merancang spesifikasi audio mandiri via web:\n\n- Kendaraan: ${car}\n- Perangkat: ${tier}\n- Peredam: ${damp}\n- Estimasi Investasi: ${price}\n\nMohon info ketersediaan dan penjadwalan di workshop. Terima kasih!`;
         const encoded = encodeURIComponent(message);
         window.open(`https://wa.me/6281217398558?text=${encoded}`, '_blank');
+    }
+
+    // Fungsi Simulasi Download Quotation / Proposal PDF
+    function downloadQuote() {
+        const price = document.getElementById('price-output') ? document.getElementById('price-output').innerText : 'Rp 0';
+        alert(`[Simulasi Download PDF]\nProposal spesifikasi akustik dan estimasi investasi sebesar ${price} berhasil disiapkan. Tim Concerto Malang juga dapat mengirimkan file resmi via WhatsApp.`);
     }
 
     // 3. Navbar Scroll Logic
