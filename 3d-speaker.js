@@ -3,14 +3,12 @@ import { GLTFLoader } from 'https://unpkg.com/three@0.128.0/examples/jsm/loaders
 import { OrbitControls } from 'https://unpkg.com/three@0.128.0/examples/jsm/controls/OrbitControls.js';
 
 const container = document.getElementById('speaker-container');
-const isMobile = window.innerWidth < 768; // Definisikan variabel ini di awal
+const isMobile = window.innerWidth < 768;
 
 // 1. SCENE & RENDERER
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
-
-// Optimasi Pixel Ratio: Mobile dibatasi ke 1 agar enteng
 renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
 container.appendChild(renderer.domElement);
 
@@ -44,13 +42,11 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enableZoom = false;
 controls.autoRotate = false;
-// OrbitControls mengunci touch-action: none sehingga halaman tak bisa di-scroll saat jari di atas 3D.
-// pan-y: swipe vertikal = scroll halaman, swipe horizontal = putar model.
 renderer.domElement.style.touchAction = 'pan-y';
 
-// 5. LOAD MODEL
+// 5. LOAD MODEL (PERBAIKAN PATH: Hapus titik di depan 'asset')
 const loader = new GLTFLoader();
-loader.load('.asset/2020_mazda_3_hatchback.glb', (gltf) => {
+loader.load('asset/2020_mazda_3_hatchback.glb', (gltf) => {
     model = gltf.scene;
 
     const box = new THREE.Box3().setFromObject(model);
@@ -81,13 +77,15 @@ loader.load('.asset/2020_mazda_3_hatchback.glb', (gltf) => {
 
     applyMaterial();
     scene.add(model);
-}, undefined, (error) => {
-    console.error("Gagal load mobil:", error);
+}, (xhr) => {
+    // Opsional: Cek progress loading di console F12
+    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+}, (error) => {
+    console.error("Gagal load model 3D. Pastikan path 'asset/2020_mazda_3_hatchback.glb' benar dan jalankan via Local Server (Live Server):", error);
 });
 
-// 6. ANIMATION LOOP DENGAN OPTIMASI (INTERSECTION OBSERVER)
+// 6. ANIMATION LOOP
 let isVisible = true;
-
 const io = new IntersectionObserver((entries) => {
     isVisible = entries[0].isIntersecting;
 }, { threshold: 0.1 });
@@ -97,7 +95,6 @@ if (container) io.observe(container);
 function animate() {
     requestAnimationFrame(animate);
     
-    // Hanya render jika section terlihat
     if (isVisible) {
         if (model) {
             model.rotation.y += 0.003; 
