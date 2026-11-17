@@ -50,7 +50,7 @@ renderer.domElement.style.touchAction = 'pan-y';
 
 // 5. LOAD MODEL
 const loader = new GLTFLoader();
-loader.load('./asset/innova-v1.glb', (gltf) => {
+loader.load('.asset/2020_mazda_3_hatchback.glb', (gltf) => {
     model = gltf.scene;
 
     const box = new THREE.Box3().setFromObject(model);
